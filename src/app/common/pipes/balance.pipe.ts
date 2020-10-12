@@ -16,11 +16,6 @@ export class BalancePipe implements PipeTransform {
     if (x1 > x2) {
       return (Number(x1) - 1e-8).toFixed(precision);
     } else {
-      /*if (Number(x1) === 0) {
-        return '0';
-      } else {
-        return x1.replace(/(?:\.0*|(\.\d+?)0+)$/, '$1');
-      }*/
       if (Number(x1) === 0) {
         return '0';
       } else {

@@ -57,7 +57,7 @@
           translate}}</ion-col
         >
         <ion-col class="ion-text-right" size="2">
-          <ion-toggle [checked]="isStake" (click)="checkAdd()"></ion-toggle>
+          <ion-toggle [(ngModel)]="isStake"></ion-toggle>
         </ion-col>
       </ion-row>
     </ion-grid>

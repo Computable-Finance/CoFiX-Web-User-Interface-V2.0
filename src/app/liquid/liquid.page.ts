@@ -53,6 +53,7 @@ export class LiquidPage implements OnInit {
   pairAttended = { USDT: false, HBTC: false };
   coinList = ['USDT', 'HBTC'];
   selectCoin: string;
+  colSize = '7';
   constructor(
     private cofixService: CofiXService,
     private erc20balancePipe: ERC20BalancePipe,
@@ -187,5 +188,10 @@ export class LiquidPage implements OnInit {
 
   walletConnected() {
     this.initCoinContent();
+  }
+
+  isDisplay() {
+    this.colSize = window.innerWidth < 400 ? '8' : '7';
+    return !(window.innerWidth < 400);
   }
 }

@@ -41,7 +41,7 @@
         <div class="card-content motoken">
           <ion-grid class="mtoken_banner">
             <ion-row class="ion-align-items-center ion-align-self-center">
-              <ion-col size="2" class="token_icon_col">
+              <ion-col size="2" class="token_icon_col" *ngIf="isDisplay()">
                 <img class="ETH_icon" src="./assets/images/icon/ETH.png" />
 
                 <img
@@ -50,7 +50,7 @@
                 />
               </ion-col>
               <ion-col class="ion-text-left">ETH-{{coinItem}}</ion-col>
-              <ion-col size="7" class="ion-text-right">
+              <ion-col size="{{colSize}}" class="ion-text-right">
                 <span class="balance"
                   >{{earnedRate[coinItem]?.rewardRate | _balance:'--' |
                   _truncate}} CoFi/Day</span
