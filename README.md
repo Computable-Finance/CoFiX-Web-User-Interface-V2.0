@@ -45,7 +45,7 @@ CoFix 相关合约地址常量：src/app/common/constants.ts 。目前发现存�
 
 `ionic serve`
 
-在浏览器中访问 http://localhost:8100
+在浏览器中访问 http://localhost:4200
 
 ## 构建命令
 
