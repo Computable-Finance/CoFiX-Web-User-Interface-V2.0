@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { BannerContent } from '../common/components/banner/banner.page';
+import { ProfitPage } from '../common/components/profit/profit.page';
 import { ERC20BalancePipe } from '../common/pipes/erc20balance.pipe';
 import { ShareStateQuery } from '../common/state/share.query';
 import { ShareStateService } from '../common/state/share.service';
@@ -12,6 +13,7 @@ import { CofiXService } from '../service/cofix.service';
   styleUrls: ['./cofi.page.scss'],
 })
 export class CofiPage implements OnInit {
+  @ViewChild(ProfitPage, { static: false }) cofiProfit: ProfitPage;
   public cofixContent: BannerContent = {
     title: 'cofix_title',
     descriptions: ['cofix_desc1'],
@@ -97,6 +99,7 @@ export class CofiPage implements OnInit {
     this.hadValue = '';
     this.earnedRate = undefined;
     this.getCoFiTokenAndRewards();
+    this.cofiProfit._balance = '';
   }
 
   //领取Cofi

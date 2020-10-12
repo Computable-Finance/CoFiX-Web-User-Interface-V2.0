@@ -62,8 +62,10 @@
       (click)="approve()"
       *ngIf="canApprove()"
     >
-      {{'sq_text' | translate}}
-      <div class="loading" *ngIf="isLoading.sq"></div>
+      <div class="ion-button-label">
+        {{'sq_text' | translate}}
+        <div class="loading" *ngIf="isLoading.sq"></div>
+      </div>
     </ion-button>
     <ion-button
       expand="block"
@@ -71,8 +73,11 @@
       (click)="confirmAddLiquid()"
       *ngIf="shareStateQuery.getValue().connectedWallet"
       [disabled]="!canAdd()"
-      >{{'add'| translate}}
-      <div class="loading" *ngIf="isLoading.cr"></div>
+    >
+      <div class="ion-button-label">
+        {{'add'| translate}}
+        <div class="loading" *ngIf="isLoading.cr"></div>
+      </div>
     </ion-button>
   </div>
 </ion-card>

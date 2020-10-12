@@ -32,8 +32,17 @@ body {
 }
 ion-content {
   --background: #fbfbfb;
-  /*position: fixed;
-  top: 65px;*/
+}
+
+ion-button {
+  text-transform: none;
+  font-weight: 600;
+  font-family: 'Source Sans Pro', sans-serif;
+  height: 50px !important;
+}
+.ion-button-label {
+  height: 34px;
+  line-height: 34px;
 }
 
 .popover-coinselect .popover-content {

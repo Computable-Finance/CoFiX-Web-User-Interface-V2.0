@@ -77,17 +77,23 @@
             expand="block"
             class="operation-btn approve-btn"
             (click)="approve()"
-            >{{'sq_text' | translate}}
-            <div class="loading" *ngIf="isLoading.sq"></div
-          ></ion-button>
+          >
+            <div class="ion-button-label">
+              {{'sq_text' | translate}}
+              <div class="loading" *ngIf="isLoading.sq"></div>
+            </div>
+          </ion-button>
           <ion-button
             expand="block"
             class="operation-btn"
             [ngClass]="{'swap-btn':fromCoin.id !== 'ETH' && !fromCoin.isApproved,'full-btn':fromCoin.id === 'ETH' || (fromCoin.id !== 'ETH' && fromCoin.isApproved)}"
             (click)="swap()"
             [disabled]="!canSwap()"
-            >{{'swap_btn' | translate}}
-            <div class="loading" *ngIf="isLoading.dh"></div>
+          >
+            <div class="ion-button-label">
+              {{'swap_btn' | translate}}
+              <div class="loading" *ngIf="isLoading.dh"></div>
+            </div>
           </ion-button>
         </div>
       </ng-container>

@@ -9,6 +9,7 @@
       ></app-liquid-input>
 
       <app-profit
+        #cofiProfit
         class="profit"
         [todoLabel]="'kcshare'"
         [hadLabel]="'ycshare'"
@@ -60,9 +61,10 @@
         class="operation-btn full-btn"
         (click)="withdrawEarnedCoFi()"
         [disabled]="!canReceive"
-        >{{'lq_text' | translate}}
-        <div class="loading" *ngIf="isLoading"></div
-      ></ion-button>
+      >
+        {{'lq_text' | translate}}
+        <div class="loading" *ngIf="isLoading"></div>
+      </ion-button>
     </div>
   </ion-card>
   <app-banner

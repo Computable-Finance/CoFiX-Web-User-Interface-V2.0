@@ -41,8 +41,11 @@
         class="operation-btn full-btn"
         [disabled]="!canReceive"
         (click)="receiveETH()"
-        >{{'lq_text' | translate}}
-        <div class="loading" *ngIf="isLoading"></div>
+      >
+        <div class="ion-button-label">
+          {{'lq_text' | translate}}
+          <div class="loading" *ngIf="isLoading"></div>
+        </div>
       </ion-button>
     </div>
   </ion-card>

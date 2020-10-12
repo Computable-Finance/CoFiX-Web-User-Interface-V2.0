@@ -79,17 +79,23 @@
         class="operation-btn approve-btn"
         (click)="approve()"
         *ngIf="!toCoin.isApproved"
-        >{{'sq_text' | translate}}
-        <div class="loading" *ngIf="isLoading.sq"></div
-      ></ion-button>
+      >
+        <div class="ion-button-label">
+          {{'sq_text' | translate}}
+          <div class="loading" *ngIf="isLoading.sq"></div>
+        </div>
+      </ion-button>
       <ion-button
         expand="block"
         class="operation-btn"
         [ngClass]="{'swap-btn':!toCoin.isApproved,'full-btn':toCoin.isApproved}"
         (click)="redeem()"
         [disabled]="!canRedeem()"
-        >{{'sh' | translate}}
-        <div class="loading" *ngIf="isLoading.sh"></div>
+      >
+        <div class="ion-button-label">
+          {{'sh' | translate}}
+          <div class="loading" *ngIf="isLoading.sh"></div>
+        </div>
       </ion-button>
     </div>
   </div>

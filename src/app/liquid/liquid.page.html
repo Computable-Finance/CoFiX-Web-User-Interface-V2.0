@@ -13,7 +13,8 @@
         expand="block"
         class="operation-btn approve-btn"
         (click)="addLiquid(toCoin.id)"
-        >{{'add_liquid'| translate}}
+      >
+        <div class="ion-button-label">{{'add_liquid'| translate}}</div>
       </ion-button>
     </div>
   </ion-card>
@@ -77,14 +78,16 @@
                 expand="block"
                 class="operation-btn approve-btn small-btn"
                 (click)="addLiquid(coinItem)"
-                >{{'add' | translate}}</ion-button
               >
+                <div class="ion-button-label">{{'add' | translate}}</div>
+              </ion-button>
               <ion-button
                 fill="outline"
                 class="operation-btn small-btn"
                 (click)="redemption(coinItem)"
-                >{{'sh' | translate}}</ion-button
               >
+                <div class="ion-button-label">{{'sh' | translate}}</div>
+              </ion-button>
             </div>
           </ng-container>
         </div>

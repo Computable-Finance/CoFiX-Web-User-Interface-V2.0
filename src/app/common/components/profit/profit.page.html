@@ -5,7 +5,7 @@
     color="{{isSaveTab?'dark':'light'}}"
     (click)="swapTab()"
   >
-    {{'cr' | translate}}
+    <div class="ion-button-label">{{'cr' | translate}}</div>
   </ion-button>
   <ion-button
     expand="block"
@@ -13,7 +13,7 @@
     color="{{isSaveTab?'light':'dark'}}"
     (click)="swapTab()"
   >
-    {{'qc' | translate}}
+    <div class="ion-button-label">{{'qc' | translate}}</div>
   </ion-button>
 </div>
 <app-coin-input
@@ -67,8 +67,11 @@
     class="operation-btn approve-btn"
     *ngIf="!isApproved"
     (click)="approve()"
-    >{{'sq_text' | translate}}
-    <div class="loading" *ngIf="isLoading.sq"></div>
+  >
+    <div class="ion-button-label">
+      {{'sq_text' | translate}}
+      <div class="loading" *ngIf="isLoading.sq"></div>
+    </div>
   </ion-button>
   <ion-button
     expand="block"
@@ -76,8 +79,11 @@
     [ngClass]="{'swap-btn':!isApproved,'full-btn':isApproved}"
     (click)="save()"
     [disabled]="!canSave()"
-    >{{'cr' | translate}}
-    <div class="loading" *ngIf="isLoading.cr"></div>
+  >
+    <div class="ion-button-label">
+      {{'cr' | translate}}
+      <div class="loading" *ngIf="isLoading.cr"></div>
+    </div>
   </ion-button>
 </div>
 <div class="button-div" *ngIf="!isSaveTab">
@@ -86,7 +92,10 @@
     class="operation-btn approve-btn full-btn"
     (click)="recieve()"
     [disabled]="!canReceive()"
-    >{{'qc' | translate}}
-    <div class="loading" *ngIf="isLoading.qc"></div>
+  >
+    <div class="ion-button-label">
+      {{'qc' | translate}}
+      <div class="loading" *ngIf="isLoading.qc"></div>
+    </div>
   </ion-button>
 </div>
