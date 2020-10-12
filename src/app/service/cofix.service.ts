@@ -681,7 +681,7 @@ export class CofiXService {
 
   private async withdraw(contract: Contract, amount: string) {
     const balance = await contract.balanceOf(this.currentAccount);
-    const value = ethers.utils.parseEther(amount);
+    const value = this.parseEthers(Number(amount));
     if (balance.lt(value)) {
       throw new Error('Insufficient Balance.');
     } else {
@@ -692,7 +692,7 @@ export class CofiXService {
   private async deposit(contract: Contract, token: string, amount: string) {
     const allowance = await this.getERC20Allowance(token, contract.address);
     const balance = await this.getERC20Balance(token);
-    const value = ethers.utils.parseEther(amount);
+    const value = this.parseEthers(Number(amount));
     if (allowance.lt(value)) {
       throw new Error('Insufficient Allowance.');
     } else if (balance.lt(value)) {
@@ -752,13 +752,13 @@ export class CofiXService {
       'swapExactETHForTokens',
       [
         token,
-        ethers.utils.parseEther(amountIn.toString()),
+        this.parseEthers(amountIn),
         this.parseUnits(amountIn * swapPrice * 0.99, erc20Decimals),
         this.currentAccount,
         this.currentAccount,
         deadline(),
         {
-          value: ethers.utils.parseEther((amountIn + fee).toString()),
+          value: this.parseEthers(amountIn + fee),
         },
       ]
     );
@@ -796,12 +796,12 @@ export class CofiXService {
       [
         token,
         this.parseUnits(amountIn, erc20Decimals),
-        ethers.utils.parseEther((amountIn * swapPrice * 0.99).toString()),
+        this.parseEthers(amountIn * swapPrice * 0.99),
         this.currentAccount,
         this.currentAccount,
         deadline(),
         {
-          value: ethers.utils.parseEther(fee.toString()),
+          value: this.parseEthers(fee),
         },
       ]
     );
@@ -864,7 +864,7 @@ export class CofiXService {
         this.currentAccount,
         deadline(),
         {
-          value: ethers.utils.parseEther(fee.toString()),
+          value: this.parseEthers(fee),
         },
       ]
     );
@@ -938,13 +938,13 @@ export class CofiXService {
         'addLiquidityAndStake',
         [
           token,
-          ethers.utils.parseEther(amountETH.toString()),
+          this.parseEthers(amountETH),
           this.parseUnits(amountToken, decimals),
           this.parseEthers(liquidityMin * 0.99),
           this.currentAccount,
           deadline(),
           {
-            value: ethers.utils.parseEther((amountETH + fee).toString()),
+            value: this.parseEthers(amountETH + fee),
           },
         ]
       );
@@ -954,13 +954,13 @@ export class CofiXService {
         'addLiquidity',
         [
           token,
-          ethers.utils.parseEther(amountETH.toString()),
+          this.parseEthers(amountETH),
           this.parseUnits(amountToken, decimals),
-          ethers.utils.parseEther((liquidityMin * 0.99).toString()),
+          this.parseEthers(liquidityMin * 0.99),
           this.currentAccount,
           deadline(),
           {
-            value: ethers.utils.parseEther((amountETH + fee).toString()),
+            value: this.parseEthers(amountETH + fee),
           },
         ]
       );
@@ -1000,12 +1000,12 @@ export class CofiXService {
       'removeLiquidityGetETH',
       [
         token,
-        ethers.utils.parseEther(liquidityMin.toString()),
-        ethers.utils.parseEther((amountETHMin * 0.99).toString()),
+        this.parseEthers(liquidityMin),
+        this.parseEthers(amountETHMin * 0.99),
         this.currentAccount,
         deadline(),
         {
-          value: ethers.utils.parseEther(fee.toString()),
+          value: this.parseEthers(fee),
         },
       ]
     );
@@ -1040,12 +1040,12 @@ export class CofiXService {
       'removeLiquidityGetToken',
       [
         token,
-        ethers.utils.parseEther(liquidityMin.toString()),
+        this.parseEthers(liquidityMin),
         this.parseUnits(amountTokenMin * 0.99, decimals),
         this.currentAccount,
         deadline(),
         {
-          value: ethers.utils.parseEther(fee.toString()),
+          value: this.parseEthers(fee),
         },
       ]
     );
