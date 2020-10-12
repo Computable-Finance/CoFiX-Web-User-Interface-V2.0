@@ -711,7 +711,11 @@ export class CofiXService {
   }
 
   private parseUnits(amount: number, unit: number) {
-    return ethers.utils.parseUnits(amount.toFixed(unit).toString(), unit);
+    try {
+      return ethers.utils.parseUnits(amount.toString(), unit);
+    } catch (e) {
+      return (amount * Math.pow(10, unit)).toFixed(0);
+    }
   }
 
   private parseEthers(amount: number) {
