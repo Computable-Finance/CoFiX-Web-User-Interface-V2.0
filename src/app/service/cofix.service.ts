@@ -944,7 +944,7 @@ export class CofiXService {
           this.currentAccount,
           deadline(),
           {
-            value: this.parseEthers(amountETH + fee),
+            value: ethers.utils.parseUnits(Number(amountETH + fee).toString(), 18),
           },
         ]
       );
@@ -960,7 +960,7 @@ export class CofiXService {
           this.currentAccount,
           deadline(),
           {
-            value: this.parseEthers(amountETH + fee),
+            value: ethers.utils.parseUnits(Number(amountETH + fee).toString(), 18),
           },
         ]
       );
