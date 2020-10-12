@@ -1,5 +1,7 @@
 # CoFiX-Web-User-Interface
 
+[English](https://github.com/Computable-Finance/CoFiX-Web-User-Interface/blob/main/README.en.md)
+
 ## 合约地址常量
 
 CoFix 相关合约地址常量：src/app/common/constants.ts 。目前发现存在一些合约在主网没有地址的情况，尤其是有些跟前端有关的，比如：
