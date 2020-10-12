@@ -40,7 +40,7 @@ export class CoinInputPage implements OnInit, OnDestroy {
     this.subscription = this.modelChanged
       .pipe(
         debounceTime(this.debounceTime),
-        distinctUntilChanged(),
+        // distinctUntilChanged(),
         switchMap((event) => {
           this.onInputChange.emit({ amount: this.amount, coin: this.coin });
           return EMPTY;
