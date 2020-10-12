@@ -940,7 +940,7 @@ export class CofiXService {
           token,
           ethers.utils.parseEther(amountETH.toString()),
           this.parseUnits(amountToken, decimals),
-          ethers.utils.parseEther((liquidityMin * 0.99).toString()),
+          this.parseEthers(liquidityMin * 0.99),
           this.currentAccount,
           deadline(),
           {
