@@ -409,7 +409,10 @@ export class CofiXService {
       COFIXSTAKINGREWARDS_ABI,
       this.provider
     );
-    const earned = await coFiXStakingRewards.earned(this.currentAccount);
+
+    const earned = this.currentAccount
+      ? await coFiXStakingRewards.earned(this.currentAccount)
+      : 0;
     const rewardRate =
       this.ethersOf(await coFiXStakingRewards.rewardRate()) *
       BLOCKNUMS_IN_A_DAY;

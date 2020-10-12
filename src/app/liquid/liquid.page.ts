@@ -118,6 +118,20 @@ export class LiquidPage implements OnInit {
     this.toCoin.amount = '';
     this.expectedXToken = '';
     this.shareState = this.shareStateQuery.getValue();
+    if (
+      !this.shareState.tokenPairAddress[this.toCoin.id] ||
+      !this.shareState.stakingPoolAddress[this.toCoin.id]
+    ) {
+      await this.utils.updateShareAddress(this.shareState);
+    }
+    this.coinList.forEach(async (coinItem) => {
+      this.earnedRate[
+        coinItem
+      ] = await this.cofixService.earnedCofiAndRewardRate(
+        this.shareState.stakingPoolAddress[coinItem]
+      );
+    });
+
     if (this.shareState.connectedWallet) {
       this.fromCoin.address = this.cofixService.getCurrentContractAddressList()[
         this.fromCoin.id
@@ -130,13 +144,6 @@ export class LiquidPage implements OnInit {
       if (!this.pairAttended.USDT || !this.pairAttended.HBTC) {
         this.utils.getPairAttended();
         this.getValueFromStateQuery();
-      }
-
-      if (
-        !this.shareState.tokenPairAddress[this.toCoin.id] ||
-        !this.shareState.stakingPoolAddress[this.toCoin.id]
-      ) {
-        await this.utils.updateShareAddress(this.shareState);
       }
 
       this.coinList.forEach(async (coinItem) => {
@@ -153,12 +160,6 @@ export class LiquidPage implements OnInit {
         this.NAVPerShare[coinItem] = await this.cofixService.getNAVPerShare(
           this.cofixService.getCurrentContractAddressList()[coinItem],
           this.shareState.tokenPairAddress[coinItem]
-        );
-
-        this.earnedRate[
-          coinItem
-        ] = await this.cofixService.earnedCofiAndRewardRate(
-          this.shareState.stakingPoolAddress[coinItem]
         );
       });
     }

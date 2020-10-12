@@ -232,6 +232,14 @@ ion-content {
   border: 3px solid var(--ion-color-primary);
   border-bottom: 3px solid transparent;
 }
+
+@media only screen and (max-width: 820px) {
+  .loading-connect {
+    top: 17px;
+    right: 125px;
+  }
+}
+
 @media only screen and (max-width: 470px) {
   .swap-card,
   .button-card {
