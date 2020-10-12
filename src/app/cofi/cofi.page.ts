@@ -99,6 +99,7 @@ export class CofiPage implements OnInit {
     this.hadValue = '';
     this.earnedRate = undefined;
     this.getCoFiTokenAndRewards();
+    this.getIsApproved();
     this.cofiProfit._balance = '';
   }
 
