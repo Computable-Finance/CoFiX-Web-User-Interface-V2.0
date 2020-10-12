@@ -31,6 +31,11 @@
       [maxAmount]="toCoin.balance"
       [isShowError]="showToError"
     ></app-coin-input>
+    <p class="oracle-cost">
+      <span>{{'oracle_cost' | translate}}</span>：<span class="fee"
+        >+{{oracleCost | _balance:'--' | _truncate}}</span
+      >ETH
+    </p>
     <ion-grid class="ion-no-padding">
       <ion-row
         class="ion-align-items-center ion-align-self-center conversionPrice"
