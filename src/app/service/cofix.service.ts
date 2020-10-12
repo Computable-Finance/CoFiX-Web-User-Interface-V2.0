@@ -1068,14 +1068,15 @@ export class CofiXService {
     return contract.connect(this.provider.getSigner())[functionName](...args);
   }
 
-  // 对于 ETH，用 WETH9 替代
+  // pair 由 token 决定，targetToken 用来看 pair 对于这个 token 的余额。
+  // 对于 ETH，targetToken 用 WETH9 替代
   @PCacheable({ maxAge: CACHE_FIVE_SECONDS })
-  async getERC20BalanceOfPair(token: string) {
-    const erc20Contract = this.getERC20Contract(token);
-    const pair = this.getCoFixPairAddressByToken(token);
+  async getERC20BalanceOfPair(token: string, targetToken: string) {
+    const pair = await this.getCoFixPairAddressByToken(token);
+    const erc20Contract = this.getERC20Contract(targetToken);
     const amount = this.unitsOf(
       await erc20Contract.balanceOf(pair),
-      await this.getERC20Decimals(token)
+      await this.getERC20Decimals(targetToken)
     );
 
     return amount;

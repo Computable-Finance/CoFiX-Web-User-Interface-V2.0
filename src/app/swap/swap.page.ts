@@ -125,13 +125,21 @@ export class SwapPage implements OnInit {
   }
 
   async getERC20BalanceOfPair() {
-    let address = this.toCoin.address;
+    let fromAddress;
+    let toAddress = this.toCoin.address;
+
     if (this.toCoin.id === 'ETH') {
-      address = this.cofixService.getCurrentContractAddressList()['WETH9'];
+      toAddress = this.cofixService.getCurrentContractAddressList()['WETH9'];
+      fromAddress = this.fromCoin.address;
+    } else {
+      fromAddress = this.toCoin.address;
     }
-    this.ERC20BalanceOfPair[
-      this.toCoin.id
-    ] = await this.cofixService.getERC20BalanceOfPair(address);
+
+    if (this.fromCoin.id) {
+      this.ERC20BalanceOfPair[
+        this.toCoin.id
+      ] = await this.cofixService.getERC20BalanceOfPair(fromAddress, toAddress);
+    }
   }
 
   async getEPAndEC(type = 'input') {
