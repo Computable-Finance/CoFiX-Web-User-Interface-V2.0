@@ -3,7 +3,7 @@ export const environment = {
   lang: 'en',
   infura: {
     network: 'homestead',
-    apiAccessToken: 'a1743f084f8a46bfb3696389eeb9f217',
+    apiAccessToken: '795587fc9545486b8a5e190a44e3ae7d',
   },
   network: 1,
 };
