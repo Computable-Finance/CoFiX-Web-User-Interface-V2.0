@@ -259,9 +259,13 @@ ion-button {
   }
   .loading,
   .loading-connect {
-    position: relative;
+    /*position: relative;
     top: unset;
-    right: unset;
+    right: unset;*/
+
+    position: absolute;
+    top: 10px;
+    right: 5px;
   }
 }
 

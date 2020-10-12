@@ -113,7 +113,12 @@ export class SwapPage implements OnInit {
     }
     this.fromCoin.id = event.coin;
     this.fromCoin.amount = this.fromCoin.balance;
-    this.showError = false;
+    if (this.fromCoin.id === 'ETH') {
+      this.showError = true;
+    } else {
+      this.showError = false;
+    }
+
     this.getEPAndEC();
 
     if (this.toCoin.id !== 'ETH') {
@@ -291,9 +296,15 @@ export class SwapPage implements OnInit {
     this.toCoin.amount = '';
     this.expectedCofi = '';
     this.getEPAndEC();
-    this.showError =
-      Number(this.fromCoin.amount) !== 0 &&
-      Number(this.fromCoin.amount) > Number(this.fromCoin.balance);
+    if (this.fromCoin.id === 'ETH') {
+      this.showError =
+        Number(this.fromCoin.amount) !== 0 &&
+        Number(this.fromCoin.amount) >= Number(this.fromCoin.balance);
+    } else {
+      this.showError =
+        Number(this.fromCoin.amount) !== 0 &&
+        Number(this.fromCoin.amount) > Number(this.fromCoin.balance);
+    }
   }
 
   async toCoinInput(event) {
@@ -454,15 +465,20 @@ export class SwapPage implements OnInit {
   }
 
   canSwap() {
-    return (
-      ((this.fromCoin.id === 'ETH' &&
+    let result = false;
+    if (this.fromCoin.id === 'ETH') {
+      result =
         Number(this.fromCoin.amount) !== 0 &&
-        Number(this.fromCoin.amount) <= Number(this.fromCoin.balance)) ||
-        (this.fromCoin.id !== 'ETH' &&
-          this.fromCoin.isApproved &&
-          Number(this.fromCoin.amount) !== 0 &&
-          Number(this.fromCoin.amount) <= Number(this.fromCoin.balance))) &&
-      Number(this.toCoin.amount) < this.ERC20BalanceOfPair[this.toCoin.id]
+        Number(this.fromCoin.amount) < Number(this.fromCoin.balance); //ETH输入值要小于余额
+    } else {
+      result =
+        this.fromCoin.isApproved &&
+        Number(this.fromCoin.amount) !== 0 &&
+        Number(this.fromCoin.amount) <= Number(this.fromCoin.balance); //Token要认证且输入值小于等于余额
+    }
+    return (
+      result &&
+      Number(this.toCoin.amount) < this.ERC20BalanceOfPair[this.toCoin.id] //兑换值小于池中值
     );
   }
 }

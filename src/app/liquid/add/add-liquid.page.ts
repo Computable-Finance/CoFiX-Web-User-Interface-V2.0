@@ -70,7 +70,7 @@ export class AddLiquidPage implements OnInit {
     }
     this.fromCoin.id = event.coin;
     this.fromCoin.amount = this.fromCoin.balance;
-    this.showFromError = false;
+    this.showFromError = true;
     this.setExpectedXToken();
   }
 
@@ -215,6 +215,11 @@ export class AddLiquidPage implements OnInit {
     this.fromCoin.amount = event.amount;
     this.setExpectedXToken();
     this.canShowError();
+    if (Number(this.fromCoin.amount) >= Number(this.fromCoin.balance)) {
+      this.showFromError = true;
+    } else {
+      this.showFromError = false;
+    }
   }
 
   async toCoinInput(event) {
@@ -224,14 +229,21 @@ export class AddLiquidPage implements OnInit {
   }
 
   canAdd() {
-    return (
-      this.toCoin.isApproved &&
-      !(
-        Number(this.fromCoin.amount) === 0 && Number(this.toCoin.amount) === 0
-      ) &&
-      Number(this.fromCoin.amount) <= Number(this.fromCoin.balance) &&
-      Number(this.toCoin.amount) <= Number(this.toCoin.balance)
-    );
+    let result = false;
+    if (Number(this.toCoin.amount) === 0) {
+      result =
+        Number(this.fromCoin.amount) > 0 &&
+        Number(this.fromCoin.amount) < Number(this.fromCoin.balance); //仅输入ETH，且ETH不等于最大值
+    } else {
+      result =
+        this.toCoin.isApproved && //已经认证
+        !(
+          Number(this.fromCoin.amount) === 0 && Number(this.toCoin.amount) === 0
+        ) && //输入值均不为0
+        Number(this.fromCoin.amount) <= Number(this.fromCoin.balance) && //输入ETH值小于最大值
+        Number(this.toCoin.amount) <= Number(this.toCoin.balance);
+    }
+    return result;
   }
 
   canApprove() {
