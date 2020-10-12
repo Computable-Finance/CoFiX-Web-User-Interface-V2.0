@@ -1,0 +1,18 @@
+<ion-header>
+  <div class="title_box">
+    <img src="./assets/images/logo.png" class="logo logo_w" />
+    <img src="./assets/images/logo.ico" class="logo logo_s" />
+  </div>
+
+  <div class="tabs">
+    <div
+      *ngFor="let item of headerItems"
+      class="{{item.id === activeId?'active':''}}"
+      (click)="selectTab(item.id)"
+    >
+      {{'title_'+item.id | translate}}
+    </div>
+  </div>
+  <app-connect-wallet></app-connect-wallet>
+  <app-switch-lang></app-switch-lang>
+</ion-header>

@@ -1,0 +1,33 @@
+<ion-grid class="select-box">
+  <ion-row class="select-row">
+    <ion-col size="12" class="ion-text-center">
+      <ion-button class="select-liquid-button" fill="outline">
+        <ion-grid>
+          <ion-row>
+            <ion-col
+              class="ion-text-center"
+              size="12"
+              (click)="selectAddType($event)"
+            >
+              <div class="input-group-prepend">
+                <span class="input-group-text"
+                  ><img
+                    src="./assets/images/icon/ETH.png"
+                    class="coin_icon left_icon"
+                  /><img
+                    src="./assets/images/icon/{{coin}}.png"
+                    class="coin_icon"
+                  />&nbsp;<span>ETH/{{coin}}</span> &nbsp;<img
+                    *ngIf="isDropDown"
+                    src="./assets/images/select.png"
+                    class="sel"
+                  />&nbsp;</span
+                >
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>

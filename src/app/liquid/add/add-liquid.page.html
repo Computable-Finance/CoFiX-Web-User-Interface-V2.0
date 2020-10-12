@@ -1,0 +1,78 @@
+<ion-card class="swap-card" [ngClass]="{'pairAttended-card':pairAttended}">
+  <div class="card-content">
+    <ion-icon
+      name="arrow-undo"
+      class="close-icon"
+      (click)="cancel($event)"
+    ></ion-icon>
+    <app-liquid-input
+      class="liquid-input"
+      (onChangeCoin)="changeCoin($event)"
+      [coin]="toCoin.id"
+    ></app-liquid-input>
+    <p>{{ 'input'| translate}}</p>
+    <app-coin-input
+      (onMaxClick)="setFromCoinMax($event)"
+      [amount]="fromCoin.amount"
+      (onInputChange)="fromCoinInput($event)"
+      [isDropDown]="isDropDown"
+      [coin]="fromCoin.id"
+      [maxAmount]="fromCoin.balance"
+      [isShowError]="showFromError"
+    ></app-coin-input>
+    <div class="divider"></div>
+    <p>{{ 'input'| translate}}</p>
+    <app-coin-input
+      (onMaxClick)="setToCoinMax($event)"
+      [amount]="toCoin.amount"
+      (onInputChange)="toCoinInput($event)"
+      [isDropDown]="isDropDown"
+      [coin]="toCoin.id"
+      [maxAmount]="toCoin.balance"
+      [isShowError]="showToError"
+    ></app-coin-input>
+    <ion-grid class="ion-no-padding">
+      <ion-row
+        class="ion-align-items-center ion-align-self-center conversionPrice"
+      >
+        <ion-col class="label" size="6"
+          >{{'expected' | translate}}{{xtValue}}{{'expected2' |
+          translate}}</ion-col
+        >
+        <ion-col class="ion-text-right" size="6"
+          >{{expectedXToken | _balance:'--' | _truncate}}
+        </ion-col>
+      </ion-row>
+
+      <ion-row
+        class="ion-align-items-center ion-align-self-center conversionPrice"
+      >
+        <ion-col class="label" size="10"
+          >{{'incoin_cofi' | translate}}{{xtValue}}{{'incoin_cofi2' |
+          translate}}</ion-col
+        >
+        <ion-col class="ion-text-right" size="2">
+          <ion-toggle [checked]="isStake" (click)="checkAdd()"></ion-toggle>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-button
+      expand="block"
+      class="operation-btn approve-btn"
+      (click)="approve()"
+      *ngIf="canApprove()"
+    >
+      {{'sq_text' | translate}}
+      <div class="loading" *ngIf="isLoading.sq"></div>
+    </ion-button>
+    <ion-button
+      expand="block"
+      class="operation-btn"
+      (click)="confirmAddLiquid()"
+      *ngIf="shareStateQuery.getValue().connectedWallet"
+      [disabled]="!canAdd()"
+      >{{'add'| translate}}
+      <div class="loading" *ngIf="isLoading.cr"></div>
+    </ion-button>
+  </div>
+</ion-card>

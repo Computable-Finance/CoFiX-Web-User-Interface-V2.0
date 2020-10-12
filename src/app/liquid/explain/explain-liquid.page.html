@@ -1,0 +1,29 @@
+<ion-grid class="ion-no-padding">
+  <ion-row
+    class="ion-align-items-center ion-align-self-center conversionPrice border-top"
+  >
+    <ion-col class="label" size="8">
+      {{'jz' | translate}}{{xtValue}}{{'jz2' | translate}}
+      <img
+        class="alert-icon"
+        src="./assets/images/question.png"
+        (click)="showAlert()"
+      />
+    </ion-col>
+    <ion-col class="ion-text-right" size="4">
+      {{NAVPerShare | erc20balance:'--' | _truncate}}
+    </ion-col>
+  </ion-row>
+  <ion-row class="ion-align-items-center ion-align-self-center conversionPrice">
+    <ion-col class="label" size="8">{{'myfe'|translate}}</ion-col>
+    <ion-col class="ion-text-right" size="4"
+      >{{todoValue | _balance:'--' | _truncate}}
+    </ion-col>
+  </ion-row>
+  <ion-row class="ion-align-items-center ion-align-self-center conversionPrice">
+    <ion-col class="label" size="8">{{'kccfe'|translate}}</ion-col>
+    <ion-col class="ion-text-right" size="4"
+      >{{hadValue | _balance:'--' | _truncate}}
+    </ion-col>
+  </ion-row>
+</ion-grid>

@@ -1,0 +1,55 @@
+<app-header [activeId]="'income'"></app-header>
+<ion-content [fullscreen]="true">
+  <div class="card-title">{{'income_desc' | translate}}</div>
+  <ion-card class="swap-card">
+    <div class="card-content">
+      <app-profit
+        [todoLabel]="'kcr_text'"
+        [hadLabel]="'ycr_text'"
+        [todoValue]="cofiToken"
+        [hadValue]="cofiStakingRewards"
+        [isApproved]="isApproved"
+        [balance]="balance"
+        [isLoading]="isLoadingProfit"
+        (onApprove)="approveCofi($event)"
+        (onSave)="saveCofi($event)"
+        (onRecieve)="receiveCofi($event)"
+        [profitCoin]="profitCoin"
+      ></app-profit>
+    </div>
+  </ion-card>
+  <div class="card-title claim-title">{{'income_claim_desc' | translate}}</div>
+  <ion-card class="swap-card">
+    <div class="card-content">
+      <ion-grid class="ion-no-padding">
+        <ion-row
+          class="ion-align-items-center ion-align-self-center conversionPrice"
+        >
+          <ion-col class="label" size="4">{{'klq'|translate}}</ion-col>
+          <ion-col class="ion-text-right" size="8"
+            >{{earnedETH | erc20balance:'--' | _truncate}} ETH
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div
+      class="button-div connect-card"
+      *ngIf="shareStateQuery.getValue().connectedWallet"
+    >
+      <ion-button
+        expand="block"
+        class="operation-btn full-btn"
+        [disabled]="!canReceive"
+        (click)="receiveETH()"
+        >{{'lq_text' | translate}}
+        <div class="loading" *ngIf="isLoading"></div>
+      </ion-button>
+    </div>
+  </ion-card>
+  <app-banner
+    [img]="'sy_bg.png'"
+    [bannerConent]="incomeContent"
+    class="desc_line"
+  ></app-banner>
+</ion-content>
+<app-footer></app-footer>

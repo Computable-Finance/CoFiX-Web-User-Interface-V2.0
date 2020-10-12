@@ -1,0 +1,51 @@
+<div class="input-div">
+  <div class="input-group">
+    <div
+      class="input-group-prepend"
+      (click)="showCoinSelect($event)"
+      *ngIf="showSelect"
+    >
+      <span class="input-group-text"
+        ><img
+          src="./assets/images/icon/{{coin}}.png"
+          class="coin_icon"
+        />&nbsp;<span class="coin-title">{{coin}}</span> &nbsp;<img
+          *ngIf="isDropDown"
+          src="./assets/images/select.png"
+          class="sel"
+        />&nbsp;</span
+      >
+    </div>
+    <input
+      type="text"
+      class="input"
+      style="--width:{{'calc(100% - '+ (showSelect?150:70) + 'px)'}}"
+      placeholder="{{placeHolder}}"
+      [(ngModel)]="amount"
+      oninput="value=value.replace(/^\D*(\d*(?:\.\d{0,8})?).*$/g, '$1')"
+      (ngModelChange)="modelChanged.next($event)"
+    />
+  </div>
+  <ion-grid class="ion-no-padding info-box">
+    <ion-row class="ion-align-items-center ion-align-self-center">
+      <ion-col size="10" class="error">
+        <ng-container *ngIf="isShowError">
+          <span>{{'your_balance' | translate}}</span>：<span class="fee"
+            >{{maxAmount | _balance:'--' | _truncate}}</span
+          >
+          {{coin}}
+        </ng-container>
+        <ng-container *ngIf="isInsufficientError">
+          <span>{{'insufficient-error' | translate}}</span>
+        </ng-container>
+
+        <ng-container *ngIf="overLiquid()">
+          <span>{{'token_balance_of_pair' | translate}} {{maxLiquid}}</span>
+        </ng-container>
+      </ion-col>
+      <ion-col class="ion-text-right max" (click)="setMax()" size="2">
+        MAX
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>

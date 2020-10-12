@@ -1,0 +1,74 @@
+<app-header [activeId]="'cofi'"></app-header>
+<ion-content [fullscreen]="true">
+  <div class="card-title">{{'cofi_desc' | translate}}</div>
+  <ion-card class="swap-card">
+    <div class="card-content">
+      <app-liquid-input
+        class="liquid-input"
+        (onChangeCoin)="changeCoin($event)"
+      ></app-liquid-input>
+
+      <app-profit
+        class="profit"
+        [todoLabel]="'kcshare'"
+        [hadLabel]="'ycshare'"
+        [todoValue]="todoValue"
+        [hadValue]="hadValue"
+        [isApproved]="isApproved"
+        [isLoading]="isLoadingProfit"
+        [balance]="balance"
+        (onApprove)="approveCofi($event)"
+        (onSave)="saveCofi($event)"
+        (onRecieve)="receiveCofi($event)"
+        [profitCoin]="profitCoin"
+        [coin]="coin"
+        [isMore]="true"
+      ></app-profit>
+    </div>
+    <!--<p class="go_backrg" (click)="gotoLiquid()">{{'back_rg' | translate}}</p> -->
+  </ion-card>
+
+  <div class="card-title claim-title">{{'cofi_claim_desc' | translate}}</div>
+  <ion-card class="swap-card">
+    <div class="card-content">
+      <ion-grid class="ion-no-padding">
+        <ion-row
+          class="ion-align-items-center ion-align-self-center conversionPrice"
+        >
+          <ion-col class="label" size="4">{{'ywc' | translate}}</ion-col>
+          <ion-col class="ion-text-right" size="8"
+            >{{earnedRate?.earned | erc20balance:'--' | _truncate}} CoFi
+          </ion-col>
+        </ion-row>
+
+        <ion-row
+          class="ion-align-items-center ion-align-self-center conversionPrice"
+        >
+          <ion-col class="label" size="4">{{'dragcoin' | translate}}</ion-col>
+          <ion-col class="ion-text-right" size="8"
+            >{{earnedRate?.rewardRate | _balance:'--' | _truncate}} CoFi/Day
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div
+      class="button-div connect-card"
+      *ngIf="shareStateQuery.getValue().connectedWallet"
+    >
+      <ion-button
+        expand="block"
+        class="operation-btn full-btn"
+        (click)="withdrawEarnedCoFi()"
+        [disabled]="!canReceive"
+        >{{'lq_text' | translate}}
+        <div class="loading" *ngIf="isLoading"></div
+      ></ion-button>
+    </div>
+  </ion-card>
+  <app-banner
+    [img]="'CoFi_bg.png'"
+    [bannerConent]="cofixContent"
+    class="desc_line"
+  ></app-banner>
+</ion-content>
+<app-footer></app-footer>

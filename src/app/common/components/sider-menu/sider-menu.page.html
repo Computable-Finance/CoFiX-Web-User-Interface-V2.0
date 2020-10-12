@@ -1,0 +1,26 @@
+<div class="phone_nav">
+  <ion-grid>
+    <ion-row class="ion-align-items-center ion-align-self-center">
+      <ion-col (click)="close()" class="cancle_nav"> × </ion-col>
+      <ion-col class="lang-col">
+        <app-switch-lang class="switch-lang"></app-switch-lang>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div class="foot_box">
+    <div
+      class="flexBox"
+      *ngFor="let item of footerItems"
+      (click)="goto(item.link)"
+    >
+      <div class="lineBox">
+        <div>
+          <img src="assets/images/{{item.img}}" />
+          <p>{{item.id | translate}}</p>
+        </div>
+        <img src="./assets/images/left.png" alt="" class="left" />
+      </div>
+    </div>
+  </div>
+</div>

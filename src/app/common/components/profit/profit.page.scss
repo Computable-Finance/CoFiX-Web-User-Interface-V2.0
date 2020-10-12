@@ -1,0 +1,25 @@
+:host ::ng-deep app-coin-input.coin-input {
+  .input-group > .input {
+    border-left: none;
+  }
+}
+.tab-header {
+  margin: 0 auto 32px auto;
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+}
+
+.tab-header ion-button {
+  width: 160px;
+  height: 44px;
+  line-height: 44px;
+  text-align: center;
+  cursor: pointer;
+}
+.count {
+  display: block;
+  clear: both;
+  margin: 0 auto;
+  margin-top: 15px;
+}

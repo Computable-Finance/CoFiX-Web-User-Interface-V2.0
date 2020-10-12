@@ -1,0 +1,111 @@
+<app-header [activeId]="'liquid'"></app-header>
+<ion-content [fullscreen]="true">
+  <div class="card-title">{{'liquid_desc' | translate}}</div>
+
+  <ion-card class="swap-card" *ngIf="!showAddModel">
+    <div class="card-content">
+      <app-liquid-input
+        class="liquid-input"
+        (onChangeCoin)="changeCoin($event)"
+        [coin]="toCoin.id"
+      ></app-liquid-input>
+      <ion-button
+        expand="block"
+        class="operation-btn approve-btn"
+        (click)="addLiquid(toCoin.id)"
+        >{{'add_liquid'| translate}}
+      </ion-button>
+    </div>
+  </ion-card>
+  <!--
+  <div
+    class="liquid-div"
+    *ngIf="shareStateQuery.getValue().connectedWallet && !pairAttended.USDT &&  !this.pairAttended.HBTC && !showAddModel && !showRedemtionModel"
+  >
+    <div
+      class="no-liquid"
+      *ngIf="shareStateQuery.getValue().connectedWallet && !pairAttended.USDT &&  !this.pairAttended.HBTC"
+    >
+      <img src="./assets/images/1.png" />
+      <p>{{'no_add_liquid'| translate}}</p>
+    </div>
+  </div> -->
+  <ng-container *ngIf="(!showAddModel && !showRedemtionModel)">
+    <div class="card-title claim-title">
+      {{'liquid_claim_desc' | translate}}
+    </div>
+    <ng-container *ngFor="let coinItem of coinList">
+      <ion-card class="swap-card liquid-info">
+        <!--*ngIf="showLiquidInfo && !showRedemtionModel"-->
+        <div class="card-content motoken">
+          <ion-grid class="mtoken_banner">
+            <ion-row class="ion-align-items-center ion-align-self-center">
+              <ion-col size="2" class="token_icon_col">
+                <img class="ETH_icon" src="./assets/images/icon/ETH.png" />
+
+                <img
+                  class="token_icon"
+                  src="./assets/images/icon/{{coinItem}}.png"
+                />
+              </ion-col>
+              <ion-col class="ion-text-left">ETH-{{coinItem}}</ion-col>
+              <ion-col size="7" class="ion-text-right">
+                <span class="balance"
+                  >{{earnedRate[coinItem]?.rewardRate | _balance:'--' |
+                  _truncate}} CoFi/Day</span
+                >
+                <img
+                  (click)="showMore(coinItem)"
+                  src="./assets/images/select.png"
+                  class="pull_img"
+                  [ngClass]="{'rotate':isRotate[coinItem]}"
+              /></ion-col>
+            </ion-row>
+          </ion-grid>
+          <ng-container *ngIf="isRotate[coinItem]">
+            <app-explain-liquid
+              [todoValue]="todoValue[coinItem]"
+              [NAVPerShare]="NAVPerShare[coinItem]"
+              [hadValue]="hadValue[coinItem]"
+              [coin]="coinItem"
+            ></app-explain-liquid>
+            <div
+              class="button-div"
+              *ngIf="shareStateQuery.getValue().connectedWallet"
+            >
+              <ion-button
+                expand="block"
+                class="operation-btn approve-btn small-btn"
+                (click)="addLiquid(coinItem)"
+                >{{'add' | translate}}</ion-button
+              >
+              <ion-button
+                fill="outline"
+                class="operation-btn small-btn"
+                (click)="redemption(coinItem)"
+                >{{'sh' | translate}}</ion-button
+              >
+            </div>
+          </ng-container>
+        </div>
+      </ion-card>
+    </ng-container>
+  </ng-container>
+
+  <app-add-liquid
+    *ngIf="showAddModel"
+    [pairAttended]="pairAttended"
+    [coin]="selectCoin"
+    (onClose)="closeAddLiquid($event)"
+  ></app-add-liquid>
+  <app-redeem-liquid
+    *ngIf="showRedemtionModel"
+    (onClose)="closeRedeemLiquid($event)"
+    [coin]="selectCoin"
+  ></app-redeem-liquid>
+  <app-banner
+    [img]="'pool1_bg.png'"
+    [bannerConent]="liquidContent"
+  ></app-banner>
+</ion-content>
+<app-footer></app-footer>

@@ -1,0 +1,92 @@
+<div class="tab-header">
+  <ion-button
+    expand="block"
+    class="operation-btn swap-btn"
+    color="{{isSaveTab?'dark':'light'}}"
+    (click)="swapTab()"
+  >
+    {{'cr' | translate}}
+  </ion-button>
+  <ion-button
+    expand="block"
+    class="operation-btn swap-btn"
+    color="{{isSaveTab?'light':'dark'}}"
+    (click)="swapTab()"
+  >
+    {{'qc' | translate}}
+  </ion-button>
+</div>
+<app-coin-input
+  (onMaxClick)="setCoinMax()"
+  [amount]="balance"
+  (onInputChange)="coinInput($event)"
+  [isDropDown]="showSelect"
+  [coin]="profitCoin"
+  [isShowError]="showError"
+  [maxAmount]="isSaveTab?todoValue:hadValue"
+  class="coin-input"
+>
+</app-coin-input>
+
+<div class="count">
+  <div class="explain-div">
+    <ion-grid class="ion-no-padding">
+      <ion-row
+        class="ion-align-items-center ion-align-self-center conversionPrice"
+      >
+        <ion-col class="label" size="8"
+          >{{todoLabel | translate}}<ng-container *ngIf="isMore"
+            >{{coin==='USDT'?'XT-1':'XT-2'}}{{todoLabel+'1' |
+            translate}}</ng-container
+          ></ion-col
+        >
+        <ion-col class="ion-text-right" size="4"
+          >{{todoValue | _balance:'--' | _truncate}}
+        </ion-col>
+      </ion-row>
+      <ion-row
+        class="ion-align-items-center ion-align-self-center conversionPrice"
+      >
+        <ion-col class="label" size="8"
+          >{{hadLabel | translate}}
+          <ng-container *ngIf="isMore"
+            >{{coin==='USDT'?'XT-1':'XT-2'}}{{hadLabel+'1' |
+            translate}}</ng-container
+          >
+        </ion-col>
+        <ion-col class="ion-text-right" size="4"
+          >{{hadValue | _balance:'--' | _truncate}}
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</div>
+<div class="button-div" *ngIf="isSaveTab">
+  <ion-button
+    expand="block"
+    class="operation-btn approve-btn"
+    *ngIf="!isApproved"
+    (click)="approve()"
+    >{{'sq_text' | translate}}
+    <div class="loading" *ngIf="isLoading.sq"></div>
+  </ion-button>
+  <ion-button
+    expand="block"
+    class="operation-btn"
+    [ngClass]="{'swap-btn':!isApproved,'full-btn':isApproved}"
+    (click)="save()"
+    [disabled]="!canSave()"
+    >{{'cr' | translate}}
+    <div class="loading" *ngIf="isLoading.cr"></div>
+  </ion-button>
+</div>
+<div class="button-div" *ngIf="!isSaveTab">
+  <ion-button
+    expand="block"
+    class="operation-btn approve-btn full-btn"
+    (click)="recieve()"
+    [disabled]="!canReceive()"
+    >{{'qc' | translate}}
+    <div class="loading" *ngIf="isLoading.qc"></div>
+  </ion-button>
+</div>

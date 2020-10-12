@@ -1,0 +1,15 @@
+<div class="wallet_show" *ngIf="shareStateQuery.getValue().connectedWallet">
+  <span>
+    {{(shareStateQuery.getValue().connectedWallet?shareStateQuery.getValue().currentAccount:'')
+    | walletaddress}}
+  </span>
+  <img src="./assets/images/wallet-connect.png" />
+</div>
+<div
+  class="wallet_show"
+  *ngIf="!shareStateQuery.getValue().connectedWallet"
+  (click)="connect()"
+>
+  <span>{{'lj_text' |translate}}</span>
+  <div class="loading-connect" *ngIf="isConnectLoading"></div>
+</div>

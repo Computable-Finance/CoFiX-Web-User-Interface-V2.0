@@ -1,0 +1,28 @@
+:host ::ng-deep app-coin-input.coin-input {
+  .input-group > .input {
+    border-left: none;
+  }
+}
+.choose-div img {
+  width: 40px;
+  height: 40px;
+}
+.choose-div {
+  font-size: 17px;
+  line-height: 34px;
+  color: black;
+  height: 50px;
+}
+.choose-div ion-col {
+  height: 40px;
+}
+.button-div {
+  width: 100%;
+}
+@media only screen and (max-width: 510px) {
+  ion-toggle {
+    height: 14px;
+    width: 35px;
+    --handle-width: 50%;
+  }
+}

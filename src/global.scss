@@ -1,0 +1,311 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import '~@ionic/angular/css/core.css';
+
+/* Basic CSS for apps built with Ionic */
+@import '~@ionic/angular/css/normalize.css';
+@import '~@ionic/angular/css/structure.css';
+@import '~@ionic/angular/css/typography.css';
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import '~@ionic/angular/css/padding.css';
+@import '~@ionic/angular/css/float-elements.css';
+@import '~@ionic/angular/css/text-alignment.css';
+@import '~@ionic/angular/css/text-transformation.css';
+@import '~@ionic/angular/css/flex-utils.css';
+html,
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  margin: 0;
+  font-size: 17px;
+}
+ion-content {
+  --background: #fbfbfb;
+  /*position: fixed;
+  top: 65px;*/
+}
+
+.popover-coinselect .popover-content {
+  list-style: none;
+  padding: 0;
+  width: 150px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-shadow: 0px 0px 18px 0px #444444;
+  border-radius: 8px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.popover-liquidselect .popover-content {
+  list-style: none;
+  padding: 0;
+  width: 260px;
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-shadow: 0px 0px 18px 0px #444444;
+  border-radius: 8px;
+  position: absolute;
+  /*top: 120px !important;*/
+}
+.popover-coinselect .modal-wrapper {
+  height: 326px;
+}
+.popover-liquidselect .modal-wrapper {
+  height: 260px;
+}
+.popover-coinselect .modal-wrapper,
+.popover-liquidselect .modal-wrapper {
+  width: 344px;
+  border-radius: 16px;
+  box-shadow: 0 11px 19px 0 rgba(0, 0, 0, 0.08);
+}
+
+.operation-btn {
+  font-size: 20px;
+  height: 50px;
+  --border-radius: 25px;
+}
+.swap-card {
+  width: 510px;
+  margin: 25px auto;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 11px 19px 0 rgba(0, 0, 0, 0.08);
+}
+.card-content {
+  width: 89.6%;
+  margin: 0 auto;
+  margin-top: 25px;
+  letter-spacing: 1px;
+  color: white;
+}
+.divider {
+  height: 10px;
+  background: #fbfbfb;
+  border-bottom: 1px solid #e9e9e9;
+}
+.card-content p {
+  font-size: 15px;
+  color: #727272;
+}
+.oracle-cost {
+  text-align: right;
+  font-size: 14px !important;
+  line-height: 34px !important;
+  margin: 5px 0px;
+}
+
+.liquid-input {
+  margin: 0 auto;
+}
+
+.explain-div {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 7px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.conversionPrice {
+  height: 50px;
+  font-size: 17px;
+  color: #727272;
+  border-bottom: 1px solid #e9e9e9;
+}
+.margin-top {
+  margin-top: 22px;
+}
+.conversionPrice .label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  cursor: pointer;
+  color: #727272;
+}
+
+.button-div {
+  display: flex;
+  justify-content: space-between;
+  margin: 32px auto;
+}
+
+.swap-btn,
+.approve-btn {
+  width: 45%;
+  display: block;
+}
+.swap-btn {
+  --background: rgba(125, 125, 125, 0.39);
+  color: rgb(125, 125, 125);
+}
+
+.full-btn {
+  width: 100%;
+}
+.op {
+  position: relative;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #434343;
+  cursor: pointer;
+  margin-left: 15px;
+  border-radius: 50%;
+}
+.op img {
+  right: -5px;
+  bottom: 1px;
+  display: block;
+  width: 18px;
+  position: absolute;
+  max-width: unset !important;
+}
+.explain-liquid-alert {
+  --background: #1b2330;
+  --max-width: 370px;
+}
+.explain-liquid-alert h2 {
+  color: white;
+  font-size: 24px;
+  --ion-text-color: white;
+  text-align: center;
+  margin: 10px;
+}
+.explain-liquid-alert .alert-message {
+  color: white;
+  line-height: 25px;
+}
+.alert-icon {
+  margin-left: 10px;
+  width: 18px;
+}
+@keyframes loadingmove {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+/* Safari and Chrome */
+@-webkit-keyframes loadingmove {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(359deg);
+  }
+}
+.loading,
+.loading-connect {
+  width: 25px;
+  height: 25px;
+  background: transparent;
+  position: absolute;
+  top: 10px;
+  right: 5px;
+  z-index: 9999;
+  border-radius: 50%;
+  animation: loadingmove 1.2s linear infinite;
+  -webkit-animation: loadingmove 1.2s linear infinite;
+}
+.loading {
+  border: 3px solid white;
+  border-bottom: 3px solid transparent;
+}
+.loading-connect {
+  border: 3px solid var(--ion-color-primary);
+  border-bottom: 3px solid transparent;
+}
+@media only screen and (max-width: 470px) {
+  .swap-card,
+  .button-card {
+    width: 90% !important;
+  }
+  .card-title {
+    width: 90% !important;
+  }
+  .loading,
+  .loading-connect {
+    position: relative;
+    top: unset;
+    right: unset;
+  }
+}
+
+.popover-sidermenu .popover-content {
+  list-style: none;
+  padding: 0;
+  overflow-y: hidden;
+  overflow-x: auto;
+  background: #081428;
+  border-radius: 8px;
+  color: #fff;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.popover-ios .popover-arrow::after {
+  display: none;
+}
+
+.connect-card {
+  width: 510px;
+  margin: 32px auto;
+  background: unset;
+}
+.button-card {
+  width: 510px;
+  background: unset;
+}
+.error_warn {
+  font-size: 16px;
+  width: 100%;
+  text-align: center;
+  margin-top: 15px;
+}
+.wallet_warn {
+  color: #ff3478 !important;
+}
+
+.card-title {
+  width: 510px;
+  margin: 78px auto 16px auto;
+  height: 41px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 24px;
+  font-weight: normal;
+  text-align: center;
+  line-height: 41px;
+}
+.claim-title {
+  margin-top: 16px;
+}
+
+.close-icon {
+  font-size: 30px;
+  position: absolute;
+  color: #727272;
+  top: 20px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+ion-toggle {
+  --background-checked: var(--ion-color-primary);
+}

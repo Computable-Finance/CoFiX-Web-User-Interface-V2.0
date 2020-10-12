@@ -1,0 +1,25 @@
+<ion-grid class="select-content">
+  <ion-row class="title ion-align-items-center ion-align-self-center">
+    <ion-col class="ion-text-center" size="12">
+      {{'select_token' | translate}}
+    </ion-col>
+    <ion-col size="2" (click)="close()"
+      ><img src="assets/images/close.png" class="close-img"
+    /></ion-col>
+  </ion-row>
+  <ng-container
+    *ngFor="let coin of coinList;let i=index"
+    (click)="selectCoin(coin)"
+  >
+    <ion-row
+      *ngIf="coin !== 'ETH'"
+      (click)="selectCoin(coin)"
+      class="ion-align-items-center ion-align-self-center conversionPrice {{i==0?'first-row':''}}"
+    >
+      <ion-col size="2" class="token-logo">
+        <img src="./assets/images/icon/{{coin}}.png" class="coin_icon" />
+      </ion-col>
+      <ion-col size="9"> ETH/{{coin}} </ion-col>
+    </ion-row>
+  </ng-container>
+</ion-grid>

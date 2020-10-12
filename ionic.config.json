@@ -1,0 +1,7 @@
+{
+  "name": "cofix-interface",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

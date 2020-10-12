@@ -1,0 +1,13 @@
+<div class="banner-content">
+  <div class="centent">
+    <h2 class="title">{{bannerConent.title | translate}}</h2>
+    <p class="desc" *ngFor="let desc of bannerConent.descriptions;let i=index">
+      {{desc | translate}}
+    </p>
+    <div class="more">
+      <a (click)="goto(bannerConent.more.url)"
+        >{{bannerConent.more.text | translate}}
+      </a>
+    </div>
+  </div>
+</div>
