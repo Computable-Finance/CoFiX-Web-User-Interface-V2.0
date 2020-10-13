@@ -6,6 +6,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
+import { BigNumber } from 'ethers';
 import { CoinInputPage } from 'src/app/common/components/coin-input/coin-input.page';
 import { ShareStateQuery } from 'src/app/common/state/share.query';
 import { Utils } from 'src/app/common/utils';
@@ -54,6 +55,8 @@ export class AddLiquidPage implements OnInit {
   showToError = false;
   showBalance = true;
   addLiquidError = { isError: false, msg: '' };
+  isShowFromMax = false;
+  isShowToMax = false;
   constructor(
     private cofixService: CofiXService,
     public shareStateQuery: ShareStateQuery,
@@ -80,8 +83,30 @@ export class AddLiquidPage implements OnInit {
       return false;
     }
     this.fromCoin.id = event.coin;
-    this.fromCoin.amount = this.fromCoin.balance;
-    this.showFromError = true;
+
+    if (this.fromCoin.id === 'ETH') {
+      this.fromCoin.amount = this.cofixService
+        .ethersOf(
+          BigNumber.from(
+            this.cofixService
+              .parseEthers(Number(this.fromCoin.balance))
+              .sub(this.cofixService.parseEthers(Number('0.02')))
+          )
+        )
+        .toString();
+      if (Number(this.fromCoin.amount) < 0) {
+        this.showFromError = true;
+        this.fromCoin.amount = '0';
+        this.toCoin.amount = '';
+        return; //不进行后面的计算
+      } else {
+        this.showFromError = false;
+      }
+    } else {
+      this.fromCoin.amount = this.fromCoin.balance;
+      this.showFromError = true;
+    }
+
     this.resetLiquidError();
     this.setExpectedXToken();
   }
@@ -230,7 +255,9 @@ export class AddLiquidPage implements OnInit {
     }
     if (this.shareStateQuery.getValue().connectedWallet) {
       this.fromCoin.balance = await this.utils.getBalanceByCoin(this.fromCoin);
+      this.isShowFromMax = this.fromCoin.balance ? true : false;
       this.toCoin.balance = await this.utils.getBalanceByCoin(this.toCoin);
+      this.isShowToMax = this.toCoin.balance ? true : false;
     }
   }
 

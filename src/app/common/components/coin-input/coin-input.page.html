@@ -29,22 +29,24 @@
   </div>
   <ion-grid class="ion-no-padding info-box">
     <ion-row class="ion-align-items-center ion-align-self-center">
-      <ion-col class="balance-info" size="10" *ngIf="isShowBlance && !isShowError">
-        <span>{{'your_balance' | translate}}</span>：<span>{{maxAmount | _balance:'--' | _truncate}}</span>
-          {{coin}}
-      </ion-col>
-      <ion-col class="error" size="10" >
-        <ng-container *ngIf="isShowError">
+      <ion-col class="balance-info" size="10" >
+        <div *ngIf="isShowBlance && !isShowError">
           <span>{{'your_balance' | translate}}</span>：<span>{{maxAmount | _balance:'--' | _truncate}}</span>
           {{coin}}
-        </ng-container>
-        <ng-container *ngIf="isInsufficientError">
+      </div>
+        
+      
+        <div *ngIf="isShowError" class="error">
+          <span>{{'your_balance' | translate}}</span>：<span>{{maxAmount | _balance:'--' | _truncate}}</span>
+          {{coin}}
+        </div>
+        <div *ngIf="isInsufficientError"  class="error">
           <span>{{'insufficient-error' | translate}}</span>
-        </ng-container>
+        </div>
 
-        <ng-container *ngIf="overLiquid()">
+        <div *ngIf="overLiquid()"  class="error">
           <span>{{'token_balance_of_pair' | translate}} {{maxLiquid}}</span>
-        </ng-container>
+        </div>
       </ion-col>
       <ion-col class="ion-text-right max"  size="2">
         <span (click)="setMax()"  *ngIf="isShowMax">MAX</span>

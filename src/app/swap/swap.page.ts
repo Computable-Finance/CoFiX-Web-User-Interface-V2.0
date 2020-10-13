@@ -61,6 +61,7 @@ export class SwapPage implements OnInit {
   ERC20BalanceOfPair = { USDT: '', HBTC: '', ETH: '' };
   showBalance = true;
   isShowToMax = false;
+  isShowFromMax = false;
   swapError = { isError: false, msg: '' };
   constructor(
     private cofixService: CofiXService,
@@ -86,12 +87,6 @@ export class SwapPage implements OnInit {
       this.initERC20Decimal();
       this.getERC20BalanceOfPair();
     }
-  }
-
-  async walletConnected() {
-    this.initCoinContent();
-    this.getIsApproved();
-    this.initERC20Decimal();
   }
 
   async getIsApproved() {
@@ -137,6 +132,7 @@ export class SwapPage implements OnInit {
         this.showError = false;
       }
     } else {
+      this.fromCoin.amount = this.fromCoin.balance;
       this.showError = true;
     }
 
@@ -144,6 +140,7 @@ export class SwapPage implements OnInit {
 
     if (this.toCoin.id !== 'ETH') {
       //计算结果
+      console.log(this.ERC20BalanceOfPair[this.toCoin.id]);
       if (this.toCoin.amount > this.ERC20BalanceOfPair[this.toCoin.id]) {
         this.toCoin.amount = this.ERC20BalanceOfPair[this.toCoin.id];
       }
@@ -201,6 +198,8 @@ export class SwapPage implements OnInit {
     this.fromCoin.amount = '';
     this.toCoin.amount = '';
     this.expectedCofi = '';
+    this.isShowFromMax = false;
+    this.isShowToMax = false;
   }
 
   changeCoin() {
@@ -320,6 +319,7 @@ export class SwapPage implements OnInit {
       }
 
       this.fromCoin.balance = await this.utils.getBalanceByCoin(this.fromCoin);
+      this.isShowFromMax = this.fromCoin.balance ? true : false;
     }
   }
   resetSwapError() {

@@ -16,12 +16,9 @@
         [coin]="fromCoin.id"
         [isShowError]="showError"
         [isShowBlance]="showBalance"
+        [isShowMax]="isShowFromMax"
       ></app-coin-input>
       <div class="divider-swap"></div>
-      <div class="swap-img">
-        <!--<img src="./assets/images/exchange.png" (click)="changeCoin()" /> -->
-        <ion-icon name="arrow-down-circle-outline" color="primary"></ion-icon>
-      </div>
 
       <p class="get-text">{{ 'hq_text'| translate}}</p>
       <app-coin-input
