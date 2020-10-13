@@ -718,7 +718,7 @@ export class CofiXService {
     }
   }
 
-  private parseEthers(amount: number) {
+  parseEthers(amount: number) {
     return this.parseUnits(amount, ETHER_DECIMALS);
   }
 
@@ -735,7 +735,7 @@ export class CofiXService {
     fee: number
   ) {
     const ethBalanceOfAccount = this.ethersOf(await this.getETHBalance());
-    if (amountIn > ethBalanceOfAccount) {
+    if (amountIn + fee > ethBalanceOfAccount) {
       throw new Error('Insufficient ETH balance');
     }
 

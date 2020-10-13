@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { BannerContent } from '../common/components/banner/banner.page';
@@ -7,8 +7,8 @@ import { CofiXService } from '../service/cofix.service';
 import { Utils } from 'src/app/common/utils';
 import { BalancePipe } from '../common/pipes/balance.pipe';
 import { ShareStateService } from '../common/state/share.service';
-import { EventBusService } from '../service/eventbus.service';
-import { ERC20BalancePipe } from '../common/pipes/erc20balance.pipe';
+import { CoinInputPage } from '../common/components/coin-input/coin-input.page';
+import { BigNumber } from 'ethers';
 
 export interface CoinContent {
   id: string;
@@ -24,6 +24,8 @@ export interface CoinContent {
   styleUrls: ['./swap.page.scss'],
 })
 export class SwapPage implements OnInit {
+  @ViewChild(CoinInputPage, { static: false }) fromCoinInputView: CoinInputPage;
+  @ViewChild(CoinInputPage, { static: false }) toCoinInputView: CoinInputPage;
   public swapContent: BannerContent = {
     title: 'swap_title',
     descriptions: ['swap_desc1', 'swap_desc2', 'swap_desc3', 'swap_desc4'],
@@ -58,6 +60,7 @@ export class SwapPage implements OnInit {
   isInsufficientError = false;
   ERC20BalanceOfPair = { USDT: '', HBTC: '', ETH: '' };
   showBalance = true;
+  isShowToMax = false;
   constructor(
     private cofixService: CofiXService,
     private translateService: TranslateService,
@@ -192,6 +195,8 @@ export class SwapPage implements OnInit {
     this.getIsApproved();
     this.initERC20Decimal();
     this.getERC20BalanceOfPair();
+    this.toCoinInputView.resetSubscription();
+    this.fromCoinInputView.resetSubscription();
   }
 
   changeFromCoin(event) {
@@ -324,11 +329,11 @@ export class SwapPage implements OnInit {
     }
   }
 
-  async showAlert() {
+  async showAlert(title, content) {
     const alert = await this.alertController.create({
       cssClass: 'explain-liquid-alert',
-      header: await this.translateService.get('jgsm_title').toPromise(),
-      message: await this.translateService.get('jgsm_cont').toPromise(),
+      header: await this.translateService.get(title).toPromise(),
+      message: await this.translateService.get(content).toPromise(),
       buttons: [
         {
           text: await this.translateService.get('comfirm_text').toPromise(),
@@ -369,11 +374,24 @@ export class SwapPage implements OnInit {
   async swap() {
     this.isLoading.dh = true;
     if (this.fromCoin.id === 'ETH') {
+      let fromCoinAmount;
+      if (Number(this.fromCoin.amount) == Number(this.fromCoin.balance)) {
+        fromCoinAmount = this.cofixService.ethersOf(
+          BigNumber.from(
+            this.cofixService
+              .parseEthers(Number(this.fromCoin.amount))
+              .sub(this.cofixService.parseEthers(Number('0.02')))
+          )
+        );
+      } else {
+        fromCoinAmount = Number(this.fromCoin.amount);
+      }
+
       this.cofixService
         .swapExactETHForTokens(
           this.shareStateQuery.getValue().tokenPairAddress[this.toCoin.id],
           this.toCoin.address,
-          Number(this.fromCoin.amount),
+          fromCoinAmount,
           Number(this.toCoin.amount),
           Number(this.changePrice),
           this.oracleCost
@@ -393,7 +411,6 @@ export class SwapPage implements OnInit {
         })
         .catch((error) => {
           console.log(error.message);
-          //if()
           if (error.message === 'Insufficient tokens for swapping.') {
             this.isInsufficientError = true;
           }
@@ -466,10 +483,20 @@ export class SwapPage implements OnInit {
 
   canSwap() {
     let result = false;
-    if (this.fromCoin.id === 'ETH') {
+    /*if (this.fromCoin.id === 'ETH') {
       result =
         Number(this.fromCoin.amount) !== 0 &&
         Number(this.fromCoin.amount) < Number(this.fromCoin.balance); //ETH输入值要小于余额
+    } else {
+      result =
+        this.fromCoin.isApproved &&
+        Number(this.fromCoin.amount) !== 0 &&
+        Number(this.fromCoin.amount) <= Number(this.fromCoin.balance); //Token要认证且输入值小于等于余额
+    }*/
+    if (this.fromCoin.id === 'ETH') {
+      result =
+        Number(this.fromCoin.amount) !== 0 &&
+        Number(this.fromCoin.balance) >= 0.02;
     } else {
       result =
         this.fromCoin.isApproved &&

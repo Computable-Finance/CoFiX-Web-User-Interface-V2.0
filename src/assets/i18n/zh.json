@@ -128,5 +128,6 @@
   "your_balance": "余额",
   "select_token": "选择币种",
   "insufficient-error": "资金池不足",
-  "token_balance_of_pair": "资金池当前余额："
+  "token_balance_of_pair": "资金池当前余额：",
+  "ygck_cont":"买入资金池内以ETH计价占比超过3/4的资产，可以挖到2-4倍的CoFi"
 }

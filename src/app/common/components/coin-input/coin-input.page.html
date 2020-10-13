@@ -24,21 +24,16 @@
       [(ngModel)]="amount"
       oninput="value=value.replace(/^\D*(\d*(?:\.\d{0,8})?).*$/g, '$1')"
       (ngModelChange)="modelChanged.next($event)"
+      [disabled]="!isShowMax"
     />
   </div>
   <ion-grid class="ion-no-padding info-box">
     <ion-row class="ion-align-items-center ion-align-self-center">
-      <ion-col
-        size="9"
-        class="balance-info {{isShowError?'error':''}}"
-        *ngIf="isShowBlance || isShowError"
-      >
-        <span>{{'your_balance' | translate}}</span>：<span
-          >{{maxAmount | _balance:'--' | _truncate}}</span
-        >
-        {{coin}}
-      </ion-col>
-      <ion-col class="error">
+      <ion-col class="error {{isShowBlance?'balance-info':''}}" size="10">
+        <ng-container *ngIf="isShowBlance || isShowError">
+          <span>{{'your_balance' | translate}}</span>：<span>{{maxAmount | _balance:'--' | _truncate}}</span>
+          {{coin}}
+        </ng-container>
         <ng-container *ngIf="isInsufficientError">
           <span>{{'insufficient-error' | translate}}</span>
         </ng-container>
@@ -47,8 +42,8 @@
           <span>{{'token_balance_of_pair' | translate}} {{maxLiquid}}</span>
         </ng-container>
       </ion-col>
-      <ion-col class="ion-text-right max" (click)="setMax()" size="2">
-        MAX
+      <ion-col class="ion-text-right max"  size="2">
+        <span (click)="setMax()"  *ngIf="isShowMax">MAX</span>
       </ion-col>
     </ion-row>
   </ion-grid>

@@ -31,9 +31,10 @@ export class CoinInputPage implements OnInit, OnDestroy {
   @Input() placeHolder: string = '0.0';
   @Input() maxAmount: any;
   @Input() isShowError: boolean = false;
-  @Input() isInsufficientError: boolean = false;
   @Input() maxLiquid: string;
+  @Input() isInsufficientError: boolean = false;
   @Input() isShowBlance = false;
+  @Input() isShowMax = true;
 
   constructor(private modalController: ModalController) {}
 
@@ -41,8 +42,9 @@ export class CoinInputPage implements OnInit, OnDestroy {
     this.subscription = this.modelChanged
       .pipe(
         debounceTime(this.debounceTime),
-        // distinctUntilChanged(),
+        distinctUntilChanged(),
         switchMap((event) => {
+          console.log(event);
           this.onInputChange.emit({ amount: this.amount, coin: this.coin });
           return EMPTY;
         })
@@ -80,5 +82,21 @@ export class CoinInputPage implements OnInit, OnDestroy {
   }
   overLiquid() {
     return Number(this.amount) > Number(this.maxLiquid);
+  }
+
+  resetSubscription() {
+    this.subscription?.unsubscribe();
+    this.subscription = this.modelChanged
+      .pipe(
+        debounceTime(this.debounceTime),
+        distinctUntilChanged(),
+        switchMap((event) => {
+          console.log('reset event');
+          console.log(event);
+          this.onInputChange.emit({ amount: this.amount, coin: this.coin });
+          return EMPTY;
+        })
+      )
+      .subscribe();
   }
 }

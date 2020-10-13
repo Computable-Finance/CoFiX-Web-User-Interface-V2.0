@@ -127,5 +127,6 @@
   "your_balance": "Your Balance",
   "select_token": "Select Token",
   "insufficient-error": "Insufficient asset in liquidity pool",
-  "token_balance_of_pair": "Balance of the pool: "
+  "token_balance_of_pair": "Balance of the pool: ",
+  "ygck_cont":"买入资金池内以ETH计价占比超过3/4的资产，可以挖到2-4倍的CoFi"
 }

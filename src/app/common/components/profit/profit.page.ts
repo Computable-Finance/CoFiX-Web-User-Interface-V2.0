@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import { CoinInputPage } from '../coin-input/coin-input.page';
 
 @Component({
   selector: 'app-profit',
@@ -6,6 +14,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./profit.page.scss'],
 })
 export class ProfitPage implements OnInit {
+  @ViewChild(CoinInputPage, { static: false }) coinInputView: CoinInputPage;
   @Input() todoLabel: string;
   @Input() hadLabel: string;
   @Input() isApproved: boolean = false;
@@ -42,7 +51,6 @@ export class ProfitPage implements OnInit {
   @Input('hadValue')
   set hadValue(value: string) {
     this._hadValue = value;
-    //this.initBalance();
   }
   isSaveTab = true;
   showSelect = false;
@@ -53,10 +61,8 @@ export class ProfitPage implements OnInit {
 
   ngOnInit() {}
 
-  initBalance() {
-    if (!this.todoValue && !this.hadValue) {
-      this.balance = '';
-    }
+  resetInputSubscription() {
+    this.coinInputView.resetSubscription();
   }
 
   swapTab() {

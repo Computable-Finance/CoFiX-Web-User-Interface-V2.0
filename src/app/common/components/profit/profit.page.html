@@ -17,6 +17,7 @@
   </ion-button>
 </div>
 <app-coin-input
+  #coinInputView
   (onMaxClick)="setCoinMax()"
   [amount]="balance"
   (onInputChange)="coinInput($event)"

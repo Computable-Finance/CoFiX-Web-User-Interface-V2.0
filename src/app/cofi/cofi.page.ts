@@ -13,7 +13,7 @@ import { CofiXService } from '../service/cofix.service';
   styleUrls: ['./cofi.page.scss'],
 })
 export class CofiPage implements OnInit {
-  @ViewChild(ProfitPage, { static: false }) cofiProfit: ProfitPage;
+  @ViewChild(ProfitPage, { static: false }) cofiProfitView: ProfitPage;
   public cofixContent: BannerContent = {
     title: 'cofix_title',
     descriptions: ['cofix_desc1'],
@@ -100,7 +100,8 @@ export class CofiPage implements OnInit {
     this.earnedRate = undefined;
     this.getCoFiTokenAndRewards();
     this.getIsApproved();
-    this.cofiProfit._balance = '';
+    this.cofiProfitView.resetInputSubscription();
+    this.cofiProfitView._balance = '';
   }
 
   //领取Cofi
