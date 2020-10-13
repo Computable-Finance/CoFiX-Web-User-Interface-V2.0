@@ -57,6 +57,7 @@ export class SwapPage implements OnInit {
   showError = false;
   isInsufficientError = false;
   ERC20BalanceOfPair = { USDT: '', HBTC: '', ETH: '' };
+  showBalance = true;
   constructor(
     private cofixService: CofiXService,
     private translateService: TranslateService,
@@ -64,8 +65,7 @@ export class SwapPage implements OnInit {
     public shareStateQuery: ShareStateQuery,
     private shareStateService: ShareStateService,
     private balancePipe: BalancePipe,
-    private utils: Utils,
-    private erc20balancePipe: ERC20BalancePipe
+    private utils: Utils
   ) {}
 
   async ngOnInit() {

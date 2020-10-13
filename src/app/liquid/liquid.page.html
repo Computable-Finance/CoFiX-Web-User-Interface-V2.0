@@ -50,13 +50,16 @@
                 />
               </ion-col>
               <ion-col class="ion-text-left">ETH-{{coinItem}}</ion-col>
-              <ion-col size="{{colSize}}" class="ion-text-right">
+              <ion-col
+                size="{{colSize}}"
+                class="ion-text-right earned-rate"
+                (click)="showMore(coinItem)"
+              >
                 <span class="balance"
                   >{{earnedRate[coinItem]?.rewardRate | _balance:'--' |
                   _truncate}} CoFi/Day</span
                 >
                 <img
-                  (click)="showMore(coinItem)"
                   src="./assets/images/select.png"
                   class="pull_img"
                   [ngClass]="{'rotate':isRotate[coinItem]}"

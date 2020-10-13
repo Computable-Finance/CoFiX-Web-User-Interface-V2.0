@@ -19,6 +19,7 @@
       [coin]="fromCoin.id"
       [maxAmount]="fromCoin.balance"
       [isShowError]="showFromError"
+      [isShowBlance]="showBalance"
     ></app-coin-input>
     <div class="divider"></div>
     <p>{{ 'input'| translate}}</p>
@@ -30,6 +31,7 @@
       [coin]="toCoin.id"
       [maxAmount]="toCoin.balance"
       [isShowError]="showToError"
+      [isShowBlance]="showBalance"
     ></app-coin-input>
     <p class="oracle-cost">
       <span>{{'oracle_cost' | translate}}</span>：<span class="fee"

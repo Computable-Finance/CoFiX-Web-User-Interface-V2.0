@@ -93,11 +93,13 @@
   color: #727272;
 }
 .pull_img {
-  cursor: pointer;
   margin-left: 5px;
   width: 24px;
   position: relative;
   top: 8px;
+}
+.earned-rate {
+  cursor: pointer;
 }
 .rotate {
   transform: rotate(180deg);
@@ -115,10 +117,11 @@
 }
 .liquid-info {
   margin-top: 25px !important;
+  border-radius: 8px !important;
 }
 .motoken {
   margin-top: 0;
 }
 .swap-card {
-  border-radius: 8px;
+  border-radius: 16px;
 }

@@ -31,7 +31,7 @@ export class AddLiquidPage implements OnInit {
   };
   isDropDown: false;
   xtValue = 'XT-1';
-  isStake = true;
+  isStake = false;
   expectedXToken: string;
   earnedRate: any;
   coinAddress: string;
@@ -40,9 +40,9 @@ export class AddLiquidPage implements OnInit {
   NAVPerShare: string;
   oracleCost = 0.01;
   isLoading = { cr: false, sq: false };
-  //showError = false;
   showFromError = false;
   showToError = false;
+  showBalance = true;
   constructor(
     private cofixService: CofiXService,
     public shareStateQuery: ShareStateQuery,

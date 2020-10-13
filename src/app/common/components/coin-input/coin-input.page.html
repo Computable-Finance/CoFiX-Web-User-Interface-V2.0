@@ -28,13 +28,17 @@
   </div>
   <ion-grid class="ion-no-padding info-box">
     <ion-row class="ion-align-items-center ion-align-self-center">
-      <ion-col size="10" class="error">
-        <ng-container *ngIf="isShowError">
-          <span>{{'your_balance' | translate}}</span>：<span class="fee"
-            >{{maxAmount | _balance:'--' | _truncate}}</span
-          >
-          {{coin}}
-        </ng-container>
+      <ion-col
+        size="9"
+        class="balance-info {{isShowError?'error':''}}"
+        *ngIf="isShowBlance || isShowError"
+      >
+        <span>{{'your_balance' | translate}}</span>：<span
+          >{{maxAmount | _balance:'--' | _truncate}}</span
+        >
+        {{coin}}
+      </ion-col>
+      <ion-col class="error">
         <ng-container *ngIf="isInsufficientError">
           <span>{{'insufficient-error' | translate}}</span>
         </ng-container>
