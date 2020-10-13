@@ -101,7 +101,7 @@
   "deposit_token": "Deposit XToken",
   "dy": "Deposit",
   "no_add_liquid": "No liquidity added",
-  "liquid_title": "Liquidity provider earnings",
+  "liquid_title": "Liquidity provider earnings and risks",
   "liquid_desc1": "Liquidity providers are compensated with a risk adjusted fee, proportional to their share of the pool.",
   "liquid_desc2": "After adding liquidity, the liquidity provider will receive liquidity tokens (XToken)",
   "liquid_more": "Read more about providing liquidity and risk compensation >",
