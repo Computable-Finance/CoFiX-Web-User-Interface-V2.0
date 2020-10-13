@@ -53,7 +53,7 @@
   "dhjg_text": "Price",
   "lj_text": "Connect wallet",
   "jgsm_title": "Price Description",
-  "jgsm_cont": "Prices are obtained from the NEST Oracle",
+  "jgsm_cont": "The trade price is calculated based on the decentralized oracle NEST's price, combined with the computable risk compensation coefficient, an additional fee and price impact.",
   "comfirm_text": "Confirm",
   "jz": "Net worth of ",
   "jz2": "(ETH)",
