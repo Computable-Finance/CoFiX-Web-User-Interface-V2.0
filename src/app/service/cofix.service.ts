@@ -878,7 +878,7 @@ export class CofiXService {
     const contract = this.getERC20Contract(token);
     const decimals = await this.getERC20Decimals(token);
     const balance = this.unitsOf(await contract.balanceOf(address), decimals);
-    return balance > amount;
+    return balance >= amount;
   }
 
   async hasEnoughETHBalance(amount: number) {
