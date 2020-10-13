@@ -77,7 +77,7 @@
   "expected": "Estimated XToken(",
   "expected2": ")",
   "redemption": "Remove liquidity ",
-  "select": "Choose the desired asset",
+  "select": "Choose the desired asset (Estimated amount)",
   "activate": "Activate",
   "balance": "balance",
   "activate_pair": "Activate trading pair",
