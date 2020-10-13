@@ -101,7 +101,7 @@
   "deposit_token": "存入 XToken ",
   "dy": "存入",
   "no_add_liquid": "还没有添加流动性",
-  "liquid_title": "流动性提供者的收益",
+  "liquid_title": "流动性提供者的收益和风险",
   "liquid_desc1": "流动性提供者可以在所有的交易中获取交易费",
   "liquid_desc2": "提供流动性后将会收到流动性提供者 token (XToken)",
   "liquid_more": "了解流动性挖矿和风险补偿的方法 >",
