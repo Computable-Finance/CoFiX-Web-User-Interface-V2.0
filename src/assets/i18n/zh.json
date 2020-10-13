@@ -53,7 +53,7 @@
   "dhjg_text": "兑换价格",
   "lj_text": "连接钱包",
   "jgsm_title": "价格说明",
-  "jgsm_cont": "兑换价格基于去中心化预言机 NEST Oracle NEST Oracle 可以提供无套利机会链上价格并且可以精确量化每个价格的波动率风险",
+  "jgsm_cont": "兑换价格基于去中心化预言机 NEST Oracle提供价格，结合精确量化的风险补偿系数和额外的交易手续费计算得出",
   "comfirm_text": "确定",
   "jz": "每个",
   "jz2": "的净值（ETH）",
