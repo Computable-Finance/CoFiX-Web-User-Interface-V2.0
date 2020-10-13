@@ -12,6 +12,7 @@
     ></app-liquid-input>
     <p>{{ 'input'| translate}}</p>
     <app-coin-input
+      #fromCoinInputView
       (onMaxClick)="setFromCoinMax($event)"
       [amount]="fromCoin.amount"
       (onInputChange)="fromCoinInput($event)"
@@ -24,6 +25,7 @@
     <div class="divider"></div>
     <p>{{ 'input'| translate}}</p>
     <app-coin-input
+      #toCoinInputView
       (onMaxClick)="setToCoinMax($event)"
       [amount]="toCoin.amount"
       (onInputChange)="toCoinInput($event)"
@@ -62,6 +64,10 @@
           <ion-toggle [(ngModel)]="isStake"></ion-toggle>
         </ion-col>
       </ion-row>
+
+        <ion-row class="ion-align-items-center ion-align-self-center conversionPrice" *ngIf="addLiquidError.isError">
+          <ion-col class="error" size="12">{{'transaction-error' | translate}}[{{addLiquidError.msg}}]</ion-col>
+        </ion-row>
     </ion-grid>
     <ion-button
       expand="block"

@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import { CoinInputPage } from 'src/app/common/components/coin-input/coin-input.page';
 import { BalancePipe } from 'src/app/common/pipes/balance.pipe';
 import { ERC20BalancePipe } from 'src/app/common/pipes/erc20balance.pipe';
 import { ShareStateQuery } from 'src/app/common/state/share.query';
@@ -15,6 +23,7 @@ import { CoinContent } from 'src/app/swap/swap.page';
 export class RedeemLiquidPage implements OnInit {
   @Input() coin: string;
   @Output() onClose = new EventEmitter<any>();
+  @ViewChild(CoinInputPage, { static: false }) toCoinInputView: CoinInputPage;
   fromCoin: CoinContent = {
     id: 'ETH',
     address: '',
@@ -98,6 +107,7 @@ export class RedeemLiquidPage implements OnInit {
     this.initCoinContent();
     this.getRemoveLiquidity();
     this.getIsApproved();
+    this.toCoinInputView.resetSubscription();
   }
 
   async initCoinContent() {

@@ -12,6 +12,7 @@
     ></app-liquid-input>
     <p>{{ 'redemption'| translate}}{{toCoin.id}}</p>
     <app-coin-input
+      #toCoinInputView
       (onMaxClick)="setToCoinMax($event)"
       (onInputChange)="ToCoinInput($event)"
       [showSelect]="showInputSelect"

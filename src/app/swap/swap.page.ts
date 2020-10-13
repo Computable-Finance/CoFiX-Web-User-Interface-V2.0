@@ -61,6 +61,7 @@ export class SwapPage implements OnInit {
   ERC20BalanceOfPair = { USDT: '', HBTC: '', ETH: '' };
   showBalance = true;
   isShowToMax = false;
+  swapError = { isError: false, msg: '' };
   constructor(
     private cofixService: CofiXService,
     private translateService: TranslateService,
@@ -114,12 +115,29 @@ export class SwapPage implements OnInit {
     if (!this.shareStateQuery.getValue().connectedWallet) {
       return false;
     }
+
+    this.resetSwapError();
     this.fromCoin.id = event.coin;
-    this.fromCoin.amount = this.fromCoin.balance;
     if (this.fromCoin.id === 'ETH') {
-      this.showError = true;
+      this.fromCoin.amount = this.cofixService
+        .ethersOf(
+          BigNumber.from(
+            this.cofixService
+              .parseEthers(Number(this.fromCoin.balance))
+              .sub(this.cofixService.parseEthers(Number('0.02')))
+          )
+        )
+        .toString();
+      if (Number(this.fromCoin.amount) < 0) {
+        this.showError = true;
+        this.fromCoin.amount = '0';
+        this.toCoin.amount = '';
+        return; //不进行后面的计算
+      } else {
+        this.showError = false;
+      }
     } else {
-      this.showError = false;
+      this.showError = true;
     }
 
     this.getEPAndEC();
@@ -209,11 +227,16 @@ export class SwapPage implements OnInit {
     } else {
       this.fromCoin.id = event.coin;
     }
+
+    this.resetSwapError();
     this.initCoinContent();
     this.initERC20Decimal();
     this.getIsApproved();
     this.changeOracleCost();
     this.getERC20BalanceOfPair();
+
+    this.toCoinInputView.resetSubscription();
+    this.fromCoinInputView.resetSubscription();
   }
 
   changeToCoin(event) {
@@ -225,11 +248,16 @@ export class SwapPage implements OnInit {
     } else {
       this.toCoin.id = event.coin;
     }
+
+    this.resetSwapError();
     this.initCoinContent();
     this.initERC20Decimal();
     this.getIsApproved();
     this.changeOracleCost();
     this.getERC20BalanceOfPair();
+
+    this.toCoinInputView.resetSubscription();
+    this.fromCoinInputView.resetSubscription();
   }
 
   changeOracleCost() {
@@ -294,8 +322,11 @@ export class SwapPage implements OnInit {
       this.fromCoin.balance = await this.utils.getBalanceByCoin(this.fromCoin);
     }
   }
-
+  resetSwapError() {
+    this.swapError = { isError: false, msg: '' };
+  }
   fromCoinInput(event) {
+    this.resetSwapError();
     this.fromCoin.id = event.coin;
     this.fromCoin.amount = event.amount;
     this.toCoin.amount = '';
@@ -313,6 +344,7 @@ export class SwapPage implements OnInit {
   }
 
   async toCoinInput(event) {
+    this.resetSwapError();
     this.toCoin.amount = event.amount;
     this.fromCoin.amount = '';
     this.expectedCofi = '';
@@ -404,16 +436,19 @@ export class SwapPage implements OnInit {
             this.initCoinContent();
           });
           provider.once('error', (error) => {
+            console.log('11');
             console.log(error);
 
             this.isLoading.dh = false;
           });
         })
         .catch((error) => {
-          console.log(error.message);
-          if (error.message === 'Insufficient tokens for swapping.') {
-            this.isInsufficientError = true;
+          console.log('21');
+          console.log(error.code);
+          if (!error.code) {
+            this.swapError = { isError: true, msg: error.message };
           }
+
           this.isLoading.dh = false;
         });
     } else {
@@ -436,12 +471,17 @@ export class SwapPage implements OnInit {
               this.initCoinContent();
             });
             provider.once('error', (error) => {
+              console.log('22');
               console.log(error);
               this.isLoading.dh = false;
             });
           })
           .catch((error) => {
+            console.log('12');
             console.log(error);
+            if (!error.code) {
+              this.swapError = { isError: true, msg: error.message };
+            }
             this.isLoading.dh = false;
           });
       } else {
@@ -469,12 +509,16 @@ export class SwapPage implements OnInit {
               this.initCoinContent();
             });
             provider.once('error', (error) => {
+              console.log('23');
               console.log(error);
               this.isLoading.dh = false;
             });
           })
           .catch((error) => {
             console.log(error);
+            if (!error.code) {
+              this.swapError = { isError: true, msg: error.message };
+            }
             this.isLoading.dh = false;
           });
       }
@@ -483,20 +527,11 @@ export class SwapPage implements OnInit {
 
   canSwap() {
     let result = false;
-    /*if (this.fromCoin.id === 'ETH') {
-      result =
-        Number(this.fromCoin.amount) !== 0 &&
-        Number(this.fromCoin.amount) < Number(this.fromCoin.balance); //ETH输入值要小于余额
-    } else {
-      result =
-        this.fromCoin.isApproved &&
-        Number(this.fromCoin.amount) !== 0 &&
-        Number(this.fromCoin.amount) <= Number(this.fromCoin.balance); //Token要认证且输入值小于等于余额
-    }*/
     if (this.fromCoin.id === 'ETH') {
       result =
         Number(this.fromCoin.amount) !== 0 &&
-        Number(this.fromCoin.balance) >= 0.02;
+        Number(this.fromCoin.balance) >= 0.02 &&
+        Number(this.fromCoin.amount) < Number(this.fromCoin.balance);
     } else {
       result =
         this.fromCoin.isApproved &&

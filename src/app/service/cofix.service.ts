@@ -117,7 +117,7 @@ export class CofiXService {
 
   private async setup(isEnabled: boolean) {
     if (window.ethereum === undefined) {
-      throw new Error('Non-Ethereum browser detected. Install MetaMask');
+      throw new Error('Non-Ethereum browser detected. Install MetaMask.');
     }
 
     this.provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -736,7 +736,7 @@ export class CofiXService {
   ) {
     const ethBalanceOfAccount = this.ethersOf(await this.getETHBalance());
     if (amountIn + fee > ethBalanceOfAccount) {
-      throw new Error('Insufficient ETH balance');
+      throw new Error('Insufficient ETH balance.');
     }
 
     const erc20Contract = this.getERC20Contract(token);
@@ -909,7 +909,7 @@ export class CofiXService {
     }
 
     if (amountETH > 0 && !(await this.hasEnoughETHBalance(amountETH))) {
-      throw new Error('Insufficient ETH balance');
+      throw new Error('Insufficient ETH balance.');
     }
 
     if (
@@ -920,7 +920,7 @@ export class CofiXService {
         amountToken
       ))
     ) {
-      throw new Error('Insufficient token balance');
+      throw new Error('Insufficient token balance.');
     }
 
     if (
@@ -931,7 +931,7 @@ export class CofiXService {
         amountToken
       ))
     ) {
-      throw new Error('Insufficient allowance for this token');
+      throw new Error('Insufficient allowance for this token.');
     }
 
     const decimals = await this.getERC20Decimals(token);

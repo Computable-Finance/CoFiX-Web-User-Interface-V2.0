@@ -128,5 +128,6 @@
   "select_token": "Select Token",
   "insufficient-error": "Insufficient asset in liquidity pool",
   "token_balance_of_pair": "Balance of the pool: ",
-  "ygck_cont":"Buying in the asset that accounts for more than 3/4 of the assets pool (in ETH value) can mine 1-2 times more CoFi."
+  "ygck_cont":"Buying in the asset that accounts for more than 3/4 of the assets pool (in ETH value) can mine 1-2 times more CoFi.",
+  "transaction-error":"Something went wrong"
 }

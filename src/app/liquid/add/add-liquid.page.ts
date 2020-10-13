@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import { CoinInputPage } from 'src/app/common/components/coin-input/coin-input.page';
 import { ShareStateQuery } from 'src/app/common/state/share.query';
 import { Utils } from 'src/app/common/utils';
 import { CofiXService } from 'src/app/service/cofix.service';
@@ -13,6 +21,8 @@ export class AddLiquidPage implements OnInit {
   @Input() coin: string;
   @Input() pairAttended: boolean = false;
   @Output() onClose = new EventEmitter<any>();
+  @ViewChild(CoinInputPage, { static: false }) fromCoinInputView: CoinInputPage;
+  @ViewChild(CoinInputPage, { static: false }) toCoinInputView: CoinInputPage;
   fromCoin: CoinContent = {
     id: 'ETH',
     address: '',
@@ -43,6 +53,7 @@ export class AddLiquidPage implements OnInit {
   showFromError = false;
   showToError = false;
   showBalance = true;
+  addLiquidError = { isError: false, msg: '' };
   constructor(
     private cofixService: CofiXService,
     public shareStateQuery: ShareStateQuery,
@@ -71,6 +82,7 @@ export class AddLiquidPage implements OnInit {
     this.fromCoin.id = event.coin;
     this.fromCoin.amount = this.fromCoin.balance;
     this.showFromError = true;
+    this.resetLiquidError();
     this.setExpectedXToken();
   }
 
@@ -97,6 +109,8 @@ export class AddLiquidPage implements OnInit {
     this.toCoin.id = event.coin;
     this.toCoin.amount = this.toCoin.balance;
     this.showToError = false;
+
+    this.resetLiquidError();
     this.setExpectedXToken();
   }
 
@@ -141,10 +155,17 @@ export class AddLiquidPage implements OnInit {
       })
       .catch((error) => {
         console.log(error);
+
+        if (!error.code) {
+          this.addLiquidError = { isError: true, msg: error.message };
+        }
         this.isLoading.cr = false;
       });
   }
 
+  resetLiquidError() {
+    this.addLiquidError = { isError: false, msg: '' };
+  }
   async approve() {
     if (!this.toCoin.isApproved) {
       this.isLoading.sq = true;
@@ -168,6 +189,9 @@ export class AddLiquidPage implements OnInit {
         })
         .catch((error) => {
           console.log(error);
+          if (!error.code) {
+            this.addLiquidError = { isError: true, msg: error.message };
+          }
           this.isLoading.sq = false;
         });
     }
@@ -184,7 +208,10 @@ export class AddLiquidPage implements OnInit {
     } else {
       this.xtValue = 'XT-2';
     }
+    this.resetLiquidError();
     this.initCoinContent();
+    this.fromCoinInputView.resetSubscription();
+    this.toCoinInputView.resetSubscription();
   }
 
   async initCoinContent() {
@@ -212,6 +239,7 @@ export class AddLiquidPage implements OnInit {
   }
 
   async fromCoinInput(event) {
+    this.resetLiquidError();
     this.fromCoin.amount = event.amount;
     this.setExpectedXToken();
     this.canShowError();
@@ -224,6 +252,8 @@ export class AddLiquidPage implements OnInit {
 
   async toCoinInput(event) {
     this.toCoin.amount = event.amount;
+
+    this.resetLiquidError();
     this.setExpectedXToken();
     this.canShowError();
   }

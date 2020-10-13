@@ -75,6 +75,9 @@
             >{{expectedCofi | _balance:'--' | _truncate}} CoFi
           </ion-col>
         </ion-row>
+        <ion-row class="ion-align-items-center ion-align-self-center conversionPrice" *ngIf="swapError.isError">
+          <ion-col class="error" size="12">{{'transaction-error' | translate}}[{{swapError.msg}}]</ion-col>
+        </ion-row>
       </ion-grid>
       <ng-container *ngIf="shareStateQuery.getValue().connectedWallet">
         <div class="button-div">
