@@ -47,15 +47,16 @@ export class CofiPage implements OnInit {
   ngOnInit() {
     if (this.cofixService.getCurrentAccount() === undefined) {
       setTimeout(() => {
-        this.getCoFiTokenAndRewards();
-        this.getIsApproved();
+        this.refreshPage();
       }, 3000);
     } else {
-      this.getCoFiTokenAndRewards();
-      this.getIsApproved();
+      this.refreshPage();
     }
   }
-
+  refreshPage() {
+    this.getCoFiTokenAndRewards();
+    this.getIsApproved();
+  }
   gotoLiquid() {
     this.shareStateService.updateActiveTab('liquid');
   }
@@ -117,6 +118,7 @@ export class CofiPage implements OnInit {
             this.getCoFiTokenAndRewards();
           });
           provider.once('error', (error) => {
+            console.log('provider.once==', error);
             this.isLoading = false;
           });
         })
@@ -150,7 +152,7 @@ export class CofiPage implements OnInit {
             this.getIsApproved();
           });
           provider.once('error', (error) => {
-            console.log(error);
+            console.log('provider.once==', error);
             this.isLoadingProfit.sq = false;
           });
         })
@@ -178,7 +180,7 @@ export class CofiPage implements OnInit {
           this.balance = undefined;
         });
         provider.once('error', (error) => {
-          console.log(error);
+          console.log('provider.once==', error);
           this.isLoadingProfit.cr = false;
         });
       })
@@ -204,7 +206,7 @@ export class CofiPage implements OnInit {
           this.balance = undefined;
         });
         provider.once('error', (error) => {
-          console.log(error);
+          console.log('provider.once==', error);
           this.isLoadingProfit.qc = false;
         });
       })

@@ -1,4 +1,4 @@
-<app-header [activeId]="'liquid'"></app-header>
+<app-header [activeId]="'liquid'" (onRefresh)="refreshPage()"></app-header>
 <ion-content [fullscreen]="true">
   <div class="card-title">{{'liquid_desc' | translate}}</div>
 
@@ -99,12 +99,14 @@
   </ng-container>
 
   <app-add-liquid
+    #addLiquidView
     *ngIf="showAddModel"
     [pairAttended]="pairAttended"
     [coin]="selectCoin"
     (onClose)="closeAddLiquid($event)"
   ></app-add-liquid>
   <app-redeem-liquid
+    #redeemLiquidView
     *ngIf="showRedemtionModel"
     (onClose)="closeRedeemLiquid($event)"
     [coin]="selectCoin"
@@ -114,4 +116,4 @@
     [bannerConent]="liquidContent"
   ></app-banner>
 </ion-content>
-<app-footer></app-footer>
+<app-footer (onRefresh)="refreshPage()"></app-footer>

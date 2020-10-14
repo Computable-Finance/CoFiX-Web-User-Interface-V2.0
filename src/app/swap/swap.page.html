@@ -1,4 +1,4 @@
-<app-header [activeId]="'swap'"></app-header>
+<app-header [activeId]="'swap'" (onRefresh)="refreshPage()"></app-header>
 <ion-content>
   <div class="card-title">{{'swap_desc' | translate}}</div>
   <ion-card class="swap-card">
@@ -78,8 +78,8 @@
       </ion-grid>
       <ng-container *ngIf="shareStateQuery.getValue().connectedWallet">
         <div class="button-div">
-          <ion-button
-            *ngIf="fromCoin.id !== 'ETH' && !fromCoin.isApproved"
+          <ion-button 
+            *ngIf="isShowApprove()"
             expand="block"
             class="operation-btn approve-btn"
             (click)="approve()"
@@ -111,4 +111,4 @@
     [bannerConent]="swapContent"
   ></app-banner>
 </ion-content>
-<app-footer></app-footer>
+<app-footer (onRefresh)="refreshPage()"></app-footer>

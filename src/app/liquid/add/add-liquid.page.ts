@@ -173,8 +173,7 @@ export class AddLiquidPage implements OnInit {
           });
         });
         provider.once('error', (error) => {
-          console.log(error);
-
+          console.log('provider.once==', error);
           this.isLoading.cr = false;
         });
       })
@@ -207,8 +206,7 @@ export class AddLiquidPage implements OnInit {
             this.getIsApproved();
           });
           provider.once('error', (error) => {
-            console.log(error);
-
+            console.log('provider.once==', error);
             this.isLoading.sq = false;
           });
         })

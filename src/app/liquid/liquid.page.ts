@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { BannerContent } from '../common/components/banner/banner.page';
 import { ERC20BalancePipe } from '../common/pipes/erc20balance.pipe';
 import { ShareStateQuery } from '../common/state/share.query';
 import { Utils } from '../common/utils';
 import { CofiXService } from '../service/cofix.service';
 import { CoinContent } from '../swap/swap.page';
+import { AddLiquidPage } from './add/add-liquid.page';
+import { RedeemLiquidPage } from './redeem/redeem-liquid.page';
 
 @Component({
   selector: 'app-liquid',
@@ -12,6 +14,9 @@ import { CoinContent } from '../swap/swap.page';
   styleUrls: ['./liquid.page.scss'],
 })
 export class LiquidPage implements OnInit {
+  @ViewChild(AddLiquidPage, { static: false }) addLiquidView: AddLiquidPage;
+  @ViewChild(RedeemLiquidPage, { static: false })
+  redeemLiquidView: RedeemLiquidPage;
   public liquidContent: BannerContent = {
     title: 'liquid_title',
     descriptions: ['liquid_desc1', 'liquid_desc2'],
@@ -70,7 +75,15 @@ export class LiquidPage implements OnInit {
       this.initCoinContent();
     }
   }
-
+  refreshPage() {
+    this.initCoinContent();
+    if (this.showAddModel) {
+      this.addLiquidView.ngOnInit();
+    }
+    if (this.showRedemtionModel) {
+      this.redeemLiquidView.ngOnInit();
+    }
+  }
   async setExpectedXToken() {
     this.expectedXToken = (
       await this.cofixService.expectedXToken(

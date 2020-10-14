@@ -13,6 +13,6 @@
       {{'title_'+item.id | translate}}
     </div>
   </div>
-  <app-connect-wallet></app-connect-wallet>
+  <app-connect-wallet (onConnected)="onConnected()"></app-connect-wallet>
   <app-switch-lang></app-switch-lang>
 </ion-header>

@@ -20,7 +20,7 @@
       <ion-grid
         ><ion-row>
           <ion-col class="ion-text-right tools-col" size="12">
-            <app-connect-wallet class="connect-wallet"></app-connect-wallet>
+            <app-connect-wallet class="connect-wallet" (onConnected)="onConnected()"></app-connect-wallet>
 
             <div class="setting" (click)="showTools()">
               <ion-icon name="settings" class="setting-icon"></ion-icon>

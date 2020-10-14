@@ -1,4 +1,4 @@
-<app-header [activeId]="'income'"></app-header>
+<app-header [activeId]="'income'" (onRefresh)="refreshPage()"></app-header>
 <ion-content [fullscreen]="true">
   <div class="card-title">{{'income_desc' | translate}}</div>
   <ion-card class="swap-card">
@@ -55,4 +55,4 @@
     class="desc_line"
   ></app-banner>
 </ion-content>
-<app-footer></app-footer>
+<app-footer (onRefresh)="refreshPage()"></app-footer>

@@ -29,6 +29,7 @@ export class ConnectWalletPage implements OnInit {
     this.changeWalletAccount();
     this.utils.getPairAttended();
     this.isConnectLoading = false;
+    this.onConnected.emit();
   }
 
   changeWalletAccount() {

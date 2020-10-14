@@ -1,4 +1,4 @@
-<app-header [activeId]="'cofi'"></app-header>
+<app-header [activeId]="'cofi'" (onRefresh)="refreshPage()"></app-header>
 <ion-content [fullscreen]="true">
   <div class="card-title">{{'cofi_desc' | translate}}</div>
   <ion-card class="swap-card">
@@ -73,4 +73,4 @@
     class="desc_line"
   ></app-banner>
 </ion-content>
-<app-footer></app-footer>
+<app-footer (onRefresh)="refreshPage()"></app-footer>

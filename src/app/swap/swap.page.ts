@@ -43,7 +43,7 @@ export class SwapPage implements OnInit {
     address: undefined,
     amount: '',
     placeholder: '0.0',
-    isApproved: false,
+    isApproved: true,
     balance: '',
   };
   toCoin: CoinContent = {
@@ -51,7 +51,7 @@ export class SwapPage implements OnInit {
     address: undefined,
     amount: '',
     placeholder: '0.0',
-    isApproved: false,
+    isApproved: true,
     balance: '',
   };
   canChangeCoin = false;
@@ -76,34 +76,31 @@ export class SwapPage implements OnInit {
   async ngOnInit() {
     if (this.cofixService.getCurrentAccount() === undefined) {
       setTimeout(() => {
-        this.initCoinContent();
-        this.getIsApproved();
-        this.initERC20Decimal();
-        this.getERC20BalanceOfPair();
+        this.refreshPage();
       }, 3000);
     } else {
-      this.initCoinContent();
-      this.getIsApproved();
-      this.initERC20Decimal();
-      this.getERC20BalanceOfPair();
+      this.refreshPage();
     }
   }
-
+  refreshPage() {
+    this.initCoinContent();
+    this.getIsApproved();
+    this.initERC20Decimal();
+    this.getERC20BalanceOfPair();
+  }
   async getIsApproved() {
     if (!this.shareStateQuery.getValue().connectedWallet) {
       return false;
     }
-    if (this.fromCoin.id === 'ETH') {
-      this.toCoin.isApproved = await this.cofixService.approved(
-        this.toCoin.address,
-        this.cofixService.getCurrentContractAddressList().CofixRouter
-      );
-    } else {
+    if (this.fromCoin.id !== 'ETH') {
       this.fromCoin.isApproved = await this.cofixService.approved(
         this.fromCoin.address,
         this.cofixService.getCurrentContractAddressList().CofixRouter
       );
     }
+  }
+  isShowApprove() {
+    return this.fromCoin.id !== 'ETH' && !this.fromCoin.isApproved;
   }
 
   async setFromCoinMax(event) {
@@ -140,7 +137,6 @@ export class SwapPage implements OnInit {
 
     if (this.toCoin.id !== 'ETH') {
       //计算结果
-      console.log(this.ERC20BalanceOfPair[this.toCoin.id]);
       if (this.toCoin.amount > this.ERC20BalanceOfPair[this.toCoin.id]) {
         this.toCoin.amount = this.ERC20BalanceOfPair[this.toCoin.id];
       }
@@ -194,29 +190,26 @@ export class SwapPage implements OnInit {
     this.showError = false;
   }
 
-  resetAmout() {
+  resetAmout(type) {
+    console.log('resetAmout');
+    console.log(type);
     this.fromCoin.amount = '';
     this.toCoin.amount = '';
+    this.fromCoin.isApproved = false;
+    this.toCoin.isApproved = false;
     this.expectedCofi = '';
     this.isShowFromMax = false;
     this.isShowToMax = false;
   }
 
   changeCoin() {
-    this.resetAmout();
+    this.resetAmout('changeCoin');
     const tempCoin = this.fromCoin;
     this.fromCoin = this.toCoin;
     this.toCoin = tempCoin;
-
-    this.initCoinContent();
-    this.getIsApproved();
-    this.initERC20Decimal();
-    this.getERC20BalanceOfPair();
-    this.toCoinInputView.resetSubscription();
-    this.fromCoinInputView.resetSubscription();
   }
 
-  changeFromCoin(event) {
+  async changeFromCoin(event) {
     if (event.coin === 'ETH' && this.fromCoin.id === event.coin) {
       return false;
     }
@@ -230,15 +223,14 @@ export class SwapPage implements OnInit {
     this.resetSwapError();
     this.initCoinContent();
     this.initERC20Decimal();
-    this.getIsApproved();
+    await this.getIsApproved();
     this.changeOracleCost();
-    this.getERC20BalanceOfPair();
-
+    await this.getERC20BalanceOfPair();
     this.toCoinInputView.resetSubscription();
     this.fromCoinInputView.resetSubscription();
   }
 
-  changeToCoin(event) {
+  async changeToCoin(event) {
     if (event.coin === this.toCoin.id) {
       return false;
     }
@@ -250,10 +242,10 @@ export class SwapPage implements OnInit {
 
     this.resetSwapError();
     this.initCoinContent();
-    this.initERC20Decimal();
-    this.getIsApproved();
+    //this.initERC20Decimal();
+    await this.getIsApproved();
     this.changeOracleCost();
-    this.getERC20BalanceOfPair();
+    await this.getERC20BalanceOfPair();
 
     this.toCoinInputView.resetSubscription();
     this.fromCoinInputView.resetSubscription();
@@ -294,7 +286,6 @@ export class SwapPage implements OnInit {
   async initCoinContent() {
     this.showError = false;
     this.isInsufficientError = false;
-    this.resetAmout();
     if (this.cofixService.getCurrentProvider) {
       this.fromCoin.address = this.cofixService.getCurrentContractAddressList()[
         this.fromCoin.id
@@ -311,8 +302,6 @@ export class SwapPage implements OnInit {
     }
     if (this.shareStateQuery.getValue().connectedWallet) {
       this.expectedCofi = '';
-      this.resetAmout();
-
       if (!this.shareStateQuery.getValue().tokenPairAddress[this.fromCoin.id]) {
         const shareState = this.shareStateQuery.getValue();
         this.utils.updateShareAddress(shareState);
@@ -388,16 +377,16 @@ export class SwapPage implements OnInit {
           const provider = this.cofixService.getCurrentProvider();
           provider.once(tx.hash, (transactionReceipt) => {
             this.isLoading.sq = false;
+            console.log('Transaction over');
             this.getIsApproved();
           });
           provider.once('error', (error) => {
-            console.log(error);
-
+            console.log('provider.once==', error);
             this.isLoading.sq = false;
           });
         })
         .catch((error) => {
-          console.log(error);
+          console.log('catch error==', error);
           this.isLoading.sq = false;
         });
     }
@@ -406,24 +395,11 @@ export class SwapPage implements OnInit {
   async swap() {
     this.isLoading.dh = true;
     if (this.fromCoin.id === 'ETH') {
-      let fromCoinAmount;
-      if (Number(this.fromCoin.amount) == Number(this.fromCoin.balance)) {
-        fromCoinAmount = this.cofixService.ethersOf(
-          BigNumber.from(
-            this.cofixService
-              .parseEthers(Number(this.fromCoin.amount))
-              .sub(this.cofixService.parseEthers(Number('0.02')))
-          )
-        );
-      } else {
-        fromCoinAmount = Number(this.fromCoin.amount);
-      }
-
       this.cofixService
         .swapExactETHForTokens(
           this.shareStateQuery.getValue().tokenPairAddress[this.toCoin.id],
           this.toCoin.address,
-          fromCoinAmount,
+          Number(this.fromCoin.amount),
           Number(this.toCoin.amount),
           Number(this.changePrice),
           this.oracleCost
@@ -436,15 +412,12 @@ export class SwapPage implements OnInit {
             this.initCoinContent();
           });
           provider.once('error', (error) => {
-            console.log('11');
-            console.log(error);
-
+            console.log('provider.once==', error);
             this.isLoading.dh = false;
           });
         })
         .catch((error) => {
-          console.log('21');
-          console.log(error.code);
+          console.log('catch error==', error);
           if (!error.code) {
             this.swapError = { isError: true, msg: error.message };
           }
@@ -471,14 +444,12 @@ export class SwapPage implements OnInit {
               this.initCoinContent();
             });
             provider.once('error', (error) => {
-              console.log('22');
-              console.log(error);
+              console.log('provider.once==', error);
               this.isLoading.dh = false;
             });
           })
           .catch((error) => {
-            console.log('12');
-            console.log(error);
+            console.log('catch error==', error);
             if (!error.code) {
               this.swapError = { isError: true, msg: error.message };
             }
@@ -509,13 +480,12 @@ export class SwapPage implements OnInit {
               this.initCoinContent();
             });
             provider.once('error', (error) => {
-              console.log('23');
-              console.log(error);
+              console.log('provider.once==', error);
               this.isLoading.dh = false;
             });
           })
           .catch((error) => {
-            console.log(error);
+            console.log('catch error==', error);
             if (!error.code) {
               this.swapError = { isError: true, msg: error.message };
             }

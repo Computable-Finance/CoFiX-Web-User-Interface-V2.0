@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { FOOTER_ITEMS } from '../../constants';
 import { ShareStateQuery } from '../../state/share.query';
@@ -10,6 +10,7 @@ import { SiderMenuPage } from '../sider-menu/sider-menu.page';
   styleUrls: ['./footer.page.scss'],
 })
 export class FooterPage implements OnInit {
+  @Output() onRefresh = new EventEmitter<any>();
   public footerItems;
   walletAddress: string;
   currentYear: number;
@@ -42,5 +43,9 @@ export class FooterPage implements OnInit {
 
   showTools() {
     this.isShowTools = !this.isShowTools;
+  }
+
+  onConnected() {
+    this.onRefresh.emit();
   }
 }

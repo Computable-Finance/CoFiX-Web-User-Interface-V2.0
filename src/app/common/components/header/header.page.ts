@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ShareStateService } from '../../state/share.service';
 import { ShareStateQuery } from '../../state/share.query';
@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderPage implements OnInit {
   @Input() activeId: string;
+  @Output() onRefresh = new EventEmitter<any>();
   public headerItems = [
     {
       id: 'swap',
@@ -63,5 +64,8 @@ export class HeaderPage implements OnInit {
   selectTab(tabId) {
     this.shareStateService.updateActiveTab(tabId);
     this.router.navigateByUrl(tabId);
+  }
+  onConnected() {
+    this.onRefresh.emit();
   }
 }

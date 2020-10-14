@@ -39,15 +39,16 @@ export class IncomePage implements OnInit {
   ngOnInit() {
     if (this.cofixService.getCurrentAccount() === undefined) {
       setTimeout(() => {
-        this.getCoFiTokenAndRewards();
-        this.getIsApproved();
+        this.refreshPage();
       }, 3000);
     } else {
-      this.getCoFiTokenAndRewards();
-      this.getIsApproved();
+      this.refreshPage();
     }
   }
-
+  refreshPage() {
+    this.getCoFiTokenAndRewards();
+    this.getIsApproved();
+  }
   async getCoFiTokenAndRewards() {
     this.shareState = this.shareStateQuery.getValue();
     if (this.shareStateQuery.getValue().connectedWallet) {
@@ -88,8 +89,7 @@ export class IncomePage implements OnInit {
           this.getEarnedETH();
         });
         provider.once('error', (error) => {
-          console.log(error);
-
+          console.log('provider.once==', error);
           this.isLoading = false;
         });
       })
@@ -124,7 +124,7 @@ export class IncomePage implements OnInit {
             this.getIsApproved();
           });
           provider.once('error', (error) => {
-            console.log(error);
+            console.log('provider.once==', error);
             this.isLoadingProfit.sq = false;
           });
         })
@@ -148,7 +148,7 @@ export class IncomePage implements OnInit {
           this.balance = undefined;
         });
         provider.once('error', (error) => {
-          console.log(error);
+          console.log('provider.once==', error);
           this.isLoadingProfit.cr = false;
         });
       })
@@ -171,8 +171,7 @@ export class IncomePage implements OnInit {
           this.balance = undefined;
         });
         provider.once('error', (error) => {
-          console.log(error);
-
+          console.log('provider.once==', error);
           this.isLoadingProfit.qc = false;
         });
       })

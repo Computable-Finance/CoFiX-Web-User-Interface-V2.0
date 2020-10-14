@@ -224,8 +224,7 @@ export class RedeemLiquidPage implements OnInit {
             this.initCoinContent();
           });
           provider.once('error', (error) => {
-            console.log(error);
-
+            console.log('provider.once==', error);
             this.isLoading.sh = false;
           });
         })
@@ -261,8 +260,7 @@ export class RedeemLiquidPage implements OnInit {
             this.initCoinContent();
           });
           provider.once('error', (error) => {
-            console.log(error);
-
+            console.log('provider.once==', error);
             this.isLoading.sh = false;
           });
         })
@@ -289,8 +287,7 @@ export class RedeemLiquidPage implements OnInit {
             this.getIsApproved();
           });
           provider.once('error', (error) => {
-            console.log(error);
-
+            console.log('provider.once==', error);
             this.isLoading.sq = false;
           });
         })
