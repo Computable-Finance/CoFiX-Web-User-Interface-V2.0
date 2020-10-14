@@ -74,6 +74,7 @@ const COFIXROUTER_ABI = [
 
 const CACHE_ONE_HOUR = 60 * 60 * 1000;
 const CACHE_ONE_MINUTE = 60 * 1000;
+const CACHE_TEN_SECONDS = 10 * 1000;
 const CACHE_FIVE_SECONDS = 5 * 1000;
 
 const deadline = () => Math.ceil(Date.now() / 1000) + 60 * 10;
@@ -216,7 +217,7 @@ export class CofiXService {
     return decimals;
   }
 
-  @PCacheable({ maxAge: CACHE_ONE_MINUTE })
+  @PCacheable({ maxAge: CACHE_TEN_SECONDS })
   async getERC20Allowance(address: string, spender: string) {
     if (!this.provider) {
       return;
@@ -603,7 +604,7 @@ export class CofiXService {
   // 资金池（移除）：this.getCoFixPairAddressByToken(token), CofixRouter
   // CoFi：pair，stakingPool
   // 收益：CoFiToken，CoFiStakingRewards
-  @PCacheable({ maxAge: CACHE_ONE_MINUTE })
+  @PCacheable({ maxAge: CACHE_TEN_SECONDS })
   async approved(token: string, spender: string) {
     if (token === undefined) {
       return true;
