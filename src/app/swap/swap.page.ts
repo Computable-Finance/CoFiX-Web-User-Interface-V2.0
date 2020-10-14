@@ -111,12 +111,15 @@ export class SwapPage implements OnInit {
     this.resetSwapError();
     this.fromCoin.id = event.coin;
     if (this.fromCoin.id === 'ETH') {
+      const currentGasFee = await this.cofixService.currentGasFee();
+      console.log(currentGasFee);
       this.fromCoin.amount = this.cofixService
         .ethersOf(
           BigNumber.from(
             this.cofixService
               .parseEthers(Number(this.fromCoin.balance))
               .sub(this.cofixService.parseEthers(Number(this.maxFee)))
+              .sub(this.cofixService.parseEthers(currentGasFee))
           )
         )
         .toString();
