@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BigNumber, Contract, ethers } from 'ethers';
 import { PCacheable } from 'ngx-cacheable';
@@ -90,7 +91,8 @@ export class CofiXService {
 
   constructor(
     private shareStateService: ShareStateService,
-    private eventbusService: EventBusService
+    private eventbusService: EventBusService,
+    private http: HttpClient
   ) {
     this.reset();
   }
@@ -1086,5 +1088,14 @@ export class CofiXService {
     );
 
     return amount;
+  }
+
+  @PCacheable({ maxAge: CACHE_FIVE_SECONDS })
+  async currentGasFee() {
+    const price = await this.http
+      .get('https://ethgasstation.info/json/ethgasAPI.json')
+      .toPromise<any>();
+
+    return (700000 * (price.fastest / 10)) / 1000000000;
   }
 }
