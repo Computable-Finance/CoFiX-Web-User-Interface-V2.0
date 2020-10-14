@@ -10,7 +10,7 @@
       (onChangeCoin)="changeCoin($event)"
       [coin]="toCoin.id"
     ></app-liquid-input>
-    <p>{{ 'redemption'| translate}}{{toCoin.id}}</p>
+    <p>{{ 'redemption'| translate}}</p>
     <app-coin-input
       #toCoinInputView
       (onMaxClick)="setToCoinMax($event)"
