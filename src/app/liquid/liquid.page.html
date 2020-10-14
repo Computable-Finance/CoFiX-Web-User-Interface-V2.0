@@ -40,7 +40,8 @@
         <!--*ngIf="showLiquidInfo && !showRedemtionModel"-->
         <div class="card-content motoken">
           <ion-grid class="mtoken_banner">
-            <ion-row class="ion-align-items-center ion-align-self-center">
+            <ion-row class="ion-align-items-center ion-align-self-center  earned-rate" 
+                (click)="showMore(coinItem)">
               <ion-col size="2" class="token_icon_col" *ngIf="isDisplay()">
                 <img class="ETH_icon" src="./assets/images/icon/ETH.png" />
 
@@ -52,8 +53,7 @@
               <ion-col class="ion-text-left">ETH-{{coinItem}}</ion-col>
               <ion-col
                 size="{{colSize}}"
-                class="ion-text-right earned-rate"
-                (click)="showMore(coinItem)"
+                class="ion-text-right"
               >
                 <span class="balance"
                   >{{earnedRate[coinItem]?.rewardRate | _balance:'--' |
