@@ -77,7 +77,7 @@
   "expected": "预估获得XToken（",
   "expected2": "）",
   "redemption": "取回未参与挖矿的资金",
-  "select": "选择期望获得的资产（预估数量）",
+  "select": "选择期望获得的资产（预估数量并已扣除0.2%的手续费，手续费进入CoFi分红池）",
   "activate": "激活",
   "balance": "余额",
   "activate_pair": "激活交易对",
