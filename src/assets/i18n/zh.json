@@ -1,6 +1,6 @@
 {
   "income_title": "CoFiX 收益",
-  "income_desc1": "存入 CoFi token 以获得 ETH 收益",
+  "income_desc1": "存入CoFi token以获得ETH分红",
   "income_more": "了解有关 CoFiX 收益的更多信息 >",
   "cofix_title": "CoFiX 挖矿",
   "cofix_desc1": "存入流动性提供者token（XToken）可以挖矿产出CoFi，CoFi token 在CoFiX 协议中代表了治理权和收益权。",
@@ -102,8 +102,8 @@
   "dy": "存入",
   "no_add_liquid": "还没有添加流动性",
   "liquid_title": "流动性提供者的收益和风险",
-  "liquid_desc1": "流动性提供者可以获取做市风险补偿和参与CoFi挖矿。流动性提供者需要管理持仓资产比例变化带来的风险，我们建议采取相应的对冲策略。请不要在不清楚风险之前贸然提供流动性",
-  "liquid_desc2": "提供流动性后，可以在CoFi页面将XToken存入对应的矿池挖CoFi",
+  "liquid_desc1": "流动性提供者可以获取做市风险补偿和参与CoFi挖矿。流动性提供者需要管理持仓资产比例变化带来的风险，我们建议采取相应的对冲策略。请不要在不清楚风险之前贸然提供流动性。",
+  "liquid_desc2": "提供流动性后，可以在CoFi页面将XToken存入对应的矿池挖CoFi。",
   "liquid_more": "了解有关CoFiX做市商机制的更多信息 >",
   "github": "Github",
   "oracle_cost": "+预言机调用费",
