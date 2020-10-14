@@ -32,7 +32,7 @@ export class SwapPage implements OnInit {
     more: {
       text: 'swap_more',
       url:
-        'https://github.com/Computable-Finance/Doc#72-details-about-the-trading-mining',
+        'https://github.com/Computable-Finance/Doc#5-trading-mechanism',
     },
   };
   changePrice: string;
