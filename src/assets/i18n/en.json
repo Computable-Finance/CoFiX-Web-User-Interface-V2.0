@@ -77,7 +77,7 @@
   "expected": "Estimated XToken(",
   "expected2": ")",
   "redemption": "Remove liquidity ",
-  "select": "Choose the desired asset (Estimated amount)",
+  "select": "Choose the desired asset (Estimated amount and 0.2% fee has been deducted, the fee goes to CoFi dividend pool)",
   "activate": "Activate",
   "balance": "balance",
   "activate_pair": "Activate trading pair",
