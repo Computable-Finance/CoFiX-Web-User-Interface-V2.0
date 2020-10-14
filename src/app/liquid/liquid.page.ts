@@ -17,7 +17,7 @@ export class LiquidPage implements OnInit {
     descriptions: ['liquid_desc1', 'liquid_desc2'],
     more: {
       text: 'liquid_more',
-      url: 'https://cofix.io/doc/CoFiX_White_Paper.pdf',
+      url: 'https://github.com/Computable-Finance/Doc#4-market-maker-mechanism',
     },
   };
   fromCoin: CoinContent = {
