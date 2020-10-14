@@ -50,6 +50,7 @@ export class AddLiquidPage implements OnInit {
   hadValue: string;
   NAVPerShare: string;
   oracleCost = 0.01;
+  maxFee = '0.05';
   isLoading = { cr: false, sq: false };
   showFromError = false;
   showToError = false;
@@ -90,7 +91,7 @@ export class AddLiquidPage implements OnInit {
           BigNumber.from(
             this.cofixService
               .parseEthers(Number(this.fromCoin.balance))
-              .sub(this.cofixService.parseEthers(Number('0.02')))
+              .sub(this.cofixService.parseEthers(Number(this.maxFee)))
           )
         )
         .toString();

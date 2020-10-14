@@ -31,13 +31,13 @@ export class SwapPage implements OnInit {
     descriptions: ['swap_desc1', 'swap_desc2', 'swap_desc3', 'swap_desc4'],
     more: {
       text: 'swap_more',
-      url:
-        'https://github.com/Computable-Finance/Doc#5-trading-mechanism',
+      url: 'https://github.com/Computable-Finance/Doc#5-trading-mechanism',
     },
   };
   changePrice: string;
   expectedCofi: string;
   oracleCost: number = 0.01; //预言机调用费
+  maxFee = '0.02';
   fromCoin: CoinContent = {
     id: 'ETH',
     address: undefined,
@@ -116,7 +116,7 @@ export class SwapPage implements OnInit {
           BigNumber.from(
             this.cofixService
               .parseEthers(Number(this.fromCoin.balance))
-              .sub(this.cofixService.parseEthers(Number('0.02')))
+              .sub(this.cofixService.parseEthers(Number(this.maxFee)))
           )
         )
         .toString();
@@ -500,7 +500,7 @@ export class SwapPage implements OnInit {
     if (this.fromCoin.id === 'ETH') {
       result =
         Number(this.fromCoin.amount) !== 0 &&
-        Number(this.fromCoin.balance) >= 0.02 &&
+        Number(this.fromCoin.balance) > Number(this.maxFee) &&
         Number(this.fromCoin.amount) < Number(this.fromCoin.balance);
     } else {
       result =
