@@ -32,6 +32,7 @@
         [isInsufficientError]="isInsufficientError"
         [maxLiquid]="ERC20BalanceOfPair[toCoin.id]"
         [isShowMax]="isShowToMax"
+        [disabled]="true"
       ></app-coin-input>
 
       <ion-grid class="ion-no-padding">
@@ -66,19 +67,29 @@
         <ion-row
           class="ion-align-items-center ion-align-self-center conversionPrice"
         >
-          <ion-col class="label" size="6">{{'ygck'|translate}}
-            <img class="alert-icon" src="./assets/images/question.png" (click)="showAlert('ygck','ygck_cont')"></ion-col>
+          <ion-col class="label" size="6"
+            >{{'ygck'|translate}}
+            <img
+              class="alert-icon"
+              src="./assets/images/question.png"
+              (click)="showAlert('ygck','ygck_cont')"
+          /></ion-col>
           <ion-col class="ion-text-right" size="6"
             >{{expectedCofi | _balance:'--' | _truncate}} CoFi
           </ion-col>
         </ion-row>
-        <ion-row class="ion-align-items-center ion-align-self-center conversionPrice" *ngIf="swapError.isError">
-          <ion-col class="error" size="12">{{'transaction-error' | translate}}[{{swapError.msg}}]</ion-col>
+        <ion-row
+          class="ion-align-items-center ion-align-self-center conversionPrice"
+          *ngIf="swapError.isError"
+        >
+          <ion-col class="error" size="12"
+            >{{'transaction-error' | translate}}[{{swapError.msg}}]</ion-col
+          >
         </ion-row>
       </ion-grid>
       <ng-container *ngIf="shareStateQuery.getValue().connectedWallet">
         <div class="button-div">
-          <ion-button 
+          <ion-button
             *ngIf="isShowApprove()"
             expand="block"
             class="operation-btn approve-btn"

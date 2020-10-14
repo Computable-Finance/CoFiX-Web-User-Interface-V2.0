@@ -36,6 +36,7 @@ export class CoinInputPage implements OnInit, OnDestroy {
   @Input() isInsufficientError: boolean = false;
   @Input() isShowBlance = false;
   @Input() isShowMax = true;
+  @Input() disabled = false;
 
   constructor(
     private modalController: ModalController,
@@ -48,7 +49,6 @@ export class CoinInputPage implements OnInit, OnDestroy {
         debounceTime(this.debounceTime),
         distinctUntilChanged(),
         switchMap((event) => {
-          console.log(event);
           this.onInputChange.emit({ amount: this.amount, coin: this.coin });
           return EMPTY;
         })
@@ -95,20 +95,10 @@ export class CoinInputPage implements OnInit, OnDestroy {
         debounceTime(this.debounceTime),
         distinctUntilChanged(),
         switchMap((event) => {
-          console.log('reset event');
-          console.log(event);
           this.onInputChange.emit({ amount: this.amount, coin: this.coin });
           return EMPTY;
         })
       )
       .subscribe();
-  }
-
-  isDisabled() {
-    if (!this.cofixService.getCurrentAccount()) {
-      return false;
-    } else {
-      return !this.isShowMax;
-    }
   }
 }
