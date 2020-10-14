@@ -9,6 +9,7 @@ import {
 import { ModalController, PopoverController } from '@ionic/angular';
 import { EMPTY, Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { CofiXService } from 'src/app/service/cofix.service';
 import { CoinSelectPage } from './select/coin-select.page';
 
 @Component({
@@ -36,7 +37,10 @@ export class CoinInputPage implements OnInit, OnDestroy {
   @Input() isShowBlance = false;
   @Input() isShowMax = true;
 
-  constructor(private modalController: ModalController) {}
+  constructor(
+    private modalController: ModalController,
+    private cofixService: CofiXService
+  ) {}
 
   ngOnInit() {
     this.subscription = this.modelChanged
@@ -98,5 +102,13 @@ export class CoinInputPage implements OnInit, OnDestroy {
         })
       )
       .subscribe();
+  }
+
+  isDisabled() {
+    if (!this.cofixService.getCurrentAccount()) {
+      return false;
+    } else {
+      return !this.isShowMax;
+    }
   }
 }
