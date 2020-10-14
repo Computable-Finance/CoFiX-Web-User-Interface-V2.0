@@ -168,9 +168,6 @@ export class SwapPage implements OnInit {
       Number(this.fromCoin.amount)
     );
     if (executionPriceAndExpectedCofi) {
-      const amount = await this.balancePipe.transform(
-        executionPriceAndExpectedCofi.excutionPrice
-      );
       this.toCoin.amount = await this.balancePipe.transform(
         executionPriceAndExpectedCofi.excutionPrice
       );

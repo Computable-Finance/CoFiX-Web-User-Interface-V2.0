@@ -6,9 +6,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { ethers } from 'ethers';
 import { CoinInputPage } from 'src/app/common/components/coin-input/coin-input.page';
-import { BalancePipe } from 'src/app/common/pipes/balance.pipe';
 import { ERC20BalancePipe } from 'src/app/common/pipes/erc20balance.pipe';
 import { ShareStateQuery } from 'src/app/common/state/share.query';
 import { ShareStateService } from 'src/app/common/state/share.service';

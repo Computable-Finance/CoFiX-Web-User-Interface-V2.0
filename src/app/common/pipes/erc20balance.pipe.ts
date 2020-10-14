@@ -10,19 +10,11 @@ export class ERC20BalancePipe implements PipeTransform {
     return nullvalue;
   }
   truncate(val, precision) {
-    const x = Number(val);
-
-    const x1 = x.toFixed(precision);
-    const x2 = x.toFixed(precision + 1);
-
-    if (x1 > x2) {
-      return (Number(x1) - 1e-8).toFixed(precision);
+    const dotIndex = val.indexOf('.');
+    if (dotIndex === -1) {
+      return val;
     } else {
-      if (Number(x1) === 0) {
-        return '0';
-      } else {
-        return x1;
-      }
+      return val.slice(0, dotIndex + precision + 1);
     }
   }
 }
