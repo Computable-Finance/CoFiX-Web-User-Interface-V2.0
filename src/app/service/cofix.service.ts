@@ -428,6 +428,7 @@ export class CofiXService {
   }
 
   // XT 净值
+  @PCacheable({ maxAge: CACHE_FIVE_SECONDS })
   async getNAVPerShare(token: string, pair: string) {
     const checkedPriceNow = await this.checkPriceNow(token);
     const coFiXPair = this.getCoFixPair(pair);
@@ -435,7 +436,7 @@ export class CofiXService {
       checkedPriceNow.ethAmount,
       checkedPriceNow.erc20Amount,
       '0',
-      '0',
+      '250000',
       '0',
     ];
     const navPerShare = await coFiXPair.getNAVPerShareForBurn(oraclePrice);
