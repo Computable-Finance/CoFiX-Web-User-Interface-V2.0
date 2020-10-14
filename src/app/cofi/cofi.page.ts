@@ -36,6 +36,8 @@ export class CofiPage implements OnInit {
   balance: string = '';
   profitCoin = 'XTokens';
   isApproved = false;
+  cofiError = { isError: false, msg: '' };
+  receiveError = { isError: false, msg: '' };
   constructor(
     private cofixService: CofiXService,
     private earnedRatePipe: ERC20BalancePipe,
@@ -103,6 +105,7 @@ export class CofiPage implements OnInit {
     this.getIsApproved();
     this.cofiProfitView.resetInputSubscription();
     this.cofiProfitView._balance = '';
+    this.resetCofiError();
   }
 
   //领取Cofi
@@ -123,11 +126,14 @@ export class CofiPage implements OnInit {
           });
         })
         .catch((error) => {
+          //this.receiveError = { isError: true, msg: error.message };
           this.isLoading = false;
         });
     }
   }
-
+  resetCofiError() {
+    this.cofiError = { isError: false, msg: '' };
+  }
   async getIsApproved() {
     if (this.shareStateQuery.getValue().connectedWallet) {
       this.isApproved = await this.cofixService.approved(
@@ -158,6 +164,7 @@ export class CofiPage implements OnInit {
         })
         .catch((error) => {
           console.log(error);
+          this.cofiError = { isError: true, msg: error.message };
           this.isLoadingProfit.sq = false;
         });
     }
@@ -186,6 +193,9 @@ export class CofiPage implements OnInit {
       })
       .catch((error) => {
         console.log(error);
+        if (!error.code) {
+          this.cofiError = { isError: true, msg: error.message };
+        }
         this.isLoadingProfit.cr = false;
       });
   }
@@ -212,6 +222,9 @@ export class CofiPage implements OnInit {
       })
       .catch((error) => {
         console.log(error);
+        if (!error.code) {
+          this.cofiError = { isError: true, msg: error.message };
+        }
         this.isLoadingProfit.qc = false;
       });
   }

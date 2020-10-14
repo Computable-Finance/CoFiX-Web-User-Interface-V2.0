@@ -30,6 +30,8 @@ export class IncomePage implements OnInit {
   isLoadingProfit = { sq: false, cr: false, qc: false };
   profitCoin = 'CoFi';
   isApproved = false;
+  incomeError = { isError: false, msg: '' };
+  receiveError = { isError: false, msg: '' };
   constructor(
     private cofixService: CofiXService,
     private erc20balancePipe: ERC20BalancePipe,
@@ -95,6 +97,7 @@ export class IncomePage implements OnInit {
       })
       .catch((error) => {
         console.log(error);
+        // this.receiveError = { isError: true, msg: error.message };
         this.isLoading = false;
       });
   }
@@ -130,6 +133,8 @@ export class IncomePage implements OnInit {
         })
         .catch((error) => {
           console.log(error);
+
+          this.incomeError = { isError: true, msg: error.message };
           this.isLoadingProfit.sq = false;
         });
     }
@@ -154,6 +159,9 @@ export class IncomePage implements OnInit {
       })
       .catch((error) => {
         console.log(error);
+        if (!error.code) {
+          this.incomeError = { isError: true, msg: error.message };
+        }
         this.isLoadingProfit.cr = false;
       });
   }
@@ -177,6 +185,9 @@ export class IncomePage implements OnInit {
       })
       .catch((error) => {
         console.log(error);
+        if (!error.code) {
+          this.incomeError = { isError: true, msg: error.message };
+        }
         this.isLoadingProfit.qc = false;
       });
   }

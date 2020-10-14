@@ -22,6 +22,7 @@ export class ProfitPage implements OnInit {
   @Output() onApprove = new EventEmitter<any>();
   @Output() onSave = new EventEmitter<any>();
   @Output() onRecieve = new EventEmitter<any>();
+  @Input() transcationError = { isError: false, msg: '' };
   @Input() profitCoin: any;
   @Input() coin: any = 'USDT';
   @Input() isMore: boolean = false;
@@ -64,11 +65,19 @@ export class ProfitPage implements OnInit {
   resetInputSubscription() {
     this.coinInputView.resetSubscription();
   }
+  resetTransactionError() {
+    this.transcationError = { isError: false, msg: '' };
+  }
+  swapTab(type) {
+    if (type === 'deposit') {
+      this.isSaveTab = true;
+    } else {
+      this.isSaveTab = false;
+    }
 
-  swapTab() {
-    this.isSaveTab = !this.isSaveTab;
     this.balance = '';
     this.showError = false;
+    this.resetTransactionError();
   }
 
   setCoinMax() {
@@ -77,6 +86,8 @@ export class ProfitPage implements OnInit {
     } else {
       this.balance = this.hadValue;
     }
+
+    this.resetTransactionError();
   }
 
   approve() {
@@ -94,6 +105,7 @@ export class ProfitPage implements OnInit {
   coinInput(event) {
     this.balance = event.amount;
     this.canShowError();
+    this.resetTransactionError();
   }
 
   canSave() {

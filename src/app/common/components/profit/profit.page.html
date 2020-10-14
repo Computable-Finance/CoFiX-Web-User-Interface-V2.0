@@ -3,7 +3,7 @@
     expand="block"
     class="operation-btn swap-btn"
     color="{{isSaveTab?'dark':'light'}}"
-    (click)="swapTab()"
+    (click)="swapTab('deposit')"
   >
     <div class="ion-button-label">{{'cr' | translate}}</div>
   </ion-button>
@@ -11,7 +11,7 @@
     expand="block"
     class="operation-btn swap-btn"
     color="{{isSaveTab?'light':'dark'}}"
-    (click)="swapTab()"
+    (click)="swapTab('withdraw')"
   >
     <div class="ion-button-label">{{'qc' | translate}}</div>
   </ion-button>
@@ -58,6 +58,10 @@
         <ion-col class="ion-text-right" size="4"
           >{{hadValue | _balance:'--' | _truncate}}
         </ion-col>
+      </ion-row>
+
+      <ion-row class="ion-align-items-center ion-align-self-center conversionPrice" *ngIf="transcationError.isError">
+        <ion-col class="error" size="12">{{'transaction-error' | translate}}[{{transcationError.msg}}]</ion-col>
       </ion-row>
     </ion-grid>
   </div>

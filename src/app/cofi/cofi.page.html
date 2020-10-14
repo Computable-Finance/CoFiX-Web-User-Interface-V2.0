@@ -24,6 +24,7 @@
         [profitCoin]="profitCoin"
         [coin]="coin"
         [isMore]="true"
+        [transcationError]="cofiError"
       ></app-profit>
     </div>
     <!--<p class="go_backrg" (click)="gotoLiquid()">{{'back_rg' | translate}}</p> -->
@@ -49,6 +50,9 @@
           <ion-col class="ion-text-right" size="7"
             >{{earnedRate?.rewardRate | _balance:'--' | _truncate}} CoFi/Day
           </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center ion-align-self-center conversionPrice" *ngIf="receiveError.isError">
+          <ion-col class="error" size="12">{{'transaction-error' | translate}}[{{receiveError.msg}}]</ion-col>
         </ion-row>
       </ion-grid>
     </div>

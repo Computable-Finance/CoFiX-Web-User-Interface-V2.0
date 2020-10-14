@@ -6,6 +6,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
+import { ethers } from 'ethers';
 import { CoinInputPage } from 'src/app/common/components/coin-input/coin-input.page';
 import { BalancePipe } from 'src/app/common/pipes/balance.pipe';
 import { ERC20BalancePipe } from 'src/app/common/pipes/erc20balance.pipe';
@@ -94,12 +95,14 @@ export class RedeemLiquidPage implements OnInit {
     if (this.isETHChecked) {
       this.isTokenChecked = false;
     }
+    this.getRemoveLiquidity();
   }
 
   changeTokenCheck() {
     if (this.isTokenChecked) {
       this.isETHChecked = false;
     }
+    this.getRemoveLiquidity();
   }
 
   changeCoin(event) {
@@ -144,14 +147,9 @@ export class RedeemLiquidPage implements OnInit {
           this.shareState.stakingPoolAddress[this.toCoin.id]
         )
       );
-      this.NAVPerShare = await this.cofixService.getNAVPerShare(
-        this.toCoin.address,
-        this.shareState.tokenPairAddress[this.toCoin.id]
-      );
       this.shareStateService.updateShareStore(this.shareState);
     }
   }
-
   async walletConnected() {
     this.initCoinContent();
     this.getIsApproved();
@@ -166,11 +164,19 @@ export class RedeemLiquidPage implements OnInit {
     const pair = this.shareStateQuery.getValue().tokenPairAddress[
       this.toCoin.id
     ];
+    if (this.isTokenChecked || this.isETHChecked) {
+      this.NAVPerShare = await this.cofixService.getNAVPerShare(
+        this.toCoin.address,
+        this.shareState.tokenPairAddress[this.toCoin.id]
+      );
+    }
+
     this.ETHAmountForRemoveLiquidity = await this.cofixService.getETHAmountForRemoveLiquidity(
       this.toCoin.address,
       pair,
       Number(this.toCoin.amount)
     );
+
     this.tokenAmountForRemoveLiquidity = await this.cofixService.getTokenAmountForRemoveLiquidity(
       this.toCoin.address,
       pair,

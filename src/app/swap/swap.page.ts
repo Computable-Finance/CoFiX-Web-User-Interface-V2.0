@@ -191,8 +191,6 @@ export class SwapPage implements OnInit {
   }
 
   resetAmout(type) {
-    console.log('resetAmout');
-    console.log(type);
     this.fromCoin.amount = '';
     this.toCoin.amount = '';
     this.fromCoin.isApproved = false;
@@ -387,6 +385,7 @@ export class SwapPage implements OnInit {
         })
         .catch((error) => {
           console.log('catch error==', error);
+          this.swapError = { isError: true, msg: error.message };
           this.isLoading.sq = false;
         });
     }
