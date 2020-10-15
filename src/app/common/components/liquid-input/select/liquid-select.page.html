@@ -14,7 +14,7 @@
     <ion-row
       *ngIf="coin !== 'ETH'"
       (click)="selectCoin(coin)"
-      class="ion-align-items-center ion-align-self-center conversionPrice {{i==0?'first-row':''}}"
+      class="ion-align-items-center ion-align-self-center conversionPrice {{i==1?'first-row':''}}"
     >
       <ion-col size="2" class="token-logo">
         <img src="./assets/images/icon/{{coin}}.png" class="coin_icon" />
