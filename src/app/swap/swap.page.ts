@@ -43,7 +43,7 @@ export class SwapPage implements OnInit {
     address: undefined,
     amount: '',
     placeholder: '0.0',
-    isApproved: true,
+    isApproved: false,
     balance: '',
   };
   toCoin: CoinContent = {
@@ -51,7 +51,7 @@ export class SwapPage implements OnInit {
     address: undefined,
     amount: '',
     placeholder: '0.0',
-    isApproved: true,
+    isApproved: false,
     balance: '',
   };
   canChangeCoin = false;

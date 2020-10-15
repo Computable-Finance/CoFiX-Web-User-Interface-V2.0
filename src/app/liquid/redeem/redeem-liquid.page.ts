@@ -28,7 +28,7 @@ export class RedeemLiquidPage implements OnInit {
     address: '',
     amount: '',
     placeholder: '0.0',
-    isApproved: true,
+    isApproved: false,
     balance: '',
   };
   toCoin: CoinContent = {
@@ -36,7 +36,7 @@ export class RedeemLiquidPage implements OnInit {
     address: '',
     amount: '',
     placeholder: '0.0',
-    isApproved: true,
+    isApproved: false,
     balance: '',
   };
   showInputSelect = true;
@@ -184,10 +184,10 @@ export class RedeemLiquidPage implements OnInit {
   }
 
   async getIsApproved() {
-    this.toCoin.isApproved = true; /*= await this.cofixService.approved(
+    this.toCoin.isApproved = await this.cofixService.approved(
       this.shareState.tokenPairAddress[this.toCoin.id],
       this.cofixService.getCurrentContractAddressList().CofixRouter
-    );*/
+    );
   }
 
   async redeem() {
