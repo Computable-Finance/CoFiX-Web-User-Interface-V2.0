@@ -2,11 +2,7 @@
 
 ## 合约地址常量
 
-CoFix 相关合约地址常量：src/app/common/constants.ts 。目前发现存在一些合约在主网没有地址的情况，尤其是有些跟前端有关的，比如：
-
-- CoFiStakingRewards
-- CoFiXVaultForLP
-- CoFiXVaultForTrader
+CoFix 相关合约地址常量：src/app/common/constants.ts 。
 
 ## 运行环境常量
 
