@@ -718,7 +718,7 @@ export class CofiXService {
     try {
       return ethers.utils.parseUnits(amount.toString(), unit);
     } catch (e) {
-      return (amount * Math.pow(10, unit)).toFixed(0);
+      return BigNumber.from((amount * Math.pow(10, unit)).toFixed(0));
     }
   }
 

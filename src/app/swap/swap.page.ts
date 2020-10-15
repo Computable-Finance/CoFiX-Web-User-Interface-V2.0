@@ -408,6 +408,7 @@ export class SwapPage implements OnInit {
           const provider = this.cofixService.getCurrentProvider();
           provider.once(tx.hash, (transactionReceipt) => {
             this.isLoading.dh = false;
+            this.resetAmout('swap');
             this.initCoinContent();
           });
           provider.once('error', (error) => {
@@ -439,7 +440,7 @@ export class SwapPage implements OnInit {
             const provider = this.cofixService.getCurrentProvider();
             provider.once(tx.hash, (transactionReceipt) => {
               this.isLoading.dh = false;
-
+              this.resetAmout('swap');
               this.initCoinContent();
             });
             provider.once('error', (error) => {
@@ -476,6 +477,7 @@ export class SwapPage implements OnInit {
             const provider = this.cofixService.getCurrentProvider();
             provider.once(tx.hash, (transactionReceipt) => {
               this.isLoading.dh = false;
+              this.resetAmout('swap');
               this.initCoinContent();
             });
             provider.once('error', (error) => {
