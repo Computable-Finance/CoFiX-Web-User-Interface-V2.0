@@ -10,6 +10,7 @@ import { PipeModule } from '../common/pipes/pipe.module';
 import { AddLiquidPage } from './add/add-liquid.page';
 import { RedeemLiquidPage } from './redeem/redeem-liquid.page';
 import { ExplainLiquidPage } from './explain/explain-liquid.page';
+import { WarningLiquidPage } from './warning/warning-liquid.page';
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import { ExplainLiquidPage } from './explain/explain-liquid.page';
     AddLiquidPage,
     RedeemLiquidPage,
     ExplainLiquidPage,
+    WarningLiquidPage,
   ],
   exports: [LiquidPage],
 })

@@ -129,5 +129,16 @@
   "insufficient-error": "Insufficient asset in liquidity pool",
   "token_balance_of_pair": "Balance of the pool: ",
   "ygck_cont":"Buying in the asset that accounts for more than 3/4 of the assets pool (in ETH value) can mine 1-3 times more CoFi.",
-  "transaction-error":"Something went wrong"
+  "transaction-error":"Something went wrong",
+  "warning_title":"Market Making",
+  "warning_desc":"Learn the risks and rewards. ",
+  "more_details":"More Details",
+  "understand_risk":"I Understand The Risk",
+  "warning_content_title":"WARNING:",
+  "warning_content_subtitle":"Market Making Has Risks",
+  "warning_desc1":"COFIX rewards Liquidity Providers with XTokens, which allow you to mine CoFi tokens and earn ETH dividends from market fees.","warning_desc2":"Market making has the risk of losing money in case of big directional ",
+  "warning_desc3":"changes in the underlying price ",
+  "warning_desc4":"of your assets, and ",
+  "warning_desc5":"changes in the liquidity pool ratio or balance. ",
+  "warning_desc6":"Please understand how it affects your assets before you add liquidity and hedge appropriately."
 }

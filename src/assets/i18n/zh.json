@@ -130,5 +130,17 @@
   "insufficient-error": "资金池不足",
   "token_balance_of_pair": "资金池当前余额：",
   "ygck_cont":"买入资金池内以ETH计价占比超过3/4的资产，可以挖到2-4倍的CoFi",
-  "transaction-error":"遇到问题"
+  "transaction-error":"遇到问题",
+  "warning_title":"黄色框中第一部分内容 Market Making",
+  "warning_desc":"黄色框中第二部分内容 Learn the risks and rewards.",
+  "more_details":"对话框中第一个按钮文字内容 More Details",
+  "understand_risk":"对话框中第二个按钮文字内容 I Understand The Risk",
+  "warning_content_title":"标题中黑体内容 WARNING:",
+  "warning_content_subtitle":"副标题内容Market Making Has Risks",
+  "warning_desc1":"第一段内容 COFIX rewards Liquidity Providers with XTokens, which allow you to mine CoFi tokens and earn ETH dividends from market fees.",
+  "warning_desc2":"第二段内容第一部分 Market making has the risk of losing money in case of big directional ",
+  "warning_desc3":"第二段内容中第一个黑体内容 changes in the underlying price ",
+  "warning_desc4":"第二段中of your assets, and ",
+  "warning_desc5":"第二个黑体内容 changes in the liquidity pool ratio or balance. ",
+  "warning_desc6":"剩余内容 Please understand how it affects your assets before you add liquidity and hedge appropriately."
 }

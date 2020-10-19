@@ -45,7 +45,13 @@ ion-button {
   height: 34px;
   line-height: 34px;
 }
-
+.popover-warning .modal-wrapper {
+  width: 510px;
+  height: 436px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 11px 19px 0 rgba(0, 0, 0, 0.08);
+}
 .popover-coinselect .popover-content {
   list-style: none;
   padding: 0;
@@ -86,6 +92,7 @@ ion-button {
   font-size: 20px;
   height: 50px;
   --border-radius: 25px;
+  --box-shadow: none;
 }
 .swap-card {
   width: 510px;
@@ -157,8 +164,8 @@ ion-button {
   display: block;
 }
 .swap-btn {
-  --background: rgba(125, 125, 125, 0.39);
-  color: rgb(125, 125, 125);
+  --background: #bbdda2;
+  color: white;
 }
 
 .full-btn {
@@ -267,6 +274,10 @@ ion-button {
     position: absolute;
     top: 10px;
     right: 5px;
+  }
+  .popover-warning .modal-wrapper {
+    width: 90%;
+    height: 486px;
   }
 }
 

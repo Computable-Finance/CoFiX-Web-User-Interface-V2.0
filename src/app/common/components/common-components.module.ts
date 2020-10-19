@@ -16,6 +16,7 @@ import { LiquidInputPage } from './liquid-input/liquid-input.page';
 import { ProfitPage } from './profit/profit.page';
 import { SwitchLangPage } from './switch-lang/switch-lang.page';
 import { SiderMenuPage } from './sider-menu/sider-menu.page';
+import { WarningDetailPage } from 'src/app/liquid/warning/warning-detail/warning-detail.page';
 
 @NgModule({
   imports: [
@@ -37,6 +38,7 @@ import { SiderMenuPage } from './sider-menu/sider-menu.page';
     ProfitPage,
     SwitchLangPage,
     SiderMenuPage,
+    WarningDetailPage,
   ],
   exports: [
     FooterPage,
@@ -47,6 +49,7 @@ import { SiderMenuPage } from './sider-menu/sider-menu.page';
     LiquidInputPage,
     ProfitPage,
     SwitchLangPage,
+    WarningDetailPage,
   ],
 })
 export class CommonComponentsModule {}
