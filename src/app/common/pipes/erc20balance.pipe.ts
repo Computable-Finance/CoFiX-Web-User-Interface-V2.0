@@ -9,9 +9,13 @@ export class ERC20BalancePipe extends BalancePipe implements PipeTransform {
   }
 
   transform(value: BigNumberish, nullvalue: string = ''): string {
-    if (value !== undefined && value !== null) {
-      const val = ethers.utils.formatEther(value);
-      return super.transform(val, nullvalue);
+    try {
+      if (value !== undefined) {
+        const val = ethers.utils.formatEther(value);
+        return super.transform(val, nullvalue);
+      }
+    } catch (e) {
+      return nullvalue;
     }
     return nullvalue;
   }
