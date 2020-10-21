@@ -97,7 +97,7 @@ export class CofiXService {
     private eventbusService: EventBusService,
     private http: HttpClient
   ) {
-    BNJS.config({ EXPONENTIAL_AT: 100 });
+    BNJS.config({ EXPONENTIAL_AT: 100, ROUNDING_MODE: BNJS.ROUND_DOWN });
     this.reset();
   }
 
@@ -280,10 +280,10 @@ export class CofiXService {
       return;
     }
 
-    let excutionPrice1 = 1;
-    let expectedCofi1 = 0;
-    let excutionPrice2 = 1;
-    let expectedCofi2 = 0;
+    let excutionPrice1 = new BNJS(1);
+    let expectedCofi1 = new BNJS(0);
+    let excutionPrice2 = new BNJS(1);
+    let expectedCofi2 = new BNJS(0);
 
     let valx;
 
@@ -292,24 +292,29 @@ export class CofiXService {
       const price = await this.checkPriceNow(fromToken);
 
       if (toToken === undefined) {
-        valx = amount / (price.changePrice * (1 - kinfo.k));
+        valx = new BNJS(amount).div(
+          price.changePrice.times(new BNJS(1).minus(kinfo.k))
+        );
       } else {
-        valx = amount / (price.changePrice * (1 + kinfo.k));
+        valx = new BNJS(amount).div(
+          price.changePrice.times(new BNJS(1).plus(kinfo.k))
+        );
       }
-      const fee = this.parseEthers(valx * kinfo.theta);
+      const fee = this.parseEthers(valx.times(kinfo.theta).toString());
       expectedCofi2 = await this.expectedCoFi(fromToken, price, kinfo, fee);
 
       let c;
-      if (valx < 500) {
+      if (valx.lt(500)) {
         c = 0;
-      } else if (valx >= 500 && valx <= 999000) {
-        c = 2.57e-5 + 8.542e-7 * valx;
+      } else if (valx.gte(500) && valx.lte(999000)) {
+        c = new BNJS(2.57e-5).plus(new BNJS(8.542e-7).times(valx));
       } else {
-        c = 2.57e-5 + 8.542e-7 * 999000;
+        c = new BNJS(2.57e-5).plus(new BNJS(8.542e-7).times(999000));
       }
 
-      excutionPrice2 =
-        (1 - kinfo.theta) / (price.changePrice * (1 + (kinfo.k + c)));
+      excutionPrice2 = new BNJS(1)
+        .minus(kinfo.theta)
+        .div(price.changePrice.times(new BNJS(1).plus(kinfo.k.plus(c))));
     }
 
     if (toToken !== undefined) {
@@ -317,45 +322,50 @@ export class CofiXService {
       const price = await this.checkPriceNow(toToken);
 
       if (fromToken === undefined) {
-        valx = amount;
+        valx = new BNJS(amount);
       }
 
       const fee = this.parseEthers(valx * kinfo.theta);
       let c;
-      if (valx < 500) {
+      if (valx.lt(500)) {
         c = 0;
-      } else if (valx >= 500 && valx <= 999000) {
-        c = -1.171e-4 + 8.386e-7 * amount;
+      } else if (valx.gte(500) && valx.lte(999000)) {
+        c = new BNJS(-1.171e-4).plus(new BNJS(8.386e-7).times(amount));
       } else {
-        c = -1.171e-4 + 8.386e-7 * 999000;
+        c = new BNJS(-1.171e-4).plus(new BNJS(8.386e-7).times(999000));
       }
-      excutionPrice1 =
-        price.changePrice * (1 - (kinfo.k + c)) * (1 - kinfo.theta);
+      excutionPrice1 = price.changePrice
+        .times(new BNJS(1).minus(kinfo.k.plus(c)))
+        .times(new BNJS(1).minus(kinfo.theta));
       expectedCofi1 = await this.expectedCoFi(toToken, price, kinfo, fee);
     }
 
-    const excutionPriceForOne = excutionPrice1 * excutionPrice2;
-    const excutionPrice = amount * excutionPriceForOne;
-    const expectedCofi = expectedCofi1 + expectedCofi2;
+    const excutionPriceForOne = excutionPrice1.times(excutionPrice2);
+    const excutionPrice = excutionPriceForOne.times(amount).toString();
+    const expectedCofi = expectedCofi1.plus(expectedCofi2).toString();
 
-    return { excutionPriceForOne, excutionPrice, expectedCofi };
+    return {
+      excutionPriceForOne: excutionPriceForOne.toString(),
+      excutionPrice,
+      expectedCofi,
+    };
   }
 
   // 预计出矿量
-  async expectedCoFi(
+  private async expectedCoFi(
     token: string,
     checkedPriceNow: any,
     kinfo: any,
-    fee: any
+    fee: BigNumber
   ) {
     const pairAddress = await this.getCoFixPairAddressByToken(token);
     const erc20 = this.getERC20Contract(token);
     const balanceOfPair = await erc20.balanceOf(pairAddress);
     const decimals = await this.getERC20Decimals(token);
-    const tokens = ethers.utils.parseEther(
-      (
-        this.unitsOf(balanceOfPair, decimals) / checkedPriceNow.changePrice
-      ).toFixed(8)
+    const tokens = this.parseEthers(
+      new BNJS(unitsOf(balanceOfPair, decimals))
+        .div(checkedPriceNow.changePrice)
+        .toFixed(8)
     );
 
     const weth9 = this.getERC20Contract(this.contractAddressList.WETH9);
@@ -378,7 +388,9 @@ export class CofiXService {
       navPerShareForMint
     );
 
-    const value = this.ethersOf(actualMiningAmountAndDensity.amount) * 0.8;
+    const value = new BNJS(ethersOf(actualMiningAmountAndDensity.amount)).times(
+      0.8
+    );
     return value;
   }
 
