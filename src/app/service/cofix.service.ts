@@ -439,10 +439,13 @@ export class CofiXService {
 
     const earned = this.currentAccount
       ? await coFiXStakingRewards.earned(this.currentAccount)
-      : 0;
-    const rewardRate =
-      this.ethersOf(await coFiXStakingRewards.rewardRate()) *
-      BLOCKNUMS_IN_A_DAY;
+      : '0';
+    const rewardRate = new BNJS(
+      ethersOf(await coFiXStakingRewards.rewardRate())
+    )
+      .times(BLOCKNUMS_IN_A_DAY)
+      .toString();
+
     return { earned, rewardRate };
   }
 
