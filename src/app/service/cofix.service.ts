@@ -10,6 +10,7 @@ import {
   getContractAddressListByNetwork,
 } from '../common/constants';
 import { ShareStateService } from '../common/state/share.service';
+import { ethersOf, unitsOf } from '../common/uitils/bignumber-utils';
 import { EventBusService } from './eventbus.service';
 
 declare let window: any;
@@ -80,6 +81,8 @@ const CACHE_FIVE_SECONDS = 5 * 1000;
 
 const deadline = () => Math.ceil(Date.now() / 1000) + 60 * 10;
 
+const BNJS = require('bignumber.js');
+
 @Injectable({
   providedIn: 'root',
 })
@@ -94,6 +97,7 @@ export class CofiXService {
     private eventbusService: EventBusService,
     private http: HttpClient
   ) {
+    BNJS.config({ EXPONENTIAL_AT: 100 });
     this.reset();
   }
 
@@ -240,14 +244,16 @@ export class CofiXService {
       return;
     }
 
-    let result1 = 1;
-    let result2 = 1;
+    let result1 = new BNJS(1);
+    let result2 = new BNJS(1);
     if (toToken !== undefined) {
       // ETH > ERC20
       // p * (1-k) * (1-theta)
       const kinfo = await this.getKInfo(toToken);
       const price = await this.checkPriceNow(toToken);
-      result1 = price.changePrice * (1 - 0.0025) * (1 - kinfo.theta);
+      result1 = price.changePrice
+        .times(new BNJS(1).minus(0.0025))
+        .times(new BNJS(1).minus(kinfo.theta));
     }
 
     if (fromToken !== undefined) {
@@ -255,11 +261,13 @@ export class CofiXService {
       // (1-theta) / (p * (1+k))
       const kinfo = await this.getKInfo(fromToken);
       const price = await this.checkPriceNow(fromToken);
-      result2 = (1 - kinfo.theta) / (price.changePrice * (1 + 0.0025));
+      result2 = new BNJS(1)
+        .minus(kinfo.theta)
+        .div(price.changePrice.times(new BNJS(1).plus(0.0025)));
     }
 
-    const result = result1 * result2;
-    return result;
+    const result = result1.times(result2);
+    return result.toString();
   }
 
   // 获得兑换的执行价格，考虑冲击成本，amount 为 fromToken 的个数
@@ -505,15 +513,11 @@ export class CofiXService {
   private async getKInfo(address: string) {
     const cofixController = this.getCoFiXControllerContract();
     const kinfo = await cofixController.getKInfo(address);
-    // 暂时用该常数替代
-    // 按合约应该为：kinfo[0];
-    const k = 0.0025;
-    const theta = kinfo[2] / 1e8;
 
     return {
       kOriginal: kinfo[0],
-      k: kinfo[0] / 1e8,
-      theta: kinfo[2] / 1e8,
+      k: new BNJS(kinfo[0]).div(1e8),
+      theta: new BNJS(kinfo[2]).div(1e8),
     };
   }
 
@@ -531,8 +535,9 @@ export class CofiXService {
     const price = await oracle.checkPriceNow(token);
     const ethAmount = price[0];
     const erc20Amount = price[1];
-    const changePrice =
-      this.unitsOf(erc20Amount, decimals) / this.ethersOf(ethAmount);
+    const changePrice = new BNJS(unitsOf(erc20Amount, decimals)).div(
+      new BNJS(ethersOf(ethAmount))
+    );
 
     return { ethAmount, erc20Amount, changePrice };
   }
