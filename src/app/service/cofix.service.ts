@@ -412,17 +412,21 @@ export class CofiXService {
     const factory = this.getCoFixFacory();
     const pairAddress = await factory.getPair(address);
     const pair = this.getCoFixPair(pairAddress);
-    const navPerShareForMint = this.ethersOf(
-      await pair.getNAVPerShareForMint(oraclePrice)
+    const navPerShareForMint = new BNJS(
+      ethersOf(await pair.getNAVPerShareForMint(oraclePrice))
     );
     const recentCheckedPrice = await this.checkPriceNow(address);
-    const expectedShare =
-      ethAmount / navPerShareForMint +
-      erc20Amount /
-        (recentCheckedPrice.changePrice / (1 + kinfo.k)) /
-        navPerShareForMint;
+    const expectedShareByEthAmount = new BNJS(ethAmount).div(
+      navPerShareForMint
+    );
+    const expectedShareByErc20Amount = new BNJS(erc20Amount)
+      .div(recentCheckedPrice.changePrice.div(new BNJS(1).plus(kinfo.k)))
+      .div(navPerShareForMint);
+    const expectedShare = expectedShareByEthAmount.plus(
+      expectedShareByErc20Amount
+    );
 
-    return expectedShare;
+    return expectedShare.toString();
   }
 
   @PCacheable({ maxAge: CACHE_ONE_MINUTE })

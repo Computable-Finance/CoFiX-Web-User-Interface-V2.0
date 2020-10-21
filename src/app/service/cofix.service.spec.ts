@@ -66,4 +66,22 @@ describe('CofiXService', () => {
     expect(pipe.transform(result.excutionPrice)).toBe('0.08737865');
     expect(pipe.transform(result.expectedCofi)).toBe('4.14508374');
   });
+
+  it('should get expectedXToken: eth only', async () => {
+    expect(pipe.transform(await service.expectedXToken(USDT, 1, 0))).toBe(
+      '0.65020385'
+    );
+  });
+
+  it('should get expectedXToken: erc20 only', async () => {
+    expect(pipe.transform(await service.expectedXToken(USDT, 0, 100))).toBe(
+      '0.16875404'
+    );
+  });
+
+  it('should get expectedXToken: eth + erc20', async () => {
+    expect(pipe.transform(await service.expectedXToken(USDT, 1, 100))).toBe(
+      '0.81895789'
+    );
+  });
 });
