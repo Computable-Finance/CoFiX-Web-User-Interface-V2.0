@@ -479,7 +479,10 @@ export class CofiXService {
   ) {
     const kinfo = await this.getKInfo(token);
     const navPerShare = await this.getNAVPerShare(token, pair);
-    const result = amount * this.ethersOf(navPerShare) * (1 - kinfo.theta);
+    const result = new BNJS(amount)
+      .times(ethersOf(navPerShare))
+      .times(new BNJS(1).minus(kinfo.theta))
+      .toString();
     return result;
   }
 
@@ -491,12 +494,12 @@ export class CofiXService {
     const kinfo = await this.getKInfo(token);
     const navPerShare = await this.getNAVPerShare(token, pair);
     const recentPrice = await this.checkPriceNow(token);
-    const result =
-      amount *
-      this.ethersOf(navPerShare) *
-      recentPrice.changePrice *
-      (1 - kinfo.k) *
-      (1 - kinfo.theta);
+    const result = new BNJS(amount)
+      .times(ethersOf(navPerShare))
+      .times(recentPrice.changePrice)
+      .times(new BNJS(1).minus(kinfo.k))
+      .times(new BNJS(1).minus(kinfo.theta))
+      .toString();
     return result;
   }
 

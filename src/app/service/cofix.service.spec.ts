@@ -93,4 +93,28 @@ describe('CofiXService', () => {
     expect(pipe.transform(result.earned)).toBe('0');
     expect(pipe.transform(result.rewardRate)).toBe('27771.3');
   });
+
+  it('should getETHAmountForRemoveLiquidity', async () => {
+    expect(
+      pipe.transform(
+        await service.getETHAmountForRemoveLiquidity(
+          USDT,
+          '0x5f22a04F81A87a7aBe9191C338fA5Ba092Af4562',
+          1
+        )
+      )
+    ).toBe('1.53538609');
+  });
+
+  it('should getTokenAmountForRemoveLiquidity', async () => {
+    expect(
+      pipe.transform(
+        await service.getTokenAmountForRemoveLiquidity(
+          USDT,
+          '0x5f22a04F81A87a7aBe9191C338fA5Ba092Af4562',
+          1
+        )
+      )
+    ).toBe('591.57558687');
+  });
 });
