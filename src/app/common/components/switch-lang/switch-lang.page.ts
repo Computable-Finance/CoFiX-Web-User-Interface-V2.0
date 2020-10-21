@@ -16,7 +16,14 @@ export class SwitchLangPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.lang = this.shareStateQuery.getValue().lang === 'en' ? 'ENG' : 'ZH';
+    var lang = navigator.language; //常规浏览器语言和IE浏览器
+    lang = lang.substr(0, 2); //截取lang前2位字符
+    if (lang !== 'zh' && lang !== 'en') {
+      this.lang = 'ENG';
+      this.translate.use('en');
+    } else {
+      this.lang = this.shareStateQuery.getValue().lang === 'en' ? 'ENG' : 'ZH';
+    }
   }
 
   changeLang() {
