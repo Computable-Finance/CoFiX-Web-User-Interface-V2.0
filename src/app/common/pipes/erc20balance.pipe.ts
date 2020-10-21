@@ -1,31 +1,18 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ethers } from 'ethers';
+import { BigNumberish, ethers } from 'ethers';
+import { BalancePipe } from './balance.pipe';
 
-var bignumberJs = require('bignumber.js');
 @Pipe({ name: 'erc20balance' })
-export class ERC20BalancePipe implements PipeTransform {
+export class ERC20BalancePipe extends BalancePipe implements PipeTransform {
   constructor() {
-    bignumberJs.config({ EXPONENTIAL_AT: 100 });
+    super();
   }
-  transform(value: any, nullvalue: string = ''): string {
-    if (value) {
+
+  transform(value: BigNumberish, nullvalue: string = ''): string {
+    if (value !== undefined && value !== null) {
       const val = ethers.utils.formatEther(value);
-      const bignumber = new bignumberJs(val);
-      const truncateValue = this.truncate(bignumber.toString(), 8);
-      if (Number(truncateValue) === 0) {
-        return '0';
-      } else {
-        return truncateValue;
-      }
+      return super.transform(val, nullvalue);
     }
     return nullvalue;
-  }
-  truncate(val, precision) {
-    const dotIndex = val.indexOf('.');
-    if (dotIndex === -1) {
-      return val;
-    } else {
-      return val.slice(0, dotIndex + precision + 1);
-    }
   }
 }
