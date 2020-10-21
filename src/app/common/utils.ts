@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { AlertController, Platform, ToastController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
+
 import { CofiXService } from '../service/cofix.service';
 import { BalancePipe } from './pipes/balance.pipe';
-import { ShareStateQuery } from './state/share.query';
 import { ShareStateService } from './state/share.service';
 
 @Injectable({
