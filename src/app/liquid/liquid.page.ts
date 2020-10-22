@@ -1,12 +1,15 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { BannerContent } from '../common/components/banner/banner.page';
 import { ERC20BalancePipe } from '../common/pipes/erc20balance.pipe';
 import { ShareStateQuery } from '../common/state/share.query';
+import { ShareStateService } from '../common/state/share.service';
 import { Utils } from '../common/utils';
 import { CofiXService } from '../service/cofix.service';
 import { CoinContent } from '../swap/swap.page';
 import { AddLiquidPage } from './add/add-liquid.page';
 import { RedeemLiquidPage } from './redeem/redeem-liquid.page';
+import { WarningDetailPage } from './warning/warning-detail/warning-detail.page';
 
 @Component({
   selector: 'app-liquid',
@@ -63,16 +66,38 @@ export class LiquidPage implements OnInit {
     private cofixService: CofiXService,
     private erc20balancePipe: ERC20BalancePipe,
     public shareStateQuery: ShareStateQuery,
-    private utils: Utils
+    private utils: Utils,
+    private modalController: ModalController,
+    private shareStateService: ShareStateService
   ) {}
 
   ngOnInit() {
     if (this.cofixService.getCurrentAccount() === undefined) {
       setTimeout(() => {
+        this.showWarning();
         this.initCoinContent();
       }, 3000);
     } else {
+      this.showWarning();
       this.initCoinContent();
+    }
+  }
+  async showWarning() {
+    const knownRisk = this.shareStateQuery.getValue().knownRisk;
+    if (!knownRisk) {
+      const modal = await this.modalController.create({
+        component: WarningDetailPage,
+        cssClass: 'popover-warning',
+        animated: false,
+        keyboardClose: false,
+      });
+      await modal.present();
+      modal.onDidDismiss().then((data: any) => {
+        console.log(data.data);
+        if (data.data.knownRisk) {
+          this.shareStateService.updateKnownRisk(data.data.knownRisk);
+        }
+      });
     }
   }
   refreshPage() {

@@ -11,6 +11,8 @@ export interface ShareState {
   erc20Decimals: any;
   pairAttended: any;
   lang: string;
+  knownRisk: boolean;
+  knownRiskForAdd: boolean;
 }
 
 export function createInitialState(activeTab): ShareState {
@@ -23,6 +25,8 @@ export function createInitialState(activeTab): ShareState {
     erc20Decimals: { USDT: 0, HBTC: 0 },
     pairAttended: { USDT: 0, HBTC: 0 },
     lang: environment.lang,
+    knownRisk: false,
+    knownRiskForAdd: false,
   };
 }
 

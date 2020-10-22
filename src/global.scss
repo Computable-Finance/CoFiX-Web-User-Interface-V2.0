@@ -45,7 +45,23 @@ ion-button {
   height: 34px;
   line-height: 34px;
 }
-
+.popover-warning {
+  --height: auto;
+  .modal-wrapper {
+    width: 510px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 11px 19px 0 rgba(0, 0, 0, 0.08);
+    .ion-page {
+      position: relative;
+      contain: content;
+      max-height: 90vh;
+      .modal-content {
+        overflow: auto;
+      }
+    }
+  }
+}
 .popover-coinselect .popover-content {
   list-style: none;
   padding: 0;
@@ -86,6 +102,7 @@ ion-button {
   font-size: 20px;
   height: 50px;
   --border-radius: 25px;
+  --box-shadow: none;
 }
 .swap-card {
   width: 510px;
@@ -157,8 +174,8 @@ ion-button {
   display: block;
 }
 .swap-btn {
-  --background: rgba(125, 125, 125, 0.39);
-  color: rgb(125, 125, 125);
+  --background: #bbdda2;
+  color: white;
 }
 
 .full-btn {
@@ -268,6 +285,10 @@ ion-button {
     top: 10px;
     right: 5px;
   }
+  .popover-warning .modal-wrapper {
+    width: 90%;
+    height: 486px;
+  }
 }
 
 .popover-sidermenu .popover-content {
@@ -307,8 +328,8 @@ ion-button {
 
 .card-title {
   width: 510px;
-  margin: 78px auto 16px auto;
-  height: 41px;
+  margin: 16px auto;
+  min-height: 41px;
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 24px;
   font-weight: normal;

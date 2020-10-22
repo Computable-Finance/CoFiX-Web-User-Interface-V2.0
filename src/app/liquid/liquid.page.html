@@ -111,9 +111,12 @@
     (onClose)="closeRedeemLiquid($event)"
     [coin]="selectCoin"
   ></app-redeem-liquid>
+
+  <app-warning-liquid></app-warning-liquid>
   <app-banner
     [img]="'pool1_bg.png'"
     [bannerConent]="liquidContent"
   ></app-banner>
+
 </ion-content>
 <app-footer (onRefresh)="refreshPage()"></app-footer>
