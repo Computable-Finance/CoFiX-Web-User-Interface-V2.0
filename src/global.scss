@@ -45,12 +45,22 @@ ion-button {
   height: 34px;
   line-height: 34px;
 }
-.popover-warning .modal-wrapper {
-  width: 510px;
-  height: 406px;
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 11px 19px 0 rgba(0, 0, 0, 0.08);
+.popover-warning {
+  --height: auto;
+  .modal-wrapper {
+    width: 510px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 11px 19px 0 rgba(0, 0, 0, 0.08);
+    .ion-page {
+      position: relative;
+      contain: content;
+      max-height: 90vh;
+      .modal-content {
+        overflow: auto;
+      }
+    }
+  }
 }
 .popover-coinselect .popover-content {
   list-style: none;

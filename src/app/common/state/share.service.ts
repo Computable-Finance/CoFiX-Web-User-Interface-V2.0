@@ -39,6 +39,9 @@ export class ShareStateService {
     this.shareStore.update({ knownRisk: knownRisk });
   }
 
+  updateKnownRiskForAdd(knownRiskForAdd: boolean) {
+    this.shareStore.update({ knownRiskForAdd: knownRiskForAdd });
+  }
   reset() {
     this.shareStore.update(
       createInitialState(this.shareStateQuery.getValue().activeTab)

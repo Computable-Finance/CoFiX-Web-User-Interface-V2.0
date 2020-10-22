@@ -12,6 +12,7 @@ export interface ShareState {
   pairAttended: any;
   lang: string;
   knownRisk: boolean;
+  knownRiskForAdd: boolean;
 }
 
 export function createInitialState(activeTab): ShareState {
@@ -25,6 +26,7 @@ export function createInitialState(activeTab): ShareState {
     pairAttended: { USDT: 0, HBTC: 0 },
     lang: environment.lang,
     knownRisk: false,
+    knownRiskForAdd: false,
   };
 }
 
