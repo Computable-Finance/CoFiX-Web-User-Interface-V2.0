@@ -289,6 +289,10 @@ ion-button {
     width: 90%;
     height: 486px;
   }
+  .close-icon {
+    top: 15px;
+    left: 5px;
+  }
 }
 
 .popover-sidermenu .popover-content {
@@ -353,6 +357,7 @@ ion-button {
 ion-toggle {
   --background-checked: var(--ion-color-primary);
   --background: rgba(34, 31, 31, 0.26);
+  z-index: 0;
 }
 .error {
   font-size: 13px !important;

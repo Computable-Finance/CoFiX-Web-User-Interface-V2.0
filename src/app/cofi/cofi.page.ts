@@ -119,6 +119,7 @@ export class CofiPage implements OnInit {
           provider.once(tx.hash, (transactionReceipt) => {
             this.isLoading = false;
             this.getCoFiTokenAndRewards();
+            this.balance = undefined;
           });
           provider.once('error', (error) => {
             console.log('provider.once==', error);
