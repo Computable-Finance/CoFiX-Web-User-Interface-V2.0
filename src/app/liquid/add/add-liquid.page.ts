@@ -83,6 +83,8 @@ export class AddLiquidPage implements OnInit {
         cssClass: 'popover-warning',
         animated: false,
         keyboardClose: false,
+        showBackdrop: true,
+        backdropDismiss: false,
       });
       await modal.present();
       modal.onDidDismiss().then((data: any) => {
