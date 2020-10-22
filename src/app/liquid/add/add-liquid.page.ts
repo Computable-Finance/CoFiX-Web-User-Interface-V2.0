@@ -112,13 +112,12 @@ export class AddLiquidPage implements OnInit {
 
     if (this.fromCoin.id === 'ETH') {
       const currentGasFee = await this.cofixService.currentGasFee();
-      console.log(currentGasFee);
       this.fromCoin.amount = this.cofixService
         .ethersOf(
           BigNumber.from(
             this.cofixService
-              .parseEthers(Number(this.fromCoin.balance))
-              .sub(this.cofixService.parseEthers(Number(this.maxFee)))
+              .parseEthers(this.fromCoin.balance)
+              .sub(this.cofixService.parseEthers(this.maxFee))
               .sub(this.cofixService.parseEthers(currentGasFee))
           )
         )
