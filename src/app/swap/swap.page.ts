@@ -165,11 +165,14 @@ export class SwapPage implements OnInit {
   }
 
   async getEPAndEC(type = 'input') {
+    console.log(this.fromCoin);
+    console.log(this.toCoin);
     const executionPriceAndExpectedCofi = await this.cofixService.executionPriceAndExpectedCofi(
       this.fromCoin.address,
       this.toCoin.address,
       Number(this.fromCoin.amount)
     );
+    console.log(executionPriceAndExpectedCofi);
     if (executionPriceAndExpectedCofi) {
       this.toCoin.amount = await this.balancePipe.transform(
         executionPriceAndExpectedCofi.excutionPrice
@@ -226,6 +229,7 @@ export class SwapPage implements OnInit {
     await this.getERC20BalanceOfPair();
     this.toCoinInputView.resetSubscription();
     this.fromCoinInputView.resetSubscription();
+    this.getEPAndEC();
   }
 
   async changeToCoin(event) {
@@ -247,6 +251,7 @@ export class SwapPage implements OnInit {
 
     this.toCoinInputView.resetSubscription();
     this.fromCoinInputView.resetSubscription();
+    this.getEPAndEC();
   }
 
   changeOracleCost() {
