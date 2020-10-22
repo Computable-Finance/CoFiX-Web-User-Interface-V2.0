@@ -19,6 +19,8 @@ export class WarningLiquidPage implements OnInit {
       cssClass: 'popover-warning',
       animated: false,
       keyboardClose: false,
+      showBackdrop: true,
+      backdropDismiss: false,
     });
     await modal.present();
   }
