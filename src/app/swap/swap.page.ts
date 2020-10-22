@@ -169,7 +169,7 @@ export class SwapPage implements OnInit {
     const executionPriceAndExpectedCofi = await this.cofixService.executionPriceAndExpectedCofi(
       this.fromCoin.address,
       this.toCoin.address,
-      Number(this.fromCoin.amount)
+      this.fromCoin.amount || '0'
     );
     console.log(executionPriceAndExpectedCofi);
     if (executionPriceAndExpectedCofi) {
@@ -177,8 +177,8 @@ export class SwapPage implements OnInit {
         executionPriceAndExpectedCofi.excutionPrice
       );
 
-      this.expectedCofi = executionPriceAndExpectedCofi.expectedCofi.toString();
-      this.changePrice = executionPriceAndExpectedCofi.excutionPriceForOne.toString();
+      this.expectedCofi = executionPriceAndExpectedCofi.expectedCofi;
+      this.changePrice = executionPriceAndExpectedCofi.excutionPriceForOne;
     }
   }
 
@@ -342,13 +342,13 @@ export class SwapPage implements OnInit {
     const executionPriceAndExpectedCofi = await this.cofixService.executionPriceAndExpectedCofi(
       this.toCoin.address,
       this.fromCoin.address,
-      Number(this.toCoin.amount)
+      this.toCoin.amount || '0'
     );
     if (executionPriceAndExpectedCofi) {
       this.fromCoin.amount = await this.balancePipe.transform(
         executionPriceAndExpectedCofi.excutionPrice
       );
-      this.expectedCofi = executionPriceAndExpectedCofi.expectedCofi.toString();
+      this.expectedCofi = executionPriceAndExpectedCofi.expectedCofi;
     }
   }
 
@@ -402,10 +402,10 @@ export class SwapPage implements OnInit {
         .swapExactETHForTokens(
           this.shareStateQuery.getValue().tokenPairAddress[this.toCoin.id],
           this.toCoin.address,
-          Number(this.fromCoin.amount),
-          Number(this.toCoin.amount),
-          Number(this.changePrice),
-          this.oracleCost
+          this.fromCoin.amount || '0',
+          this.toCoin.amount || '0',
+          this.changePrice || '0',
+          this.oracleCost.toString()
         )
         .then((tx: any) => {
           console.log('tx.hash', tx.hash);
@@ -434,10 +434,10 @@ export class SwapPage implements OnInit {
           .swapExactTokensForETH(
             this.shareStateQuery.getValue().tokenPairAddress[this.fromCoin.id],
             this.fromCoin.address,
-            Number(this.fromCoin.amount),
-            Number(this.toCoin.amount),
-            Number(this.changePrice),
-            this.oracleCost
+            this.fromCoin.amount || '0',
+            this.toCoin.amount || '0',
+            this.changePrice || '0',
+            this.oracleCost.toString()
           )
           .then((tx: any) => {
             console.log('tx.hash', tx.hash);
@@ -463,7 +463,7 @@ export class SwapPage implements OnInit {
         const amountOut = await this.cofixService.executionPriceAndExpectedCofi(
           this.fromCoin.address,
           this.toCoin.address,
-          Number(this.fromCoin.amount)
+          this.fromCoin.amount || '0'
         );
         await this.cofixService
           .swapExactTokensForTokens(
@@ -471,10 +471,10 @@ export class SwapPage implements OnInit {
             this.fromCoin.address,
             this.shareStateQuery.getValue().tokenPairAddress[this.toCoin.id],
             this.toCoin.address,
-            Number(this.fromCoin.amount),
+            this.fromCoin.amount || '0',
             amountOut.excutionPrice,
-            Number(this.changePrice),
-            this.oracleCost
+            this.changePrice || '0',
+            this.oracleCost.toString()
           )
           .then((tx: any) => {
             console.log('tx.hash', tx.hash);

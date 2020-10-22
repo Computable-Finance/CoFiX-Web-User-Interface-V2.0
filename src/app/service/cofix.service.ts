@@ -274,7 +274,7 @@ export class CofiXService {
   async executionPriceAndExpectedCofi(
     fromToken: string,
     toToken: string,
-    amount: number
+    amount: string
   ) {
     if (!this.provider) {
       return;
@@ -397,8 +397,8 @@ export class CofiXService {
   // 增加流动性预计得到的 XToken，交易池为：ETH/ERC20。
   async expectedXToken(
     address: string,
-    ethAmount: number,
-    erc20Amount: number
+    ethAmount: string,
+    erc20Amount: string
   ) {
     const kinfo = await this.getKInfo(address);
     const checkedPriceNow = await this.checkPriceNow(address);
@@ -475,7 +475,7 @@ export class CofiXService {
   async getETHAmountForRemoveLiquidity(
     token: string,
     pair: string,
-    amount: number
+    amount: string
   ) {
     const kinfo = await this.getKInfo(token);
     const navPerShare = await this.getNAVPerShare(token, pair);
@@ -489,7 +489,7 @@ export class CofiXService {
   async getTokenAmountForRemoveLiquidity(
     token: string,
     pair: string,
-    amount: number
+    amount: string
   ) {
     const kinfo = await this.getKInfo(token);
     const navPerShare = await this.getNAVPerShare(token, pair);
@@ -761,10 +761,10 @@ export class CofiXService {
   async swapExactETHForTokens(
     pair: string,
     token: string,
-    amountIn: number,
-    amountOutMin: number,
-    swapPrice: number,
-    fee: number
+    amountIn: string,
+    amountOutMin: string,
+    swapPrice: string,
+    fee: string
   ) {
     const ethBalanceOfAccount = new BNJS(ethersOf(await this.getETHBalance()));
     const bnValue = new BNJS(amountIn).plus(fee);
@@ -788,7 +788,7 @@ export class CofiXService {
       'swapExactETHForTokens',
       [
         token,
-        this.parseEthers(amountIn.toString()),
+        this.parseEthers(amountIn),
         this.parseUnits(
           new BNJS(amountIn).times(swapPrice).times(0.99).toString(),
           erc20Decimals
@@ -807,10 +807,10 @@ export class CofiXService {
   async swapExactTokensForETH(
     pair: string,
     token: string,
-    amountIn: number,
-    amountOutMin: number,
-    swapPrice: number,
-    fee: number
+    amountIn: string,
+    amountOutMin: string,
+    swapPrice: string,
+    fee: string
   ) {
     const erc20Decimals = await this.getERC20Decimals(token);
     const erc20BalanceOfAccount = new BNJS(
@@ -833,7 +833,7 @@ export class CofiXService {
       'swapExactTokensForETH',
       [
         token,
-        this.parseUnits(amountIn.toString(), erc20Decimals),
+        this.parseUnits(amountIn, erc20Decimals),
         this.parseEthers(
           new BNJS(amountIn).times(swapPrice).times(0.99).toString()
         ),
@@ -841,7 +841,7 @@ export class CofiXService {
         this.currentAccount,
         deadline(),
         {
-          value: this.parseEthers(fee.toString()),
+          value: this.parseEthers(fee),
         },
       ]
     );
@@ -854,28 +854,22 @@ export class CofiXService {
     tokenIn: string,
     pairOut: string,
     tokenOut: string,
-    amountIn: number,
-    amountOutMin: number,
-    swapPrice: number,
-    fee: number
+    amountIn: string,
+    amountOutMin: string,
+    swapPrice: string,
+    fee: string
   ) {
     if (
       !(await this.hasEnoughTokenBalance(
         this.currentAccount,
         tokenIn,
-        amountIn.toString()
+        amountIn
       ))
     ) {
       throw new Error('Insufficient token balance.');
     }
 
-    if (
-      !(await this.hasEnoughTokenBalance(
-        pairOut,
-        tokenOut,
-        amountOutMin.toString()
-      ))
-    ) {
+    if (!(await this.hasEnoughTokenBalance(pairOut, tokenOut, amountOutMin))) {
       throw new Error('Insufficient token for swapping.');
     }
 
@@ -904,10 +898,7 @@ export class CofiXService {
       [
         tokenIn,
         tokenOut,
-        this.parseUnits(
-          amountIn.toString(),
-          await this.getERC20Decimals(tokenIn)
-        ),
+        this.parseUnits(amountIn, await this.getERC20Decimals(tokenIn)),
         this.parseUnits(
           new BNJS(amountIn)
             .times(swapPrice)
@@ -920,7 +911,7 @@ export class CofiXService {
         this.currentAccount,
         deadline(),
         {
-          value: this.parseEthers(fee.toString()),
+          value: this.parseEthers(fee),
         },
       ]
     );
@@ -951,10 +942,10 @@ export class CofiXService {
 
   async addLiquidity(
     token: string,
-    amountETH: number,
-    amountToken: number,
-    liquidityMin: number,
-    fee: number,
+    amountETH: string,
+    amountToken: string,
+    liquidityMin: string,
+    fee: string,
     stake: boolean = false
   ) {
     const bnAmountETH = new BNJS(amountETH);
@@ -965,7 +956,7 @@ export class CofiXService {
 
     if (
       bnAmountETH.isPositive() &&
-      !(await this.hasEnoughETHBalance(amountETH.toString()))
+      !(await this.hasEnoughETHBalance(amountETH))
     ) {
       throw new Error('Insufficient ETH balance.');
     }
@@ -975,7 +966,7 @@ export class CofiXService {
       !(await this.hasEnoughTokenBalance(
         this.currentAccount,
         token,
-        amountToken.toString()
+        amountToken
       ))
     ) {
       throw new Error('Insufficient token balance.');
@@ -986,7 +977,7 @@ export class CofiXService {
       !(await this.hasEnoughAllowance(
         this.contractAddressList.CofixRouter,
         token,
-        amountToken.toString()
+        amountToken
       ))
     ) {
       throw new Error('Insufficient allowance for this token.');
@@ -1000,8 +991,8 @@ export class CofiXService {
         'addLiquidityAndStake',
         [
           token,
-          this.parseEthers(amountETH.toString()),
-          this.parseUnits(amountToken.toString(), decimals),
+          this.parseEthers(amountETH),
+          this.parseUnits(amountToken, decimals),
           this.parseEthers(new BNJS(liquidityMin).times(0.99).toString()),
           this.currentAccount,
           deadline(),
@@ -1016,8 +1007,8 @@ export class CofiXService {
         'addLiquidity',
         [
           token,
-          this.parseEthers(amountETH.toString()),
-          this.parseUnits(amountToken.toString(), decimals),
+          this.parseEthers(amountETH),
+          this.parseUnits(amountToken, decimals),
           this.parseEthers(new BNJS(liquidityMin).times(0.99).toString()),
           this.currentAccount,
           deadline(),
@@ -1032,15 +1023,15 @@ export class CofiXService {
   async removeLiquidityGetETH(
     pair: string,
     token: string,
-    liquidityMin: number,
-    amountETHMin: number,
-    fee: number
+    liquidityMin: string,
+    amountETHMin: string,
+    fee: string
   ) {
     if (
       !(await this.hasEnoughTokenBalance(
         this.currentAccount,
         pair,
-        liquidityMin.toString()
+        liquidityMin
       ))
     ) {
       throw new Error('Insufficient liquidity tokens.');
@@ -1050,7 +1041,7 @@ export class CofiXService {
       !(await this.hasEnoughTokenBalance(
         pair,
         this.contractAddressList.WETH9,
-        amountETHMin.toString()
+        amountETHMin
       ))
     ) {
       throw new Error('Insufficient WETH9 tokens.');
@@ -1062,12 +1053,12 @@ export class CofiXService {
       'removeLiquidityGetETH',
       [
         token,
-        this.parseEthers(liquidityMin.toString()),
+        this.parseEthers(liquidityMin),
         this.parseEthers(new BNJS(amountETHMin).times(0.99).toString()),
         this.currentAccount,
         deadline(),
         {
-          value: this.parseEthers(fee.toString()),
+          value: this.parseEthers(fee),
         },
       ]
     );
@@ -1076,27 +1067,21 @@ export class CofiXService {
   async removeLiquidityGetToken(
     pair: string,
     token: string,
-    liquidityMin: number,
-    amountTokenMin: number,
-    fee: number
+    liquidityMin: string,
+    amountTokenMin: string,
+    fee: string
   ) {
     if (
       !(await this.hasEnoughTokenBalance(
         this.currentAccount,
         pair,
-        liquidityMin.toString()
+        liquidityMin
       ))
     ) {
       throw new Error('Insufficient liquidity tokens.');
     }
 
-    if (
-      !(await this.hasEnoughTokenBalance(
-        pair,
-        token,
-        amountTokenMin.toString()
-      ))
-    ) {
+    if (!(await this.hasEnoughTokenBalance(pair, token, amountTokenMin))) {
       throw new Error('Insufficient token balance.');
     }
 
@@ -1108,7 +1093,7 @@ export class CofiXService {
       'removeLiquidityGetToken',
       [
         token,
-        this.parseEthers(liquidityMin.toString()),
+        this.parseEthers(liquidityMin),
         this.parseUnits(
           new BNJS(amountTokenMin).times(0.99).toString(),
           decimals
@@ -1116,7 +1101,7 @@ export class CofiXService {
         this.currentAccount,
         deadline(),
         {
-          value: this.parseEthers(fee.toString()),
+          value: this.parseEthers(fee),
         },
       ]
     );

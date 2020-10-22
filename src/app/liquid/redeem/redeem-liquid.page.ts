@@ -172,13 +172,13 @@ export class RedeemLiquidPage implements OnInit {
     this.ETHAmountForRemoveLiquidity = await this.cofixService.getETHAmountForRemoveLiquidity(
       this.toCoin.address,
       pair,
-      Number(this.toCoin.amount)
+      this.toCoin.amount || '0'
     );
 
     this.tokenAmountForRemoveLiquidity = await this.cofixService.getTokenAmountForRemoveLiquidity(
       this.toCoin.address,
       pair,
-      Number(this.toCoin.amount)
+      this.toCoin.amount || '0'
     );
     this.canShowError();
   }
@@ -207,9 +207,9 @@ export class RedeemLiquidPage implements OnInit {
         .removeLiquidityGetETH(
           pair,
           token,
-          Number(this.toCoin.amount),
-          ethAmount,
-          this.oracleCost
+          this.toCoin.amount || '0',
+          ethAmount.toString(),
+          this.oracleCost.toString()
         )
         .then((tx: any) => {
           console.log('tx.hash', tx.hash);
@@ -243,9 +243,9 @@ export class RedeemLiquidPage implements OnInit {
         .removeLiquidityGetToken(
           pair,
           token,
-          Number(this.toCoin.amount),
-          ethAmount,
-          this.oracleCost
+          this.toCoin.amount || '0',
+          ethAmount.toString(),
+          this.oracleCost.toString()
         )
         .then((tx: any) => {
           console.log('tx.hash', tx.hash);
