@@ -35,7 +35,7 @@ describe('CofiXService', () => {
     const result = await service.executionPriceAndExpectedCofi(
       undefined,
       USDT,
-      100
+      '100'
     );
 
     expect(pipe.transform(result.excutionPriceForOne)).toBe('384.90905565');
@@ -47,7 +47,7 @@ describe('CofiXService', () => {
     const result = await service.executionPriceAndExpectedCofi(
       USDT,
       undefined,
-      1000
+      '1000'
     );
 
     expect(pipe.transform(result.excutionPriceForOne)).toBe('0.00257989');
@@ -59,7 +59,7 @@ describe('CofiXService', () => {
     const result = await service.executionPriceAndExpectedCofi(
       USDT,
       HBTC,
-      1000
+      '1000'
     );
 
     expect(pipe.transform(result.excutionPriceForOne)).toBe('0.00008737');
@@ -68,19 +68,19 @@ describe('CofiXService', () => {
   });
 
   it('should get expectedXToken: eth only', async () => {
-    expect(pipe.transform(await service.expectedXToken(USDT, 1, 0))).toBe(
+    expect(pipe.transform(await service.expectedXToken(USDT, '1', '0'))).toBe(
       '0.65020385'
     );
   });
 
   it('should get expectedXToken: erc20 only', async () => {
-    expect(pipe.transform(await service.expectedXToken(USDT, 0, 100))).toBe(
+    expect(pipe.transform(await service.expectedXToken(USDT, '0', '100'))).toBe(
       '0.16875404'
     );
   });
 
   it('should get expectedXToken: eth + erc20', async () => {
-    expect(pipe.transform(await service.expectedXToken(USDT, 1, 100))).toBe(
+    expect(pipe.transform(await service.expectedXToken(USDT, '1', '100'))).toBe(
       '0.81895789'
     );
   });
@@ -100,7 +100,7 @@ describe('CofiXService', () => {
         await service.getETHAmountForRemoveLiquidity(
           USDT,
           '0x5f22a04F81A87a7aBe9191C338fA5Ba092Af4562',
-          1
+          '1'
         )
       )
     ).toBe('1.53538609');
@@ -112,7 +112,7 @@ describe('CofiXService', () => {
         await service.getTokenAmountForRemoveLiquidity(
           USDT,
           '0x5f22a04F81A87a7aBe9191C338fA5Ba092Af4562',
-          1
+          '1'
         )
       )
     ).toBe('591.57558687');

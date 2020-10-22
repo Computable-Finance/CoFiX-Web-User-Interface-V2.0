@@ -110,13 +110,11 @@ export class LiquidPage implements OnInit {
     }
   }
   async setExpectedXToken() {
-    this.expectedXToken = (
-      await this.cofixService.expectedXToken(
-        this.toCoin.address,
-        Number(this.fromCoin.amount),
-        Number(this.toCoin.amount)
-      )
-    ).toString();
+    this.expectedXToken = await this.cofixService.expectedXToken(
+      this.toCoin.address,
+      this.fromCoin.amount || '0',
+      this.toCoin.amount || '0'
+    );
   }
 
   addLiquid(coin) {

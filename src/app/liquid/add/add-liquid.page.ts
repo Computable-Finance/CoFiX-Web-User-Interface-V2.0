@@ -144,13 +144,11 @@ export class AddLiquidPage implements OnInit {
   }
 
   async setExpectedXToken() {
-    this.expectedXToken = (
-      await this.cofixService.expectedXToken(
-        this.toCoin.address,
-        Number(this.fromCoin.amount),
-        Number(this.toCoin.amount)
-      )
-    ).toString();
+    this.expectedXToken = await this.cofixService.expectedXToken(
+      this.toCoin.address,
+      this.fromCoin.amount || '0',
+      this.toCoin.amount || '0'
+    );
   }
 
   async setToCoinMax(event) {
@@ -177,14 +175,14 @@ export class AddLiquidPage implements OnInit {
     await this.cofixService
       .addLiquidity(
         this.toCoin.address,
-        Number(this.fromCoin.amount),
-        Number(this.toCoin.amount),
+        this.fromCoin.amount || '0',
+        this.toCoin.amount || '0',
         await this.cofixService.expectedXToken(
           this.toCoin.address,
-          Number(this.fromCoin.amount),
-          Number(this.toCoin.amount)
+          this.fromCoin.amount || '0',
+          this.toCoin.amount || '0'
         ),
-        this.oracleCost,
+        this.oracleCost.toString(),
         this.isStake
       )
       .then((tx: any) => {
