@@ -1,15 +1,15 @@
 <div class="tab-header">
   <ion-button
     expand="block"
-    class="operation-btn swap-btn"
+    class="operation-btn swap-btn {{!isSaveTab?'border-btn':''}}"
     color="{{isSaveTab?'dark':'light'}}"
     (click)="swapTab('deposit')"
   >
     <div class="ion-button-label">{{'cr' | translate}}</div>
   </ion-button>
   <ion-button
-    expand="block"
-    class="operation-btn swap-btn"
+    expand="block" 
+    class="operation-btn {{isSaveTab?'border-btn':''}} "
     color="{{isSaveTab?'light':'dark'}}"
     (click)="swapTab('withdraw')"
   >

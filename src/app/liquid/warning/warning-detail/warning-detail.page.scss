@@ -1,0 +1,52 @@
+.title {
+  width: 450px;
+  color: black;
+  font-size: 24px;
+  margin: 0px auto;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  display: inline-flex;
+  line-height: 41px;
+  height: 41px;
+}
+.card-content {
+  margin-top: 32px;
+}
+.title img {
+  width: 28px;
+  height: 26px;
+}
+.title b {
+  margin-left: 5px;
+}
+.card-content p {
+  color: black;
+  text-align: justify;
+  font-size: 17px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.47;
+  letter-spacing: normal;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+.learnmore-btn {
+  width: 161px;
+}
+.iknow-btn {
+  width: 277px;
+}
+@media only screen and (max-width: 470px) {
+  .iknow-btn,
+  .learnmore-btn {
+    font-size: 16px;
+  }
+  .title {
+    font-size: 17px;
+    justify-content: unset;
+  }
+  .learnmore-btn {
+    width: 100px;
+  }
+}

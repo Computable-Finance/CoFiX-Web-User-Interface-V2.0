@@ -6,12 +6,15 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { BigNumber } from 'ethers';
 import { CoinInputPage } from 'src/app/common/components/coin-input/coin-input.page';
 import { ShareStateQuery } from 'src/app/common/state/share.query';
+import { ShareStateService } from 'src/app/common/state/share.service';
 import { Utils } from 'src/app/common/utils';
 import { CofiXService } from 'src/app/service/cofix.service';
 import { CoinContent } from 'src/app/swap/swap.page';
+import { WarningDetailPage } from '../warning/warning-detail/warning-detail.page';
 
 @Component({
   selector: 'app-add-liquid',
@@ -61,15 +64,35 @@ export class AddLiquidPage implements OnInit {
   constructor(
     private cofixService: CofiXService,
     public shareStateQuery: ShareStateQuery,
-    private utils: Utils
+    private utils: Utils,
+    private modalController: ModalController,
+    private shareStateService: ShareStateService
   ) {}
 
   ngOnInit() {
+    this.showWarning();
     this.toCoin.id = this.coin;
     this.initCoinContent();
     this.getIsApproved();
   }
-
+  async showWarning() {
+    const knownRiskForAdd = this.shareStateQuery.getValue().knownRiskForAdd;
+    if (!knownRiskForAdd) {
+      const modal = await this.modalController.create({
+        component: WarningDetailPage,
+        cssClass: 'popover-warning',
+        animated: false,
+        keyboardClose: false,
+      });
+      await modal.present();
+      modal.onDidDismiss().then((data: any) => {
+        console.log(data.data);
+        if (data.data.knownRisk) {
+          this.shareStateService.updateKnownRiskForAdd(data.data.knownRisk);
+        }
+      });
+    }
+  }
   async getIsApproved() {
     if (this.shareStateQuery.getValue().connectedWallet) {
       this.toCoin.isApproved = await this.cofixService.approved(

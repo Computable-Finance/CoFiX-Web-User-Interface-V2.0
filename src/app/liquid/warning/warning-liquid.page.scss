@@ -1,0 +1,36 @@
+.warning {
+  width: 510px;
+  height: 60px;
+  border-radius: 16px;
+  background-color: #ffefa9;
+  padding: 16px 24px;
+  margin: 0 auto 25px auto;
+}
+.warning div {
+  width: 450px;
+  height: 29px;
+  font-family: SourceSansPro;
+  font-size: 18px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.61;
+  letter-spacing: normal;
+  color: black;
+  text-align: center;
+}
+.warning a {
+  color: black;
+  border-bottom: 1px solid black;
+  cursor: pointer;
+}
+@media only screen and (max-width: 470px) {
+  .warning {
+    width: 90% !important;
+    height: unset;
+  }
+  .warning div {
+    width: unset;
+    height: unset;
+  }
+}
