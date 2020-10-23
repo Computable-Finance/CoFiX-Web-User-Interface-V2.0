@@ -92,7 +92,7 @@
   "wallet_warn": "Insufficient wallet balance",
   "market_warn": "Insufficient asset in liquidity pool",
   "swap_title": "CoFiX Trading",
-  "swap_desc1": "CoFix is the most efficient DEX on Ethereum.",
+  "swap_desc1": "CoFiX is the most efficient DEX on Ethereum.",
   "swap_desc2": "Traders always get market prices with the smallest spread.",
   "swap_desc3": "Trading in CoFiX allows you to earn CoFi.",
   "swap_desc4": "CoFi represents the governance and dividend rights in the CoFiX protocol.",
