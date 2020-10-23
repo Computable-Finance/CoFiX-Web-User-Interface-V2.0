@@ -4,6 +4,8 @@
 *~
 *.sw[mnpcod]
 .tmp
+.terraform
+*.tfstate*
 *.tmp
 *.tmp.*
 *.sublime-project
