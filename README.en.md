@@ -59,4 +59,4 @@ Using Angular's git log specification, please use [git-cz](https://www.npmjs.com
 
 ## Deploy AWS
 
-See [terraform_deploy/README_en.md](terraform_deploy/README_en.md)
+See [terraform_deploy/README.en.md](terraform_deploy/README.en.md)

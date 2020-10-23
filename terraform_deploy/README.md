@@ -1,5 +1,7 @@
 # Terraform 部署配置脚本
 
+[English](README.en.md)
+
 使用 [terraform](https://www.terraform.io/) 部署到 S3。请先确保项目正常构建之后使用此脚本部署。
 
 ## 依赖

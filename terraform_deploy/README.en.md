@@ -1,5 +1,7 @@
 # Terraform deploy config
 
+[简体中文](README.md)
+
 Use [terraform](https://www.terraform.io/) to deploy to s3. Should be used after building the root project.
 
 ## Prerequisites
