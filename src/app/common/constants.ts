@@ -21,15 +21,16 @@ export function getContractAddressListByNetwork(network: number): any {
       HBTC: '0xA674f71ce49CE7F298aea2F23D918d114965eb40',
       // NEST:'0xD287Bc43eCD3D892204aA3792165fe8728636E29',
       WETH9: '0x59b8881812Ac484Ab78b8fc7c10b2543e079a6C3',
-      CoFiToken: '0xE68976a81572B185899205C7b8BCBD1515DF4f5b',
+      CoFiToken: '0x72Fd35b1dB364db812A8E726891685A25a9135D3',
+      // 对应 NestPriceOracle，接手时规范，未改
       OracleMock: '0x70B9b6F0e1E4073403cF7143b45a862fe73af3B9',
-      CofiXController: '0xff460A541DC7Af7FeA7b98E0Ba5eF64C80B1409B',
-      CofixFactory: '0xC85987c73300CFd1838da40F0A4b29bB64EAed8e',
+      CofiXController: '0xEB95E090b27A67f574005F41eea83794D5ac1650',
+      CofixFactory: '0x8E636BDB79752BFa2C41285535852bbBDd50b2ca',
       // CoFiXKTable:'0xe609B978635c7Bb8D22Ffc4Ec7f7a16615a3b1cA',
-      CofixRouter: '0x66aa2AC8F6557B956AE144efe85feF860d848851',
-      CoFiXVaultForLP: '0x7e6dCD3581d596fe5F628B77fd6784F10D09b43d',
-      CoFiStakingRewards: '0xDe80d5423569Ea4104d127e14E3fC1BE0486531d',
-      CoFiXVaultForTrader: '0x12Fc8391e7C868e7aa90C69E204C60f18aA0afab',
+      CofixRouter: '0xbeE8674291328D09831cAf96eFceaCDf53066B86',
+      CoFiXVaultForLP: '0x2494853258c33A99581Abddc7b85b11D1D1885DF',
+      CoFiStakingRewards: '0x2a603D9e8b3152B6e235c7eFA41dFc073764d96a',
+      CoFiXVaultForTrader: '0xe901e7f88a377D01028aE947cFA3192b3c5f7587',
     };
   } else {
     return {
