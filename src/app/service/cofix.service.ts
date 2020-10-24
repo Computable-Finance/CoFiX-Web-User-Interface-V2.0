@@ -37,6 +37,7 @@ const COFIXFACTORY_ABI = [
 const COFIXPAIR_ABI = [
   'function getNAVPerShareForMint(tuple(uint256, uint256, uint256, uint256, uint256)) public view returns (uint256)',
   'function getNAVPerShareForBurn(tuple(uint256, uint256, uint256, uint256, uint256)) external view returns (uint256)',
+  'function getNAVPerShare(uint256, uint256) external view returns (uint256)',
 ];
 
 const COFIXVAULTFORTRADER_ABI = [
@@ -461,15 +462,22 @@ export class CofiXService {
   async getNAVPerShare(token: string, pair: string) {
     const checkedPriceNow = await this.checkPriceNow(token);
     const coFiXPair = this.getCoFixPair(pair);
-    const oraclePrice = [
+
+    return await coFiXPair.getNAVPerShare(
       checkedPriceNow.ethAmount,
-      checkedPriceNow.erc20Amount,
-      '0',
-      '250000',
-      '0',
-    ];
-    const navPerShare = await coFiXPair.getNAVPerShareForBurn(oraclePrice);
-    return navPerShare;
+      checkedPriceNow.erc20Amount
+    );
+    // const checkedPriceNow = await this.checkPriceNow(token);
+    // const coFiXPair = this.getCoFixPair(pair);
+    // const oraclePrice = [
+    //   checkedPriceNow.ethAmount,
+    //   checkedPriceNow.erc20Amount,
+    //   '0',
+    //   '250000',
+    //   '0',
+    // ];
+    // const navPerShare = await coFiXPair.getNAVPerShareForBurn(oraclePrice);
+    // return navPerShare;
   }
 
   async getETHAmountForRemoveLiquidity(
@@ -478,11 +486,40 @@ export class CofiXService {
     amount: string
   ) {
     const kinfo = await this.getKInfo(token);
-    const navPerShare = await this.getNAVPerShare(token, pair);
+    const checkedPriceNow = await this.checkPriceNow(token);
+    const coFiXPair = this.getCoFixPair(pair);
+
+    const navPerShare = ethersOf(
+      await coFiXPair.getNAVPerShare(
+        checkedPriceNow.ethAmount,
+        checkedPriceNow.erc20Amount
+      )
+    );
+
+    const k = kinfo.k;
+    let c;
+    if (new BNJS(amount).times(navPerShare).lt(500)) {
+      c = 0;
+    } else {
+      c = new BNJS(0.0000257).plus(new BNJS(0.0000008542).times(amount));
+    }
+
+    const oraclePrice = [
+      checkedPriceNow.ethAmount,
+      checkedPriceNow.erc20Amount,
+      '0',
+      this.parseUnits(k.plus(c).toString(), 8),
+      '0',
+    ];
+    const nAVPerShareForBurn = ethersOf(
+      await coFiXPair.getNAVPerShareForBurn(oraclePrice)
+    );
+
     const result = new BNJS(amount)
-      .times(ethersOf(navPerShare))
+      .times(nAVPerShareForBurn)
       .times(new BNJS(1).minus(kinfo.theta))
       .toString();
+
     return result;
   }
 
@@ -492,14 +529,42 @@ export class CofiXService {
     amount: string
   ) {
     const kinfo = await this.getKInfo(token);
-    const navPerShare = await this.getNAVPerShare(token, pair);
-    const recentPrice = await this.checkPriceNow(token);
+    const checkedPriceNow = await this.checkPriceNow(token);
+    const coFiXPair = this.getCoFixPair(pair);
+
+    const navPerShare = ethersOf(
+      await coFiXPair.getNAVPerShare(
+        checkedPriceNow.ethAmount,
+        checkedPriceNow.erc20Amount
+      )
+    );
+
+    const k = kinfo.k;
+    let c;
+    if (new BNJS(amount).times(navPerShare).lt(500)) {
+      c = 0;
+    } else {
+      c = new BNJS(-0.0001171).plus(new BNJS(0.0000008386).times(amount));
+    }
+
+    const oraclePrice = [
+      checkedPriceNow.ethAmount,
+      checkedPriceNow.erc20Amount,
+      '0',
+      this.parseUnits(k.plus(c).toString(), 8),
+      '0',
+    ];
+    const nAVPerShareForBurn = ethersOf(
+      await coFiXPair.getNAVPerShareForBurn(oraclePrice)
+    );
+
     const result = new BNJS(amount)
-      .times(ethersOf(navPerShare))
-      .times(recentPrice.changePrice)
-      .times(new BNJS(1).minus(kinfo.k))
+      .times(nAVPerShareForBurn)
+      .times(checkedPriceNow.changePrice)
+      .times(new BNJS(1).minus(k.plus(c)))
       .times(new BNJS(1).minus(kinfo.theta))
       .toString();
+
     return result;
   }
 
