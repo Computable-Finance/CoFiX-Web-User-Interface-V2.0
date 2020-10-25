@@ -95,7 +95,6 @@ export class LiquidPage implements OnInit {
       });
       await modal.present();
       modal.onDidDismiss().then((data: any) => {
-        console.log(data.data);
         if (data.data.knownRisk) {
           this.shareStateService.updateKnownRisk(data.data.knownRisk);
         }
@@ -127,6 +126,7 @@ export class LiquidPage implements OnInit {
     this.toCoin.id = coin;
   }
   async closeAddLiquid(event) {
+    console.log(event);
     this.showAddModel = false;
     if (event.type === 'add') {
       this.fromCoin = event.fromCoin;
