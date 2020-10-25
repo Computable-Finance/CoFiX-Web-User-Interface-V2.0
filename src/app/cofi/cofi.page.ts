@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+
 import { BannerContent } from '../common/components/banner/banner.page';
 import { ProfitPage } from '../common/components/profit/profit.page';
-import { ERC20BalancePipe } from '../common/pipes/erc20balance.pipe';
+import { BalancePipe } from '../common/pipes/balance.pipe';
 import { ShareStateQuery } from '../common/state/share.query';
 import { ShareStateService } from '../common/state/share.service';
 import { Utils } from '../common/utils';
@@ -40,7 +41,7 @@ export class CofiPage implements OnInit {
   receiveError = { isError: false, msg: '' };
   constructor(
     private cofixService: CofiXService,
-    private earnedRatePipe: ERC20BalancePipe,
+    private earnedRatePipe: BalancePipe,
     private shareStateService: ShareStateService,
     public shareStateQuery: ShareStateQuery,
     private utils: Utils

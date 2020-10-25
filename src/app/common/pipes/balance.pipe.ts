@@ -1,19 +1,23 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { truncate } from '../uitils/bignumber-utils';
+import { BigNumber } from 'ethers';
 
-const bignumberJs = require('bignumber.js');
+import { ethersOf, truncate } from '../uitils/bignumber-utils';
+
+const BNJS = require('bignumber.js');
 
 @Pipe({ name: '_balance' })
 export class BalancePipe implements PipeTransform {
   constructor() {
-    bignumberJs.config({ EXPONENTIAL_AT: 100 });
+    BNJS.config({ EXPONENTIAL_AT: 100 });
   }
 
-  transform(value: any, nullvalue: string = ''): string {
+  transform(
+    value: number | string | BigNumber,
+    nullvalue: string = ''
+  ): string {
     try {
       if (value !== undefined) {
-        const bignumber = new bignumberJs(value);
-        const truncateValue = truncate(bignumber.toString(), 8);
+        const truncateValue = truncate(this.toString(value), 8);
 
         if (Number(truncateValue) === 0) {
           return '0';
@@ -26,5 +30,13 @@ export class BalancePipe implements PipeTransform {
     }
 
     return nullvalue;
+  }
+
+  private toString(value: number | string | BigNumber) {
+    if (typeof value === 'number' || typeof value === 'string') {
+      return new BNJS(value).toString();
+    } else {
+      return new BNJS(ethersOf(value)).toString();
+    }
   }
 }

@@ -7,7 +7,7 @@ export function parseUnits(amount: string, unit: number) {
 }
 
 export function parseEthers(amount: string) {
-  return this.parseUnits(amount, ETHER_DECIMALS);
+  return parseUnits(amount, ETHER_DECIMALS);
 }
 
 export function unitsOf(amount: BigNumberish, decimals: BigNumberish) {

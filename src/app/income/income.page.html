@@ -28,11 +28,16 @@
         >
           <ion-col class="label" size="4">{{'klq'|translate}}</ion-col>
           <ion-col class="ion-text-right" size="8"
-            >{{earnedETH | erc20balance:'--' | _truncate}} ETH
+            >{{earnedETH | _balance:'--' | _truncate}} ETH
           </ion-col>
         </ion-row>
-        <ion-row class="ion-align-items-center ion-align-self-center conversionPrice" *ngIf="receiveError.isError">
-          <ion-col class="error" size="12">{{'transaction-error' | translate}}[{{receiveError.msg}}]</ion-col>
+        <ion-row
+          class="ion-align-items-center ion-align-self-center conversionPrice"
+          *ngIf="receiveError.isError"
+        >
+          <ion-col class="error" size="12"
+            >{{'transaction-error' | translate}}[{{receiveError.msg}}]</ion-col
+          >
         </ion-row>
       </ion-grid>
     </div>

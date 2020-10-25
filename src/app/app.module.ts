@@ -14,7 +14,6 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BalancePipe } from './common/pipes/balance.pipe';
-import { ERC20BalancePipe } from './common/pipes/erc20balance.pipe';
 import { ShareStateQuery } from './common/state/share.query';
 import { ShareStateService } from './common/state/share.service';
 import { Utils } from './common/utils';
@@ -41,7 +40,6 @@ import { Utils } from './common/utils';
     StatusBar,
     SplashScreen,
     BalancePipe,
-    ERC20BalancePipe,
     ShareStateService,
     ShareStateQuery,
     Utils,

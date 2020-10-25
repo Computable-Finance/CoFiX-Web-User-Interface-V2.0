@@ -97,11 +97,13 @@ describe('CofiXService', () => {
   it('should getETHAmountForRemoveLiquidity', async () => {
     expect(
       pipe.transform(
-        await service.getETHAmountForRemoveLiquidity(
-          USDT,
-          '0x5f22a04F81A87a7aBe9191C338fA5Ba092Af4562',
-          '1'
-        )
+        (
+          await service.getETHAmountForRemoveLiquidity(
+            USDT,
+            '0x5f22a04F81A87a7aBe9191C338fA5Ba092Af4562',
+            '1'
+          )
+        ).result
       )
     ).toBe('1.53538609');
   });
@@ -109,11 +111,13 @@ describe('CofiXService', () => {
   it('should getTokenAmountForRemoveLiquidity', async () => {
     expect(
       pipe.transform(
-        await service.getTokenAmountForRemoveLiquidity(
-          USDT,
-          '0x5f22a04F81A87a7aBe9191C338fA5Ba092Af4562',
-          '1'
-        )
+        (
+          await service.getTokenAmountForRemoveLiquidity(
+            USDT,
+            '0x5f22a04F81A87a7aBe9191C338fA5Ba092Af4562',
+            '1'
+          )
+        ).result
       )
     ).toBe('591.57558687');
   });

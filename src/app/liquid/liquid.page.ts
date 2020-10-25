@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+
 import { BannerContent } from '../common/components/banner/banner.page';
-import { ERC20BalancePipe } from '../common/pipes/erc20balance.pipe';
+import { BalancePipe } from '../common/pipes/balance.pipe';
 import { ShareStateQuery } from '../common/state/share.query';
 import { ShareStateService } from '../common/state/share.service';
 import { Utils } from '../common/utils';
@@ -64,7 +65,7 @@ export class LiquidPage implements OnInit {
   colSize = '7';
   constructor(
     private cofixService: CofiXService,
-    private erc20balancePipe: ERC20BalancePipe,
+    private erc20balancePipe: BalancePipe,
     public shareStateQuery: ShareStateQuery,
     private utils: Utils,
     private modalController: ModalController,

@@ -39,7 +39,7 @@
         >
           <ion-col class="label" size="4">{{'ywc' | translate}}</ion-col>
           <ion-col class="ion-text-right" size="8"
-            >{{earnedRate?.earned | erc20balance:'--' | _truncate}} CoFi
+            >{{earnedRate?.earned | _balance:'--' | _truncate}} CoFi
           </ion-col>
         </ion-row>
 
@@ -51,8 +51,13 @@
             >{{earnedRate?.rewardRate | _balance:'--' | _truncate}} CoFi/Day
           </ion-col>
         </ion-row>
-        <ion-row class="ion-align-items-center ion-align-self-center conversionPrice" *ngIf="receiveError.isError">
-          <ion-col class="error" size="12">{{'transaction-error' | translate}}[{{receiveError.msg}}]</ion-col>
+        <ion-row
+          class="ion-align-items-center ion-align-self-center conversionPrice"
+          *ngIf="receiveError.isError"
+        >
+          <ion-col class="error" size="12"
+            >{{'transaction-error' | translate}}[{{receiveError.msg}}]</ion-col
+          >
         </ion-row>
       </ion-grid>
     </div>
