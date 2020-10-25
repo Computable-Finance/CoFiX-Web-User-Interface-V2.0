@@ -196,10 +196,14 @@ export class LiquidPage implements OnInit {
             this.shareState.stakingPoolAddress[coinItem]
           )
         );
-        this.NAVPerShare[coinItem] = await this.cofixService.getNAVPerShare(
-          this.cofixService.getCurrentContractAddressList()[coinItem],
-          this.shareState.tokenPairAddress[coinItem]
-        );
+        this.NAVPerShare[coinItem] = (
+          await this.cofixService.calculateArgumentsUsedByGetAmountRemoveLiquidity(
+            this.cofixService.getCurrentContractAddressList()[coinItem],
+            this.shareState.tokenPairAddress[coinItem],
+            '1',
+            false
+          )
+        ).nAVPerShareForBurn;
       });
     }
   }

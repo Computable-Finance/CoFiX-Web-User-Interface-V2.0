@@ -162,24 +162,27 @@ export class RedeemLiquidPage implements OnInit {
     const pair = this.shareStateQuery.getValue().tokenPairAddress[
       this.toCoin.id
     ];
-    if (this.isTokenChecked || this.isETHChecked) {
-      this.NAVPerShare = await this.cofixService.getNAVPerShare(
+
+    if (this.isETHChecked) {
+      const result = await this.cofixService.getETHAmountForRemoveLiquidity(
         this.toCoin.address,
-        this.shareState.tokenPairAddress[this.toCoin.id]
+        pair,
+        this.toCoin.amount || '0'
       );
+
+      this.ETHAmountForRemoveLiquidity = result.result;
+      this.NAVPerShare = result.nAVPerShareForBurn;
     }
 
-    this.ETHAmountForRemoveLiquidity = await this.cofixService.getETHAmountForRemoveLiquidity(
-      this.toCoin.address,
-      pair,
-      this.toCoin.amount || '0'
-    );
-
-    this.tokenAmountForRemoveLiquidity = await this.cofixService.getTokenAmountForRemoveLiquidity(
-      this.toCoin.address,
-      pair,
-      this.toCoin.amount || '0'
-    );
+    if (this.isTokenChecked) {
+      const result = await this.cofixService.getTokenAmountForRemoveLiquidity(
+        this.toCoin.address,
+        pair,
+        this.toCoin.amount || '0'
+      );
+      this.tokenAmountForRemoveLiquidity = result.result;
+      this.NAVPerShare = result.nAVPerShareForBurn;
+    }
     this.canShowError();
   }
 
