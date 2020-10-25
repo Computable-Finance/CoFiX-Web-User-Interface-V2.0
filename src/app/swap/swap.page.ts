@@ -164,14 +164,11 @@ export class SwapPage implements OnInit {
   }
 
   async getEPAndEC(type = 'input') {
-    console.log(this.fromCoin);
-    console.log(this.toCoin);
     const executionPriceAndExpectedCofi = await this.cofixService.executionPriceAndExpectedCofi(
       this.fromCoin.address,
       this.toCoin.address,
       this.fromCoin.amount || '0'
     );
-    console.log(executionPriceAndExpectedCofi);
     if (executionPriceAndExpectedCofi) {
       this.toCoin.amount = await this.balancePipe.transform(
         executionPriceAndExpectedCofi.excutionPrice
