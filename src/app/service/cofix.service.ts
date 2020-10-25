@@ -457,27 +457,51 @@ export class CofiXService {
     return earned;
   }
 
-  // XT 净值
-  @PCacheable({ maxAge: CACHE_FIVE_SECONDS })
-  async getNAVPerShare(token: string, pair: string) {
+  // 计算 getETHAmountForRemoveLiquidity 和 getTokenAmountForRemoveLiquidity 所需参数。
+  // removeERC20 = false，对应 getETHAmountForRemoveLiquidity
+  // removeERC20 = true，对应 getTokenAmountForRemoveLiquidity
+  // 返回：kinfo、checkedPriceNow、nAVPerShareForBurn、两个冲击成本
+  async calculateArgumentsUsedByGetAmountRemoveLiquidity(
+    token: string,
+    pair: string,
+    amount: string,
+    removeERC20: boolean = false
+  ) {
+    const kinfo = await this.getKInfo(token);
     const checkedPriceNow = await this.checkPriceNow(token);
     const coFiXPair = this.getCoFixPair(pair);
 
-    return await coFiXPair.getNAVPerShare(
-      checkedPriceNow.ethAmount,
-      checkedPriceNow.erc20Amount
+    const navPerShare = ethersOf(
+      await coFiXPair.getNAVPerShare(
+        checkedPriceNow.ethAmount,
+        checkedPriceNow.erc20Amount
+      )
     );
-    // const checkedPriceNow = await this.checkPriceNow(token);
-    // const coFiXPair = this.getCoFixPair(pair);
-    // const oraclePrice = [
-    //   checkedPriceNow.ethAmount,
-    //   checkedPriceNow.erc20Amount,
-    //   '0',
-    //   '250000',
-    //   '0',
-    // ];
-    // const navPerShare = await coFiXPair.getNAVPerShareForBurn(oraclePrice);
-    // return navPerShare;
+
+    const k = kinfo.k;
+    let cB;
+    let cS = 0;
+    if (new BNJS(amount).times(navPerShare).lt(500)) {
+      cB = cS = 0;
+    } else {
+      cB = new BNJS(0.0000257).plus(new BNJS(0.0000008542).times(amount));
+      if (removeERC20) {
+        cS = new BNJS(-0.0001171).plus(new BNJS(0.0000008386).times(amount));
+      }
+    }
+
+    const oraclePrice = [
+      checkedPriceNow.ethAmount,
+      checkedPriceNow.erc20Amount,
+      '0',
+      this.parseUnits(k.plus(cB).toString(), 8),
+      '0',
+    ];
+    const nAVPerShareForBurn = ethersOf(
+      await coFiXPair.getNAVPerShareForBurn(oraclePrice)
+    );
+
+    return { kinfo, checkedPriceNow, nAVPerShareForBurn, cB, cS };
   }
 
   async getETHAmountForRemoveLiquidity(
@@ -485,42 +509,19 @@ export class CofiXService {
     pair: string,
     amount: string
   ) {
-    const kinfo = await this.getKInfo(token);
-    const checkedPriceNow = await this.checkPriceNow(token);
-    const coFiXPair = this.getCoFixPair(pair);
-
-    const navPerShare = ethersOf(
-      await coFiXPair.getNAVPerShare(
-        checkedPriceNow.ethAmount,
-        checkedPriceNow.erc20Amount
-      )
-    );
-
-    const k = kinfo.k;
-    let c;
-    if (new BNJS(amount).times(navPerShare).lt(500)) {
-      c = 0;
-    } else {
-      c = new BNJS(0.0000257).plus(new BNJS(0.0000008542).times(amount));
-    }
-
-    const oraclePrice = [
-      checkedPriceNow.ethAmount,
-      checkedPriceNow.erc20Amount,
-      '0',
-      this.parseUnits(k.plus(c).toString(), 8),
-      '0',
-    ];
-    const nAVPerShareForBurn = ethersOf(
-      await coFiXPair.getNAVPerShareForBurn(oraclePrice)
+    const args = await this.calculateArgumentsUsedByGetAmountRemoveLiquidity(
+      token,
+      pair,
+      amount,
+      false
     );
 
     const result = new BNJS(amount)
-      .times(nAVPerShareForBurn)
-      .times(new BNJS(1).minus(kinfo.theta))
+      .times(args.nAVPerShareForBurn)
+      .times(new BNJS(1).minus(args.kinfo.theta))
       .toString();
 
-    return result;
+    return { nAVPerShareForBurn: args.nAVPerShareForBurn, result };
   }
 
   async getTokenAmountForRemoveLiquidity(
@@ -528,44 +529,21 @@ export class CofiXService {
     pair: string,
     amount: string
   ) {
-    const kinfo = await this.getKInfo(token);
-    const checkedPriceNow = await this.checkPriceNow(token);
-    const coFiXPair = this.getCoFixPair(pair);
-
-    const navPerShare = ethersOf(
-      await coFiXPair.getNAVPerShare(
-        checkedPriceNow.ethAmount,
-        checkedPriceNow.erc20Amount
-      )
-    );
-
-    const k = kinfo.k;
-    let c;
-    if (new BNJS(amount).times(navPerShare).lt(500)) {
-      c = 0;
-    } else {
-      c = new BNJS(-0.0001171).plus(new BNJS(0.0000008386).times(amount));
-    }
-
-    const oraclePrice = [
-      checkedPriceNow.ethAmount,
-      checkedPriceNow.erc20Amount,
-      '0',
-      this.parseUnits(k.plus(c).toString(), 8),
-      '0',
-    ];
-    const nAVPerShareForBurn = ethersOf(
-      await coFiXPair.getNAVPerShareForBurn(oraclePrice)
+    const args = await this.calculateArgumentsUsedByGetAmountRemoveLiquidity(
+      token,
+      pair,
+      amount,
+      true
     );
 
     const result = new BNJS(amount)
-      .times(nAVPerShareForBurn)
-      .times(checkedPriceNow.changePrice)
-      .times(new BNJS(1).minus(k.plus(c)))
-      .times(new BNJS(1).minus(kinfo.theta))
+      .times(args.nAVPerShareForBurn)
+      .times(args.checkedPriceNow.changePrice)
+      .times(new BNJS(1).minus(args.kinfo.k.plus(args.cS)))
+      .times(new BNJS(1).minus(args.kinfo.theta))
       .toString();
 
-    return result;
+    return { nAVPerShareForBurn: args.nAVPerShareForBurn, result };
   }
 
   unitsOf(amount: BigNumber, decimals: BigNumber) {
