@@ -26,6 +26,10 @@ terraform apply
 # Check deploy result
 terraform output
 terraform show
+
+# Import existing infrastructure
+terraform import aws_cloudfront_distribution.cofix_cdn <cloudfront_distribution_id>
+terraform import aws_s3_bucket.cofix <bucket_name>
 ```
 
 ## Configuration
@@ -42,7 +46,6 @@ TF_VAR_bucket=tmp terraform apply
 
 ## TODO
 
-- [ ] Production environment deploy with CNAMEs and ACM and CloudFront create-invalidation
+- [ ] Production environment deploy with CNAMEs and ACM
 - [ ] Use S3 as Backend
 - [ ] Intergration with CI
-- [ ] `terraform import` to import existing infrastructure.

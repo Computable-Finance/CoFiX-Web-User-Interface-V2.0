@@ -26,6 +26,10 @@ terraform apply
 # 检测部署结果
 terraform output
 terraform show
+
+# 导入已部署过的环境
+terraform import aws_cloudfront_distribution.cofix_cdn <cloudfront_distribution_id>
+terraform import aws_s3_bucket.cofix <bucket_name>
 ```
 
 ## 配置
@@ -42,7 +46,6 @@ TF_VAR_bucket=tmp terraform apply
 
 ## 待办
 
-- [ ] 产品环境部署添加 CNAMEs, ACM, 以及 CloudFront create-invalidation 管理
+- [ ] 产品环境部署添加 CNAMEs, ACM 管理
 - [ ] 使用 S3 作为 tfstate 存储后端
 - [ ] CI 集成
-- [ ] `terraform import` 导入当前已部署过的环境
