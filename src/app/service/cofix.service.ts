@@ -1002,15 +1002,12 @@ export class CofiXService {
       return;
     }
 
-    if (
-      bnAmountETH.isPositive() &&
-      !(await this.hasEnoughETHBalance(amountETH))
-    ) {
+    if (bnAmountETH.gt(0) && !(await this.hasEnoughETHBalance(amountETH))) {
       throw new Error('Insufficient ETH balance.');
     }
 
     if (
-      bnAmountToken.isPositive() &&
+      bnAmountToken.gt(0) &&
       !(await this.hasEnoughTokenBalance(
         this.currentAccount,
         token,
@@ -1021,7 +1018,7 @@ export class CofiXService {
     }
 
     if (
-      bnAmountToken.isPositive() &&
+      bnAmountToken.gt(0) &&
       !(await this.hasEnoughAllowance(
         this.contractAddressList.CofixRouter,
         token,
