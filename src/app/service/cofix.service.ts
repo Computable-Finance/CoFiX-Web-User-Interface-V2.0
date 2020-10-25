@@ -430,7 +430,7 @@ export class CofiXService {
     return expectedShare.toString();
   }
 
-  @PCacheable({ maxAge: CACHE_ONE_MINUTE })
+  @PCacheable({ maxAge: CACHE_TEN_SECONDS })
   async earnedCofiAndRewardRate(stakingPoolAddress: string) {
     const coFiXStakingRewards = new ethers.Contract(
       stakingPoolAddress,
@@ -450,7 +450,7 @@ export class CofiXService {
     return { earned, rewardRate };
   }
 
-  @PCacheable({ maxAge: CACHE_ONE_MINUTE })
+  @PCacheable({ maxAge: CACHE_TEN_SECONDS })
   async earnedETH() {
     const coFiStakingRewards = this.getCoFiStakingRewards();
     const earned = await coFiStakingRewards.earned(this.currentAccount);
