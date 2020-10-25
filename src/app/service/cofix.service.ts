@@ -478,15 +478,20 @@ export class CofiXService {
       )
     );
 
+    const tradingVolumeInETH = new BNJS(amount).times(navPerShare);
     const k = kinfo.k;
     let cB;
     let cS = 0;
-    if (new BNJS(amount).times(navPerShare).lt(500)) {
+    if (tradingVolumeInETH.lt(500)) {
       cB = cS = 0;
     } else {
-      cB = new BNJS(0.0000257).plus(new BNJS(0.0000008542).times(amount));
+      cB = new BNJS(0.0000257).plus(
+        new BNJS(0.0000008542).times(tradingVolumeInETH)
+      );
       if (removeERC20) {
-        cS = new BNJS(-0.0001171).plus(new BNJS(0.0000008386).times(amount));
+        cS = new BNJS(-0.0001171).plus(
+          new BNJS(0.0000008386).times(tradingVolumeInETH)
+        );
       }
     }
 
