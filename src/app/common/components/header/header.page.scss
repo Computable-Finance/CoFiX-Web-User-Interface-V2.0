@@ -15,6 +15,12 @@
   left: 33%;
   line-height: 68px;
 }
+.tools {
+  position: absolute;
+  top: 10px;
+  right: 40px;
+  display: inline-flex;
+}
 .active {
   border-bottom: 4px solid var(--ion-color-primary);
 }
@@ -74,6 +80,9 @@ ion-title {
     font-size: 15px;
     line-height: 66px;
   }
+  .tools {
+    right: 16px;
+  }
 
   .logo_s {
     display: block !important;
@@ -120,4 +129,7 @@ ion-header {
 }
 .logo_w {
   display: block;
+}
+.connectWallet {
+  margin-right: 16px;
 }

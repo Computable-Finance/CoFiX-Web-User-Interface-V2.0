@@ -81,6 +81,7 @@ export class IncomePage implements OnInit {
 
   //领取ETH
   async receiveETH() {
+    this.resetReceiveError();
     this.isLoading = true;
     this.cofixService
       .withdrawEarnedETH()
@@ -98,11 +99,13 @@ export class IncomePage implements OnInit {
       })
       .catch((error) => {
         console.log(error);
-        // this.receiveError = { isError: true, msg: error.message };
+        this.receiveError = { isError: true, msg: error.message };
         this.isLoading = false;
       });
   }
-
+  resetReceiveError() {
+    this.receiveError = { isError: false, msg: '' };
+  }
   async getIsApproved() {
     if (this.shareStateQuery.getValue().connectedWallet) {
       this.isApproved = await this.cofixService.approved(
@@ -160,9 +163,7 @@ export class IncomePage implements OnInit {
       })
       .catch((error) => {
         console.log(error);
-        if (!error.code) {
-          this.incomeError = { isError: true, msg: error.message };
-        }
+        this.incomeError = { isError: true, msg: error.message };
         this.isLoadingProfit.cr = false;
       });
   }
@@ -186,9 +187,7 @@ export class IncomePage implements OnInit {
       })
       .catch((error) => {
         console.log(error);
-        if (!error.code) {
-          this.incomeError = { isError: true, msg: error.message };
-        }
+        this.incomeError = { isError: true, msg: error.message };
         this.isLoadingProfit.qc = false;
       });
   }

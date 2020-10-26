@@ -22,6 +22,8 @@ export class ProfitPage implements OnInit {
   @Output() onApprove = new EventEmitter<any>();
   @Output() onSave = new EventEmitter<any>();
   @Output() onRecieve = new EventEmitter<any>();
+  @Output() onSetCoinMax = new EventEmitter<any>();
+  @Output() onCoinInputChange = new EventEmitter<any>();
   @Input() transcationError = { isError: false, msg: '' };
   @Input() profitCoin: any;
   @Input() coin: any = 'USDT';
@@ -86,19 +88,23 @@ export class ProfitPage implements OnInit {
     } else {
       this.balance = this.hadValue;
     }
-
+    this.showError = false;
     this.resetTransactionError();
+    this.onSetCoinMax.emit();
   }
 
   approve() {
+    this.resetTransactionError();
     this.onApprove.emit({ balance: this.balance });
   }
 
   save() {
+    this.resetTransactionError();
     this.onSave.emit({ balance: this.balance });
   }
 
   recieve() {
+    this.resetTransactionError();
     this.onRecieve.emit({ balance: this.balance });
   }
 
@@ -106,6 +112,7 @@ export class ProfitPage implements OnInit {
     this.balance = event.amount;
     this.canShowError();
     this.resetTransactionError();
+    this.onCoinInputChange.emit();
   }
 
   canSave() {

@@ -72,6 +72,9 @@
           ></ion-toggle>
         </ion-col>
       </ion-row>
+      <ion-row class="ion-align-items-center ion-align-self-center conversionPrice border-top redeemError" *ngIf="redeemError.isError">
+        <ion-col class="error" size="12">{{'transaction-error' | translate}}[{{redeemError.msg}}]</ion-col>
+      </ion-row>
     </ion-grid>
 
     <div class="button-div" *ngIf="shareStateQuery.getValue().connectedWallet">

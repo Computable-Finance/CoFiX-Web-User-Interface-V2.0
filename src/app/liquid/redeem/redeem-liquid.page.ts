@@ -53,6 +53,7 @@ export class RedeemLiquidPage implements OnInit {
   showError = false;
   ETHAmountForRemoveLiquidity: number;
   tokenAmountForRemoveLiquidity: number;
+  redeemError = { isError: false, msg: '' };
 
   constructor(
     private cofixService: CofiXService,
@@ -101,6 +102,7 @@ export class RedeemLiquidPage implements OnInit {
       this.isETHChecked = false;
     }
     this.getRemoveLiquidity();
+    this.resetRedeemError();
   }
 
   changeCoin(event) {
@@ -119,6 +121,7 @@ export class RedeemLiquidPage implements OnInit {
     this.NAVPerShare = '';
     this.isETHChecked = false;
     this.isTokenChecked = false;
+    this.resetRedeemError();
     this.shareState = this.shareStateQuery.getValue();
     if (this.shareStateQuery.getValue().connectedWallet) {
       this.fromCoin.address = this.cofixService.getCurrentContractAddressList()[
@@ -156,13 +159,13 @@ export class RedeemLiquidPage implements OnInit {
   async ToCoinInput(event) {
     this.toCoin.amount = event.amount;
     this.getRemoveLiquidity();
+    this.resetRedeemError();
   }
 
   async getRemoveLiquidity() {
     const pair = this.shareStateQuery.getValue().tokenPairAddress[
       this.toCoin.id
     ];
-
     if (this.isETHChecked) {
       const result = await this.cofixService.getETHAmountForRemoveLiquidity(
         this.toCoin.address,
@@ -194,6 +197,7 @@ export class RedeemLiquidPage implements OnInit {
   }
 
   async redeem() {
+    this.resetRedeemError();
     if (!this.isTokenChecked && !this.isETHChecked) {
       return false;
     }
@@ -237,6 +241,7 @@ export class RedeemLiquidPage implements OnInit {
         })
         .catch((error) => {
           console.log(error);
+          this.redeemError = { isError: true, msg: error.message };
           this.isLoading.sh = false;
         });
     }
@@ -247,7 +252,7 @@ export class RedeemLiquidPage implements OnInit {
           pair,
           token,
           this.toCoin.amount || '0',
-          ethAmount.toString(),
+          ethAmount?.toString(),
           this.oracleCost.toString()
         )
         .then((tx: any) => {
@@ -273,12 +278,16 @@ export class RedeemLiquidPage implements OnInit {
         })
         .catch((error) => {
           console.log(error);
+          this.redeemError = { isError: true, msg: error.message };
           this.isLoading.sh = false;
         });
     }
   }
-
+  resetRedeemError() {
+    this.redeemError = { isError: false, msg: '' };
+  }
   async approve() {
+    this.resetRedeemError();
     if (!this.toCoin.isApproved) {
       this.isLoading.sq = true;
       this.cofixService

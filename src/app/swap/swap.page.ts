@@ -364,6 +364,7 @@ export class SwapPage implements OnInit {
   }
 
   async approve() {
+    this.resetSwapError();
     if (!this.fromCoin.isApproved) {
       this.isLoading.sq = true;
       this.cofixService
@@ -393,6 +394,7 @@ export class SwapPage implements OnInit {
   }
 
   async swap() {
+    this.resetSwapError();
     this.isLoading.dh = true;
     if (this.fromCoin.id === 'ETH') {
       this.cofixService
@@ -411,6 +413,7 @@ export class SwapPage implements OnInit {
             this.isLoading.dh = false;
             this.resetAmout('swap');
             this.initCoinContent();
+            this.getIsApproved();
           });
           provider.once('error', (error) => {
             console.log('provider.once==', error);
@@ -419,9 +422,7 @@ export class SwapPage implements OnInit {
         })
         .catch((error) => {
           console.log('catch error==', error);
-          if (!error.code) {
-            this.swapError = { isError: true, msg: error.message };
-          }
+          this.swapError = { isError: true, msg: error.message };
 
           this.isLoading.dh = false;
         });
@@ -443,6 +444,7 @@ export class SwapPage implements OnInit {
               this.isLoading.dh = false;
               this.resetAmout('swap');
               this.initCoinContent();
+              this.getIsApproved();
             });
             provider.once('error', (error) => {
               console.log('provider.once==', error);
@@ -451,9 +453,8 @@ export class SwapPage implements OnInit {
           })
           .catch((error) => {
             console.log('catch error==', error);
-            if (!error.code) {
-              this.swapError = { isError: true, msg: error.message };
-            }
+            this.swapError = { isError: true, msg: error.message };
+
             this.isLoading.dh = false;
           });
       } else {
@@ -480,6 +481,7 @@ export class SwapPage implements OnInit {
               this.isLoading.dh = false;
               this.resetAmout('swap');
               this.initCoinContent();
+              this.getIsApproved();
             });
             provider.once('error', (error) => {
               console.log('provider.once==', error);
@@ -488,9 +490,8 @@ export class SwapPage implements OnInit {
           })
           .catch((error) => {
             console.log('catch error==', error);
-            if (!error.code) {
-              this.swapError = { isError: true, msg: error.message };
-            }
+            this.swapError = { isError: true, msg: error.message };
+
             this.isLoading.dh = false;
           });
       }

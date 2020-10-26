@@ -1,5 +1,5 @@
-<app-header [activeId]="'cofi'" (onRefresh)="refreshPage()"></app-header>
 <ion-content [fullscreen]="true">
+  <app-header [activeId]="'cofi'" (onRefresh)="refreshPage()"></app-header>
   <div class="card-title">{{'cofi_desc' | translate}}</div>
   <ion-card class="swap-card">
     <div class="card-content">
@@ -21,6 +21,8 @@
         (onApprove)="approveCofi($event)"
         (onSave)="saveCofi($event)"
         (onRecieve)="receiveCofi($event)"
+        (onCoinInputChange)="resetCofiError()"
+        (onSetCoinMax)="resetCofiError()"
         [profitCoin]="profitCoin"
         [coin]="coin"
         [isMore]="true"
@@ -51,13 +53,8 @@
             >{{earnedRate?.rewardRate | _balance:'--' | _truncate}} CoFi/Day
           </ion-col>
         </ion-row>
-        <ion-row
-          class="ion-align-items-center ion-align-self-center conversionPrice"
-          *ngIf="receiveError.isError"
-        >
-          <ion-col class="error" size="12"
-            >{{'transaction-error' | translate}}[{{receiveError.msg}}]</ion-col
-          >
+        <ion-row class="ion-align-items-center ion-align-self-center conversionPrice" *ngIf="withdrawError.isError">
+          <ion-col class="error" size="12">{{'transaction-error' | translate}}[{{withdrawError.msg}}]</ion-col>
         </ion-row>
       </ion-grid>
     </div>

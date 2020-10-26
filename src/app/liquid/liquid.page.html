@@ -1,5 +1,5 @@
-<app-header [activeId]="'liquid'" (onRefresh)="refreshPage()"></app-header>
 <ion-content [fullscreen]="true">
+  <app-header [activeId]="'liquid'" (onRefresh)="refreshPage()"></app-header>
   <div class="card-title">{{'liquid_desc' | translate}}</div>
 
   <ion-card class="swap-card" *ngIf="!showAddModel">

@@ -13,6 +13,9 @@
       {{'title_'+item.id | translate}}
     </div>
   </div>
-  <app-connect-wallet (onConnected)="onConnected()"></app-connect-wallet>
-  <app-switch-lang></app-switch-lang>
+  <div class="tools">
+    <app-connect-wallet (onConnected)="onConnected()" class="connectWallet"></app-connect-wallet>
+    <app-switch-lang></app-switch-lang>
+  </div>
+  
 </ion-header>

@@ -38,7 +38,7 @@ export class CofiPage implements OnInit {
   profitCoin = 'XTokens';
   isApproved = false;
   cofiError = { isError: false, msg: '' };
-  receiveError = { isError: false, msg: '' };
+  withdrawError = { isError: false, msg: '' };
   constructor(
     private cofixService: CofiXService,
     private earnedRatePipe: BalancePipe,
@@ -111,6 +111,7 @@ export class CofiPage implements OnInit {
 
   //领取Cofi
   async withdrawEarnedCoFi() {
+    this.resetCofiError();
     if (this.shareState.stakingPoolAddress[this.coin]) {
       this.isLoading = true;
       this.cofixService
@@ -128,13 +129,14 @@ export class CofiPage implements OnInit {
           });
         })
         .catch((error) => {
-          //this.receiveError = { isError: true, msg: error.message };
+          this.withdrawError = { isError: true, msg: error.message };
           this.isLoading = false;
         });
     }
   }
   resetCofiError() {
     this.cofiError = { isError: false, msg: '' };
+    this.withdrawError = { isError: false, msg: '' };
   }
   async getIsApproved() {
     if (this.shareStateQuery.getValue().connectedWallet) {
@@ -194,10 +196,9 @@ export class CofiPage implements OnInit {
         });
       })
       .catch((error) => {
-        console.log(error);
-        if (!error.code) {
-          this.cofiError = { isError: true, msg: error.message };
-        }
+        console.log('catch==', error);
+        console.log(error.code);
+        this.cofiError = { isError: true, msg: error.message };
         this.isLoadingProfit.cr = false;
       });
   }
@@ -224,9 +225,7 @@ export class CofiPage implements OnInit {
       })
       .catch((error) => {
         console.log(error);
-        if (!error.code) {
-          this.cofiError = { isError: true, msg: error.message };
-        }
+        this.cofiError = { isError: true, msg: error.message };
         this.isLoadingProfit.qc = false;
       });
   }

@@ -1,5 +1,5 @@
-<app-header [activeId]="'income'" (onRefresh)="refreshPage()"></app-header>
 <ion-content [fullscreen]="true">
+  <app-header [activeId]="'income'" (onRefresh)="refreshPage()"></app-header>
   <div class="card-title">{{'income_desc' | translate}}</div>
   <ion-card class="swap-card">
     <div class="card-content">
@@ -14,6 +14,8 @@
         (onApprove)="approveCofi($event)"
         (onSave)="saveCofi($event)"
         (onRecieve)="receiveCofi($event)"
+        (onCoinInputChange)="resetReceiveError()"
+        (onSetCoinMax)="resetReceiveError()"
         [profitCoin]="profitCoin"
         [transcationError]="incomeError"
       ></app-profit>

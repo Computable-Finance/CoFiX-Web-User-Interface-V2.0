@@ -170,6 +170,7 @@ export class AddLiquidPage implements OnInit {
   }
 
   async confirmAddLiquid() {
+    this.resetLiquidError();
     if (!this.fromCoin.amount && !this.toCoin.amount) {
       return false;
     }
@@ -206,9 +207,8 @@ export class AddLiquidPage implements OnInit {
       .catch((error) => {
         console.log(error);
 
-        if (!error.code) {
-          this.addLiquidError = { isError: true, msg: error.message };
-        }
+        this.addLiquidError = { isError: true, msg: error.message };
+
         this.isLoading.cr = false;
       });
   }
@@ -217,6 +217,7 @@ export class AddLiquidPage implements OnInit {
     this.addLiquidError = { isError: false, msg: '' };
   }
   async approve() {
+    this.resetLiquidError();
     if (!this.toCoin.isApproved) {
       this.isLoading.sq = true;
       this.cofixService
@@ -238,9 +239,8 @@ export class AddLiquidPage implements OnInit {
         })
         .catch((error) => {
           console.log(error);
-          if (!error.code) {
-            this.addLiquidError = { isError: true, msg: error.message };
-          }
+          this.addLiquidError = { isError: true, msg: error.message };
+
           this.isLoading.sq = false;
         });
     }
