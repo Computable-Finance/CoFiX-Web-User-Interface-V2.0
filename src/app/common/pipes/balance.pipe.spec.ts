@@ -28,6 +28,10 @@ describe('BalancePipe', () => {
     expect(pipe.transform(123456789)).toBe('123456789');
     expect(pipe.transform('123456789')).toBe('123456789');
     expect(pipe.transform(parseEthers('123456789'))).toBe('123456789');
+
+    expect(pipe.transform(123456789000)).toBe('123456789000');
+    expect(pipe.transform('123456789000')).toBe('123456789000');
+    expect(pipe.transform(parseEthers('123456789000'))).toBe('123456789000');
   });
 
   it('should show 0 for 0.000000000', () => {
