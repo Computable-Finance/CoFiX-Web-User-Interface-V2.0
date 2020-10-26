@@ -11,19 +11,19 @@
       />
     </ion-col>
     <ion-col class="ion-text-right" size="4">
-      {{NAVPerShare | _balance:'--' | _truncate}}
+      {{NAVPerShare | truncate:'--'}}
     </ion-col>
   </ion-row>
   <ion-row class="ion-align-items-center ion-align-self-center conversionPrice">
     <ion-col class="label" size="8">{{'myfe'|translate}}</ion-col>
     <ion-col class="ion-text-right" size="4"
-      >{{todoValue | _balance:'--' | _truncate}}
+      >{{todoValue | truncate:'--'}}
     </ion-col>
   </ion-row>
   <ion-row class="ion-align-items-center ion-align-self-center conversionPrice">
     <ion-col class="label" size="8">{{'kccfe'|translate}}</ion-col>
     <ion-col class="ion-text-right" size="4"
-      >{{hadValue | _balance:'--' | _truncate}}
+      >{{hadValue | truncate:'--'}}
     </ion-col>
   </ion-row>
 </ion-grid>

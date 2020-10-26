@@ -5,7 +5,7 @@ import { BannerContent } from '../common/components/banner/banner.page';
 import { ShareStateQuery } from '../common/state/share.query';
 import { CofiXService } from '../service/cofix.service';
 import { Utils } from 'src/app/common/utils';
-import { BalancePipe } from '../common/pipes/balance.pipe';
+import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
 import { ShareStateService } from '../common/state/share.service';
 import { CoinInputPage } from '../common/components/coin-input/coin-input.page';
 import { BigNumber } from 'ethers';
@@ -69,7 +69,7 @@ export class SwapPage implements OnInit {
     private alertController: AlertController,
     public shareStateQuery: ShareStateQuery,
     private shareStateService: ShareStateService,
-    private balancePipe: BalancePipe,
+    private balancePipe: BalanceTruncatePipe,
     private utils: Utils
   ) {}
 

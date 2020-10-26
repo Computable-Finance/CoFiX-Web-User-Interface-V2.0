@@ -3,7 +3,7 @@ import { AlertController, ToastController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 
 import { CofiXService } from '../service/cofix.service';
-import { BalancePipe } from './pipes/balance.pipe';
+import { BalanceTruncatePipe } from './pipes/balance.pipe';
 import { ShareStateService } from './state/share.service';
 
 @Injectable({
@@ -12,7 +12,7 @@ import { ShareStateService } from './state/share.service';
 export class Utils {
   constructor(
     private shareStateService: ShareStateService,
-    private balancePipe: BalancePipe,
+    private balanceTruncatePipe: BalanceTruncatePipe,
     private alertController: AlertController,
     private translateService: TranslateService,
     private cofixService: CofiXService,
@@ -42,13 +42,13 @@ export class Utils {
 
   async getBalanceByCoin(coin) {
     if (coin.id === 'ETH') {
-      coin.balance = await this.balancePipe.transform(
+      coin.balance = await this.balanceTruncatePipe.transform(
         await this.cofixService.ethersOf(
           await this.cofixService.getETHBalance()
         )
       );
     } else {
-      coin.balance = await this.balancePipe.transform(
+      coin.balance = await this.balanceTruncatePipe.transform(
         await this.cofixService.unitsOf(
           await this.cofixService.getERC20Balance(coin.address),
           await this.cofixService.getERC20Decimals(coin.address)

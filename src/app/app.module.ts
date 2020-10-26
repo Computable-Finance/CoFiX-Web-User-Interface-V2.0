@@ -13,7 +13,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BalancePipe } from './common/pipes/balance.pipe';
+import { BalanceTruncatePipe } from './common/pipes/balance.pipe';
 import { ShareStateQuery } from './common/state/share.query';
 import { ShareStateService } from './common/state/share.service';
 import { Utils } from './common/utils';
@@ -39,7 +39,7 @@ import { Utils } from './common/utils';
   providers: [
     StatusBar,
     SplashScreen,
-    BalancePipe,
+    BalanceTruncatePipe,
     ShareStateService,
     ShareStateQuery,
     Utils,

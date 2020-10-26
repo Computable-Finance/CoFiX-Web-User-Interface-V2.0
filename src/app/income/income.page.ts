@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { BannerContent } from '../common/components/banner/banner.page';
-import { BalancePipe } from '../common/pipes/balance.pipe';
+import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
 import { ShareStateQuery } from '../common/state/share.query';
 import { CofiXService } from '../service/cofix.service';
 
@@ -35,7 +35,7 @@ export class IncomePage implements OnInit {
   receiveError = { isError: false, msg: '' };
   constructor(
     private cofixService: CofiXService,
-    private erc20balancePipe: BalancePipe,
+    private balanceTruncatePipe: BalanceTruncatePipe,
     public shareStateQuery: ShareStateQuery
   ) {}
 
@@ -61,10 +61,10 @@ export class IncomePage implements OnInit {
       this.cofiStakingRewardsAddress = this.cofixService.getCurrentContractAddressList()[
         'CoFiStakingRewards'
       ];
-      this.cofiToken = await this.erc20balancePipe.transform(
+      this.cofiToken = await this.balanceTruncatePipe.transform(
         await this.cofixService.getERC20Balance(this.cofiTokenAddress)
       );
-      this.cofiStakingRewards = await this.erc20balancePipe.transform(
+      this.cofiStakingRewards = await this.balanceTruncatePipe.transform(
         await this.cofixService.getERC20Balance(this.cofiStakingRewardsAddress)
       );
       this.getEarnedETH();
@@ -75,8 +75,8 @@ export class IncomePage implements OnInit {
   async getEarnedETH() {
     this.earnedETH = await this.cofixService.earnedETH();
     this.canReceive =
-      (await this.erc20balancePipe.transform(this.earnedETH)) !== '0' &&
-      (await this.erc20balancePipe.transform(this.earnedETH)) !== '--';
+      (await this.balanceTruncatePipe.transform(this.earnedETH)) !== '0' &&
+      (await this.balanceTruncatePipe.transform(this.earnedETH)) !== '--';
   }
 
   //领取ETH

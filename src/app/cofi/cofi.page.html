@@ -41,7 +41,7 @@
         >
           <ion-col class="label" size="4">{{'ywc' | translate}}</ion-col>
           <ion-col class="ion-text-right" size="8"
-            >{{earnedRate?.earned | _balance:'--' | _truncate}} CoFi
+            >{{earnedRate?.earned | truncate:'--'}} CoFi
           </ion-col>
         </ion-row>
 
@@ -50,7 +50,7 @@
         >
           <ion-col class="label" size="5">{{'dragcoin' | translate}}</ion-col>
           <ion-col class="ion-text-right" size="7"
-            >{{earnedRate?.rewardRate | _balance:'--' | _truncate}} CoFi/Day
+            >{{earnedRate?.rewardRate | truncate:'--'}} CoFi/Day
           </ion-col>
         </ion-row>
         <ion-row class="ion-align-items-center ion-align-self-center conversionPrice" *ngIf="withdrawError.isError">

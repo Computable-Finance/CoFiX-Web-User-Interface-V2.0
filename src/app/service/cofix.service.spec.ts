@@ -1,5 +1,5 @@
 import { getContractAddressListByNetwork } from '../common/constants';
-import { BalancePipe } from '../common/pipes/balance.pipe';
+import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
 import { CofiXService } from './cofix.service';
 
 const USDT = getContractAddressListByNetwork(3).USDT;
@@ -7,7 +7,7 @@ const HBTC = getContractAddressListByNetwork(3).HBTC;
 
 describe('CofiXService', () => {
   const service = new CofiXService(null, null, null);
-  const pipe = new BalancePipe();
+  const pipe = new BalanceTruncatePipe();
 
   beforeEach(() => {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000000;

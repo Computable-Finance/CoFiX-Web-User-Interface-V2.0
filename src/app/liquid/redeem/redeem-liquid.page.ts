@@ -7,7 +7,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { CoinInputPage } from 'src/app/common/components/coin-input/coin-input.page';
-import { BalancePipe } from 'src/app/common/pipes/balance.pipe';
+import { BalanceTruncatePipe } from 'src/app/common/pipes/balance.pipe';
 import { ShareStateQuery } from 'src/app/common/state/share.query';
 import { ShareStateService } from 'src/app/common/state/share.service';
 import { Utils } from 'src/app/common/utils';
@@ -57,7 +57,7 @@ export class RedeemLiquidPage implements OnInit {
 
   constructor(
     private cofixService: CofiXService,
-    private erc20balancePipe: BalancePipe,
+    private balanceTruncatePipe: BalanceTruncatePipe,
     private shareStateService: ShareStateService,
     public shareStateQuery: ShareStateQuery,
     private utils: Utils
@@ -137,13 +137,13 @@ export class RedeemLiquidPage implements OnInit {
       ) {
         await this.utils.updateShareAddress(this.shareState);
       }
-      this.todoValue = await this.erc20balancePipe.transform(
+      this.todoValue = await this.balanceTruncatePipe.transform(
         await this.cofixService.getERC20Balance(
           this.shareState.tokenPairAddress[this.toCoin.id]
         )
       );
 
-      this.hadValue = await this.erc20balancePipe.transform(
+      this.hadValue = await this.balanceTruncatePipe.transform(
         await this.cofixService.getERC20Balance(
           this.shareState.stakingPoolAddress[this.toCoin.id]
         )

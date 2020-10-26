@@ -25,7 +25,7 @@
     ></app-coin-input>
     <p class="oracle-cost">
       <span>{{'oracle_cost' | translate}}</span>：<span class="fee"
-        >+{{oracleCost | _balance:'--' | _truncate}}</span
+        >+{{oracleCost | truncate:'--'}}</span
       >ETH
     </p>
 
@@ -46,8 +46,7 @@
         </ion-col>
         <ion-col size="2"> {{fromCoin.id}} </ion-col>
         <ion-col size="7" class="ion-text-right">
-          {{isETHChecked?(ETHAmountForRemoveLiquidity | _balance:'--'):'--' |
-          _truncate}}
+          {{isETHChecked?(ETHAmountForRemoveLiquidity | truncate:'--'):'--'}}
         </ion-col>
         <ion-col size="1" class="ion-text-right">
           <ion-toggle
@@ -63,7 +62,7 @@
         <ion-col size="3"> {{toCoin.id}} </ion-col>
         <ion-col size="6" class="ion-text-right">
           {{isTokenChecked?(tokenAmountForRemoveLiquidity |
-          _balance:'--'):'--'}}
+          truncate:'--'):'--'}}
         </ion-col>
         <ion-col size="1" class="ion-text-right">
           <ion-toggle

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { BannerContent } from '../common/components/banner/banner.page';
 import { ProfitPage } from '../common/components/profit/profit.page';
-import { BalancePipe } from '../common/pipes/balance.pipe';
+import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
 import { ShareStateQuery } from '../common/state/share.query';
 import { ShareStateService } from '../common/state/share.service';
 import { Utils } from '../common/utils';
@@ -41,7 +41,7 @@ export class CofiPage implements OnInit {
   withdrawError = { isError: false, msg: '' };
   constructor(
     private cofixService: CofiXService,
-    private earnedRatePipe: BalancePipe,
+    private balanceTruncatePipe: BalanceTruncatePipe,
     private shareStateService: ShareStateService,
     public shareStateQuery: ShareStateQuery,
     private utils: Utils
@@ -77,7 +77,7 @@ export class CofiPage implements OnInit {
       ) {
         await this.utils.updateShareAddress(this.shareState);
       }
-      this.todoValue = await this.earnedRatePipe.transform(
+      this.todoValue = await this.balanceTruncatePipe.transform(
         await this.cofixService.getERC20Balance(
           this.shareState.tokenPairAddress[this.coin]
         )
@@ -86,9 +86,10 @@ export class CofiPage implements OnInit {
         this.shareState.stakingPoolAddress[this.coin]
       );
       this.canReceive =
-        (await this.earnedRatePipe.transform(this.earnedRate.earned)) != '--';
+        (await this.balanceTruncatePipe.transform(this.earnedRate.earned)) !=
+        '--';
 
-      this.hadValue = await this.earnedRatePipe.transform(
+      this.hadValue = await this.balanceTruncatePipe.transform(
         await this.cofixService.getERC20Balance(
           this.shareState.stakingPoolAddress[this.coin]
         )

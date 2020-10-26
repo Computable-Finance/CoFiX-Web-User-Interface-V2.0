@@ -5,8 +5,8 @@ import { ethersOf, truncate } from '../uitils/bignumber-utils';
 
 const BNJS = require('bignumber.js');
 
-@Pipe({ name: '_balance' })
-export class BalancePipe implements PipeTransform {
+@Pipe({ name: 'truncate' })
+export class BalanceTruncatePipe implements PipeTransform {
   constructor() {
     BNJS.config({ EXPONENTIAL_AT: 100 });
   }

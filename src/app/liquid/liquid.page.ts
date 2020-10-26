@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
 import { BannerContent } from '../common/components/banner/banner.page';
-import { BalancePipe } from '../common/pipes/balance.pipe';
+import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
 import { ShareStateQuery } from '../common/state/share.query';
 import { ShareStateService } from '../common/state/share.service';
 import { Utils } from '../common/utils';
@@ -65,7 +65,7 @@ export class LiquidPage implements OnInit {
   colSize = '7';
   constructor(
     private cofixService: CofiXService,
-    private erc20balancePipe: BalancePipe,
+    private balanceTruncatePipe: BalanceTruncatePipe,
     public shareStateQuery: ShareStateQuery,
     private utils: Utils,
     private modalController: ModalController,
@@ -187,12 +187,12 @@ export class LiquidPage implements OnInit {
       }
 
       this.coinList.forEach(async (coinItem) => {
-        this.todoValue[coinItem] = await this.erc20balancePipe.transform(
+        this.todoValue[coinItem] = await this.balanceTruncatePipe.transform(
           await this.cofixService.getERC20Balance(
             this.shareState.tokenPairAddress[coinItem]
           )
         );
-        this.hadValue[coinItem] = await this.erc20balancePipe.transform(
+        this.hadValue[coinItem] = await this.balanceTruncatePipe.transform(
           await this.cofixService.getERC20Balance(
             this.shareState.stakingPoolAddress[coinItem]
           )

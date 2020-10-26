@@ -59,7 +59,7 @@
           <ion-col class="ion-text-right" size="8"
             >1 <span class="tk1">{{fromCoin.id}}</span> =
             <span class="changePrice"
-              >{{changePrice | _balance:'--' | _truncate | _truncate}}</span
+              >{{changePrice | truncate:'--'}}</span
             >
             {{toCoin.id}}
           </ion-col>
@@ -75,7 +75,7 @@
               (click)="showAlert('ygck','ygck_cont')"
           /></ion-col>
           <ion-col class="ion-text-right" size="6"
-            >{{expectedCofi | _balance:'--' | _truncate}} CoFi
+            >{{expectedCofi | truncate:'--'}} CoFi
           </ion-col>
         </ion-row>
         <ion-row

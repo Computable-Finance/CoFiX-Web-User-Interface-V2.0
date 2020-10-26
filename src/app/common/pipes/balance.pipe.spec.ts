@@ -1,8 +1,8 @@
 import { parseEthers } from '../uitils/bignumber-utils';
-import { BalancePipe } from './balance.pipe';
+import { BalanceTruncatePipe } from './balance.pipe';
 
-describe('BalancePipe', () => {
-  const pipe = new BalancePipe();
+describe('BalanceTruncatePipe', () => {
+  const pipe = new BalanceTruncatePipe();
 
   it('should truncate a value to precision 8 without rounding', () => {
     expect(pipe.transform(1.234567891)).toBe('1.23456789');

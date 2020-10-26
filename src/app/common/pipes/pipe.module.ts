@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 
-import { BalancePipe } from './balance.pipe';
-import { TruncatePipe } from './truncateString.pipe';
+import { BalanceTruncatePipe } from './balance.pipe';
 import { WalletAddressPipe } from './wallet-address.pipe';
 
 @NgModule({
-  declarations: [WalletAddressPipe, BalancePipe, TruncatePipe],
-  exports: [WalletAddressPipe, BalancePipe, TruncatePipe],
+  declarations: [WalletAddressPipe, BalanceTruncatePipe],
+  exports: [WalletAddressPipe, BalanceTruncatePipe],
 })
 export class PipeModule {}

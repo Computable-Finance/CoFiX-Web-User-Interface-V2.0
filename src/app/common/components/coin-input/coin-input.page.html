@@ -32,14 +32,14 @@
       <ion-col class="balance-info" size="10">
         <div *ngIf="isShowBlance && !isShowError">
           <span>{{'your_balance' | translate}}</span>：<span
-            >{{maxAmount | _balance:'--' | _truncate}}</span
+            >{{maxAmount | truncate:'--'}}</span
           >
           {{coin}}
         </div>
 
         <div *ngIf="isShowError" class="error">
           <span>{{'your_balance' | translate}}</span>：<span
-            >{{maxAmount | _balance:'--' | _truncate}}</span
+            >{{maxAmount | truncate:'--'}}</span
           >
           {{coin}}
         </div>
