@@ -381,15 +381,18 @@ export class CofiXService {
 
     const weth9 = this.getERC20Contract(this.contractAddressList.WETH9);
     const weth9Balance = await weth9.balanceOf(pairAddress);
-    const oraclePrice = [
-      checkedPriceNow.ethAmount,
-      checkedPriceNow.erc20Amount,
-      '0',
-      kinfo.kOriginal.toString(),
-      '0',
-    ];
+    // const oraclePrice = [
+    //   checkedPriceNow.ethAmount,
+    //   checkedPriceNow.erc20Amount,
+    //   '0',
+    //   kinfo.kOriginal.toString(),
+    //   '0',
+    // ];
     const pair = this.getCoFixPair(pairAddress);
-    const navPerShareForMint = await pair.getNAVPerShareForMint(oraclePrice);
+    const navPerShare = await pair.getNAVPerShare(
+      checkedPriceNow.ethAmount,
+      checkedPriceNow.erc20Amount
+    );
     const trader = this.getCoFiXVaultForTrader();
 
     let x;
@@ -407,7 +410,7 @@ export class CofiXService {
       fee,
       x,
       y,
-      navPerShareForMint
+      navPerShare
     );
 
     const value = new BNJS(ethersOf(actualMiningAmountAndDensity.amount)).times(
