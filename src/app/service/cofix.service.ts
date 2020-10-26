@@ -302,7 +302,13 @@ export class CofiXService {
         );
       }
       const fee = this.parseEthers(valx.times(kinfo.theta).toString());
-      expectedCofi2 = await this.expectedCoFi(fromToken, price, kinfo, fee);
+      expectedCofi2 = await this.expectedCoFi(
+        fromToken,
+        price,
+        kinfo,
+        fee,
+        false
+      );
 
       let c;
       if (valx.lt(500)) {
@@ -338,7 +344,7 @@ export class CofiXService {
       excutionPrice1 = price.changePrice
         .times(new BNJS(1).minus(kinfo.k.plus(c)))
         .times(new BNJS(1).minus(kinfo.theta));
-      expectedCofi1 = await this.expectedCoFi(toToken, price, kinfo, fee);
+      expectedCofi1 = await this.expectedCoFi(toToken, price, kinfo, fee, true);
     }
 
     const excutionPriceForOne = excutionPrice1.times(excutionPrice2);
@@ -353,11 +359,15 @@ export class CofiXService {
   }
 
   // 预计出矿量
+  // 注意：交易方向决定传入合约的值，eth2ERC20 决定
+  // true：eth -> erc20
+  // false: erc20 -> eth
   private async expectedCoFi(
     token: string,
     checkedPriceNow: any,
     kinfo: any,
-    fee: BigNumber
+    fee: BigNumber,
+    eth2ERC20: boolean = true
   ) {
     const pairAddress = await this.getCoFixPairAddressByToken(token);
     const erc20 = this.getERC20Contract(token);
@@ -381,11 +391,22 @@ export class CofiXService {
     const pair = this.getCoFixPair(pairAddress);
     const navPerShareForMint = await pair.getNAVPerShareForMint(oraclePrice);
     const trader = this.getCoFiXVaultForTrader();
+
+    let x;
+    let y;
+    if (eth2ERC20) {
+      x = weth9Balance;
+      y = tokens;
+    } else {
+      x = tokens;
+      y = weth9Balance;
+    }
+
     const actualMiningAmountAndDensity = await trader.actualMiningAmountAndDensity(
       pairAddress,
       fee,
-      weth9Balance,
-      tokens,
+      x,
+      y,
       navPerShareForMint
     );
 
