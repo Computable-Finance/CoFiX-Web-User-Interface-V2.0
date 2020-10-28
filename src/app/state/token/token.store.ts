@@ -5,9 +5,9 @@ export interface TokenInfo {
   decimals: string;
   pairAddress: string;
   stakingPoolAddress: string;
-  xtTokenAddress: string;
 }
 
+// key = token address
 export interface TokensInfoModel {
   [key: string]: Partial<TokenInfo>;
 }

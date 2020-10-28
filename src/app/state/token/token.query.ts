@@ -11,14 +11,13 @@ export class TokensInfoQuery extends Query<TokensInfoModel> {
   getDecimals(key: string) {
     return this.getValueOfProperty(key, 'decimals');
   }
+
   getPairAddress(key: string) {
     return this.getValueOfProperty(key, 'pairAddress');
   }
+
   getStakingPoolAddress(key: string) {
     return this.getValueOfProperty(key, 'stakingPoolAddress');
-  }
-  getXtTokenAddress(key: string) {
-    return this.getValueOfProperty(key, 'xtTokenAddress');
   }
 
   private getValueOfProperty(key: string, property: string) {

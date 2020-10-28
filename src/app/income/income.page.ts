@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { BannerContent } from '../common/components/banner/banner.page';
 import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
 import { ShareStateQuery } from '../common/state/share.query';
+import { Utils } from '../common/utils';
 import { CofiXService } from '../service/cofix.service';
 
 @Component({
@@ -40,7 +41,8 @@ export class IncomePage implements OnInit {
     private balanceTruncatePipe: BalanceTruncatePipe,
     public shareStateQuery: ShareStateQuery,
     private translateService: TranslateService,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private utils: Utils
   ) {}
 
   ngOnInit() {
@@ -121,30 +123,13 @@ export class IncomePage implements OnInit {
 
   async approveCofi(event) {
     if (!this.isApproved) {
-      this.isLoadingProfit.sq = true;
-      this.cofixService
-        .approve(
-          this.cofixService.getCurrentContractAddressList().CoFiToken,
-          this.cofixService.getCurrentContractAddressList().CoFiStakingRewards
-        )
-        .then((tx: any) => {
-          console.log('tx.hash', tx.hash);
-          const provider = this.cofixService.getCurrentProvider();
-          provider.once(tx.hash, (transactionReceipt) => {
-            this.isLoadingProfit.sq = false;
-            this.getIsApproved();
-          });
-          provider.once('error', (error) => {
-            console.log('provider.once==', error);
-            this.isLoadingProfit.sq = false;
-          });
-        })
-        .catch((error) => {
-          console.log(error);
-
-          this.incomeError = { isError: true, msg: error.message };
-          this.isLoadingProfit.sq = false;
-        });
+      this.utils.approveHandler(
+        this.isLoadingProfit,
+        this.incomeError,
+        this,
+        this.cofixService.getCurrentContractAddressList().CoFiToken,
+        this.cofixService.getCurrentContractAddressList().CoFiStakingRewards
+      );
     }
   }
 

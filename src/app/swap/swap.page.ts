@@ -340,30 +340,13 @@ export class SwapPage implements OnInit {
   async approve() {
     this.resetSwapError();
     if (!this.fromCoin.isApproved) {
-      this.isLoading.sq = true;
-      this.cofixService
-        .approve(
-          this.fromCoin.address,
-          this.cofixService.getCurrentContractAddressList().CofixRouter
-        )
-        .then((tx: any) => {
-          console.log('tx.hash', tx.hash);
-          const provider = this.cofixService.getCurrentProvider();
-          provider.once(tx.hash, (transactionReceipt) => {
-            this.isLoading.sq = false;
-            console.log('Transaction over');
-            this.getIsApproved();
-          });
-          provider.once('error', (error) => {
-            console.log('provider.once==', error);
-            this.isLoading.sq = false;
-          });
-        })
-        .catch((error) => {
-          console.log('catch error==', error);
-          this.swapError = { isError: true, msg: error.message };
-          this.isLoading.sq = false;
-        });
+      this.utils.approveHandler(
+        this.isLoading,
+        this.swapError,
+        this,
+        this.fromCoin.address,
+        this.cofixService.getCurrentContractAddressList().CofixRouter
+      );
     }
   }
 

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
+import { PermissionsService } from 'src/app/state/permission/permission.service';
 
 import { CofiXService } from '../service/cofix.service';
 import { BalanceTruncatePipe } from './pipes/balance.pipe';
@@ -16,7 +17,8 @@ export class Utils {
     private alertController: AlertController,
     private translateService: TranslateService,
     private cofixService: CofiXService,
-    public toastController: ToastController
+    public toastController: ToastController,
+    private permissionService: PermissionsService
   ) {}
   public async updateShareAddress(shareState: any) {
     const address_USDT = this.cofixService.getCurrentContractAddressList()[
@@ -99,5 +101,38 @@ export class Utils {
 
   getTokenAddres(coin) {
     return this.cofixService.getCurrentContractAddressList()[coin];
+  }
+
+  async approveHandler(
+    loadingComponent,
+    errorComponent,
+    component,
+    token: string,
+    spender: string
+  ) {
+    loadingComponent.sq = true;
+    await this.cofixService
+      .approve(token, spender)
+      .then((tx: any) => {
+        const provider = this.cofixService.getCurrentProvider();
+        provider.once(tx.hash, (transactionReceipt) => {
+          loadingComponent.sq = false;
+          component.getIsApproved();
+          this.permissionService.updatePermission(
+            this.cofixService.getCurrentAccount(),
+            token,
+            spender
+          );
+        });
+        provider.once('error', (error) => {
+          console.log('provider.once==', error);
+          loadingComponent.sq = false;
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        errorComponent = { isError: true, msg: error.message };
+        loadingComponent.sq = false;
+      });
   }
 }

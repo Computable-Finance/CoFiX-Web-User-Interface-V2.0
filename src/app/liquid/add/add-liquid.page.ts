@@ -219,30 +219,13 @@ export class AddLiquidPage implements OnInit {
   async approve() {
     this.resetLiquidError();
     if (!this.toCoin.isApproved) {
-      this.isLoading.sq = true;
-      this.cofixService
-        .approve(
-          this.toCoin.address,
-          this.cofixService.getCurrentContractAddressList().CofixRouter
-        )
-        .then((tx: any) => {
-          console.log('tx.hash', tx.hash);
-          const provider = this.cofixService.getCurrentProvider();
-          provider.once(tx.hash, (transactionReceipt) => {
-            this.isLoading.sq = false;
-            this.getIsApproved();
-          });
-          provider.once('error', (error) => {
-            console.log('provider.once==', error);
-            this.isLoading.sq = false;
-          });
-        })
-        .catch((error) => {
-          console.log(error);
-          this.addLiquidError = { isError: true, msg: error.message };
-
-          this.isLoading.sq = false;
-        });
+      this.utils.approveHandler(
+        this.isLoading,
+        this.addLiquidError,
+        this,
+        this.toCoin.address,
+        this.cofixService.getCurrentContractAddressList().CofixRouter
+      );
     }
   }
 

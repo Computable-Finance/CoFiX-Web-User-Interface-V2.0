@@ -289,28 +289,13 @@ export class RedeemLiquidPage implements OnInit {
   async approve() {
     this.resetRedeemError();
     if (!this.toCoin.isApproved) {
-      this.isLoading.sq = true;
-      this.cofixService
-        .approve(
-          this.shareState.tokenPairAddress[this.toCoin.id],
-          this.cofixService.getCurrentContractAddressList().CofixRouter
-        )
-        .then((tx: any) => {
-          console.log('tx.hash', tx.hash);
-          const provider = this.cofixService.getCurrentProvider();
-          provider.once(tx.hash, (transactionReceipt) => {
-            this.isLoading.sq = false;
-            this.getIsApproved();
-          });
-          provider.once('error', (error) => {
-            console.log('provider.once==', error);
-            this.isLoading.sq = false;
-          });
-        })
-        .catch((error) => {
-          console.log(error);
-          this.isLoading.sq = false;
-        });
+      this.utils.approveHandler(
+        this.isLoading,
+        this.redeemError,
+        this,
+        this.shareState.tokenPairAddress[this.toCoin.id],
+        this.cofixService.getCurrentContractAddressList().CofixRouter
+      );
     }
   }
 

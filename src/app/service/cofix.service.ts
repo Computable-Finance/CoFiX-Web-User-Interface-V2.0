@@ -2,9 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BigNumber, Contract, ethers } from 'ethers';
 import { PCacheable } from 'ngx-cacheable';
-import { environment } from 'src/environments/environment';
-import { TokenInfoService } from 'src/app/state/token/token.service';
+import { PermissionsQuery } from 'src/app/state/permission/permission.query';
+import { PermissionsService } from 'src/app/state/permission/permission.service';
 import { TokensInfoQuery } from 'src/app/state/token/token.query';
+import { TokenInfoService } from 'src/app/state/token/token.service';
+import { environment } from 'src/environments/environment';
 
 import {
   BLOCKNUMS_IN_A_DAY,
@@ -100,6 +102,8 @@ export class CofiXService {
     private eventbusService: EventBusService,
     private tokenInfoService: TokenInfoService,
     private tokenInfoQuery: TokensInfoQuery,
+    private permissionsQuery: PermissionsQuery,
+    private permissionsService: PermissionsService,
     private http: HttpClient
   ) {
     BNJS.config({ EXPONENTIAL_AT: 100, ROUNDING_MODE: BNJS.ROUND_DOWN });
@@ -678,29 +682,6 @@ export class CofiXService {
     return !stakingBalance.isZero();
   }
 
-  // token、spender 对应
-  // 交易、资金池页面（增加）：普通token，CofixRouter
-  // 资金池（移除）：this.getPairAddressByToken(token), CofixRouter
-  // CoFi：pair，stakingPool
-  // 收益：CoFiToken，CoFiStakingRewards
-  @PCacheable({ maxAge: CACHE_TEN_SECONDS })
-  async approved(token: string, spender: string) {
-    if (token === undefined) {
-      return true;
-    }
-    const allowance = await this.getERC20Allowance(token, spender);
-    return !allowance.isZero();
-  }
-
-  // 目前设计为先授权一个极大值，未来再改进
-  // token，spender 见上
-  async approve(token: string, spender: string) {
-    const contract = this.getERC20Contract(token);
-    return await contract
-      .connect(this.provider.getSigner())
-      .approve(spender, BigNumber.from('999999999999999999999999999999999999'));
-  }
-
   private setCurrentAccount(accounts) {
     if (accounts.length === 0) {
       this.shareStateService.reset();
@@ -1240,5 +1221,46 @@ export class CofiXService {
       });
     }
     return stakingPoolAddress;
+  }
+
+  // --------- Permissions Methods ------------ //
+
+  // token、spender 对应
+  // 交易、资金池页面（增加）：普通token，CofixRouter
+  // 资金池（移除）：pair, CofixRouter
+  // CoFi：pair，stakingPool
+  // 收益：CoFiToken，CoFiStakingRewards
+  async approved(token: string, spender: string) {
+    const result = this.permissionsQuery.approved(
+      this.currentAccount,
+      token,
+      spender
+    );
+
+    // result === false has two possibilities:
+    // 1. a new browser which has not approved histories of current account.
+    // 2. never got approved
+    if (!result) {
+      const allowance = await this.getERC20Allowance(token, spender);
+      if (!allowance.isZero()) {
+        this.permissionsService.updatePermission(
+          this.currentAccount,
+          token,
+          spender
+        );
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  // 目前设计为先授权一个极大值，未来再改进
+  // token，spender 见上
+  async approve(token: string, spender: string) {
+    const contract = this.getERC20Contract(token);
+    return await contract
+      .connect(this.provider.getSigner())
+      .approve(spender, BigNumber.from('999999999999999999999999999999999999'));
   }
 }

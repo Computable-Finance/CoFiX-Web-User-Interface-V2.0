@@ -150,28 +150,13 @@ export class CofiPage implements OnInit {
 
   async approveCofi(event) {
     if (!this.isApproved) {
-      this.isLoadingProfit.sq = true;
-      await this.cofixService
-        .approve(
-          this.shareState.tokenPairAddress[this.coin],
-          this.shareState.stakingPoolAddress[this.coin]
-        )
-        .then((tx: any) => {
-          const provider = this.cofixService.getCurrentProvider();
-          provider.once(tx.hash, (transactionReceipt) => {
-            this.isLoadingProfit.sq = false;
-            this.getIsApproved();
-          });
-          provider.once('error', (error) => {
-            console.log('provider.once==', error);
-            this.isLoadingProfit.sq = false;
-          });
-        })
-        .catch((error) => {
-          console.log(error);
-          this.cofiError = { isError: true, msg: error.message };
-          this.isLoadingProfit.sq = false;
-        });
+      this.utils.approveHandler(
+        this.isLoadingProfit,
+        this.cofiError,
+        this,
+        this.shareState.tokenPairAddress[this.coin],
+        this.shareState.stakingPoolAddress[this.coin]
+      );
     }
   }
 
