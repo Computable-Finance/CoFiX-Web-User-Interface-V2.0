@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { BigNumber, Contract, ethers } from 'ethers';
 import { PCacheable } from 'ngx-cacheable';
 import { environment } from 'src/environments/environment';
+import { TokenInfoService } from 'src/app/state/token/token.service';
+import { TokensInfoQuery } from 'src/app/state/token/token.query';
 
 import {
   BLOCKNUMS_IN_A_DAY,
@@ -96,6 +98,8 @@ export class CofiXService {
   constructor(
     private shareStateService: ShareStateService,
     private eventbusService: EventBusService,
+    private tokenInfoService: TokenInfoService,
+    private tokenInfoQuery: TokensInfoQuery,
     private http: HttpClient
   ) {
     BNJS.config({ EXPONENTIAL_AT: 100, ROUNDING_MODE: BNJS.ROUND_DOWN });
@@ -202,8 +206,8 @@ export class CofiXService {
   // 普通 ERC20 Token
   // 可存入 Cofi：CoFiToken
   // 已存入 Cofi：CoFiStakingRewards
-  // 未参与挖矿 XT：当前资金池的 pair 地址，this.getCoFixPairAddressByToken(token)
-  // 参与挖矿的 XT：当前资金池对应的 stakingPool 地址，this.getStakingPoolAddress(pair)
+  // 未参与挖矿 XT：当前资金池的 pair 地址，this.getPairAddressByToken(token)
+  // 参与挖矿的 XT：当前资金池对应的 stakingPool 地址，this.getStakingPoolAddressByToken(pair)
   @PCacheable({ maxAge: CACHE_FIVE_SECONDS })
   async getERC20Balance(address: string) {
     if (!this.provider) {
@@ -212,16 +216,6 @@ export class CofiXService {
     const contract = this.getERC20Contract(address);
     const balance = await contract.balanceOf(this.currentAccount);
     return balance;
-  }
-
-  @PCacheable({ maxAge: CACHE_ONE_HOUR })
-  async getERC20Decimals(address: string) {
-    if (!this.provider) {
-      return;
-    }
-    const contract = this.getERC20Contract(address);
-    const decimals = await contract.decimals();
-    return decimals;
   }
 
   @PCacheable({ maxAge: CACHE_TEN_SECONDS })
@@ -369,7 +363,7 @@ export class CofiXService {
     fee: BigNumber,
     eth2ERC20: boolean = true
   ) {
-    const pairAddress = await this.getCoFixPairAddressByToken(token);
+    const pairAddress = await this.getPairAddressByToken(token);
     const erc20 = this.getERC20Contract(token);
     const balanceOfPair = await erc20.balanceOf(pairAddress);
     const decimals = await this.getERC20Decimals(token);
@@ -434,9 +428,7 @@ export class CofiXService {
       kinfo.kOriginal.toString(),
       '0',
     ];
-    const factory = this.getCoFixFacory();
-    const pairAddress = await factory.getPair(address);
-    const pair = this.getCoFixPair(pairAddress);
+    const pair = this.getCoFixPair(await this.getPairAddressByToken(address));
     const navPerShareForMint = new BNJS(
       ethersOf(await pair.getNAVPerShareForMint(oraclePrice))
     );
@@ -648,21 +640,6 @@ export class CofiXService {
     return new ethers.Contract(address, COFIXPAIR_ABI, this.provider);
   }
 
-  @PCacheable({ maxAge: CACHE_ONE_HOUR })
-  async getCoFixPairAddressByToken(token: string) {
-    const factory = this.getCoFixFacory();
-    return await factory.getPair(token);
-  }
-
-  @PCacheable({ maxAge: CACHE_ONE_HOUR })
-  async getStakingPoolAddress(pairAddress: string) {
-    const coFiXVaultForLP = this.getCoFiXVaultForLP();
-    const stakingPoolAddress = await coFiXVaultForLP.stakingPoolForPair(
-      pairAddress
-    );
-    return stakingPoolAddress;
-  }
-
   private getCoFiXVaultForTrader() {
     return new ethers.Contract(
       this.contractAddressList.CoFiXVaultForTrader,
@@ -690,20 +667,20 @@ export class CofiXService {
   // 判断是否提供过流动性
   @PCacheable({ maxAge: CACHE_ONE_MINUTE })
   async pairAttended(token: string) {
-    const pair = await this.getCoFixPairAddressByToken(token);
+    const pair = await this.getPairAddressByToken(token);
     const xtBalance = await this.getERC20Balance(pair);
     if (!xtBalance.isZero()) {
       return true;
     }
 
-    const stakingPool = await this.getStakingPoolAddress(pair);
+    const stakingPool = await this.getStakingPoolAddressByToken(token);
     const stakingBalance = await this.getERC20Balance(stakingPool);
     return !stakingBalance.isZero();
   }
 
   // token、spender 对应
   // 交易、资金池页面（增加）：普通token，CofixRouter
-  // 资金池（移除）：this.getCoFixPairAddressByToken(token), CofixRouter
+  // 资金池（移除）：this.getPairAddressByToken(token), CofixRouter
   // CoFi：pair，stakingPool
   // 收益：CoFiToken，CoFiStakingRewards
   @PCacheable({ maxAge: CACHE_TEN_SECONDS })
@@ -1201,7 +1178,7 @@ export class CofiXService {
   // 对于 ETH，targetToken 用 WETH9 替代
   @PCacheable({ maxAge: CACHE_FIVE_SECONDS })
   async getERC20BalanceOfPair(token: string, targetToken: string) {
-    const pair = await this.getCoFixPairAddressByToken(token);
+    const pair = await this.getPairAddressByToken(token);
     const erc20Contract = this.getERC20Contract(targetToken);
     const amount = new BNJS(
       unitsOf(
@@ -1223,5 +1200,45 @@ export class CofiXService {
       .times(new BNJS(price.fastest).div(10))
       .div(1000000000)
       .toString();
+  }
+
+  // --------- TokenInfo Methods ------------ //
+
+  async getERC20Decimals(tokenAddress: string) {
+    const decimals = this.tokenInfoQuery.getDecimals(tokenAddress);
+    if (!decimals) {
+      const contract = this.getERC20Contract(tokenAddress);
+      const result = (await contract.decimals()).toString();
+      this.tokenInfoService.updateTokenInfo(tokenAddress, {
+        decimals: result,
+      });
+    }
+    return decimals;
+  }
+
+  async getPairAddressByToken(tokenAddress: string) {
+    const pairAddress = this.tokenInfoQuery.getPairAddress(tokenAddress);
+    if (!pairAddress) {
+      const factory = this.getCoFixFacory();
+      this.tokenInfoService.updateTokenInfo(tokenAddress, {
+        pairAddress: await factory.getPair(tokenAddress),
+      });
+    }
+    return pairAddress;
+  }
+
+  async getStakingPoolAddressByToken(tokenAddress: string) {
+    const stakingPoolAddress = this.tokenInfoQuery.getStakingPoolAddress(
+      tokenAddress
+    );
+    if (!stakingPoolAddress) {
+      const coFiXVaultForLP = this.getCoFiXVaultForLP();
+      this.tokenInfoService.updateTokenInfo(tokenAddress, {
+        stakingPoolAddress: await coFiXVaultForLP.stakingPoolForPair(
+          await this.getPairAddressByToken(tokenAddress)
+        ),
+      });
+    }
+    return stakingPoolAddress;
   }
 }

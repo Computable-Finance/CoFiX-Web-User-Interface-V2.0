@@ -26,16 +26,12 @@ export class Utils {
       'HBTC'
     ];
     shareState.tokenPairAddress = {
-      USDT: await this.cofixService.getCoFixPairAddressByToken(address_USDT),
-      HBTC: await this.cofixService.getCoFixPairAddressByToken(address_HBTC),
+      USDT: await this.cofixService.getPairAddressByToken(address_USDT),
+      HBTC: await this.cofixService.getPairAddressByToken(address_HBTC),
     };
     shareState.stakingPoolAddress = {
-      USDT: await this.cofixService.getStakingPoolAddress(
-        shareState.tokenPairAddress['USDT']
-      ),
-      HBTC: await this.cofixService.getStakingPoolAddress(
-        shareState.tokenPairAddress['HBTC']
-      ),
+      USDT: await this.cofixService.getStakingPoolAddressByToken(address_USDT),
+      HBTC: await this.cofixService.getStakingPoolAddressByToken(address_HBTC),
     };
     this.shareStateService.updateShareStore(shareState);
   }

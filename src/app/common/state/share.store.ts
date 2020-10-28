@@ -8,7 +8,6 @@ export interface ShareState {
   activeTab: string;
   tokenPairAddress: any;
   stakingPoolAddress: any;
-  erc20Decimals: any;
   pairAttended: any;
   lang: string;
   knownRisk: boolean;
@@ -22,7 +21,6 @@ export function createInitialState(activeTab): ShareState {
     activeTab: activeTab,
     tokenPairAddress: { USDT: '', HBTC: '' },
     stakingPoolAddress: { USDT: '', HBTC: '' },
-    erc20Decimals: { USDT: 0, HBTC: 0 },
     pairAttended: { USDT: 0, HBTC: 0 },
     lang: environment.lang,
     knownRisk: false,

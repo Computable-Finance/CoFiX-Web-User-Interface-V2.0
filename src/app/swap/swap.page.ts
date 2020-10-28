@@ -86,7 +86,6 @@ export class SwapPage implements OnInit {
   refreshPage() {
     this.initCoinContent();
     this.getIsApproved();
-    this.initERC20Decimal();
     this.getERC20BalanceOfPair();
   }
   async getIsApproved() {
@@ -220,7 +219,6 @@ export class SwapPage implements OnInit {
 
     this.resetSwapError();
     this.initCoinContent();
-    this.initERC20Decimal();
     await this.getIsApproved();
     this.changeOracleCost();
     await this.getERC20BalanceOfPair();
@@ -241,7 +239,6 @@ export class SwapPage implements OnInit {
 
     this.resetSwapError();
     this.initCoinContent();
-    //this.initERC20Decimal();
     await this.getIsApproved();
     this.changeOracleCost();
     await this.getERC20BalanceOfPair();
@@ -256,30 +253,6 @@ export class SwapPage implements OnInit {
       this.oracleCost = 0.02;
     } else {
       this.oracleCost = 0.01;
-    }
-  }
-
-  async initERC20Decimal() {
-    const shareState = this.shareStateQuery.getValue();
-    if (shareState.connectedWallet) {
-      let coin = this.toCoin;
-      if (this.fromCoin.id !== 'ETH') {
-        coin = this.fromCoin;
-      }
-
-      if (coin.id === 'USDT') {
-        shareState.erc20Decimals = {
-          USDT: await this.cofixService.getERC20Decimals(coin.address),
-          HBTC: shareState.erc20Decimals['HBTC'],
-        };
-      } else {
-        shareState.erc20Decimals = {
-          USDT: shareState.erc20Decimals['USDT'],
-          HBTC: await this.cofixService.getERC20Decimals(coin.address),
-        };
-      }
-
-      this.shareStateService.updateShareStore(shareState);
     }
   }
 

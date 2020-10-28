@@ -7,8 +7,9 @@ import { environment } from './environments/environment';
 
 if (environment.production) {
   enableProdMode();
-  enableAkitaProdMode();
 }
+
+enableAkitaProdMode();
 
 const storage = persistState();
 
