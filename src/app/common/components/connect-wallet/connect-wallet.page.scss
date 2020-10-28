@@ -3,7 +3,7 @@
   width: 175px;
   height: 44px;
   border-radius: 8px;
-  border: solid 1px #979797;
+  border: solid 1px var(--silver);
   /*position: fixed;
   top: 10px;
   right: 100px;*/
@@ -20,7 +20,7 @@
   font-weight: 600;
   line-height: 24px;
   text-align: center;
-  color: #000;
+  color: var(--black);
   margin: 0 auto;
 }
 .wallet_show img {

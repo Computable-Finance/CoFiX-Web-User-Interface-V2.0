@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
+import { Utils } from 'src/app/common/utils';
 
 @Component({
   selector: 'app-explain-liquid',
@@ -29,7 +30,8 @@ export class ExplainLiquidPage implements OnInit {
   xtValue: string = 'XT-1';
   constructor(
     private alertController: AlertController,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private utils: Utils
   ) {}
 
   ngOnInit() {}

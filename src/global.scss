@@ -30,6 +30,39 @@ body {
   margin: 0;
   font-size: 17px;
   color: #000;
+  --black: #000000;
+  --mine: #2f2f2f;
+  --dove: #727272;
+  --dusty: #999999;
+  --silver: #c2c2c2;
+  --mike: #dddddd;
+  --alto: #e0e0e0;
+  --mercury: #e9e9e9;
+  --concrete: #f2f2f2;
+  --alabaster: #fbfbfb;
+  --white: #ffffff;
+  --solitude: #e6f3ff;
+  --azure: #007fed;
+  --azure_hover: #1993fd;
+  --cerulean: #00bfff;
+  --green: #75b943;
+  --emerald: #53d76b;
+  --danger: #ff3b30;
+  --radical: #fc3159;
+  --pumpkin: #fd9426;
+  --indigo: #595ad5;
+  --elm: #197a84;
+  --polar: #f3f9fd;
+  --mystic: #b2c6d8;
+  --bali: #8aa3b8;
+  --science: #006bc8;
+  --picton-2: #4bbcec;
+  --cod-gray: #141414;
+  --aurora: #bbdda2;
+  --vida: #4da322;
+  --porcelain: #f0f3f4;
+  --botticelli: #ccd9e3;
+  --lightblue: #e3f1fc;
 }
 ion-content {
   --background: #fbfbfb;
@@ -44,6 +77,7 @@ ion-button {
 .ion-button-label {
   height: 34px;
   line-height: 34px;
+  font-size: 17px;
 }
 .popover-warning {
   --height: auto;
@@ -112,8 +146,7 @@ ion-button {
   box-shadow: 0 11px 19px 0 rgba(0, 0, 0, 0.08);
 }
 .card-content {
-  width: 89.6%;
-  margin: 0 auto;
+  margin: 0 30px;
   margin-top: 25px;
   letter-spacing: 1px;
   color: white;
@@ -125,7 +158,12 @@ ion-button {
 }
 .card-content p {
   font-size: 15px;
-  color: #727272;
+  color: var(--dove);
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.67;
+  letter-spacing: normal;
 }
 .oracle-cost {
   text-align: right;
@@ -148,8 +186,9 @@ ion-button {
 .conversionPrice {
   min-height: 50px;
   font-size: 17px;
-  color: #727272;
+  color: var(--dove);
   border-bottom: 1px solid #e9e9e9;
+  padding: 0px 16px;
 }
 .margin-top {
   margin-top: 22px;
@@ -159,7 +198,8 @@ ion-button {
   align-items: center;
   justify-content: flex-start;
   cursor: pointer;
-  color: #727272;
+  color: var(--dove);
+  font-size: 14px;
 }
 
 .button-div {
@@ -266,6 +306,9 @@ ion-button {
     top: 17px;
     right: 125px;
   }
+  .card-content {
+    margin: 0 10px;
+  }
 }
 
 @media only screen and (max-width: 470px) {
@@ -331,17 +374,6 @@ ion-button {
   color: #ff3478 !important;
 }
 
-.card-title {
-  width: 510px;
-  margin: 16px auto;
-  min-height: 41px;
-  font-family: 'Source Sans Pro', sans-serif;
-  font-size: 24px;
-  font-weight: normal;
-  text-align: center;
-  line-height: 41px;
-  color: #000;
-}
 .claim-title {
   margin-top: 16px;
 }
@@ -349,7 +381,7 @@ ion-button {
 .close-icon {
   font-size: 30px;
   position: absolute;
-  color: #727272;
+  color: var(--dove);
   top: 20px;
   cursor: pointer;
   z-index: 10;
@@ -376,4 +408,24 @@ ion-toggle {
 
 .border-top {
   border-top: 1px solid #e9e9e9;
+}
+.ETH_icon {
+  width: 40px;
+}
+
+.conversionPrice .number {
+  color: #000;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+}
+
+.close-img {
+  position: absolute;
+  top: 30px;
+  /*left: 20px;8*/
+  cursor: pointer;
+  z-index: 10;
+  width: 32px;
 }

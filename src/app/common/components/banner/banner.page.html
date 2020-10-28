@@ -1,13 +1,25 @@
 <div class="banner-content">
   <div class="centent">
-    <h2 class="title">{{bannerConent.title | translate}}</h2>
-    <p class="desc" *ngFor="let desc of bannerConent.descriptions;let i=index">
-      {{desc | translate}}
-    </p>
-    <div class="more">
-      <a (click)="goto(bannerConent.more.url)"
-        >{{bannerConent.more.text | translate}}
-      </a>
+    <ion-grid class="ion-no-padding title-content">
+      <ion-row class="ion-align-items-center ion-align-self-center">
+        <ion-col size="11">
+          <h2 class="title">{{bannerConent.title | translate}}</h2>
+        </ion-col>
+        <ion-col size="1" class="ion-text-right">
+          <app-select-arrow [isDown]="isShowDetail" (onArrowChange)="showDetailClick($event)"></app-select-arrow>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    
+    <div *ngIf="isShowDetail" class="detail-content">
+      <p class="desc" *ngFor="let desc of bannerConent.descriptions;let i=index">
+        {{desc | translate}}
+      </p>
+      <div class="more">
+        {{'still_complicated' | translate}}
+        <a (click)="goto(bannerConent.more.url)">{{bannerConent.more.text | translate}}
+        </a>
+      </div>
     </div>
   </div>
 </div>

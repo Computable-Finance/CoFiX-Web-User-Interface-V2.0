@@ -16,10 +16,10 @@ import { CofiXService } from '../service/cofix.service';
 export class CofiPage implements OnInit {
   @ViewChild(ProfitPage, { static: false }) cofiProfitView: ProfitPage;
   public cofixContent: BannerContent = {
-    title: 'cofix_title',
-    descriptions: ['cofix_desc1'],
+    title: 'help_tips',
+    descriptions: ['cofix_desc1', 'cofix_desc2', 'cofix_desc3'],
     more: {
-      text: 'cofix_more',
+      text: 'read_more',
       url:
         'https://github.com/Computable-Finance/Doc#7-token-mining-incentive-system',
     },
@@ -229,5 +229,10 @@ export class CofiPage implements OnInit {
         this.cofiError = { isError: true, msg: error.message };
         this.isLoadingProfit.qc = false;
       });
+  }
+  isDeposit: boolean = false;
+
+  async showAlert(title, content) {
+    this.utils.showAlert(title, content);
   }
 }

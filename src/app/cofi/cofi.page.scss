@@ -1,6 +1,5 @@
 :host ::ng-deep app-banner.desc_line {
   .centent .desc {
-    padding-top: 15px;
     line-height: 25px !important;
   }
   .more {
@@ -8,28 +7,10 @@
   }
 }
 
-.cqu {
-  /* margin-top: 38px; */
-  color: #e48c24;
-  height: 44px;
-}
-.kcr {
-  margin: 0;
-  /* width:75px; */
-  font-size: 13px;
-  font-family: 'Source Sans Pro', sans-serif;
-  display: block;
-  color: #7d7d7d;
-  width: 94%;
-  margin: 0 auto;
-}
-.go_backrg {
-  text-align: center;
-  color: #e48c24;
-  right: 0;
-  cursor: pointer;
-  margin-top: 15px;
-}
 .connect-card {
   width: 89%;
+}
+
+.swap-card {
+  margin: 0px auto 25px auto;
 }

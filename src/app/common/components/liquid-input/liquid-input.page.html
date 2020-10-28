@@ -3,13 +3,17 @@
     <ion-col size="12" class="ion-text-center">
       <ion-button class="select-liquid-button" fill="outline">
         <ion-grid>
-          <ion-row>
+          <ion-row class="ion-align-items-center ion-align-self-center">
+            <ion-col size="2">
+              <img src="./assets/images/left-expand.png" class="sel" />
+            </ion-col>
             <ion-col
               class="ion-text-center"
-              size="12"
+              size="8"
               (click)="selectAddType($event)"
             >
               <div class="input-group-prepend">
+                
                 <span class="input-group-text"
                   ><img
                     src="./assets/images/icon/ETH.png"
@@ -17,13 +21,12 @@
                   /><img
                     src="./assets/images/icon/{{coin}}.png"
                     class="coin_icon"
-                  />&nbsp;<span>ETH/{{coin}}</span> &nbsp;<img
-                    *ngIf="isDropDown"
-                    src="./assets/images/select.png"
-                    class="sel"
-                  />&nbsp;</span
-                >
+                  />&nbsp;<span>ETH/{{coin}}</span>
+                </span>
               </div>
+            </ion-col>
+            <ion-col size="2" class="ion-text-right">
+              <img src="./assets/images/right-expand.png" class="sel" />
             </ion-col>
           </ion-row>
         </ion-grid>

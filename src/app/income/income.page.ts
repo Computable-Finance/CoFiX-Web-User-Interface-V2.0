@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 
 import { BannerContent } from '../common/components/banner/banner.page';
 import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
@@ -12,8 +14,8 @@ import { CofiXService } from '../service/cofix.service';
 })
 export class IncomePage implements OnInit {
   public incomeContent: BannerContent = {
-    title: 'income_title',
-    descriptions: ['income_desc1'],
+    title: 'help_tips',
+    descriptions: ['income_desc1', 'income_desc2', 'income_desc3'],
     more: {
       text: 'income_more',
       url: 'https://github.com/Computable-Finance/Doc',
@@ -36,7 +38,9 @@ export class IncomePage implements OnInit {
   constructor(
     private cofixService: CofiXService,
     private balanceTruncatePipe: BalanceTruncatePipe,
-    public shareStateQuery: ShareStateQuery
+    public shareStateQuery: ShareStateQuery,
+    private translateService: TranslateService,
+    private alertController: AlertController
   ) {}
 
   ngOnInit() {
@@ -153,6 +157,7 @@ export class IncomePage implements OnInit {
         const provider = this.cofixService.getCurrentProvider();
         provider.once(tx.hash, (transactionReceipt) => {
           this.isLoadingProfit.cr = false;
+          this.isShowModal = false;
           this.getCoFiTokenAndRewards();
           this.balance = undefined;
         });
@@ -177,6 +182,7 @@ export class IncomePage implements OnInit {
         const provider = this.cofixService.getCurrentProvider();
         provider.once(tx.hash, (transactionReceipt) => {
           this.isLoadingProfit.qc = false;
+          this.isShowModal = false;
           this.getCoFiTokenAndRewards();
           this.balance = undefined;
         });
@@ -190,5 +196,42 @@ export class IncomePage implements OnInit {
         this.incomeError = { isError: true, msg: error.message };
         this.isLoadingProfit.qc = false;
       });
+  }
+
+  async showAlert(title, content) {
+    const alert = await this.alertController.create({
+      cssClass: 'explain-liquid-alert',
+      header: await this.translateService.get(title).toPromise(),
+      message: await this.translateService.get(content).toPromise(),
+      buttons: [
+        {
+          text: await this.translateService.get('comfirm_text').toPromise(),
+        },
+      ],
+    });
+    await alert.present();
+  }
+  isShowModal: boolean = false;
+  profit = { title: '', subtitle: '', isDeposit: false };
+  showModal(type) {
+    this.isShowModal = true;
+    if (type === 'withdraw') {
+      this.profit = {
+        title: 'income_withdraw_title',
+        subtitle: 'income_withdraw_subtitle',
+        isDeposit: false,
+      };
+    } else {
+      this.profit = {
+        title: 'income_deposit_title',
+        subtitle: 'income_deposit_subtitle',
+        isDeposit: true,
+      };
+    }
+  }
+
+  cancel(type) {
+    console.log(type);
+    this.isShowModal = false;
   }
 }

@@ -52,7 +52,7 @@
   --ion-color-danger-tint: #ed576b;
 
   /** dark **/
-  --ion-color-dark: #2f2f2f;
+  --ion-color-dark: var(--mine);
   --ion-color-dark-rgb: 34, 36, 40;
   --ion-color-dark-contrast: #ffffff;
   --ion-color-dark-contrast-rgb: 255, 255, 255;
@@ -83,7 +83,6 @@
    */
 
   body {
-    --dove: #727272;
     --ion-color-primary: #75b943;
     --ion-color-primary-rgb: 66, 140, 255;
     --ion-color-primary-contrast: #ffffff;

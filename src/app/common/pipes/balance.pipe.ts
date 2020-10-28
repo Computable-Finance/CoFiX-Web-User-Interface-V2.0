@@ -13,11 +13,12 @@ export class BalanceTruncatePipe implements PipeTransform {
 
   transform(
     value: number | string | BigNumber,
-    nullvalue: string = ''
+    nullvalue: string = '',
+    decimals: number = 8
   ): string {
     try {
       if (value !== undefined) {
-        const truncateValue = truncate(this.toString(value), 8);
+        const truncateValue = truncate(this.toString(value), decimals);
 
         if (Number(truncateValue) === 0) {
           return '0';

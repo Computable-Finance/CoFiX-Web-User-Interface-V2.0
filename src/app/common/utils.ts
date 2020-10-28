@@ -57,7 +57,7 @@ export class Utils {
     }
     return coin.balance;
   }
-  async showAlert() {
+  /*async showAlert() {
     const alert = await this.alertController.create({
       cssClass: 'explain-liquid-alert',
       header: await this.translateService.get('note').toPromise(),
@@ -65,6 +65,19 @@ export class Utils {
       buttons: [
         {
           text: await this.translateService.get('i_know').toPromise(),
+        },
+      ],
+    });
+    await alert.present();
+  }*/
+  async showAlert(title, content) {
+    const alert = await this.alertController.create({
+      cssClass: 'explain-liquid-alert',
+      header: await this.translateService.get(title).toPromise(),
+      message: await this.translateService.get(content).toPromise(),
+      buttons: [
+        {
+          text: await this.translateService.get('comfirm_text').toPromise(),
         },
       ],
     });

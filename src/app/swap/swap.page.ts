@@ -63,6 +63,7 @@ export class SwapPage implements OnInit {
   isShowToMax = false;
   isShowFromMax = false;
   swapError = { isError: false, msg: '' };
+  isShowDetail = false;
   constructor(
     private cofixService: CofiXService,
     private translateService: TranslateService,
@@ -515,5 +516,13 @@ export class SwapPage implements OnInit {
       result &&
       Number(this.toCoin.amount) < this.ERC20BalanceOfPair[this.toCoin.id] //兑换值小于池中值
     );
+  }
+
+  selectArrowChange(event) {
+    console.log(event);
+    console.log(this.isShowDetail);
+    this.isShowDetail = event.isDown;
+
+    console.log(this.isShowDetail);
   }
 }

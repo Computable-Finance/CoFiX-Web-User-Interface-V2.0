@@ -16,12 +16,12 @@
   font-style: normal;
   line-height: 1.61;
   letter-spacing: normal;
-  color: black;
+  color: var(--black);
   text-align: center;
 }
 .warning a {
-  color: black;
-  border-bottom: 1px solid black;
+  color: var(--black);
+  border-bottom: 1px solid var(--black);
   cursor: pointer;
 }
 @media only screen and (max-width: 470px) {

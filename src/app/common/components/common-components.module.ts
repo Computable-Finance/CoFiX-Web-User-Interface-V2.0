@@ -15,8 +15,11 @@ import { LiquidSelectPage } from './liquid-input/select/liquid-select.page';
 import { LiquidInputPage } from './liquid-input/liquid-input.page';
 import { ProfitPage } from './profit/profit.page';
 import { SwitchLangPage } from './switch-lang/switch-lang.page';
-import { SiderMenuPage } from './sider-menu/sider-menu.page';
 import { WarningDetailPage } from 'src/app/liquid/warning/warning-detail/warning-detail.page';
+import { SelectArrowPage } from './select-arrow/select-arrow.page';
+import { CardTitlePage } from './card-title/card-title.page';
+import { TokenInfoPage } from './token-info/token-info.page';
+import { IncomeProfitPage } from 'src/app/income/profit/profit.page';
 
 @NgModule({
   imports: [
@@ -37,8 +40,11 @@ import { WarningDetailPage } from 'src/app/liquid/warning/warning-detail/warning
     LiquidInputPage,
     ProfitPage,
     SwitchLangPage,
-    SiderMenuPage,
     WarningDetailPage,
+    SelectArrowPage,
+    CardTitlePage,
+    TokenInfoPage,
+    IncomeProfitPage,
   ],
   exports: [
     FooterPage,
@@ -50,6 +56,10 @@ import { WarningDetailPage } from 'src/app/liquid/warning/warning-detail/warning
     ProfitPage,
     SwitchLangPage,
     WarningDetailPage,
+    SelectArrowPage,
+    CardTitlePage,
+    TokenInfoPage,
+    IncomeProfitPage,
   ],
 })
 export class CommonComponentsModule {}

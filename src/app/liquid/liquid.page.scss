@@ -23,9 +23,7 @@
     padding-left: 0px !important;
     font-size: 15px !important;
   }
-  .no-liquid {
-    width: unset !important;
-  }
+
   ion-toggle {
     --handle-width: 35.99px !important;
     --handle-height: 13.99px !important;
@@ -37,22 +35,6 @@
 }
 .token_icon_col {
   display: block;
-}
-.no-liquid {
-  width: 510px;
-  margin: 0 auto;
-}
-.no-liquid img {
-  width: 130px;
-  display: block;
-  margin: 0 auto;
-  margin-top: 60px;
-}
-.no-liquid p {
-  text-align: center;
-  color: #7d7d7d;
-  margin-top: 40px;
-  font-size: 14px;
 }
 
 .cofi-explain {
@@ -66,7 +48,6 @@
   width: 100%;
 }
 .ETH_icon {
-  width: 40px;
   position: absolute;
   left: -5px;
   z-index: 1;
@@ -90,7 +71,7 @@
 }
 .balance {
   font-size: 17px;
-  color: #727272;
+  color: var(--dove);
 }
 .pull_img {
   margin-left: 5px;

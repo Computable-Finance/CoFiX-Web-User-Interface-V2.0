@@ -37,6 +37,7 @@ export class CoinInputPage implements OnInit, OnDestroy {
   @Input() isShowBlance = false;
   @Input() isShowMax = true;
   @Input() disabled = false;
+  @Input() label: string = '';
 
   constructor(
     private modalController: ModalController,

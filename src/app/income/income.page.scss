@@ -3,7 +3,6 @@ ion-menu-button {
 }
 :host ::ng-deep app-banner.desc_line {
   .centent .desc {
-    padding-top: 15px;
     line-height: 25px !important;
   }
 }
@@ -12,20 +11,6 @@ ion-menu-button {
     width: 95% !important;
     padding-bottom: 15px;
   }
-  .center .text2 {
-    font-size: 12px;
-    margin-bottom: 5px;
-  }
-}
-.content_text_fir {
-  width: 510px;
-  margin: 0 auto;
-  z-index: 9;
-  background: #1b2330;
-  margin-top: 100px;
-  border-radius: 14px;
-  background: url(../../assets/images/sy_bg.png) no-repeat;
-  background-size: 100% 100%;
 }
 .content_text_fir .center {
   width: 88%;
@@ -37,30 +22,32 @@ ion-menu-button {
   font-size: 14px;
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: bold;
-  color: #ffffff;
+  color: var(--white);
   line-height: 32px;
-}
-.center .text2 {
-  line-height: 14px;
-  width: 100%;
-  font-size: 14px;
-  font-family: 'Source Sans Pro', sans-serif;
-  font-weight: 400;
-  color: #b3b3b3;
-}
-.center .text3 {
-  display: block;
-  /* width: 230px; */
-  height: 24px;
-  font-size: 14px;
-  font-family: 'Source Sans Pro', sans-serif;
-  font-weight: 400;
-  color: #e48c24;
-  cursor: pointer;
-  margin-top: 18px;
-  padding-bottom: 15px;
 }
 
 .connect-card {
   width: 89%;
+}
+.conversionPrice .title {
+  font-size: 15px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.67;
+  letter-spacing: normal;
+  color: var(--dove);
+}
+.button-div {
+  margin: 32px auto 8px auto;
+}
+.button-outline {
+  margin: 0px auto 16px auto;
+  --border-color: var(--silver);
+}
+.button-outline .ion-button-label {
+  color: #000;
+}
+.close-img {
+  left: 20px;
 }

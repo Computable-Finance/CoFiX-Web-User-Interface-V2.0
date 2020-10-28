@@ -3,6 +3,7 @@
   <div class="card-title">{{'liquid_desc' | translate}}</div>
 
   <ion-card class="swap-card" *ngIf="!showAddModel">
+    
     <div class="card-content">
       <app-liquid-input
         class="liquid-input"
@@ -18,19 +19,6 @@
       </ion-button>
     </div>
   </ion-card>
-  <!--
-  <div
-    class="liquid-div"
-    *ngIf="shareStateQuery.getValue().connectedWallet && !pairAttended.USDT &&  !this.pairAttended.HBTC && !showAddModel && !showRedemtionModel"
-  >
-    <div
-      class="no-liquid"
-      *ngIf="shareStateQuery.getValue().connectedWallet && !pairAttended.USDT &&  !this.pairAttended.HBTC"
-    >
-      <img src="./assets/images/1.png" />
-      <p>{{'no_add_liquid'| translate}}</p>
-    </div>
-  </div> -->
   <ng-container *ngIf="(!showAddModel && !showRedemtionModel)">
     <div class="card-title claim-title">
       {{'liquid_claim_desc' | translate}}
@@ -113,7 +101,6 @@
 
   <app-warning-liquid></app-warning-liquid>
   <app-banner
-    [img]="'pool1_bg.png'"
     [bannerConent]="liquidContent"
   ></app-banner>
 

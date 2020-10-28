@@ -1,81 +1,97 @@
 <ion-content>
   <app-header [activeId]="'swap'" (onRefresh)="refreshPage()"></app-header>
-  <div class="card-title">{{'swap_desc' | translate}}</div>
   <ion-card class="swap-card">
     <div class="card-content">
-      <p>{{ 'zf_text'| translate}}</p>
-
-      <app-coin-input
-        #fromCoinInputView
-        (onMaxClick)="setFromCoinMax($event)"
-        (onChangeCoin)="changeFromCoin($event)"
-        (onInputChange)="fromCoinInput($event)"
-        [amount]="fromCoin.amount"
-        [maxAmount]="fromCoin.balance"
-        [placeHolder]="fromCoin.placeholder"
-        [coin]="fromCoin.id"
-        [isShowError]="showError"
-        [isShowBlance]="showBalance"
-        [isShowMax]="isShowFromMax"
-      ></app-coin-input>
+      <app-card-title [cardTitle]="'swap_desc'" [alertTitle]="'ygck'" [alertContent]="'ygck_cont'"></app-card-title>
+      <app-coin-input #fromCoinInputView (onMaxClick)="setFromCoinMax($event)" (onChangeCoin)="changeFromCoin($event)"
+          (onInputChange)="fromCoinInput($event)" [amount]="fromCoin.amount" [maxAmount]="fromCoin.balance"
+          [placeHolder]="fromCoin.placeholder" [coin]="fromCoin.id" [isShowError]="showError" [isShowBlance]="showBalance"
+          [isShowMax]="isShowFromMax" [label]="'zf_text'"></app-coin-input>
+      
       <div class="divider-swap"></div>
+      <app-coin-input #toCoinInputView (onMaxClick)="setToCoinMax($event)" (onChangeCoin)="changeToCoin($event)"
+          (onInputChange)="toCoinInput($event)" [amount]="toCoin.amount" [placeHolder]="toCoin.placeholder" [coin]="toCoin.id"
+          [isInsufficientError]="isInsufficientError" [maxLiquid]="ERC20BalanceOfPair[toCoin.id]" [isShowMax]="isShowToMax" [label]="'hq_text'"
+          [disabled]="true"></app-coin-input>
+      
 
-      <p class="get-text">{{ 'hq_text'| translate}}</p>
-      <app-coin-input
-        #toCoinInputView
-        (onMaxClick)="setToCoinMax($event)"
-        (onChangeCoin)="changeToCoin($event)"
-        (onInputChange)="toCoinInput($event)"
-        [amount]="toCoin.amount"
-        [placeHolder]="toCoin.placeholder"
-        [coin]="toCoin.id"
-        [isInsufficientError]="isInsufficientError"
-        [maxLiquid]="ERC20BalanceOfPair[toCoin.id]"
-        [isShowMax]="isShowToMax"
-        [disabled]="true"
-      ></app-coin-input>
-
+      <div class="divider-swap"></div>
       <ion-grid class="ion-no-padding">
+
+        <ion-row class="ion-align-items-center ion-align-self-center conversionPrice {{isShowDetail?'show-detail':''}}">
+          <ion-col class="label" size="4">{{'dhjg_text' | translate}}
+            <img class="alert-icon" src="./assets/images/question.png" (click)="showAlert('jgsm_title','jgsm_cont')" />
+          </ion-col>
+          <ion-col class="ion-text-right  number" size="7">1 <span class="tk1">{{fromCoin.id}}</span> =
+            <span class="changePrice">{{changePrice | truncate:'--':2}}</span>
+            {{toCoin.id}}
+          </ion-col>
+          <ion-col size="1">
+            <app-select-arrow [isDown]="isShowDetail" (onArrowChange)="selectArrowChange($event)"></app-select-arrow>
+          </ion-col>
+        </ion-row>
+        <ng-container *ngIf="isShowDetail">
+            <ion-grid class="price-detail">
+              <ion-row>
+                <ion-col  class="label" size="5">
+                  <div class="dot-line"></div>
+                  <div class="dot"></div>{{'swap_nestprice' | translate}}
+                </ion-col>
+                <ion-col class="number  ion-text-right" size="7">
+                  1 <span class="tk1">{{fromCoin.id}}</span> =
+                  <span class="changePrice">{{changePrice | truncate:'--':2}}</span>
+                  {{toCoin.id}}
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col  class="label" size="5">
+                  <div class="dot margin-left"></div>{{'swap_pricefee' | translate}}
+                </ion-col>
+                <ion-col  class="number  ion-text-right" size="7">
+                  ***
+                  {{toCoin.id}}
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col  class="exlpain" size="5">
+                  {{'swap_priceexplain' | translate}}
+                </ion-col>
+                <ion-col  class="link ion-text-right" size="7">
+                  <a>{{'swap_how' | translate}}</a>
+                </ion-col>
+              </ion-row>
+
+            </ion-grid>
+        </ng-container>
+        
         <ion-row
           class="ion-align-items-center ion-align-self-center conversionPrice"
         >
           <ion-col class="label" size="4"
-            >{{'oracle_cost' | translate}}</ion-col
+            >{{'oracle_cost' | translate}}<img class="alert-icon" src="./assets/images/question.png" (click)="showAlert('ygck','ygck_cont')" /></ion-col
           >
-          <ion-col class="ion-text-right" size="8">
+          <ion-col class="ion-text-right number" size="8">
             +{{oracleCost}} ETH
           </ion-col>
         </ion-row>
         <ion-row
           class="ion-align-items-center ion-align-self-center conversionPrice"
         >
-          <ion-col class="label" size="4"
-            >{{'dhjg_text' | translate}}
-            <img
-              class="alert-icon"
-              src="./assets/images/question.png"
-              (click)="showAlert('jgsm_title','jgsm_cont')"
-          /></ion-col>
-          <ion-col class="ion-text-right" size="8"
-            >1 <span class="tk1">{{fromCoin.id}}</span> =
-            <span class="changePrice"
-              >{{changePrice | truncate:'--'}}</span
-            >
-            {{toCoin.id}}
-          </ion-col>
-        </ion-row>
-        <ion-row
-          class="ion-align-items-center ion-align-self-center conversionPrice"
-        >
           <ion-col class="label" size="6"
-            >{{'ygck'|translate}}
+            >{{'Minimum Received'|translate}}
             <img
               class="alert-icon"
               src="./assets/images/question.png"
               (click)="showAlert('ygck','ygck_cont')"
           /></ion-col>
-          <ion-col class="ion-text-right" size="6"
-            >{{expectedCofi | truncate:'--'}} CoFi
+          <ion-col class="ion-text-right  number" size="6"
+            >** {{toCoin.id}}
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center ion-align-self-center conversionPrice">
+          <ion-col class="label" size="6">{{'ygck'|translate}}
+            <img class="alert-icon" src="./assets/images/question.png" (click)="showAlert('ygck','ygck_cont')" /></ion-col>
+          <ion-col class="ion-text-right  number" size="6">{{expectedCofi | truncate:'--'}} CoFi
           </ion-col>
         </ion-row>
         <ion-row
@@ -118,7 +134,6 @@
   </ion-card>
 
   <app-banner
-    [img]="'exchanged-bg.png'"
     [bannerConent]="swapContent"
   ></app-banner>
 </ion-content>

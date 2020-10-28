@@ -12,11 +12,15 @@ export interface BannerContent {
   styleUrls: ['./banner.page.scss'],
 })
 export class BannerPage implements OnInit {
-  @Input() img: string = 'exchanged-bg.png';
   @Input() bannerConent: BannerContent;
+  isShowDetail: boolean = false;
   constructor() {}
   ngOnInit() {}
   goto(link) {
     window.open(link);
+  }
+  showDetailClick(event) {
+    console.log(event);
+    this.isShowDetail = event.isDown;
   }
 }
