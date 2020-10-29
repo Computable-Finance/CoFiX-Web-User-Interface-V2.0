@@ -7,9 +7,8 @@ export interface TokenInfo {
   stakingPoolAddress: string;
 }
 
-// key = token address
 export interface TokensInfoModel {
-  [key: string]: Partial<TokenInfo>;
+  [address: string]: Partial<TokenInfo>;
 }
 
 export function createInitialState(): TokensInfoModel {

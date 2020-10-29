@@ -6,13 +6,13 @@ import { TokenInfo, TokensInfoStore } from './token.store';
 export class TokenInfoService {
   constructor(private store: TokensInfoStore) {}
 
-  updateTokenInfo(key: string, tokenInfo: Partial<TokenInfo>) {
+  updateTokenInfo(address: string, tokenInfo: Partial<TokenInfo>) {
     const value = this.store.getValue();
-    const info = value[key];
+    const info = value[address];
     if (info !== undefined) {
       Object.keys(tokenInfo).forEach((k) => (info[k] = tokenInfo[k]));
     } else {
-      value[key] = tokenInfo;
+      value[address] = tokenInfo;
     }
     this.store.update(value);
   }

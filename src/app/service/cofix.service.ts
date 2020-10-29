@@ -379,13 +379,6 @@ export class CofiXService {
 
     const weth9 = this.getERC20Contract(this.contractAddressList.WETH9);
     const weth9Balance = await weth9.balanceOf(pairAddress);
-    // const oraclePrice = [
-    //   checkedPriceNow.ethAmount,
-    //   checkedPriceNow.erc20Amount,
-    //   '0',
-    //   kinfo.kOriginal.toString(),
-    //   '0',
-    // ];
     const pair = this.getCoFixPair(pairAddress);
     const navPerShare = await pair.getNAVPerShare(
       checkedPriceNow.ethAmount,

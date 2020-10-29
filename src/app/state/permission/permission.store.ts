@@ -8,9 +8,8 @@ export interface Permission {
   [key: string]: Allowance;
 }
 
-// key = account
 export interface PermissionsModel {
-  [key: string]: Partial<Permission>;
+  [account: string]: Partial<Permission>;
 }
 
 export function createInitialState(): PermissionsModel {

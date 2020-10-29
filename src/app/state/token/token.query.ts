@@ -8,21 +8,21 @@ export class TokensInfoQuery extends Query<TokensInfoModel> {
     super(store);
   }
 
-  getDecimals(key: string) {
-    return this.getValueOfProperty(key, 'decimals');
+  getDecimals(address: string) {
+    return this.getValueOfProperty(address, 'decimals');
   }
 
-  getPairAddress(key: string) {
-    return this.getValueOfProperty(key, 'pairAddress');
+  getPairAddress(address: string) {
+    return this.getValueOfProperty(address, 'pairAddress');
   }
 
-  getStakingPoolAddress(key: string) {
-    return this.getValueOfProperty(key, 'stakingPoolAddress');
+  getStakingPoolAddress(address: string) {
+    return this.getValueOfProperty(address, 'stakingPoolAddress');
   }
 
-  private getValueOfProperty(key: string, property: string) {
+  private getValueOfProperty(address: string, property: string) {
     const value = this.store.getValue();
-    const info = value[key];
+    const info = value[address];
     if (info !== undefined) {
       return info[property];
     }
