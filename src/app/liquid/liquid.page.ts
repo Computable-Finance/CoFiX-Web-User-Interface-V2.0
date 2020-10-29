@@ -23,9 +23,9 @@ export class LiquidPage implements OnInit {
   redeemLiquidView: RedeemLiquidPage;
   public liquidContent: BannerContent = {
     title: 'liquid_title',
-    descriptions: ['liquid_desc1', 'liquid_desc2'],
+    descriptions: ['liquid_desc1', 'liquid_desc2', 'liquid_desc3'],
     more: {
-      text: 'liquid_more',
+      text: 'read_more',
       url: 'https://github.com/Computable-Finance/Doc#4-market-maker-mechanism',
     },
   };
@@ -54,6 +54,9 @@ export class LiquidPage implements OnInit {
   todoValue = { USDT: '', HBTC: '' };
   hadValue = { USDT: '', HBTC: '' };
   NAVPerShare = { USDT: '', HBTC: '' };
+
+  ETHAmountForRemoveLiquidity = { USDT: '', HBTC: '' };
+  tokenAmountForRemoveLiquidity = { USDT: '', HBTC: '' };
   shareState: any;
   showAddModel = false;
   showLiquidInfo = false;
@@ -192,6 +195,7 @@ export class LiquidPage implements OnInit {
             this.shareState.tokenPairAddress[coinItem]
           )
         );
+
         this.hadValue[coinItem] = await this.balanceTruncatePipe.transform(
           await this.cofixService.getERC20Balance(
             this.shareState.stakingPoolAddress[coinItem]
@@ -205,6 +209,23 @@ export class LiquidPage implements OnInit {
             false
           )
         ).nAVPerShareForBurn;
+        const pair = this.shareStateQuery.getValue().tokenPairAddress[coinItem];
+        const address = this.cofixService.getCurrentContractAddressList()[
+          coinItem
+        ];
+        const resultETH = await this.cofixService.getETHAmountForRemoveLiquidity(
+          address,
+          pair,
+          this.todoValue[coinItem] || '0'
+        );
+        this.ETHAmountForRemoveLiquidity[coinItem] = resultETH.result;
+
+        const resultToken = await this.cofixService.getTokenAmountForRemoveLiquidity(
+          address,
+          pair,
+          this.todoValue[coinItem] || '0'
+        );
+        this.tokenAmountForRemoveLiquidity[coinItem] = resultToken.result;
       });
     }
   }

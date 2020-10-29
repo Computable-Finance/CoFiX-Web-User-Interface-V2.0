@@ -173,10 +173,10 @@ export class RedeemLiquidPage implements OnInit {
         this.toCoin.amount || '0'
       );
 
+      console.log(result);
       this.ETHAmountForRemoveLiquidity = result.result;
       this.NAVPerShare = result.nAVPerShareForBurn;
     }
-
     if (this.isTokenChecked) {
       const result = await this.cofixService.getTokenAmountForRemoveLiquidity(
         this.toCoin.address,

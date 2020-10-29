@@ -1,16 +1,8 @@
 <ion-card class="swap-card">
   <div class="card-content">
-    <ion-icon
-      name="arrow-undo"
-      class="close-icon"
-      (click)="cancel()"
-    ></ion-icon>
-    <app-liquid-input
-      class="liquid-input"
-      (onChangeCoin)="changeCoin($event)"
-      [coin]="toCoin.id"
-    ></app-liquid-input>
-    <p>{{ 'redemption'| translate}}</p>
+    <img src="./assets/images/left-arrow.png" class="close-img" (click)="cancel()">
+    <app-card-title [cardTitle]="'liquidpool_withdraw_title'" [cardSubTitle]="'liquidpool_withdraw_subtitle'"></app-card-title>
+   
     <app-coin-input
       #toCoinInputView
       (onMaxClick)="setToCoinMax($event)"
@@ -21,13 +13,42 @@
       [maxAmount]="toCoin.balance"
       [isDropDown]="false"
       [isShowError]="showError"
+      [label]="'enter_amount'"
       class="coin-input"
     ></app-coin-input>
-    <p class="oracle-cost">
-      <span>{{'oracle_cost' | translate}}</span>：<span class="fee"
-        >+{{oracleCost | truncate:'--'}}</span
-      >ETH
-    </p>
+    <ion-grid class="ion-no-padding claimETH">
+      <ion-row class="ion-align-items-center ion-align-self-center conversionPrice">
+        <ion-col class="title" size="10">{{'liquidpool_withdraw_to' | translate}}</ion-col>
+        <ion-col size="2" class="ion-text-left">
+          <img class="title-alert" src="./assets/images/question.png" (click)="showAlert()" />
+        </ion-col>
+      </ion-row>
+    <ion-row class="ion-align-items-center ion-align-self-center conversionPrice">
+      <ion-col size="1">
+        <img src="./assets/images/icon/{{fromCoin.id}}.png" />
+      </ion-col>
+      <ion-col size="2"> {{fromCoin.id}} </ion-col>
+      <ion-col size="8" class="ion-text-right number">
+        {{isETHChecked?(ETHAmountForRemoveLiquidity | truncate:'--'):'--'}}
+      </ion-col>
+      <ion-col size="1" class="ion-text-right">
+        <ion-toggle [(ngModel)]="isETHChecked" (ionChange)="changeETHCheck()" color="secondary"></ion-toggle>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-align-items-center ion-align-self-center conversionPrice">
+      <ion-col size="1">
+        <img src="./assets/images/icon/{{toCoin.id}}.png" />
+      </ion-col>
+      <ion-col size="3"> {{toCoin.id}} </ion-col>
+      <ion-col size="7" class="ion-text-right number">
+        {{isTokenChecked?(tokenAmountForRemoveLiquidity |
+              truncate:'--'):'--'}}
+      </ion-col>
+      <ion-col size="1" class="ion-text-right">
+        <ion-toggle [(ngModel)]="isTokenChecked" (ionChange)="changeTokenCheck()" color="secondary"></ion-toggle>
+      </ion-col>
+    </ion-row>
+    </ion-grid>
 
     <app-explain-liquid
       [todoValue]="todoValue"
@@ -37,40 +58,8 @@
       class="explain-div"
     ></app-explain-liquid>
 
-    <p>{{ 'select'| translate}}</p>
-
     <ion-grid>
-      <ion-row class="ion-align-items-center ion-align-self-center choose-div">
-        <ion-col size="2">
-          <img src="./assets/images/icon/{{fromCoin.id}}.png" />
-        </ion-col>
-        <ion-col size="2"> {{fromCoin.id}} </ion-col>
-        <ion-col size="7" class="ion-text-right">
-          {{isETHChecked?(ETHAmountForRemoveLiquidity | truncate:'--'):'--'}}
-        </ion-col>
-        <ion-col size="1" class="ion-text-right">
-          <ion-toggle
-            [(ngModel)]="isETHChecked"
-            (ionChange)="changeETHCheck()"
-          ></ion-toggle>
-        </ion-col>
-      </ion-row>
-      <ion-row class="ion-align-items-center ion-align-self-center choose-div">
-        <ion-col size="2">
-          <img src="./assets/images/icon/{{toCoin.id}}.png" />
-        </ion-col>
-        <ion-col size="3"> {{toCoin.id}} </ion-col>
-        <ion-col size="6" class="ion-text-right">
-          {{isTokenChecked?(tokenAmountForRemoveLiquidity |
-          truncate:'--'):'--'}}
-        </ion-col>
-        <ion-col size="1" class="ion-text-right">
-          <ion-toggle
-            [(ngModel)]="isTokenChecked"
-            (ionChange)="changeTokenCheck()"
-          ></ion-toggle>
-        </ion-col>
-      </ion-row>
+
       <ion-row class="ion-align-items-center ion-align-self-center conversionPrice border-top redeemError" *ngIf="redeemError.isError">
         <ion-col class="error" size="12">{{'transaction-error' | translate}}[{{redeemError.msg}}]</ion-col>
       </ion-row>

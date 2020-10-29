@@ -165,7 +165,7 @@ export class AddLiquidPage implements OnInit {
     this.setExpectedXToken();
   }
 
-  cancel(event) {
+  cancel() {
     this.onClose.emit({ type: 'cancel', toCoin: this.toCoin });
   }
 

@@ -3,9 +3,9 @@
     border-left: none;
   }
 }
-.choose-div img {
-  width: 40px;
-  height: 40px;
+.conversionPrice img {
+  width: 24px;
+  height: 24px;
 }
 .choose-div {
   font-size: 17px;
@@ -29,4 +29,27 @@
 
 .redeemError {
   margin-top: 15px;
+}
+
+.swap-card {
+  margin-top: 26px;
+}
+.claimETH {
+  margin-top: 16px;
+  height: unset;
+}
+.claimETH .number {
+  font-size: 17px;
+  height: unset;
+}
+.title {
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.67;
+  letter-spacing: normal;
+}
+.title-alert {
+  width: 18px !important;
+  height: 18px !important;
 }

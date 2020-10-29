@@ -1,16 +1,8 @@
 <ion-card class="swap-card" [ngClass]="{'pairAttended-card':pairAttended}">
   <div class="card-content">
-    <ion-icon
-      name="arrow-undo"
-      class="close-icon"
-      (click)="cancel($event)"
-    ></ion-icon>
-    <app-liquid-input
-      class="liquid-input"
-      (onChangeCoin)="changeCoin($event)"
-      [coin]="toCoin.id"
-    ></app-liquid-input>
-    <p>{{ 'input'| translate}}</p>
+    <img src="./assets/images/left-arrow.png" class="close-img" (click)="cancel()">
+    <app-card-title [cardTitle]="'liquidpool_add'" [cardSubTitle]="'liquidpool_add_subtitle'"></app-card-title>
+   
     <app-coin-input
       #fromCoinInputView
       (onMaxClick)="setFromCoinMax($event)"
@@ -21,11 +13,10 @@
       [maxAmount]="fromCoin.balance"
       [isShowError]="showFromError"
       [isShowBlance]="showBalance"
-      [isShowMax]="isShowFromMax"
+      [isShowMax]="isShowFromMax" [label]="'input'"
 
     ></app-coin-input>
-    <div class="divider"></div>
-    <p>{{ 'input'| translate}}</p>
+    <div class="divider-swap"></div>
     <app-coin-input
       #toCoinInputView
       (onMaxClick)="setToCoinMax($event)"
@@ -36,22 +27,21 @@
       [maxAmount]="toCoin.balance"
       [isShowError]="showToError"
       [isShowBlance]="showBalance"
-      [isShowMax]="isShowToMax"
+      [isShowMax]="isShowToMax" [label]="'input'"
     ></app-coin-input>
-    <p class="oracle-cost">
-      <span>{{'oracle_cost' | translate}}</span>：<span class="fee"
-        >+{{oracleCost | truncate:'--'}}</span
-      >ETH
-    </p>
     <ion-grid class="ion-no-padding">
+      <ion-row class="ion-align-items-center ion-align-self-center conversionPrice">
+        <ion-col class="label" size="6">{{'oracle_cost' | translate}}</ion-col>
+        <ion-col class="ion-text-right number" size="6">+{{oracleCost | truncate:'--'}} ETH
+        </ion-col>
+      </ion-row>
       <ion-row
         class="ion-align-items-center ion-align-self-center conversionPrice"
       >
-        <ion-col class="label" size="6"
-          >{{'expected' | translate}}{{xtValue}}{{'expected2' |
-          translate}}</ion-col
+        <ion-col class="label" size="8"
+          >{{'expected' | translate}}<img class="alert-icon" src="./assets/images/question.png" (click)="showAlert('jgsm_title','jgsm_cont')" /></ion-col
         >
-        <ion-col class="ion-text-right" size="6"
+        <ion-col class="ion-text-right number" size="4"
           >{{expectedXToken | truncate:'--'}}
         </ion-col>
       </ion-row>
@@ -60,14 +50,12 @@
         class="ion-align-items-center ion-align-self-center conversionPrice"
       >
         <ion-col class="label" size="10"
-          >{{'incoin_cofi' | translate}}{{xtValue}}{{'incoin_cofi2' |
-          translate}}</ion-col
+          >{{'incoin_cofi' | translate}}<img class="alert-icon" src="./assets/images/question.png" (click)="showAlert('jgsm_title','jgsm_cont')" /></ion-col
         >
         <ion-col class="ion-text-right" size="2">
           <ion-toggle [(ngModel)]="isStake"></ion-toggle>
         </ion-col>
       </ion-row>
-
         <ion-row class="ion-align-items-center ion-align-self-center conversionPrice" *ngIf="addLiquidError.isError">
           <ion-col class="error" size="12">{{'transaction-error' | translate}}[{{addLiquidError.msg}}]</ion-col>
         </ion-row>

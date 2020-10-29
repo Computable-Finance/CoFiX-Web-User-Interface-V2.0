@@ -84,6 +84,11 @@ button:focus {
 .balance-info {
   font-size: 13px !important;
   color: var(--dove) !important;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.69;
+  letter-spacing: normal;
 }
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,

@@ -43,10 +43,6 @@
 .expect-balance {
   color: white;
 }
-.operation-btn {
-  margin-bottom: 32px;
-  width: 100%;
-}
 .ETH_icon {
   position: absolute;
   left: -5px;
@@ -85,9 +81,9 @@
 .rotate {
   transform: rotate(180deg);
 }
-.operation-btn {
-  --border-width: 1px;
-  width: 99%;
+
+.button-div {
+  margin: 32px auto 8px auto;
 }
 .small-btn {
   width: 45%;
@@ -102,7 +98,4 @@
 }
 .motoken {
   margin-top: 0;
-}
-.swap-card {
-  border-radius: 16px;
 }

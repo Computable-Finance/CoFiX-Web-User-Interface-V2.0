@@ -28,6 +28,8 @@ export class ExplainLiquidPage implements OnInit {
   }
 
   xtValue: string = 'XT-1';
+
+  oracleCost = 0.01;
   constructor(
     private alertController: AlertController,
     private translateService: TranslateService,

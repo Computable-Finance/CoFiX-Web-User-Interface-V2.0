@@ -41,13 +41,11 @@ ion-menu-button {
 .button-div {
   margin: 32px auto 8px auto;
 }
-.button-outline {
-  margin: 0px auto 16px auto;
-  --border-color: var(--silver);
-}
-.button-outline .ion-button-label {
-  color: #000;
-}
+
 .close-img {
   left: 20px;
+}
+
+.swap-card {
+  margin-top: 26px;
 }

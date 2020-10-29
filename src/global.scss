@@ -73,11 +73,18 @@ ion-button {
   font-weight: 600;
   font-family: 'Source Sans Pro', sans-serif;
   height: 50px !important;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
 }
 .ion-button-label {
   height: 34px;
   line-height: 34px;
   font-size: 17px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
 }
 .popover-warning {
   --height: auto;
@@ -140,7 +147,7 @@ ion-button {
 }
 .swap-card {
   width: 510px;
-  margin: 25px auto;
+  margin: 0px auto 25px auto;
   background: white;
   border-radius: 16px;
   box-shadow: 0 11px 19px 0 rgba(0, 0, 0, 0.08);
@@ -200,6 +207,11 @@ ion-button {
   cursor: pointer;
   color: var(--dove);
   font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.57;
+  letter-spacing: normal;
 }
 
 .button-div {
@@ -428,4 +440,35 @@ ion-toggle {
   cursor: pointer;
   z-index: 10;
   width: 32px;
+}
+.button-outline {
+  margin: 0px auto 16px auto;
+  --border-color: var(--silver);
+}
+.button-outline .ion-button-label {
+  color: #000;
+}
+
+.divider-swap {
+  height: 12px;
+  background: var(--alabaster);
+}
+
+.claimETH {
+  height: 113px;
+  border-radius: 4px;
+  border: solid 1px var(--concrete);
+  background-color: var(--white);
+}
+.claimETH .number {
+  height: 47px;
+  font-size: 36px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  color: var(--black);
+}
+.claimETH .conversionPrice {
+  border: 0;
 }
