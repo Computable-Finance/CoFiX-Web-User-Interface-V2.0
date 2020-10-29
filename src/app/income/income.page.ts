@@ -36,6 +36,8 @@ export class IncomePage implements OnInit {
   isApproved = false;
   incomeError = { isError: false, msg: '' };
   receiveError = { isError: false, msg: '' };
+  isShowModal: boolean = false;
+  profit = { title: '', subtitle: '', isDeposit: false };
   constructor(
     private cofixService: CofiXService,
     private balanceTruncatePipe: BalanceTruncatePipe,
@@ -196,8 +198,6 @@ export class IncomePage implements OnInit {
     });
     await alert.present();
   }
-  isShowModal: boolean = false;
-  profit = { title: '', subtitle: '', isDeposit: false };
   showModal(type) {
     this.isShowModal = true;
     if (type === 'withdraw') {
@@ -218,5 +218,9 @@ export class IncomePage implements OnInit {
   cancel(type) {
     console.log(type);
     this.isShowModal = false;
+  }
+
+  showSkeleton(value) {
+    return value === undefined || value === '';
   }
 }

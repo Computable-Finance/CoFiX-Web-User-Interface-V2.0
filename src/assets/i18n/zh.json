@@ -191,6 +191,12 @@
   "liquidpool_withdraw_title":"Withdraw from the Liquidity Pool",
   "liquidpool_withdraw_subtitle":"We do NOT recommend withdrawing too early or too frequently",
   "liquidpool_withdraw_to":"WITHDRAW TO(SELECT ONLY ONE)",
-  "liquidpool_wallet":"XTokens in your wallet (Liquidity Pool)"
+  "liquidpool_wallet":"XTokens in your wallet (Liquidity Pool)",
+  "miningpool_deposit_title":"Deposit XTokens to the Mining Pool",
+  "miningpool_deposit_subtitle":"Deposit XTokens to the Mining Pool. Then you can mine CoFi tokens.",
+  "miningpool_already":"Xtokens already deposited",
+  "miningpool_withdraw_title":"Withdraw from the Mining Pool",
+  "miningpool_withdraw_subtitle":"Withdraw Xtokens from the Mining Pool first, to be able to withdraw all funds from the Liquidity Pool",
+  "enter_withdraw":"Enter amount to withdraw"
 
 }

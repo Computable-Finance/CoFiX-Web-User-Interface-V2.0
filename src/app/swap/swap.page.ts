@@ -481,4 +481,7 @@ export class SwapPage implements OnInit {
 
     console.log(this.isShowDetail);
   }
+  showSkeleton(value) {
+    return value === undefined || value === '';
+  }
 }

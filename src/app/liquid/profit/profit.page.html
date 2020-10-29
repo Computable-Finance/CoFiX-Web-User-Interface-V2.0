@@ -1,0 +1,111 @@
+
+<app-coin-input
+  #coinInputView
+  (onMaxClick)="setCoinMax()"
+  [amount]="balance"
+  (onInputChange)="coinInput($event)"
+  [isDropDown]="showSelect"
+  [coin]="profitCoin"
+  [isShowError]="showError"
+  [maxAmount]="isDeposit?todoValue:hadValue"
+  [label]="'enter_amount'"
+  class="coin-input"
+>
+</app-coin-input>
+<div class="count">
+  <div class="explain-div">
+    <ion-grid class="ion-no-padding" *ngIf="isDeposit">
+      <ion-row class="ion-align-items-center ion-align-self-center conversionPrice">
+        <ion-col class="label" size="4">{{'miningpool_speed' | translate}}
+      
+        </ion-col>
+        <ion-col class="ion-text-right" size="8">{{miningSpeed | truncate:'--'}} CoFi/week
+        </ion-col>
+      </ion-row>
+      
+      <ion-row
+        class="ion-align-items-center ion-align-self-center conversionPrice"
+      >
+        <ion-col class="label" size="8"
+          >{{hadLabel | translate}}
+          
+        </ion-col>
+        <ion-col class="ion-text-right" size="4" *ngIf="!showSkeleton(hadValue)"
+          >{{hadValue | truncate:'--'}}
+        </ion-col>
+
+        <ion-col size="4" *ngIf="showSkeleton(hadValue)">
+          <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-align-items-center ion-align-self-center conversionPrice">
+        <ion-col class="label" size="8">{{todoLabel | translate}}
+        </ion-col>
+        <ion-col class="ion-text-right" size="4"  *ngIf="!showSkeleton(todoValue)">{{todoValue | truncate:'--'}}
+        </ion-col>
+
+        <ion-col size="4" *ngIf="showSkeleton(todoValue)">
+          <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-align-items-center ion-align-self-center conversionPrice" *ngIf="transcationError.isError">
+        <ion-col class="error" size="12">{{'transaction-error' | translate}}[{{transcationError.msg}}]</ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid class="ion-no-padding" *ngIf="!isDeposit">
+      <ion-row class="ion-align-items-center ion-align-self-center conversionPrice">
+        <ion-col class="label" size="8">{{'miningpool_token' | translate}}
+    
+        </ion-col>
+        <ion-col class="ion-text-right" size="4"  *ngIf="!showSkeleton(hadValue)">{{hadValue | truncate:'--'}} 
+        </ion-col>
+
+        <ion-col size="4" *ngIf="showSkeleton(hadValue)">
+          <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</div>
+
+<div class="button-div" *ngIf="isDeposit">
+  <ion-button
+    expand="block"
+    class="operation-btn approve-btn"
+    *ngIf="!isApproved"
+    (click)="approve()"
+  >
+    <div class="ion-button-label">
+      {{'sq_text' | translate}}
+      <div class="loading" *ngIf="isLoading.sq"></div>
+    </div>
+  </ion-button>
+  <ion-button
+    expand="block"
+    class="operation-btn"
+    [ngClass]="{'swap-btn':!isApproved,'full-btn':isApproved}"
+    (click)="save()"
+    [disabled]="!canSave()"
+  >
+    <div class="ion-button-label" *ngIf="canSave()">
+      {{'miningpool_deposit_title' | translate}}
+      <div class="loading" *ngIf="isLoading.cr"></div>
+    </div>
+    <div class="ion-button-label" *ngIf="!canSave()">
+      {{'add' | translate}}
+    </div>
+  </ion-button>
+</div>
+<div class="button-div" *ngIf="!isDeposit">
+  <ion-button
+    expand="block"
+    class="operation-btn approve-btn full-btn"
+    (click)="recieve()"
+    [disabled]="!canReceive()"
+  >
+    <div class="ion-button-label">
+      {{'qc' | translate}}
+      <div class="loading" *ngIf="isLoading.qc"></div>
+    </div>
+  </ion-button>
+</div>

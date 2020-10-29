@@ -102,4 +102,7 @@ export class CoinInputPage implements OnInit, OnDestroy {
       )
       .subscribe();
   }
+  showSkeleton(value) {
+    return value === undefined || value === '';
+  }
 }

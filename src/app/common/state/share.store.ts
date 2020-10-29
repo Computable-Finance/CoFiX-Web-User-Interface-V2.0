@@ -21,7 +21,7 @@ export function createInitialState(activeTab): ShareState {
     activeTab: activeTab,
     tokenPairAddress: { USDT: '', HBTC: '' },
     stakingPoolAddress: { USDT: '', HBTC: '' },
-    pairAttended: { USDT: 0, HBTC: 0 },
+    pairAttended: { USDT: false, HBTC: false },
     lang: environment.lang,
     knownRisk: false,
     knownRiskForAdd: false,

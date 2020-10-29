@@ -6,7 +6,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { CoinInputPage } from '../coin-input/coin-input.page';
+import { CoinInputPage } from 'src/app/common/components/coin-input/coin-input.page';
 
 @Component({
   selector: 'app-profit',
@@ -27,7 +27,7 @@ export class ProfitPage implements OnInit {
   @Input() transcationError = { isError: false, msg: '' };
   @Input() profitCoin: any;
   @Input() coin: any = 'USDT';
-  @Input() isMore: boolean = false;
+  @Input() miningSpeed: any;
 
   @Input('balance')
   set balance(value: string) {
@@ -55,7 +55,8 @@ export class ProfitPage implements OnInit {
   set hadValue(value: string) {
     this._hadValue = value;
   }
-  isSaveTab = true;
+
+  @Input() isDeposit = true;
   showSelect = false;
   showError = false;
   shoWErrorLabel = '';
@@ -72,9 +73,9 @@ export class ProfitPage implements OnInit {
   }
   swapTab(type) {
     if (type === 'deposit') {
-      this.isSaveTab = true;
+      this.isDeposit = true;
     } else {
-      this.isSaveTab = false;
+      this.isDeposit = false;
     }
 
     this.balance = '';
@@ -83,7 +84,7 @@ export class ProfitPage implements OnInit {
   }
 
   setCoinMax() {
-    if (this.isSaveTab) {
+    if (this.isDeposit) {
       this.balance = this.todoValue;
     } else {
       this.balance = this.hadValue;
@@ -130,12 +131,16 @@ export class ProfitPage implements OnInit {
   }
 
   canShowError() {
-    if (this.isSaveTab) {
+    if (this.isDeposit) {
       this.shoWErrorLabel = this.todoLabel + '_error';
       this.showError = Number(this.balance) > Number(this.todoValue);
     } else {
       this.shoWErrorLabel = this.hadLabel + '_error';
       this.showError = Number(this.balance) > Number(this.hadValue);
     }
+  }
+
+  showSkeleton(value) {
+    return value === undefined || value === '';
   }
 }

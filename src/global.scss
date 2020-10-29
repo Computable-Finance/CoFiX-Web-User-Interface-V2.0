@@ -149,7 +149,7 @@ ion-button {
   width: 510px;
   margin: 0px auto 25px auto;
   background: white;
-  border-radius: 16px;
+  border-radius: 4px;
   box-shadow: 0 11px 19px 0 rgba(0, 0, 0, 0.08);
 }
 .card-content {
@@ -461,7 +461,6 @@ ion-toggle {
   background-color: var(--white);
 }
 .claimETH .number {
-  height: 47px;
   font-size: 36px;
   font-weight: normal;
   font-stretch: normal;

@@ -11,6 +11,7 @@ import { AddLiquidPage } from './add/add-liquid.page';
 import { RedeemLiquidPage } from './redeem/redeem-liquid.page';
 import { ExplainLiquidPage } from './explain/explain-liquid.page';
 import { WarningLiquidPage } from './warning/warning-liquid.page';
+import { TokenMiningPage } from './mining/mining.page';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { WarningLiquidPage } from './warning/warning-liquid.page';
     RedeemLiquidPage,
     ExplainLiquidPage,
     WarningLiquidPage,
+    TokenMiningPage,
   ],
   exports: [LiquidPage],
 })

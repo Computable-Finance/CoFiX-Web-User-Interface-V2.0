@@ -1,37 +1,5 @@
 <ion-content [fullscreen]="true">
   <app-header [activeId]="'cofi'" (onRefresh)="refreshPage()"></app-header>
-  <!--
-  <ion-card class="swap-card">
-    <app-card-title [cardTitle]="'cofi_desc'" [alertTitle]="'ygck'" [alertContent]="'ygck_cont'"></app-card-title>
-    <div class="card-content">
-      <app-liquid-input
-        class="liquid-input"
-        (onChangeCoin)="changeCoin($event)"
-      ></app-liquid-input>
-
-      <app-profit
-        #cofiProfitView
-        class="profit"
-        [todoLabel]="'kcshare'"
-        [hadLabel]="'ycshare'"
-        [todoValue]="todoValue"
-        [hadValue]="hadValue"
-        [isApproved]="isApproved"
-        [isLoading]="isLoadingProfit"
-        [balance]="balance"
-        (onApprove)="approveCofi($event)"
-        (onSave)="saveCofi($event)"
-        (onRecieve)="receiveCofi($event)"
-        (onCoinInputChange)="resetCofiError()"
-        (onSetCoinMax)="resetCofiError()"
-        [profitCoin]="profitCoin"
-        [coin]="coin"
-        [isMore]="true"
-        [transcationError]="cofiError"
-      ></app-profit>
-    </div>
-  </ion-card>
--->
   <app-liquid-input class="liquid-input" (onChangeCoin)="changeCoin($event)"></app-liquid-input>
   <ion-card class="swap-card">
     <div class="card-content">
@@ -39,38 +7,48 @@
       <app-taken-info [infoTitle]="'ywc'" [token]="'CoFi'" [tokenBalance]="earnedRate?.earned"> </app-taken-info>
 
       <ion-grid class="ion-no-padding">
-        
-
         <ion-row
           class="ion-align-items-center ion-align-self-center conversionPrice"
         >
           <ion-col class="label" size="5">{{'dragcoin' | translate}}</ion-col>
-          <ion-col class="ion-text-right number" size="7"
-            >{{earnedRate?.rewardRate | truncate:'--'}} CoFi/Day
+          <ion-col class="ion-text-right number" size="7" *ngIf="!showSkeleton(earnedRate)"
+            >{{earnedRate?.rewardRate | truncate:'--'}} CoFi/week
+          </ion-col>
+          <ion-col size="7" *ngIf="showSkeleton(earnedRate)">
+            <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
           </ion-col>
         </ion-row>
         <ion-row class="ion-align-items-center ion-align-self-center conversionPrice">
           <ion-col class="label" size="8">{{'cofi_already' | translate}}</ion-col>
-          <ion-col class="ion-text-right number" size="4">**
+          <ion-col class="ion-text-right number" size="4"  *ngIf="!showSkeleton(earnedRate)">**
+          </ion-col>
+          <ion-col size="4" *ngIf="showSkeleton(earnedRate)">
+            <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
           </ion-col>
         </ion-row>
 
         <ion-row class="ion-align-items-center ion-align-self-center conversionPrice">
           <ion-col class="label" size="8">{{'cofi_wallet' | translate}}</ion-col>
-          <ion-col class="ion-text-right number" size="4">{{todoValue | truncate:'--' }}
+          <ion-col class="ion-text-right number" size="4" *ngIf="!showSkeleton(todoValue)">{{todoValue | truncate:'--' }}
+          </ion-col>
+          <ion-col size="4" *ngIf="showSkeleton(todoValue)">
+            <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
           </ion-col>
         </ion-row>
         <ion-row class="ion-align-items-center ion-align-self-center conversionPrice">
           <ion-col class="label" size="8">{{'cofi_market_price' | translate}}</ion-col>
-          <ion-col class="ion-text-right number" size="4">**
+          <ion-col class="ion-text-right number" size="4" *ngIf="!showSkeleton(todoValue)">**
+          </ion-col>
+          <ion-col size="4" *ngIf="showSkeleton(todoValue)">
+            <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
           </ion-col>
         </ion-row>
 
         <ion-row class="ion-align-items-center ion-align-self-center conversionPrice">
-          <ion-col class="label" size="8">{{'cofi_isdeposit' | translate}}
+          <ion-col class="label" size="10">{{'cofi_isdeposit' | translate}}
             <img class="alert-icon" src="./assets/images/question.png" (click)="showAlert('ygck','ygck_cont')" />
           </ion-col>
-          <ion-col class="ion-text-right" size="4">
+          <ion-col class="ion-text-right" size="2">
             <ion-toggle [(ngModel)]="isDeposit"></ion-toggle>
           </ion-col>
         </ion-row>

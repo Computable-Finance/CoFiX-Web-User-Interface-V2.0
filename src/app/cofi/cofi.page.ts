@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { BannerContent } from '../common/components/banner/banner.page';
-import { ProfitPage } from '../common/components/profit/profit.page';
 import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
 import { ShareStateQuery } from '../common/state/share.query';
 import { ShareStateService } from '../common/state/share.service';
@@ -14,7 +13,6 @@ import { CofiXService } from '../service/cofix.service';
   styleUrls: ['./cofi.page.scss'],
 })
 export class CofiPage implements OnInit {
-  @ViewChild(ProfitPage, { static: false }) cofiProfitView: ProfitPage;
   public cofixContent: BannerContent = {
     title: 'help_tips',
     descriptions: ['cofix_desc1', 'cofix_desc2', 'cofix_desc3'],
@@ -36,8 +34,6 @@ export class CofiPage implements OnInit {
   isLoadingProfit = { sq: false, cr: false, qc: false };
   balance: string = '';
   profitCoin = 'XTokens';
-  isApproved = false;
-  cofiError = { isError: false, msg: '' };
   withdrawError = { isError: false, msg: '' };
   constructor(
     private cofixService: CofiXService,
@@ -58,7 +54,6 @@ export class CofiPage implements OnInit {
   }
   refreshPage() {
     this.getCoFiTokenAndRewards();
-    this.getIsApproved();
   }
   gotoLiquid() {
     this.shareStateService.updateActiveTab('liquid');
@@ -104,9 +99,6 @@ export class CofiPage implements OnInit {
     this.hadValue = '';
     this.earnedRate = undefined;
     this.getCoFiTokenAndRewards();
-    this.getIsApproved();
-    this.cofiProfitView.resetInputSubscription();
-    this.cofiProfitView._balance = '';
     this.resetCofiError();
   }
 
@@ -136,88 +128,13 @@ export class CofiPage implements OnInit {
     }
   }
   resetCofiError() {
-    this.cofiError = { isError: false, msg: '' };
     this.withdrawError = { isError: false, msg: '' };
   }
-  async getIsApproved() {
-    if (this.shareStateQuery.getValue().connectedWallet) {
-      this.isApproved = await this.cofixService.approved(
-        this.shareState.tokenPairAddress[this.coin],
-        this.shareState.stakingPoolAddress[this.coin]
-      );
-    }
-  }
-
-  async approveCofi(event) {
-    if (!this.isApproved) {
-      this.utils.approveHandler(
-        this.isLoadingProfit,
-        this.cofiError,
-        this,
-        this.shareState.tokenPairAddress[this.coin],
-        this.shareState.stakingPoolAddress[this.coin]
-      );
-    }
-  }
-
-  async saveCofi(event) {
-    this.isLoadingProfit.cr = true;
-    this.cofixService
-      .depositXToken(
-        this.shareState.stakingPoolAddress[this.coin],
-        this.shareState.tokenPairAddress[this.coin],
-        event.balance
-      )
-      .then((tx: any) => {
-        console.log('tx.hash', tx.hash);
-        const provider = this.cofixService.getCurrentProvider();
-        provider.once(tx.hash, (transactionReceipt) => {
-          this.isLoadingProfit.cr = false;
-          this.getCoFiTokenAndRewards();
-          this.balance = undefined;
-        });
-        provider.once('error', (error) => {
-          console.log('provider.once==', error);
-          this.isLoadingProfit.cr = false;
-        });
-      })
-      .catch((error) => {
-        console.log('catch==', error);
-        console.log(error.code);
-        this.cofiError = { isError: true, msg: error.message };
-        this.isLoadingProfit.cr = false;
-      });
-  }
-
-  async receiveCofi(event) {
-    this.isLoadingProfit.qc = true;
-    this.cofixService
-      .withdrawDepositedXToken(
-        this.shareState.stakingPoolAddress[this.coin],
-        event.balance
-      )
-      .then((tx: any) => {
-        console.log('tx.hash', tx.hash);
-        const provider = this.cofixService.getCurrentProvider();
-        provider.once(tx.hash, (transactionReceipt) => {
-          this.isLoadingProfit.qc = false;
-          this.getCoFiTokenAndRewards();
-          this.balance = undefined;
-        });
-        provider.once('error', (error) => {
-          console.log('provider.once==', error);
-          this.isLoadingProfit.qc = false;
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-        this.cofiError = { isError: true, msg: error.message };
-        this.isLoadingProfit.qc = false;
-      });
-  }
-  isDeposit: boolean = false;
-
   async showAlert(title, content) {
     this.utils.showAlert(title, content);
+  }
+
+  showSkeleton(value) {
+    return value === undefined || value === '';
   }
 }

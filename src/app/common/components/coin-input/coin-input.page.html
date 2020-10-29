@@ -32,10 +32,17 @@
     <ion-row class="ion-align-items-center ion-align-self-center">
       <ion-col class="balance-info" size="10">
         <div *ngIf="isShowBlance && !isShowError">
-          <span>{{'your_balance' | translate}}</span>：<span
-            >{{maxAmount | truncate:'--'}}</span
-          >
-          {{coin}}
+          <ng-container *ngIf="!showSkeleton(maxAmount)">
+            <span>{{'your_balance' | translate}}</span>：<span
+            >{{maxAmount | truncate:'--'}}
+            </span>
+            {{coin}}
+          </ng-container>
+          <ng-container *ngIf="showSkeleton(maxAmount)">
+            <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
+          </ng-container>
+         
+
         </div>
 
         <div *ngIf="isShowError" class="error">

@@ -22,12 +22,17 @@
           <ion-col class="label" size="4">{{'dhjg_text' | translate}}
             <img class="alert-icon" src="./assets/images/question.png" (click)="showAlert('jgsm_title','jgsm_cont')" />
           </ion-col>
-          <ion-col class="ion-text-right  number" size="7">1 <span class="tk1">{{fromCoin.id}}</span> =
+          <ng-container *ngIf="!showSkeleton(changePrice)">
+            <ion-col class="ion-text-right  number" size="7">1 <span class="tk1">{{fromCoin.id}}</span> =
             <span class="changePrice">{{changePrice | truncate:'--':2}}</span>
             {{toCoin.id}}
-          </ion-col>
-          <ion-col size="1">
-            <app-select-arrow [isDown]="isShowDetail" (onArrowChange)="selectArrowChange($event)"></app-select-arrow>
+            </ion-col>
+            <ion-col size="1">
+              <app-select-arrow [isDown]="isShowDetail" (onArrowChange)="selectArrowChange($event)"></app-select-arrow>
+            </ion-col>
+          </ng-container>
+          <ion-col size="8" *ngIf="showSkeleton(changePrice)">
+            <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
           </ion-col>
         </ion-row>
         <ng-container *ngIf="isShowDetail">
@@ -70,8 +75,11 @@
           <ion-col class="label" size="4"
             >{{'oracle_cost' | translate}}<img class="alert-icon" src="./assets/images/question.png" (click)="showAlert('ygck','ygck_cont')" /></ion-col
           >
-          <ion-col class="ion-text-right number" size="8">
+          <ion-col class="ion-text-right number" size="8" *ngIf="!showSkeleton(changePrice)">
             +{{oracleCost}} ETH
+          </ion-col>
+          <ion-col size="8" *ngIf="showSkeleton(changePrice)">
+            <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
           </ion-col>
         </ion-row>
         <ion-row
@@ -84,14 +92,22 @@
               src="./assets/images/question.png"
               (click)="showAlert('ygck','ygck_cont')"
           /></ion-col>
-          <ion-col class="ion-text-right  number" size="6"
+          <ion-col class="ion-text-right  number" size="6" *ngIf="!showSkeleton(changePrice)"
             >** {{toCoin.id}}
+          </ion-col>
+
+          <ion-col size="6" *ngIf="showSkeleton(changePrice)">
+            <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
           </ion-col>
         </ion-row>
         <ion-row class="ion-align-items-center ion-align-self-center conversionPrice">
           <ion-col class="label" size="6">{{'ygck'|translate}}
             <img class="alert-icon" src="./assets/images/question.png" (click)="showAlert('ygck','ygck_cont')" /></ion-col>
-          <ion-col class="ion-text-right  number" size="6">{{expectedCofi | truncate:'--'}} CoFi
+
+          <ion-col class="ion-text-right  number" size="6"  *ngIf="!showSkeleton(changePrice)">{{expectedCofi | truncate:'--'}} CoFi
+          </ion-col>
+          <ion-col size="6" *ngIf="showSkeleton(changePrice)">
+            <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
           </ion-col>
         </ion-row>
         <ion-row

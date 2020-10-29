@@ -20,24 +20,21 @@ export class TokenInfoPage implements OnInit {
   @Input() tokenBalance: any;
   @Input() alertTitle: string;
   @Input() alertContent: string;
-  constructor(
-    private alertController: AlertController,
-    private translateService: TranslateService,
-    private utils: Utils
-  ) {}
-  ngOnInit() {}
+  @Input() showZeroInfo: boolean = false;
+  @Input() questionImgName: string = 'question';
+  constructor(private utils: Utils) {}
+  ngOnInit() {
+    console.log(this.tokenBalance === null);
+    console.log(this.tokenBalance === 'null');
+  }
   async showAlert() {
     this.utils.showAlert(this.alertTitle, this.alertContent);
-    /*const alert = await this.alertController.create({
-      cssClass: 'explain-liquid-alert',
-      header: await this.translateService.get(this.alertTitle).toPromise(),
-      message: await this.translateService.get(this.alertContent).toPromise(),
-      buttons: [
-        {
-          text: await this.translateService.get('comfirm_text').toPromise(),
-        },
-      ],
-    });
-    await alert.present();*/
+  }
+  showSkeleton() {
+    return (
+      this.tokenBalance === undefined ||
+      this.tokenBalance === '' ||
+      this.tokenBalance === null
+    );
   }
 }

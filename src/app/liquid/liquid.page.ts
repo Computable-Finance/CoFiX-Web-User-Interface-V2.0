@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
 import { BannerContent } from '../common/components/banner/banner.page';
@@ -9,6 +9,7 @@ import { Utils } from '../common/utils';
 import { CofiXService } from '../service/cofix.service';
 import { CoinContent } from '../swap/swap.page';
 import { AddLiquidPage } from './add/add-liquid.page';
+import { TokenMiningPage } from './mining/mining.page';
 import { RedeemLiquidPage } from './redeem/redeem-liquid.page';
 import { WarningDetailPage } from './warning/warning-detail/warning-detail.page';
 
@@ -21,6 +22,8 @@ export class LiquidPage implements OnInit {
   @ViewChild(AddLiquidPage, { static: false }) addLiquidView: AddLiquidPage;
   @ViewChild(RedeemLiquidPage, { static: false })
   redeemLiquidView: RedeemLiquidPage;
+  @ViewChild(TokenMiningPage, { static: false })
+  tokenDepositView: TokenMiningPage;
   public liquidContent: BannerContent = {
     title: 'liquid_title',
     descriptions: ['liquid_desc1', 'liquid_desc2', 'liquid_desc3'],
@@ -62,17 +65,22 @@ export class LiquidPage implements OnInit {
   showLiquidInfo = false;
   isRotate = { USDT: false, HBTC: false };
   showRedemtionModel = false;
-  pairAttended = { USDT: false, HBTC: false };
+  pairAttended = { USDT: true, HBTC: true };
   coinList = ['USDT', 'HBTC'];
   selectCoin: string;
   colSize = '7';
+  miningProfit = { title: '', subtitle: '', isDeposit: false };
+  showZeroInfo: boolean = false;
+  tokenName = 'XTokens-gray';
+  questionImgName = 'question';
   constructor(
     private cofixService: CofiXService,
     private balanceTruncatePipe: BalanceTruncatePipe,
     public shareStateQuery: ShareStateQuery,
     private utils: Utils,
     private modalController: ModalController,
-    private shareStateService: ShareStateService
+    private shareStateService: ShareStateService,
+    private rd: Renderer2
   ) {}
 
   ngOnInit() {
@@ -185,7 +193,7 @@ export class LiquidPage implements OnInit {
 
       this.getValueFromStateQuery();
       if (!this.pairAttended.USDT || !this.pairAttended.HBTC) {
-        this.utils.getPairAttended();
+        await this.utils.getPairAttended();
         this.getValueFromStateQuery();
       }
 
@@ -258,4 +266,85 @@ export class LiquidPage implements OnInit {
     this.colSize = window.innerWidth < 400 ? '8' : '7';
     return !(window.innerWidth < 400);
   }
+
+  showSkeleton(value) {
+    return value === undefined || value === '';
+  }
+  canShow() {
+    return (
+      !this.showMiningModel && !this.showAddModel && !this.showRedemtionModel
+    );
+  }
+  showMiningModel: boolean = false;
+  depositToken(coin) {
+    this.miningProfit = {
+      title: 'miningpool_deposit_title',
+      subtitle: 'miningpool_deposit_subtitle',
+      isDeposit: true,
+    };
+    this.showMiningModel = true;
+    this.showLiquidInfo = false;
+    this.selectCoin = coin;
+    this.toCoin.id = coin;
+  }
+
+  withdrawToken(coin) {
+    this.miningProfit = {
+      title: 'miningpool_withdraw_title',
+      subtitle: 'miningpool_withdraw_subtitle',
+      isDeposit: false,
+    };
+    this.showMiningModel = true;
+    this.showLiquidInfo = false;
+    this.selectCoin = coin;
+    this.toCoin.id = coin;
+  }
+
+  async closeMiningToken(event) {
+    console.log(event);
+    this.showMiningModel = false;
+    /*if (event.type === 'add') {
+      this.fromCoin = event.fromCoin;
+      this.toCoin = event.toCoin;
+      this.initCoinContent();
+      this.showLiquidInfo = true;
+      this.showMiningModel = false;
+    } else {
+      this.toCoin = event.toCoin;
+    }*/
+  }
+
+  canShowZeroInfo() {
+    if (!this.pairAttended[this.toCoin.id]) {
+      this.showZeroInfo = true;
+      this.tokenName = 'XTokens-gray';
+      this.questionImgName = 'question-gray';
+
+      let content = document.getElementById('minningPool');
+      if (content) {
+        this.rd.addClass(content, 'no-mining');
+      }
+      let tokenInfo = document.getElementById('tokenInfo');
+      if (content) {
+        this.rd.addClass(tokenInfo, 'no-mining');
+      }
+    } else {
+      this.tokenName = 'XTokens';
+      this.questionImgName = 'question';
+      let content = document.getElementById('minningPool');
+      if (content) {
+        this.rd.removeClass(content, 'no-mining');
+      }
+      let tokenInfo = document.getElementById('tokenInfo');
+      if (content) {
+        this.rd.removeClass(tokenInfo, 'no-mining');
+      }
+      this.showZeroInfo = false;
+    }
+    return this.showZeroInfo;
+  }
+  havMining() {
+    return !this.pairAttended[this.toCoin.id];
+  }
+  showAlert(title, content) {}
 }

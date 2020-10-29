@@ -13,13 +13,13 @@ import { CoinSelectPage } from './coin-input/select/coin-select.page';
 import { ConnectWalletPage } from './connect-wallet/connect-wallet.page';
 import { LiquidSelectPage } from './liquid-input/select/liquid-select.page';
 import { LiquidInputPage } from './liquid-input/liquid-input.page';
-import { ProfitPage } from './profit/profit.page';
 import { SwitchLangPage } from './switch-lang/switch-lang.page';
 import { WarningDetailPage } from 'src/app/liquid/warning/warning-detail/warning-detail.page';
 import { SelectArrowPage } from './select-arrow/select-arrow.page';
 import { CardTitlePage } from './card-title/card-title.page';
 import { TokenInfoPage } from './token-info/token-info.page';
 import { IncomeProfitPage } from 'src/app/income/profit/profit.page';
+import { ProfitPage } from 'src/app/liquid/profit/profit.page';
 
 @NgModule({
   imports: [

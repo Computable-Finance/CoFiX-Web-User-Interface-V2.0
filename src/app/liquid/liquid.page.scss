@@ -99,3 +99,15 @@
 .motoken {
   margin-top: 0;
 }
+
+.no-mining {
+  .conversionPrice .number {
+    color: var(--dove);
+  }
+}
+:host ::ng-deep app-taken-info.no-mining {
+  .conversionPrice .number {
+    opacity: 0.3;
+    color: var(--black);
+  }
+}

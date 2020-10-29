@@ -1,0 +1,12 @@
+<ion-card class="swap-card">
+  <img src="./assets/images/left-arrow.png" class="close-img" (click)="cancel()">
+  <div class="card-content">
+    <app-card-title [cardTitle]="profit.title" [cardSubTitle]="profit.subtitle"></app-card-title>
+
+    <app-profit #cofiProfitView class="profit" [todoLabel]="'miningpool_wallet'" [hadLabel]="'miningpool_already'" [todoValue]="todoValue"
+      [hadValue]="hadValue" [isApproved]="isApproved" [isLoading]="isLoadingProfit" [balance]="balance"
+      (onApprove)="approveCofi($event)" (onSave)="saveCofi($event)" (onRecieve)="receiveCofi($event)"
+      (onCoinInputChange)="resetCofiError()" (onSetCoinMax)="resetCofiError()" [profitCoin]="profitCoin" [coin]="coin"
+      [transcationError]="cofiError" [isDeposit]="profit.isDeposit" [miningSpeed]="miningSpeed"></app-profit>
+  </div>
+</ion-card>
