@@ -15,71 +15,24 @@ import {
 } from '../common/constants';
 import { ShareStateService } from '../common/state/share.service';
 import { ethersOf, unitsOf } from '../common/uitils/bignumber-utils';
+import { BalancesQuery } from '../state/balance/balance.query';
+import { BalancesService } from '../state/balance/balance.service';
+import {
+  getCoFiStakingRewards,
+  getCoFiXControllerContract,
+  getCoFixFacory,
+  getCoFixPair,
+  getCofixRouter,
+  getCoFiXStakingRewards,
+  getCoFiXVaultForLP,
+  getCoFiXVaultForTrader,
+  getERC20Contract,
+  getOracleContract,
+} from './confix.abi';
 import { EventBusService } from './eventbus.service';
 
 declare let window: any;
 
-const ERC20_ABI = [
-  'function balanceOf(address) view returns (uint256)',
-  'function allowance(address, address) view returns (uint256)',
-  'function decimals() external pure returns (uint8)',
-  'function approve(address _spender, uint256 _value) returns (bool success)',
-];
-
-const COFIXCONTROLLER_ABI = [
-  'function getKInfo(address token) external view returns (uint32 k, uint32 updatedAt, uint32 theta)',
-];
-
-const ORACLE_ABI = [
-  'function checkPriceNow(address token) public view returns (uint256 ethAmount, uint256 erc20Amount, uint256 blockNum)',
-];
-
-const COFIXFACTORY_ABI = [
-  'function getPair(address token) external view returns (address pair)',
-];
-
-const COFIXPAIR_ABI = [
-  'function getNAVPerShareForMint(tuple(uint256, uint256, uint256, uint256, uint256)) public view returns (uint256)',
-  'function getNAVPerShareForBurn(tuple(uint256, uint256, uint256, uint256, uint256)) external view returns (uint256)',
-  'function getNAVPerShare(uint256, uint256) external view returns (uint256)',
-];
-
-const COFIXVAULTFORTRADER_ABI = [
-  'function actualMiningAmountAndDensity(address pair, uint256 thetaFee, uint256 x, uint256 y, uint256 np) external view returns (uint256 amount, uint256 density, uint256 cofiRate)',
-];
-
-const COFISTAKINGREWARDS_ABI = [
-  'function balanceOf(address) view returns (uint256)',
-  'function earned(address) external view returns (uint256)',
-  'function getReward() external',
-  'function withdraw(uint256 amount) external',
-  'function stake(uint256 amount) external',
-];
-
-const COFIXVAULTFORLP_ABI = [
-  'function stakingPoolForPair(address) external view returns (address)',
-];
-
-const COFIXSTAKINGREWARDS_ABI = [
-  'function balanceOf(address) view returns (uint256)',
-  'function earned(address) external view returns (uint256)',
-  'function rewardRate() external view returns (uint256)',
-  'function getReward() external',
-  'function withdraw(uint256 amount) external',
-  'function stake(uint256 amount) external',
-];
-
-const COFIXROUTER_ABI = [
-  'function swapExactETHForTokens(address,uint,uint,address,address,uint) external payable returns (uint, uint)',
-  'function swapExactTokensForETH(address,uint,uint,address,address,uint) external payable returns (uint, uint)',
-  'function swapExactTokensForTokens(address,address,uint,uint,address,address,uint) external payable returns (uint, uint)',
-  'function addLiquidityAndStake(address,uint,uint,uint,address ,uint deadline) external payable returns (uint)',
-  'function addLiquidity(address,uint,uint,uint,address,uint) external payable returns (uint)',
-  'function removeLiquidityGetToken(address,uint,uint,address,uint) external payable returns (uint)',
-  'function removeLiquidityGetETH(address,uint,uint,address,uint) external payable returns (uint)',
-];
-
-const CACHE_ONE_HOUR = 60 * 60 * 1000;
 const CACHE_ONE_MINUTE = 60 * 1000;
 const CACHE_TEN_SECONDS = 10 * 1000;
 const CACHE_FIVE_SECONDS = 5 * 1000;
@@ -104,6 +57,8 @@ export class CofiXService {
     private tokenInfoQuery: TokensInfoQuery,
     private permissionsQuery: PermissionsQuery,
     private permissionsService: PermissionsService,
+    private balancesService: BalancesService,
+    private balancesQuery: BalancesQuery,
     private http: HttpClient
   ) {
     BNJS.config({ EXPONENTIAL_AT: 100, ROUNDING_MODE: BNJS.ROUND_DOWN });
@@ -151,6 +106,11 @@ export class CofiXService {
       this.currentNetwork
     );
 
+    this.registerWeb3EventHandler();
+    this.trackingBalances();
+  }
+
+  private registerWeb3EventHandler() {
     window.ethereum
       .on('disconnect', (error) => {
         this.reset();
@@ -198,37 +158,9 @@ export class CofiXService {
     return this.contractAddressList;
   }
 
-  @PCacheable({ maxAge: CACHE_FIVE_SECONDS })
-  async getETHBalance() {
-    if (!this.provider) {
-      return;
-    }
-    const balance = await this.provider.getBalance(this.currentAccount);
-    return balance;
-  }
-
-  // 普通 ERC20 Token
-  // 可存入 Cofi：CoFiToken
-  // 已存入 Cofi：CoFiStakingRewards
-  // 未参与挖矿 XT：当前资金池的 pair 地址，this.getPairAddressByToken(token)
-  // 参与挖矿的 XT：当前资金池对应的 stakingPool 地址，this.getStakingPoolAddressByToken(pair)
-  @PCacheable({ maxAge: CACHE_FIVE_SECONDS })
-  async getERC20Balance(address: string) {
-    if (!this.provider) {
-      return;
-    }
-    const contract = this.getERC20Contract(address);
-    const balance = await contract.balanceOf(this.currentAccount);
-    return balance;
-  }
-
   @PCacheable({ maxAge: CACHE_TEN_SECONDS })
   async getERC20Allowance(address: string, spender: string) {
-    if (!this.provider) {
-      return;
-    }
-
-    const contract = this.getERC20Contract(address);
+    const contract = getERC20Contract(address, this.provider);
     const allowance = await contract.allowance(this.currentAccount, spender);
     return allowance;
   }
@@ -368,7 +300,7 @@ export class CofiXService {
     eth2ERC20: boolean = true
   ) {
     const pairAddress = await this.getPairAddressByToken(token);
-    const erc20 = this.getERC20Contract(token);
+    const erc20 = getERC20Contract(token, this.provider);
     const balanceOfPair = await erc20.balanceOf(pairAddress);
     const decimals = await this.getERC20Decimals(token);
     const tokens = this.parseEthers(
@@ -377,14 +309,20 @@ export class CofiXService {
         .toFixed(8)
     );
 
-    const weth9 = this.getERC20Contract(this.contractAddressList.WETH9);
+    const weth9 = getERC20Contract(
+      this.contractAddressList.WETH9,
+      this.provider
+    );
     const weth9Balance = await weth9.balanceOf(pairAddress);
-    const pair = this.getCoFixPair(pairAddress);
+    const pair = getCoFixPair(pairAddress, this.provider);
     const navPerShare = await pair.getNAVPerShare(
       checkedPriceNow.ethAmount,
       checkedPriceNow.erc20Amount
     );
-    const trader = this.getCoFiXVaultForTrader();
+    const trader = getCoFiXVaultForTrader(
+      this.contractAddressList.CoFiXVaultForTrader,
+      this.provider
+    );
 
     let x;
     let y;
@@ -425,7 +363,10 @@ export class CofiXService {
       kinfo.kOriginal.toString(),
       '0',
     ];
-    const pair = this.getCoFixPair(await this.getPairAddressByToken(address));
+    const pair = getCoFixPair(
+      await this.getPairAddressByToken(address),
+      this.provider
+    );
     const navPerShareForMint = new BNJS(
       ethersOf(await pair.getNAVPerShareForMint(oraclePrice))
     );
@@ -443,33 +384,6 @@ export class CofiXService {
     return expectedShare.toString();
   }
 
-  @PCacheable({ maxAge: CACHE_TEN_SECONDS })
-  async earnedCofiAndRewardRate(stakingPoolAddress: string) {
-    const coFiXStakingRewards = new ethers.Contract(
-      stakingPoolAddress,
-      COFIXSTAKINGREWARDS_ABI,
-      this.provider
-    );
-
-    const earned = this.currentAccount
-      ? await coFiXStakingRewards.earned(this.currentAccount)
-      : '0';
-    const rewardRate = new BNJS(
-      ethersOf(await coFiXStakingRewards.rewardRate())
-    )
-      .times(BLOCKNUMS_IN_A_DAY)
-      .toString();
-
-    return { earned, rewardRate };
-  }
-
-  @PCacheable({ maxAge: CACHE_TEN_SECONDS })
-  async earnedETH() {
-    const coFiStakingRewards = this.getCoFiStakingRewards();
-    const earned = await coFiStakingRewards.earned(this.currentAccount);
-    return earned;
-  }
-
   // 计算 getETHAmountForRemoveLiquidity 和 getTokenAmountForRemoveLiquidity 所需参数。
   // removeERC20 = false，对应 getETHAmountForRemoveLiquidity
   // removeERC20 = true，对应 getTokenAmountForRemoveLiquidity
@@ -482,7 +396,7 @@ export class CofiXService {
   ) {
     const kinfo = await this.getKInfo(token);
     const checkedPriceNow = await this.checkPriceNow(token);
-    const coFiXPair = this.getCoFixPair(pair);
+    const coFiXPair = getCoFixPair(pair, this.provider);
 
     const navPerShare = ethersOf(
       await coFiXPair.getNAVPerShare(
@@ -573,6 +487,7 @@ export class CofiXService {
   }
 
   private reset() {
+    this.untrackingBalances();
     this.provider = this.defaultProvider();
     this.currentAccount = undefined;
     this.currentNetwork = environment.network;
@@ -581,20 +496,11 @@ export class CofiXService {
     );
   }
 
-  private getERC20Contract(address: string) {
-    return new ethers.Contract(address, ERC20_ABI, this.provider);
-  }
-
-  private getCoFiXControllerContract() {
-    return new ethers.Contract(
+  private async getKInfo(address: string) {
+    const cofixController = getCoFiXControllerContract(
       this.contractAddressList.CofiXController,
-      COFIXCONTROLLER_ABI,
       this.provider
     );
-  }
-
-  private async getKInfo(address: string) {
-    const cofixController = this.getCoFiXControllerContract();
     const kinfo = await cofixController.getKInfo(address);
 
     return {
@@ -604,17 +510,12 @@ export class CofiXService {
     };
   }
 
-  private getOracleContract() {
-    return new ethers.Contract(
-      this.contractAddressList.OracleMock,
-      ORACLE_ABI,
-      this.provider
-    );
-  }
-
   private async checkPriceNow(token: string) {
     const decimals = await this.getERC20Decimals(token);
-    const oracle = this.getOracleContract();
+    const oracle = getOracleContract(
+      this.contractAddressList.OracleMock,
+      this.provider
+    );
     const price = await oracle.checkPriceNow(token);
     const ethAmount = price[0];
     const erc20Amount = price[1];
@@ -625,54 +526,18 @@ export class CofiXService {
     return { ethAmount, erc20Amount, changePrice };
   }
 
-  private getCoFixFacory() {
-    return new ethers.Contract(
-      this.contractAddressList.CofixFactory,
-      COFIXFACTORY_ABI,
-      this.provider
-    );
-  }
-
-  private getCoFixPair(address: string) {
-    return new ethers.Contract(address, COFIXPAIR_ABI, this.provider);
-  }
-
-  private getCoFiXVaultForTrader() {
-    return new ethers.Contract(
-      this.contractAddressList.CoFiXVaultForTrader,
-      COFIXVAULTFORTRADER_ABI,
-      this.provider
-    );
-  }
-
-  private getCoFiStakingRewards() {
-    return new ethers.Contract(
-      this.contractAddressList.CoFiStakingRewards,
-      COFISTAKINGREWARDS_ABI,
-      this.provider
-    );
-  }
-
-  private getCoFiXVaultForLP() {
-    return new ethers.Contract(
-      this.contractAddressList.CoFiXVaultForLP,
-      COFIXVAULTFORLP_ABI,
-      this.provider
-    );
-  }
-
   // 判断是否提供过流动性
   @PCacheable({ maxAge: CACHE_ONE_MINUTE })
   async pairAttended(token: string) {
     const pair = await this.getPairAddressByToken(token);
     const xtBalance = await this.getERC20Balance(pair);
-    if (!xtBalance.isZero()) {
+    if (!new BNJS(xtBalance).isZero()) {
       return true;
     }
 
     const stakingPool = await this.getStakingPoolAddressByToken(token);
     const stakingBalance = await this.getERC20Balance(stakingPool);
-    return !stakingBalance.isZero();
+    return !new BNJS(stakingBalance).isZero();
   }
 
   private setCurrentAccount(accounts) {
@@ -687,36 +552,46 @@ export class CofiXService {
 
   // 领取 ETH 收益
   async withdrawEarnedETH() {
-    const contract = this.getCoFiStakingRewards();
-    return await contract.connect(this.provider.getSigner()).getReward();
+    const contract = getCoFiStakingRewards(
+      this.contractAddressList.CoFiStakingRewards,
+      this.provider
+    );
+    return await this.executeContractMethodWithEstimatedGas(
+      contract,
+      'getReward',
+      [{}]
+    );
   }
 
   // 领取 CoFi 收益
   async withdrawEarnedCoFi(stakingPoolAddress: string) {
-    const contract = new ethers.Contract(
-      stakingPoolAddress,
-      COFIXSTAKINGREWARDS_ABI,
-      this.provider
+    const contract = getCoFiXStakingRewards(stakingPoolAddress, this.provider);
+
+    return await this.executeContractMethodWithEstimatedGas(
+      contract,
+      'getReward',
+      [{}]
     );
-    return await contract.connect(this.provider.getSigner()).getReward();
   }
 
   async withdrawDepositedCoFi(amount: string) {
-    const contract = this.getCoFiStakingRewards();
+    const contract = getCoFiStakingRewards(
+      this.contractAddressList.CoFiStakingRewards,
+      this.provider
+    );
     return await this.withdraw(contract, amount);
   }
 
   async depositCoFi(amount: string) {
-    const contract = this.getCoFiStakingRewards();
+    const contract = getCoFiStakingRewards(
+      this.contractAddressList.CoFiStakingRewards,
+      this.provider
+    );
     return this.deposit(contract, this.contractAddressList.CoFiToken, amount);
   }
 
   async withdrawDepositedXToken(stakingPoolAddress: string, amount: string) {
-    const contract = new ethers.Contract(
-      stakingPoolAddress,
-      COFIXSTAKINGREWARDS_ABI,
-      this.provider
-    );
+    const contract = getCoFiXStakingRewards(stakingPoolAddress, this.provider);
     return await this.withdraw(contract, amount);
   }
 
@@ -725,11 +600,7 @@ export class CofiXService {
     pairAddress: string,
     amount: string
   ) {
-    const contract = new ethers.Contract(
-      stakingPoolAddress,
-      COFIXSTAKINGREWARDS_ABI,
-      this.provider
-    );
+    const contract = getCoFiXStakingRewards(stakingPoolAddress, this.provider);
     return this.deposit(contract, pairAddress, amount);
   }
 
@@ -739,7 +610,11 @@ export class CofiXService {
     if (balance.lt(value)) {
       throw new Error('Insufficient Balance.');
     } else {
-      return await contract.connect(this.provider.getSigner()).withdraw(value);
+      return await this.executeContractMethodWithEstimatedGas(
+        contract,
+        'withdraw',
+        [value, {}]
+      );
     }
   }
 
@@ -749,19 +624,15 @@ export class CofiXService {
     const value = this.parseEthers(amount);
     if (allowance.lt(value)) {
       throw new Error('Insufficient Allowance.');
-    } else if (balance.lt(value)) {
+    } else if (new BNJS(balance).lt(amount)) {
       throw new Error('Insufficient Balance.');
     } else {
-      return await contract.connect(this.provider.getSigner()).stake(value);
+      return await this.executeContractMethodWithEstimatedGas(
+        contract,
+        'stake',
+        [value, {}]
+      );
     }
-  }
-
-  private getCofixRouter() {
-    return new ethers.Contract(
-      this.contractAddressList.CofixRouter,
-      COFIXROUTER_ABI,
-      this.provider
-    );
   }
 
   private parseUnits(amount: string, unit: number) {
@@ -789,13 +660,13 @@ export class CofiXService {
     swapPrice: string,
     fee: string
   ) {
-    const ethBalanceOfAccount = new BNJS(ethersOf(await this.getETHBalance()));
+    const ethBalanceOfAccount = new BNJS(await this.getETHBalance());
     const bnValue = new BNJS(amountIn).plus(fee);
     if (bnValue.gt(ethBalanceOfAccount)) {
       throw new Error('Insufficient ETH balance.');
     }
 
-    const erc20Contract = this.getERC20Contract(token);
+    const erc20Contract = getERC20Contract(token, this.provider);
     const erc20Decimals = await this.getERC20Decimals(token);
     const erc20BalanceOfPair = new BNJS(
       unitsOf(await erc20Contract.balanceOf(pair), erc20Decimals)
@@ -804,7 +675,10 @@ export class CofiXService {
       throw new Error('Insufficient tokens for swapping.');
     }
 
-    const cofixRouter = this.getCofixRouter();
+    const cofixRouter = getCofixRouter(
+      this.contractAddressList.CofixRouter,
+      this.provider
+    );
 
     return await this.executeContractMethodWithEstimatedGas(
       cofixRouter,
@@ -844,13 +718,19 @@ export class CofiXService {
       throw new Error('Insufficient token balance.');
     }
 
-    const wethContract = this.getERC20Contract(this.contractAddressList.WETH9);
+    const wethContract = getERC20Contract(
+      this.contractAddressList.WETH9,
+      this.provider
+    );
     const wethBalanceOfPair = ethersOf(await wethContract.balanceOf(pair));
     if (new BNJS(amountOutMin).gt(wethBalanceOfPair)) {
       throw new Error('Insufficient eth for swapping.');
     }
 
-    const cofixRouter = this.getCofixRouter();
+    const cofixRouter = getCofixRouter(
+      this.contractAddressList.CofixRouter,
+      this.provider
+    );
     return await this.executeContractMethodWithEstimatedGas(
       cofixRouter,
       'swapExactTokensForETH',
@@ -914,7 +794,10 @@ export class CofiXService {
       throw new Error('Insufficient weth for swapping.');
     }
 
-    const cofixRouter = this.getCofixRouter();
+    const cofixRouter = getCofixRouter(
+      this.contractAddressList.CofixRouter,
+      this.provider
+    );
     return await this.executeContractMethodWithEstimatedGas(
       cofixRouter,
       'swapExactTokensForTokens',
@@ -941,7 +824,7 @@ export class CofiXService {
   }
 
   async hasEnoughTokenBalance(address: string, token: string, amount: string) {
-    const contract = this.getERC20Contract(token);
+    const contract = getERC20Contract(token, this.provider);
     const decimals = await this.getERC20Decimals(token);
     const balance = new BNJS(
       unitsOf(await contract.balanceOf(address), decimals)
@@ -950,12 +833,12 @@ export class CofiXService {
   }
 
   async hasEnoughETHBalance(amount: string) {
-    const balance = new BNJS(ethersOf(await this.getETHBalance()));
+    const balance = new BNJS(await this.getETHBalance());
     return balance.gt(amount);
   }
 
   async hasEnoughAllowance(spender: string, token: string, amount: string) {
-    const contract = this.getERC20Contract(token);
+    const contract = getERC20Contract(token, this.provider);
     const decimals = await this.getERC20Decimals(token);
     const allowance = new BNJS(
       unitsOf(await contract.allowance(this.currentAccount, spender), decimals)
@@ -1004,7 +887,10 @@ export class CofiXService {
     }
 
     const decimals = await this.getERC20Decimals(token);
-    const cofixRouter = this.getCofixRouter();
+    const cofixRouter = getCofixRouter(
+      this.contractAddressList.CofixRouter,
+      this.provider
+    );
     if (stake) {
       return await this.executeContractMethodWithEstimatedGas(
         cofixRouter,
@@ -1067,7 +953,10 @@ export class CofiXService {
       throw new Error('Insufficient WETH9 tokens.');
     }
 
-    const cofixRouter = this.getCofixRouter();
+    const cofixRouter = getCofixRouter(
+      this.contractAddressList.CofixRouter,
+      this.provider
+    );
     return await this.executeContractMethodWithEstimatedGas(
       cofixRouter,
       'removeLiquidityGetETH',
@@ -1106,7 +995,10 @@ export class CofiXService {
     }
 
     const decimals = await this.getERC20Decimals(token);
-    const cofixRouter = this.getCofixRouter();
+    const cofixRouter = getCofixRouter(
+      this.contractAddressList.CofixRouter,
+      this.provider
+    );
 
     return await this.executeContractMethodWithEstimatedGas(
       cofixRouter,
@@ -1153,7 +1045,7 @@ export class CofiXService {
   @PCacheable({ maxAge: CACHE_FIVE_SECONDS })
   async getERC20BalanceOfPair(token: string, targetToken: string) {
     const pair = await this.getPairAddressByToken(token);
-    const erc20Contract = this.getERC20Contract(targetToken);
+    const erc20Contract = getERC20Contract(targetToken, this.provider);
     const amount = new BNJS(
       unitsOf(
         await erc20Contract.balanceOf(pair),
@@ -1181,7 +1073,7 @@ export class CofiXService {
   async getERC20Decimals(tokenAddress: string) {
     const decimals = this.tokenInfoQuery.getDecimals(tokenAddress);
     if (!decimals) {
-      const contract = this.getERC20Contract(tokenAddress);
+      const contract = getERC20Contract(tokenAddress, this.provider);
       const result = (await contract.decimals()).toString();
       this.tokenInfoService.updateTokenInfo(tokenAddress, {
         decimals: result,
@@ -1193,7 +1085,10 @@ export class CofiXService {
   async getPairAddressByToken(tokenAddress: string) {
     const pairAddress = this.tokenInfoQuery.getPairAddress(tokenAddress);
     if (!pairAddress) {
-      const factory = this.getCoFixFacory();
+      const factory = getCoFixFacory(
+        this.contractAddressList.CofixFactory,
+        this.provider
+      );
       this.tokenInfoService.updateTokenInfo(tokenAddress, {
         pairAddress: await factory.getPair(tokenAddress),
       });
@@ -1206,7 +1101,10 @@ export class CofiXService {
       tokenAddress
     );
     if (!stakingPoolAddress) {
-      const coFiXVaultForLP = this.getCoFiXVaultForLP();
+      const coFiXVaultForLP = getCoFiXVaultForLP(
+        this.contractAddressList.CoFiXVaultForLP,
+        this.provider
+      );
       this.tokenInfoService.updateTokenInfo(tokenAddress, {
         stakingPoolAddress: await coFiXVaultForLP.stakingPoolForPair(
           await this.getPairAddressByToken(tokenAddress)
@@ -1242,18 +1140,149 @@ export class CofiXService {
           spender
         );
         return true;
+      } else {
+        return false;
       }
     }
 
-    return false;
+    return result;
   }
 
   // 目前设计为先授权一个极大值，未来再改进
   // token，spender 见上
   async approve(token: string, spender: string) {
-    const contract = this.getERC20Contract(token);
+    const contract = getERC20Contract(token, this.provider);
     return await contract
       .connect(this.provider.getSigner())
       .approve(spender, BigNumber.from('999999999999999999999999999999999999'));
+  }
+
+  // --------- Tracking Balances  ------------ //
+
+  private getCurrentBalances() {
+    return this.balancesQuery.getBalancesByAccount(this.currentAccount);
+  }
+
+  private async trackingBalances() {
+    if (this.provider && this.currentAccount) {
+      await this.updateETHBalance();
+      await this.updateDividend();
+
+      this.provider.on('block', async (blockNum) => {
+        await this.updateETHBalance();
+        await this.updateDividend();
+        this.updateERC20Balances();
+        this.updateUnclaimedCofis();
+      });
+    }
+  }
+
+  private untrackingBalances() {
+    if (this.provider) {
+      this.provider.off('block');
+    }
+  }
+
+  private async updateETHBalance() {
+    this.balancesService.updateEthBalance(
+      this.currentAccount,
+      await ethersOf(await this.provider.getBalance(this.currentAccount))
+    );
+  }
+
+  private async updateDividend() {
+    this.balancesService.updateDividend(
+      this.currentAccount,
+      ethersOf(
+        await getCoFiStakingRewards(
+          this.contractAddressList.CoFiStakingRewards,
+          this.provider
+        ).earned(this.currentAccount)
+      )
+    );
+  }
+
+  private async updateUnclaimedCofi(address: string) {
+    const coFiXStakingRewards = getCoFiXStakingRewards(address, this.provider);
+    const earned = ethersOf(
+      await coFiXStakingRewards.earned(this.currentAccount)
+    );
+    const rewardRate = new BNJS(
+      ethersOf(await coFiXStakingRewards.rewardRate())
+    )
+      .times(BLOCKNUMS_IN_A_DAY)
+      .toString();
+    const unclaimedCoFi = {};
+    unclaimedCoFi[address] = { earned, rewardRate };
+    this.balancesService.updateUnclaimedCoFi(
+      this.currentAccount,
+      unclaimedCoFi
+    );
+  }
+
+  private updateUnclaimedCofis() {
+    if (this.getCurrentBalances()?.unclaimedCoFis) {
+      Object.keys(this.getCurrentBalances().unclaimedCoFis).forEach(
+        async (address) => await this.updateUnclaimedCofi(address)
+      );
+    }
+  }
+
+  private async updateERC20Balance(address: string) {
+    const contract = getERC20Contract(address, this.provider);
+    const balance = await contract.balanceOf(this.currentAccount);
+    let decimals = this.tokenInfoQuery.getDecimals(address);
+    if (!decimals) {
+      try {
+        decimals = await contract.decimals();
+      } catch (e) {
+        // 某些合约有 balanceOf 但没有 decimals 方法，这些合约实际不属于 erc20
+        // 但目前采用此权宜之计，未来改进
+        decimals = '18';
+      }
+    }
+    const erc20Balance = {};
+    erc20Balance[address] = unitsOf(balance, decimals);
+    this.balancesService.updateERC20Balance(this.currentAccount, erc20Balance);
+  }
+
+  private updateERC20Balances() {
+    if (this.getCurrentBalances()?.erc20Balances) {
+      Object.keys(this.getCurrentBalances().erc20Balances).forEach(
+        async (address) => await this.updateERC20Balance(address)
+      );
+    }
+  }
+
+  getETHBalance() {
+    return this.getCurrentBalances().ethBalance;
+  }
+
+  // 普通 ERC20 Token
+  // 可存入 Cofi：CoFiToken
+  // 已存入 Cofi：CoFiStakingRewards
+  // 未参与挖矿 XT：当前资金池的 pair 地址，this.getPairAddressByToken(token)
+  // 参与挖矿的 XT：当前资金池对应的 stakingPool 地址，this.getStakingPoolAddressByToken(pair)
+  async getERC20Balance(address: string) {
+    const balance = this.getCurrentBalances()?.erc20Balances?.[address];
+    if (!balance) {
+      await this.updateERC20Balance(address);
+      return this.getCurrentBalances().erc20Balances[address];
+    }
+    return balance;
+  }
+
+  async earnedCofiAndRewardRate(address: string) {
+    const unclaimedCoFi = this.getCurrentBalances()?.unclaimedCoFis?.[address];
+    if (!unclaimedCoFi) {
+      await this.updateUnclaimedCofi(address);
+      return this.getCurrentBalances().unclaimedCoFis[address];
+    }
+
+    return unclaimedCoFi;
+  }
+
+  async earnedETH() {
+    return this.getCurrentBalances().dividend;
   }
 }

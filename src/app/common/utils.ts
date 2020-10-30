@@ -41,16 +41,11 @@ export class Utils {
   async getBalanceByCoin(coin) {
     if (coin.id === 'ETH') {
       coin.balance = await this.balanceTruncatePipe.transform(
-        await this.cofixService.ethersOf(
-          await this.cofixService.getETHBalance()
-        )
+        await this.cofixService.getETHBalance()
       );
     } else {
       coin.balance = await this.balanceTruncatePipe.transform(
-        await this.cofixService.unitsOf(
-          await this.cofixService.getERC20Balance(coin.address),
-          await this.cofixService.getERC20Decimals(coin.address)
-        )
+        await this.cofixService.getERC20Balance(coin.address)
       );
     }
     return coin.balance;

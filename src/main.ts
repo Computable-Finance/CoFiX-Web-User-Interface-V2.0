@@ -13,6 +13,10 @@ enableAkitaProdMode();
 
 const storage = persistState();
 
+// {
+// include: ['permissions', 'token-info'],
+// }
+
 const providers = [{ provide: 'persistStorage', useValue: storage }];
 
 platformBrowserDynamic(providers)

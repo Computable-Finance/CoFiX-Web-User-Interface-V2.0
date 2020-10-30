@@ -182,7 +182,6 @@ export class LiquidPage implements OnInit {
         this.shareState.stakingPoolAddress[coinItem]
       );
     });
-
     if (this.shareState.connectedWallet) {
       this.fromCoin.address = this.cofixService.getCurrentContractAddressList()[
         this.fromCoin.id
@@ -190,20 +189,17 @@ export class LiquidPage implements OnInit {
       this.toCoin.address = this.cofixService.getCurrentContractAddressList()[
         this.toCoin.id
       ];
-
       this.getValueFromStateQuery();
       if (!this.pairAttended.USDT || !this.pairAttended.HBTC) {
         await this.utils.getPairAttended();
         this.getValueFromStateQuery();
       }
-
       this.coinList.forEach(async (coinItem) => {
         this.todoValue[coinItem] = await this.balanceTruncatePipe.transform(
           await this.cofixService.getERC20Balance(
             this.shareState.tokenPairAddress[coinItem]
           )
         );
-
         this.hadValue[coinItem] = await this.balanceTruncatePipe.transform(
           await this.cofixService.getERC20Balance(
             this.shareState.stakingPoolAddress[coinItem]
@@ -227,7 +223,6 @@ export class LiquidPage implements OnInit {
           this.todoValue[coinItem] || '0'
         );
         this.ETHAmountForRemoveLiquidity[coinItem] = resultETH.result;
-
         const resultToken = await this.cofixService.getTokenAmountForRemoveLiquidity(
           address,
           pair,
