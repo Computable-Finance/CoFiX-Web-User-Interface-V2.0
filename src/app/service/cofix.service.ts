@@ -17,6 +17,8 @@ import { ShareStateService } from '../common/state/share.service';
 import { ethersOf, unitsOf } from '../common/uitils/bignumber-utils';
 import { BalancesQuery } from '../state/balance/balance.query';
 import { BalancesService } from '../state/balance/balance.service';
+import { MarketDetailsQuery } from '../state/market/market.query';
+import { MarketDetailsService } from '../state/market/market.service';
 import {
   getCoFiStakingRewards,
   getCoFiXControllerContract,
@@ -59,6 +61,8 @@ export class CofiXService {
     private permissionsService: PermissionsService,
     private balancesService: BalancesService,
     private balancesQuery: BalancesQuery,
+    private marketDetailsService: MarketDetailsService,
+    private marketDetailsQuery: MarketDetailsQuery,
     private http: HttpClient
   ) {
     BNJS.config({ EXPONENTIAL_AT: 100, ROUNDING_MODE: BNJS.ROUND_DOWN });
@@ -182,7 +186,7 @@ export class CofiXService {
       // p * (1-k) * (1-theta)
       const kinfo = await this.getKInfo(toToken);
       const price = await this.checkPriceNow(toToken);
-      result1 = price.changePrice
+      result1 = new BNJS(price.changePrice)
         .times(new BNJS(1).minus(0.0025))
         .times(new BNJS(1).minus(kinfo.theta));
     }
@@ -194,7 +198,7 @@ export class CofiXService {
       const price = await this.checkPriceNow(fromToken);
       result2 = new BNJS(1)
         .minus(kinfo.theta)
-        .div(price.changePrice.times(new BNJS(1).plus(0.0025)));
+        .div(new BNJS(price.changePrice).times(new BNJS(1).plus(0.0025)));
     }
 
     const result = result1.times(result2);
@@ -224,11 +228,11 @@ export class CofiXService {
 
       if (toToken === undefined) {
         valx = new BNJS(amount).div(
-          price.changePrice.times(new BNJS(1).minus(kinfo.k))
+          new BNJS(price.changePrice).times(new BNJS(1).minus(kinfo.k))
         );
       } else {
         valx = new BNJS(amount).div(
-          price.changePrice.times(new BNJS(1).plus(kinfo.k))
+          new BNJS(price.changePrice).times(new BNJS(1).plus(kinfo.k))
         );
       }
       const fee = this.parseEthers(valx.times(kinfo.theta).toString());
@@ -251,7 +255,11 @@ export class CofiXService {
 
       excutionPrice2 = new BNJS(1)
         .minus(kinfo.theta)
-        .div(price.changePrice.times(new BNJS(1).plus(kinfo.k.plus(c))));
+        .div(
+          new BNJS(price.changePrice).times(
+            new BNJS(1).plus(new BNJS(kinfo.k).plus(c))
+          )
+        );
     }
 
     if (toToken !== undefined) {
@@ -271,8 +279,8 @@ export class CofiXService {
       } else {
         c = new BNJS(-1.171e-4).plus(new BNJS(8.386e-7).times(999000));
       }
-      excutionPrice1 = price.changePrice
-        .times(new BNJS(1).minus(kinfo.k.plus(c)))
+      excutionPrice1 = new BNJS(price.changePrice)
+        .times(new BNJS(1).minus(new BNJS(kinfo.k).plus(c)))
         .times(new BNJS(1).minus(kinfo.theta));
       expectedCofi1 = await this.expectedCoFi(toToken, price, kinfo, fee, true);
     }
@@ -314,11 +322,7 @@ export class CofiXService {
       this.provider
     );
     const weth9Balance = await weth9.balanceOf(pairAddress);
-    const pair = getCoFixPair(pairAddress, this.provider);
-    const navPerShare = await pair.getNAVPerShare(
-      checkedPriceNow.ethAmount,
-      checkedPriceNow.erc20Amount
-    );
+    const navPerShare = this.parseEthers(await this.getNavPerShare(token));
     const trader = getCoFiXVaultForTrader(
       this.contractAddressList.CoFiXVaultForTrader,
       this.provider
@@ -357,8 +361,11 @@ export class CofiXService {
     const kinfo = await this.getKInfo(address);
     const checkedPriceNow = await this.checkPriceNow(address);
     const oraclePrice = [
-      checkedPriceNow.ethAmount,
-      checkedPriceNow.erc20Amount,
+      this.parseUnits(
+        checkedPriceNow.ethAmount,
+        await this.getERC20Decimals(address)
+      ),
+      this.parseEthers(checkedPriceNow.erc20Amount),
       '0',
       kinfo.kOriginal.toString(),
       '0',
@@ -375,7 +382,9 @@ export class CofiXService {
       navPerShareForMint
     );
     const expectedShareByErc20Amount = new BNJS(erc20Amount)
-      .div(recentCheckedPrice.changePrice.div(new BNJS(1).plus(kinfo.k)))
+      .div(
+        new BNJS(recentCheckedPrice.changePrice).div(new BNJS(1).plus(kinfo.k))
+      )
       .div(navPerShareForMint);
     const expectedShare = expectedShareByEthAmount.plus(
       expectedShareByErc20Amount
@@ -397,16 +406,11 @@ export class CofiXService {
     const kinfo = await this.getKInfo(token);
     const checkedPriceNow = await this.checkPriceNow(token);
     const coFiXPair = getCoFixPair(pair, this.provider);
-
-    const navPerShare = ethersOf(
-      await coFiXPair.getNAVPerShare(
-        checkedPriceNow.ethAmount,
-        checkedPriceNow.erc20Amount
-      )
-    );
+    const navPerShare = await this.getNavPerShare(token);
 
     const tradingVolumeInETH = new BNJS(amount).times(navPerShare);
-    const k = kinfo.k;
+
+    const k = new BNJS(kinfo.k);
     let cB;
     let cS = 0;
     if (tradingVolumeInETH.lt(500)) {
@@ -423,8 +427,11 @@ export class CofiXService {
     }
 
     const oraclePrice = [
-      checkedPriceNow.ethAmount,
-      checkedPriceNow.erc20Amount,
+      this.parseUnits(
+        checkedPriceNow.ethAmount,
+        await this.getERC20Decimals(token)
+      ),
+      this.parseEthers(checkedPriceNow.erc20Amount),
       '0',
       this.parseUnits(k.plus(cB).toString(), 8),
       '0',
@@ -471,7 +478,7 @@ export class CofiXService {
     const result = new BNJS(amount)
       .times(args.nAVPerShareForBurn)
       .times(args.checkedPriceNow.changePrice)
-      .times(new BNJS(1).minus(args.kinfo.k.plus(args.cS)))
+      .times(new BNJS(1).minus(new BNJS(args.kinfo.k).plus(args.cS)))
       .times(new BNJS(1).minus(args.kinfo.theta))
       .toString();
 
@@ -494,36 +501,6 @@ export class CofiXService {
     this.contractAddressList = getContractAddressListByNetwork(
       this.currentNetwork
     );
-  }
-
-  private async getKInfo(address: string) {
-    const cofixController = getCoFiXControllerContract(
-      this.contractAddressList.CofiXController,
-      this.provider
-    );
-    const kinfo = await cofixController.getKInfo(address);
-
-    return {
-      kOriginal: kinfo[0],
-      k: new BNJS(kinfo[0]).div(1e8),
-      theta: new BNJS(kinfo[2]).div(1e8),
-    };
-  }
-
-  private async checkPriceNow(token: string) {
-    const decimals = await this.getERC20Decimals(token);
-    const oracle = getOracleContract(
-      this.contractAddressList.OracleMock,
-      this.provider
-    );
-    const price = await oracle.checkPriceNow(token);
-    const ethAmount = price[0];
-    const erc20Amount = price[1];
-    const changePrice = new BNJS(unitsOf(erc20Amount, decimals)).div(
-      new BNJS(ethersOf(ethAmount))
-    );
-
-    return { ethAmount, erc20Amount, changePrice };
   }
 
   // 判断是否提供过流动性
@@ -779,7 +756,7 @@ export class CofiXService {
     const kinfo = await this.getKInfo(tokenIn);
     const price = await this.checkPriceNow(tokenIn);
     const wethAmount = new BNJS(amountIn).div(
-      price.changePrice
+      new BNJS(price.changePrice)
         .times(new BNJS(1).plus(kinfo.k))
         .times(new BNJS(1).minus(kinfo.theta))
     );
@@ -1159,8 +1136,12 @@ export class CofiXService {
 
   // --------- Tracking Balances  ------------ //
 
+  private getBalancesByAccount(account: string) {
+    return this.balancesQuery.getBalancesByAccount(account);
+  }
+
   private getCurrentBalances() {
-    return this.balancesQuery.getBalancesByAccount(this.currentAccount);
+    return this.getBalancesByAccount(this.currentAccount);
   }
 
   private async trackingBalances() {
@@ -1173,6 +1154,7 @@ export class CofiXService {
         await this.updateDividend();
         this.updateERC20Balances();
         this.updateUnclaimedCofis();
+        this.updateMarketDetails();
       });
     }
   }
@@ -1284,5 +1266,95 @@ export class CofiXService {
 
   async earnedETH() {
     return this.getCurrentBalances().dividend;
+  }
+
+  private updateMarketDetails() {
+    Object.keys(this.marketDetailsQuery.getValue()).forEach(async (address) => {
+      await this.updateKInfo(address);
+      await this.updateCheckedPriceNow(address);
+      await this.updateNAVPerShare(address);
+    });
+  }
+
+  private async updateKInfo(address: string) {
+    const kinfo = await getCoFiXControllerContract(
+      this.contractAddressList.CofiXController,
+      this.provider
+    ).getKInfo(address);
+
+    this.marketDetailsService.updateMarketDetails(address, {
+      kinfo: {
+        kOriginal: kinfo[0],
+        k: new BNJS(kinfo[0]).div(1e8),
+        theta: new BNJS(kinfo[2]).div(1e8),
+      },
+    });
+  }
+
+  private async getKInfo(address: string) {
+    let kinfo = this.marketDetailsQuery.getKInfo(address);
+    if (!kinfo) {
+      await this.updateKInfo(address);
+      kinfo = this.marketDetailsQuery.getKInfo(address);
+    }
+    return kinfo;
+  }
+
+  private async updateCheckedPriceNow(token: string) {
+    const decimals = await this.getERC20Decimals(token);
+    const oracle = getOracleContract(
+      this.contractAddressList.OracleMock,
+      this.provider
+    );
+
+    const price = await oracle.checkPriceNow(token);
+    const ethAmount = ethersOf(price[0]);
+    const erc20Amount = unitsOf(price[1], decimals);
+    const changePrice = new BNJS(erc20Amount).div(new BNJS(ethAmount));
+
+    this.marketDetailsService.updateMarketDetails(token, {
+      checkedPriceNow: {
+        ethAmount,
+        erc20Amount,
+        changePrice,
+      },
+    });
+  }
+
+  private async checkPriceNow(address: string) {
+    let checkedPriceNow = this.marketDetailsQuery.getCheckedPriceNow(address);
+    if (!checkedPriceNow) {
+      await this.updateCheckedPriceNow(address);
+      checkedPriceNow = this.marketDetailsQuery.getCheckedPriceNow(address);
+    }
+
+    return checkedPriceNow;
+  }
+
+  private async updateNAVPerShare(address: string) {
+    const checkedPriceNow = await this.checkPriceNow(address);
+    const pairAddress = await this.getPairAddressByToken(address);
+    const coFiXPair = getCoFixPair(pairAddress, this.provider);
+
+    this.marketDetailsService.updateMarketDetails(address, {
+      navPerShare: ethersOf(
+        await coFiXPair.getNAVPerShare(
+          this.parseUnits(
+            checkedPriceNow.ethAmount,
+            await this.getERC20Decimals(address)
+          ),
+          this.parseEthers(checkedPriceNow.erc20Amount)
+        )
+      ),
+    });
+  }
+
+  private async getNavPerShare(address: string) {
+    const navPerShare = this.marketDetailsQuery.getNavPerShare(address);
+    if (!navPerShare) {
+      await this.updateNAVPerShare(address);
+      return this.marketDetailsQuery.getNavPerShare(address);
+    }
+    return navPerShare;
   }
 }

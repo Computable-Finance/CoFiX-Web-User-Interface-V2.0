@@ -24,7 +24,7 @@
       placeholder="{{placeHolder}}"
       [(ngModel)]="amount"
       oninput="value=value.replace(/^\D*(\d*(?:\.\d{0,8})?).*$/g, '$1')"
-      (ngModelChange)="modelChanged.next($event)"
+      (ngModelChange)="txtChanged($event)"
       [disabled]="disabled"
     />
   </div>
@@ -34,15 +34,13 @@
         <div *ngIf="isShowBlance && !isShowError">
           <ng-container *ngIf="!showSkeleton(maxAmount)">
             <span>{{'your_balance' | translate}}</span>：<span
-            >{{maxAmount | truncate:'--'}}
+              >{{maxAmount | truncate:'--'}}
             </span>
             {{coin}}
           </ng-container>
           <ng-container *ngIf="showSkeleton(maxAmount)">
             <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
           </ng-container>
-         
-
         </div>
 
         <div *ngIf="isShowError" class="error">

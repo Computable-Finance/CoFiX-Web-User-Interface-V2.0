@@ -45,16 +45,16 @@ export class CoinInputPage implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.subscription = this.modelChanged
-      .pipe(
-        debounceTime(this.debounceTime),
-        distinctUntilChanged(),
-        switchMap((event) => {
-          this.onInputChange.emit({ amount: this.amount, coin: this.coin });
-          return EMPTY;
-        })
-      )
-      .subscribe();
+    // this.subscription = this.modelChanged
+    //   .pipe(
+    //     debounceTime(this.debounceTime),
+    //     distinctUntilChanged(),
+    //     switchMap((event) => {
+    //       this.onInputChange.emit({ amount: this.amount, coin: this.coin });
+    //       return EMPTY;
+    //     })
+    //   )
+    //   .subscribe();
   }
 
   async showCoinSelect(event: any) {
@@ -78,29 +78,33 @@ export class CoinInputPage implements OnInit, OnDestroy {
     }
   }
 
+  txtChanged(event) {
+    this.onInputChange.emit({ amount: this.amount, coin: this.coin });
+  }
+
   setMax() {
     this.onMaxClick.emit({ coin: this.coin });
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    // this.subscription.unsubscribe();
   }
   overLiquid() {
     return Number(this.amount) > Number(this.maxLiquid);
   }
 
   resetSubscription() {
-    this.subscription?.unsubscribe();
-    this.subscription = this.modelChanged
-      .pipe(
-        debounceTime(this.debounceTime),
-        distinctUntilChanged(),
-        switchMap((event) => {
-          this.onInputChange.emit({ amount: this.amount, coin: this.coin });
-          return EMPTY;
-        })
-      )
-      .subscribe();
+    // this.subscription?.unsubscribe();
+    // this.subscription = this.modelChanged
+    //   .pipe(
+    //     debounceTime(this.debounceTime),
+    //     distinctUntilChanged(),
+    //     switchMap((event) => {
+    //       this.onInputChange.emit({ amount: this.amount, coin: this.coin });
+    //       return EMPTY;
+    //     })
+    //   )
+    //   .subscribe();
   }
   showSkeleton(value) {
     return value === undefined || value === '';
