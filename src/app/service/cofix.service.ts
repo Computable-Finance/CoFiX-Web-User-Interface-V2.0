@@ -427,11 +427,11 @@ export class CofiXService {
     }
 
     const oraclePrice = [
+      this.parseEthers(checkedPriceNow.ethAmount),
       this.parseUnits(
-        checkedPriceNow.ethAmount,
+        checkedPriceNow.erc20Amount,
         await this.getERC20Decimals(token)
       ),
-      this.parseEthers(checkedPriceNow.erc20Amount),
       '0',
       this.parseUnits(k.plus(cB).toString(), 8),
       '0',
