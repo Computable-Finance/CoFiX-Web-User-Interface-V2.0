@@ -1004,9 +1004,17 @@ export class CofiXService {
   ) {
     const estimatedGas = new BNJS(
       ethersOf(
-        await contract.estimateGas[functionName](...args).catch((err) => {
-          return BigNumber.from('700000');
-        })
+        await contract.estimateGas[functionName](...args)
+          .then((value) => {
+            const minimumGas = BigNumber.from('200000');
+            if (value.lt(minimumGas)) {
+              return minimumGas;
+            }
+            return value;
+          })
+          .catch((err) => {
+            return BigNumber.from('700000');
+          })
       )
     );
     const argsForOverridden = args.pop();
