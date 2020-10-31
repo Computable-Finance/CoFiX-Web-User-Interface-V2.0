@@ -1,9 +1,10 @@
 <div class="wallet_show" *ngIf="shareStateQuery.getValue().connectedWallet">
+
+  <img src="./assets/images/account.png" />
   <span>
     {{(shareStateQuery.getValue().connectedWallet?shareStateQuery.getValue().currentAccount:'')
     | walletaddress}}
   </span>
-  <img src="./assets/images/wallet-connect.png" />
 </div>
 <div
   class="wallet_show"

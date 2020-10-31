@@ -24,7 +24,7 @@
           </ion-col>
           <ng-container *ngIf="!showSkeleton(changePrice)">
             <ion-col class="ion-text-right  number" size="7">1 <span class="tk1">{{fromCoin.id}}</span> =
-            <span class="changePrice">{{changePrice | truncate:'--':2}}</span>
+            <span class="changePrice">{{changePrice | truncate:'--'}}</span>
             {{toCoin.id}}
             </ion-col>
             <ion-col size="1">
@@ -93,7 +93,7 @@
               (click)="showAlert('ygck','ygck_cont')"
           /></ion-col>
           <ion-col class="ion-text-right  number" size="6" *ngIf="!showSkeleton(changePrice)"
-            >** {{toCoin.id}}
+            >{{minimum | truncate:'--'}} {{toCoin.id}}
           </ion-col>
 
           <ion-col size="6" *ngIf="showSkeleton(changePrice)">
@@ -118,7 +118,7 @@
             >{{'transaction-error' | translate}}[{{swapError.msg}}]</ion-col
           >
         </ion-row>
-      </ion-grid>
+      </ion-grid>{{swapError}}22
       <ng-container *ngIf="shareStateQuery.getValue().connectedWallet">
         <div class="button-div">
           <ion-button

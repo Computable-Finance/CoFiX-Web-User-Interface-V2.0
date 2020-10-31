@@ -9,6 +9,11 @@ import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
 import { ShareStateService } from '../common/state/share.service';
 import { CoinInputPage } from '../common/components/coin-input/coin-input.page';
 import { BigNumber } from 'ethers';
+import { type } from 'os';
+import { title } from 'process';
+import { async } from 'rxjs/internal/scheduler/async';
+import { BalancesQuery } from '../state/balance/balance.query';
+import { Subscription } from 'rxjs';
 
 export interface CoinContent {
   id: string;
@@ -64,6 +69,7 @@ export class SwapPage implements OnInit {
   isShowFromMax = false;
   swapError = { isError: false, msg: '' };
   isShowDetail = false;
+  minimum: any;
   constructor(
     private cofixService: CofiXService,
     private translateService: TranslateService,
@@ -71,7 +77,8 @@ export class SwapPage implements OnInit {
     public shareStateQuery: ShareStateQuery,
     private shareStateService: ShareStateService,
     private balancePipe: BalanceTruncatePipe,
-    private utils: Utils
+    private utils: Utils,
+    private balancesQuery: BalancesQuery
   ) {}
 
   async ngOnInit() {
@@ -173,6 +180,7 @@ export class SwapPage implements OnInit {
       this.toCoin.amount = await this.balancePipe.transform(
         executionPriceAndExpectedCofi.excutionPrice
       );
+      this.minimum = executionPriceAndExpectedCofi.excutionPrice * 0.99;
 
       this.expectedCofi = executionPriceAndExpectedCofi.expectedCofi;
       this.changePrice = executionPriceAndExpectedCofi.excutionPriceForOne;
@@ -197,6 +205,7 @@ export class SwapPage implements OnInit {
     this.expectedCofi = '';
     this.isShowFromMax = false;
     this.isShowToMax = false;
+    this.minimum = '';
   }
 
   changeCoin() {
@@ -340,13 +349,14 @@ export class SwapPage implements OnInit {
   async approve() {
     this.resetSwapError();
     if (!this.fromCoin.isApproved) {
-      this.utils.approveHandler(
+      await this.utils.approveHandler(
         this.isLoading,
         this.swapError,
         this,
         this.fromCoin.address,
         this.cofixService.getCurrentContractAddressList().CofixRouter
       );
+      console.log(this.swapError);
     }
   }
 

@@ -61,14 +61,14 @@
         <div class="button-div">
           <ion-button expand="block" class="operation-btn approve-btn full-btn" (click)="showModal('deposit')">
             <div class="ion-button-label">
-              {{'income_deposit_btn' | translate}}
+              {{buttonTitle.deposit | translate}}
             </div>
           </ion-button>
         </div>
         <div class="button-outline">
           <ion-button fill="outline" class="operation-btn approve-btn full-btn" (click)="showModal('withdraw')">
             <div class="ion-button-label">
-              {{'income_withdraw_btn' | translate}}
+              {{buttonTitle.withdraw | translate}}
             </div>
           </ion-button>
         </div>
@@ -111,7 +111,7 @@
     <ion-card class="swap-card">
       <img src="./assets/images/left-arrow.png" class="close-img"  (click)="cancel('deposit')">
       <div class="card-content">
-        <app-card-title [cardTitle]="profit.title" [cardSubTitle]="profit.subtitle"></app-card-title>
+        <app-card-title [cardTitle]="cardTitle.title" [cardSubTitle]="profit.subtitle"></app-card-title>
         <app-income-profit [todoLabel]="'kcr_text'" [hadLabel]="'ycr_text'" [todoValue]="cofiToken" [hadValue]="cofiStakingRewards"
           [isApproved]="isApproved" [balance]="balance" [isLoading]="isLoadingProfit" (onApprove)="approveCofi($event)"
           (onSave)="saveCofi($event)" (onRecieve)="receiveCofi($event)" (onCoinInputChange)="resetReceiveError()"

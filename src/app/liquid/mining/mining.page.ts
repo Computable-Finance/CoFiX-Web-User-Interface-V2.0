@@ -2,10 +2,13 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnDestroy,
   OnInit,
   Output,
   ViewChild,
 } from '@angular/core';
+import { Subscription, fromEvent } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 import { BalanceTruncatePipe } from 'src/app/common/pipes/balance.pipe';
 import { ShareStateQuery } from 'src/app/common/state/share.query';
 import { ShareStateService } from 'src/app/common/state/share.service';
@@ -18,7 +21,7 @@ import { ProfitPage } from '../profit/profit.page';
   templateUrl: './mining.page.html',
   styleUrls: ['./mining.page.scss'],
 })
-export class TokenMiningPage implements OnInit {
+export class TokenMiningPage implements OnInit, OnDestroy {
   @ViewChild(ProfitPage, { static: false }) cofiProfitView: ProfitPage;
   @Input() profit: any = { title: '', subtitle: '', isDeposit: false };
   @Output() onClose = new EventEmitter<any>();
@@ -38,6 +41,11 @@ export class TokenMiningPage implements OnInit {
   isApproved = false;
   cofiError = { isError: false, msg: '' };
   withdrawError = { isError: false, msg: '' };
+  private resizeSubscription: Subscription;
+  cardTitle = {
+    title: '',
+    subtitle: '',
+  };
   constructor(
     private cofixService: CofiXService,
     private balanceTruncatePipe: BalanceTruncatePipe,
@@ -53,6 +61,25 @@ export class TokenMiningPage implements OnInit {
       }, 3000);
     } else {
       this.refreshPage();
+    }
+    this.changeCartTitle();
+    this.resizeSubscription = fromEvent(window, 'resize')
+      .pipe(debounceTime(100))
+      .subscribe((event) => {
+        this.changeCartTitle();
+      });
+  }
+  changeCartTitle() {
+    if (window.innerWidth < 500) {
+      this.cardTitle = {
+        title: this.profit.title + '_short',
+        subtitle: this.profit.subtitle,
+      };
+    } else {
+      this.cardTitle = {
+        title: this.profit.title,
+        subtitle: this.profit.subtitle,
+      };
     }
   }
   refreshPage() {
@@ -221,5 +248,9 @@ export class TokenMiningPage implements OnInit {
   }
   cancel() {
     this.onClose.emit();
+  }
+  ngOnDestroy() {
+    console.log('destroy---');
+    this.resizeSubscription.unsubscribe();
   }
 }

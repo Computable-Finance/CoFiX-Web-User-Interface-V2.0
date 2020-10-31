@@ -2,12 +2,16 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnDestroy,
   OnInit,
   Output,
   ViewChild,
 } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { BigNumber } from 'ethers';
+import { Subscription } from 'rxjs';
+import { fromEvent } from 'rxjs/internal/observable/fromEvent';
+import { debounceTime } from 'rxjs/operators';
 import { CoinInputPage } from 'src/app/common/components/coin-input/coin-input.page';
 import { ShareStateQuery } from 'src/app/common/state/share.query';
 import { ShareStateService } from 'src/app/common/state/share.service';
@@ -21,7 +25,7 @@ import { WarningDetailPage } from '../warning/warning-detail/warning-detail.page
   templateUrl: './add-liquid.page.html',
   styleUrls: ['./add-liquid.page.scss'],
 })
-export class AddLiquidPage implements OnInit {
+export class AddLiquidPage implements OnInit, OnDestroy {
   @Input() coin: string;
   @Input() pairAttended: boolean = false;
   @Output() onClose = new EventEmitter<any>();
@@ -61,6 +65,8 @@ export class AddLiquidPage implements OnInit {
   addLiquidError = { isError: false, msg: '' };
   isShowFromMax = false;
   isShowToMax = false;
+  cardTitle = { title: 'liquidpool_add', subtitle: 'liquidpool_add_subtitle' };
+  private resizeSubscription: Subscription;
   constructor(
     private cofixService: CofiXService,
     public shareStateQuery: ShareStateQuery,
@@ -74,7 +80,27 @@ export class AddLiquidPage implements OnInit {
     this.toCoin.id = this.coin;
     this.initCoinContent();
     this.getIsApproved();
+    this.changeCartTitle();
+    this.resizeSubscription = fromEvent(window, 'resize')
+      .pipe(debounceTime(100))
+      .subscribe((event) => {
+        this.changeCartTitle();
+      });
   }
+  changeCartTitle() {
+    if (window.innerWidth < 500) {
+      this.cardTitle = {
+        title: 'liquidpool_add_short',
+        subtitle: 'liquidpool_add_subtitle_short',
+      };
+    } else {
+      this.cardTitle = {
+        title: 'liquidpool_add',
+        subtitle: 'liquidpool_add_subtitle',
+      };
+    }
+  }
+
   async showWarning() {
     const knownRiskForAdd = this.shareStateQuery.getValue().knownRiskForAdd;
     if (!knownRiskForAdd) {
@@ -316,5 +342,8 @@ export class AddLiquidPage implements OnInit {
       !this.toCoin.isApproved &&
       Number(this.toCoin.amount) > 0
     );
+  }
+  ngOnDestroy() {
+    this.resizeSubscription.unsubscribe();
   }
 }

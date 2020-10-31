@@ -23,10 +23,7 @@ export class TokenInfoPage implements OnInit {
   @Input() showZeroInfo: boolean = false;
   @Input() questionImgName: string = 'question';
   constructor(private utils: Utils) {}
-  ngOnInit() {
-    console.log(this.tokenBalance === null);
-    console.log(this.tokenBalance === 'null');
-  }
+  ngOnInit() {}
   async showAlert() {
     this.utils.showAlert(this.alertTitle, this.alertContent);
   }

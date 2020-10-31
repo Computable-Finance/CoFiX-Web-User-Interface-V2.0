@@ -32,6 +32,20 @@ export class LiquidPage implements OnInit {
       url: 'https://github.com/Computable-Finance/Doc#4-market-maker-mechanism',
     },
   };
+
+  withdrawContent: BannerContent = {
+    title: 'help_tips',
+    descriptions: [
+      'withdraw_help_desc1',
+      'withdraw_help_desc2',
+      'withdraw_help_desc3',
+    ],
+    more: {
+      text: 'read_more',
+      url: 'https://github.com/Computable-Finance/Doc#4-market-maker-mechanism',
+    },
+  };
+  liquidContent_origin: BannerContent;
   fromCoin: CoinContent = {
     id: 'ETH',
     address: '',
@@ -81,7 +95,9 @@ export class LiquidPage implements OnInit {
     private modalController: ModalController,
     private shareStateService: ShareStateService,
     private rd: Renderer2
-  ) {}
+  ) {
+    this.liquidContent_origin = this.liquidContent;
+  }
 
   ngOnInit() {
     if (this.cofixService.getCurrentAccount() === undefined) {
@@ -240,10 +256,12 @@ export class LiquidPage implements OnInit {
   redemption(coin) {
     this.showRedemtionModel = true;
     this.selectCoin = coin;
+    this.liquidContent = this.withdrawContent;
   }
 
   closeRedeemLiquid(event) {
     this.showRedemtionModel = false;
+    this.liquidContent = this.liquidContent_origin;
     if (event.type === 'redeem') {
       this.fromCoin = event.fromCoin;
       this.toCoin = event.toCoin;
@@ -293,20 +311,14 @@ export class LiquidPage implements OnInit {
     this.showLiquidInfo = false;
     this.selectCoin = coin;
     this.toCoin.id = coin;
+    console.log('$$$$');
+    this.liquidContent = this.withdrawContent;
   }
 
   async closeMiningToken(event) {
     console.log(event);
     this.showMiningModel = false;
-    /*if (event.type === 'add') {
-      this.fromCoin = event.fromCoin;
-      this.toCoin = event.toCoin;
-      this.initCoinContent();
-      this.showLiquidInfo = true;
-      this.showMiningModel = false;
-    } else {
-      this.toCoin = event.toCoin;
-    }*/
+    this.liquidContent = this.liquidContent_origin;
   }
 
   canShowZeroInfo() {

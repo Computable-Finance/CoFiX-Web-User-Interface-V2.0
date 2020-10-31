@@ -6,10 +6,9 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { ModalController, PopoverController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 import { EMPTY, Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-import { CofiXService } from 'src/app/service/cofix.service';
 import { CoinSelectPage } from './select/coin-select.page';
 
 @Component({
@@ -39,10 +38,7 @@ export class CoinInputPage implements OnInit, OnDestroy {
   @Input() disabled = false;
   @Input() label: string = '';
 
-  constructor(
-    private modalController: ModalController,
-    private cofixService: CofiXService
-  ) {}
+  constructor(private modalController: ModalController) {}
 
   ngOnInit() {
     // this.subscription = this.modelChanged
@@ -79,6 +75,7 @@ export class CoinInputPage implements OnInit, OnDestroy {
   }
 
   txtChanged(event) {
+    console.log(event);
     this.onInputChange.emit({ amount: this.amount, coin: this.coin });
   }
 
@@ -108,5 +105,9 @@ export class CoinInputPage implements OnInit, OnDestroy {
   }
   showSkeleton(value) {
     return value === undefined || value === '';
+  }
+  changeInput(event) {
+    console.log(event);
+    console.log(this.amount);
   }
 }

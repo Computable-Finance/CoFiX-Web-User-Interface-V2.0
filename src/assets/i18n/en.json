@@ -2,7 +2,7 @@
   "income_title": "CoFiX Dividend",
   "income_desc1": "1. You can claim the Dividend any time",
   "income_desc2":"2. If you don’t claim frequently, they will accumulate.","income_desc3":"3. To earn the dividend in ETH, you can buy Cofi Tokens on an exchange, or mine it in the Pools tab. ",
-  "income_more": "Read more about CoFiX Dividend >",
+  "income_more": "Read More",
   "cofix_title": "CoFiX Mining",
   "cofix_more": "Read more about CoFiX Mining >",
   "dragcoin": "Current mining rate",
@@ -196,5 +196,16 @@
   "miningpool_already":"Xtokens already deposited",
   "miningpool_withdraw_title":"Withdraw from the Mining Pool",
   "miningpool_withdraw_subtitle":"Withdraw Xtokens from the Mining Pool first, to be able to withdraw all funds from the Liquidity Pool",
-  "enter_withdraw":"Enter amount to withdraw"
+  "enter_withdraw":"Enter amount to withdraw",
+  "liquidpool_add_short":"Add to Liquidity Pool","liquidpool_add_subtitle_short":"Add Funds to Liquidity Pool and get Xtokens",
+  "liquidpool_withdraw_title_short":"Withdraw Xtokens","liquidpool_withdraw_subtitle_short":"Withdraw Xtokens from the Mining Pool first, to be able to withdraw all funds from the Liquidity Pool",
+  "miningpool_deposit_title_short":"Deposit XTokens","miningpool_withdraw_title_short":"Withdraw Xtokens",
+  "income_deposit_btn_short":"Deposit CoFi Tokens",
+  "income_withdraw_btn_short":"Withdraw CoFi to your wallet",
+  "income_withdraw_title_short":"Withdraw CoFi",
+  "income_deposit_title_short":"Deposit CoFi",
+  "qc_short":"Withdraw CoFi Tokens",
+  "withdraw_help_desc1":"1. Do not withdraw too early or too frequently - you will loose money. Learn More", 
+  "withdraw_help_desc2":"2. If you deposited Xtokens to the Mining Pool, you have to withdraw them first. Then they will become available to withdraw in the Liquidity Pool.",
+  "withdraw_help_desc3":"3. The Net worth of withdrawing assets depends on current market price of these assets."
 }

@@ -2,10 +2,13 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnDestroy,
   OnInit,
   Output,
   ViewChild,
 } from '@angular/core';
+import { Subscription, fromEvent } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 import { CoinInputPage } from 'src/app/common/components/coin-input/coin-input.page';
 import { BalanceTruncatePipe } from 'src/app/common/pipes/balance.pipe';
 import { ShareStateQuery } from 'src/app/common/state/share.query';
@@ -19,7 +22,7 @@ import { CoinContent } from 'src/app/swap/swap.page';
   templateUrl: './redeem-liquid.page.html',
   styleUrls: ['./redeem-liquid.page.scss'],
 })
-export class RedeemLiquidPage implements OnInit {
+export class RedeemLiquidPage implements OnInit, OnDestroy {
   @Input() coin: string;
   @Output() onClose = new EventEmitter<any>();
   @ViewChild(CoinInputPage, { static: false }) toCoinInputView: CoinInputPage;
@@ -55,6 +58,11 @@ export class RedeemLiquidPage implements OnInit {
   tokenAmountForRemoveLiquidity: number;
   redeemError = { isError: false, msg: '' };
 
+  cardTitle = {
+    title: 'liquidpool_withdraw_title',
+    subtitle: 'liquidpool_withdraw_subtitle',
+  };
+  private resizeSubscription: Subscription;
   constructor(
     private cofixService: CofiXService,
     private balanceTruncatePipe: BalanceTruncatePipe,
@@ -68,8 +76,26 @@ export class RedeemLiquidPage implements OnInit {
     this.initCoinContent();
     this.getIsApproved();
     this.getRemoveLiquidity();
+    this.changeCartTitle();
+    this.resizeSubscription = fromEvent(window, 'resize')
+      .pipe(debounceTime(100))
+      .subscribe((event) => {
+        this.changeCartTitle();
+      });
   }
-
+  changeCartTitle() {
+    if (window.innerWidth < 500) {
+      this.cardTitle = {
+        title: 'liquidpool_withdraw_title_short',
+        subtitle: 'liquidpool_withdraw_subtitle_short',
+      };
+    } else {
+      this.cardTitle = {
+        title: 'liquidpool_withdraw_title',
+        subtitle: 'liquidpool_withdraw_subtitle',
+      };
+    }
+  }
   async setToCoinMax(event) {
     if (!this.shareStateQuery.getValue().connectedWallet) {
       return false;
@@ -309,5 +335,10 @@ export class RedeemLiquidPage implements OnInit {
 
   canShowError() {
     this.showError = Number(this.toCoin.amount) > Number(this.todoValue);
+  }
+
+  ngOnDestroy() {
+    console.log('destroy---');
+    this.resizeSubscription.unsubscribe();
   }
 }

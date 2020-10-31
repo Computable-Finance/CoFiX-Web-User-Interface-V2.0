@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
+import { fromEvent } from 'rxjs';
+import { Subscription } from 'rxjs/internal/Subscription';
+import { debounceTime } from 'rxjs/operators';
 
 import { BannerContent } from '../common/components/banner/banner.page';
 import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
@@ -38,6 +41,12 @@ export class IncomePage implements OnInit {
   receiveError = { isError: false, msg: '' };
   isShowModal: boolean = false;
   profit = { title: '', subtitle: '', isDeposit: false };
+  cardTitle = { title: '' };
+  buttonTitle = {
+    deposit: 'income_deposit_btn',
+    withdraw: 'income_withdraw_btn',
+  };
+  private resizeSubscription: Subscription;
   constructor(
     private cofixService: CofiXService,
     private balanceTruncatePipe: BalanceTruncatePipe,
@@ -55,8 +64,30 @@ export class IncomePage implements OnInit {
     } else {
       this.refreshPage();
     }
+    this.changeButtonTitle();
+    this.resizeSubscription = fromEvent(window, 'resize')
+      .pipe(debounceTime(100))
+      .subscribe((event) => {
+        this.changeButtonTitle();
+      });
+  }
+  changeButtonTitle() {
+    if (window.innerWidth < 500) {
+      this.buttonTitle = {
+        deposit: 'income_deposit_btn_short',
+        withdraw: 'income_withdraw_btn_short',
+      };
+      this.cardTitle.title = this.profit.title + '_short';
+    } else {
+      this.buttonTitle = {
+        deposit: 'income_deposit_btn',
+        withdraw: 'income_withdraw_btn',
+      };
+      this.cardTitle.title = this.profit.title;
+    }
   }
   refreshPage() {
+    this.resetReceiveError();
     this.getCoFiTokenAndRewards();
     this.getIsApproved();
   }
@@ -113,6 +144,9 @@ export class IncomePage implements OnInit {
   }
   resetReceiveError() {
     this.receiveError = { isError: false, msg: '' };
+  }
+  resetIncomeError() {
+    this.incomeError = { isError: false, msg: '' };
   }
   async getIsApproved() {
     if (this.shareStateQuery.getValue().connectedWallet) {
@@ -199,7 +233,10 @@ export class IncomePage implements OnInit {
     await alert.present();
   }
   showModal(type) {
+    console.log(this.incomeError);
     this.isShowModal = true;
+    this.resetIncomeError();
+
     if (type === 'withdraw') {
       this.profit = {
         title: 'income_withdraw_title',
@@ -213,6 +250,7 @@ export class IncomePage implements OnInit {
         isDeposit: true,
       };
     }
+    this.changeButtonTitle();
   }
 
   cancel(type) {
@@ -222,5 +260,9 @@ export class IncomePage implements OnInit {
 
   showSkeleton(value) {
     return value === undefined || value === '';
+  }
+
+  ngOnDestroy() {
+    this.resizeSubscription.unsubscribe();
   }
 }

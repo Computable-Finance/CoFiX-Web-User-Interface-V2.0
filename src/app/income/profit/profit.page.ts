@@ -2,10 +2,13 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnDestroy,
   OnInit,
   Output,
   ViewChild,
 } from '@angular/core';
+import { Subscription, fromEvent } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 import { CoinInputPage } from 'src/app/common/components/coin-input/coin-input.page';
 
 @Component({
@@ -13,7 +16,7 @@ import { CoinInputPage } from 'src/app/common/components/coin-input/coin-input.p
   templateUrl: './profit.page.html',
   styleUrls: ['./profit.page.scss'],
 })
-export class IncomeProfitPage implements OnInit {
+export class IncomeProfitPage implements OnInit, OnDestroy {
   @ViewChild(CoinInputPage, { static: false }) coinInputView: CoinInputPage;
   @Input() todoLabel: string;
   @Input() hadLabel: string;
@@ -59,11 +62,25 @@ export class IncomeProfitPage implements OnInit {
   showSelect = false;
   showError = false;
   shoWErrorLabel = '';
-
+  buttonTitle = 'qc';
+  private resizeSubscription: Subscription;
   constructor() {}
 
-  ngOnInit() {}
-
+  ngOnInit() {
+    this.changeButtonTitle();
+    this.resizeSubscription = fromEvent(window, 'resize')
+      .pipe(debounceTime(100))
+      .subscribe((event) => {
+        this.changeButtonTitle();
+      });
+  }
+  changeButtonTitle() {
+    if (window.innerWidth < 500) {
+      this.buttonTitle = 'qc_short';
+    } else {
+      this.buttonTitle = 'qc';
+    }
+  }
   resetInputSubscription() {
     this.coinInputView.resetSubscription();
   }
@@ -126,5 +143,8 @@ export class IncomeProfitPage implements OnInit {
       this.shoWErrorLabel = this.hadLabel + '_error';
       this.showError = Number(this.balance) > Number(this.hadValue);
     }
+  }
+  ngOnDestroy() {
+    this.resizeSubscription.unsubscribe();
   }
 }

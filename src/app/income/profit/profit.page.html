@@ -84,7 +84,7 @@
     [disabled]="!canReceive()"
   >
     <div class="ion-button-label">
-      {{'qc' | translate}}
+      {{buttonTitle | translate}}
       <div class="loading" *ngIf="isLoading.qc"></div>
     </div>
   </ion-button>

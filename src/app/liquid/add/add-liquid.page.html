@@ -1,7 +1,7 @@
 <ion-card class="swap-card" [ngClass]="{'pairAttended-card':pairAttended}">
   <div class="card-content">
     <img src="./assets/images/left-arrow.png" class="close-img" (click)="cancel()">
-    <app-card-title [cardTitle]="'liquidpool_add'" [cardSubTitle]="'liquidpool_add_subtitle'"></app-card-title>
+    <app-card-title [cardTitle]="cardTitle.title" [cardSubTitle]="cardTitle.subtitle"></app-card-title>
    
     <app-coin-input
       #fromCoinInputView

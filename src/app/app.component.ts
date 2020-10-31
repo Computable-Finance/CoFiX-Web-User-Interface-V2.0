@@ -34,8 +34,8 @@ export class AppComponent implements OnInit {
 
   constructor(
     private platform: Platform,
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar,
+    //private splashScreen: SplashScreen,
+    //private statusBar: StatusBar,
     private translate: TranslateService,
     public shareStateQuery: ShareStateQuery,
     private cofixService: CofiXService,
@@ -48,8 +48,8 @@ export class AppComponent implements OnInit {
   initializeApp() {
     this.platform.ready().then(() => {
       this.initConnectIfEnabled();
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
+      //this.statusBar.styleDefault();
+      //this.splashScreen.hide();
       this.initTranslate();
     });
   }
