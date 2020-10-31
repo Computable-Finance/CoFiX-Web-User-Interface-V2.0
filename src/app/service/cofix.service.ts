@@ -1150,6 +1150,8 @@ export class CofiXService {
       await this.updateDividend();
 
       this.provider.on('block', async (blockNum) => {
+        console.log('updating ...');
+
         await this.updateETHBalance();
         await this.updateDividend();
         this.updateERC20Balances();
@@ -1339,11 +1341,11 @@ export class CofiXService {
     this.marketDetailsService.updateMarketDetails(address, {
       navPerShare: ethersOf(
         await coFiXPair.getNAVPerShare(
+          this.parseEthers(checkedPriceNow.ethAmount),
           this.parseUnits(
-            checkedPriceNow.ethAmount,
+            checkedPriceNow.erc20Amount,
             await this.getERC20Decimals(address)
-          ),
-          this.parseEthers(checkedPriceNow.erc20Amount)
+          )
         )
       ),
     });
