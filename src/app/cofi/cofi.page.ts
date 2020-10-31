@@ -35,6 +35,7 @@ export class CofiPage implements OnInit {
   balance: string = '';
   profitCoin = 'XTokens';
   withdrawError = { isError: false, msg: '' };
+  isDeposit: boolean = false;
   constructor(
     private cofixService: CofiXService,
     private balanceTruncatePipe: BalanceTruncatePipe,

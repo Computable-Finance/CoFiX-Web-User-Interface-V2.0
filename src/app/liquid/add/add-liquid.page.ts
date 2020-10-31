@@ -346,4 +346,5 @@ export class AddLiquidPage implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.resizeSubscription.unsubscribe();
   }
+  showAlert(title, content) {}
 }
