@@ -361,11 +361,11 @@ export class CofiXService {
     const kinfo = await this.getKInfo(address);
     const checkedPriceNow = await this.checkPriceNow(address);
     const oraclePrice = [
+      this.parseEthers(checkedPriceNow.ethAmount),
       this.parseUnits(
-        checkedPriceNow.ethAmount,
+        checkedPriceNow.erc20Amount,
         await this.getERC20Decimals(address)
       ),
-      this.parseEthers(checkedPriceNow.erc20Amount),
       '0',
       kinfo.kOriginal.toString(),
       '0',
