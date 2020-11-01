@@ -1,6 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
-import { TranslateService } from '@ngx-translate/core';
 import { Utils } from 'src/app/common/utils';
 
 @Component({
@@ -30,11 +28,7 @@ export class ExplainLiquidPage implements OnInit {
   xtValue: string = 'XT-1';
 
   oracleCost = 0.01;
-  constructor(
-    private alertController: AlertController,
-    private translateService: TranslateService,
-    private utils: Utils
-  ) {}
+  constructor(private utils: Utils) {}
 
   ngOnInit() {}
 

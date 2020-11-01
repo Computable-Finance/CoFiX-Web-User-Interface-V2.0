@@ -1,6 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { AlertController } from '@ionic/angular';
-import { TranslateService } from '@ngx-translate/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Utils } from '../../utils';
 
 export interface BannerContent {
@@ -23,16 +21,5 @@ export class CardTitlePage implements OnInit {
   ngOnInit() {}
   async showAlert(event) {
     this.utils.showAlert(this.alertTitle, this.alertContent, event);
-    /*const alert = await this.alertController.create({
-      cssClass: 'explain-liquid-alert',
-      header: await this.translateService.get(this.alertTitle).toPromise(),
-      message: await this.translateService.get(this.alertContent).toPromise(),
-      buttons: [
-        {
-          text: await this.translateService.get('comfirm_text').toPromise(),
-        },
-      ],
-    });
-    await alert.present();*/
   }
 }

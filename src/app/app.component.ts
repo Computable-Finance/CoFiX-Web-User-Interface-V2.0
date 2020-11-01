@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Platform } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -34,8 +32,6 @@ export class AppComponent implements OnInit {
 
   constructor(
     private platform: Platform,
-    //private splashScreen: SplashScreen,
-    //private statusBar: StatusBar,
     private translate: TranslateService,
     public shareStateQuery: ShareStateQuery,
     private cofixService: CofiXService,
@@ -48,8 +44,6 @@ export class AppComponent implements OnInit {
   initializeApp() {
     this.platform.ready().then(() => {
       this.initConnectIfEnabled();
-      //this.statusBar.styleDefault();
-      //this.splashScreen.hide();
       this.initTranslate();
     });
   }

@@ -1,19 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AlertController } from '@ionic/angular';
-import { TranslateService } from '@ngx-translate/core';
 import { BannerContent } from '../common/components/banner/banner.page';
 import { ShareStateQuery } from '../common/state/share.query';
 import { CofiXService } from '../service/cofix.service';
 import { Utils } from 'src/app/common/utils';
 import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
-import { ShareStateService } from '../common/state/share.service';
 import { CoinInputPage } from '../common/components/coin-input/coin-input.page';
 import { BigNumber } from 'ethers';
-import { type } from 'os';
-import { title } from 'process';
-import { async } from 'rxjs/internal/scheduler/async';
-import { BalancesQuery } from '../state/balance/balance.query';
-import { Subscription } from 'rxjs';
 
 export interface CoinContent {
   id: string;
@@ -72,13 +64,9 @@ export class SwapPage implements OnInit {
   minimum: any;
   constructor(
     private cofixService: CofiXService,
-    private translateService: TranslateService,
-    private alertController: AlertController,
     public shareStateQuery: ShareStateQuery,
-    private shareStateService: ShareStateService,
     private balancePipe: BalanceTruncatePipe,
-    private utils: Utils,
-    private balancesQuery: BalancesQuery
+    private utils: Utils
   ) {}
 
   async ngOnInit() {

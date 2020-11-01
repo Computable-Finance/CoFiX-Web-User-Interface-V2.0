@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ShareStateService } from '../../state/share.service';
 import { ShareStateQuery } from '../../state/share.query';

@@ -1,5 +1,4 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { PopoverController } from '@ionic/angular';
 import { FOOTER_ITEMS } from '../../constants';
 import { ShareStateQuery } from '../../state/share.query';
 @Component({
@@ -13,10 +12,7 @@ export class FooterPage implements OnInit {
   walletAddress: string;
   currentYear: number;
   isShowTools = false;
-  constructor(
-    private shareStateQuery: ShareStateQuery,
-    private popoverController: PopoverController
-  ) {
+  constructor(private shareStateQuery: ShareStateQuery) {
     this.currentYear = new Date().getFullYear();
   }
 

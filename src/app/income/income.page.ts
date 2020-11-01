@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
-import { TranslateService } from '@ngx-translate/core';
 import { fromEvent } from 'rxjs';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { debounceTime } from 'rxjs/operators';
@@ -51,8 +49,6 @@ export class IncomePage implements OnInit {
     private cofixService: CofiXService,
     private balanceTruncatePipe: BalanceTruncatePipe,
     public shareStateQuery: ShareStateQuery,
-    private translateService: TranslateService,
-    private alertController: AlertController,
     private utils: Utils
   ) {}
 

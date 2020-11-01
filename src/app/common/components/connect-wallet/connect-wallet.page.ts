@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CofiXService } from 'src/app/service/cofix.service';
 import { ShareStateQuery } from '../../state/share.query';
 import { ShareStateService } from '../../state/share.service';

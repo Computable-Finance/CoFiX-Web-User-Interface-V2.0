@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
 import { BannerContent } from '../common/components/banner/banner.page';
 import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
 import { ShareStateQuery } from '../common/state/share.query';

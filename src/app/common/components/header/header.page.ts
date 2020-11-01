@@ -3,8 +3,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { ShareStateService } from '../../state/share.service';
 import { ShareStateQuery } from '../../state/share.query';
 import { EventBusService } from 'src/app/service/eventbus.service';
-import { CofiXService } from 'src/app/service/cofix.service';
-import { Utils } from '../../utils';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-header',
@@ -34,8 +32,6 @@ export class HeaderPage implements OnInit {
     public shareStateQuery: ShareStateQuery,
     private shareStateService: ShareStateService,
     private eventbusService: EventBusService,
-    private cofixService: CofiXService,
-    private utils: Utils,
     private router: Router
   ) {
     this.eventbusService.on('accountsChanged', (account) => {

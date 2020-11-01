@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ModalController, PopoverController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 import { LiquidSelectPage } from './select/liquid-select.page';
 
 @Component({
@@ -11,10 +11,7 @@ export class LiquidInputPage implements OnInit {
   @Output() onChangeCoin = new EventEmitter<any>();
   @Input() coin: string = 'USDT';
   @Input() isDropDown: boolean = true;
-  constructor(
-    private popoverController: PopoverController,
-    private modalController: ModalController
-  ) {}
+  constructor(private modalController: ModalController) {}
   ngOnInit() {}
   async selectAddType(event: any) {
     const modal = await this.modalController.create({

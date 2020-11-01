@@ -1,6 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { AlertController } from '@ionic/angular';
-import { TranslateService } from '@ngx-translate/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Utils } from '../../utils';
 
 export interface BannerContent {
