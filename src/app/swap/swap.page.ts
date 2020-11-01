@@ -33,7 +33,7 @@ export class SwapPage implements OnInit {
   @ViewChild(CoinInputPage, { static: false }) toCoinInputView: CoinInputPage;
   public swapContent: BannerContent = {
     title: 'swap_title',
-    descriptions: ['swap_desc1', 'swap_desc2', 'swap_desc3', 'swap_desc4'],
+    descriptions: ['swap_desc1', 'swap_desc2', 'swap_desc3'],
     more: {
       text: 'swap_more',
       url: 'https://github.com/Computable-Finance/Doc#5-trading-mechanism',
@@ -332,8 +332,8 @@ export class SwapPage implements OnInit {
     }
   }
 
-  async showAlert(title, content) {
-    const alert = await this.alertController.create({
+  async showAlert(title, content, event, footer = '') {
+    /*const alert = await this.alertController.create({
       cssClass: 'explain-liquid-alert',
       header: await this.translateService.get(title).toPromise(),
       message: await this.translateService.get(content).toPromise(),
@@ -343,7 +343,8 @@ export class SwapPage implements OnInit {
         },
       ],
     });
-    await alert.present();
+    await alert.present();*/
+    this.utils.showAlert(title, content, event, footer);
   }
 
   async approve() {

@@ -1,0 +1,22 @@
+.tooltips {
+  padding: 22px 24px;
+}
+.tooltips .title {
+  font-size: 15px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.67;
+  letter-spacing: normal;
+  --ion-text-color: var(--mine);
+  text-align: left;
+}
+.tooltips div {
+  font-size: 15px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  color: var(--mine);
+  text-align: justify;
+}

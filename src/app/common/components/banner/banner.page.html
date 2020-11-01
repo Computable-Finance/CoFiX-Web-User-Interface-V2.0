@@ -12,9 +12,9 @@
     </ion-grid>
     
     <div *ngIf="isShowDetail" class="detail-content">
-      <p class="desc" *ngFor="let desc of bannerConent.descriptions;let i=index">
-        {{desc | translate}}
-      </p>
+      <ng-container *ngFor="let desc of bannerConent.descriptions;let i=index">
+        <div [innerHTML]="desc | translate | marked" class="desc"></div>
+      </ng-container>
       <div class="more">
         {{'still_complicated' | translate}}
         <a (click)="goto(bannerConent.more.url)">{{bannerConent.more.text | translate}}

@@ -342,5 +342,7 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
     this.resizeSubscription.unsubscribe();
   }
 
-  showAlert() {}
+  showAlert(content, evnet) {
+    this.utils.showAlert('', content, evnet);
+  }
 }

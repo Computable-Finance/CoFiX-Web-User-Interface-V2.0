@@ -1,7 +1,7 @@
 <div class="card-title">
     {{cardTitle | translate}} 
     <img class="alert-icon title-alert" *ngIf="alertTitle"
-        src="./assets/images/question.png" (click)="showAlert()" />
+        src="./assets/images/question.png" (click)="showAlert($event)" />
     <div *ngIf="cardSubTitle" class="sub-title">
         {{cardSubTitle | translate}}
     </div>

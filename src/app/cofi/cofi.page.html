@@ -4,7 +4,7 @@
   <ion-card class="swap-card">
     <div class="card-content">
       <app-card-title [cardTitle]="'cofi_claim_title'" [cardSubTitle]="'cofi_claim_desc'"></app-card-title>
-      <app-taken-info [infoTitle]="'ywc'" [token]="'CoFi'" [tokenBalance]="earnedRate?.earned"> </app-taken-info>
+      <app-taken-info [infoTitle]="'ywc'" [token]="'CoFi'" [tokenBalance]="earnedRate?.earned" [alertContent]="'claim_tooltips_unclaimed'"> </app-taken-info>
 
       <ion-grid class="ion-no-padding">
         <ion-row
@@ -46,7 +46,7 @@
 
         <ion-row class="ion-align-items-center ion-align-self-center conversionPrice">
           <ion-col class="label" size="10">{{'cofi_isdeposit' | translate}}
-            <img class="alert-icon" src="./assets/images/question.png" (click)="showAlert('ygck','ygck_cont')" />
+            <img class="alert-icon" src="./assets/images/question.png" (click)="showAlert('claim_tooltips_deposit',$event)" />
           </ion-col>
           <ion-col class="ion-text-right" size="2">
             <ion-toggle [(ngModel)]="isDeposit"></ion-toggle>

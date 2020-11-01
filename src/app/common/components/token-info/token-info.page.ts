@@ -24,8 +24,8 @@ export class TokenInfoPage implements OnInit {
   @Input() questionImgName: string = 'question';
   constructor(private utils: Utils) {}
   ngOnInit() {}
-  async showAlert() {
-    this.utils.showAlert(this.alertTitle, this.alertContent);
+  async showAlert(event) {
+    this.utils.showAlert(this.alertTitle, this.alertContent, event);
   }
   showSkeleton() {
     return (

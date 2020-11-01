@@ -20,6 +20,7 @@ import { CardTitlePage } from './card-title/card-title.page';
 import { TokenInfoPage } from './token-info/token-info.page';
 import { IncomeProfitPage } from 'src/app/income/profit/profit.page';
 import { ProfitPage } from 'src/app/liquid/profit/profit.page';
+import { TooltipsPage } from './tooltips/tooltips.page';
 
 @NgModule({
   imports: [
@@ -45,6 +46,7 @@ import { ProfitPage } from 'src/app/liquid/profit/profit.page';
     CardTitlePage,
     TokenInfoPage,
     IncomeProfitPage,
+    TooltipsPage,
   ],
   exports: [
     FooterPage,
@@ -60,6 +62,7 @@ import { ProfitPage } from 'src/app/liquid/profit/profit.page';
     CardTitlePage,
     TokenInfoPage,
     IncomeProfitPage,
+    TooltipsPage,
   ],
 })
 export class CommonComponentsModule {}

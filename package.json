@@ -30,6 +30,7 @@
     "bignumber.js": "^9.0.1",
     "bufferutil": "^4.0.1",
     "ethers": "^5.0.19",
+    "marked": "^1.2.2",
     "ngx-cacheable": "^1.4.3",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",

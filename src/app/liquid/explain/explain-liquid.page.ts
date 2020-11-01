@@ -38,22 +38,7 @@ export class ExplainLiquidPage implements OnInit {
 
   ngOnInit() {}
 
-  async showAlert() {
-    const alert = await this.alertController.create({
-      cssClass: 'explain-liquid-alert',
-      header: await this.translateService.get('jzsm_title').toPromise(),
-      message:
-        (await this.translateService.get('jzsm_cont1').toPromise()) +
-        '</br>' +
-        (await this.translateService.get('jzsm_cont2').toPromise()) +
-        '</br>' +
-        (await this.translateService.get('jzsm_cont3').toPromise()),
-      buttons: [
-        {
-          text: await this.translateService.get('comfirm_text').toPromise(),
-        },
-      ],
-    });
-    await alert.present();
+  async showAlert(content, event) {
+    this.utils.showAlert('', content, event);
   }
 }

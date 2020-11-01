@@ -1,9 +1,15 @@
 import { Injectable } from '@angular/core';
-import { AlertController, ToastController } from '@ionic/angular';
+import {
+  AlertController,
+  PopoverController,
+  ToastController,
+} from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { PermissionsService } from 'src/app/state/permission/permission.service';
 
 import { CofiXService } from '../service/cofix.service';
+import { SwitchLangPage } from './components/switch-lang/switch-lang.page';
+import { TooltipsPage } from './components/tooltips/tooltips.page';
 import { BalanceTruncatePipe } from './pipes/balance.pipe';
 import { ShareStateService } from './state/share.service';
 
@@ -18,7 +24,8 @@ export class Utils {
     private translateService: TranslateService,
     private cofixService: CofiXService,
     public toastController: ToastController,
-    private permissionService: PermissionsService
+    private permissionService: PermissionsService,
+    private popoverController: PopoverController
   ) {}
   public async updateShareAddress(shareState: any) {
     const address_USDT = this.cofixService.getCurrentContractAddressList()[
@@ -50,31 +57,18 @@ export class Utils {
     }
     return coin.balance;
   }
-  /*async showAlert() {
-    const alert = await this.alertController.create({
-      cssClass: 'explain-liquid-alert',
-      header: await this.translateService.get('note').toPromise(),
-      message: await this.translateService.get('have_submit').toPromise(),
-      buttons: [
-        {
-          text: await this.translateService.get('i_know').toPromise(),
-        },
-      ],
+  async showAlert(title, content, ev, footer = '') {
+    const popover = await this.popoverController.create({
+      component: TooltipsPage,
+      cssClass: 'tooltips-class',
+      componentProps: {
+        tipsTitle: title,
+        tipsContent: content,
+        tipsFooter: footer,
+      },
+      event: ev,
     });
-    await alert.present();
-  }*/
-  async showAlert(title, content) {
-    const alert = await this.alertController.create({
-      cssClass: 'explain-liquid-alert',
-      header: await this.translateService.get(title).toPromise(),
-      message: await this.translateService.get(content).toPromise(),
-      buttons: [
-        {
-          text: await this.translateService.get('comfirm_text').toPromise(),
-        },
-      ],
-    });
-    await alert.present();
+    await popover.present();
   }
 
   async getPairAttended() {

@@ -252,24 +252,33 @@ ion-button {
   max-width: unset !important;
 }
 .explain-liquid-alert {
-  --background: #1b2330;
+  --background: var(--white);
   --max-width: 370px;
 }
 .explain-liquid-alert h2 {
-  color: white;
-  font-size: 24px;
-  --ion-text-color: white;
-  text-align: center;
-  margin: 10px;
+  font-size: 15px !important;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.67;
+  letter-spacing: normal;
+  --ion-text-color: var(--mine);
+  text-align: left;
 }
 .explain-liquid-alert .alert-message {
-  color: white;
-  line-height: 25px;
+  font-size: 15px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.67;
+  letter-spacing: normal;
+  color: var(--mine);
   text-align: justify;
 }
 .alert-icon {
   margin-left: 10px;
   width: 18px;
+  cursor: pointer;
 }
 @keyframes loadingmove {
   from {
@@ -470,4 +479,43 @@ ion-toggle {
 }
 .claimETH .conversionPrice {
   border: 0;
+}
+
+.tooltips-class .popover-content {
+  width: 320px;
+  border-radius: 16px;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
+  border: solid 1px var(--mercury);
+  background-color: var(--white);
+}
+
+.tooltips-class .popover-content .content p {
+  margin-block-start: 0em !important;
+  margin-block-end: 0em !important;
+}
+
+.banner-content .detail-content .desc {
+  p,
+  li {
+    line-height: 22px;
+    color: var(--dove);
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 17px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    margin: 7px 0px;
+    text-align: justify;
+  }
+
+  ol {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    padding-inline-start: 10px;
+  }
+  a {
+    color: var(--black);
+    cursor: pointer;
+  }
 }

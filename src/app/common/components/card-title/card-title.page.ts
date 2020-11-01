@@ -19,14 +19,10 @@ export class CardTitlePage implements OnInit {
   @Input() cardSubTitle: string;
   @Input() alertTitle: string;
   @Input() alertContent: string;
-  constructor(
-    private alertController: AlertController,
-    private translateService: TranslateService,
-    private utils: Utils
-  ) {}
+  constructor(private utils: Utils) {}
   ngOnInit() {}
-  async showAlert() {
-    this.utils.showAlert(this.alertTitle, this.alertContent);
+  async showAlert(event) {
+    this.utils.showAlert(this.alertTitle, this.alertContent, event);
     /*const alert = await this.alertController.create({
       cssClass: 'explain-liquid-alert',
       header: await this.translateService.get(this.alertTitle).toPromise(),

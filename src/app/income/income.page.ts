@@ -219,18 +219,8 @@ export class IncomePage implements OnInit {
       });
   }
 
-  async showAlert(title, content) {
-    const alert = await this.alertController.create({
-      cssClass: 'explain-liquid-alert',
-      header: await this.translateService.get(title).toPromise(),
-      message: await this.translateService.get(content).toPromise(),
-      buttons: [
-        {
-          text: await this.translateService.get('comfirm_text').toPromise(),
-        },
-      ],
-    });
-    await alert.present();
+  async showAlert(content, event) {
+    this.utils.showAlert('', content, event);
   }
   showModal(type) {
     console.log(this.incomeError);

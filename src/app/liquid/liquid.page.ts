@@ -45,6 +45,18 @@ export class LiquidPage implements OnInit {
       url: 'https://github.com/Computable-Finance/Doc#4-market-maker-mechanism',
     },
   };
+  lpwithdrawContent: BannerContent = {
+    title: 'help_tips',
+    descriptions: [
+      'liquidpool_withdraw_help_desc1',
+      'liquidpool_withdraw_help_desc2',
+      'liquidpool_withdraw_help_desc2',
+    ],
+    more: {
+      text: 'read_more',
+      url: 'https://github.com/Computable-Finance/Doc#4-market-maker-mechanism',
+    },
+  };
   liquidContent_origin: BannerContent;
   fromCoin: CoinContent = {
     id: 'ETH',
@@ -256,7 +268,7 @@ export class LiquidPage implements OnInit {
   redemption(coin) {
     this.showRedemtionModel = true;
     this.selectCoin = coin;
-    this.liquidContent = this.withdrawContent;
+    this.liquidContent = this.lpwithdrawContent;
   }
 
   closeRedeemLiquid(event) {
@@ -353,5 +365,7 @@ export class LiquidPage implements OnInit {
   havMining() {
     return !this.pairAttended[this.toCoin.id];
   }
-  showAlert(title, content) {}
+  showAlert(content, event) {
+    this.utils.showAlert('', content, event);
+  }
 }
