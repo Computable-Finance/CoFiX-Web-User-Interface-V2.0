@@ -111,7 +111,7 @@ export class CofiXService {
     );
 
     this.registerWeb3EventHandler();
-    this.trackingBalances();
+    this.trackingBlockchain();
   }
 
   private registerWeb3EventHandler() {
@@ -494,7 +494,7 @@ export class CofiXService {
   }
 
   private reset() {
-    this.untrackingBalances();
+    this.untrackingBlockchain();
     this.provider = this.defaultProvider();
     this.currentAccount = undefined;
     this.currentNetwork = environment.network;
@@ -1152,24 +1152,29 @@ export class CofiXService {
     return this.getBalancesByAccount(this.currentAccount);
   }
 
-  private async trackingBalances() {
-    if (this.provider && this.currentAccount) {
-      await this.updateETHBalance();
-      await this.updateDividend();
-
-      this.provider.on('block', async (blockNum) => {
-        console.log('updating ...');
-
+  private async trackingBlockchain() {
+    if (this.provider) {
+      if (this.currentAccount) {
         await this.updateETHBalance();
         await this.updateDividend();
-        this.updateERC20Balances();
-        this.updateUnclaimedCofis();
-        this.updateMarketDetails();
-      });
+        this.provider.on('block', async (blockNum) => {
+          console.log('updating ...');
+          await this.updateETHBalance();
+          await this.updateDividend();
+          this.updateERC20Balances();
+          this.updateUnclaimedCofis();
+          this.updateMarketDetails();
+        });
+      } else {
+        this.provider.on('block', async (blockNum) => {
+          console.log('updating ...');
+          this.updateMarketDetails();
+        });
+      }
     }
   }
 
-  private untrackingBalances() {
+  private untrackingBlockchain() {
     if (this.provider) {
       this.provider.off('block');
     }
@@ -1195,17 +1200,16 @@ export class CofiXService {
   }
 
   private async updateUnclaimedCofi(address: string) {
-    const coFiXStakingRewards = getCoFiXStakingRewards(address, this.provider);
+    const coFiXStakingRewards = getCoFiXStakingRewards(
+      await this.getStakingPoolAddressByToken(address),
+      this.provider
+    );
     const earned = ethersOf(
       await coFiXStakingRewards.earned(this.currentAccount)
     );
-    const rewardRate = new BNJS(
-      ethersOf(await coFiXStakingRewards.rewardRate())
-    )
-      .times(BLOCKNUMS_IN_A_DAY)
-      .toString();
+
     const unclaimedCoFi = {};
-    unclaimedCoFi[address] = { earned, rewardRate };
+    unclaimedCoFi[address] = earned;
     this.balancesService.updateUnclaimedCoFi(
       this.currentAccount,
       unclaimedCoFi
@@ -1270,13 +1274,22 @@ export class CofiXService {
   }
 
   async earnedCofiAndRewardRate(address: string) {
-    const unclaimedCoFi = this.getCurrentBalances()?.unclaimedCoFis?.[address];
-    if (!unclaimedCoFi) {
-      await this.updateUnclaimedCofi(address);
-      return this.getCurrentBalances().unclaimedCoFis[address];
+    let earned = '0';
+    if (this.currentAccount) {
+      earned = this.getCurrentBalances()?.unclaimedCoFis?.[address];
+      if (!earned) {
+        await this.updateUnclaimedCofi(address);
+        earned = this.getCurrentBalances().unclaimedCoFis[address];
+      }
     }
 
-    return unclaimedCoFi;
+    let rewardRate = await this.getRewardRate(address);
+    if (!rewardRate) {
+      await this.updateRewardRate(address);
+      rewardRate = await this.getRewardRate(address);
+    }
+
+    return { earned, rewardRate };
   }
 
   async earnedETH() {
@@ -1288,6 +1301,7 @@ export class CofiXService {
       await this.updateKInfo(address);
       await this.updateCheckedPriceNow(address);
       await this.updateNAVPerShare(address);
+      await this.updateRewardRate(address);
     });
   }
 
@@ -1371,5 +1385,27 @@ export class CofiXService {
       return this.marketDetailsQuery.getNavPerShare(address);
     }
     return navPerShare;
+  }
+
+  private async updateRewardRate(address: string) {
+    const coFiXStakingRewards = getCoFiXStakingRewards(
+      await this.getStakingPoolAddressByToken(address),
+      this.provider
+    );
+    const rewardRate = new BNJS(
+      ethersOf(await coFiXStakingRewards.rewardRate())
+    )
+      .times(BLOCKNUMS_IN_A_DAY)
+      .toString();
+    this.marketDetailsService.updateMarketDetails(address, { rewardRate });
+  }
+
+  private async getRewardRate(address: string) {
+    const rewardRate = this.marketDetailsQuery.getRewardRate(address);
+    if (!rewardRate) {
+      await this.updateRewardRate(address);
+      return this.marketDetailsQuery.getRewardRate(address);
+    }
+    return rewardRate;
   }
 }

@@ -20,10 +20,7 @@ export class BalancesService {
   updateUnclaimedCoFi(
     account: string,
     unclaimedCoFi: {
-      [address: string]: {
-        earned: string;
-        rewardRate: string;
-      };
+      [address: string]: string;
     }
   ) {
     this.createOrUpdate(account, 'unclaimedCoFis', unclaimedCoFi);

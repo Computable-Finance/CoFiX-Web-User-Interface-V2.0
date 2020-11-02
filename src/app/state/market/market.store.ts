@@ -9,6 +9,7 @@ export interface MarketDetails {
     changePrice: string;
   };
   navPerShare: string;
+  rewardRate: string;
 }
 
 export interface MarketDetailsModel {

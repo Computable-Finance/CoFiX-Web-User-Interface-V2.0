@@ -20,6 +20,10 @@ export class MarketDetailsQuery extends Query<MarketDetailsModel> {
     return this.getValueOfProperty(address, 'navPerShare');
   }
 
+  getRewardRate(address: string) {
+    return this.getValueOfProperty(address, 'rewardRate');
+  }
+
   private getValueOfProperty(address: string, property: string) {
     const value = this.store.getValue();
     const details = value[address];

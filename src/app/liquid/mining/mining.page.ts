@@ -104,7 +104,7 @@ export class TokenMiningPage implements OnInit, OnDestroy {
         )
       );
       this.earnedRate = await this.cofixService.earnedCofiAndRewardRate(
-        await this.cofixService.getStakingPoolAddressByToken(this.coinAddress)
+        this.coinAddress
       );
       this.canReceive =
         (await this.balanceTruncatePipe.transform(this.earnedRate.earned)) !=

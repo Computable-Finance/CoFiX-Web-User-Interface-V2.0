@@ -6,10 +6,7 @@ export interface ERC20Balances {
 }
 
 export interface UnclaimedCoFis {
-  [address: string]: {
-    earned: string;
-    rewardRate: string;
-  };
+  [address: string]: string;
 }
 
 export interface AccountBalance {

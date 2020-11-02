@@ -203,9 +203,7 @@ export class LiquidPage implements OnInit {
       this.earnedRate[
         coinItem
       ] = await this.cofixService.earnedCofiAndRewardRate(
-        await this.cofixService.getStakingPoolAddressByToken(
-          this.cofixService.getCurrentContractAddressList()[coinItem]
-        )
+        this.cofixService.getCurrentContractAddressList()[coinItem]
       );
     });
     console.log(this.earnedRate);
