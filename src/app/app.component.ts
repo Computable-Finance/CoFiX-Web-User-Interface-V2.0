@@ -1,11 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
+import { DB_VERSION } from './common/constants';
 
 import { ShareStateQuery } from './common/state/share.query';
 import { ShareStateService } from './common/state/share.service';
 import { CofiXService } from './service/cofix.service';
+import { MetadataQuery } from './state/metadata/metadata.query';
+import { MetadataService } from './state/metadata/metadata.service';
 
 type State = { lang: string };
 
@@ -36,7 +39,10 @@ export class AppComponent implements OnInit {
     public shareStateQuery: ShareStateQuery,
     private cofixService: CofiXService,
     private shareStateService: ShareStateService,
-    private router: Router
+    private router: Router,
+    private metadataQuery: MetadataQuery,
+    private metadataService: MetadataService,
+    @Inject('persistStorage') private persistStorage
   ) {
     this.initializeApp();
   }
@@ -45,6 +51,7 @@ export class AppComponent implements OnInit {
     this.platform.ready().then(() => {
       this.initConnectIfEnabled();
       this.initTranslate();
+      this.cleanOldStorageSchemas();
     });
   }
 
@@ -60,6 +67,16 @@ export class AppComponent implements OnInit {
       this.shareStateService.updateCurrentAccount(
         this.cofixService.getCurrentAccount()
       );
+    }
+  }
+
+  cleanOldStorageSchemas() {
+    const version = this.metadataQuery.dbVersion();
+    if (!version || version !== DB_VERSION) {
+      console.log(`clean old storage schema: ${version} -> ${DB_VERSION}`);
+
+      this.persistStorage.clearStore();
+      this.metadataService.updateDbVersion(DB_VERSION);
     }
   }
 

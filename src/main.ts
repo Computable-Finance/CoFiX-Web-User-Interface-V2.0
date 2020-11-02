@@ -10,7 +10,7 @@ let storage;
 if (environment.production) {
   enableProdMode();
   storage = persistState({
-    include: ['permissions', 'token-info', 'settings'],
+    include: ['permissions', 'token-info', 'settings', 'metadata'],
   });
 } else {
   storage = persistState();
