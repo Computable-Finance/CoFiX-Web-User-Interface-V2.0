@@ -1095,6 +1095,7 @@ export class CofiXService {
       this.tokenInfoService.updateTokenInfo(tokenAddress, {
         decimals: result,
       });
+      return this.tokenInfoQuery.getDecimals(tokenAddress);
     }
     return decimals;
   }
@@ -1109,6 +1110,7 @@ export class CofiXService {
       this.tokenInfoService.updateTokenInfo(tokenAddress, {
         pairAddress: await factory.getPair(tokenAddress),
       });
+      return this.tokenInfoQuery.getPairAddress(tokenAddress);
     }
     return pairAddress;
   }
@@ -1127,6 +1129,7 @@ export class CofiXService {
           await this.getPairAddressByToken(tokenAddress)
         ),
       });
+      return this.tokenInfoQuery.getStakingPoolAddress(tokenAddress);
     }
     return stakingPoolAddress;
   }
