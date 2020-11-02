@@ -174,7 +174,9 @@ export class SwapPage implements OnInit {
       this.toCoin.amount = await this.balancePipe.transform(
         executionPriceAndExpectedCofi.excutionPrice
       );
-      this.minimum = executionPriceAndExpectedCofi.excutionPrice * 0.99;
+      this.minimum = new BNJS(executionPriceAndExpectedCofi.excutionPrice)
+        .times(0.99)
+        .toString();
 
       this.expectedCofi = executionPriceAndExpectedCofi.expectedCofi;
       this.changePrice = executionPriceAndExpectedCofi.excutionPriceForOne;
@@ -191,7 +193,7 @@ export class SwapPage implements OnInit {
     this.showError = false;
   }
 
-  resetAmout(type) {
+  resetAmount() {
     this.fromCoin.amount = '';
     this.toCoin.amount = '';
     this.fromCoin.isApproved = false;
@@ -203,7 +205,7 @@ export class SwapPage implements OnInit {
   }
 
   changeCoin() {
-    this.resetAmout('changeCoin');
+    this.resetAmount();
     const tempCoin = this.fromCoin;
     this.fromCoin = this.toCoin;
     this.toCoin = tempCoin;
@@ -369,7 +371,7 @@ export class SwapPage implements OnInit {
           const provider = this.cofixService.getCurrentProvider();
           provider.once(tx.hash, (transactionReceipt) => {
             this.isLoading.dh = false;
-            this.resetAmout('swap');
+            this.resetAmount();
             this.initCoinContent();
             this.getIsApproved();
           });
@@ -402,7 +404,7 @@ export class SwapPage implements OnInit {
             const provider = this.cofixService.getCurrentProvider();
             provider.once(tx.hash, (transactionReceipt) => {
               this.isLoading.dh = false;
-              this.resetAmout('swap');
+              this.resetAmount();
               this.initCoinContent();
               this.getIsApproved();
             });
@@ -441,7 +443,7 @@ export class SwapPage implements OnInit {
             const provider = this.cofixService.getCurrentProvider();
             provider.once(tx.hash, (transactionReceipt) => {
               this.isLoading.dh = false;
-              this.resetAmout('swap');
+              this.resetAmount();
               this.initCoinContent();
               this.getIsApproved();
             });

@@ -246,8 +246,6 @@ export class CofiXService {
     const excutionPrice = innerAmount;
     const expectedCofi = expectedCofi1.plus(expectedCofi2).toString();
 
-    console.log(excutionPriceForOne.toString(), excutionPrice, expectedCofi);
-
     return {
       excutionPriceForOne,
       excutionPrice,
