@@ -242,73 +242,7 @@ export class CofiXService {
       innerAmount = excutionPrice2.times(innerAmount).toString();
     }
 
-    // let valx;
-
-    // if (fromToken !== undefined) {
-    //   const kinfo = await this.getKInfo(fromToken);
-    //   const price = await this.checkPriceNow(fromToken);
-
-    //   if (toToken === undefined) {
-    //     valx = new BNJS(amount).div(
-    //       new BNJS(price.changePrice).times(new BNJS(1).minus(kinfo.k))
-    //     );
-    //   } else {
-    //     valx = new BNJS(amount).div(
-    //       new BNJS(price.changePrice).times(new BNJS(1).plus(kinfo.k))
-    //     );
-    //   }
-    //   const fee = this.parseEthers(valx.times(kinfo.theta).toString());
-    //   expectedCofi2 = await this.expectedCoFi(
-    //     fromToken,
-    //     price,
-    //     kinfo,
-    //     fee,
-    //     false
-    //   );
-
-    //   let c;
-    //   if (valx.lt(500)) {
-    //     c = 0;
-    //   } else if (valx.gte(500) && valx.lte(999000)) {
-    //     c = new BNJS(2.57e-5).plus(new BNJS(8.542e-7).times(valx));
-    //   } else {
-    //     c = new BNJS(2.57e-5).plus(new BNJS(8.542e-7).times(999000));
-    //   }
-
-    //   excutionPrice2 = new BNJS(1)
-    //     .minus(kinfo.theta)
-    //     .div(
-    //       new BNJS(price.changePrice).times(
-    //         new BNJS(1).plus(new BNJS(kinfo.k).plus(c))
-    //       )
-    //     );
-    // }
-
-    // if (toToken !== undefined) {
-    //   const kinfo = await this.getKInfo(toToken);
-    //   const price = await this.checkPriceNow(toToken);
-
-    //   if (fromToken === undefined) {
-    //     valx = new BNJS(amount);
-    //   }
-
-    //   const fee = this.parseEthers(valx.times(kinfo.theta).toString());
-    //   let c;
-    //   if (valx.lt(500)) {
-    //     c = 0;
-    //   } else if (valx.gte(500) && valx.lte(999000)) {
-    //     c = new BNJS(-1.171e-4).plus(new BNJS(8.386e-7).times(amount));
-    //   } else {
-    //     c = new BNJS(-1.171e-4).plus(new BNJS(8.386e-7).times(999000));
-    //   }
-    //   excutionPrice1 = new BNJS(price.changePrice)
-    //     .times(new BNJS(1).minus(new BNJS(kinfo.k).plus(c)))
-    //     .times(new BNJS(1).minus(kinfo.theta));
-    //   expectedCofi1 = await this.expectedCoFi(toToken, price, kinfo, fee, true);
-    // }
-
     const excutionPriceForOne = excutionPrice1.times(excutionPrice2).toString();
-    // const excutionPrice = excutionPriceForOne.times(amount).toString();
     const excutionPrice = innerAmount;
     const expectedCofi = expectedCofi1.plus(expectedCofi2).toString();
 
@@ -362,9 +296,7 @@ export class CofiXService {
   ) {
     const kinfo = await this.getKInfo(token);
     const price = await this.checkPriceNow(token);
-    const valx = new BNJS(amount).div(
-      new BNJS(price.changePrice).times(new BNJS(1).minus(kinfo.k))
-    );
+    const valx = new BNJS(amount).div(new BNJS(price.changePrice));
 
     const fee = this.parseEthers(valx.times(kinfo.theta).toString());
 
