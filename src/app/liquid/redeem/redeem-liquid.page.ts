@@ -13,6 +13,7 @@ import { CoinInputPage } from 'src/app/common/components/coin-input/coin-input.p
 import { BalanceTruncatePipe } from 'src/app/common/pipes/balance.pipe';
 import { ShareStateQuery } from 'src/app/common/state/share.query';
 import { ShareStateService } from 'src/app/common/state/share.service';
+import { ShareState } from 'src/app/common/state/share.store';
 import { Utils } from 'src/app/common/utils';
 import { CofiXService } from 'src/app/service/cofix.service';
 import { CoinContent } from 'src/app/swap/swap.page';
@@ -52,7 +53,7 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
   hadValue: string;
   NAVPerShare: string;
   oracleCost = 0.01;
-  shareState: any;
+  shareState: ShareState;
   isLoading = { sh: false, sq: false };
   showError = false;
   ETHAmountForRemoveLiquidity: number;
@@ -158,22 +159,24 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
       this.toCoin.address = this.cofixService.getCurrentContractAddressList()[
         this.toCoin.id
       ];
-
-      if (
-        !this.shareState.tokenPairAddress[this.toCoin.id] ||
-        !this.shareState.stakingPoolAddress[this.toCoin.id]
-      ) {
-        await this.utils.updateShareAddress(this.shareState);
-      }
+      console.log(this.toCoin);
+      console.log(
+        await this.cofixService.getStakingPoolAddressByToken(
+          this.toCoin.address
+        )
+      );
+      await this.cofixService.getStakingPoolAddressByToken(this.toCoin.address);
       this.todoValue = await this.balanceTruncatePipe.transform(
         await this.cofixService.getERC20Balance(
-          this.shareState.tokenPairAddress[this.toCoin.id]
+          await this.cofixService.getPairAddressByToken(this.toCoin.address)
         )
       );
 
       this.hadValue = await this.balanceTruncatePipe.transform(
         await this.cofixService.getERC20Balance(
-          this.shareState.stakingPoolAddress[this.toCoin.id]
+          await this.cofixService.getStakingPoolAddressByToken(
+            this.toCoin.address
+          )
         )
       );
       this.shareStateService.updateShareStore(this.shareState);
@@ -191,9 +194,9 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
   }
 
   async getRemoveLiquidity() {
-    const pair = this.shareStateQuery.getValue().tokenPairAddress[
-      this.toCoin.id
-    ];
+    const pair = await this.cofixService.getPairAddressByToken(
+      this.toCoin.address
+    );
     if (this.isETHChecked) {
       const result = await this.cofixService.getETHAmountForRemoveLiquidity(
         this.toCoin.address,
@@ -219,7 +222,7 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
 
   async getIsApproved() {
     this.toCoin.isApproved = await this.cofixService.approved(
-      this.shareState.tokenPairAddress[this.toCoin.id],
+      await this.cofixService.getPairAddressByToken(this.toCoin.address),
       this.cofixService.getCurrentContractAddressList().CofixRouter
     );
   }
@@ -230,9 +233,9 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
       return false;
     }
     const token = this.toCoin.address;
-    const pair = this.shareStateQuery.getValue().tokenPairAddress[
-      this.toCoin.id
-    ];
+    const pair = await this.cofixService.getPairAddressByToken(
+      this.toCoin.address
+    );
     this.isLoading.sh = true;
     let ethAmount;
 
@@ -321,7 +324,7 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
         this.isLoading,
         this.redeemError,
         this,
-        this.shareState.tokenPairAddress[this.toCoin.id],
+        await this.cofixService.getPairAddressByToken(this.toCoin.address),
         this.cofixService.getCurrentContractAddressList().CofixRouter
       );
     }

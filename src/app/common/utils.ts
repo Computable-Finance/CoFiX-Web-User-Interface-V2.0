@@ -8,7 +8,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { PermissionsService } from 'src/app/state/permission/permission.service';
 
 import { CofiXService } from '../service/cofix.service';
-import { SwitchLangPage } from './components/switch-lang/switch-lang.page';
 import { TooltipsPage } from './components/tooltips/tooltips.page';
 import { BalanceTruncatePipe } from './pipes/balance.pipe';
 import { ShareStateService } from './state/share.service';
@@ -27,23 +26,6 @@ export class Utils {
     private permissionService: PermissionsService,
     private popoverController: PopoverController
   ) {}
-  public async updateShareAddress(shareState: any) {
-    const address_USDT = this.cofixService.getCurrentContractAddressList()[
-      'USDT'
-    ];
-    const address_HBTC = this.cofixService.getCurrentContractAddressList()[
-      'HBTC'
-    ];
-    shareState.tokenPairAddress = {
-      USDT: await this.cofixService.getPairAddressByToken(address_USDT),
-      HBTC: await this.cofixService.getPairAddressByToken(address_HBTC),
-    };
-    shareState.stakingPoolAddress = {
-      USDT: await this.cofixService.getStakingPoolAddressByToken(address_USDT),
-      HBTC: await this.cofixService.getStakingPoolAddressByToken(address_HBTC),
-    };
-    this.shareStateService.updateShareStore(shareState);
-  }
 
   async getBalanceByCoin(coin) {
     if (coin.id === 'ETH') {

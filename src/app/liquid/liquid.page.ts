@@ -5,6 +5,7 @@ import { BannerContent } from '../common/components/banner/banner.page';
 import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
 import { ShareStateQuery } from '../common/state/share.query';
 import { ShareStateService } from '../common/state/share.service';
+import { ShareState } from '../common/state/share.store';
 import { Utils } from '../common/utils';
 import { CofiXService } from '../service/cofix.service';
 import { CoinContent } from '../swap/swap.page';
@@ -86,7 +87,7 @@ export class LiquidPage implements OnInit {
 
   ETHAmountForRemoveLiquidity = { USDT: '', HBTC: '' };
   tokenAmountForRemoveLiquidity = { USDT: '', HBTC: '' };
-  shareState: any;
+  shareState: ShareState;
   showAddModel = false;
   showLiquidInfo = false;
   isRotate = { USDT: false, HBTC: false };
@@ -197,19 +198,17 @@ export class LiquidPage implements OnInit {
     this.toCoin.amount = '';
     this.expectedXToken = '';
     this.shareState = this.shareStateQuery.getValue();
-    if (
-      !this.shareState.tokenPairAddress[this.toCoin.id] ||
-      !this.shareState.stakingPoolAddress[this.toCoin.id]
-    ) {
-      await this.utils.updateShareAddress(this.shareState);
-    }
+    console.log(this.earnedRate);
     this.coinList.forEach(async (coinItem) => {
       this.earnedRate[
         coinItem
       ] = await this.cofixService.earnedCofiAndRewardRate(
-        this.shareState.stakingPoolAddress[coinItem]
+        await this.cofixService.getStakingPoolAddressByToken(
+          this.cofixService.getCurrentContractAddressList()[coinItem]
+        )
       );
     });
+    console.log(this.earnedRate);
     if (this.shareState.connectedWallet) {
       this.fromCoin.address = this.cofixService.getCurrentContractAddressList()[
         this.fromCoin.id
@@ -223,37 +222,44 @@ export class LiquidPage implements OnInit {
         this.getValueFromStateQuery();
       }
       this.coinList.forEach(async (coinItem) => {
-        this.todoValue[coinItem] = await this.balanceTruncatePipe.transform(
-          await this.cofixService.getERC20Balance(
-            this.shareState.tokenPairAddress[coinItem]
-          )
+        const pairAddress = await this.cofixService.getPairAddressByToken(
+          this.cofixService.getCurrentContractAddressList()[coinItem]
         );
+        const stakingPoolAddress = await this.cofixService.getStakingPoolAddressByToken(
+          this.cofixService.getCurrentContractAddressList()[coinItem]
+        );
+        this.todoValue[coinItem] = await this.balanceTruncatePipe.transform(
+          await this.cofixService.getERC20Balance(pairAddress)
+        );
+        console.log(
+          this.cofixService.getCurrentContractAddressList()[coinItem]
+        );
+        console.log(stakingPoolAddress);
+
         this.hadValue[coinItem] = await this.balanceTruncatePipe.transform(
-          await this.cofixService.getERC20Balance(
-            this.shareState.stakingPoolAddress[coinItem]
-          )
+          await this.cofixService.getERC20Balance(stakingPoolAddress)
         );
         this.NAVPerShare[coinItem] = (
           await this.cofixService.calculateArgumentsUsedByGetAmountRemoveLiquidity(
             this.cofixService.getCurrentContractAddressList()[coinItem],
-            this.shareState.tokenPairAddress[coinItem],
+            pairAddress,
             '1',
             false
           )
         ).nAVPerShareForBurn;
-        const pair = this.shareStateQuery.getValue().tokenPairAddress[coinItem];
+
         const address = this.cofixService.getCurrentContractAddressList()[
           coinItem
         ];
         const resultETH = await this.cofixService.getETHAmountForRemoveLiquidity(
           address,
-          pair,
+          pairAddress,
           this.todoValue[coinItem] || '0'
         );
         this.ETHAmountForRemoveLiquidity[coinItem] = resultETH.result;
         const resultToken = await this.cofixService.getTokenAmountForRemoveLiquidity(
           address,
-          pair,
+          pairAddress,
           this.todoValue[coinItem] || '0'
         );
         this.tokenAmountForRemoveLiquidity[coinItem] = resultToken.result;

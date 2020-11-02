@@ -3,6 +3,7 @@ import { BannerContent } from '../common/components/banner/banner.page';
 import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
 import { ShareStateQuery } from '../common/state/share.query';
 import { ShareStateService } from '../common/state/share.service';
+import { ShareState } from '../common/state/share.store';
 import { Utils } from '../common/utils';
 import { CofiXService } from '../service/cofix.service';
 
@@ -27,7 +28,7 @@ export class CofiPage implements OnInit {
   earnedRate: any;
   todoValue: string;
   hadValue: string;
-  shareState: any;
+  shareState: ShareState;
   canReceive = false;
   isLoading = false;
   isLoadingProfit = { sq: false, cr: false, qc: false };
@@ -65,20 +66,13 @@ export class CofiPage implements OnInit {
       this.coinAddress = this.cofixService.getCurrentContractAddressList()[
         this.coin
       ];
-
-      if (
-        !this.shareState.tokenPairAddress[this.coin] ||
-        !this.shareState.stakingPoolAddress[this.coin]
-      ) {
-        await this.utils.updateShareAddress(this.shareState);
-      }
       this.todoValue = await this.balanceTruncatePipe.transform(
         await this.cofixService.getERC20Balance(
-          this.shareState.tokenPairAddress[this.coin]
+          await this.cofixService.getPairAddressByToken(this.coinAddress)
         )
       );
       this.earnedRate = await this.cofixService.earnedCofiAndRewardRate(
-        this.shareState.stakingPoolAddress[this.coin]
+        await this.cofixService.getStakingPoolAddressByToken(this.coinAddress)
       );
       this.canReceive =
         (await this.balanceTruncatePipe.transform(this.earnedRate.earned)) !=
@@ -86,7 +80,7 @@ export class CofiPage implements OnInit {
 
       this.hadValue = await this.balanceTruncatePipe.transform(
         await this.cofixService.getERC20Balance(
-          this.shareState.stakingPoolAddress[this.coin]
+          await this.cofixService.getStakingPoolAddressByToken(this.coinAddress)
         )
       );
       this.shareStateService.updateShareStore(this.shareState);
@@ -105,10 +99,14 @@ export class CofiPage implements OnInit {
   //领取Cofi
   async withdrawEarnedCoFi() {
     this.resetCofiError();
-    if (this.shareState.stakingPoolAddress[this.coin]) {
+    if (
+      await this.cofixService.getStakingPoolAddressByToken(this.coinAddress)
+    ) {
       this.isLoading = true;
       this.cofixService
-        .withdrawEarnedCoFi(this.shareState.stakingPoolAddress[this.coin])
+        .withdrawEarnedCoFi(
+          await this.cofixService.getStakingPoolAddressByToken(this.coinAddress)
+        )
         .then((tx: any) => {
           const provider = this.cofixService.getCurrentProvider();
           provider.once(tx.hash, (transactionReceipt) => {

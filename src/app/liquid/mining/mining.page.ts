@@ -12,6 +12,7 @@ import { debounceTime } from 'rxjs/operators';
 import { BalanceTruncatePipe } from 'src/app/common/pipes/balance.pipe';
 import { ShareStateQuery } from 'src/app/common/state/share.query';
 import { ShareStateService } from 'src/app/common/state/share.service';
+import { ShareState } from 'src/app/common/state/share.store';
 import { Utils } from 'src/app/common/utils';
 import { CofiXService } from 'src/app/service/cofix.service';
 import { ProfitPage } from '../profit/profit.page';
@@ -32,7 +33,7 @@ export class TokenMiningPage implements OnInit, OnDestroy {
   earnedRate: any;
   todoValue: string;
   hadValue: string;
-  shareState: any;
+  shareState: ShareState;
   canReceive = false;
   isLoading = false;
   isLoadingProfit = { sq: false, cr: false, qc: false };
@@ -97,19 +98,13 @@ export class TokenMiningPage implements OnInit, OnDestroy {
         this.coin
       ];
 
-      if (
-        !this.shareState.tokenPairAddress[this.coin] ||
-        !this.shareState.stakingPoolAddress[this.coin]
-      ) {
-        await this.utils.updateShareAddress(this.shareState);
-      }
       this.todoValue = await this.balanceTruncatePipe.transform(
         await this.cofixService.getERC20Balance(
-          this.shareState.tokenPairAddress[this.coin]
+          await this.cofixService.getPairAddressByToken(this.coinAddress)
         )
       );
       this.earnedRate = await this.cofixService.earnedCofiAndRewardRate(
-        this.shareState.stakingPoolAddress[this.coin]
+        await this.cofixService.getStakingPoolAddressByToken(this.coinAddress)
       );
       this.canReceive =
         (await this.balanceTruncatePipe.transform(this.earnedRate.earned)) !=
@@ -117,7 +112,7 @@ export class TokenMiningPage implements OnInit, OnDestroy {
 
       this.hadValue = await this.balanceTruncatePipe.transform(
         await this.cofixService.getERC20Balance(
-          this.shareState.stakingPoolAddress[this.coin]
+          await this.cofixService.getStakingPoolAddressByToken(this.coinAddress)
         )
       );
       this.shareStateService.updateShareStore(this.shareState);
@@ -139,10 +134,14 @@ export class TokenMiningPage implements OnInit, OnDestroy {
   //领取Cofi
   async withdrawEarnedCoFi() {
     this.resetCofiError();
-    if (this.shareState.stakingPoolAddress[this.coin]) {
+    if (
+      await this.cofixService.getStakingPoolAddressByToken(this.coinAddress)
+    ) {
       this.isLoading = true;
       this.cofixService
-        .withdrawEarnedCoFi(this.shareState.stakingPoolAddress[this.coin])
+        .withdrawEarnedCoFi(
+          await this.cofixService.getStakingPoolAddressByToken(this.coinAddress)
+        )
         .then((tx: any) => {
           const provider = this.cofixService.getCurrentProvider();
           provider.once(tx.hash, (transactionReceipt) => {
@@ -168,8 +167,8 @@ export class TokenMiningPage implements OnInit, OnDestroy {
   async getIsApproved() {
     if (this.shareStateQuery.getValue().connectedWallet) {
       this.isApproved = await this.cofixService.approved(
-        this.shareState.tokenPairAddress[this.coin],
-        this.shareState.stakingPoolAddress[this.coin]
+        await this.cofixService.getPairAddressByToken(this.coinAddress),
+        await this.cofixService.getStakingPoolAddressByToken(this.coinAddress)
       );
     }
   }
@@ -180,8 +179,8 @@ export class TokenMiningPage implements OnInit, OnDestroy {
         this.isLoadingProfit,
         this.cofiError,
         this,
-        this.shareState.tokenPairAddress[this.coin],
-        this.shareState.stakingPoolAddress[this.coin]
+        await this.cofixService.getPairAddressByToken(this.coinAddress),
+        await this.cofixService.getStakingPoolAddressByToken(this.coinAddress)
       );
     }
   }
@@ -190,8 +189,8 @@ export class TokenMiningPage implements OnInit, OnDestroy {
     this.isLoadingProfit.cr = true;
     this.cofixService
       .depositXToken(
-        this.shareState.stakingPoolAddress[this.coin],
-        this.shareState.tokenPairAddress[this.coin],
+        await this.cofixService.getStakingPoolAddressByToken(this.coinAddress),
+        await this.cofixService.getPairAddressByToken(this.coinAddress),
         event.balance
       )
       .then((tx: any) => {
@@ -219,7 +218,7 @@ export class TokenMiningPage implements OnInit, OnDestroy {
     this.isLoadingProfit.qc = true;
     this.cofixService
       .withdrawDepositedXToken(
-        this.shareState.stakingPoolAddress[this.coin],
+        await this.cofixService.getStakingPoolAddressByToken(this.coinAddress),
         event.balance
       )
       .then((tx: any) => {

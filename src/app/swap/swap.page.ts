@@ -278,10 +278,6 @@ export class SwapPage implements OnInit {
     }
     if (this.shareStateQuery.getValue().connectedWallet) {
       this.expectedCofi = '';
-      if (!this.shareStateQuery.getValue().tokenPairAddress[this.fromCoin.id]) {
-        const shareState = this.shareStateQuery.getValue();
-        this.utils.updateShareAddress(shareState);
-      }
 
       this.fromCoin.balance = await this.utils.getBalanceByCoin(this.fromCoin);
       this.isShowFromMax = this.fromCoin.balance ? true : false;
@@ -361,7 +357,7 @@ export class SwapPage implements OnInit {
     if (this.fromCoin.id === 'ETH') {
       this.cofixService
         .swapExactETHForTokens(
-          this.shareStateQuery.getValue().tokenPairAddress[this.toCoin.id],
+          await this.cofixService.getPairAddressByToken(this.toCoin.address),
           this.toCoin.address,
           this.fromCoin.amount || '0',
           this.toCoin.amount || '0',
@@ -392,7 +388,9 @@ export class SwapPage implements OnInit {
       if (this.toCoin.id === 'ETH') {
         this.cofixService
           .swapExactTokensForETH(
-            this.shareStateQuery.getValue().tokenPairAddress[this.fromCoin.id],
+            await this.cofixService.getPairAddressByToken(
+              this.fromCoin.address
+            ),
             this.fromCoin.address,
             this.fromCoin.amount || '0',
             this.toCoin.amount || '0',
@@ -427,9 +425,11 @@ export class SwapPage implements OnInit {
         );
         await this.cofixService
           .swapExactTokensForTokens(
-            this.shareStateQuery.getValue().tokenPairAddress[this.fromCoin.id],
+            await this.cofixService.getPairAddressByToken(
+              this.fromCoin.address
+            ),
             this.fromCoin.address,
-            this.shareStateQuery.getValue().tokenPairAddress[this.toCoin.id],
+            await this.cofixService.getPairAddressByToken(this.toCoin.address),
             this.toCoin.address,
             this.fromCoin.amount || '0',
             amountOut.excutionPrice,

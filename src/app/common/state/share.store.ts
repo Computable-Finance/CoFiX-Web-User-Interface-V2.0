@@ -6,8 +6,6 @@ export interface ShareState {
   connectedWallet: boolean;
   currentAccount: string;
   activeTab: string;
-  tokenPairAddress: any;
-  stakingPoolAddress: any;
   pairAttended: any;
   lang: string;
   knownRisk: boolean;
@@ -19,8 +17,6 @@ export function createInitialState(activeTab): ShareState {
     connectedWallet: false,
     currentAccount: '',
     activeTab: activeTab,
-    tokenPairAddress: { USDT: '', HBTC: '' },
-    stakingPoolAddress: { USDT: '', HBTC: '' },
     pairAttended: { USDT: false, HBTC: false },
     lang: environment.lang,
     knownRisk: false,
