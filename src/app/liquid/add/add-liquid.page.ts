@@ -69,7 +69,7 @@ export class AddLiquidPage implements OnInit, OnDestroy {
   cardTitle = { title: 'liquidpool_add', subtitle: 'liquidpool_add_subtitle' };
   private resizeSubscription: Subscription;
   constructor(
-    private cofixService: CofiXService,
+    public cofixService: CofiXService,
     public shareStateQuery: ShareStateQuery,
     private utils: Utils,
     private modalController: ModalController,
@@ -123,7 +123,7 @@ export class AddLiquidPage implements OnInit, OnDestroy {
     }
   }
   async getIsApproved() {
-    if (this.shareStateQuery.getValue().connectedWallet) {
+    if (this.cofixService.getCurrentAccount()) {
       this.toCoin.isApproved = await this.cofixService.approved(
         this.toCoin.address,
         this.cofixService.getCurrentContractAddressList().CofixRouter
@@ -132,7 +132,7 @@ export class AddLiquidPage implements OnInit, OnDestroy {
   }
 
   async setFromCoinMax(event) {
-    if (!this.shareStateQuery.getValue().connectedWallet) {
+    if (!this.cofixService.getCurrentAccount()) {
       return false;
     }
     this.fromCoin.id = event.coin;
@@ -184,7 +184,7 @@ export class AddLiquidPage implements OnInit, OnDestroy {
   }
 
   async setToCoinMax(event) {
-    if (!this.shareStateQuery.getValue().connectedWallet) {
+    if (!this.cofixService.getCurrentAccount()) {
       return false;
     }
     this.toCoin.id = event.coin;
@@ -290,7 +290,7 @@ export class AddLiquidPage implements OnInit, OnDestroy {
         this.toCoin.id
       ];
     }
-    if (this.shareStateQuery.getValue().connectedWallet) {
+    if (this.cofixService.getCurrentAccount()) {
       this.fromCoin.balance = await this.utils.getBalanceByCoin(this.fromCoin);
       this.isShowFromMax = this.fromCoin.balance ? true : false;
       this.toCoin.balance = await this.utils.getBalanceByCoin(this.toCoin);
@@ -344,7 +344,7 @@ export class AddLiquidPage implements OnInit, OnDestroy {
 
   canApprove() {
     return (
-      this.shareStateQuery.getValue().connectedWallet &&
+      this.cofixService.getCurrentAccount() &&
       !this.toCoin.isApproved &&
       new BNJS(this.toCoin.amount).gt(0)
     );

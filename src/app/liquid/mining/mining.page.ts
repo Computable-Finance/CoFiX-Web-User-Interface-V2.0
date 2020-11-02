@@ -92,8 +92,7 @@ export class TokenMiningPage implements OnInit, OnDestroy {
   }
 
   async getCoFiTokenAndRewards() {
-    this.shareState = this.shareStateQuery.getValue();
-    if (this.shareState.connectedWallet) {
+    if (this.cofixService.getCurrentAccount()) {
       this.coinAddress = this.cofixService.getCurrentContractAddressList()[
         this.coin
       ];
@@ -107,7 +106,7 @@ export class TokenMiningPage implements OnInit, OnDestroy {
         this.coinAddress
       );
       this.canReceive =
-        (await this.balanceTruncatePipe.transform(this.earnedRate.earned)) !=
+        (await this.balanceTruncatePipe.transform(this.earnedRate.earned)) !==
         '--';
 
       this.hadValue = await this.balanceTruncatePipe.transform(
@@ -115,7 +114,6 @@ export class TokenMiningPage implements OnInit, OnDestroy {
           await this.cofixService.getStakingPoolAddressByToken(this.coinAddress)
         )
       );
-      this.shareStateService.updateShareStore(this.shareState);
     }
   }
 
@@ -165,7 +163,7 @@ export class TokenMiningPage implements OnInit, OnDestroy {
     this.withdrawError = { isError: false, msg: '' };
   }
   async getIsApproved() {
-    if (this.shareStateQuery.getValue().connectedWallet) {
+    if (this.cofixService.getCurrentAccount()) {
       this.isApproved = await this.cofixService.approved(
         await this.cofixService.getPairAddressByToken(this.coinAddress),
         await this.cofixService.getStakingPoolAddressByToken(this.coinAddress)

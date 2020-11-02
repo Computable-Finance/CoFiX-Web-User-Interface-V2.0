@@ -2,33 +2,66 @@
   <app-header [activeId]="'swap'" (onRefresh)="refreshPage()"></app-header>
   <ion-card class="swap-card">
     <div class="card-content">
-      <app-card-title [cardTitle]="'swap_desc'" [alertTitle]="'swap_tooltips_swaptokens_title'" [alertContent]="'swap_tooltips_swaptokens_desc'"></app-card-title>
-      <app-coin-input #fromCoinInputView (onMaxClick)="setFromCoinMax($event)" (onChangeCoin)="changeFromCoin($event)"
-          (onInputChange)="fromCoinInput($event)" [amount]="fromCoin.amount" [maxAmount]="fromCoin.balance"
-          [placeHolder]="fromCoin.placeholder" [coin]="fromCoin.id" [isShowError]="showError" [isShowBlance]="showBalance"
-          [isShowMax]="isShowFromMax" [label]="'zf_text'"></app-coin-input>
-      
+      <app-card-title
+        [cardTitle]="'swap_desc'"
+        [alertTitle]="'swap_tooltips_swaptokens_title'"
+        [alertContent]="'swap_tooltips_swaptokens_desc'"
+      ></app-card-title>
+      <app-coin-input
+        #fromCoinInputView
+        (onMaxClick)="setFromCoinMax($event)"
+        (onChangeCoin)="changeFromCoin($event)"
+        (onInputChange)="fromCoinInput($event)"
+        [amount]="fromCoin.amount"
+        [maxAmount]="fromCoin.balance"
+        [placeHolder]="fromCoin.placeholder"
+        [coin]="fromCoin.id"
+        [isShowError]="showError"
+        [isShowBlance]="showBalance"
+        [isShowMax]="isShowFromMax"
+        [label]="'zf_text'"
+      ></app-coin-input>
+
       <div class="divider-swap"></div>
-      <app-coin-input #toCoinInputView (onMaxClick)="setToCoinMax($event)" (onChangeCoin)="changeToCoin($event)"
-          (onInputChange)="toCoinInput($event)" [amount]="toCoin.amount" [placeHolder]="toCoin.placeholder" [coin]="toCoin.id"
-          [isInsufficientError]="isInsufficientError" [maxLiquid]="ERC20BalanceOfPair[toCoin.id]" [isShowMax]="isShowToMax" [label]="'hq_text'"
-          [disabled]="true"></app-coin-input>
-      
+      <app-coin-input
+        #toCoinInputView
+        (onMaxClick)="setToCoinMax($event)"
+        (onChangeCoin)="changeToCoin($event)"
+        (onInputChange)="toCoinInput($event)"
+        [amount]="toCoin.amount"
+        [placeHolder]="toCoin.placeholder"
+        [coin]="toCoin.id"
+        [isInsufficientError]="isInsufficientError"
+        [maxLiquid]="ERC20BalanceOfPair[toCoin.id]"
+        [isShowMax]="isShowToMax"
+        [label]="'hq_text'"
+        [disabled]="true"
+      ></app-coin-input>
 
       <div class="divider-swap"></div>
       <ion-grid class="ion-no-padding">
-
-        <ion-row class="ion-align-items-center ion-align-self-center conversionPrice {{isShowDetail?'show-detail':''}}">
-          <ion-col class="label" size="4">{{'dhjg_text' | translate}}
-            <img class="alert-icon" src="./assets/images/question.png" (click)="showAlert('swap_tooltips_tradeprice_title','swap_tooltips_tradeprice_desc',$event)" />
+        <ion-row
+          class="ion-align-items-center ion-align-self-center conversionPrice {{isShowDetail?'show-detail':''}}"
+        >
+          <ion-col class="label" size="4"
+            >{{'dhjg_text' | translate}}
+            <img
+              class="alert-icon"
+              src="./assets/images/question.png"
+              (click)="showAlert('swap_tooltips_tradeprice_title','swap_tooltips_tradeprice_desc',$event)"
+            />
           </ion-col>
           <ng-container *ngIf="!showSkeleton(changePrice)">
-            <ion-col class="ion-text-right  number" size="7">1 <span class="tk1">{{fromCoin.id}}</span> =
-            <span class="changePrice">{{changePrice | truncate:'--'}}</span>
-            {{toCoin.id}}
+            <ion-col class="ion-text-right number" size="7"
+              >1 <span class="tk1">{{fromCoin.id}}</span> =
+              <span class="changePrice">{{changePrice | truncate:'--'}}</span>
+              {{toCoin.id}}
             </ion-col>
             <ion-col size="1">
-              <app-select-arrow [isDown]="isShowDetail" (onArrowChange)="selectArrowChange($event)"></app-select-arrow>
+              <app-select-arrow
+                [isDown]="isShowDetail"
+                (onArrowChange)="selectArrowChange($event)"
+              ></app-select-arrow>
             </ion-col>
           </ng-container>
           <ion-col size="8" *ngIf="showSkeleton(changePrice)">
@@ -36,46 +69,59 @@
           </ion-col>
         </ion-row>
         <ng-container *ngIf="isShowDetail">
-            <ion-grid class="price-detail">
-              <ion-row>
-                <ion-col  class="label" size="5">
-                  <div class="dot-line"></div>
-                  <div class="dot"></div>{{'swap_nestprice' | translate}}
-                </ion-col>
-                <ion-col class="number  ion-text-right" size="7">
-                  1 <span class="tk1">{{fromCoin.id}}</span> =
-                  <span class="changePrice">{{changePrice | truncate:'--':2}}</span>
-                  {{toCoin.id}}
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col  class="label" size="5">
-                  <div class="dot margin-left"></div>{{'swap_pricefee' | translate}}
-                </ion-col>
-                <ion-col  class="number  ion-text-right" size="7">
-                  ***
-                  {{toCoin.id}}
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col  class="exlpain" size="5">
-                  {{'swap_priceexplain' | translate}}
-                </ion-col>
-                <ion-col  class="link ion-text-right" size="7" (click)="showAlert('swap_tooltips_tradeprice_title','swap_tooltips_tradeprice_desc',$event)">
-                  <a>{{'swap_how' | translate}}</a>
-                </ion-col>
-              </ion-row>
-
-            </ion-grid>
+          <ion-grid class="price-detail">
+            <ion-row>
+              <ion-col class="label" size="5">
+                <div class="dot-line"></div>
+                <div class="dot"></div>
+                {{'swap_nestprice' | translate}}
+              </ion-col>
+              <ion-col class="number ion-text-right" size="7">
+                1 <span class="tk1">{{fromCoin.id}}</span> =
+                <span class="changePrice"
+                  >{{changePrice | truncate:'--':2}}</span
+                >
+                {{toCoin.id}}
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="label" size="5">
+                <div class="dot margin-left"></div>
+                {{'swap_pricefee' | translate}}
+              </ion-col>
+              <ion-col class="number ion-text-right" size="7">
+                *** {{toCoin.id}}
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="exlpain" size="5">
+                {{'swap_priceexplain' | translate}}
+              </ion-col>
+              <ion-col
+                class="link ion-text-right"
+                size="7"
+                (click)="showAlert('swap_tooltips_tradeprice_title','swap_tooltips_tradeprice_desc',$event)"
+              >
+                <a>{{'swap_how' | translate}}</a>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
         </ng-container>
-        
+
         <ion-row
           class="ion-align-items-center ion-align-self-center conversionPrice"
         >
           <ion-col class="label" size="4"
-            >{{'oracle_cost' | translate}}<img class="alert-icon" src="./assets/images/question.png" (click)="showAlert('','swap_tooltips_oraclefee_desc',$event)" /></ion-col
+            >{{'oracle_cost' | translate}}<img
+              class="alert-icon"
+              src="./assets/images/question.png"
+              (click)="showAlert('','swap_tooltips_oraclefee_desc',$event)"
+          /></ion-col>
+          <ion-col
+            class="ion-text-right number"
+            size="8"
+            *ngIf="!showSkeleton(changePrice)"
           >
-          <ion-col class="ion-text-right number" size="8" *ngIf="!showSkeleton(changePrice)">
             +{{oracleCost}} ETH
           </ion-col>
           <ion-col size="8" *ngIf="showSkeleton(changePrice)">
@@ -92,7 +138,10 @@
               src="./assets/images/question.png"
               (click)="showAlert('swap_tooltips_minreceived_title','swap_tooltips_minreceived_desc',$event)"
           /></ion-col>
-          <ion-col class="ion-text-right  number" size="6" *ngIf="!showSkeleton(changePrice)"
+          <ion-col
+            class="ion-text-right number"
+            size="6"
+            *ngIf="!showSkeleton(changePrice)"
             >{{minimum | truncate:'--'}} {{toCoin.id}}
           </ion-col>
 
@@ -100,11 +149,22 @@
             <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
           </ion-col>
         </ion-row>
-        <ion-row class="ion-align-items-center ion-align-self-center conversionPrice">
-          <ion-col class="label" size="6">{{'ygck'|translate}}
-            <img class="alert-icon" src="./assets/images/question.png" (click)="showAlert('swap_tooltips_cofitoken_title','swap_tooltips_cofitoken_desc',$event,'')" /></ion-col>
+        <ion-row
+          class="ion-align-items-center ion-align-self-center conversionPrice"
+        >
+          <ion-col class="label" size="6"
+            >{{'ygck'|translate}}
+            <img
+              class="alert-icon"
+              src="./assets/images/question.png"
+              (click)="showAlert('swap_tooltips_cofitoken_title','swap_tooltips_cofitoken_desc',$event,'')"
+          /></ion-col>
 
-          <ion-col class="ion-text-right  number" size="6"  *ngIf="!showSkeleton(changePrice)">{{expectedCofi | truncate:'--'}} CoFi
+          <ion-col
+            class="ion-text-right number"
+            size="6"
+            *ngIf="!showSkeleton(changePrice)"
+            >{{expectedCofi | truncate:'--'}} CoFi
           </ion-col>
           <ion-col size="6" *ngIf="showSkeleton(changePrice)">
             <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
@@ -117,9 +177,9 @@
           <ion-col class="error" size="12"
             >{{'transaction-error' | translate}}[{{swapError.msg}}]</ion-col
           >
-        </ion-row>
-      </ion-grid>{{swapError}}22
-      <ng-container *ngIf="shareStateQuery.getValue().connectedWallet">
+        </ion-row> </ion-grid
+      >{{swapError}}22
+      <ng-container *ngIf="cofixService.getCurrentAccount()">
         <div class="button-div">
           <ion-button
             *ngIf="isShowApprove()"
@@ -149,8 +209,6 @@
     </div>
   </ion-card>
 
-  <app-banner
-    [bannerConent]="swapContent"
-  ></app-banner>
+  <app-banner [bannerConent]="swapContent"></app-banner>
 </ion-content>
 <app-footer (onRefresh)="refreshPage()"></app-footer>

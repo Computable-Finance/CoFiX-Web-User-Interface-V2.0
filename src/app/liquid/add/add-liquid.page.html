@@ -1,8 +1,15 @@
 <ion-card class="swap-card" [ngClass]="{'pairAttended-card':pairAttended}">
   <div class="card-content">
-    <img src="./assets/images/left-arrow.png" class="close-img" (click)="cancel()">
-    <app-card-title [cardTitle]="cardTitle.title" [cardSubTitle]="cardTitle.subtitle"></app-card-title>
-   
+    <img
+      src="./assets/images/left-arrow.png"
+      class="close-img"
+      (click)="cancel()"
+    />
+    <app-card-title
+      [cardTitle]="cardTitle.title"
+      [cardSubTitle]="cardTitle.subtitle"
+    ></app-card-title>
+
     <app-coin-input
       #fromCoinInputView
       (onMaxClick)="setFromCoinMax($event)"
@@ -13,8 +20,8 @@
       [maxAmount]="fromCoin.balance"
       [isShowError]="showFromError"
       [isShowBlance]="showBalance"
-      [isShowMax]="isShowFromMax" [label]="'input'"
-
+      [isShowMax]="isShowFromMax"
+      [label]="'input'"
     ></app-coin-input>
     <div class="divider-swap"></div>
     <app-coin-input
@@ -27,20 +34,27 @@
       [maxAmount]="toCoin.balance"
       [isShowError]="showToError"
       [isShowBlance]="showBalance"
-      [isShowMax]="isShowToMax" [label]="'input'"
+      [isShowMax]="isShowToMax"
+      [label]="'input'"
     ></app-coin-input>
     <ion-grid class="ion-no-padding">
-      <ion-row class="ion-align-items-center ion-align-self-center conversionPrice">
+      <ion-row
+        class="ion-align-items-center ion-align-self-center conversionPrice"
+      >
         <ion-col class="label" size="6">{{'oracle_cost' | translate}}</ion-col>
-        <ion-col class="ion-text-right number" size="6">+{{oracleCost | truncate:'--'}} ETH
+        <ion-col class="ion-text-right number" size="6"
+          >+{{oracleCost | truncate:'--'}} ETH
         </ion-col>
       </ion-row>
       <ion-row
         class="ion-align-items-center ion-align-self-center conversionPrice"
       >
         <ion-col class="label" size="8"
-          >{{'expected' | translate}}<img class="alert-icon" src="./assets/images/question.png" (click)="showAlert('pool_tooltips_addliquid_estimate',$event,'pool_tooltips_addliquid_estimate_footer')" /></ion-col
-        >
+          >{{'expected' | translate}}<img
+            class="alert-icon"
+            src="./assets/images/question.png"
+            (click)="showAlert('pool_tooltips_addliquid_estimate',$event,'pool_tooltips_addliquid_estimate_footer')"
+        /></ion-col>
         <ion-col class="ion-text-right number" size="4"
           >{{expectedXToken | truncate:'--'}}
         </ion-col>
@@ -50,15 +64,23 @@
         class="ion-align-items-center ion-align-self-center conversionPrice"
       >
         <ion-col class="label" size="10"
-          >{{'incoin_cofi' | translate}}<img class="alert-icon" src="./assets/images/question.png" (click)="showAlert('pool_tooltips_addliquid_deposittoggle',$event)" /></ion-col
-        >
+          >{{'incoin_cofi' | translate}}<img
+            class="alert-icon"
+            src="./assets/images/question.png"
+            (click)="showAlert('pool_tooltips_addliquid_deposittoggle',$event)"
+        /></ion-col>
         <ion-col class="ion-text-right" size="2">
           <ion-toggle [(ngModel)]="isStake"></ion-toggle>
         </ion-col>
       </ion-row>
-        <ion-row class="ion-align-items-center ion-align-self-center conversionPrice" *ngIf="addLiquidError.isError">
-          <ion-col class="error" size="12">{{'transaction-error' | translate}}[{{addLiquidError.msg}}]</ion-col>
-        </ion-row>
+      <ion-row
+        class="ion-align-items-center ion-align-self-center conversionPrice"
+        *ngIf="addLiquidError.isError"
+      >
+        <ion-col class="error" size="12"
+          >{{'transaction-error' | translate}}[{{addLiquidError.msg}}]</ion-col
+        >
+      </ion-row>
     </ion-grid>
     <ion-button
       expand="block"
@@ -75,7 +97,7 @@
       expand="block"
       class="operation-btn"
       (click)="confirmAddLiquid()"
-      *ngIf="shareStateQuery.getValue().connectedWallet"
+      *ngIf="cofixService.getCurrentAccount()"
       [disabled]="!canAdd()"
     >
       <div class="ion-button-label">

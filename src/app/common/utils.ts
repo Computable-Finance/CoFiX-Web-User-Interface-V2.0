@@ -64,7 +64,7 @@ export class Utils {
   async show(msg: string, position: any) {
     const toast = await this.toastController.create({
       message: msg,
-      position: position,
+      position,
       duration: 3000,
     });
     await toast.present();

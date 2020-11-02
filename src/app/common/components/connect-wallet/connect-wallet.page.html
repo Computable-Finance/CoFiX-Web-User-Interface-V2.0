@@ -1,14 +1,10 @@
-<div class="wallet_show" *ngIf="shareStateQuery.getValue().connectedWallet">
-
+<div class="wallet_show" *ngIf="cofixService.getCurrentAccount()">
   <img src="./assets/images/account.png" />
-  <span>
-    {{(shareStateQuery.getValue().connectedWallet?shareStateQuery.getValue().currentAccount:'')
-    | walletaddress}}
-  </span>
+  <span> {{cofixService.getCurrentAccount() | walletaddress}} </span>
 </div>
 <div
   class="wallet_show"
-  *ngIf="!shareStateQuery.getValue().connectedWallet"
+  *ngIf="!cofixService.getCurrentAccount()"
   (click)="connect()"
 >
   <span>{{'lj_text' |translate}}</span>

@@ -62,11 +62,6 @@ export class AppComponent implements OnInit {
   async initConnectIfEnabled() {
     if (await this.cofixService.isEnabled()) {
       await this.cofixService.connectSilently();
-
-      this.shareStateService.updateConnectedWallet(true);
-      this.shareStateService.updateCurrentAccount(
-        this.cofixService.getCurrentAccount()
-      );
     }
   }
 

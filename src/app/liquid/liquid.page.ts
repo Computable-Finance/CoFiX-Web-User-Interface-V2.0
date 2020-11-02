@@ -197,7 +197,6 @@ export class LiquidPage implements OnInit {
     this.fromCoin.amount = '';
     this.toCoin.amount = '';
     this.expectedXToken = '';
-    this.shareState = this.shareStateQuery.getValue();
     console.log(this.earnedRate);
     this.coinList.forEach(async (coinItem) => {
       this.earnedRate[
@@ -206,8 +205,7 @@ export class LiquidPage implements OnInit {
         this.cofixService.getCurrentContractAddressList()[coinItem]
       );
     });
-    console.log(this.earnedRate);
-    if (this.shareState.connectedWallet) {
+    if (this.cofixService.getCurrentAccount()) {
       this.fromCoin.address = this.cofixService.getCurrentContractAddressList()[
         this.fromCoin.id
       ];

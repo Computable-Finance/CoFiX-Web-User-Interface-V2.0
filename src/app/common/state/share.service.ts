@@ -7,17 +7,7 @@ export class ShareStateService {
   constructor(
     private shareStore: ShareStateStore,
     private shareStateQuery: ShareStateQuery
-  ) {
-    this.updateConnectedWallet(false);
-  }
-
-  updateConnectedWallet(isConnected: boolean) {
-    this.shareStore.update({ connectedWallet: isConnected });
-  }
-
-  updateCurrentAccount(currentAccount: string) {
-    this.shareStore.update({ currentAccount: currentAccount });
-  }
+  ) {}
 
   updateActiveTab(tab: string) {
     this.shareStore.update({ activeTab: tab });
@@ -28,20 +18,21 @@ export class ShareStateService {
   }
 
   updatePairAttended(pairAttended: any) {
-    this.shareStore.update({ pairAttended: pairAttended });
+    this.shareStore.update({ pairAttended });
   }
 
   updateLang(lang: string) {
-    this.shareStore.update({ lang: lang });
+    this.shareStore.update({ lang });
   }
 
   updateKnownRisk(knownRisk: boolean) {
-    this.shareStore.update({ knownRisk: knownRisk });
+    this.shareStore.update({ knownRisk });
   }
 
   updateKnownRiskForAdd(knownRiskForAdd: boolean) {
-    this.shareStore.update({ knownRiskForAdd: knownRiskForAdd });
+    this.shareStore.update({ knownRiskForAdd });
   }
+
   reset() {
     this.shareStore.update(
       createInitialState(this.shareStateQuery.getValue().activeTab)

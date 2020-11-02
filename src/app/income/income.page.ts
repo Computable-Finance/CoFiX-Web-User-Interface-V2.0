@@ -46,7 +46,7 @@ export class IncomePage implements OnInit {
   };
   private resizeSubscription: Subscription;
   constructor(
-    private cofixService: CofiXService,
+    public cofixService: CofiXService,
     private balanceTruncatePipe: BalanceTruncatePipe,
     public shareStateQuery: ShareStateQuery,
     private utils: Utils
@@ -89,7 +89,7 @@ export class IncomePage implements OnInit {
   }
   async getCoFiTokenAndRewards() {
     this.shareState = this.shareStateQuery.getValue();
-    if (this.shareStateQuery.getValue().connectedWallet) {
+    if (this.cofixService.getCurrentAccount()) {
       this.cofiTokenAddress = this.cofixService.getCurrentContractAddressList()[
         'CoFiToken'
       ];
@@ -145,7 +145,7 @@ export class IncomePage implements OnInit {
     this.incomeError = { isError: false, msg: '' };
   }
   async getIsApproved() {
-    if (this.shareStateQuery.getValue().connectedWallet) {
+    if (this.cofixService.getCurrentAccount()) {
       this.isApproved = await this.cofixService.approved(
         this.cofixService.getCurrentContractAddressList().CoFiToken,
         this.cofixService.getCurrentContractAddressList().CoFiStakingRewards

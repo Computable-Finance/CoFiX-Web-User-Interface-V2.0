@@ -37,7 +37,7 @@ export class CofiPage implements OnInit {
   withdrawError = { isError: false, msg: '' };
   isDeposit: boolean = false;
   constructor(
-    private cofixService: CofiXService,
+    public cofixService: CofiXService,
     private balanceTruncatePipe: BalanceTruncatePipe,
     private shareStateService: ShareStateService,
     public shareStateQuery: ShareStateQuery,
@@ -61,8 +61,7 @@ export class CofiPage implements OnInit {
   }
 
   async getCoFiTokenAndRewards() {
-    this.shareState = this.shareStateQuery.getValue();
-    if (this.shareState.connectedWallet) {
+    if (this.cofixService.getCurrentAccount()) {
       this.coinAddress = this.cofixService.getCurrentContractAddressList()[
         this.coin
       ];
@@ -75,7 +74,7 @@ export class CofiPage implements OnInit {
         this.coinAddress
       );
       this.canReceive =
-        (await this.balanceTruncatePipe.transform(this.earnedRate.earned)) !=
+        (await this.balanceTruncatePipe.transform(this.earnedRate.earned)) !==
         '--';
 
       this.hadValue = await this.balanceTruncatePipe.transform(
@@ -83,7 +82,6 @@ export class CofiPage implements OnInit {
           await this.cofixService.getStakingPoolAddressByToken(this.coinAddress)
         )
       );
-      this.shareStateService.updateShareStore(this.shareState);
     }
   }
 

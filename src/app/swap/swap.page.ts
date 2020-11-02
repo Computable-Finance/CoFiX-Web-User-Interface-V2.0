@@ -63,7 +63,7 @@ export class SwapPage implements OnInit {
   isShowDetail = false;
   minimum: any;
   constructor(
-    private cofixService: CofiXService,
+    public cofixService: CofiXService,
     public shareStateQuery: ShareStateQuery,
     private balancePipe: BalanceTruncatePipe,
     private utils: Utils
@@ -84,7 +84,7 @@ export class SwapPage implements OnInit {
     this.getERC20BalanceOfPair();
   }
   async getIsApproved() {
-    if (!this.shareStateQuery.getValue().connectedWallet) {
+    if (!this.cofixService.getCurrentAccount()) {
       return false;
     }
     if (this.fromCoin.id !== 'ETH') {
@@ -99,7 +99,7 @@ export class SwapPage implements OnInit {
   }
 
   async setFromCoinMax(event) {
-    if (!this.shareStateQuery.getValue().connectedWallet) {
+    if (!this.cofixService.getCurrentAccount()) {
       return false;
     }
 
@@ -184,7 +184,7 @@ export class SwapPage implements OnInit {
   }
 
   async setToCoinMax(event) {
-    if (!this.shareStateQuery.getValue().connectedWallet) {
+    if (!this.cofixService.getCurrentAccount()) {
       return false;
     }
     this.toCoin.id = event.coin;
@@ -278,9 +278,8 @@ export class SwapPage implements OnInit {
         )
       ).toString();
     }
-    if (this.shareStateQuery.getValue().connectedWallet) {
+    if (this.cofixService.getCurrentAccount()) {
       this.expectedCofi = '';
-
       this.fromCoin.balance = await this.utils.getBalanceByCoin(this.fromCoin);
       this.isShowFromMax = this.fromCoin.balance ? true : false;
     }

@@ -66,7 +66,7 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
   };
   private resizeSubscription: Subscription;
   constructor(
-    private cofixService: CofiXService,
+    public cofixService: CofiXService,
     private balanceTruncatePipe: BalanceTruncatePipe,
     private shareStateService: ShareStateService,
     public shareStateQuery: ShareStateQuery,
@@ -99,7 +99,7 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
     }
   }
   async setToCoinMax(event) {
-    if (!this.shareStateQuery.getValue().connectedWallet) {
+    if (!this.cofixService.getCurrentAccount()) {
       return false;
     }
     this.toCoin.amount = this.todoValue;
@@ -152,7 +152,7 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
     this.isTokenChecked = false;
     this.resetRedeemError();
     this.shareState = this.shareStateQuery.getValue();
-    if (this.shareStateQuery.getValue().connectedWallet) {
+    if (this.cofixService.getCurrentAccount()) {
       this.fromCoin.address = this.cofixService.getCurrentContractAddressList()[
         this.fromCoin.id
       ];
