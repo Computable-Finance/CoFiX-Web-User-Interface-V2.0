@@ -220,77 +220,179 @@ export class CofiXService {
     let excutionPrice2 = new BNJS(1);
     let expectedCofi2 = new BNJS(0);
 
-    let valx;
+    let innerAmount = amount;
 
     if (fromToken !== undefined) {
-      const kinfo = await this.getKInfo(fromToken);
-      const price = await this.checkPriceNow(fromToken);
-
-      if (toToken === undefined) {
-        valx = new BNJS(amount).div(
-          new BNJS(price.changePrice).times(new BNJS(1).minus(kinfo.k))
-        );
-      } else {
-        valx = new BNJS(amount).div(
-          new BNJS(price.changePrice).times(new BNJS(1).plus(kinfo.k))
-        );
-      }
-      const fee = this.parseEthers(valx.times(kinfo.theta).toString());
-      expectedCofi2 = await this.expectedCoFi(
+      const result = await this.executionPriceAndExpectedCofiByERC202ETH(
         fromToken,
-        price,
-        kinfo,
-        fee,
-        false
+        innerAmount
       );
-
-      let c;
-      if (valx.lt(500)) {
-        c = 0;
-      } else if (valx.gte(500) && valx.lte(999000)) {
-        c = new BNJS(2.57e-5).plus(new BNJS(8.542e-7).times(valx));
-      } else {
-        c = new BNJS(2.57e-5).plus(new BNJS(8.542e-7).times(999000));
-      }
-
-      excutionPrice2 = new BNJS(1)
-        .minus(kinfo.theta)
-        .div(
-          new BNJS(price.changePrice).times(
-            new BNJS(1).plus(new BNJS(kinfo.k).plus(c))
-          )
-        );
+      excutionPrice1 = result.excutionPrice;
+      expectedCofi1 = result.expectedCofi;
+      innerAmount = excutionPrice1.times(amount).toString();
     }
 
     if (toToken !== undefined) {
-      const kinfo = await this.getKInfo(toToken);
-      const price = await this.checkPriceNow(toToken);
-
-      if (fromToken === undefined) {
-        valx = new BNJS(amount);
-      }
-
-      const fee = this.parseEthers(valx.times(kinfo.theta).toString());
-      let c;
-      if (valx.lt(500)) {
-        c = 0;
-      } else if (valx.gte(500) && valx.lte(999000)) {
-        c = new BNJS(-1.171e-4).plus(new BNJS(8.386e-7).times(amount));
-      } else {
-        c = new BNJS(-1.171e-4).plus(new BNJS(8.386e-7).times(999000));
-      }
-      excutionPrice1 = new BNJS(price.changePrice)
-        .times(new BNJS(1).minus(new BNJS(kinfo.k).plus(c)))
-        .times(new BNJS(1).minus(kinfo.theta));
-      expectedCofi1 = await this.expectedCoFi(toToken, price, kinfo, fee, true);
+      const result = await this.executionPriceAndExpectedCofiByETH2ERC20(
+        toToken,
+        innerAmount
+      );
+      excutionPrice2 = result.excutionPrice;
+      expectedCofi2 = result.expectedCofi;
+      innerAmount = excutionPrice2.times(innerAmount).toString();
     }
 
-    const excutionPriceForOne = excutionPrice1.times(excutionPrice2);
-    const excutionPrice = excutionPriceForOne.times(amount).toString();
+    // let valx;
+
+    // if (fromToken !== undefined) {
+    //   const kinfo = await this.getKInfo(fromToken);
+    //   const price = await this.checkPriceNow(fromToken);
+
+    //   if (toToken === undefined) {
+    //     valx = new BNJS(amount).div(
+    //       new BNJS(price.changePrice).times(new BNJS(1).minus(kinfo.k))
+    //     );
+    //   } else {
+    //     valx = new BNJS(amount).div(
+    //       new BNJS(price.changePrice).times(new BNJS(1).plus(kinfo.k))
+    //     );
+    //   }
+    //   const fee = this.parseEthers(valx.times(kinfo.theta).toString());
+    //   expectedCofi2 = await this.expectedCoFi(
+    //     fromToken,
+    //     price,
+    //     kinfo,
+    //     fee,
+    //     false
+    //   );
+
+    //   let c;
+    //   if (valx.lt(500)) {
+    //     c = 0;
+    //   } else if (valx.gte(500) && valx.lte(999000)) {
+    //     c = new BNJS(2.57e-5).plus(new BNJS(8.542e-7).times(valx));
+    //   } else {
+    //     c = new BNJS(2.57e-5).plus(new BNJS(8.542e-7).times(999000));
+    //   }
+
+    //   excutionPrice2 = new BNJS(1)
+    //     .minus(kinfo.theta)
+    //     .div(
+    //       new BNJS(price.changePrice).times(
+    //         new BNJS(1).plus(new BNJS(kinfo.k).plus(c))
+    //       )
+    //     );
+    // }
+
+    // if (toToken !== undefined) {
+    //   const kinfo = await this.getKInfo(toToken);
+    //   const price = await this.checkPriceNow(toToken);
+
+    //   if (fromToken === undefined) {
+    //     valx = new BNJS(amount);
+    //   }
+
+    //   const fee = this.parseEthers(valx.times(kinfo.theta).toString());
+    //   let c;
+    //   if (valx.lt(500)) {
+    //     c = 0;
+    //   } else if (valx.gte(500) && valx.lte(999000)) {
+    //     c = new BNJS(-1.171e-4).plus(new BNJS(8.386e-7).times(amount));
+    //   } else {
+    //     c = new BNJS(-1.171e-4).plus(new BNJS(8.386e-7).times(999000));
+    //   }
+    //   excutionPrice1 = new BNJS(price.changePrice)
+    //     .times(new BNJS(1).minus(new BNJS(kinfo.k).plus(c)))
+    //     .times(new BNJS(1).minus(kinfo.theta));
+    //   expectedCofi1 = await this.expectedCoFi(toToken, price, kinfo, fee, true);
+    // }
+
+    const excutionPriceForOne = excutionPrice1.times(excutionPrice2).toString();
+    // const excutionPrice = excutionPriceForOne.times(amount).toString();
+    const excutionPrice = innerAmount;
     const expectedCofi = expectedCofi1.plus(expectedCofi2).toString();
 
+    console.log(excutionPriceForOne.toString(), excutionPrice, expectedCofi);
+
     return {
-      excutionPriceForOne: excutionPriceForOne.toString(),
+      excutionPriceForOne,
+      excutionPrice,
+      expectedCofi,
+    };
+  }
+
+  private async executionPriceAndExpectedCofiByETH2ERC20(
+    token: string,
+    amount: string
+  ) {
+    const kinfo = await this.getKInfo(token);
+    const price = await this.checkPriceNow(token);
+    const valx = new BNJS(amount);
+    const fee = this.parseEthers(valx.times(kinfo.theta).toString());
+
+    let c;
+    if (valx.lt(500)) {
+      c = 0;
+    } else if (valx.gte(500) && valx.lte(999000)) {
+      c = new BNJS(-1.171e-4).plus(new BNJS(8.386e-7).times(amount));
+    } else {
+      c = new BNJS(-1.171e-4).plus(new BNJS(8.386e-7).times(999000));
+    }
+
+    const excutionPrice = new BNJS(price.changePrice)
+      .times(new BNJS(1).minus(new BNJS(kinfo.k).plus(c)))
+      .times(new BNJS(1).minus(kinfo.theta));
+    const expectedCofi = await this.expectedCoFi(
+      token,
+      price,
+      kinfo,
+      fee,
+      true
+    );
+
+    return {
+      excutionPrice,
+      expectedCofi,
+    };
+  }
+
+  private async executionPriceAndExpectedCofiByERC202ETH(
+    token: string,
+    amount: string
+  ) {
+    const kinfo = await this.getKInfo(token);
+    const price = await this.checkPriceNow(token);
+    const valx = new BNJS(amount).div(
+      new BNJS(price.changePrice).times(new BNJS(1).minus(kinfo.k))
+    );
+
+    const fee = this.parseEthers(valx.times(kinfo.theta).toString());
+
+    let c;
+    if (valx.lt(500)) {
+      c = 0;
+    } else if (valx.gte(500) && valx.lte(999000)) {
+      c = new BNJS(2.57e-5).plus(new BNJS(8.542e-7).times(valx));
+    } else {
+      c = new BNJS(2.57e-5).plus(new BNJS(8.542e-7).times(999000));
+    }
+
+    const excutionPrice = new BNJS(1)
+      .minus(kinfo.theta)
+      .div(
+        new BNJS(price.changePrice).times(
+          new BNJS(1).plus(new BNJS(kinfo.k).plus(c))
+        )
+      );
+    const expectedCofi = await this.expectedCoFi(
+      token,
+      price,
+      kinfo,
+      fee,
+      false
+    );
+
+    return {
       excutionPrice,
       expectedCofi,
     };
