@@ -1178,7 +1178,7 @@ export class CofiXService {
   private async updateETHBalance() {
     this.balancesService.updateEthBalance(
       this.currentAccount,
-      await ethersOf(await this.provider.getBalance(this.currentAccount))
+      ethersOf(await this.provider.getBalance(this.currentAccount))
     );
   }
 
@@ -1246,8 +1246,13 @@ export class CofiXService {
     }
   }
 
-  getETHBalance() {
-    return this.getCurrentBalances().ethBalance;
+  async getETHBalance() {
+    const balance = this.getCurrentBalances()?.ethBalance;
+    if (!balance) {
+      await this.updateETHBalance();
+      return this.getCurrentBalances().ethBalance;
+    }
+    return balance;
   }
 
   // 普通 ERC20 Token
