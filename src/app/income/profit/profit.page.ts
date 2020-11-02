@@ -11,6 +11,7 @@ import { Subscription, fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { CoinInputPage } from 'src/app/common/components/coin-input/coin-input.page';
 
+const BNJS = require('bignumber.js');
 @Component({
   selector: 'app-income-profit',
   templateUrl: './profit.page.html',
@@ -124,24 +125,25 @@ export class IncomeProfitPage implements OnInit, OnDestroy {
   canSave() {
     return (
       this.isApproved &&
-      Number(this.balance) > 0 &&
-      Number(this.balance) <= Number(this.todoValue)
+      new BNJS(this.balance).gt(0) &&
+      new BNJS(this.balance).lte(new BNJS(this.todoValue))
     );
   }
 
   canReceive() {
     return (
-      Number(this.balance) > 0 && Number(this.balance) <= Number(this.hadValue)
+      new BNJS(this.balance).gt(0) &&
+      new BNJS(this.balance).lte(new BNJS(this.hadValue))
     );
   }
 
   canShowError() {
     if (this.isDeposit) {
       this.shoWErrorLabel = this.todoLabel + '_error';
-      this.showError = Number(this.balance) > Number(this.todoValue);
+      this.showError = new BNJS(this.balance).gt(new BNJS(this.todoValue));
     } else {
       this.shoWErrorLabel = this.hadLabel + '_error';
-      this.showError = Number(this.balance) > Number(this.hadValue);
+      this.showError = new BNJS(this.balance).gt(new BNJS(this.hadValue));
     }
   }
   ngOnDestroy() {

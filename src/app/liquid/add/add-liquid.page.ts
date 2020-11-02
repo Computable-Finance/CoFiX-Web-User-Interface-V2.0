@@ -20,6 +20,7 @@ import { CofiXService } from 'src/app/service/cofix.service';
 import { CoinContent } from 'src/app/swap/swap.page';
 import { WarningDetailPage } from '../warning/warning-detail/warning-detail.page';
 
+const BNJS = require('bignumber.js');
 @Component({
   selector: 'app-add-liquid',
   templateUrl: './add-liquid.page.html',
@@ -148,7 +149,7 @@ export class AddLiquidPage implements OnInit, OnDestroy {
           )
         )
         .toString();
-      if (Number(this.fromCoin.amount) < 0) {
+      if (new BNJS(this.fromCoin.amount).lt(0)) {
         this.showFromError = true;
         this.fromCoin.amount = '0';
         this.toCoin.amount = '';
@@ -166,9 +167,12 @@ export class AddLiquidPage implements OnInit, OnDestroy {
   }
 
   canShowError() {
-    this.showFromError =
-      Number(this.fromCoin.amount) > Number(this.fromCoin.balance);
-    this.showToError = Number(this.toCoin.amount) > Number(this.toCoin.balance);
+    this.showFromError = new BNJS(this.fromCoin.amount).gt(
+      new BNJS(this.fromCoin.balance)
+    );
+    this.showToError = new BNJS(this.toCoin.amount).gt(
+      new BNJS(this.toCoin.balance)
+    );
   }
 
   async setExpectedXToken() {
@@ -303,7 +307,7 @@ export class AddLiquidPage implements OnInit, OnDestroy {
     this.fromCoin.amount = event.amount;
     this.setExpectedXToken();
     this.canShowError();
-    if (Number(this.fromCoin.amount) >= Number(this.fromCoin.balance)) {
+    if (new BNJS(this.fromCoin.amount).gte(new BNJS(this.fromCoin.balance))) {
       this.showFromError = true;
     } else {
       this.showFromError = false;
@@ -320,18 +324,20 @@ export class AddLiquidPage implements OnInit, OnDestroy {
 
   canAdd() {
     let result = false;
-    if (Number(this.toCoin.amount) === 0) {
+
+    if (new BNJS(this.fromCoin.amount).isZero()) {
       result =
-        Number(this.fromCoin.amount) > 0 &&
-        Number(this.fromCoin.amount) < Number(this.fromCoin.balance); //仅输入ETH，且ETH不等于最大值
+        new BNJS(this.fromCoin.amount).gt(0) &&
+        new BNJS(this.fromCoin.amount).lt(new BNJS(this.fromCoin.balance)); //仅输入ETH，且ETH不等于最大值
     } else {
       result =
         this.toCoin.isApproved && //已经认证
         !(
-          Number(this.fromCoin.amount) === 0 && Number(this.toCoin.amount) === 0
+          new BNJS(this.fromCoin.amount).isZero() &&
+          new BNJS(this.toCoin.amount).isZero()
         ) && //输入值均不为0
-        Number(this.fromCoin.amount) <= Number(this.fromCoin.balance) && //输入ETH值小于最大值
-        Number(this.toCoin.amount) <= Number(this.toCoin.balance);
+        new BNJS(this.fromCoin.amount).lte(new BNJS(this.fromCoin.balance)) && //输入ETH值小于最大值
+        new BNJS(this.toCoin.amount).lte(new BNJS(this.toCoin.balance));
     }
     return result;
   }
@@ -340,7 +346,7 @@ export class AddLiquidPage implements OnInit, OnDestroy {
     return (
       this.shareStateQuery.getValue().connectedWallet &&
       !this.toCoin.isApproved &&
-      Number(this.toCoin.amount) > 0
+      new BNJS(this.toCoin.amount).gt(0)
     );
   }
   ngOnDestroy() {

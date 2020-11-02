@@ -6,7 +6,7 @@ import { Utils } from 'src/app/common/utils';
 import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
 import { CoinInputPage } from '../common/components/coin-input/coin-input.page';
 import { BigNumber } from 'ethers';
-
+const BNJS = require('bignumber.js');
 export interface CoinContent {
   id: string;
   address: string;
@@ -33,7 +33,7 @@ export class SwapPage implements OnInit {
   };
   changePrice: string;
   expectedCofi: string;
-  oracleCost: number = 0.01; //预言机调用费
+  oracleCost: string = '0.01'; //预言机调用费
   maxFee = '0.02';
   fromCoin: CoinContent = {
     id: 'ETH',
@@ -117,7 +117,8 @@ export class SwapPage implements OnInit {
           )
         )
         .toString();
-      if (Number(this.fromCoin.amount) < 0) {
+
+      if (new BNJS(this.fromCoin.amount).lt(0)) {
         this.showError = true;
         this.fromCoin.amount = '0';
         this.toCoin.amount = '';
@@ -134,7 +135,12 @@ export class SwapPage implements OnInit {
 
     if (this.toCoin.id !== 'ETH') {
       //计算结果
-      if (this.toCoin.amount > this.ERC20BalanceOfPair[this.toCoin.id]) {
+
+      if (
+        new BNJS(this.toCoin.amount).gt(
+          new BNJS(this.ERC20BalanceOfPair[this.toCoin.id])
+        )
+      ) {
         this.toCoin.amount = this.ERC20BalanceOfPair[this.toCoin.id];
       }
     }
@@ -247,9 +253,9 @@ export class SwapPage implements OnInit {
 
   changeOracleCost() {
     if (this.fromCoin.id !== 'ETH' && this.toCoin.id !== 'ETH') {
-      this.oracleCost = 0.02;
+      this.oracleCost = '0.02';
     } else {
-      this.oracleCost = 0.01;
+      this.oracleCost = '0.01';
     }
   }
 
@@ -293,12 +299,12 @@ export class SwapPage implements OnInit {
     this.getEPAndEC();
     if (this.fromCoin.id === 'ETH') {
       this.showError =
-        Number(this.fromCoin.amount) !== 0 &&
-        Number(this.fromCoin.amount) >= Number(this.fromCoin.balance);
+        !new BNJS(this.fromCoin.amount).isZero() &&
+        new BNJS(this.fromCoin.amount).gte(new BNJS(this.fromCoin.balance));
     } else {
       this.showError =
-        Number(this.fromCoin.amount) !== 0 &&
-        Number(this.fromCoin.amount) > Number(this.fromCoin.balance);
+        !new BNJS(this.fromCoin.amount).isZero() &&
+        new BNJS(this.fromCoin.amount).gt(new BNJS(this.fromCoin.balance));
     }
   }
 
@@ -360,7 +366,7 @@ export class SwapPage implements OnInit {
           this.fromCoin.amount || '0',
           this.toCoin.amount || '0',
           this.changePrice || '0',
-          this.oracleCost.toString()
+          this.oracleCost
         )
         .then((tx: any) => {
           console.log('tx.hash', tx.hash);
@@ -391,7 +397,7 @@ export class SwapPage implements OnInit {
             this.fromCoin.amount || '0',
             this.toCoin.amount || '0',
             this.changePrice || '0',
-            this.oracleCost.toString()
+            this.oracleCost
           )
           .then((tx: any) => {
             console.log('tx.hash', tx.hash);
@@ -428,7 +434,7 @@ export class SwapPage implements OnInit {
             this.fromCoin.amount || '0',
             amountOut.excutionPrice,
             this.changePrice || '0',
-            this.oracleCost.toString()
+            this.oracleCost
           )
           .then((tx: any) => {
             console.log('tx.hash', tx.hash);
@@ -458,27 +464,25 @@ export class SwapPage implements OnInit {
     let result = false;
     if (this.fromCoin.id === 'ETH') {
       result =
-        Number(this.fromCoin.amount) !== 0 &&
-        Number(this.fromCoin.balance) > Number(this.maxFee) &&
-        Number(this.fromCoin.amount) < Number(this.fromCoin.balance);
+        !new BNJS(this.fromCoin.amount).isZero() &&
+        new BNJS(this.fromCoin.balance).gt(new BNJS(this.maxFee)) &&
+        new BNJS(this.fromCoin.amount).lt(new BNJS(this.fromCoin.balance));
     } else {
       result =
         this.fromCoin.isApproved &&
-        Number(this.fromCoin.amount) !== 0 &&
-        Number(this.fromCoin.amount) <= Number(this.fromCoin.balance); //Token要认证且输入值小于等于余额
+        !new BNJS(this.fromCoin.amount).isZero() &&
+        new BNJS(this.fromCoin.amount).lte(new BNJS(this.fromCoin.balance)); //Token要认证且输入值小于等于余额
     }
     return (
       result &&
-      Number(this.toCoin.amount) < this.ERC20BalanceOfPair[this.toCoin.id] //兑换值小于池中值
+      new BNJS(this.toCoin.amount).lt(
+        new BNJS(this.ERC20BalanceOfPair[this.toCoin.id])
+      ) //兑换值小于池中值
     );
   }
 
   selectArrowChange(event) {
-    console.log(event);
-    console.log(this.isShowDetail);
     this.isShowDetail = event.isDown;
-
-    console.log(this.isShowDetail);
   }
   showSkeleton(value) {
     return value === undefined || value === '';

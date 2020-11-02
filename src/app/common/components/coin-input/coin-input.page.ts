@@ -11,6 +11,7 @@ import { EMPTY, Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { CoinSelectPage } from './select/coin-select.page';
 
+const BNJS = require('bignumber.js');
 @Component({
   selector: 'app-coin-input',
   templateUrl: './coin-input.page.html',
@@ -87,7 +88,7 @@ export class CoinInputPage implements OnInit, OnDestroy {
     // this.subscription.unsubscribe();
   }
   overLiquid() {
-    return Number(this.amount) > Number(this.maxLiquid);
+    return new BNJS(this.amount).gt(new BNJS(this.maxLiquid));
   }
 
   resetSubscription() {
@@ -105,9 +106,5 @@ export class CoinInputPage implements OnInit, OnDestroy {
   }
   showSkeleton(value) {
     return value === undefined || value === '';
-  }
-  changeInput(event) {
-    console.log(event);
-    console.log(this.amount);
   }
 }

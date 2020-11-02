@@ -17,6 +17,7 @@ import { Utils } from 'src/app/common/utils';
 import { CofiXService } from 'src/app/service/cofix.service';
 import { CoinContent } from 'src/app/swap/swap.page';
 
+const BNJS = require('bignumber.js');
 @Component({
   selector: 'app-redeem-liquid',
   templateUrl: './redeem-liquid.page.html',
@@ -101,6 +102,7 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
       return false;
     }
     this.toCoin.amount = this.todoValue;
+    this.toCoin.balance = this.todoValue;
     this.getRemoveLiquidity();
   }
 
@@ -328,13 +330,13 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
   canRedeem() {
     return (
       this.toCoin.isApproved &&
-      !(Number(this.toCoin.amount) === 0) &&
-      Number(this.toCoin.amount) <= Number(this.todoValue)
+      !new BNJS(this.toCoin.amount).isZero() &&
+      new BNJS(this.toCoin.amount).lte(new BNJS(this.todoValue))
     );
   }
 
   canShowError() {
-    this.showError = Number(this.toCoin.amount) > Number(this.todoValue);
+    this.showError = new BNJS(this.toCoin.amount).gt(new BNJS(this.todoValue));
   }
 
   ngOnDestroy() {
