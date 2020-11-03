@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE token  [
+        <!ENTITY style SYSTEM "resources/alphawallet.css">
+        <!ENTITY paradigm.en SYSTEM "resources/paradigm.js">
+        <!ENTITY send.js SYSTEM "send.js">
+        <!ENTITY contracts SYSTEM "contracts.lst">
+        <!ENTITY data-module SYSTEM "data-module.xml">
+]>
+<ts:token xmlns:ts="http://tokenscript.org/2020/06/tokenscript"
+          xmlns:asnx="urn:ietf:params:xml:ns:asnx"
+          xmlns:ethereum="urn:ethereum:constantinople"
+          xmlns:xhtml="http://www.w3.org/1999/xhtml"
+          xmlns:xml="http://www.w3.org/XML/1998/namespace"
+          xsi:schemaLocation="http://tokenscript.org/2020/06/tokenscript http://tokenscript.org/2020/06/tokenscript.xsd"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          name="LiquidityPoolShare"
+>
+    &data-module;
+    <ts:label>
+        <ts:string xml:lang="en">CoFix Liquidity Pool Share</ts:string>
+    </ts:label>
+
+    <ts:contract name="NEST">
+	   <ts:address network="1">0x04abEdA201850aC0124161F037Efd70c74ddC74C</ts:address>
+    </ts:contract>
+    <ts:contract name="CoFiXRouter">
+	   <ts:address network="1">0x26aaD4D82f6c9FA6E34D8c1067429C986A055872</ts:address>
+    </ts:contract>
+
+    <ts:cards>
+        <ts:card name="sent" type="activity">
+            <ts:origins>
+                <ethereum:event contract="pool" filter="from=${ownerAddress}" type="Transfer"/>
+            </ts:origins>
+            <ts:item-view xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+                <xhtml:style type="text/css">&style;</xhtml:style>
+                <xhtml:script type="text/javascript">&send.js;</xhtml:script>
+            </ts:item-view>
+        </ts:card>
+    </ts:cards>
+
+    <ts:attribute name="pair" distinct="true">
+        <ts:type>
+            <ts:syntax>1.3.6.1.4.1.1466.115.121.1.6</ts:syntax>
+        </ts:type>
+        <ts:origins>
+            <ts:data>
+                <ts:address>0xdAC17F958D2ee523a2206206994597C13D831ec7</ts:address>
+                <ts:address>0x0316EB71485b0Ab14103307bf65a021042c6d380</ts:address>
+            </ts:data>
+        </ts:origins>
+    </ts:attribute>
+
+    <ts:attribute name="pairSymbol">
+        <ts:type>
+            <ts:syntax>1.3.6.1.4.1.1466.115.121.1.15</ts:syntax>
+        </ts:type>
+        <ts:origins>
+            <ts:attribute ref="pair">
+                <ts:mapping>
+                    <ts:option key="0xdAC17F958D2ee523a2206206994597C13D831ec7">
+                        <ts:value xml:lang="en">USDT</ts:value>
+                    </ts:option>
+                    <ts:option key="0x0316EB71485b0Ab14103307bf65a021042c6d380">
+                        <ts:value xml:lang="en">HBTC</ts:value>
+                    </ts:option>
+                </ts:mapping>
+            </ts:attribute>
+        </ts:origins>
+    </ts:attribute>
+
+    <ts:attribute name="pool">
+        <ts:type>
+            <ts:syntax>1.3.6.1.4.1.1466.115.121.1.6</ts:syntax>
+        </ts:type>
+        <ts:origins>
+            <!-- Ideally, this can be obtained from CoFiXVaultForLP.sol
+                which has this public mapping:
+                    mapping (address => address) public pairToStakingPool; // pair -> staking pool
+                but we don't have the syntax for accessing public mapping in a contract,
+                so this bit is hard-coded
+            -->
+            <ts:attribute ref="pair">
+                <ts:mapping>
+                    <ts:option key="0xdAC17F958D2ee523a2206206994597C13D831ec7">
+                        <ts:value xml:lang="en">0xb2b7BeDd7d7fc19804C7Dd4a4E8174C4c73C210d</ts:value>
+                    </ts:option>
+                    <ts:option key="0x0316EB71485b0Ab14103307bf65a021042c6d380">
+                        <ts:value xml:lang="en">0x7C2d7b53AcA4038f2Eb649164181114B9AEE93CB</ts:value>
+                    </ts:option>
+                </ts:mapping>
+            </ts:attribute>
+        </ts:origins>
+    </ts:attribute>
+
+    <ts:attribute name="balance">
+        <ts:type>
+            <ts:syntax></ts:syntax>
+        </ts:type>
+        <ts:origins>
+            <ethereum:call as="e18" function="balanceOf" contract="pool">
+                <ts:data>
+                    <ts:address ref="ownerAddress"></ts:address>
+                </ts:data>
+            </ethereum:call>
+        </ts:origins>
+    </ts:attribute>
+
+    <ts:attribute name="pairedTokenAllowance">
+        <ts:type>
+            <ts:syntax>1.3.6.1.4.1.1466.115.121.1.27</ts:syntax>
+        </ts:type>
+        <ts:origins>
+            <ethereum:call function="allowance" contract="pair">
+                <ts:data>
+                    <ts:address ref="ownerAddress"></ts:address>
+                    <ts:address ref="CoFiXRouter"></ts:address>
+                </ts:data>
+            </ethereum:call>
+        </ts:origins>
+    </ts:attribute>
+
+    <ts:attribute name="totalSupply">
+        <ts:type>
+            <ts:syntax>1.3.6.1.4.1.1466.115.121.1.27</ts:syntax>
+        </ts:type>
+        <ts:origins>
+            <ethereum:call function="totalSupply" contract="pool">
+            </ethereum:call>
+        </ts:origins>
+    </ts:attribute>
+
+</ts:token>
