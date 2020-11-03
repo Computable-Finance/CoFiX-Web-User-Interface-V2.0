@@ -9,6 +9,7 @@ import { ShareStateService } from './common/state/share.service';
 import { CofiXService } from './service/cofix.service';
 import { MetadataQuery } from './state/metadata/metadata.query';
 import { MetadataService } from './state/metadata/metadata.service';
+import { HuAndHuService } from './_integration/hu-and-hu.service';
 
 type State = { lang: string };
 
@@ -42,9 +43,12 @@ export class AppComponent implements OnInit {
     private router: Router,
     private metadataQuery: MetadataQuery,
     private metadataService: MetadataService,
+    private huAndHuService: HuAndHuService,
     @Inject('persistStorage') private persistStorage
   ) {
     this.initializeApp();
+
+    // huAndHuService.connect();
   }
 
   initializeApp() {
