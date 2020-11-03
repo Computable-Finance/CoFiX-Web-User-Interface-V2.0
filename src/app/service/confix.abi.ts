@@ -80,6 +80,7 @@ export const COFIXSTAKINGREWARDS_ABI = [
   'function getReward() external',
   'function withdraw(uint256 amount) external',
   'function stake(uint256 amount) external',
+  'function getRewardAndStake() external',
 ];
 
 export function getCoFiXStakingRewards(address: string, provider) {

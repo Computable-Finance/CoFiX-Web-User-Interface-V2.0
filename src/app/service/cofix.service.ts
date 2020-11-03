@@ -573,14 +573,24 @@ export class CofiXService {
   }
 
   // 领取 CoFi 收益
-  async withdrawEarnedCoFi(stakingPoolAddress: string) {
+  async withdrawEarnedCoFi(
+    stakingPoolAddress: string,
+    staking: boolean = false
+  ) {
     const contract = getCoFiXStakingRewards(stakingPoolAddress, this.provider);
-
-    return await this.executeContractMethodWithEstimatedGas(
-      contract,
-      'getReward',
-      [{}]
-    );
+    if (staking) {
+      return await this.executeContractMethodWithEstimatedGas(
+        contract,
+        'getRewardAndStake',
+        [{}]
+      );
+    } else {
+      return await this.executeContractMethodWithEstimatedGas(
+        contract,
+        'getReward',
+        [{}]
+      );
+    }
   }
 
   async withdrawDepositedCoFi(amount: string) {
@@ -861,7 +871,7 @@ export class CofiXService {
     amountToken: string,
     liquidityMin: string,
     fee: string,
-    stake: boolean = false
+    staking: boolean = false
   ) {
     const bnAmountETH = new BNJS(amountETH);
     const bnAmountToken = new BNJS(amountToken);
@@ -900,7 +910,7 @@ export class CofiXService {
       this.contractAddressList.CofixRouter,
       this.provider
     );
-    if (stake) {
+    if (staking) {
       return await this.executeContractMethodWithEstimatedGas(
         cofixRouter,
         'addLiquidityAndStake',
