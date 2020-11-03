@@ -79,3 +79,8 @@ export const FOOTER_ITEMS = [
     img: 'community.png',
   },
 ];
+
+export const LANG_ITEMS = [
+  { id: 'en', label: 'English', img: 'lang_en.png' },
+  { id: 'zh', label: '中文', img: 'lang_ch.png' },
+];

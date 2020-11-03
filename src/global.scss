@@ -525,3 +525,17 @@ ion-toggle {
   margin-block-start: 0;
   margin-block-end: 0;
 }
+
+.menu-class .popover-content {
+  width: 250px;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
+  border: solid 1px var(--mercury);
+  background-color: var(--white);
+}
+
+.menu-class .popover-content .content p {
+  margin-block-start: 0em !important;
+  margin-block-end: 0em !important;
+}

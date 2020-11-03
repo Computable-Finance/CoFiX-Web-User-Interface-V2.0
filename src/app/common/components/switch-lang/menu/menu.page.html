@@ -1,0 +1,22 @@
+<ion-grid class="select-content ion-no-padding">
+    <ng-container *ngFor="let item of menuItems">
+        <ion-row  (click)="goto(item.link)"
+            class="ion-align-items-center ion-align-self-center conversionPrice">
+            <ion-col size="12"> {{item.id | translate}} </ion-col>
+        </ion-row>
+    </ng-container>
+    <div class="menu-divider"></div>
+    <div class="select-lang">{{'sel_lang'| translate}}</div>
+    <ng-container *ngFor="let item of langItems">
+        
+        <ion-row 
+            class="ion-align-items-center ion-align-self-center langrow ">
+            <ion-col size="12"> 
+                <ion-button (click)="changeLang(item.id)" color="{{isSelect(item.id)?'secondary':'light'}}"  shape="{{isSelect(item.id)?'filled':'outline'}}">
+                    <div class="ion-button-label">
+                        <img src="./assets/images/{{item.img}}" />{{item.label}}
+                    </div>
+            </ion-button></ion-col>
+        </ion-row>
+    </ng-container>
+</ion-grid>

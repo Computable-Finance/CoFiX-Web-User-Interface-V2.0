@@ -22,6 +22,7 @@ import { IncomeProfitPage } from 'src/app/income/profit/profit.page';
 import { ProfitPage } from 'src/app/liquid/profit/profit.page';
 import { DirectivesModule } from '../directive/directives.module';
 import { TooltipModule } from '../directive/tooltip/tooltip.module';
+import { MenuPage } from './switch-lang/menu/menu.page';
 
 @NgModule({
   imports: [
@@ -49,6 +50,7 @@ import { TooltipModule } from '../directive/tooltip/tooltip.module';
     CardTitlePage,
     TokenInfoPage,
     IncomeProfitPage,
+    MenuPage,
   ],
   exports: [
     FooterPage,
@@ -64,6 +66,7 @@ import { TooltipModule } from '../directive/tooltip/tooltip.module';
     CardTitlePage,
     TokenInfoPage,
     IncomeProfitPage,
+    MenuPage,
   ],
 })
 export class CommonComponentsModule {}

@@ -75,7 +75,6 @@ export class Tooltip implements OnDestroy {
    * Show the tooltip immediately after initiating view if set to
    */
   ngAfterViewInit() {
-    console.log(this.tipsContent);
     if (this._active) {
       this.trigger();
     }
@@ -173,12 +172,9 @@ export class Tooltip implements OnDestroy {
   }
 
   private _createTooltipComponent() {
-    console.log(<any>this.appRef.components[0]);
-    let viewport: ViewContainerRef = this.el.nativeElement,
-      /*(<any>this.appRef.components[0])._component
-        ._viewport*/ componentFactory = this._componentFactoryResolver.resolveComponentFactory(
-        TooltipBox
-      );
+    let componentFactory = this._componentFactoryResolver.resolveComponentFactory(
+      TooltipBox
+    );
 
     this.tooltipElement = this.vc.createComponent(componentFactory);
   }

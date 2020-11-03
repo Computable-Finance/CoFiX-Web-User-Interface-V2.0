@@ -241,5 +241,6 @@
   "dividend_tooltips_claimeth":"The more CoFi you have deposited, the larger your share of the ETH dividend. Withdraw at any time.",
   "dividend_tooltips_fee":"The Dividend ETH Pool is accumulated from 20% of all CoFiX swap trading fees.",
   "dividend_tooltips_share20":"20% of all swap trading fees are collected towards the Dividend Pool.",
-  "dividend_tooltips_share80":"80% of all swap trading fees are collected towards the Saving Pool. CoFi is a governance token, and holders will be able to vote on what to do with the collected fees once the DAO has been launched (upcoming phase)."
+  "dividend_tooltips_share80":"80% of all swap trading fees are collected towards the Saving Pool. CoFi is a governance token, and holders will be able to vote on what to do with the collected fees once the DAO has been launched (upcoming phase).",
+  "sel_lang":"SELECT LANGUAGE"
 }

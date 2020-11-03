@@ -1,0 +1,67 @@
+.conversionPrice,
+.langrow {
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.7;
+  letter-spacing: normal;
+  color: var(--black);
+  border: 0;
+}
+.conversionPrice:hover,
+.conversionPrice:active {
+  background-color: var(--porcelain);
+  cursor: pointer;
+}
+
+.first-row {
+  border-top: 1px solid var(--mercury);
+}
+.select-content {
+  margin: 26px 0px;
+}
+.menu-divider {
+  border-bottom: 1px solid var(--mercury);
+}
+.select-lang {
+  font-size: 15px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.67;
+  letter-spacing: normal;
+  color: var(--dove);
+  margin: 10px 20px;
+}
+.langrow {
+  margin: 0px 20px 5px 20px;
+}
+ion-button {
+  width: 175px;
+  font-size: 17px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.71;
+  letter-spacing: normal;
+  --box-shadow: none;
+  justify-content: flex-start;
+  --border-radius: 7px;
+}
+img {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+.button-outline .ion-button-label,
+.button-filled .ion-button-label {
+  text-align: left;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.button-outline {
+  margin: 0px !important;
+}
