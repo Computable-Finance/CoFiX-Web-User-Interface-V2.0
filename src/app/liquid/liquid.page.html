@@ -8,7 +8,8 @@
 
       <ion-grid class="ion-no-padding">
         <ion-row class="ion-align-items-center ion-align-self-center conversionPrice">
-          <ion-col class="label" size="8">{{'liquidpool_eth' | translate}}<img class="alert-icon" src="./assets/images/{{questionImgName}}.png" (click)="showAlert('pool_tooltips_liquidpool_eth',$event)" />
+          <ion-col class="label" size="8">{{'liquidpool_eth' | translate}}<img class="alert-icon" src="./assets/images/{{questionImgName}}.png" 
+            tooltip  event="hover" tipsContent="pool_tooltips_liquidpool_eth" />
           </ion-col>
           <ion-col class="ion-text-right number" size="4" *ngIf="!showSkeleton(ETHAmountForRemoveLiquidity[toCoin.id])">{{ETHAmountForRemoveLiquidity[toCoin.id] |
           truncate:'--'}}
@@ -19,7 +20,7 @@
         </ion-row>
         <ion-row class="ion-align-items-center ion-align-self-center conversionPrice">
           <ion-col class="label" size="8">
-            <div translate="liquidpool_token" [translateParams]="{token: toCoin.id}"></div><img class="alert-icon" src="./assets/images/{{questionImgName}}.png" (click)="showAlert('pool_tooltips_liquidpool_usdt',$event)" />
+            <div translate="liquidpool_token" [translateParams]="{token: toCoin.id}"></div><img class="alert-icon" src="./assets/images/{{questionImgName}}.png" tooltip  event="hover" tipsContent="pool_tooltips_liquidpool_usdt" />
           </ion-col>
           <ion-col class="ion-text-right number" size="4" *ngIf="!showSkeleton(tokenAmountForRemoveLiquidity[toCoin.id])">{{tokenAmountForRemoveLiquidity[toCoin.id] | truncate:'--'}}
           </ion-col>
@@ -63,7 +64,7 @@
         </ion-col>
       </ion-row>
       <ion-row class="ion-align-items-center ion-align-self-center conversionPrice">
-        <ion-col class="label" size="5">{{'miningpool_speed' | translate}}<img class="alert-icon" src="./assets/images/{{questionImgName}}.png" (click)="showAlert('pool_tooltips_miningpool_speed',$event)" />
+        <ion-col class="label" size="5">{{'miningpool_speed' | translate}}<img class="alert-icon" src="./assets/images/{{questionImgName}}.png" tooltip  event="hover" tipsContent="pool_tooltips_miningpool_speed"  />
         </ion-col>
         <ion-col class="ion-text-right number" size="7" *ngIf="!showSkeleton(tokenAmountForRemoveLiquidity[toCoin.id])">
           {{earnedRate[toCoin.id]?.rewardRate | truncate:'--'}} CoFi/week
@@ -73,7 +74,7 @@
         </ion-col>
       </ion-row>
       <ion-row class="ion-align-items-center ion-align-self-center conversionPrice">
-        <ion-col class="label" size="9">{{'miningpool_wallet' | translate}}<img class="alert-icon" src="./assets/images/{{questionImgName}}.png" (click)="showAlert('pool_tooltips_miningpool_deposittokens',$event)" />
+        <ion-col class="label" size="9">{{'miningpool_wallet' | translate}}<img class="alert-icon" src="./assets/images/{{questionImgName}}.png" tooltip  event="hover" tipsContent="pool_tooltips_miningpool_deposittokens"  />
         </ion-col>
         <ion-col class="ion-text-right number" size="3" *ngIf="!showSkeleton(tokenAmountForRemoveLiquidity[toCoin.id])">
           {{todoValue[toCoin.id] | truncate:'--'}}

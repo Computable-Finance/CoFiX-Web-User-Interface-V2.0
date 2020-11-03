@@ -323,21 +323,6 @@ export class SwapPage implements OnInit {
     }
   }
 
-  async showAlert(title, content, event, footer = '') {
-    /*const alert = await this.alertController.create({
-      cssClass: 'explain-liquid-alert',
-      header: await this.translateService.get(title).toPromise(),
-      message: await this.translateService.get(content).toPromise(),
-      buttons: [
-        {
-          text: await this.translateService.get('comfirm_text').toPromise(),
-        },
-      ],
-    });
-    await alert.present();*/
-    this.utils.showAlert(title, content, event, footer);
-  }
-
   async approve() {
     this.resetSwapError();
     if (!this.fromCoin.isApproved) {

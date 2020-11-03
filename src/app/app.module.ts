@@ -17,6 +17,7 @@ import { BalanceTruncatePipe } from './common/pipes/balance.pipe';
 import { ShareStateQuery } from './common/state/share.query';
 import { ShareStateService } from './common/state/share.service';
 import { Utils } from './common/utils';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
@@ -35,6 +36,7 @@ import { Utils } from './common/utils';
     HttpClientModule,
     environment.production ? [] : AkitaNgDevtools.forRoot(),
     AkitaNgRouterStoreModule.forRoot(),
+    BrowserAnimationsModule,
   ],
   providers: [
     StatusBar,

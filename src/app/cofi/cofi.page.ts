@@ -126,9 +126,6 @@ export class CofiPage implements OnInit {
   resetCofiError() {
     this.withdrawError = { isError: false, msg: '' };
   }
-  async showAlert(content, event) {
-    this.utils.showAlert('', content, event);
-  }
 
   showSkeleton(value) {
     return value === undefined || value === '';

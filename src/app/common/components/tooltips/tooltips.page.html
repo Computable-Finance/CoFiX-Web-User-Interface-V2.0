@@ -1,7 +1,0 @@
-<div class="tooltips">
-    <div class="title" *ngIf="tipsTitle">{{tipsTitle | translate}}</div>
-    <div [innerHTML]="tipsContent | translate | marked" class="content"></div>
-    <div *ngIf="tipsFooter" class="title">
-        {{tipsFooter | translate}}
-    </div>
-</div>

@@ -46,9 +46,9 @@
           <ion-col class="label" size="4"
             >{{'dhjg_text' | translate}}
             <img
-              class="alert-icon"
+              class="alert-icon" tooltip  event="hover" tipsContent="swap_tooltips_tradeprice_desc" 
+              tipsTitle="swap_tooltips_tradeprice_title"
               src="./assets/images/question.png"
-              (click)="showAlert('swap_tooltips_tradeprice_title','swap_tooltips_tradeprice_desc',$event)"
             />
           </ion-col>
           <ng-container *ngIf="!showSkeleton(changePrice)">
@@ -99,23 +99,23 @@
               </ion-col>
               <ion-col
                 class="link ion-text-right"
-                size="7"
-                (click)="showAlert('swap_tooltips_tradeprice_title','swap_tooltips_tradeprice_desc',$event)"
+                size="7" 
+                tooltip  event="hover" tipsContent="swap_tooltips_tradeprice_desc" 
+                tipsTitle="swap_tooltips_tradeprice_title"
               >
                 <a>{{'swap_how' | translate}}</a>
               </ion-col>
             </ion-row>
           </ion-grid>
         </ng-container>
-
         <ion-row
           class="ion-align-items-center ion-align-self-center conversionPrice"
         >
           <ion-col class="label" size="4"
             >{{'oracle_cost' | translate}}<img
-              class="alert-icon"
+              class="alert-icon" 
               src="./assets/images/question.png"
-              (click)="showAlert('','swap_tooltips_oraclefee_desc',$event)"
+              tooltip  event="hover" tipsContent="swap_tooltips_oraclefee_desc" 
           /></ion-col>
           <ion-col
             class="ion-text-right number"
@@ -124,9 +124,9 @@
           >
             +{{oracleCost}} ETH
           </ion-col>
-          <ion-col size="8" *ngIf="showSkeleton(changePrice)">
-            <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
+         <ion-col size="8" *ngIf="showSkeleton(changePrice)" skeleton>
           </ion-col>
+        
         </ion-row>
         <ion-row
           class="ion-align-items-center ion-align-self-center conversionPrice"
@@ -136,7 +136,8 @@
             <img
               class="alert-icon"
               src="./assets/images/question.png"
-              (click)="showAlert('swap_tooltips_minreceived_title','swap_tooltips_minreceived_desc',$event)"
+              tooltip  event="hover" tipsContent="swap_tooltips_minreceived_desc" 
+              tipsTitle="swap_tooltips_minreceived_title"
           /></ion-col>
           <ion-col
             class="ion-text-right number"
@@ -157,7 +158,8 @@
             <img
               class="alert-icon"
               src="./assets/images/question.png"
-              (click)="showAlert('swap_tooltips_cofitoken_title','swap_tooltips_cofitoken_desc',$event,'')"
+              tooltip  event="hover" tipsContent="swap_tooltips_cofitoken_desc" 
+              tipsTitle="swap_tooltips_cofitoken_title"
           /></ion-col>
 
           <ion-col

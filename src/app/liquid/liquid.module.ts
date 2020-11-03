@@ -12,6 +12,8 @@ import { RedeemLiquidPage } from './redeem/redeem-liquid.page';
 import { ExplainLiquidPage } from './explain/explain-liquid.page';
 import { WarningLiquidPage } from './warning/warning-liquid.page';
 import { TokenMiningPage } from './mining/mining.page';
+import { DirectivesModule } from '../common/directive/directives.module';
+import { TooltipModule } from '../common/directive/tooltip/tooltip.module';
 
 @NgModule({
   imports: [
@@ -22,6 +24,8 @@ import { TokenMiningPage } from './mining/mining.page';
     CommonComponentsModule,
     LiquidRoutingModule,
     PipeModule,
+    DirectivesModule,
+    TooltipModule,
   ],
   declarations: [
     LiquidPage,

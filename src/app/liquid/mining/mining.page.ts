@@ -240,9 +240,6 @@ export class TokenMiningPage implements OnInit, OnDestroy {
   }
   isDeposit: boolean = false;
 
-  async showAlert(title, content, event) {
-    this.utils.showAlert(title, content, event);
-  }
   cancel() {
     this.onClose.emit();
   }

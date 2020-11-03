@@ -20,7 +20,8 @@ import { CardTitlePage } from './card-title/card-title.page';
 import { TokenInfoPage } from './token-info/token-info.page';
 import { IncomeProfitPage } from 'src/app/income/profit/profit.page';
 import { ProfitPage } from 'src/app/liquid/profit/profit.page';
-import { TooltipsPage } from './tooltips/tooltips.page';
+import { DirectivesModule } from '../directive/directives.module';
+import { TooltipModule } from '../directive/tooltip/tooltip.module';
 
 @NgModule({
   imports: [
@@ -29,6 +30,8 @@ import { TooltipsPage } from './tooltips/tooltips.page';
     IonicModule,
     TranslateModule,
     PipeModule,
+    DirectivesModule,
+    TooltipModule,
   ],
   declarations: [
     FooterPage,
@@ -46,7 +49,6 @@ import { TooltipsPage } from './tooltips/tooltips.page';
     CardTitlePage,
     TokenInfoPage,
     IncomeProfitPage,
-    TooltipsPage,
   ],
   exports: [
     FooterPage,
@@ -62,7 +64,6 @@ import { TooltipsPage } from './tooltips/tooltips.page';
     CardTitlePage,
     TokenInfoPage,
     IncomeProfitPage,
-    TooltipsPage,
   ],
 })
 export class CommonComponentsModule {}

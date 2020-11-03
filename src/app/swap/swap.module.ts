@@ -7,7 +7,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CommonComponentsModule } from '../common/components/common-components.module';
 import { SwapRoutingModule } from './swap-routing.module';
 import { PipeModule } from '../common/pipes/pipe.module';
-
+import { DirectivesModule } from '../common/directive/directives.module';
+import { TooltipModule } from '../common/directive/tooltip/tooltip.module';
 @NgModule({
   imports: [
     CommonModule,
@@ -17,6 +18,8 @@ import { PipeModule } from '../common/pipes/pipe.module';
     CommonComponentsModule,
     SwapRoutingModule,
     PipeModule,
+    DirectivesModule,
+    TooltipModule,
   ],
   declarations: [SwapPage],
   exports: [SwapPage],

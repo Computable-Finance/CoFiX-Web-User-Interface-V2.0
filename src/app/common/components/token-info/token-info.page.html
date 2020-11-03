@@ -2,7 +2,9 @@
     <ion-row class="ion-align-items-center ion-align-self-center conversionPrice">
         <ion-col class="title" size="10">{{infoTitle | translate}}</ion-col>
         <ion-col size="2" class="ion-text-right">
-            <img class="alert-icon title-alert" src="./assets/images/{{questionImgName}}.png" (click)="showAlert($event)" />
+            <img class="alert-icon title-alert" src="./assets/images/{{questionImgName}}.png" 
+            tooltip  event="hover" tipsContent="{{alertContent}}" 
+            tipsTitle="{{alertTitle}}" />
         </ion-col>
     </ion-row>
     <ion-row class="ion-align-items-center ion-align-self-center conversionPrice">

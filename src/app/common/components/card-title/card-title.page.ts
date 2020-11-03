@@ -19,7 +19,4 @@ export class CardTitlePage implements OnInit {
   @Input() alertContent: string;
   constructor(private utils: Utils) {}
   ngOnInit() {}
-  async showAlert(event) {
-    this.utils.showAlert(this.alertTitle, this.alertContent, event);
-  }
 }

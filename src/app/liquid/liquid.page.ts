@@ -367,7 +367,4 @@ export class LiquidPage implements OnInit {
   havMining() {
     return !this.pairAttended[this.toCoin.id];
   }
-  showAlert(content, event) {
-    this.utils.showAlert('', content, event);
-  }
 }

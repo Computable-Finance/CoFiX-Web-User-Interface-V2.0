@@ -215,9 +215,6 @@ export class IncomePage implements OnInit {
       });
   }
 
-  async showAlert(content, event) {
-    this.utils.showAlert('', content, event);
-  }
   showModal(type) {
     console.log(this.incomeError);
     this.isShowModal = true;

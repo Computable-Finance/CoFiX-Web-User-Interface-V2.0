@@ -8,7 +8,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { PermissionsService } from 'src/app/state/permission/permission.service';
 
 import { CofiXService } from '../service/cofix.service';
-import { TooltipsPage } from './components/tooltips/tooltips.page';
 import { BalanceTruncatePipe } from './pipes/balance.pipe';
 import { ShareStateService } from './state/share.service';
 
@@ -39,7 +38,7 @@ export class Utils {
     }
     return coin.balance;
   }
-  async showAlert(title, content, ev, footer = '') {
+  /*async showAlert(title, content, ev, footer = '') {
     const popover = await this.popoverController.create({
       component: TooltipsPage,
       cssClass: 'tooltips-class',
@@ -51,7 +50,7 @@ export class Utils {
       event: ev,
     });
     await popover.present();
-  }
+  }*/
 
   async getPairAttended() {
     const usdt = this.cofixService.getCurrentContractAddressList().USDT;

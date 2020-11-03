@@ -519,3 +519,9 @@ ion-toggle {
     cursor: pointer;
   }
 }
+
+.tooltips div p {
+  font-weight: normal !important;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}

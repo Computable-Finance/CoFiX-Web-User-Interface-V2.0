@@ -31,8 +31,4 @@ export class ExplainLiquidPage implements OnInit {
   constructor(private utils: Utils) {}
 
   ngOnInit() {}
-
-  async showAlert(content, event) {
-    this.utils.showAlert('', content, event);
-  }
 }
