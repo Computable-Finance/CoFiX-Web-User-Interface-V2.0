@@ -34,7 +34,6 @@ export interface Activity {
   transactionNonce: number; // ? 32 bytes
   transactionSender: string; // ? 20 bytes
   blockHeight: number;
-  // ! replaced with UNIX timestamp
   timeStamp: Date;
   card?: any;
   amount: BigNumber;
