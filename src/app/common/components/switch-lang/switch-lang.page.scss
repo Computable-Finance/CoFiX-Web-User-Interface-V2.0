@@ -3,9 +3,6 @@
   width: 44px;
   border-radius: 8px;
   border: solid 1px var(--silver);
-  /*position: fixed;
-  top: 10px;
-  right: 40px;*/
   font-size: 17px;
   font-weight: 600;
   text-align: center;
@@ -18,4 +15,11 @@
   .switch-lang {
     display: none;
   }
+}
+.switch-lang:hover {
+  background-color: var(--porcelain);
+}
+.switch-lang ion-icon {
+  width: 24px;
+  height: 24px;
 }

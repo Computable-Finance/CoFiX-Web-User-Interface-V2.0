@@ -211,7 +211,6 @@
   "withdraw_help_desc1":"1. 不要过早的取出做市资金或进出过于太频繁 - 会造成资金损失. <a href='http://cofix.io' target='blank'>Learn More</a>", 
   "withdraw_help_desc2":"2. 如果您已将XTokens存入矿池挖矿，则必须先将XToken从矿池取出，然后才可以从资金池中取出做市资金。",
   "withdraw_help_desc3":"3. 取出资产的净值取决于这些资产的当前市场价格.<a href='http://cofix.io' target='blank'>Learn More</a>",
-  
   "swap_tooltips_swaptokens_title":"兑换代币",
   "swap_tooltips_swaptokens_desc":"兑换代币是去中心化交易所的主要功能。 您可以交易任意代币，而无需承担资金被托管的风险。",
   "swap_tooltips_tradeprice_title":"兑换价格的计算",
@@ -242,5 +241,6 @@
   "dividend_tooltips_claimeth":"您存入的CoFi越多，您在ETH分红中所占的份额就越大。 您可以随时从分红池中取出CoFi。",
   "dividend_tooltips_fee":"分红池的ETH是由CoFiX交易费的20％累积的。",
   "dividend_tooltips_share20":"所有交易费的20％收集到分红池中。",
-  "dividend_tooltips_share80":"所有交易费的80％收集到储蓄池中。 CoFi带有治理权益，启动DAO治理后（即将到来的阶段），CoFi持有人将通过治理决定储蓄池内资金的用途"
+  "dividend_tooltips_share80":"所有交易费的80％收集到储蓄池中。 CoFi带有治理权益，启动DAO治理后（即将到来的阶段），CoFi持有人将通过治理决定储蓄池内资金的用途",
+  "sel_lang":"选择语言",
 }

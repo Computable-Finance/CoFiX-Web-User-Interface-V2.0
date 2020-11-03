@@ -1095,6 +1095,17 @@ export class CofiXService {
       .toString();
   }
 
+  @PCacheable({ maxAge: CACHE_ONE_MINUTE })
+  async currentCoFiPrice() {
+    const price = await this.http
+      .get(
+        'https://api.coingecko.com/api/v3/simple/price?ids=cofix&vs_currencies=usd'
+      )
+      .toPromise<any>();
+
+    return price.cofix.usd;
+  }
+
   // --------- TokenInfo Methods ------------ //
 
   async getERC20Decimals(tokenAddress: string) {

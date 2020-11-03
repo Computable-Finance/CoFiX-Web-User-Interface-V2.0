@@ -36,6 +36,7 @@ export class CofiPage implements OnInit {
   profitCoin = 'XTokens';
   withdrawError = { isError: false, msg: '' };
   isDeposit: boolean = false;
+  currentCoFiPrice = '--';
   constructor(
     public cofixService: CofiXService,
     private balanceTruncatePipe: BalanceTruncatePipe,
@@ -44,7 +45,7 @@ export class CofiPage implements OnInit {
     private utils: Utils
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     if (this.cofixService.getCurrentAccount() === undefined) {
       setTimeout(() => {
         this.refreshPage();
@@ -52,6 +53,7 @@ export class CofiPage implements OnInit {
     } else {
       this.refreshPage();
     }
+    this.currentCoFiPrice = await this.cofixService.currentCoFiPrice();
   }
   refreshPage() {
     this.getCoFiTokenAndRewards();

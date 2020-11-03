@@ -76,7 +76,8 @@
             class="ion-text-right number"
             size="4"
             *ngIf="!showSkeleton(todoValue)"
-            >**
+          >
+            {{currentCoFiPrice}} USD
           </ion-col>
           <ion-col size="4" *ngIf="showSkeleton(todoValue)">
             <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
@@ -91,7 +92,9 @@
             <img
               class="alert-icon"
               src="./assets/images/question.png"
-              tooltip  event="hover" tipsContent="claim_tooltips_deposit" 
+              tooltip
+              event="hover"
+              tipsContent="claim_tooltips_deposit"
             />
           </ion-col>
           <ion-col class="ion-text-right" size="2">

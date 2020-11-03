@@ -17,8 +17,6 @@ export class SkeletonDirective implements OnInit {
     console.log(el);
   }
   ngOnInit() {
-    console.log(this.isShowSkeleton);
-    console.log(this.el.nativeElement.innerHTML);
     if (this.isShowSkeleton) {
       this.el.nativeElement.innerHTML =
         '<ion-skeleton-text animated class="skeleton"></ion-skeleton-text>';
