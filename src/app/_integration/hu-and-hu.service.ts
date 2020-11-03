@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BigNumber } from '@ethersproject/bignumber';
 import { Observable } from 'rxjs';
-import { OlegService } from './oleg.service';
+import { PoolService } from './pool.service';
 import {
   Activity,
   ApprovedForLiquidityPool,
@@ -17,18 +17,18 @@ import {
   providedIn: 'root',
 })
 export class HuAndHuService {
-  constructor(private oleg: OlegService) {}
+  constructor(private pool: PoolService) {}
 
   /**
    * @description Connects with a wallet
    * @returns fake data
    */
   public connect(): Observable<Token> {
-    return this.oleg.negotiateToken();
+    return this.pool.negotiateToken();
   }
 
   public renderView(modal: any): any {
-    this.oleg.renderView(modal);
+    this.pool.renderView(modal);
   }
 
   /**
@@ -158,7 +158,7 @@ export class HuAndHuService {
     transactionNonce: number,
     returnType: string
   ): Observable<T> {
-    return this.oleg.getCard<T>(
+    return this.pool.getCard(
       tokenName,
       instanceId,
       activityType,

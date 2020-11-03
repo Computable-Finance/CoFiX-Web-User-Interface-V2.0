@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { FakeDataService } from './fake/fake-data.service';
-import { uuidv4 } from './fake/utility';
-import { Activity, Token } from './types';
+import { Activity, Token } from '../types';
+import { FakeDataService } from './fake-data.service';
+import { uuidv4 } from './utility';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +13,7 @@ import { Activity, Token } from './types';
  * ! This is the example how to make a push-based (reactive) service
  * ! currently returns fake data
  */
-export class OlegService {
+export class FakePoolService {
   constructor(private fakeData: FakeDataService) {}
   /**
    * @description Negotiate token it will connect with the wallet and push tokens every N seconds
