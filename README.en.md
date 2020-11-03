@@ -56,7 +56,3 @@ A www folder will be created in the project directory with the compiled static f
 ## Git Log Specification
 
 Using Angular's git log specification, please use [git-cz](https://www.npmjs.com/package/git-cz).
-
-## Deploy AWS
-
-See [terraform_deploy/README.en.md](terraform_deploy/README.en.md)

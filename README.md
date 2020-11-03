@@ -56,7 +56,3 @@ CoFix 相关合约地址常量：src/app/common/constants.ts 。
 ## Git Log 规范
 
 采用 Angular 的 git log 规范，请配合 [git-cz](https://www.npmjs.com/package/git-cz) 一起使用。
-
-## 部署 AWS
-
-参考 [terraform_deploy/README.md](terraform_deploy/README.md)
