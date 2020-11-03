@@ -4,8 +4,8 @@ import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
 import { ShareStateQuery } from '../common/state/share.query';
 import { ShareStateService } from '../common/state/share.service';
 import { ShareState } from '../common/state/share.store';
-import { Utils } from '../common/utils';
 import { CofiXService } from '../service/cofix.service';
+import { TxService } from '../state/tx/tx.service';
 
 @Component({
   selector: 'app-cofi',
@@ -42,7 +42,7 @@ export class CofiPage implements OnInit {
     private balanceTruncatePipe: BalanceTruncatePipe,
     private shareStateService: ShareStateService,
     public shareStateQuery: ShareStateQuery,
-    private utils: Utils
+    private txService: TxService
   ) {}
 
   async ngOnInit() {
@@ -108,15 +108,27 @@ export class CofiPage implements OnInit {
           await this.cofixService.getStakingPoolAddressByToken(this.coinAddress)
         )
         .then((tx: any) => {
+          const params = {
+            t: 'tx_claimCoFi',
+            p: { w: this.earnedRate?.earned },
+          };
+          this.txService.add(
+            tx.hash,
+            this.cofixService.getCurrentAccount(),
+            JSON.stringify(params),
+            this.cofixService.getCurrentNetwork()
+          );
           const provider = this.cofixService.getCurrentProvider();
           provider.once(tx.hash, (transactionReceipt) => {
             this.isLoading = false;
             this.getCoFiTokenAndRewards();
             this.balance = undefined;
+            this.txService.txSucceeded(tx.hash);
           });
           provider.once('error', (error) => {
             console.log('provider.once==', error);
             this.isLoading = false;
+            this.txService.txFailed(tx.hash);
           });
         })
         .catch((error) => {

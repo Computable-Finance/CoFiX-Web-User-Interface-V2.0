@@ -729,9 +729,7 @@ export class CofiXService {
     fee: string
   ) {
     const erc20Decimals = await this.getERC20Decimals(token);
-    const erc20BalanceOfAccount = new BNJS(
-      unitsOf(await this.getERC20Balance(token), erc20Decimals)
-    );
+    const erc20BalanceOfAccount = await this.getERC20Balance(token);
 
     if (new BNJS(amountIn).gt(erc20BalanceOfAccount)) {
       throw new Error('Insufficient token balance.');

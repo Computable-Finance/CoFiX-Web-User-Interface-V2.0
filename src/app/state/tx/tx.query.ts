@@ -9,6 +9,19 @@ export class TxQuery extends QueryEntity<TxModel> {
     super(store);
   }
 
-  pendingTxCount$ = this.selectCount((tx) => tx.status === 'pending');
-  tx$ = this.selectAll();
+  pendingTxCount$(account: string, network: string) {
+    return this.selectCount(
+      (tx) =>
+        tx.status === 'pending' &&
+        tx.account === account &&
+        tx.network === network
+    );
+  }
+
+  tx$(account: string, network: string) {
+    return this.selectAll({
+      filterBy: (entity) =>
+        entity.account === account && entity.network === network,
+    });
+  }
 }

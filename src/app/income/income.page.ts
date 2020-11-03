@@ -8,6 +8,7 @@ import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
 import { ShareStateQuery } from '../common/state/share.query';
 import { Utils } from '../common/utils';
 import { CofiXService } from '../service/cofix.service';
+import { TxService } from '../state/tx/tx.service';
 
 @Component({
   selector: 'app-income',
@@ -49,7 +50,8 @@ export class IncomePage implements OnInit {
     public cofixService: CofiXService,
     private balanceTruncatePipe: BalanceTruncatePipe,
     public shareStateQuery: ShareStateQuery,
-    private utils: Utils
+    private utils: Utils,
+    private txService: TxService
   ) {}
 
   ngOnInit() {
@@ -112,24 +114,39 @@ export class IncomePage implements OnInit {
     this.canReceive =
       (await this.balanceTruncatePipe.transform(this.earnedETH)) !== '0' &&
       (await this.balanceTruncatePipe.transform(this.earnedETH)) !== '--';
+    console.log(this.canReceive);
   }
 
   //领取ETH
   async receiveETH() {
     this.resetReceiveError();
     this.isLoading = true;
+    const params = {
+      t: 'tx_claimETH',
+      p: { e: this.earnedETH },
+    };
+    console.log(params);
     this.cofixService
       .withdrawEarnedETH()
       .then((tx: any) => {
         console.log('tx.hash', tx.hash);
+
+        this.txService.add(
+          tx.hash,
+          this.cofixService.getCurrentAccount(),
+          JSON.stringify(params),
+          this.cofixService.getCurrentNetwork()
+        );
         const provider = this.cofixService.getCurrentProvider();
         provider.once(tx.hash, (transactionReceipt) => {
           this.isLoading = false;
           this.getEarnedETH();
+          this.txService.txSucceeded(tx.hash);
         });
         provider.once('error', (error) => {
           console.log('provider.once==', error);
           this.isLoading = false;
+          this.txService.txFailed(tx.hash);
         });
       })
       .catch((error) => {
@@ -160,7 +177,8 @@ export class IncomePage implements OnInit {
         this.incomeError,
         this,
         this.cofixService.getCurrentContractAddressList().CoFiToken,
-        this.cofixService.getCurrentContractAddressList().CoFiStakingRewards
+        this.cofixService.getCurrentContractAddressList().CoFiStakingRewards,
+        'CoFi'
       );
     }
   }
@@ -171,16 +189,28 @@ export class IncomePage implements OnInit {
       .depositCoFi(event.balance)
       .then((tx: any) => {
         console.log('tx.hash', tx.hash);
+        const params = {
+          t: 'tx_depositCoFi',
+          p: { d: event.balance },
+        };
+        this.txService.add(
+          tx.hash,
+          this.cofixService.getCurrentAccount(),
+          JSON.stringify(params),
+          this.cofixService.getCurrentNetwork()
+        );
         const provider = this.cofixService.getCurrentProvider();
         provider.once(tx.hash, (transactionReceipt) => {
           this.isLoadingProfit.cr = false;
           this.isShowModal = false;
           this.getCoFiTokenAndRewards();
           this.balance = undefined;
+          this.txService.txSucceeded(tx.hash);
         });
         provider.once('error', (error) => {
           console.log('provider.once==', error);
           this.isLoadingProfit.cr = false;
+          this.txService.txFailed(tx.hash);
         });
       })
       .catch((error) => {
@@ -196,16 +226,29 @@ export class IncomePage implements OnInit {
       .withdrawDepositedCoFi(event.balance)
       .then((tx: any) => {
         console.log('tx.hash', tx.hash);
+
+        const params = {
+          t: 'tx_withdrawCoFi',
+          p: { w: event.balance },
+        };
+        this.txService.add(
+          tx.hash,
+          this.cofixService.getCurrentAccount(),
+          JSON.stringify(params),
+          this.cofixService.getCurrentNetwork()
+        );
         const provider = this.cofixService.getCurrentProvider();
         provider.once(tx.hash, (transactionReceipt) => {
           this.isLoadingProfit.qc = false;
           this.isShowModal = false;
           this.getCoFiTokenAndRewards();
           this.balance = undefined;
+          this.txService.txSucceeded(tx.hash);
         });
         provider.once('error', (error) => {
           console.log('provider.once==', error);
           this.isLoadingProfit.qc = false;
+          this.txService.txFailed(tx.hash);
         });
       })
       .catch((error) => {

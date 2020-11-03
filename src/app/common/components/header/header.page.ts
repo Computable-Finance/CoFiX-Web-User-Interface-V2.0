@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 import { ShareStateService } from '../../state/share.service';
 import { ShareStateQuery } from '../../state/share.query';
 import { EventBusService } from 'src/app/service/eventbus.service';
 import { Router } from '@angular/router';
+import { TxService } from 'src/app/state/tx/tx.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.page.html',
@@ -26,13 +26,12 @@ export class HeaderPage implements OnInit {
       id: 'income',
     },
   ];
-  lang: string = 'zh';
   constructor(
-    private translate: TranslateService,
     public shareStateQuery: ShareStateQuery,
     private shareStateService: ShareStateService,
     private eventbusService: EventBusService,
-    private router: Router
+    private router: Router,
+    private txService: TxService
   ) {
     this.eventbusService.on('accountsChanged', (account) => {
       this.shareStateService.reset();
@@ -43,18 +42,10 @@ export class HeaderPage implements OnInit {
       location.reload();
     });
   }
-  ngOnInit() {
-    this.lang = this.shareStateQuery.getValue().lang;
-  }
+  ngOnInit() {}
 
   goto(link) {
     window.open(link);
-  }
-
-  changeLang(lang) {
-    this.translate.use(lang);
-    this.lang = lang;
-    this.shareStateService.updateLang(lang);
   }
 
   selectTab(tabId) {

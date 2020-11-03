@@ -17,6 +17,7 @@ import { ShareStateQuery } from 'src/app/common/state/share.query';
 import { ShareStateService } from 'src/app/common/state/share.service';
 import { Utils } from 'src/app/common/utils';
 import { CofiXService } from 'src/app/service/cofix.service';
+import { TxService } from 'src/app/state/tx/tx.service';
 import { CoinContent } from 'src/app/swap/swap.page';
 import { WarningDetailPage } from '../warning/warning-detail/warning-detail.page';
 
@@ -73,7 +74,8 @@ export class AddLiquidPage implements OnInit, OnDestroy {
     public shareStateQuery: ShareStateQuery,
     private utils: Utils,
     private modalController: ModalController,
-    private shareStateService: ShareStateService
+    private shareStateService: ShareStateService,
+    private txService: TxService
   ) {}
 
   ngOnInit() {
@@ -220,6 +222,27 @@ export class AddLiquidPage implements OnInit, OnDestroy {
       )
       .then((tx: any) => {
         console.log('tx.hash', tx.hash);
+        const params = {
+          t: 'tx_addLiquid',
+          p: {
+            a: `${
+              this.fromCoin.amount
+                ? this.fromCoin.amount + ' ' + this.fromCoin.id
+                : ''
+            } ${
+              this.toCoin.amount
+                ? this.toCoin.amount + ' ' + this.toCoin.id
+                : ''
+            }`,
+          },
+        };
+        console.log(params);
+        this.txService.add(
+          tx.hash,
+          this.cofixService.getCurrentAccount(),
+          JSON.stringify(params),
+          this.cofixService.getCurrentNetwork()
+        );
         const provider = this.cofixService.getCurrentProvider();
         provider.once(tx.hash, (transactionReceipt) => {
           this.isLoading.cr = false;
@@ -228,10 +251,12 @@ export class AddLiquidPage implements OnInit, OnDestroy {
             fromCoin: this.fromCoin,
             toCoin: this.toCoin,
           });
+          this.txService.txSucceeded(tx.hash);
         });
         provider.once('error', (error) => {
           console.log('provider.once==', error);
           this.isLoading.cr = false;
+          this.txService.txFailed(tx.hash);
         });
       })
       .catch((error) => {
@@ -254,7 +279,8 @@ export class AddLiquidPage implements OnInit, OnDestroy {
         this.addLiquidError,
         this,
         this.toCoin.address,
-        this.cofixService.getCurrentContractAddressList().CofixRouter
+        this.cofixService.getCurrentContractAddressList().CofixRouter,
+        `ETH/${this.toCoin.id} Liquidity Pool`
       );
     }
   }

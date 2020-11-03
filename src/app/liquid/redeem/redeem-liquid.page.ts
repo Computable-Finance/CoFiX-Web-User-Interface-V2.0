@@ -16,6 +16,7 @@ import { ShareStateService } from 'src/app/common/state/share.service';
 import { ShareState } from 'src/app/common/state/share.store';
 import { Utils } from 'src/app/common/utils';
 import { CofiXService } from 'src/app/service/cofix.service';
+import { TxService } from 'src/app/state/tx/tx.service';
 import { CoinContent } from 'src/app/swap/swap.page';
 
 const BNJS = require('bignumber.js');
@@ -70,7 +71,8 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
     private balanceTruncatePipe: BalanceTruncatePipe,
     private shareStateService: ShareStateService,
     public shareStateQuery: ShareStateQuery,
-    private utils: Utils
+    private utils: Utils,
+    private txService: TxService
   ) {}
 
   ngOnInit() {
@@ -251,23 +253,38 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
         )
         .then((tx: any) => {
           console.log('tx.hash', tx.hash);
+          const params = {
+            t: 'tx_withdrawLiquid',
+            p: {
+              w: this.toCoin.amount,
+            },
+          };
+          console.log(params);
+          this.txService.add(
+            tx.hash,
+            this.cofixService.getCurrentAccount(),
+            JSON.stringify(params),
+            this.cofixService.getCurrentNetwork()
+          );
           const provider = this.cofixService.getCurrentProvider();
           provider.once(tx.hash, (transactionReceipt) => {
             this.isLoading.sh = false;
-            //this.initCoinContent();
+            this.initCoinContent();
+            this.txService.txSucceeded(tx.hash);
             this.onClose.emit({
               type: 'redeem',
               fromCoin: this.fromCoin,
               toCoin: this.toCoin,
             });
           });
-          provider.once(tx.hash, (transaction) => {
+          /*provider.once(tx.hash, (transaction) => {
             this.isLoading.sh = false;
             this.initCoinContent();
-          });
+          });*/
           provider.once('error', (error) => {
             console.log('provider.once==', error);
             this.isLoading.sh = false;
+            this.txService.txFailed(tx.hash);
           });
         })
         .catch((error) => {
@@ -291,6 +308,7 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
           const provider = this.cofixService.getCurrentProvider();
           provider.once(tx.hash, (transactionReceipt) => {
             this.isLoading.sh = false;
+            this.txService.txSucceeded(tx.hash);
             //this.initCoinContent();
             this.onClose.emit({
               type: 'redeem',
@@ -301,6 +319,7 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
           provider.once(tx.hash, (transaction) => {
             this.isLoading.sh = false;
             this.initCoinContent();
+            this.txService.txFailed(tx.hash);
           });
           provider.once('error', (error) => {
             console.log('provider.once==', error);
@@ -325,7 +344,8 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
         this.redeemError,
         this,
         await this.cofixService.getPairAddressByToken(this.toCoin.address),
-        this.cofixService.getCurrentContractAddressList().CofixRouter
+        this.cofixService.getCurrentContractAddressList().CofixRouter,
+        `ETH/${this.toCoin.id} Liquidity Pool`
       );
     }
   }

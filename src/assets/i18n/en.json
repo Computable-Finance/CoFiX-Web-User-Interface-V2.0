@@ -242,5 +242,20 @@
   "dividend_tooltips_fee":"The Dividend ETH Pool is accumulated from 20% of all CoFiX swap trading fees.",
   "dividend_tooltips_share20":"20% of all swap trading fees are collected towards the Dividend Pool.",
   "dividend_tooltips_share80":"80% of all swap trading fees are collected towards the Saving Pool. CoFi is a governance token, and holders will be able to vote on what to do with the collected fees once the DAO has been launched (upcoming phase).",
-  "sel_lang":"SELECT LANGUAGE"
+  "sel_lang":"SELECT LANGUAGE",
+  "pending":"Pending",
+  "account":"Account",
+  "connect_to":"CONNECTED TO",
+  "recent_tx":"Recent Trancations",
+  "tx_swapped":"Swapped {{f}} to {{t}}",
+  "tx_addLiquid":"Added {{a}}",
+  "tx_withdrawLiquid":"Withdrawed {{w}} CoFi",
+  "tx_approve":"Approved {{a}}",
+  "tx_claimCoFi":"Claimed {{w}} CoFi",
+  "tx_claimETH":"Claimed {{e}} ETH",
+  "tx_depositCoFi":"Deposited {{d}} CoFi",
+  "tx_withdrawCoFi":"Withdrawed {{w}} CoFi Tokens",
+  "tx_depositMining":"Deposited {{d}} CoFi",
+  "tx_widthdrawMining":"Withdraw {{w}} CoFi",
+  "no_transactions":"No transactions"
 }

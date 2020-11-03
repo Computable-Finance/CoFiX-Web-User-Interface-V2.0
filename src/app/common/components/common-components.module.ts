@@ -23,6 +23,7 @@ import { ProfitPage } from 'src/app/liquid/profit/profit.page';
 import { DirectivesModule } from '../directive/directives.module';
 import { TooltipModule } from '../directive/tooltip/tooltip.module';
 import { MenuPage } from './switch-lang/menu/menu.page';
+import { TxListPage } from './tx-List/tx-list.page';
 
 @NgModule({
   imports: [
@@ -51,6 +52,7 @@ import { MenuPage } from './switch-lang/menu/menu.page';
     TokenInfoPage,
     IncomeProfitPage,
     MenuPage,
+    TxListPage,
   ],
   exports: [
     FooterPage,
@@ -67,6 +69,7 @@ import { MenuPage } from './switch-lang/menu/menu.page';
     TokenInfoPage,
     IncomeProfitPage,
     MenuPage,
+    TxListPage,
   ],
 })
 export class CommonComponentsModule {}

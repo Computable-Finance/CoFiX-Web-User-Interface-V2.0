@@ -101,7 +101,7 @@ export class LiquidPage implements OnInit {
   tokenName = 'XTokens-gray';
   questionImgName = 'question';
   constructor(
-    private cofixService: CofiXService,
+    public cofixService: CofiXService,
     private balanceTruncatePipe: BalanceTruncatePipe,
     public shareStateQuery: ShareStateQuery,
     private utils: Utils,
@@ -365,6 +365,9 @@ export class LiquidPage implements OnInit {
     return this.showZeroInfo;
   }
   havMining() {
-    return !this.pairAttended[this.toCoin.id];
+    return (
+      !this.pairAttended[this.toCoin.id] ||
+      !this.cofixService.getCurrentAccount()
+    );
   }
 }

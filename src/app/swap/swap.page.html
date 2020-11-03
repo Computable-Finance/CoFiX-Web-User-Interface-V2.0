@@ -181,13 +181,14 @@
           >
         </ion-row> </ion-grid
       >{{swapError}}22
-      <ng-container *ngIf="cofixService.getCurrentAccount()">
+      <ng-container>
         <div class="button-div">
           <ion-button
             *ngIf="isShowApprove()"
             expand="block"
             class="operation-btn approve-btn"
             (click)="approve()"
+            [disabled]="!cofixService.getCurrentAccount()"
           >
             <div class="ion-button-label">
               {{'sq_text' | translate}}

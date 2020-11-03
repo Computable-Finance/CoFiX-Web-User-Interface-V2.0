@@ -29,7 +29,39 @@
   margin-left: 10px;
 }
 @media only screen and (max-width: 820px) {
-  .wallet_show {
+  .wallet_show,
+  .tx-pending {
     display: none;
   }
+}
+.tx-pending {
+  margin: 0 auto;
+  width: 175px;
+  height: 44px;
+  border-radius: 8px;
+  background-color: var(--mine);
+  z-index: 99;
+  padding: 8px 10px 10px 6px;
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.71;
+  letter-spacing: normal;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+}
+.pending {
+  width: 25px;
+  height: 25px;
+  background: transparent;
+  z-index: 9999;
+  border-radius: 50%;
+  animation: loadingmove 1.2s linear infinite;
+  -webkit-animation: loadingmove 1.2s linear infinite;
+  border: 3px solid var(--white);
+  border-bottom: 3px solid transparent;
+  margin: 0px 10px;
 }

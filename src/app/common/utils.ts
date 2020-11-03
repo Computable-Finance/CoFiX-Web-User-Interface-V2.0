@@ -1,13 +1,9 @@
 import { Injectable } from '@angular/core';
-import {
-  AlertController,
-  PopoverController,
-  ToastController,
-} from '@ionic/angular';
-import { TranslateService } from '@ngx-translate/core';
+import { ToastController } from '@ionic/angular';
 import { PermissionsService } from 'src/app/state/permission/permission.service';
 
 import { CofiXService } from '../service/cofix.service';
+import { TxService } from '../state/tx/tx.service';
 import { BalanceTruncatePipe } from './pipes/balance.pipe';
 import { ShareStateService } from './state/share.service';
 
@@ -18,12 +14,10 @@ export class Utils {
   constructor(
     private shareStateService: ShareStateService,
     private balanceTruncatePipe: BalanceTruncatePipe,
-    private alertController: AlertController,
-    private translateService: TranslateService,
     private cofixService: CofiXService,
     public toastController: ToastController,
     private permissionService: PermissionsService,
-    private popoverController: PopoverController
+    private txService: TxService
   ) {}
 
   async getBalanceByCoin(coin) {
@@ -78,12 +72,21 @@ export class Utils {
     errorComponent,
     component,
     token: string,
-    spender: string
+    spender: string,
+    approveInfo: string
   ) {
     loadingComponent.sq = true;
+    console.log(approveInfo);
     await this.cofixService
       .approve(token, spender)
       .then((tx: any) => {
+        const params = { t: 'tx_approve', p: { a: approveInfo } };
+        this.txService.add(
+          tx.hash,
+          this.cofixService.getCurrentAccount(),
+          JSON.stringify(params),
+          this.cofixService.getCurrentNetwork()
+        );
         const provider = this.cofixService.getCurrentProvider();
         provider.once(tx.hash, (transactionReceipt) => {
           loadingComponent.sq = false;
@@ -93,10 +96,12 @@ export class Utils {
             token,
             spender
           );
+          this.txService.txSucceeded(tx.hash);
         });
         provider.once('error', (error) => {
           console.log('provider.once==', error);
           loadingComponent.sq = false;
+          this.txService.txFailed(tx.hash);
         });
       })
       .catch((error) => {

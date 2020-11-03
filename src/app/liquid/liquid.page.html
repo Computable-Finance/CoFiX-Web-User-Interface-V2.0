@@ -30,14 +30,14 @@
         </ion-row>
       </ion-grid> 
       <div class="button-div">
-        <ion-button expand="block" class="operation-btn approve-btn full-btn" (click)="addLiquid(toCoin.id)">
+        <ion-button expand="block" class="operation-btn approve-btn full-btn" (click)="addLiquid(toCoin.id)"  [disabled]="!cofixService.getCurrentAccount()">
           <div class="ion-button-label">
             {{'liquidpool_add' | translate}}
           </div>
         </ion-button>
       </div>
       <div class="button-outline">
-        <ion-button fill="outline" class="operation-btn approve-btn full-btn" (click)="redemption(toCoin.id)">
+        <ion-button fill="outline" class="operation-btn approve-btn full-btn" (click)="redemption(toCoin.id)"  [disabled]="!cofixService.getCurrentAccount()">
           <div class="ion-button-label">
             {{'liquidpool_withdraw' | translate}}
           </div>

@@ -243,5 +243,20 @@
   "dividend_tooltips_fee":"分红池的ETH是由CoFiX交易费的20％累积的。",
   "dividend_tooltips_share20":"所有交易费的20％收集到分红池中。",
   "dividend_tooltips_share80":"所有交易费的80％收集到储蓄池中。 CoFi带有治理权益，启动DAO治理后（即将到来的阶段），CoFi持有人将通过治理决定储蓄池内资金的用途",
-  "sel_lang":"选择语言"
+  "sel_lang":"选择语言",
+  "pending":"Pending",
+  "account":"账户",
+  "connect_to":"连接至",
+  "recent_tx":"最近交易",
+  "tx_swapped":"用 {{f}} 兑换了 {{t}}",
+  "tx_addLiquid":"添加了 {{a}}",
+  "tx_withdrawLiquid":"Withdrawed {{w}} XTokens",
+  "tx_approve":"Approved {{a}}",
+  "tx_claimCoFi":"Claimed {{w}} CoFi",
+  "tx_claimETH":"Claimed {{e}} ETH",
+  "tx_depositCoFi":"Deposited {{d}} CoFi",
+  "tx_withdrawCoFi":"Withdrawed {{w}} CoFi",
+  "tx_depositMining":"Deposited {{d}} CoFi",
+  "tx_widthdrawMining":"Withdraw {{w}} CoFi",
+  "no_transactions":"暂无交易"
 }

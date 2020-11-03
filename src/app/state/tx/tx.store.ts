@@ -5,6 +5,7 @@ export type TX_STATUS = 'success' | 'pending' | 'error';
 
 export interface TxDetails {
   txHash: string;
+  account: string;
   activity: string;
   network: string;
   status: TX_STATUS;

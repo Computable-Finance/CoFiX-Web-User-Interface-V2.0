@@ -15,6 +15,7 @@ import { ShareStateService } from 'src/app/common/state/share.service';
 import { ShareState } from 'src/app/common/state/share.store';
 import { Utils } from 'src/app/common/utils';
 import { CofiXService } from 'src/app/service/cofix.service';
+import { TxService } from 'src/app/state/tx/tx.service';
 import { ProfitPage } from '../profit/profit.page';
 
 @Component({
@@ -52,7 +53,8 @@ export class TokenMiningPage implements OnInit, OnDestroy {
     private balanceTruncatePipe: BalanceTruncatePipe,
     private shareStateService: ShareStateService,
     public shareStateQuery: ShareStateQuery,
-    private utils: Utils
+    private utils: Utils,
+    private txService: TxService
   ) {}
 
   ngOnInit() {
@@ -129,35 +131,6 @@ export class TokenMiningPage implements OnInit, OnDestroy {
     this.resetCofiError();
   }
 
-  //领取Cofi
-  async withdrawEarnedCoFi() {
-    this.resetCofiError();
-    if (
-      await this.cofixService.getStakingPoolAddressByToken(this.coinAddress)
-    ) {
-      this.isLoading = true;
-      this.cofixService
-        .withdrawEarnedCoFi(
-          await this.cofixService.getStakingPoolAddressByToken(this.coinAddress)
-        )
-        .then((tx: any) => {
-          const provider = this.cofixService.getCurrentProvider();
-          provider.once(tx.hash, (transactionReceipt) => {
-            this.isLoading = false;
-            this.getCoFiTokenAndRewards();
-            this.balance = undefined;
-          });
-          provider.once('error', (error) => {
-            console.log('provider.once==', error);
-            this.isLoading = false;
-          });
-        })
-        .catch((error) => {
-          this.withdrawError = { isError: true, msg: error.message };
-          this.isLoading = false;
-        });
-    }
-  }
   resetCofiError() {
     this.cofiError = { isError: false, msg: '' };
     this.withdrawError = { isError: false, msg: '' };
@@ -178,7 +151,8 @@ export class TokenMiningPage implements OnInit, OnDestroy {
         this.cofiError,
         this,
         await this.cofixService.getPairAddressByToken(this.coinAddress),
-        await this.cofixService.getStakingPoolAddressByToken(this.coinAddress)
+        await this.cofixService.getStakingPoolAddressByToken(this.coinAddress),
+        'XTokens Mining Pool'
       );
     }
   }
@@ -193,15 +167,30 @@ export class TokenMiningPage implements OnInit, OnDestroy {
       )
       .then((tx: any) => {
         console.log('tx.hash', tx.hash);
+        const params = {
+          t: 'tx_depositMining',
+          p: {
+            d: event.balance,
+          },
+        };
+        console.log(params);
+        this.txService.add(
+          tx.hash,
+          this.cofixService.getCurrentAccount(),
+          JSON.stringify(params),
+          this.cofixService.getCurrentNetwork()
+        );
         const provider = this.cofixService.getCurrentProvider();
         provider.once(tx.hash, (transactionReceipt) => {
           this.isLoadingProfit.cr = false;
           this.getCoFiTokenAndRewards();
           this.balance = undefined;
+          this.txService.txSucceeded(tx.hash);
         });
         provider.once('error', (error) => {
           console.log('provider.once==', error);
           this.isLoadingProfit.cr = false;
+          this.txService.txFailed(tx.hash);
         });
       })
       .catch((error) => {
@@ -220,16 +209,32 @@ export class TokenMiningPage implements OnInit, OnDestroy {
         event.balance
       )
       .then((tx: any) => {
+        const params = {
+          t: 'tx_widthdrawMining',
+          p: {
+            w: event.balance,
+          },
+        };
+        console.log(params);
+        this.txService.add(
+          tx.hash,
+          this.cofixService.getCurrentAccount(),
+          JSON.stringify(params),
+          this.cofixService.getCurrentNetwork()
+        );
+
         console.log('tx.hash', tx.hash);
         const provider = this.cofixService.getCurrentProvider();
         provider.once(tx.hash, (transactionReceipt) => {
           this.isLoadingProfit.qc = false;
           this.getCoFiTokenAndRewards();
           this.balance = undefined;
+          this.txService.txSucceeded(tx.hash);
         });
         provider.once('error', (error) => {
           console.log('provider.once==', error);
           this.isLoadingProfit.qc = false;
+          this.txService.txFailed(tx.hash);
         });
       })
       .catch((error) => {

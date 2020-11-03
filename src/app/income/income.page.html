@@ -113,11 +113,12 @@
             </ion-grid>
           </div>
         </div>
-        <div class="button-div">
+        <div class="button-div" >
           <ion-button
             expand="block"
             class="operation-btn approve-btn full-btn"
             (click)="showModal('deposit')"
+            [disabled]="!cofixService.getCurrentAccount()"
           >
             <div class="ion-button-label">
               {{buttonTitle.deposit | translate}}
@@ -128,7 +129,8 @@
           <ion-button
             fill="outline"
             class="operation-btn approve-btn full-btn"
-            (click)="showModal('withdraw')"
+            (click)="showModal('withdraw')" 
+            [disabled]="!cofixService.getCurrentAccount()"
           >
             <div class="ion-button-label">
               {{buttonTitle.withdraw | translate}}
@@ -183,7 +185,6 @@
       </div>
       <div
         class="button-div connect-card"
-        *ngIf="cofixService.getCurrentAccount()"
       >
         <ion-button
           expand="block"

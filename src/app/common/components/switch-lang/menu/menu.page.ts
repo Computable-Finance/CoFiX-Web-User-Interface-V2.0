@@ -15,7 +15,8 @@ export class MenuPage implements OnInit {
   constructor(
     private translate: TranslateService,
     public shareStateQuery: ShareStateQuery,
-    private shareStateService: ShareStateService
+    private shareStateService: ShareStateService,
+    private popoverController: PopoverController
   ) {}
 
   ngOnInit() {
@@ -26,6 +27,7 @@ export class MenuPage implements OnInit {
   changeLang(lang) {
     this.translate.use(lang);
     this.shareStateService.updateLang(lang);
+    this.popoverController.dismiss();
   }
   goto(link) {
     window.open(link);

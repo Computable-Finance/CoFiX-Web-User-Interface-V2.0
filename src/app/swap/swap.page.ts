@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { BannerContent } from '../common/components/banner/banner.page';
 import { ShareStateQuery } from '../common/state/share.query';
 import { CofiXService } from '../service/cofix.service';
@@ -6,6 +6,10 @@ import { Utils } from 'src/app/common/utils';
 import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
 import { CoinInputPage } from '../common/components/coin-input/coin-input.page';
 import { BigNumber } from 'ethers';
+import { TxQuery } from '../state/tx/tx.query';
+import { Subscription } from 'rxjs';
+import { TxService } from '../state/tx/tx.service';
+import { TranslateService } from '@ngx-translate/core';
 const BNJS = require('bignumber.js');
 export interface CoinContent {
   id: string;
@@ -66,7 +70,8 @@ export class SwapPage implements OnInit {
     public cofixService: CofiXService,
     public shareStateQuery: ShareStateQuery,
     private balancePipe: BalanceTruncatePipe,
-    private utils: Utils
+    private utils: Utils,
+    private txService: TxService
   ) {}
 
   async ngOnInit() {
@@ -78,6 +83,7 @@ export class SwapPage implements OnInit {
       this.refreshPage();
     }
   }
+
   refreshPage() {
     this.initCoinContent();
     this.getIsApproved();
@@ -164,7 +170,7 @@ export class SwapPage implements OnInit {
     }
   }
 
-  async getEPAndEC(type = 'input') {
+  async getEPAndEC() {
     const executionPriceAndExpectedCofi = await this.cofixService.executionPriceAndExpectedCofi(
       this.fromCoin.address,
       this.toCoin.address,
@@ -331,7 +337,8 @@ export class SwapPage implements OnInit {
         this.swapError,
         this,
         this.fromCoin.address,
-        this.cofixService.getCurrentContractAddressList().CofixRouter
+        this.cofixService.getCurrentContractAddressList().CofixRouter,
+        this.fromCoin.id
       );
       console.log(this.swapError);
     }
@@ -340,6 +347,13 @@ export class SwapPage implements OnInit {
   async swap() {
     this.resetSwapError();
     this.isLoading.dh = true;
+    let params = {
+      t: 'tx_swapped',
+      p: {
+        f: `${this.fromCoin.amount} ${this.fromCoin.id}`,
+        t: `${this.toCoin.amount} ${this.toCoin.id}`,
+      },
+    };
     if (this.fromCoin.id === 'ETH') {
       this.cofixService
         .swapExactETHForTokens(
@@ -350,24 +364,35 @@ export class SwapPage implements OnInit {
           this.changePrice || '0',
           this.oracleCost
         )
-        .then((tx: any) => {
+        .then(async (tx: any) => {
           console.log('tx.hash', tx.hash);
+
+          this.txService.add(
+            tx.hash,
+            this.cofixService.getCurrentAccount(),
+            JSON.stringify(params),
+            this.cofixService.getCurrentNetwork()
+          );
+
           const provider = this.cofixService.getCurrentProvider();
+
           provider.once(tx.hash, (transactionReceipt) => {
+            console.log('success====', tx.hash);
             this.isLoading.dh = false;
             this.resetAmount();
             this.initCoinContent();
             this.getIsApproved();
+            this.txService.txSucceeded(tx.hash);
           });
           provider.once('error', (error) => {
-            console.log('provider.once==', error);
+            console.log('provider.error==', error);
             this.isLoading.dh = false;
+            this.txService.txFailed(tx.hash);
           });
         })
         .catch((error) => {
           console.log('catch error==', error);
           this.swapError = { isError: true, msg: error.message };
-
           this.isLoading.dh = false;
         });
     } else {
@@ -385,16 +410,24 @@ export class SwapPage implements OnInit {
           )
           .then((tx: any) => {
             console.log('tx.hash', tx.hash);
+            this.txService.add(
+              tx.hash,
+              this.cofixService.getCurrentAccount(),
+              JSON.stringify(params),
+              this.cofixService.getCurrentNetwork()
+            );
             const provider = this.cofixService.getCurrentProvider();
             provider.once(tx.hash, (transactionReceipt) => {
               this.isLoading.dh = false;
               this.resetAmount();
               this.initCoinContent();
               this.getIsApproved();
+              this.txService.txSucceeded(tx.hash);
             });
             provider.once('error', (error) => {
               console.log('provider.once==', error);
               this.isLoading.dh = false;
+              this.txService.txFailed(tx.hash);
             });
           })
           .catch((error) => {
@@ -424,16 +457,24 @@ export class SwapPage implements OnInit {
           )
           .then((tx: any) => {
             console.log('tx.hash', tx.hash);
+            this.txService.add(
+              tx.hash,
+              this.cofixService.getCurrentAccount(),
+              JSON.stringify(params),
+              this.cofixService.getCurrentNetwork()
+            );
             const provider = this.cofixService.getCurrentProvider();
             provider.once(tx.hash, (transactionReceipt) => {
               this.isLoading.dh = false;
               this.resetAmount();
               this.initCoinContent();
               this.getIsApproved();
+              this.txService.txSucceeded(tx.hash);
             });
             provider.once('error', (error) => {
               console.log('provider.once==', error);
               this.isLoading.dh = false;
+              this.txService.txFailed(tx.hash);
             });
           })
           .catch((error) => {
@@ -448,23 +489,27 @@ export class SwapPage implements OnInit {
 
   canSwap() {
     let result = false;
-    if (this.fromCoin.id === 'ETH') {
-      result =
-        !new BNJS(this.fromCoin.amount).isZero() &&
-        new BNJS(this.fromCoin.balance).gt(new BNJS(this.maxFee)) &&
-        new BNJS(this.fromCoin.amount).lt(new BNJS(this.fromCoin.balance));
+    if (!this.cofixService.getCurrentAccount()) {
+      return false;
     } else {
-      result =
-        this.fromCoin.isApproved &&
-        !new BNJS(this.fromCoin.amount).isZero() &&
-        new BNJS(this.fromCoin.amount).lte(new BNJS(this.fromCoin.balance)); //Token要认证且输入值小于等于余额
+      if (this.fromCoin.id === 'ETH') {
+        result =
+          !new BNJS(this.fromCoin.amount).isZero() &&
+          new BNJS(this.fromCoin.balance).gt(new BNJS(this.maxFee)) &&
+          new BNJS(this.fromCoin.amount).lt(new BNJS(this.fromCoin.balance));
+      } else {
+        result =
+          this.fromCoin.isApproved &&
+          !new BNJS(this.fromCoin.amount).isZero() &&
+          new BNJS(this.fromCoin.amount).lte(new BNJS(this.fromCoin.balance)); //Token要认证且输入值小于等于余额
+      }
+      return (
+        result &&
+        new BNJS(this.toCoin.amount).lt(
+          new BNJS(this.ERC20BalanceOfPair[this.toCoin.id])
+        ) //兑换值小于池中值
+      );
     }
-    return (
-      result &&
-      new BNJS(this.toCoin.amount).lt(
-        new BNJS(this.ERC20BalanceOfPair[this.toCoin.id])
-      ) //兑换值小于池中值
-    );
   }
 
   selectArrowChange(event) {
