@@ -31,7 +31,7 @@ export interface MiningPoolShare {
 }
 
 export interface Activity {
-  transactionNonce: string; // ? 32 bytes
+  transactionNonce: number; // ? 32 bytes
   transactionSender: string; // ? 20 bytes
   blockHeight: number;
   timeStamp: Date;
@@ -92,3 +92,39 @@ export interface DividendPoolShare {
 // this technique improving a typesafity around use-cases like that
 export const PairSymbol = ['ETH/USDT', 'ETC/HBTC'] as const;
 export type PairSymbol = typeof PairSymbol[number];
+
+export interface EthersData {
+  provider: any;
+  signer: any;
+  userAddress: string;
+  chainID: string;
+}
+
+export interface TokenProps {
+  nonce?: number;
+  owner?: string;
+  spender?: string;
+  from?: string;
+  to?: string;
+  value?: BigNumber;
+  amount?: BigNumber;
+  decimals: number;
+  card?: string;
+  ownerAddress: string;
+}
+
+export interface EthereumCallParams {
+  params: [any];
+  ethCallAttributtes: { contract?: string; function?: string };
+}
+
+export interface ContractAddress {
+  contractAddress: string;
+  contractInterface?: string;
+}
+
+export interface ERC20Props {
+  decimals?: number;
+  ownerBalance?: number;
+  tokenId?: string;
+}
