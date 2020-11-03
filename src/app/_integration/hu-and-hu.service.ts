@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { BigNumber } from '@ethersproject/bignumber';
 import { Observable } from 'rxjs';
-import { PoolService } from './pool.service';
+import { PoolService } from './tokenscript/pool.service';
 import {
   Activity,
   ApprovedForLiquidityPool,
   ApprovedForMiningPool,
   DepositedForMiningPool,
-
   Token,
   WithdrewFromLiquidityPool,
   WithdrewFromMiningPool
 } from './types';
+
 
 @Injectable({
   providedIn: 'root',
@@ -21,9 +21,11 @@ export class HuAndHuService {
 
   /**
    * @description Connects with a wallet
-   * @returns fake data
    */
   public connect(): Observable<Token> {
+    setTimeout(() => {
+      this.pool.getCard('', '', '', 1, 'bokky').subscribe(console.log);
+    }, 5000);
     return this.pool.negotiateToken();
   }
 
@@ -33,7 +35,6 @@ export class HuAndHuService {
 
   /**
    * @description Approve to add to Liquidity Pool
-   * @returns dummy Approved Activity
    */
   public activityApproval(
     tokenName: string,

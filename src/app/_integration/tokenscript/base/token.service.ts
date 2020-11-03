@@ -1,18 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-// import { BigNumber } from '@ethersproject/bignumber';
 import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs';
 import Web3 from 'web3';
-import { Activity, EthersData, LiquidityPoolShare, Token } from '../types';
+import { EthersData } from './types';
+import { Activity, LiquidityPoolShare, Token } from '../../types';
 import {
   compareStringToProps, extendPropsWithContracts, getEthersData,
   getXMLItem, getXMLItemText, parseXMLFromText,
   to, TokenCard
 } from './lib';
+import { map } from 'rxjs/operators';
 
 declare global {
   interface Window {
     ethereum: any;
+    ethers: any;
   }
 
   interface Node {
@@ -26,12 +28,14 @@ declare global {
 
 export class TsaService {
 
-  // private data$ = new BehaviorSubject({});
   private tokenGenerator$: BehaviorSubject<any>;
   private tokens = {};
 
   // private debug = false;
-  private debug = 2;//environment.debug;
+  // debug = 1 - show only common step notifies and errors
+  // debug = 2 - show object's data values
+  // debug = 3 - verbose logs
+  private debug = 3; // environment.debug;
   private inited = false;
   private lang: string;
   private config = {
@@ -53,66 +57,16 @@ export class TsaService {
   public negotiateToken(): Observable<Token> {
     this.init();
     this.tokenGenerator$ = new BehaviorSubject<any>(
-      // this.fakeData.generateToken()
       {} as Token
-      // this.returnTokens(1)
     );
-    // setInterval((x) => {
-    //   tokenGenerator$.next(this.fakeData.generateToken());
-    // }, 5000);
-
     return this.tokenGenerator$.asObservable();
-  }
-
-  private addTokensFiles(): void {
-    const files = [
-      // 'assets/LiquidityPoolShare.xml',
-      'assets/BOOKY.xml',
-      // 'assets/MiningPoolShare.xml',
-      // 'assets/COFI.xml'
-    ];
-    for (const path of files){
-      this.negotiateTokenByPath(path);
-    }
-  }
-  
-  /**
-   * @description Get the approved activity
-   * @returns dummy data
-   */
-  public getCard<T extends Activity>(
-    token: LiquidityPoolShare,
-    cardName: string,
-    transactionNonce: number,
-    returnType: string,
-    activityCardType = 'activity'
-  ): Observable<any> {
-    const replay$ = new ReplaySubject();
-    if (returnType === 'ApprovedForLiquidityPool') {
-      console.log('lets render activity card');
-      this.renderCards({
-        listener$: replay$,
-        // tokenName: 'LiquidityPoolShare',
-        tokenName: 'booky',
-        // tokenInstance: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
-        tokenInstance:
-          'ownerAddress=0xFEB2aaa773cCbfB7081Bfa0283409F62090fF40c',
-        // cardName: 'sent',
-        cardName: 'received',
-        cardType: 'activity',
-        cardView: 'item-view',
-        // returnHistory: false,
-        returnHistory: true,
-        listenNewEvents: true,
-        transactionNonce,
-        returnType,
-      });
-    }
-    return replay$.asObservable();
-  }
-
-  public renderView(modal: any): any {
-    return '';
+    
+    // // for debug:
+    // return this.tokenGenerator$.asObservable().pipe(
+    //     map(x => {
+    //       console.log(`tokens: ${JSON.stringify(x)}`);
+    //       return x;
+    //     } ) );
   }
 
   public negotiateTokenByContent(xmlContent: string): void {
@@ -147,22 +101,15 @@ export class TsaService {
       const commonInitProps = extendPropsWithContracts(this.tokens[tokenName].xmlDoc, {}, this.ethersData);
       commonInitProps.ownerAddress = this.ethersData.userAddress;
 
-      // console.log('contracts');
-      // console.log(contracts);
-      // console.log('distinctProps');
-      // console.log(distinctProps);
-
       if (distinctProps && distinctProps.items && distinctProps.items.length) {
 
         let i = 0;
         for (; i < distinctProps.items.length; i++) {
           const distinctItem = distinctProps.items[i];
-          (this.debug > 1) && console.log(`lets add instance : ${distinctItem}`);
+          (this.debug > 2) && console.log(`lets add instance : ${distinctItem}`);
 
           const initProps = Object.assign({}, commonInitProps);
           initProps[distinctProps.distinctName] = distinctItem;
-          // console.log('initProps');
-          // console.log(JSON.stringify(initProps));
 
           const tokenInstance = new TokenCard({
             xmlDoc: this.tokens[tokenName].xmlDoc,
@@ -178,12 +125,6 @@ export class TsaService {
           const [propsError, props] = await to(tokenInstance.getProps() );
           this.tokens[tokenName].props = props;
 
-          // console.log('tokenInstance.getProps');
-          // console.log(props);
-          // props[distinctProps.distinctName] = tokenID;
-          // console.log('updated props');
-          // console.log(props);
-
           const compareRes = compareStringToProps(this.tokens[tokenName].filter, props);
           if (!compareRes) {
             (this.debug > 0) && console.log('compare failed');
@@ -194,12 +135,12 @@ export class TsaService {
         }
       }
       this.tokens[tokenName].working = false;
-      (this.debug > 2) && console.log('this.tokens');
+      (this.debug > 2) && console.log('Tsa service tokens:');
       (this.debug > 2) && console.log(this.tokens);
+      this.returnTokens();
 
     } catch (e) {
-      const message = 'negotiate error = ' + e;
-      this.debug && console.log(e);
+      const message = `negotiate error = ${e}`;
       this.debug && console.log(message, e);
       this.tokens[tokenName].working = false;
       throw new Error(message);
@@ -212,7 +153,7 @@ export class TsaService {
         data => {
           this.negotiateTokenByContent(data);
         },
-        error => console.log('XML file load failed for ' + XMLPath, error)
+        error => console.log(`XML file load failed for ${XMLPath}`, error)
     );
   }
 
@@ -233,6 +174,8 @@ export class TsaService {
     if (justReturn) {
       return output;
     }
+    (this.debug > 1 ) && console.log('this.tokenGenerator$.next fired');
+    (this.debug > 1 ) && console.log(output);
     this.tokenGenerator$.next(output);
   }
 
@@ -249,14 +192,15 @@ export class TsaService {
         throw new Error('Ethereum Wallet doesnt work at this page, please enable it and reload page.');
       }
 
-      // if (!Web3 && !window.ethers) {
-      // if (!Web3) {
-      //   // throw new Error("Please load Web3 or ethers.js library before this App");
-      //   throw new Error('Please load Web3 library before this App');
-      // }
-      // if (!window.ethers) {
-      //   throw new Error('Please load ethers.js library before this App');
-      // }
+      if (!Web3 && !window.ethers) {
+        if (!Web3) {
+          // throw new Error("Please load Web3 or ethers.js library before this App");
+          throw new Error('Please load Web3 library before this App');
+        }
+        if (!window.ethers) {
+          throw new Error('Please load ethers.js library before this App');
+        }
+      }
 
       this.web3 = new Web3(Web3.givenProvider || 'ws://localhost:8545');
 
@@ -270,48 +214,17 @@ export class TsaService {
       }
       // console.log('init ok');
     } catch (e) {
-      const message = ' ;init error happened -> ' + e;
+      const message = `init error happened -> ${e}`;
       // tslint:disable-next-line:no-unused-expression
       this.debug && console.log(message);
       // tslint:disable-next-line:no-unused-expression
       this.debug && console.log(e);
       // throw new Error(message);
     }
-
-    // this.tokenGenerator$.subscribe(tokens => {
-    //   this.tokens = tokens;
-    //   console.log('tokens');
-    //   console.log(tokens);
-    //   Object.keys(tokens).forEach(tokenName => {
-    //     const ids = Object.keys(tokens[tokenName]);
-    //     if (ids.length) {
-    //       ids.forEach(id => {
-    //         const listener$ = new Subject();
-    //         listener$.subscribe(card => {
-    //           // console.log('card received');
-    //           // console.log(card);
-    //         } );
-    //         this.tsaService.renderCards({
-    //           listener$,
-    //           tokenName,
-    //           tokenInstance: id,
-    //           // cardName: 'sent',
-    //           cardName: 'received',
-    //           cardType: 'activity',
-    //           cardView: 'item-view',
-    //           returnHistory: true,
-    //           listenNewEvents: true,
-    //           transactionNonce: null
-    //         });
-    //       });
-    //     }
-    //   });
-    //
-    // });
-    this.addTokensFiles();
   }
 
   private async reInit(): Promise<any>{
+    this.debug && console.log('network data changed. start reinit token instances...');
     this.ethersData = await getEthersData();
 
     Object.keys(this.tokens).forEach(tokenName => {
@@ -320,32 +233,23 @@ export class TsaService {
     });
   }
 
-  // getConfig(): any{
-  //   return this.config;
-  // }
-
-  // setLang(lang: string): void {
-  //   lang = lang ? lang : this.config.lang;
-  //   this.lang = lang;
-  // }
+  setLang(lang: string): void {
+    lang = lang ? lang : this.config.lang;
+    this.lang = lang;
+  }
 
   public renderCards({listener$, tokenName, tokenInstance, cardName, cardType, cardView, returnHistory, listenNewEvents, transactionNonce, returnType}): any {
-    // console.log('lets instance.getCardItems');
-    // console.log(tokenName);
-    // console.log(this.tokens[tokenName]);
     const token = this.tokens[tokenName];
     if (!token) {
-      console.log('cant see token name = ' + tokenName);
+      console.log(`cant see token name = ${tokenName}`);
       return false;
     }
     const instance = token.instances[tokenInstance];
     if (!instance) {
-      console.log('cant see tokenInstance = ' + tokenInstance);
+      console.log(`cant see tokenInstance = ${tokenInstance}`);
       return false;
     }
-    (this.debug > 1 ) && console.log('lets instance.getCardItems');
-
-    const iframeId = cardName + '_' + cardType + '_' + cardView;
+    const iframeId = `${cardName}_${cardType}_${cardView}`;
 
     let iframeDoc;
     let iframe = instance.iframes[iframeId];
@@ -355,44 +259,33 @@ export class TsaService {
       // get card-view html
       let selector = '/ts:token/ts:cards/ts:card';
       if (cardName) {
-        selector += '[@name="' + cardName + '"]';
+        selector += `[@name="${cardName}"]`;
       }
       if (cardType) {
-        selector += '[@type="' + cardType + '"]';
+        selector += `[@type="${cardType}"]`;
       }
 
       const cardNode = getXMLItem(instance.xmlDoc, selector );
       if (!cardNode) {
-        this.debug && console.log('cant see card for >>>' + selector + '<<<');
+        this.debug && console.log(`cant see card for >>>${selector}<<<`);
       } else {
         cardHtml = getXMLItemText(
           instance.xmlDoc,
-          'ts:' + cardView + '[@xml:lang="' + this.lang + '"][1]',
+          `ts:${cardView}[@xml:lang="${this.lang}"][1]`,
           cardNode,
-          'ts:' + cardView + '[@xml:lang="' + instance.fallbackLang + '"][1]', instance.debug );
+          `ts:${cardView}[@xml:lang="${instance.fallbackLang}"][1]`, instance.debug );
 
-        instance.debug && console.log('renderCardView started for name=' + cardName + '; type = ' + cardType + '; itemType=' + cardView);
-
-        // instance.debug && console.log('cardHtml');
-        // instance.debug && console.log(cardHtml);
+        (instance.debug > 2) && console.log(`renderCardView started for name=${cardName} type = ${cardType}; itemType=${cardView}`);
       }
 
       iframe = document.createElement('iframe');
       instance.iframes[iframeId] = iframe;
-      iframe.src = 'assets/blank.html';
+      iframe.src = 'assets/tokens/blank.html';
       iframe.style = 'display: none;';
       const body = document.querySelector('body');
       iframe.onload = () => {
-        // let iframeWindow = iframe || iframe.contentWindow;
-        // iframeWindow.addEventListener('load', () => {
 
-        // let onloadProps =
-
-        // console.log('props inside onload for'+cardName + '-' + cardType);
-        // console.log(props);
-
-        console.log('iframe.onload fired;');
-        // this.debug && console.log('iframe.onload fired;');
+        (this.debug > 2) && console.log('iframe.onload fired;');
         iframe.contentWindow.onerror = e => {console.log('iframe error'); console.log(e); };
 
         iframeDoc = iframe.contentDocument ? iframe.contentDocument : iframe.contentWindow.document;
@@ -410,9 +303,6 @@ export class TsaService {
           return;
         }
 
-        // const origin = document.defaultView.location.origin;
-
-
         let html = cardHtml ? instance.replace_all(cardHtml, '<body>', '') : '';
         html = instance.replace_all(html, '</body>', '');
 
@@ -424,8 +314,8 @@ export class TsaService {
         // test iframe ethereum and web3
         const iframeEthereumExists = iframe.contentWindow.is_ethereum_exists();
         const iframeWeb3Exists = iframe.contentWindow.is_web3_exists();
-        this.debug && console.log('iframeEthereumExists = ' + iframeEthereumExists);
-        this.debug && console.log('iframeWeb3Exists = ' + iframeWeb3Exists);
+        (this.debug > 2) && console.log(`iframeEthereumExists = ${iframeEthereumExists}`);
+        (this.debug > 2) && console.log(`iframeWeb3Exists =  ${iframeWeb3Exists}`);
         if (!iframeEthereumExists || !iframeWeb3Exists) {
           console.error('Ethereum or web3 missed');
         } else {
@@ -438,13 +328,6 @@ export class TsaService {
         // insert all scripts from card-view
         if (scripts.length){
           scripts.forEach(item => {
-            // let data = {
-            //     action:'inject_script',
-            //     content: this.decodeHtml(item.innerText)
-            // };
-            // iframe.contentWindow.postMessage(JSON.stringify(data),origin);
-            // console.log(item.innerText);
-            // this.insertScript(iframeDoc,this.decodeHtml(item.innerText));
             instance.insertScript(iframeDoc, item.innerText);
             item.remove();
           });
@@ -457,24 +340,9 @@ export class TsaService {
         div = iframeDoc.createElement('div');
         const mainDiv = iframeDoc.querySelector('body .main');
         div.setAttribute('id', 'render');
-        // div.setAttribute('class', '');
         mainDiv.appendChild(div);
 
-        instance.getCardItems({cardName, cardType, cardView, returnHistory, listenNewEvents, listener$, transactionNonce});
-
-        // iframeDoc.dispatchEvent(new Event('DOMContentLoaded', {
-        //   bubbles: true,
-        //   cancelable: true
-        // }));
-        // setTimeout(()=>{
-        //     console.log('iframe.dispatchEvent(new Event("load"');
-        //     iframe.contentWindow.onload();
-        //     // iframe.dispatchEvent(new Event("load", {
-        //     //     bubbles: true,
-        //     //     cancelable: true
-        //     // }));
-        // }, 500);
-
+        instance.getCardItems({cardName, cardType, cardView, returnHistory, listenNewEvents, listener$, transactionNonce });
       };
       body.appendChild(iframe);
     } else {

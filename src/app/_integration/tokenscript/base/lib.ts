@@ -1,16 +1,15 @@
 // import Web3 from 'web3';
 import { ethers } from 'ethers';
-import { ContractAddress, ERC20Props, EthereumCallParams, EthersData, TokenProps } from '../types';
-import { CoFiXPairAbi, erc20abi } from './abis';
+import { ContractAddress, ERC20Props, EthereumCallParams, EthersData, TokenProps } from './types';
+import { CoFiXPairAbi, erc20abi, CoFiToken, CoFiXStakingRewards, CoFiStakingRewards } from './abi';
+import {tokenName} from '@angular/compiler';
 
 const matchAll = require('string.prototype.matchall');
 
 declare global {
   interface Window {
     web3: any;
-
     is_ethereum_exists(): boolean;
-
     is_web3_exists(): boolean;
   }
 }
@@ -18,8 +17,6 @@ declare global {
 
 export async function getEthersData(): Promise<EthersData>{
   await window.ethereum.request({ method: 'eth_requestAccounts' });
-    // .then((accounts) => console.log(accounts))
-    // .catch((error) => console.error(error));
 
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner();
@@ -27,6 +24,7 @@ export async function getEthersData(): Promise<EthersData>{
 
   const userAddress = await signer.getAddress();
   const networkInfo = await provider.getNetwork();
+
 
   let chainID;
   if (networkInfo) {
@@ -56,12 +54,11 @@ export function compareStringToProps(str: string, props, debug = false): number{
   debug && console.log(matchAllResults);
   matchAllResults.forEach(item => {
     const single = item[1];
-    // console.log('wrong pattern : ' + item + ', skipped');
     const matchProp = single.match(/\(([^<>=]+)(=|<=|>=)([^<>=]+)\)/);
     if (!matchProp) {
       str = str.replace(single, '0');
       // tslint:disable-next-line:no-unused-expression
-      debug && console.log('wrong pattern : ' + single + ', skipped, str = "' + str + '"');
+      debug && console.log(`wrong pattern : ${single}, skipped, str = "${str}"`);
       return;
     }
     // tslint:disable-next-line:no-unused-expression
@@ -75,7 +72,7 @@ export function compareStringToProps(str: string, props, debug = false): number{
 
     if (!propValue) {
       // tslint:disable-next-line:no-unused-expression
-      debug && console.log('property check false(prop not exists or empty) for: ' + propName + ', while serve ' + item[0]);
+      debug && console.log(`property check false(prop not exists or empty) for: ${propName}, while serve ${item[0]}`);
       str = str.replace(item[0], '0');
     } else {
       // let compareRes = propValue.match(//);
@@ -93,25 +90,23 @@ export function compareStringToProps(str: string, props, debug = false): number{
         case '<=':
           result = parseFloat(propValue) < parseFloat(propTest);
           // tslint:disable-next-line:no-unused-expression max-line-length
-          debug && console.log('propValue = ' + parseFloat(propValue) + ' ; propTest = ' + parseFloat(propTest) + '; compare = ' + propCompare + ' ; result = ' + result);
+          debug && console.log(`propValue = ${parseFloat(propValue)} ; propTest = ${parseFloat(propTest)}; compare = ${propCompare} ; result = ${result}`);
           break;
         case '>=':
           result = parseFloat(propValue) > parseFloat(propTest);
           break;
         default:
           // tslint:disable-next-line:no-unused-expression
-          debug && console.log('compare string error. wrong part: ' + matchProp[0] + ' at the moment: ' + str);
+          debug && console.log(`compare string error. wrong part: ${matchProp[0]} at the moment: ${str}`);
           str = '-1';
       }
       str = str.replace(item[0], result ? '1' : '0');
     }
     // tslint:disable-next-line:no-unused-expression
-    debug && console.log('compare string result after : ' + single + ' = ' + str);
+    debug && console.log(`compare string result after : ${single} = ${str}`);
   });
 
   let counter = 0;
-  // while ((matchAllResults = Array.from((match = str.matchAll(/(\(([!|&]?)([^)(]+)\))/g)))).length) {
-  // let match = matchAll(str, new RegExp('(\\([^)(]+\\))', 'g'))
   while ((matchAllResults = Array.from((match = matchAll('(\(([!|&]?)([^)(]+)\))', 'g') ) ) ).length) {
 
     // tslint:disable-next-line:no-unused-expression
@@ -130,7 +125,7 @@ export function compareStringToProps(str: string, props, debug = false): number{
             case '(0)': str = str.replace(item[0], '0');
                         break;
             default:
-              console.log('compare string error. wrong part: ' + inner + ' at the moment: ' + str);
+              console.log(`compare string error. wrong part: ${inner} at the moment: ${str}`);
               str = '-1';
           }
           break;
@@ -142,7 +137,7 @@ export function compareStringToProps(str: string, props, debug = false): number{
                          break;
             default:
               // tslint:disable-next-line:no-unused-expression
-              debug && console.log('compare string error. wrong part: ' + inner + ' at the moment: ' + str);
+              debug && console.log(`compare string error. wrong part: '${inner} at the moment: ${str}`);
               str = '-1';
           }
           break;
@@ -154,39 +149,39 @@ export function compareStringToProps(str: string, props, debug = false): number{
           break;
         default:
           // tslint:disable-next-line:no-unused-expression
-          debug && console.log('compare string error. wrong part: ' + inner + ' at the moment: ' + str);
+          debug && console.log(`compare string error. wrong part: ${inner} at the moment: ${str}`);
           str = '-1';
       }
       // tslint:disable-next-line:no-unused-expression
-      debug && console.log('second pass temp res = ' + str);
+      debug && console.log(`second pass temp res = ${str}`);
 
       // let innerMatch
     });
     // tslint:disable-next-line:no-unused-expression
-    debug && console.log('second pass cycle ' + counter + ' finish res = ' + str);
+    debug && console.log(`second pass cycle ${counter} finish res = ${str}`);
     counter ++;
     if (counter > 5) {
       // tslint:disable-next-line:no-unused-expression
-      debug && console.log('its loop, check string please: ' + str);
+      debug && console.log(`its loop, check string please: ${str}`);
       str = '-1';
       break;
     }
   }
 
   // tslint:disable-next-line:no-unused-expression
-  debug && console.log('finish res = ' + str);
+  debug && console.log(`finish res = ${str}`);
 
   return parseInt(str, 10);
 }
 
 export function getContractAddress(xmlDoc, ethContract, chainID): ContractAddress{
 
-  const contractNode = getXMLItem(xmlDoc, '/ts:token/ts:contract[@name="' + ethContract + '"][1]');
+  const contractNode = getXMLItem(xmlDoc, `/ts:token/ts:contract[@name="${ethContract}"][1]`);
   let contractInterface;
   let contractAddress;
   if (contractNode){
     contractInterface = contractNode.getAttribute('interface');
-    contractAddress = getXMLItemText(xmlDoc, 'ts:address[@network=' + chainID + '][1]', contractNode);
+    contractAddress = getXMLItemText(xmlDoc, `ts:address[@network='${chainID}'][1]`, contractNode);
   }
 
   return { contractInterface, contractAddress };
@@ -227,62 +222,80 @@ export function to(promise, improved = false): [any, any]{
     });
 }
 
-export async function getJSONAbi(ethContract, jsons, path = '', debug = 0): Promise<{}>{
+export async function getJSONAbi(ethContract, jsons, path = '', debug = 0, tokenName): Promise<{}>{
   let contractJson = jsons ? jsons[ethContract] : false;
 
   if (contractJson) { return contractJson; }
 
-  if (ethContract === 'pool') { return CoFiXPairAbi; }
+  switch (ethContract.toLowerCase()) {
+    case 'pool':
+      if (tokenName === 'LiquidityPoolShare') {
+        return CoFiXPairAbi;
+      } else if (tokenName === 'CoFi') {
+        return CoFiToken;
+      } else if (tokenName === 'MiningPoolShare') {
+        return CoFiXStakingRewards;
+      } else {
+        console.error(`contract pool abi not defined for ${tokenName}`);
+      }
 
-  if (ethContract === 'pair') { return erc20abi; }
+      break;
+    case 'liquidityPool'.toLowerCase():
+      return CoFiXPairAbi;
+      break;
 
-  if (ethContract === 'booky') { return erc20abi; }
+    case 'pair':
+    case 'booky':
+      return erc20abi;
+      break;
 
-  try {
-    const response = await fetch(path + ethContract + '.json');
-    if (response.status !== 200) {
-      const message = 'Looks like there was a problem. Status Code: ' +
-        response.status;
-      // tslint:disable-next-line:no-unused-expression
-      debug && console.log(message);
-      throw new Error(message);
-    }
-    contractJson = await response.json();
-    jsons[ethContract] = contractJson;
+    case 'DividendPool'.toLowerCase():
+      return CoFiXStakingRewards;
+      break;
 
-  } catch (e) {
-    const message = 'token JSON fetch error. ' + e;
-    // tslint:disable-next-line:no-unused-expression
-    debug && console.log(e);
-    // tslint:disable-next-line:no-unused-expression
-    debug && console.log(message);
-    // throw new Error(message);
-    return false;
+    case 'Miningpool'.toLowerCase():
+      return CoFiStakingRewards;
+      break;
+
+    case 'CoFi'.toLowerCase():
+    case 'CoFiToken'.toLowerCase():
+      return CoFiToken;
+      break;
+
+    default:
+      try {
+        const response = await fetch(path + ethContract + '.json');
+        if (response.status !== 200) {
+          const message = `Looks like there was a problem. Status Code: ${response.status}`;
+          // tslint:disable-next-line:no-unused-expression
+          debug && console.log(message);
+          throw new Error(message);
+        }
+        contractJson = await response.json();
+        jsons[ethContract] = contractJson;
+        return contractJson;
+      } catch (e) {
+        const message = `token JSON fetch error. ${e}`;
+        // tslint:disable-next-line:no-unused-expression
+        (debug > 1) && console.log(e);
+        // tslint:disable-next-line:no-unused-expression
+        (debug > 1) && debug && console.log(message);
+        return false;
+      }
   }
-
-  return contractJson;
 }
 
 export function filterResultConverter(resArgs, incomeProps): TokenProps {
-  // console.log('filterResultConverter input = ');
-  // console.log(resArgs);
   const resultProps = Object.assign({}, incomeProps);
-  // console.log(resultProps);
   ['owner', 'spender', 'from', 'to', 'value', 'amount'].forEach(arg => {
     if (resArgs[arg]) { resultProps[arg] = resArgs[arg]; }
   });
-  // console.log('resultProps');
-  // console.log(resultProps);
   return resultProps;
 }
 
 export function bnStringPrecision(bn, decimals, precision): number{
   bn = ethers.BigNumber.from(bn);
   if (precision > 15) { precision = 15; }
-  // while (precision > 15){
-  //     bn = bn.mul(10**15);
-  //     precision -= 15;
-  // }
   bn = bn.mul(10 ** precision);
 
   while (decimals > 15){
@@ -295,10 +308,6 @@ export function bnStringPrecision(bn, decimals, precision): number{
 }
 
 export function getEthereumCallParams({userAddress, ethereumNode , xmlDoc,  tokenName, debug, props}): EthereumCallParams{
-  // console.log('getEthereumCallParams input props');
-  // console.log(props);
-
-  // get default contract Name
   const xmlNode = getXMLItem(xmlDoc, '/ts:token/ts:origins/ts:ethereum[1]');
   let defaultContract = xmlNode ? xmlNode.getAttribute('contract') : '';
   defaultContract = defaultContract ? defaultContract : tokenName;
@@ -329,8 +338,6 @@ export function getEthereumCallParams({userAddress, ethereumNode , xmlDoc,  toke
   // tslint:disable-next-line:no-conditional-assignment
   while (xmlNodeSet && (item = xmlNodeSet.iterateNext())){
     const ref = item.getAttribute('ref');
-    // console.log('ref');
-    // console.log(ref);
     if ( props.hasOwnProperty(ref) ) {
       params.push(props[ref]);
     } else if (item.innerHTML) {
@@ -349,9 +356,13 @@ export function getEthereumCallParams({userAddress, ethereumNode , xmlDoc,  toke
 export function getErc20EventParams(erc20EventName, xmlDoc): {}{
   const nsResolver = xmlDoc.createNSResolver( xmlDoc.ownerDocument == null ? xmlDoc.documentElement : xmlDoc.ownerDocument.documentElement);
 
-  const eventXmlNodes = xmlDoc.evaluate('/ts:token/asnx:module[@name="ERC20-Events"]/namedType[@name="' + erc20EventName + '"]', xmlDoc, nsResolver, XPathResult.ANY_TYPE, null );
-
-
+  const eventXmlNodes = xmlDoc.evaluate(
+      `/ts:token/asnx:module/namedType[@name="${erc20EventName}"]`,
+      xmlDoc,
+      nsResolver,
+      XPathResult.ANY_TYPE,
+      null
+  );
 
   const params = {};
 
@@ -417,7 +428,7 @@ export function extendPropsWithContracts(xmlDoc, props = {}, ethersData: EthersD
   while (contractNode = contractNodes.iterateNext()) {
     const name = contractNode.getAttribute('name');
 
-    const address = getXMLItemText(xmlDoc, 'ts:address[@network="' + ethersData.chainID + '"]', contractNode);
+    const address = getXMLItemText(xmlDoc, `ts:address[@network="${ethersData.chainID}"]`, contractNode);
     if (address) {
       output[name] = address;
     }
@@ -436,9 +447,6 @@ export class TokenCard {
   filter: string;
   activitiesRenderStarted: boolean;
   ready: boolean;
-  // cardName: string;
-  // cardType: string;
-  // viewType: string;
   fallbackLang: string;
   debug: number;
   nsResolver: any;
@@ -456,11 +464,6 @@ export class TokenCard {
     this.ethersData = data.ethersData;
     this.filter = data.filter;
     this.activitiesRenderStarted = false;
-
-    // this.cardName = data.cardName ? data.cardName : 'main';
-    // this.cardType = data.cardType ? data.cardType : 'token';
-    // this.viewType = data.viewType ? data.viewType : 'item-view';
-
     this.fallbackLang = 'en';
     this.ready = false;
 
@@ -478,16 +481,7 @@ export class TokenCard {
   }
 
   async getDistinctItems(): Promise<{distinctName: string, items: [string]}>{
-      // console.log('await distinct props');
-      // let props = await this.getProps();
-      // this.debug && console.log('props received');
-      // this.debug && console.log(props);
-
       const distinctAttributeNode = getXMLItem(this.xmlDoc, '/ts:token/ts:attribute[@distinct="true"][1]');
-      // console.log('distinctAttributeNode');
-      // console.log(this.tokenName);
-      // console.log(distinctAttributeNode);
-      // console.log(this.xmlDoc);
 
       if (!distinctAttributeNode) {
         this.debug && console.log('Cant find distinct attribute, lets use ownerAddress');
@@ -504,10 +498,6 @@ export class TokenCard {
           console.log('error while receive distinct');
           console.log(attrError);
         }
-
-        // console.log('distinctData');
-        // console.log(distinctData);
-
         if (distinctData && distinctData.length) {
           distinctData.forEach(a => {
             if (a._isBigNumber) {
@@ -533,14 +523,9 @@ export class TokenCard {
   runMainDataChanged(internalNode): void{
     const tokenWrapNode = internalNode.closest('.ts_token_wrap');
     const tokenIdWrapNode = tokenWrapNode.querySelector('.ts_tokenitem_wrap');
-    // console.log(internalNode);
     const tokenIframe = tokenIdWrapNode.querySelector('iframe');
     const win = tokenIframe.contentWindow;
     const instance = tokenWrapNode.instance;
-    // console.log('vars:');
-    // console.log(tokenIframe);
-    // console.log(win);
-    // console.log(instance);
     instance.getProps().then(res => {
       if (win.web3.tokens.dataChanged){
         win.web3.tokens.data.currentInstance = res;
@@ -550,63 +535,48 @@ export class TokenCard {
   }
 
   async getProps(): Promise<any>{
-    // console.log('start getProps. init props = ');
-    // console.log(this.props);
     const basicProps: ERC20Props = this.props;
     try {
       this.ethersData = await getEthersData();
 
       const attributeXmlNodes = this.xmlDoc.evaluate('/ts:token/ts:attribute', this.xmlDoc, this.nsResolver, XPathResult.ANY_TYPE, null );
-      // console.log('start getProps');
 
       let attributeNode;
 
       // tslint:disable-next-line:no-conditional-assignment
       while (attributeXmlNodes && (attributeNode = attributeXmlNodes.iterateNext() ) ) {
-        if (attributeNode.getAttribute('distinct')) {
-          // console.log('prop distinct');
-          continue;
-        }
+        if (attributeNode.getAttribute('distinct')) { continue; }
 
         const name = attributeNode.getAttribute('name');
 
-        this.debug && console.log('get prop = ' + name + '; current props = ' + JSON.stringify(this.props) );
+        (this.debug > 2) && console.log(`get prop = ${name}; current props = ${JSON.stringify(this.props)}` );
 
         const [error, res] = await to(this.getAttributeValue(name) );
         if (error) {
-          console.log('getAttributeValue error');
-          console.log(error);
+          this.debug && console.error(`getAttributeValue error for ${name}`);
+          this.debug && console.log(error);
         }
 
-        this.debug && console.log('property "' + name + '" has value :"');
-        this.debug && console.log(res);
+        (this.debug > 2) && console.log(`property "${name}" has value :`);
+        (this.debug > 2) && console.log(res);
 
         if (res) { basicProps[name] = res; }
       }
 
-      // let res = output._isBigNumber ? bnStringPrecision(output,18,8) : output;
-      // if (basicProps.decimals && basicProps.ownerBalance) {
-        // basicProps.ownerBalance = bnStringPrecision(basicProps.ownerBalance, basicProps.decimals, 10);
-      // }
-      // console.log('basic props:');
-      // console.log(basicProps );
-      // console.log(JSON.stringify(basicProps) );
     } catch (e) {
-      const message = 'getProps() error. ' + e;
+      const message = `getProps() error. ${e}`;
       this.debug && console.log(e);
       this.debug && console.log(message);
       throw new Error(message);
     }
     this.props = basicProps;
-    // console.log('basicProps');
-    // console.log(basicProps);
     return basicProps;
   }
 
   async getAttributeValue(name): Promise<any>{
     let res;
     if (!name) { return null; }
-    const originsInnerNode = getXMLItem(this.xmlDoc , '/ts:token/ts:attribute[@name="' + name + '"]/ts:origins/*[1]');
+    const originsInnerNode = getXMLItem(this.xmlDoc , `/ts:token/ts:attribute[@name="${name}"]/ts:origins/*[1]`);
     if (!originsInnerNode) {
       return null;
     }
@@ -615,10 +585,10 @@ export class TokenCard {
     switch (dataNodeName) {
       case 'ts:token-id':
         res = this.props.tokenId;
-        this.debug && console.log('its ts:token-id, just use tokenID ');
+        (this.debug > 1) && console.log('its ts:token-id, just use tokenID ');
         break;
       case 'ts:data':
-
+        (this.debug > 1) && console.log(`its ts:data ${name}`);
         const attributeDataNodes = this.xmlDoc.evaluate('ts:address', originsInnerNode, this.nsResolver, XPathResult.ANY_TYPE, null );
         let addressNode;
         res = [];
@@ -630,29 +600,26 @@ export class TokenCard {
           }
 
         }
-
-        this.debug && console.log('its ts:data');
-        this.debug && console.log( JSON.stringify(res) );
-
+        (this.debug > 1) && console.log( JSON.stringify(res) );
         break;
+
       case 'ts:attribute':
+        (this.debug > 1) && console.log(`its ts:attribute ${name}`);
         const ref = originsInnerNode.getAttribute('ref');
         const key = this.props[ref];
         if (typeof key === 'string'){
-          const selector = 'ts:mapping/ts:option[@key="' + key + '"]/ts:value';
+          const selector = `ts:mapping/ts:option[@key="${key}"]/ts:value`;
           res = getXMLItemText(this.xmlDoc,
-            selector + '[@xml:lang="' + this.lang + '"][1]',
+              `${selector}[@xml:lang="${this.lang}"][1]`,
             originsInnerNode,
-            selector + '[@xml:lang="' + this.fallbackLang + '"][1]' );
+            `${selector}[@xml:lang="${this.fallbackLang}"][1]` );
         }
-
-        this.debug && console.log('its ts:data');
-        this.debug && console.log( JSON.stringify(res) );
-
+        (this.debug > 1) && console.log( JSON.stringify(res) );
         break;
+
       case 'ethereum:call':
-        this.debug && console.log('its ethereum call start for:');
-        this.debug && console.log(originsInnerNode);
+        (this.debug > 1) && console.log(`its ethereum call start for ${name}`);
+        (this.debug > 2) && console.log(originsInnerNode);
         const {
           params,
           ethCallAttributtes
@@ -673,38 +640,32 @@ export class TokenCard {
             contract = {contractAddress: this.props[contractName]};
           } else {
             const [attrError, contractAddressFromAttribute] = await to( this.getAttributeValue(contractName) );
-            if (attrError) { console.log('getAttributeValue error'); }
+            if (attrError) { this.debug && console.log('getAttributeValue error'); }
 
             contract = {contractAddress: contractAddressFromAttribute};
           }
         }
 
-        // console.log('getEthereumCallParams params');
-        // console.log(params);
-        // console.log(contract);
+        (this.debug > 2) && console.log('getEthereumCallParams params');
+        (this.debug > 2) && console.log(params);
+        (this.debug > 2) && console.log('getEthereumCallParams contract');
+        (this.debug > 2) && console.log(contract);
+        (this.debug > 2) && console.log('ethCallAttributtes');
+        (this.debug > 2) && console.log(ethCallAttributtes);
 
         if ( !contract.contractAddress ) {
           this.debug && console.log(
-            ' ethContract and contractAddress required for {Address='
-            + this.ethersData.userAddress
-            + ', chainID = ' + this.ethersData.chainID
-            + ' , tokenName = ' + this.tokenName + '}. Check logs for details'
-          );
+            `ethContract and contractAddress required for {Address=${this.ethersData.userAddress}, chainID = ${this.ethersData.chainID}, tokenName = ${this.tokenName}. Check logs for details`);
 
           res = null;
           break;
         }
 
-        // if (missedAttribute) {
-        //     this.debug && console.log('missed attribute: "' + missedAttribute + '", ethereum call skipped');
-        //     break;
-        // }
-
-        const [abiError, abi] = await to( getJSONAbi(ethCallAttributtes.contract, this.jsons, '', this.debug ) );
+        const [abiError, abi] = await to( getJSONAbi(ethCallAttributtes.contract, this.jsons, '', this.debug , this.tokenName) );
 
         if (!abi) {
-          console.error('Cant get Contract ABI for "' + ethCallAttributtes.contract + '" , attribute "' + name + '" skipped');
-          throw new Error('Empty ABI for ' + ethCallAttributtes.contract);
+          console.error(`Cant get Contract ABI for "${ethCallAttributtes.contract}" , attribute "${name}" skipped`);
+          throw new Error(`Empty ABI for ${ethCallAttributtes.contract}`);
         }
         if (abiError) {
           throw new Error(abiError);
@@ -713,51 +674,46 @@ export class TokenCard {
         this.jsons[ethCallAttributtes.contract] = abi;
 
 
+        (this.debug > 2) && console.log(`ethFunction = ${ethCallAttributtes.function}; name = ${name}; params = `);
+        (this.debug > 2) && console.log(params);
+        (this.debug > 2) && console.log(contract);
+        (this.debug > 2) && console.log(ethCallAttributtes);
+        (this.debug > 2) && console.log('abi', abi);
+
         const ethersContract = new ethers.Contract(contract.contractAddress, abi, this.ethersData.provider);
-        this.debug && console.log('ethFunction = ' + ethCallAttributtes.function + '; name = ' + name + '; params = '  );
-        this.debug && console.log(params);
-        this.debug && console.log(contract);
-        this.debug && console.log(ethCallAttributtes);
+
 
         const [error, output] = await to(ethersContract[ethCallAttributtes.function].apply(null, params) );
         if (error) {
-          console.error('error while try to get attribute "' + name + '" value');
+          console.error(`error while try to get attribute "${name}" value`);
         } else {
-          this.debug && console.log('correct output for "' + name + '"');
-          this.debug && console.log(output);
-          // let res = output._isBigNumber ? bnStringPrecision(output,18,8) : output;
-          res = output._isBigNumber ? output.toString() : output;
+          (this.debug > 1) && console.log(`correct output for "${name}"`);
+          (this.debug > 1) && console.log(output);
+          res = output;
         }
 
         break;
       // case "ethereum:call":
       default:
-        this.debug && console.log('skipped, type "' + dataNodeName + '" not described. ');
+        this.debug  && console.log(`skipped, type "${dataNodeName}" not described. `);
     }
 
     return res;
   }
 
-  // async render(wrapper, props, cardName = '', cardType = '', cardView = ''): Promise<any>{
-  // async render(subject, props, cardName = '', cardType = '', cardView = '', returnHistory = true, listenNewEvents = true): Promise<any>{
-  async render({props, cardName, cardType, cardView, listener }): Promise<any>{
-    // console.log('render ' +cardName+ ' ' +cardType+ ' ' + cardView);
-    // console.log(JSON.stringify(props));
-
-    // console.log('render ' +cardName+ ' ' +cardType+ '' + cardView);
-
-    const iframeId = cardName + '_' + cardType + '_' + cardView;
+  async render({props, cardName, cardType, cardView, listener$ }): Promise<any>{
+    const iframeId = `${cardName}_${cardType}_${cardView}`;
 
     // let iframeDoc;
     const iframe = this.iframes[iframeId];
-    this.returnCardFromIframe(props, listener, iframe, iframeId);
+    this.returnCardFromIframe(props, listener$, iframe, iframeId);
 
   }
 
-  returnCardFromIframe(props, listener, iframe, iframeId): void{
+  returnCardFromIframe(props, listener$, iframe, iframeId): void{
     (this.debug > 2) && console.log('props, listener, iframe');
     (this.debug > 2) && console.log(props);
-    // (this.debug > 2) && console.log(iframeId);
+
     const propsForRender = {};
     for (const [name, value] of Object.entries(props)){
       if ((name === 'value' || name === 'amount') && props.decimals) {
@@ -784,52 +740,33 @@ export class TokenCard {
     const main = iframeDoc.querySelector('body .main');
     (this.debug > 2) && console.log('main iframe div');
     (this.debug > 2) && console.log(main);
-    if (iframeId === 'received_activity_item-view') {
-      // const output: ApprovedForLiquidityPool = {
-      //   card: main ? main.innerHTML : '',
-      //   amount: props.value,
-      //   ownerAddress: props.ownerAddress,
-      //   transactionNonce: props.nonce,
-      //   transactionSender: '',
-      //   blockHeight: 12,
-      //   timeStamp: null,
-      // };
-      listener.next(props as TokenProps);
-    } else {
-      // main && listener.next(main.innerHTML);
-    }
+    props.card = main.innerHTML;
+    listener$.next(props as TokenProps);
   }
 
   // async getCardItems(cardName = '', cardType = '', cardView = '', returnHistory = true, listenNewEvents = true): Promise<any> {
   async getCardItems({cardName, cardType, cardView, returnHistory = true, listenNewEvents = true, listener$, transactionNonce = null}): Promise<any> {
-    console.log('getCardItems fired');
     let selector = '/ts:token/ts:cards/ts:card';
     if (cardName) {
-      selector += '[@name="' + cardName + '"]';
+      selector += `[@name="${cardName}"]`;
     }
     if (cardType) {
-      selector += '[@type="' + cardType + '"]';
+      selector += `[@type="${cardType}"]`;
     }
 
     const cardNode = getXMLItem(this.xmlDoc, selector );
     if (!cardNode) {
-      console.log('cant see card for >>>' + selector + '<<<');
+      console.log(`cant see card for >>>${selector}<<<`);
       return;
-      // this.debug && console.log('cant see card for >>>' + selector + '<<<');
     }
 
     selector = 'ts:origins/ethereum:event';
     const originsNodes = this.xmlDoc.evaluate(selector, cardNode, this.nsResolver, XPathResult.ANY_TYPE, null );
     if (originsNodes && cardType === 'activity') {
-      console.log('its activity node');
       const props = Object.assign({}, this.props);
       let ethereumEventNode;
       // tslint:disable-next-line:no-conditional-assignment
       while (originsNodes && (ethereumEventNode = originsNodes.iterateNext() ) ) {
-
-        // this.debug && console.log('ethereumEventNode');
-        // this.debug && console.log(ethereumEventNode);
-        // ------------------------
         // ethereum:event
         const eventFilter = ethereumEventNode.getAttribute('filter');
         const eventType = ethereumEventNode.getAttribute('type');
@@ -840,16 +777,14 @@ export class TokenCard {
         let { contractInterface, contractAddress } = getContractAddress(this.xmlDoc, ethContract, this.ethersData.chainID);
 
         if (!contractAddress) {
-          this.debug && console.log('Contract address required. chainID = ' + this.ethersData.chainID + ', lets try to use prop[contract] value.');
+          this.debug && console.log(`Contract address required. chainID = ${this.ethersData.chainID}, lets try to use prop[contract] value.`);
           // throw new Error('Contract address required. chainID = '+this.ethersData.chainID);
           contractAddress = props[ethContract];
         }
 
-        if (!ethContract || !contractAddress) { throw new Error(' ethContract and contractAddress required for {Address=' + this.ethersData.userAddress + ', chainID = ' + this.ethersData.chainID + ' , tokenName = ' + this.tokenName + '}. Check logs for details'); }
+        if (!ethContract || !contractAddress) { throw new Error(` ethContract and contractAddress required for {Address=${this.ethersData.userAddress}, chainID = ${this.ethersData.chainID}, tokenName = ${this.tokenName}. Check logs for details`); }
 
         const params = getErc20EventParams(eventType, this.xmlDoc);
-        // console.log('params');
-        // console.log(params);
 
         if (!params) { throw  new Error(eventType + ' parameters missing.'); }
 
@@ -859,6 +794,7 @@ export class TokenCard {
           const paramName = match[1];
           const paramValue = match[2];
           if (paramName in params) {
+            // value ${ownerAddress} comes from xml file
             params[paramName] = paramValue === '${ownerAddress}' ? this.ethersData.userAddress : paramValue;
           }
         }
@@ -868,46 +804,43 @@ export class TokenCard {
         for (const i in params){
           paramsArray.push(params[i]);
         }
-        this.debug && console.log('eventType');
-        this.debug && console.log(eventType);
+        (this.debug > 2) && console.log('eventType');
+        (this.debug > 2) && console.log(eventType);
 
-        this.debug && console.log('params');
-        this.debug && console.log(params);
+        (this.debug > 2) && console.log('params');
+        (this.debug > 2) && console.log(params);
 
-        // let abi = await getJSONAbi(ethContract);
-        const [error, abi ] = await to(getJSONAbi(ethContract, this.jsons, this.contractJsonPath, this.debug));
+        const [error, abi ] = await to(getJSONAbi(ethContract, this.jsons, this.contractJsonPath, this.debug, this.tokenName));
         if (error) { throw new Error(error); }
-        if (!abi) { throw new Error('Empty ABI for ' + ethContract); }
+        if (!abi) { throw new Error(`Empty ABI for ${ethContract}`); }
         this.jsons[ethContract] = abi;
 
         const contract = new ethers.Contract(contractAddress, abi, this.ethersData.provider);
 
         const filter = contract.filters[eventType].apply(null, paramsArray);
 
-        this.debug && console.log('filter');
-        this.debug && console.log(filter);
+        (this.debug > 2) && console.log('filter');
+        (this.debug > 2) && console.log(filter);
 
         if (returnHistory) {
           const [contractError, filterResult] = await to(contract.queryFilter(filter) );
 
-          if (contractError) { throw new Error('Error when try to request ' + eventType + ':  ' + contractError); }
+          if (contractError) { throw new Error(`Error when try to request ${eventType}: ${contractError}`); }
 
-          // let activityProps;
-          (this.debug  ) && console.log('filterResult for ' + eventType + ', where name=' + cardName + ' and type=' + cardType + ';');
-          (this.debug  ) && console.log(filterResult);
+          (this.debug > 1) && console.log(`filterResult for ${eventType}, where name=${cardName} and type=${cardType};`);
+          (this.debug > 1) && console.log(filterResult);
 
           if (filterResult && filterResult.length){
             filterResult.forEach(res => {
-              (this.debug > 2 ) && console.log('res.args');
-              (this.debug > 2 ) && console.log(JSON.stringify(res.args) );
-              (this.debug > 2 ) && console.log(JSON.stringify(props) );
               if (res && res.args){
                 const activityProps = filterResultConverter( res.args, props);
-                (this.debug > 2 ) && console.log('activityProps');
-                (this.debug > 2 ) && console.log(activityProps);
                 res.getTransaction().then((transaction) => {
-                  activityProps.nonce = transaction.nonce;
-                  this.render({props: activityProps, cardName, cardType, cardView, listener: 779});
+                  this.ethersData.provider.getBlock(res.blockNumber).then((block) => {
+                    activityProps.nonce = transaction.nonce;
+                    activityProps.timeStamp = block.timestamp;
+                    (this.debug > 2) && console.log(`render props: ${JSON.stringify(activityProps)}`);
+                    this.render({props: activityProps, cardName, cardType, cardView, listener$});
+                  });
                 });
               }
 
@@ -917,61 +850,32 @@ export class TokenCard {
 
         if (listenNewEvents) {
           contract.on(filter, (src, dst, sum, blockData) => {
-            // console.log('Listen Result for '+eventType+ ', where name=' + cardName +' and type='+ cardType + ';');
-            // console.log(src,dst,sum,blockData);
+            (this.debug > 2) && console.log(`Listen Result for ${eventType}, where name=${cardName} and type=${cardType};`);
+            (this.debug > 2) && console.log(src, dst, sum, blockData);
 
             const paramNames = [];
             abi.forEach(method => {
               if (method.name === eventType && method.type === 'event'){
                 if (method.inputs.length) { method.inputs.forEach(input => paramNames.push(input.name) ); }
               }
+
             });
-            // console.log('contract.on paramNames');
-            // console.log(paramNames);
-
-            // let tokenWrapNode = wrap.closest('.ts_tokenitem_wrap');
-            // const tokenWrapNode = wrap.closest('.ts_token_wrap');
-            //
-            // let tokenIframe = tokenWrapNode.querySelector('iframe');
-            // let doc = tokenIframe.contentWindow;
-            // let instance = tokenWrapNode.instance;
-            // console.log('vars:');
-            // console.log(tokenIframe);
-            // console.log(doc);
-            // console.log(instance);
-            // instance.getProps().then(res=>{
-            //     doc.web3.tokens.dataChanged(res);
-            // })
-
-            // this.runMainDataChanged(wrap);
-
             if (src && dst && sum){
               const args = {};
               // let paramNames = Object.keys(params);
               args[paramNames[0]] = src;
               args[paramNames[1]] = dst;
               args[paramNames[2]] = sum;
-              // console.log('contract.on args');
-              // console.log(args);
 
               const activityProps = filterResultConverter( args, props);
-              this.render({props: activityProps, cardName, cardType, cardView, listener: listener$});
-
-              // const togglerNode = tokenWrapNode.querySelector('.sidebar_toggle');
-              // const sidebarNode = tokenWrapNode.querySelector('.activity_cards');
-              // if (sidebarNode.classList.contains('opened')) { return; }
-              //
-              // togglerNode.classList.add('has_events');
-
+              activityProps.timeStamp = blockData.timestamp;
+              this.render({props: activityProps, cardName, cardType, cardView, listener$});
             }
           });
         }
-
-
-
       }
     } else {
-      this.render({props: this.props, cardName, cardType, cardView, listener: listener$ });
+      this.render({props: this.props, cardName, cardType, cardView, listener$ });
     }
   }
 
@@ -1032,24 +936,6 @@ export class TokenCard {
   }
 
 
-  /*
-  extract specific value from the result array
-   */
-  // extractresultValue(func, result, select, abi): number{
-  //   let out;
-  //   abi.forEach((item) => {
-  //     // console.log(item);
-  //     if (item.name === func) {
-  //       item.outputs.forEach((outputParam, index) => {
-  //         if (outputParam.name === select) {
-  //           // tsDebug && console.log('parameter found');
-  //           out = result[index].toNumber();
-  //         }
-  //       });
-  //     }
-  //   });
-  //   return out;
-  // }
   /*
   replace all "src" sub-strings with "dst"
    */
