@@ -9,6 +9,6 @@ export class TxQuery extends QueryEntity<TxModel> {
     super(store);
   }
 
-  lastPendingTx$ = this.selectLast((tx) => tx.status === 'pending');
+  pendingTxCount$ = this.selectCount((tx) => tx.status === 'pending');
   tx$ = this.selectAll();
 }

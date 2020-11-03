@@ -6,8 +6,8 @@ import { TxStore } from './tx.store';
 export class TxService {
   constructor(private store: TxStore) {}
 
-  add(txHash: string, network: string) {
-    this.store.add({ txHash, network, status: 'pending' });
+  add(txHash: string, activity: string, network: string) {
+    this.store.add({ txHash, activity, network, status: 'pending' });
   }
 
   txSucceeded(txHash: string) {
