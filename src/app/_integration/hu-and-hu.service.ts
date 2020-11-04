@@ -23,9 +23,6 @@ export class HuAndHuService {
    * @description Connects with a wallet
    */
   public connect(): Observable<Token> {
-    setTimeout(() => {
-      this.pool.getCard('', '', '', 1, 'bokky').subscribe(console.log);
-    }, 5000);
     return this.pool.negotiateToken();
   }
 
