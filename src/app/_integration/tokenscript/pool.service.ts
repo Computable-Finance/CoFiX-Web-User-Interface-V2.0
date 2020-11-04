@@ -97,7 +97,8 @@ export class PoolService {
       cardName?: string,
       transactionNonce?: number,
       returnType?: string,
-      cardType = 'activity'
+      cardType = 'activity',
+      cardView = 'item-view'
   ): Observable<any> {
       const replay$ = new ReplaySubject<TokenProps>();
       const outputObservable = replay$.asObservable().pipe(filter(x => transactionNonce === x.nonce));
@@ -105,11 +106,11 @@ export class PoolService {
           case 'ApprovedForLiquidityPool':
               this.token.renderCards({
                   listener$: replay$,
-                  tokenName: 'LiquidityPoolShare',
-                  tokenInstance: 'pair=0xdAC17F958D2ee523a2206206994597C13D831ec7',
-                  cardName: 'sent',
+                  tokenName,
+                  tokenInstance: instanceId,
+                  cardName,
                   cardType,
-                  cardView: 'item-view',
+                  cardView,
                   returnHistory: false,
                   listenNewEvents: true,
                   transactionNonce,
@@ -133,11 +134,11 @@ export class PoolService {
           case 'ApprovedForMiningPool':
               this.token.renderCards({
                   listener$: replay$,
-                  tokenName: 'MiningPoolShare',
-                  tokenInstance: 'pair=0xdAC17F958D2ee523a2206206994597C13D831ec7',
-                  cardName: 'sent',
+                  tokenName,
+                  tokenInstance: instanceId,
+                  cardName,
                   cardType,
-                  cardView: 'item-view',
+                  cardView,
                   returnHistory: false,
                   listenNewEvents: true,
                   transactionNonce,
@@ -161,11 +162,11 @@ export class PoolService {
           case 'DepositedForMiningPool':
               this.token.renderCards({
                   listener$: replay$,
-                  tokenName: 'MiningPoolShare',
-                  tokenInstance: 'pair=0xdAC17F958D2ee523a2206206994597C13D831ec7',
-                  cardName: 'sent',
+                  tokenName,
+                  tokenInstance: instanceId,
+                  cardName,
                   cardType,
-                  cardView: 'item-view',
+                  cardView,
                   returnHistory: false,
                   listenNewEvents: true,
                   transactionNonce,
@@ -189,11 +190,11 @@ export class PoolService {
           case 'WithdrewFromMiningPool':
               this.token.renderCards({
                   listener$: replay$,
-                  tokenName: 'MiningPoolShare',
-                  tokenInstance: 'pair=0xdAC17F958D2ee523a2206206994597C13D831ec7',
-                  cardName: 'sent',
+                  tokenName,
+                  tokenInstance: instanceId,
+                  cardName,
                   cardType,
-                  cardView: 'item-view',
+                  cardView,
                   returnHistory: false,
                   listenNewEvents: true,
                   transactionNonce,
@@ -217,11 +218,11 @@ export class PoolService {
           case 'WithdrewFromLiquidityPool':
               this.token.renderCards({
                   listener$: replay$,
-                  tokenName: 'MiningPoolShare',
-                  tokenInstance: 'pair=0xdAC17F958D2ee523a2206206994597C13D831ec7',
-                  cardName: 'sent',
+                  tokenName,
+                  tokenInstance: instanceId,
+                  cardName,
                   cardType,
-                  cardView: 'item-view',
+                  cardView,
                   returnHistory: false,
                   listenNewEvents: true,
                   transactionNonce,
