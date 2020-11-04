@@ -35,7 +35,7 @@ export class TsaService {
   // debug = 1 - show only common step notifies and errors
   // debug = 2 - show object's data values
   // debug = 3 - verbose logs
-  private debug = 3; // environment.debug;
+  private debug = 0; // environment.debug;
   private inited = false;
   private lang: string;
   private config = {
