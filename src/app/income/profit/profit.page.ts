@@ -23,7 +23,7 @@ export class IncomeProfitPage implements OnInit, OnDestroy {
   @Input() todoLabel: string;
   @Input() hadLabel: string;
   @Input() isApproved: boolean = false;
-  @Input() isLoading: boolean = false;
+  @Input() isLoading: any;
   @Output() onApprove = new EventEmitter<any>();
   @Output() onSave = new EventEmitter<any>();
   @Output() onRecieve = new EventEmitter<any>();

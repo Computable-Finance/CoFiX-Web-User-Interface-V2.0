@@ -81,7 +81,7 @@
     expand="block"
     class="operation-btn approve-btn full-btn"
     (click)="recieve()" id="receiveBtn"
-    [disabled]="isLoading.qc | !canReceive()"
+    [disabled]="isLoading.qc || !canReceive()"
   >
     <div class="ion-button-label">
       <div *ngIf="!isLoading.qc">{{buttonTitle | translate}}</div>
