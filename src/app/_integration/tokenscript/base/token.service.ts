@@ -25,7 +25,7 @@ declare global {
   providedIn: 'root',
 })
 
-export class TsaService {
+export class TokenService {
 
   private tokenGenerator$: BehaviorSubject<any>;
   private tokens = {};
@@ -125,7 +125,7 @@ export class TsaService {
         }
       }
       this.tokens[tokenName].working = false;
-      (this.debug > 2) && console.log('Tsa service tokens:');
+      this.debug > 2 && console.log('Token Service tokens:');
       (this.debug > 2) && console.log(this.tokens);
       this.returnTokens();
 

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { ApprovedForLiquidityPool, ApprovedForMiningPool, Token } from '../types';
-import { TsaService as TokenService } from './base/token.service';
+import { TokenService } from './base/token.service';
 import { TokenProps } from './base/types';
 
 @Injectable({
