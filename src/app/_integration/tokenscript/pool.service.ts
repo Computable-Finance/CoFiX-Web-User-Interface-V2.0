@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BigNumber } from 'ethers';
-import { Observable, of, ReplaySubject } from 'rxjs';
-import { delay, map, tap } from 'rxjs/operators';
+import { Observable, ReplaySubject } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+import { ApprovedForLiquidityPool, ApprovedForMiningPool, Token } from '../types';
 import { TsaService as TokenService } from './base/token.service';
-import { ApprovedForLiquidityPool, ApprovedForMiningPool, DepositedForMiningPool, WithdrewFromMiningPool, WithdrewFromLiquidityPool, Token } from '../types';
 import { TokenProps } from './base/types';
 
 @Injectable({
@@ -17,10 +16,10 @@ export class PoolService {
   public negotiateToken(): Observable<Token> {
     this.token.init();
     const files = [
-      // 'assets/tokens/LiquidityPoolShare.xml',
+      'assets/tokens/LiquidityPoolShare.xml',
       // 'assets/tokens/BOOKY.xml',
-      // 'assets/tokens/MiningPoolShare.xml',
-      // 'assets/tokens/CoFi.xml'
+      'assets/tokens/MiningPoolShare.xml',
+      'assets/tokens/CoFi.xml'
     ];
     for (const path of files) {
       this.token.negotiateTokenByPath(path);

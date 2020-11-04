@@ -3,13 +3,13 @@ import { Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { DB_VERSION } from './common/constants';
-
 import { ShareStateQuery } from './common/state/share.query';
 import { ShareStateService } from './common/state/share.service';
 import { CofiXService } from './service/cofix.service';
 import { MetadataQuery } from './state/metadata/metadata.query';
 import { MetadataService } from './state/metadata/metadata.service';
 import { HuAndHuService } from './_integration/hu-and-hu.service';
+
 
 type State = { lang: string };
 
@@ -47,8 +47,8 @@ export class AppComponent implements OnInit {
     @Inject('persistStorage') private persistStorage
   ) {
     this.initializeApp();
-
-    // huAndHuService.connect();
+    // uncomment below to run huAndHuService:
+    // this.huAndHuService.connect().subscribe(console.log);
   }
 
   initializeApp() {

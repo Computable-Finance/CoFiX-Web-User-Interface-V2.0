@@ -1,15 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import Web3 from 'web3';
-import { EthersData } from './types';
-import { Activity, LiquidityPoolShare, Token } from '../../types';
+import { Token } from '../../types';
 import {
   compareStringToProps, extendPropsWithContracts, getEthersData,
   getXMLItem, getXMLItemText, parseXMLFromText,
   to, TokenCard
 } from './lib';
-import { map } from 'rxjs/operators';
+import { EthersData } from './types';
 
 declare global {
   interface Window {
@@ -56,17 +55,8 @@ export class TsaService {
 
   public negotiateToken(): Observable<Token> {
     this.init();
-    this.tokenGenerator$ = new BehaviorSubject<any>(
-      {} as Token
-    );
+    this.tokenGenerator$ = new BehaviorSubject<any>({} as Token);
     return this.tokenGenerator$.asObservable();
-    
-    // // for debug:
-    // return this.tokenGenerator$.asObservable().pipe(
-    //     map(x => {
-    //       console.log(`tokens: ${JSON.stringify(x)}`);
-    //       return x;
-    //     } ) );
   }
 
   public negotiateTokenByContent(xmlContent: string): void {
@@ -226,11 +216,12 @@ export class TsaService {
   private async reInit(): Promise<any>{
     this.debug && console.log('network data changed. start reinit token instances...');
     this.ethersData = await getEthersData();
-
-    Object.keys(this.tokens).forEach(tokenName => {
-      this.tokens[tokenName].instances = {};
-      this.renderTokenInstances(tokenName).then(() => this.returnTokens());
-    });
+    if (this.tokens) {
+      Object.keys(this.tokens).forEach((tokenName) => {
+        this.tokens[tokenName].instances = {};
+        this.renderTokenInstances(tokenName).then(() => this.returnTokens());
+      });
+    }
   }
 
   setLang(lang: string): void {
