@@ -48,7 +48,7 @@ export class AppComponent implements OnInit {
   ) {
     this.initializeApp();
     // uncomment below to run huAndHuService:
-    // this.huAndHuService.connect().subscribe(console.log);
+    // this.huAndHuService.connect().subscribe();
   }
 
   initializeApp() {
