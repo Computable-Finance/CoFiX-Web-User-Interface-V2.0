@@ -32,13 +32,6 @@ export class TxListPage implements OnInit, OnDestroy {
           item.title = await this.translate.get(params.t, params.p).toPromise();
         });
       });
-    /*this.txQuery.selectAll().subscribe((res) => {
-      this.txList = res;
-      this.txList.forEach((item) => {
-        console.log(item);
-      });
-      console.log(this.txList);
-    });*/
   }
 
   close() {

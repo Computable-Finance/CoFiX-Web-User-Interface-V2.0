@@ -23,7 +23,9 @@ import { ProfitPage } from 'src/app/liquid/profit/profit.page';
 import { DirectivesModule } from '../directive/directives.module';
 import { TooltipModule } from '../directive/tooltip/tooltip.module';
 import { MenuPage } from './switch-lang/menu/menu.page';
-import { TxListPage } from './tx-List/tx-list.page';
+import { TxListPage } from './transaction/tx-List/tx-list.page';
+import { TxConfirmPage } from './transaction/tx-confirm/tx-confirm.page';
+import { TxStatusPage } from './transaction/tx-status/tx-status.page';
 
 @NgModule({
   imports: [
@@ -53,6 +55,8 @@ import { TxListPage } from './tx-List/tx-list.page';
     IncomeProfitPage,
     MenuPage,
     TxListPage,
+    TxConfirmPage,
+    TxStatusPage,
   ],
   exports: [
     FooterPage,
@@ -70,6 +74,8 @@ import { TxListPage } from './tx-List/tx-list.page';
     IncomeProfitPage,
     MenuPage,
     TxListPage,
+    TxConfirmPage,
+    TxStatusPage,
   ],
 })
 export class CommonComponentsModule {}

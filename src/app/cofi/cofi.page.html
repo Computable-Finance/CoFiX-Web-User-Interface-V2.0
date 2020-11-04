@@ -119,9 +119,9 @@
         expand="block"
         class="operation-btn full-btn"
         (click)="withdrawEarnedCoFi()"
-        [disabled]="!canReceive"
+        [disabled]="isLoading || !canReceive "
       >
-        {{'lq_text' | translate}}
+        <div *ngIf="!isLoading">{{'lq_text' | translate}}</div>
         <div class="loading" *ngIf="isLoading"></div>
       </ion-button>
     </div>

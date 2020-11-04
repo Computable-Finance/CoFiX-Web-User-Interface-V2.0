@@ -59,7 +59,7 @@
     (click)="approve()"
   >
     <div class="ion-button-label">
-      {{'sq_text' | translate}}
+      <div *ngIf="isLoading.sq">{{'sq_text' | translate}}</div>
       <div class="loading" *ngIf="isLoading.sq"></div>
     </div>
   </ion-button>
@@ -67,11 +67,11 @@
     expand="block"
     class="operation-btn"
     [ngClass]="{'swap-btn':!isApproved,'full-btn':isApproved}"
-    (click)="save()"
-    [disabled]="!canSave()"
+    (click)="save()" 
+    [disabled]="isLoading.cr || !canSave()"
   >
     <div class="ion-button-label">
-      {{'cr' | translate}}
+      <div *ngIf="!isLoading.cr">{{'cr' | translate}}</div>
       <div class="loading" *ngIf="isLoading.cr"></div>
     </div>
   </ion-button>
@@ -80,11 +80,11 @@
   <ion-button
     expand="block"
     class="operation-btn approve-btn full-btn"
-    (click)="recieve()"
-    [disabled]="!canReceive()"
+    (click)="recieve()" id="receiveBtn"
+    [disabled]="isLoading.qc | !canReceive()"
   >
     <div class="ion-button-label">
-      {{buttonTitle | translate}}
+      <div *ngIf="!isLoading.qc">{{buttonTitle | translate}}</div>
       <div class="loading" *ngIf="isLoading.qc"></div>
     </div>
   </ion-button>

@@ -87,10 +87,12 @@
       expand="block"
       class="operation-btn approve-btn"
       (click)="approve()"
+      [disabled]="isLoading.sq"
       *ngIf="canApprove()"
     >
       <div class="ion-button-label">
-        {{'sq_text' | translate}}
+        <div *ngIf="!isLoading.sq">
+          {{'sq_text' | translate}}</div>
         <div class="loading" *ngIf="isLoading.sq"></div>
       </div>
     </ion-button>
@@ -99,10 +101,10 @@
       class="operation-btn"
       (click)="confirmAddLiquid()"
       *ngIf="cofixService.getCurrentAccount()"
-      [disabled]="!canAdd()"
+      [disabled]="isLoading.cr || !canAdd()"
     >
       <div class="ion-button-label">
-        {{'add'| translate}}
+        <div *ngIf="!isLoading.cr">{{'add'| translate}}</div>
         <div class="loading" *ngIf="isLoading.cr"></div>
       </div>
     </ion-button>

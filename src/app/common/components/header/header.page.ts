@@ -3,7 +3,6 @@ import { ShareStateService } from '../../state/share.service';
 import { ShareStateQuery } from '../../state/share.query';
 import { EventBusService } from 'src/app/service/eventbus.service';
 import { Router } from '@angular/router';
-import { TxService } from 'src/app/state/tx/tx.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.page.html',
@@ -30,8 +29,7 @@ export class HeaderPage implements OnInit {
     public shareStateQuery: ShareStateQuery,
     private shareStateService: ShareStateService,
     private eventbusService: EventBusService,
-    private router: Router,
-    private txService: TxService
+    private router: Router
   ) {
     this.eventbusService.on('accountsChanged', (account) => {
       this.shareStateService.reset();

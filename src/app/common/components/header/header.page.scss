@@ -94,6 +94,9 @@ ion-title {
     width: unset !important;
     margin-left: 20px;
   }
+  .header-Wallet {
+    display: none !important;
+  }
 }
 @media only screen and (max-width: 320px) {
   .tabs {
@@ -130,6 +133,6 @@ ion-header {
 .logo_w {
   display: block;
 }
-.connectWallet {
+.header-Wallet {
   margin-right: 16px;
 }

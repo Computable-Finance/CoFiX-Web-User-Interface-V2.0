@@ -116,11 +116,11 @@ export class IncomePage implements OnInit {
       (await this.balanceTruncatePipe.transform(this.earnedETH)) !== '--';
     console.log(this.canReceive);
   }
-
   //领取ETH
   async receiveETH() {
     this.resetReceiveError();
-    this.isLoading = true;
+    this.waitingPopover = await this.utils.createTXConfirmModal();
+    await this.waitingPopover.present();
     const params = {
       t: 'tx_claimETH',
       p: { e: this.earnedETH },
@@ -131,12 +131,15 @@ export class IncomePage implements OnInit {
       .then((tx: any) => {
         console.log('tx.hash', tx.hash);
 
+        this.isLoading = true;
         this.txService.add(
           tx.hash,
           this.cofixService.getCurrentAccount(),
           JSON.stringify(params),
           this.cofixService.getCurrentNetwork()
         );
+        this.waitingPopover.dismiss();
+        this.utils.showTXSubmitModal(tx.hash);
         const provider = this.cofixService.getCurrentProvider();
         provider.once(tx.hash, (transactionReceipt) => {
           this.isLoading = false;
@@ -151,8 +154,13 @@ export class IncomePage implements OnInit {
       })
       .catch((error) => {
         console.log(error);
-        this.receiveError = { isError: true, msg: error.message };
         this.isLoading = false;
+        if (error.message.indexOf('User denied') > -1) {
+          this.waitingPopover.dismiss();
+          this.utils.showTXRejectModal();
+        } else {
+          this.receiveError = { isError: true, msg: error.message };
+        }
       });
   }
   resetReceiveError() {
@@ -184,11 +192,14 @@ export class IncomePage implements OnInit {
   }
 
   async saveCofi(event) {
-    this.isLoadingProfit.cr = true;
+    this.waitingPopover = await this.utils.createTXConfirmModal();
+    await this.waitingPopover.present();
     this.cofixService
       .depositCoFi(event.balance)
       .then((tx: any) => {
         console.log('tx.hash', tx.hash);
+
+        this.isLoadingProfit.cr = true;
         const params = {
           t: 'tx_depositCoFi',
           p: { d: event.balance },
@@ -199,6 +210,8 @@ export class IncomePage implements OnInit {
           JSON.stringify(params),
           this.cofixService.getCurrentNetwork()
         );
+        this.waitingPopover.dismiss();
+        this.utils.showTXSubmitModal(tx.hash);
         const provider = this.cofixService.getCurrentProvider();
         provider.once(tx.hash, (transactionReceipt) => {
           this.isLoadingProfit.cr = false;
@@ -215,18 +228,26 @@ export class IncomePage implements OnInit {
       })
       .catch((error) => {
         console.log(error);
-        this.incomeError = { isError: true, msg: error.message };
         this.isLoadingProfit.cr = false;
+        if (error.message.indexOf('User denied') > -1) {
+          this.waitingPopover.dismiss();
+          this.utils.showTXRejectModal();
+        } else {
+          this.incomeError = { isError: true, msg: error.message };
+        }
       });
   }
 
+  waitingPopover: any;
   async receiveCofi(event) {
-    this.isLoadingProfit.qc = true;
+    this.waitingPopover = await this.utils.createTXConfirmModal();
+    await this.waitingPopover.present();
     this.cofixService
       .withdrawDepositedCoFi(event.balance)
       .then((tx: any) => {
         console.log('tx.hash', tx.hash);
 
+        this.isLoadingProfit.qc = true;
         const params = {
           t: 'tx_withdrawCoFi',
           p: { w: event.balance },
@@ -237,6 +258,8 @@ export class IncomePage implements OnInit {
           JSON.stringify(params),
           this.cofixService.getCurrentNetwork()
         );
+        this.waitingPopover.dismiss();
+        this.utils.showTXSubmitModal(tx.hash);
         const provider = this.cofixService.getCurrentProvider();
         provider.once(tx.hash, (transactionReceipt) => {
           this.isLoadingProfit.qc = false;
@@ -253,8 +276,13 @@ export class IncomePage implements OnInit {
       })
       .catch((error) => {
         console.log(error);
-        this.incomeError = { isError: true, msg: error.message };
         this.isLoadingProfit.qc = false;
+        if (error.message.indexOf('User denied') > -1) {
+          this.waitingPopover.dismiss();
+          this.utils.showTXRejectModal();
+        } else {
+          this.incomeError = { isError: true, msg: error.message };
+        }
       });
   }
 

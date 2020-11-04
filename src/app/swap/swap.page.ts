@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { BannerContent } from '../common/components/banner/banner.page';
 import { ShareStateQuery } from '../common/state/share.query';
 import { CofiXService } from '../service/cofix.service';
@@ -6,10 +6,7 @@ import { Utils } from 'src/app/common/utils';
 import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
 import { CoinInputPage } from '../common/components/coin-input/coin-input.page';
 import { BigNumber } from 'ethers';
-import { TxQuery } from '../state/tx/tx.query';
-import { Subscription } from 'rxjs';
 import { TxService } from '../state/tx/tx.service';
-import { TranslateService } from '@ngx-translate/core';
 const BNJS = require('bignumber.js');
 export interface CoinContent {
   id: string;
@@ -63,6 +60,8 @@ export class SwapPage implements OnInit {
   swapError = { isError: false, msg: '' };
   isShowDetail = false;
   minimum: any;
+
+  waitingPopover: any;
   constructor(
     public cofixService: CofiXService,
     public shareStateQuery: ShareStateQuery,
@@ -325,9 +324,12 @@ export class SwapPage implements OnInit {
       this.expectedCofi = executionPriceAndExpectedCofi.expectedCofi;
     }
   }
-
   async approve() {
     this.resetSwapError();
+
+    this.waitingPopover = await this.utils.createTXConfirmModal();
+    await this.waitingPopover.present();
+
     if (!this.fromCoin.isApproved) {
       await this.utils.approveHandler(
         this.isLoading,
@@ -337,13 +339,46 @@ export class SwapPage implements OnInit {
         this.cofixService.getCurrentContractAddressList().CofixRouter,
         this.fromCoin.id
       );
-      console.log(this.swapError);
+    }
+  }
+
+  private afterTXSubmitted(txHash, params) {
+    this.waitingPopover.dismiss();
+    this.isLoading.dh = true;
+    this.txService.add(
+      txHash,
+      this.cofixService.getCurrentAccount(),
+      JSON.stringify(params),
+      this.cofixService.getCurrentNetwork()
+    );
+
+    this.utils.showTXSubmitModal(txHash);
+  }
+
+  private afterTxSucceeded(txHash) {
+    console.log('afterTxSucceeded ==');
+    this.isLoading.dh = false;
+    this.resetAmount();
+    this.initCoinContent();
+    this.getIsApproved();
+    this.txService.txSucceeded(txHash);
+  }
+
+  private catchTXError(error) {
+    if (error.message.indexOf('User denied') > -1) {
+      this.waitingPopover.dismiss();
+      this.utils.showTXRejectModal();
+    } else {
+      this.swapError = { isError: true, msg: error.message };
+      this.isLoading.dh = false;
     }
   }
 
   async swap() {
     this.resetSwapError();
-    this.isLoading.dh = true;
+
+    this.waitingPopover = await this.utils.createTXConfirmModal();
+    await this.waitingPopover.present();
     let params = {
       t: 'tx_swapped',
       p: {
@@ -363,34 +398,21 @@ export class SwapPage implements OnInit {
         )
         .then(async (tx: any) => {
           console.log('tx.hash', tx.hash);
-
-          this.txService.add(
-            tx.hash,
-            this.cofixService.getCurrentAccount(),
-            JSON.stringify(params),
-            this.cofixService.getCurrentNetwork()
-          );
+          this.afterTXSubmitted(tx.hash, params);
 
           const provider = this.cofixService.getCurrentProvider();
-
           provider.once(tx.hash, (transactionReceipt) => {
-            console.log('success====', tx.hash);
-            this.isLoading.dh = false;
-            this.resetAmount();
-            this.initCoinContent();
-            this.getIsApproved();
-            this.txService.txSucceeded(tx.hash);
+            this.afterTxSucceeded(tx.hash);
           });
           provider.once('error', (error) => {
             console.log('provider.error==', error);
-            this.isLoading.dh = false;
             this.txService.txFailed(tx.hash);
+            this.catchTXError(error);
           });
         })
         .catch((error) => {
           console.log('catch error==', error);
-          this.swapError = { isError: true, msg: error.message };
-          this.isLoading.dh = false;
+          this.catchTXError(error);
         });
     } else {
       if (this.toCoin.id === 'ETH') {
@@ -407,31 +429,21 @@ export class SwapPage implements OnInit {
           )
           .then((tx: any) => {
             console.log('tx.hash', tx.hash);
-            this.txService.add(
-              tx.hash,
-              this.cofixService.getCurrentAccount(),
-              JSON.stringify(params),
-              this.cofixService.getCurrentNetwork()
-            );
+
+            this.afterTXSubmitted(tx.hash, params);
             const provider = this.cofixService.getCurrentProvider();
             provider.once(tx.hash, (transactionReceipt) => {
-              this.isLoading.dh = false;
-              this.resetAmount();
-              this.initCoinContent();
-              this.getIsApproved();
-              this.txService.txSucceeded(tx.hash);
+              this.afterTxSucceeded(tx.hash);
             });
             provider.once('error', (error) => {
               console.log('provider.once==', error);
-              this.isLoading.dh = false;
               this.txService.txFailed(tx.hash);
+              this.catchTXError(error);
             });
           })
           .catch((error) => {
             console.log('catch error==', error);
-            this.swapError = { isError: true, msg: error.message };
-
-            this.isLoading.dh = false;
+            this.catchTXError(error);
           });
       } else {
         const amountOut = await this.cofixService.executionPriceAndExpectedCofi(
@@ -454,31 +466,21 @@ export class SwapPage implements OnInit {
           )
           .then((tx: any) => {
             console.log('tx.hash', tx.hash);
-            this.txService.add(
-              tx.hash,
-              this.cofixService.getCurrentAccount(),
-              JSON.stringify(params),
-              this.cofixService.getCurrentNetwork()
-            );
+
+            this.afterTXSubmitted(tx.hash, params);
             const provider = this.cofixService.getCurrentProvider();
             provider.once(tx.hash, (transactionReceipt) => {
-              this.isLoading.dh = false;
-              this.resetAmount();
-              this.initCoinContent();
-              this.getIsApproved();
-              this.txService.txSucceeded(tx.hash);
+              this.afterTxSucceeded(tx.hash);
             });
             provider.once('error', (error) => {
               console.log('provider.once==', error);
-              this.isLoading.dh = false;
               this.txService.txFailed(tx.hash);
+              this.catchTXError(error);
             });
           })
           .catch((error) => {
             console.log('catch error==', error);
-            this.swapError = { isError: true, msg: error.message };
-
-            this.isLoading.dh = false;
+            this.catchTXError(error);
           });
       }
     }

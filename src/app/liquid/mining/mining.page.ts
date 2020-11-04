@@ -48,6 +48,7 @@ export class TokenMiningPage implements OnInit, OnDestroy {
     title: '',
     subtitle: '',
   };
+  waitingPopover: any;
   constructor(
     private cofixService: CofiXService,
     private balanceTruncatePipe: BalanceTruncatePipe,
@@ -146,6 +147,8 @@ export class TokenMiningPage implements OnInit, OnDestroy {
 
   async approveCofi(event) {
     if (!this.isApproved) {
+      this.waitingPopover = await this.utils.createTXConfirmModal();
+      await this.waitingPopover.present();
       this.utils.approveHandler(
         this.isLoadingProfit,
         this.cofiError,
@@ -158,7 +161,8 @@ export class TokenMiningPage implements OnInit, OnDestroy {
   }
 
   async saveCofi(event) {
-    this.isLoadingProfit.cr = true;
+    this.waitingPopover = await this.utils.createTXConfirmModal();
+    await this.waitingPopover.present();
     this.cofixService
       .depositXToken(
         await this.cofixService.getStakingPoolAddressByToken(this.coinAddress),
@@ -167,6 +171,8 @@ export class TokenMiningPage implements OnInit, OnDestroy {
       )
       .then((tx: any) => {
         console.log('tx.hash', tx.hash);
+
+        this.isLoadingProfit.cr = true;
         const params = {
           t: 'tx_depositMining',
           p: {
@@ -180,6 +186,8 @@ export class TokenMiningPage implements OnInit, OnDestroy {
           JSON.stringify(params),
           this.cofixService.getCurrentNetwork()
         );
+        this.waitingPopover.dismiss();
+        this.utils.showTXSubmitModal(tx.hash);
         const provider = this.cofixService.getCurrentProvider();
         provider.once(tx.hash, (transactionReceipt) => {
           this.isLoadingProfit.cr = false;
@@ -196,19 +204,26 @@ export class TokenMiningPage implements OnInit, OnDestroy {
       .catch((error) => {
         console.log('catch==', error);
         console.log(error.code);
-        this.cofiError = { isError: true, msg: error.message };
         this.isLoadingProfit.cr = false;
+        if (error.message.indexOf('User denied') > -1) {
+          this.waitingPopover.dismiss();
+          this.utils.showTXRejectModal();
+        } else {
+          this.cofiError = { isError: true, msg: error.message };
+        }
       });
   }
 
   async receiveCofi(event) {
-    this.isLoadingProfit.qc = true;
+    this.waitingPopover = await this.utils.createTXConfirmModal();
+    await this.waitingPopover.present();
     this.cofixService
       .withdrawDepositedXToken(
         await this.cofixService.getStakingPoolAddressByToken(this.coinAddress),
         event.balance
       )
       .then((tx: any) => {
+        this.isLoadingProfit.qc = true;
         const params = {
           t: 'tx_widthdrawMining',
           p: {
@@ -224,6 +239,8 @@ export class TokenMiningPage implements OnInit, OnDestroy {
         );
 
         console.log('tx.hash', tx.hash);
+        this.waitingPopover.dismiss();
+        this.utils.showTXSubmitModal(tx.hash);
         const provider = this.cofixService.getCurrentProvider();
         provider.once(tx.hash, (transactionReceipt) => {
           this.isLoadingProfit.qc = false;
@@ -239,8 +256,13 @@ export class TokenMiningPage implements OnInit, OnDestroy {
       })
       .catch((error) => {
         console.log(error);
-        this.cofiError = { isError: true, msg: error.message };
         this.isLoadingProfit.qc = false;
+        if (error.message.indexOf('User denied') > -1) {
+          this.waitingPopover.dismiss();
+          this.utils.showTXRejectModal();
+        } else {
+          this.cofiError = { isError: true, msg: error.message };
+        }
       });
   }
   isDeposit: boolean = false;

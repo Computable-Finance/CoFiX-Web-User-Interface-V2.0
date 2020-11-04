@@ -10,7 +10,7 @@
         ></app-card-title>
 
         <app-taken-info
-          [infoTitle]="'klq'"
+          [infoTitle]="'income_token_title'"
           [token]="profitCoin"
           [tokenBalance]="cofiStakingRewards"
           [alertContent]="'dividend_tooltips_deposit'"
@@ -190,11 +190,11 @@
         <ion-button
           expand="block"
           class="operation-btn full-btn"
-          [disabled]="!canReceive"
-          (click)="receiveETH()"
+          [disabled]="isLoading || !canReceive"
+          (click)="receiveETH()" id="receiveBtn"
         >
           <div class="ion-button-label">
-            {{'lq_text' | translate}}
+            <div *ngIf="!isLoading">{{'lq_text' | translate}}</div>
             <div class="loading" *ngIf="isLoading"></div>
           </div>
         </ion-button>

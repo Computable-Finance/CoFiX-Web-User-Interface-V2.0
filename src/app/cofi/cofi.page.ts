@@ -4,6 +4,7 @@ import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
 import { ShareStateQuery } from '../common/state/share.query';
 import { ShareStateService } from '../common/state/share.service';
 import { ShareState } from '../common/state/share.store';
+import { Utils } from '../common/utils';
 import { CofiXService } from '../service/cofix.service';
 import { TxService } from '../state/tx/tx.service';
 
@@ -37,12 +38,14 @@ export class CofiPage implements OnInit {
   withdrawError = { isError: false, msg: '' };
   isDeposit: boolean = false;
   currentCoFiPrice = '--';
+  waitingPopover: any;
   constructor(
     public cofixService: CofiXService,
     private balanceTruncatePipe: BalanceTruncatePipe,
     private shareStateService: ShareStateService,
     public shareStateQuery: ShareStateQuery,
-    private txService: TxService
+    private txService: TxService,
+    private utils: Utils
   ) {}
 
   async ngOnInit() {
@@ -75,9 +78,13 @@ export class CofiPage implements OnInit {
       this.earnedRate = await this.cofixService.earnedCofiAndRewardRate(
         this.coinAddress
       );
-      this.canReceive =
-        (await this.balanceTruncatePipe.transform(this.earnedRate.earned)) !==
-        '--';
+      const cofiBalance = await this.balanceTruncatePipe.transform(
+        this.earnedRate.earned
+      );
+      console.log(
+        await this.balanceTruncatePipe.transform(this.earnedRate.earned)
+      );
+      this.canReceive = cofiBalance !== '--' && cofiBalance !== '0';
 
       this.hadValue = await this.balanceTruncatePipe.transform(
         await this.cofixService.getERC20Balance(
@@ -86,7 +93,6 @@ export class CofiPage implements OnInit {
       );
     }
   }
-
   changeCoin(event) {
     this.coin = event.coin;
     this.todoValue = '';
@@ -102,12 +108,14 @@ export class CofiPage implements OnInit {
     if (
       await this.cofixService.getStakingPoolAddressByToken(this.coinAddress)
     ) {
-      this.isLoading = true;
+      this.waitingPopover = await this.utils.createTXConfirmModal();
+      await this.waitingPopover.present();
       this.cofixService
         .withdrawEarnedCoFi(
           await this.cofixService.getStakingPoolAddressByToken(this.coinAddress)
         )
         .then((tx: any) => {
+          this.isLoading = true;
           const params = {
             t: 'tx_claimCoFi',
             p: { w: this.earnedRate?.earned },
@@ -118,6 +126,8 @@ export class CofiPage implements OnInit {
             JSON.stringify(params),
             this.cofixService.getCurrentNetwork()
           );
+          this.waitingPopover.dismiss();
+          this.utils.showTXSubmitModal(tx.hash);
           const provider = this.cofixService.getCurrentProvider();
           provider.once(tx.hash, (transactionReceipt) => {
             this.isLoading = false;
@@ -132,8 +142,13 @@ export class CofiPage implements OnInit {
           });
         })
         .catch((error) => {
-          this.withdrawError = { isError: true, msg: error.message };
           this.isLoading = false;
+          if (error.message.indexOf('User denied') > -1) {
+            this.waitingPopover.dismiss();
+            this.utils.showTXRejectModal();
+          } else {
+            this.withdrawError = { isError: true, msg: error.message };
+          }
         });
     }
   }

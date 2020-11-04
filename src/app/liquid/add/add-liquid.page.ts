@@ -66,6 +66,7 @@ export class AddLiquidPage implements OnInit, OnDestroy {
   isShowFromMax = false;
   isShowToMax = false;
   cardTitle = { title: 'liquidpool_add', subtitle: 'liquidpool_add_subtitle' };
+  waitingPopover: any;
   private resizeSubscription: Subscription;
   constructor(
     public cofixService: CofiXService,
@@ -204,7 +205,8 @@ export class AddLiquidPage implements OnInit, OnDestroy {
     if (!this.fromCoin.amount && !this.toCoin.amount) {
       return false;
     }
-    this.isLoading.cr = true;
+    this.waitingPopover = await this.utils.createTXConfirmModal();
+    await this.waitingPopover.present();
     await this.cofixService
       .addLiquidity(
         this.toCoin.address,
@@ -220,6 +222,8 @@ export class AddLiquidPage implements OnInit, OnDestroy {
       )
       .then((tx: any) => {
         console.log('tx.hash', tx.hash);
+
+        this.isLoading.cr = true;
         const params = {
           t: 'tx_addLiquid',
           p: {
@@ -241,15 +245,17 @@ export class AddLiquidPage implements OnInit, OnDestroy {
           JSON.stringify(params),
           this.cofixService.getCurrentNetwork()
         );
+        this.waitingPopover.dismiss();
+        this.utils.showTXSubmitModal(tx.hash);
         const provider = this.cofixService.getCurrentProvider();
         provider.once(tx.hash, (transactionReceipt) => {
           this.isLoading.cr = false;
+          this.txService.txSucceeded(tx.hash);
           this.onClose.emit({
             type: 'add',
             fromCoin: this.fromCoin,
             toCoin: this.toCoin,
           });
-          this.txService.txSucceeded(tx.hash);
         });
         provider.once('error', (error) => {
           console.log('provider.once==', error);
@@ -259,10 +265,13 @@ export class AddLiquidPage implements OnInit, OnDestroy {
       })
       .catch((error) => {
         console.log(error);
-
-        this.addLiquidError = { isError: true, msg: error.message };
-
         this.isLoading.cr = false;
+        if (error.message.indexOf('User denied') > -1) {
+          this.waitingPopover.dismiss();
+          this.utils.showTXRejectModal();
+        } else {
+          this.addLiquidError = { isError: true, msg: error.message };
+        }
       });
   }
 
@@ -271,6 +280,8 @@ export class AddLiquidPage implements OnInit, OnDestroy {
   }
   async approve() {
     this.resetLiquidError();
+    this.waitingPopover = await this.utils.createTXConfirmModal();
+    await this.waitingPopover.present();
     if (!this.toCoin.isApproved) {
       this.utils.approveHandler(
         this.isLoading,

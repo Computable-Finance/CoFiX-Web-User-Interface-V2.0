@@ -63,6 +63,7 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
     title: 'liquidpool_withdraw_title',
     subtitle: 'liquidpool_withdraw_subtitle',
   };
+  waitingPopover: any;
   private resizeSubscription: Subscription;
   constructor(
     public cofixService: CofiXService,
@@ -159,13 +160,6 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
       this.toCoin.address = this.cofixService.getCurrentContractAddressList()[
         this.toCoin.id
       ];
-      console.log(this.toCoin);
-      console.log(
-        await this.cofixService.getStakingPoolAddressByToken(
-          this.toCoin.address
-        )
-      );
-      await this.cofixService.getStakingPoolAddressByToken(this.toCoin.address);
       this.todoValue = await this.balanceTruncatePipe.transform(
         await this.cofixService.getERC20Balance(
           await this.cofixService.getPairAddressByToken(this.toCoin.address)
@@ -236,9 +230,16 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
     const pair = await this.cofixService.getPairAddressByToken(
       this.toCoin.address
     );
-    this.isLoading.sh = true;
-    let ethAmount;
 
+    let ethAmount;
+    const params = {
+      t: 'tx_withdrawLiquid',
+      p: {
+        w: this.toCoin.amount,
+      },
+    };
+    this.waitingPopover = await this.utils.createTXConfirmModal();
+    await this.waitingPopover.present();
     if (this.isETHChecked) {
       ethAmount = this.ETHAmountForRemoveLiquidity;
       this.cofixService
@@ -251,12 +252,8 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
         )
         .then((tx: any) => {
           console.log('tx.hash', tx.hash);
-          const params = {
-            t: 'tx_withdrawLiquid',
-            p: {
-              w: this.toCoin.amount,
-            },
-          };
+          this.isLoading.sh = true;
+
           console.log(params);
           this.txService.add(
             tx.hash,
@@ -264,6 +261,8 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
             JSON.stringify(params),
             this.cofixService.getCurrentNetwork()
           );
+          this.waitingPopover.dismiss();
+          this.utils.showTXSubmitModal(tx.hash);
           const provider = this.cofixService.getCurrentProvider();
           provider.once(tx.hash, (transactionReceipt) => {
             this.isLoading.sh = false;
@@ -287,8 +286,14 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
         })
         .catch((error) => {
           console.log(error);
-          this.redeemError = { isError: true, msg: error.message };
+
           this.isLoading.sh = false;
+          if (error.message.indexOf('User denied') > -1) {
+            this.waitingPopover.dismiss();
+            this.utils.showTXRejectModal();
+          } else {
+            this.redeemError = { isError: true, msg: error.message };
+          }
         });
     }
     if (this.isTokenChecked) {
@@ -303,6 +308,14 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
         )
         .then((tx: any) => {
           console.log('tx.hash', tx.hash);
+          this.txService.add(
+            tx.hash,
+            this.cofixService.getCurrentAccount(),
+            JSON.stringify(params),
+            this.cofixService.getCurrentNetwork()
+          );
+          this.waitingPopover.dismiss();
+          this.utils.showTXSubmitModal(tx.hash);
           const provider = this.cofixService.getCurrentProvider();
           provider.once(tx.hash, (transactionReceipt) => {
             this.isLoading.sh = false;
@@ -326,8 +339,13 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
         })
         .catch((error) => {
           console.log(error);
-          this.redeemError = { isError: true, msg: error.message };
           this.isLoading.sh = false;
+          if (error.message.indexOf('User denied') > -1) {
+            this.waitingPopover.dismiss();
+            this.utils.showTXRejectModal();
+          } else {
+            this.redeemError = { isError: true, msg: error.message };
+          }
         });
     }
   }
@@ -336,6 +354,9 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
   }
   async approve() {
     this.resetRedeemError();
+    this.waitingPopover = await this.utils.createTXConfirmModal();
+    await this.waitingPopover.present();
+
     if (!this.toCoin.isApproved) {
       this.utils.approveHandler(
         this.isLoading,

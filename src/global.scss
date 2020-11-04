@@ -305,19 +305,20 @@ ion-button {
   width: 25px;
   height: 25px;
   background: transparent;
-  position: absolute;
-  top: 10px;
-  right: 5px;
   z-index: 9999;
   border-radius: 50%;
   animation: loadingmove 1.2s linear infinite;
   -webkit-animation: loadingmove 1.2s linear infinite;
 }
 .loading {
+  margin-top: 3px;
   border: 3px solid white;
   border-bottom: 3px solid transparent;
 }
 .loading-connect {
+  position: absolute;
+  top: 10px;
+  right: 5px;
   border: 3px solid var(--ion-color-primary);
   border-bottom: 3px solid transparent;
 }
@@ -346,12 +347,8 @@ ion-button {
   .card-title {
     width: 90% !important;
   }
-  .loading,
-  .loading-connect {
-    /*position: relative;
-    top: unset;
-    right: unset;*/
 
+  .loading-connect {
     position: absolute;
     top: 10px;
     right: 5px;
@@ -498,6 +495,23 @@ ion-toggle {
 .tooltips-class .popover-content .content p {
   margin-block-start: 0em !important;
   margin-block-end: 0em !important;
+}
+
+.txconfirm-class .popover-content,
+.txstatus-class .popover-content {
+  width: 360px;
+  height: 257px;
+  border-radius: 16px;
+  box-shadow: 0 11px 19px 0 rgba(0, 0, 0, 0.08);
+  background-color: var(--white);
+}
+
+.txconfirm-class .popover-content {
+  height: 257px;
+}
+
+.txstatus-class .popover-content {
+  height: 323px;
 }
 
 .banner-content .detail-content .desc {

@@ -40,6 +40,7 @@
   "title_liquid": "资金池",
   "title_income": "分红",
   "title_cofi": "Claim CoFi",
+  "title_cofi_short": "CoFi",
   "address": "合约地址:",
   "zf_text": "支付",
   "zf_input": "输入支付数量",
@@ -258,5 +259,12 @@
   "tx_withdrawCoFi":"Withdrawed {{w}} CoFi",
   "tx_depositMining":"Deposited {{d}} CoFi",
   "tx_widthdrawMining":"Withdraw {{w}} CoFi",
-  "no_transactions":"暂无交易"
+  "no_transactions":"暂无交易",
+  "tx_waiting":"Waiting For Confirmation",
+  "tx_waiting_desc":"Confirm the transaction in your Wallet",
+  "tx_rejected":"Transaction Rejected",
+  "tx_rejected_desc":"You failed confirming the transaction",
+  "btn_close":"关闭",
+  "tx_submitted":"Transaction Submitted",
+  "tx_submitted_desc":"View in Etherscan"
 }

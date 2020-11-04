@@ -4,7 +4,6 @@ import { Platform } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { DB_VERSION } from './common/constants';
 import { ShareStateQuery } from './common/state/share.query';
-import { ShareStateService } from './common/state/share.service';
 import { CofiXService } from './service/cofix.service';
 import { MetadataQuery } from './state/metadata/metadata.query';
 import { MetadataService } from './state/metadata/metadata.service';
@@ -39,7 +38,6 @@ export class AppComponent implements OnInit {
     private translate: TranslateService,
     public shareStateQuery: ShareStateQuery,
     private cofixService: CofiXService,
-    private shareStateService: ShareStateService,
     private router: Router,
     private metadataQuery: MetadataQuery,
     private metadataService: MetadataService,

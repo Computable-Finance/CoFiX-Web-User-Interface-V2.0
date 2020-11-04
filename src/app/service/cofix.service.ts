@@ -91,6 +91,7 @@ export class CofiXService {
   }
 
   private async setup(isEnabled: boolean) {
+    console.log('setup');
     if (window.ethereum === undefined) {
       throw new Error('Non-Ethereum browser detected. Install MetaMask.');
     }

@@ -201,14 +201,13 @@
       <ng-container>
         <div class="button-div">
           <ion-button
-            *ngIf="isShowApprove()"
-            expand="block"
+            expand="block" *ngIf="isShowApprove()"
             class="operation-btn approve-btn"
-            (click)="approve()"
-            [disabled]="!cofixService.getCurrentAccount()"
+            (click)="approve()" id="approveBtn"
+            [disabled]="isLoading.sq || !cofixService.getCurrentAccount() "
           >
             <div class="ion-button-label">
-              {{'sq_text' | translate}}
+              <div *ngIf="!isLoading.sq">{{'sq_text' | translate}}</div>
               <div class="loading" *ngIf="isLoading.sq"></div>
             </div>
           </ion-button>
@@ -217,10 +216,10 @@
             class="operation-btn"
             [ngClass]="{'swap-btn':fromCoin.id !== 'ETH' && !fromCoin.isApproved,'full-btn':fromCoin.id === 'ETH' || (fromCoin.id !== 'ETH' && fromCoin.isApproved)}"
             (click)="swap()"
-            [disabled]="!canSwap()"
+            [disabled]="isLoading.dh || !canSwap() "
           >
             <div class="ion-button-label">
-              {{'swap_btn' | translate}}
+              <div *ngIf="!isLoading.dh">{{'swap_btn' | translate}}</div>
               <div class="loading" *ngIf="isLoading.dh"></div>
             </div>
           </ion-button>

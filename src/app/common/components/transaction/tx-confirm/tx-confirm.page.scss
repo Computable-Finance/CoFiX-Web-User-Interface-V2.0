@@ -1,0 +1,73 @@
+.title {
+  height: 41px;
+  font-size: 24px;
+  margin: 15px 0;
+}
+.title ion-col {
+  font-size: 24px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.71;
+  letter-spacing: normal;
+  text-align: center;
+  color: var(--black);
+}
+.close-img {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  position: unset;
+}
+.img-div:hover {
+  background-color: var(--porcelain);
+  border-radius: 50%;
+}
+.img-div {
+  width: 32px;
+  height: 32px;
+}
+.account-info {
+  padding-bottom: 15px;
+  .label {
+    font-size: 15px;
+    margin: 10px 0;
+    height: 24px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.67;
+    letter-spacing: normal;
+    color: var(--dove);
+  }
+}
+
+.tx-pending {
+  width: 80px;
+  height: 80px;
+  background: transparent;
+  border-radius: 50%;
+  animation: loadingmove 1.2s linear infinite;
+  -webkit-animation: loadingmove 1.2s linear infinite;
+  border: 3px solid var(--ion-color-secondary);
+  border-bottom: 3px solid transparent;
+  margin: 0 auto;
+}
+.tx-title {
+  font-size: 24px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: var(--black);
+}
+.tx-desc {
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: var(--mine);
+}

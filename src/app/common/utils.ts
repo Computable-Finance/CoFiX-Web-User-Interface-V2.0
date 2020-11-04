@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { ToastController } from '@ionic/angular';
+import { PopoverController, ToastController } from '@ionic/angular';
 import { PermissionsService } from 'src/app/state/permission/permission.service';
 
 import { CofiXService } from '../service/cofix.service';
 import { TxService } from '../state/tx/tx.service';
+import { TxConfirmPage } from './components/transaction/tx-confirm/tx-confirm.page';
+import { TxStatusPage } from './components/transaction/tx-status/tx-status.page';
 import { BalanceTruncatePipe } from './pipes/balance.pipe';
 import { ShareStateService } from './state/share.service';
 
@@ -17,7 +19,8 @@ export class Utils {
     private cofixService: CofiXService,
     public toastController: ToastController,
     private permissionService: PermissionsService,
-    private txService: TxService
+    private txService: TxService,
+    private popoverController: PopoverController
   ) {}
 
   async getBalanceByCoin(coin) {
@@ -75,11 +78,11 @@ export class Utils {
     spender: string,
     approveInfo: string
   ) {
-    loadingComponent.sq = true;
     console.log(approveInfo);
     await this.cofixService
       .approve(token, spender)
       .then((tx: any) => {
+        loadingComponent.sq = true;
         const params = { t: 'tx_approve', p: { a: approveInfo } };
         this.txService.add(
           tx.hash,
@@ -87,6 +90,8 @@ export class Utils {
           JSON.stringify(params),
           this.cofixService.getCurrentNetwork()
         );
+        component.waitingPopover.dismiss();
+        this.showTXSubmitModal(tx.hash);
         const provider = this.cofixService.getCurrentProvider();
         provider.once(tx.hash, (transactionReceipt) => {
           loadingComponent.sq = false;
@@ -97,6 +102,7 @@ export class Utils {
             spender
           );
           this.txService.txSucceeded(tx.hash);
+          component.approveBtn.disabled = false;
         });
         provider.once('error', (error) => {
           console.log('provider.once==', error);
@@ -106,8 +112,48 @@ export class Utils {
       })
       .catch((error) => {
         console.log(error);
-        errorComponent = { isError: true, msg: error.message };
-        loadingComponent.sq = false;
+        if (error.message.indexOf('User denied') > -1) {
+          component.waitingPopover.dismiss();
+          this.showTXRejectModal();
+        } else {
+          errorComponent = { isError: true, msg: error.message };
+          loadingComponent.dh = false;
+        }
       });
+  }
+
+  async showTXRejectModal() {
+    const rejected = await this.popoverController.create({
+      component: TxStatusPage,
+      cssClass: 'txstatus-class',
+      keyboardClose: false,
+      showBackdrop: true,
+      backdropDismiss: false,
+    });
+    await rejected.present();
+  }
+  async showTXSubmitModal(txHash) {
+    const rejected = await this.popoverController.create({
+      component: TxStatusPage,
+      componentProps: {
+        txHash: txHash,
+        network: this.cofixService.getCurrentNetwork(),
+      },
+      cssClass: 'txstatus-class',
+      keyboardClose: false,
+      showBackdrop: true,
+      backdropDismiss: false,
+    });
+    await rejected.present();
+  }
+
+  async createTXConfirmModal() {
+    return await this.popoverController.create({
+      component: TxConfirmPage,
+      cssClass: 'txconfirm-class',
+      keyboardClose: false,
+      showBackdrop: true,
+      backdropDismiss: false,
+    });
   }
 }

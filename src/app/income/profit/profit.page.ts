@@ -5,6 +5,7 @@ import {
   OnDestroy,
   OnInit,
   Output,
+  Renderer2,
   ViewChild,
 } from '@angular/core';
 import { Subscription, fromEvent } from 'rxjs';
@@ -22,7 +23,7 @@ export class IncomeProfitPage implements OnInit, OnDestroy {
   @Input() todoLabel: string;
   @Input() hadLabel: string;
   @Input() isApproved: boolean = false;
-  @Input() isLoading: any;
+  @Input() isLoading: boolean = false;
   @Output() onApprove = new EventEmitter<any>();
   @Output() onSave = new EventEmitter<any>();
   @Output() onRecieve = new EventEmitter<any>();
@@ -59,13 +60,13 @@ export class IncomeProfitPage implements OnInit, OnDestroy {
   set hadValue(value: string) {
     this._hadValue = value;
   }
-  @Input() isDeposit = true;
+  @Input() isDeposit: boolean;
   showSelect = false;
   showError = false;
   shoWErrorLabel = '';
   buttonTitle = 'qc';
   private resizeSubscription: Subscription;
-  constructor() {}
+  constructor(private rd: Renderer2) {}
 
   ngOnInit() {
     this.changeButtonTitle();

@@ -40,6 +40,7 @@
   "title_liquid": "Pool",
   "title_income": "Dividend",
   "title_cofi": "Claim CoFi",
+  "title_cofi_short": "CoFi",
   "address": "Contract address:",
   "zf_text": "FROM",
   "zf_input": "Enter amount",
@@ -256,5 +257,12 @@
   "tx_withdrawCoFi":"Withdrawed {{w}} CoFi Tokens",
   "tx_depositMining":"Deposited {{d}} CoFi",
   "tx_widthdrawMining":"Withdraw {{w}} CoFi",
-  "no_transactions":"No transactions"
+  "no_transactions":"No transactions",
+  "tx_waiting":"Waiting For Confirmation",
+  "tx_waiting_desc":"Confirm the transaction in your Wallet",
+  "tx_rejected":"Transaction Rejected",
+  "tx_rejected_desc":"You failed confirming the transaction",
+  "btn_close":"Close",
+  "tx_submitted":"Transaction Submitted",
+  "tx_submitted_desc":"View in Etherscan"
 }
