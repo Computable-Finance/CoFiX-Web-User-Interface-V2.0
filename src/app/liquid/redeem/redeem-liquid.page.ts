@@ -33,7 +33,6 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
     id: 'ETH',
     address: '',
     amount: '',
-    placeholder: '0.0',
     isApproved: false,
     balance: '',
   };
@@ -41,7 +40,6 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
     id: 'USDT',
     address: '',
     amount: '',
-    placeholder: '0.0',
     isApproved: false,
     balance: '',
   };

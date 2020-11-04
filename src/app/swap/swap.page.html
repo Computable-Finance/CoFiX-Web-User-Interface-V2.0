@@ -1,6 +1,14 @@
-<app-header [activeId]="'swap'" (onRefresh)="refreshPage()" class="web-header"></app-header>
+<app-header
+  [activeId]="'swap'"
+  (onRefresh)="refreshPage()"
+  class="web-header"
+></app-header>
 <ion-content>
-  <app-header [activeId]="'swap'" (onRefresh)="refreshPage()" class="mobile-header"></app-header>
+  <app-header
+    [activeId]="'swap'"
+    (onRefresh)="refreshPage()"
+    class="mobile-header"
+  ></app-header>
   <ion-card class="swap-card">
     <div class="card-content">
       <app-card-title
@@ -15,7 +23,6 @@
         (onInputChange)="fromCoinInput($event)"
         [amount]="fromCoin.amount"
         [maxAmount]="fromCoin.balance"
-        [placeHolder]="fromCoin.placeholder"
         [coin]="fromCoin.id"
         [isShowError]="showError"
         [isShowBlance]="showBalance"
@@ -30,7 +37,6 @@
         (onChangeCoin)="changeToCoin($event)"
         (onInputChange)="toCoinInput($event)"
         [amount]="toCoin.amount"
-        [placeHolder]="toCoin.placeholder"
         [coin]="toCoin.id"
         [isInsufficientError]="isInsufficientError"
         [maxLiquid]="ERC20BalanceOfPair[toCoin.id]"
@@ -47,7 +53,10 @@
           <ion-col class="label" size="4"
             >{{'dhjg_text' | translate}}
             <img
-              class="alert-icon" tooltip  event="hover" tipsContent="swap_tooltips_tradeprice_desc" 
+              class="alert-icon"
+              tooltip
+              event="hover"
+              tipsContent="swap_tooltips_tradeprice_desc"
               tipsTitle="swap_tooltips_tradeprice_title"
               src="./assets/images/question.png"
             />
@@ -100,8 +109,10 @@
               </ion-col>
               <ion-col
                 class="link ion-text-right"
-                size="7" 
-                tooltip  event="hover" tipsContent="swap_tooltips_tradeprice_desc" 
+                size="7"
+                tooltip
+                event="hover"
+                tipsContent="swap_tooltips_tradeprice_desc"
                 tipsTitle="swap_tooltips_tradeprice_title"
               >
                 <a>{{'swap_how' | translate}}</a>
@@ -114,9 +125,11 @@
         >
           <ion-col class="label" size="4"
             >{{'oracle_cost' | translate}}<img
-              class="alert-icon" 
+              class="alert-icon"
               src="./assets/images/question.png"
-              tooltip  event="hover" tipsContent="swap_tooltips_oraclefee_desc" 
+              tooltip
+              event="hover"
+              tipsContent="swap_tooltips_oraclefee_desc"
           /></ion-col>
           <ion-col
             class="ion-text-right number"
@@ -125,9 +138,8 @@
           >
             +{{oracleCost}} ETH
           </ion-col>
-         <ion-col size="8" *ngIf="showSkeleton(changePrice)" skeleton>
+          <ion-col size="8" *ngIf="showSkeleton(changePrice)" skeleton>
           </ion-col>
-        
         </ion-row>
         <ion-row
           class="ion-align-items-center ion-align-self-center conversionPrice"
@@ -137,7 +149,9 @@
             <img
               class="alert-icon"
               src="./assets/images/question.png"
-              tooltip  event="hover" tipsContent="swap_tooltips_minreceived_desc" 
+              tooltip
+              event="hover"
+              tipsContent="swap_tooltips_minreceived_desc"
               tipsTitle="swap_tooltips_minreceived_title"
           /></ion-col>
           <ion-col
@@ -159,7 +173,9 @@
             <img
               class="alert-icon"
               src="./assets/images/question.png"
-              tooltip  event="hover" tipsContent="swap_tooltips_cofitoken_desc" 
+              tooltip
+              event="hover"
+              tipsContent="swap_tooltips_cofitoken_desc"
               tipsTitle="swap_tooltips_cofitoken_title"
           /></ion-col>
 

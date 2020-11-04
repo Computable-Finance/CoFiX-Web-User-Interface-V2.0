@@ -15,7 +15,6 @@ export interface CoinContent {
   id: string;
   address: string;
   amount: string;
-  placeholder: string;
   isApproved: boolean;
   balance: string;
 }
@@ -43,7 +42,6 @@ export class SwapPage implements OnInit {
     id: 'ETH',
     address: undefined,
     amount: '',
-    placeholder: '0.0',
     isApproved: false,
     balance: '',
   };
@@ -51,7 +49,6 @@ export class SwapPage implements OnInit {
     id: 'USDT',
     address: undefined,
     amount: '',
-    placeholder: '0.0',
     isApproved: false,
     balance: '',
   };

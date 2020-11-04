@@ -7,8 +7,9 @@ import {
   Output,
 } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { EMPTY, Subject, Subscription } from 'rxjs';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { Subject, Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
+
 import { CoinSelectPage } from './select/coin-select.page';
 
 const BNJS = require('bignumber.js');
@@ -27,17 +28,17 @@ export class CoinInputPage implements OnInit, OnDestroy {
   @Output() onInputChange = new EventEmitter<any>();
   @Input() amount: any;
   @Input() coin: string;
-  @Input() isDropDown: boolean = true;
+  @Input() isDropDown = true;
   @Input() showSelect = true;
-  @Input() placeHolder: string = '0.0';
+  @Input() placeHolder = '0.0';
   @Input() maxAmount: any;
-  @Input() isShowError: boolean = false;
+  @Input() isShowError = false;
   @Input() maxLiquid: string;
-  @Input() isInsufficientError: boolean = false;
+  @Input() isInsufficientError = false;
   @Input() isShowBlance = false;
   @Input() isShowMax = true;
   @Input() disabled = false;
-  @Input() label: string = '';
+  @Input() label = '';
 
   constructor(private modalController: ModalController) {}
 

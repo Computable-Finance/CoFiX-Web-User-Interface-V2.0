@@ -63,7 +63,6 @@ export class LiquidPage implements OnInit {
     id: 'ETH',
     address: '',
     amount: '',
-    placeholder: '0.0',
     isApproved: false,
     balance: '',
   };
@@ -71,7 +70,6 @@ export class LiquidPage implements OnInit {
     id: 'USDT',
     address: '',
     amount: '',
-    placeholder: '0.0',
     isApproved: false,
     balance: '',
   };
