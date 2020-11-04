@@ -215,7 +215,7 @@
   "swap_tooltips_swaptokens_title":"Swap Tokens",
   "swap_tooltips_swaptokens_desc":"Swapping Tokens is the essence of decentralized exchange. You can swap two tokens without having counterparty risk.",
   "swap_tooltips_tradeprice_title":"Trade Price Calculation",
-  "swap_tooltips_tradeprice_desc":"The Trade Price is calculated based on the Decentralised NEST Oracle Price, the Computable Risk Compensation Coefficient, the Price Impact, and a Trading Fee that goes to the liquidity providers.",
+  "swap_tooltips_tradeprice_desc":"The Trade Price is calculated based on the Decentralised NEST Oracle Price, the Computable Risk Compensation Coefficient, the Price Impact, and a Trading Fee. Trading Fee goes to all the CoFi holders.",
   "swap_tooltips_oraclefee_desc":"<b>Oracle Fee</b> is what you pay to the NEST protocol for providing accurate market price data to the smart contract. ",
   "swap_tooltips_minreceived_title":"Minimum Received","swap_tooltips_minreceived_desc":"Your transaction will reverse if there’s a large, unfavourable price movement before its confirmed. Slippage of 1%.",
   "swap_tooltips_cofitoken_title":"CoFi Tokens",
