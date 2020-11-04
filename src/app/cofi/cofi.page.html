@@ -1,5 +1,6 @@
+<app-header [activeId]="'cofi'" (onRefresh)="refreshPage()" class="web-header"></app-header>
 <ion-content [fullscreen]="true">
-  <app-header [activeId]="'cofi'" (onRefresh)="refreshPage()"></app-header>
+  <app-header [activeId]="'cofi'" (onRefresh)="refreshPage()"  class="mobile-header"></app-header>
   <app-liquid-input
     class="liquid-input"
     (onChangeCoin)="changeCoin($event)"

@@ -1,5 +1,6 @@
+<app-header [activeId]="'swap'" (onRefresh)="refreshPage()" class="web-header"></app-header>
 <ion-content>
-  <app-header [activeId]="'swap'" (onRefresh)="refreshPage()"></app-header>
+  <app-header [activeId]="'swap'" (onRefresh)="refreshPage()" class="mobile-header"></app-header>
   <ion-card class="swap-card">
     <div class="card-content">
       <app-card-title

@@ -330,6 +330,12 @@ ion-button {
   .card-content {
     margin: 0 10px;
   }
+  .mobile-header {
+    display: block !important;
+  }
+  .web-header {
+    display: none !important;
+  }
 }
 
 @media only screen and (max-width: 470px) {
@@ -549,4 +555,11 @@ ion-toggle {
 
 .menu-divider {
   border-bottom: 1px solid var(--mercury);
+}
+
+.mobile-header {
+  display: none;
+}
+.web-header {
+  display: block;
 }

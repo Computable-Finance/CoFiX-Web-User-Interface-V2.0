@@ -14,7 +14,7 @@ export class LiquidInputPage implements OnInit {
   constructor(private modalController: ModalController) {}
   ngOnInit() {}
   async selectAddType(event: any) {
-    const modal = await this.modalController.create({
+    /*const modal = await this.modalController.create({
       component: LiquidSelectPage,
       componentProps: { selectedCoin: this.coin },
       cssClass: 'popover-liquidselect',
@@ -27,6 +27,12 @@ export class LiquidInputPage implements OnInit {
         this.coin = selectCoin.data;
         this.onChangeCoin.emit({ coin: this.coin });
       }
-    });
+    });*/
+    if (this.coin === 'USDT') {
+      this.coin = 'HBTC';
+    } else {
+      this.coin = 'USDT';
+    }
+    this.onChangeCoin.emit({ coin: this.coin });
   }
 }
