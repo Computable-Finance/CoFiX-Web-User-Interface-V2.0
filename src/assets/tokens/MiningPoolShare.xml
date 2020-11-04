@@ -47,7 +47,7 @@
         <type>
             <sequence>
                 <element name="user" ethereum:indexed="true" ethereum:type="address"></element>
-                <element name="reward" ethereum:indexed="false" ethereum:type="uint256"></element>
+                <element name="amount" ethereum:indexed="false" ethereum:type="uint256"></element>
             </sequence>
         </type>
     </namedType>
