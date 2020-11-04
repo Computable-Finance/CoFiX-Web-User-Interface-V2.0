@@ -9,7 +9,7 @@ import {
   MiningPoolShare,
   Token,
   WithdrewFromLiquidityPool,
-  СofiToken
+  CoFi
 } from '../types';
 import { random, uuidv4 } from './utility';
 
@@ -103,7 +103,10 @@ export class FakeDataService {
         '0xdAC17F958D2ee523a2206206994597C13D831ec7': this.generateMiningPoolShare('USDT'),
         '0x0316EB71485b0Ab14103307bf65a021042c6d380': this.generateMiningPoolShare('HBTC'),
       },
-      CoFi: undefined,
+      CoFi: {
+        '0xdAC17F958D2ee523a2206206994597C13D831ec7': this.generateСofiToken(),
+        '0x0316EB71485b0Ab14103307bf65a021042c6d380': this.generateСofiToken(),
+      }
     };
   }
 
@@ -143,7 +146,7 @@ export class FakeDataService {
     };
   }
 
-  public generateСofiToken(): СofiToken {
+  public generateСofiToken(): CoFi {
     return {
       balance: BigNumber.from(1),
       totalSupply: BigNumber.from(1),

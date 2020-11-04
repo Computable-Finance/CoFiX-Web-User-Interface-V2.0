@@ -254,6 +254,7 @@ export async function getJSONAbi(ethContract, jsons, path = '', debug = 0, token
       break;
 
     case 'Miningpool'.toLowerCase():
+    case 'CoFiStakingRewards'.toLowerCase():
       return CoFiStakingRewards;
       break;
 
@@ -833,10 +834,12 @@ export class TokenCard {
           if (filterResult && filterResult.length){
             filterResult.forEach(res => {
               if (res && res.args){
+                (this.debug > 2) && console.log('event return: ', res);
                 const activityProps = filterResultConverter( res.args, props);
+                activityProps.blockNumber = res.blockNumber;
                 res.getTransaction().then((transaction) => {
+                  activityProps.nonce = transaction.nonce;
                   this.ethersData.provider.getBlock(res.blockNumber).then((block) => {
-                    activityProps.nonce = transaction.nonce;
                     activityProps.timeStamp = block.timestamp;
                     (this.debug > 2) && console.log(`render props: ${JSON.stringify(activityProps)}`);
                     this.render({props: activityProps, cardName, cardType, cardView, listener$});
@@ -869,7 +872,12 @@ export class TokenCard {
 
               const activityProps = filterResultConverter( args, props);
               activityProps.timeStamp = blockData.timestamp;
-              this.render({props: activityProps, cardName, cardType, cardView, listener$});
+              activityProps.blockNumber = blockData.blockNumber;
+              this.ethersData.provider.getBlock(blockData.blockNumber).then((block) => {
+                activityProps.timeStamp = block.timestamp;
+                (this.debug > 2) && console.log(`render props: ${JSON.stringify(activityProps)}`);
+                this.render({props: activityProps, cardName, cardType, cardView, listener$});
+              });
             }
           });
         }
