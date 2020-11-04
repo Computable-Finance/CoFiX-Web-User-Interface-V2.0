@@ -34,6 +34,15 @@
             </sequence>
         </type>
     </namedType>
+    <namedType name="Mint">
+        <type>
+            <sequence>
+                <element name="sender" ethereum:indexed="false" ethereum:type="address"></element>
+                <element name="amount0" ethereum:indexed="false" ethereum:type="uint256"></element>
+                <element name="amount1" ethereum:indexed="false" ethereum:type="uint256"></element>
+            </sequence>
+        </type>
+    </namedType>
     <namedType name="Staked">
         <type>
             <sequence>
