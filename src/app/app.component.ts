@@ -8,8 +8,6 @@ import { ShareStateQuery } from './common/state/share.query';
 import { CofiXService } from './service/cofix.service';
 import { MetadataQuery } from './state/metadata/metadata.query';
 import { MetadataService } from './state/metadata/metadata.service';
-import { HuAndHuService } from './_integration/hu-and-hu.service';
-
 
 type State = { lang: string };
 
@@ -42,28 +40,25 @@ export class AppComponent implements OnInit {
     private router: Router,
     private metadataQuery: MetadataQuery,
     private metadataService: MetadataService,
-    private huAndHuService: HuAndHuService,
     @Inject('persistStorage') private persistStorage
   ) {
     this.initializeApp();
     // uncomment below to run huAndHuService:
-    this.huAndHuService
-      .connect()
-      .pipe(filter((value) => Object.keys(value).length !== 0))
-      .subscribe((val) => {
-        console.log("CoFi instances");
-        Object.keys(val.CoFi).forEach((k) =>
-            console.log(val.CoFi[k])
-        );
-        console.log("LiquidityPoolShare instances");
-        Object.keys(val.LiquidityPoolShare).forEach((k) =>
-            console.log(val.LiquidityPoolShare[k])
-        );
-        console.log("MiningPoolShare instances");
-        Object.keys(val.MiningPoolShare).forEach((k) =>
-            console.log(val.MiningPoolShare[k])
-        );
-      });
+    // this.huAndHuService
+    //   .connect()
+    //   .pipe(filter((value) => Object.keys(value).length !== 0))
+    //   .subscribe((val) => {
+    //     console.log('CoFi instances');
+    //     Object.keys(val.CoFi).forEach((k) => console.log(val.CoFi[k]));
+    //     console.log('LiquidityPoolShare instances');
+    //     Object.keys(val.LiquidityPoolShare).forEach((k) =>
+    //       console.log(val.LiquidityPoolShare[k])
+    //     );
+    //     console.log('MiningPoolShare instances');
+    //     Object.keys(val.MiningPoolShare).forEach((k) =>
+    //       console.log(val.MiningPoolShare[k])
+    //     );
+    //   });
   }
 
   initializeApp() {
