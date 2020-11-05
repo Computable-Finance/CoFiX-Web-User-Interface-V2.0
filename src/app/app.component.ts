@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
-import { filter } from 'rxjs/operators';
+
 import { DB_VERSION } from './common/constants';
 import { ShareStateQuery } from './common/state/share.query';
 import { CofiXService } from './service/cofix.service';
@@ -43,22 +43,6 @@ export class AppComponent implements OnInit {
     @Inject('persistStorage') private persistStorage
   ) {
     this.initializeApp();
-    // uncomment below to run huAndHuService:
-    // this.huAndHuService
-    //   .connect()
-    //   .pipe(filter((value) => Object.keys(value).length !== 0))
-    //   .subscribe((val) => {
-    //     console.log('CoFi instances');
-    //     Object.keys(val.CoFi).forEach((k) => console.log(val.CoFi[k]));
-    //     console.log('LiquidityPoolShare instances');
-    //     Object.keys(val.LiquidityPoolShare).forEach((k) =>
-    //       console.log(val.LiquidityPoolShare[k])
-    //     );
-    //     console.log('MiningPoolShare instances');
-    //     Object.keys(val.MiningPoolShare).forEach((k) =>
-    //       console.log(val.MiningPoolShare[k])
-    //     );
-    //   });
   }
 
   initializeApp() {

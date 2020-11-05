@@ -147,7 +147,7 @@ export class Utils {
     const rejected = await this.popoverController.create({
       component: TxStatusPage,
       componentProps: {
-        txHash: txHash,
+        txHash,
         network: this.cofixService.getCurrentNetwork(),
       },
       cssClass: 'txstatus-class',

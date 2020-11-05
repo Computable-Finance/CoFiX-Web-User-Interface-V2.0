@@ -13,12 +13,14 @@ import { TxQuery } from 'src/app/state/tx/tx.query';
 export class TxListPage implements OnInit, OnDestroy {
   txList: any;
   txListSubscription: Subscription;
+
   constructor(
     private txQuery: TxQuery,
     private popoverController: PopoverController,
     public cofixService: CofiXService,
     private translate: TranslateService
   ) {}
+
   ngOnInit() {
     this.txListSubscription = this.txQuery
       .tx$(
@@ -37,6 +39,7 @@ export class TxListPage implements OnInit, OnDestroy {
   close() {
     this.popoverController.dismiss();
   }
+
   goto(txHash, network) {
     let url = '';
     switch (network) {
@@ -47,8 +50,9 @@ export class TxListPage implements OnInit, OnDestroy {
         url = 'https://etherscan.io';
         break;
     }
-    window.open(url + `/tx/${txHash}`);
+    window.open(`${url}/tx/${txHash}`);
   }
+
   ngOnDestroy(): void {
     this.txListSubscription.unsubscribe();
   }
