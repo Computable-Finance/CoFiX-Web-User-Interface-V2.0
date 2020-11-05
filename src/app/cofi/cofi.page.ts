@@ -31,12 +31,11 @@ export class CofiPage implements OnInit {
   hadValue: string;
   shareState: ShareState;
   canReceive = false;
-  isLoading = false;
-  isLoadingProfit = { sq: false, cr: false, qc: false };
+  isLoading = { sq: false, qc: false };
   balance: string = '';
   profitCoin = 'XTokens';
   withdrawError = { isError: false, msg: '' };
-  isDeposit: boolean = false;
+  isDeposit: boolean = true;
   currentCoFiPrice = '--';
   waitingPopover: any;
   constructor(
@@ -60,6 +59,7 @@ export class CofiPage implements OnInit {
   }
   refreshPage() {
     this.getCoFiTokenAndRewards();
+    this.getIsApproved();
   }
   gotoLiquid() {
     this.shareStateService.updateActiveTab('liquid');
@@ -104,9 +104,8 @@ export class CofiPage implements OnInit {
 
   //领取Cofi
   async withdrawEarnedCoFi() {
-    this.utils.showTxSuccessModal();
-    return false;
     this.resetCofiError();
+    console.log('this.isDeposit', this.isDeposit);
     if (
       await this.cofixService.getStakingPoolAddressByToken(this.coinAddress)
     ) {
@@ -114,10 +113,13 @@ export class CofiPage implements OnInit {
       await this.waitingPopover.present();
       this.cofixService
         .withdrawEarnedCoFi(
-          await this.cofixService.getStakingPoolAddressByToken(this.coinAddress)
+          await this.cofixService.getStakingPoolAddressByToken(
+            this.coinAddress
+          ),
+          this.isDeposit
         )
         .then((tx: any) => {
-          this.isLoading = true;
+          this.isLoading.qc = true;
           const params = {
             t: 'tx_claimCoFi',
             p: { w: this.earnedRate?.earned },
@@ -132,19 +134,20 @@ export class CofiPage implements OnInit {
           this.utils.showTXSubmitModal(tx.hash);
           const provider = this.cofixService.getCurrentProvider();
           provider.once(tx.hash, (transactionReceipt) => {
-            this.isLoading = false;
+            console.log(transactionReceipt);
+            this.isLoading.qc = false;
             this.getCoFiTokenAndRewards();
             this.balance = undefined;
-            this.txService.txSucceeded(tx.hash);
+            this.utils.changeTxStatus(transactionReceipt.status, tx.hash);
           });
           provider.once('error', (error) => {
             console.log('provider.once==', error);
-            this.isLoading = false;
+            this.isLoading.qc = false;
             this.txService.txFailed(tx.hash);
           });
         })
         .catch((error) => {
-          this.isLoading = false;
+          this.isLoading.qc = false;
           if (error.message.indexOf('User denied') > -1) {
             this.waitingPopover.dismiss();
             this.utils.showTXRejectModal();
@@ -160,5 +163,37 @@ export class CofiPage implements OnInit {
 
   showSkeleton(value) {
     return value === undefined || value === '';
+  }
+  isApproved: boolean = false;
+  async getIsApproved() {
+    if (this.cofixService.getCurrentAccount()) {
+      this.isApproved = await this.cofixService.approved(
+        this.cofixService.getCurrentContractAddressList().CoFiToken,
+        this.cofixService.getCurrentContractAddressList().CoFiStakingRewards
+      );
+    }
+  }
+
+  canWithdraw() {
+    return (
+      (this.isLoading.qc || !this.canReceive) &&
+      !(this.isDeposit && this.isApproved)
+    );
+  }
+
+  async approve() {
+    this.resetCofiError();
+    if (!this.isApproved && this.isDeposit) {
+      this.waitingPopover = await this.utils.createTXConfirmModal();
+      await this.waitingPopover.present();
+      this.utils.approveHandler(
+        this.isLoading,
+        this.withdrawError,
+        this,
+        this.cofixService.getCurrentContractAddressList().CoFiToken,
+        this.cofixService.getCurrentContractAddressList().CoFiStakingRewards,
+        'CoFi'
+      );
+    }
   }
 }

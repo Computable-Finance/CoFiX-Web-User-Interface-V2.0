@@ -64,7 +64,6 @@ export class HeaderPage implements OnInit, OnDestroy {
       });
   }
   changeTabs() {
-    console.log(window.innerWidth);
     if (window.innerWidth < 870) {
       this.headerItems = [
         {

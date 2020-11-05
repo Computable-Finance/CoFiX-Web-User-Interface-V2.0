@@ -250,7 +250,7 @@ export class AddLiquidPage implements OnInit, OnDestroy {
         const provider = this.cofixService.getCurrentProvider();
         provider.once(tx.hash, (transactionReceipt) => {
           this.isLoading.cr = false;
-          this.txService.txSucceeded(tx.hash);
+          this.utils.changeTxStatus(transactionReceipt.status, tx.hash);
           this.onClose.emit({
             type: 'add',
             fromCoin: this.fromCoin,
@@ -359,8 +359,7 @@ export class AddLiquidPage implements OnInit, OnDestroy {
 
   canAdd() {
     let result = false;
-
-    if (new BNJS(this.fromCoin.amount).isZero()) {
+    if (Number(this.toCoin.amount) === 0) {
       result =
         new BNJS(this.fromCoin.amount).gt(0) &&
         new BNJS(this.fromCoin.amount).lt(new BNJS(this.fromCoin.balance)); //仅输入ETH，且ETH不等于最大值
@@ -368,8 +367,7 @@ export class AddLiquidPage implements OnInit, OnDestroy {
       result =
         this.toCoin.isApproved && //已经认证
         !(
-          new BNJS(this.fromCoin.amount).isZero() &&
-          new BNJS(this.toCoin.amount).isZero()
+          Number(this.fromCoin.amount) === 0 && Number(this.toCoin.amount) === 0
         ) && //输入值均不为0
         new BNJS(this.fromCoin.amount).lte(new BNJS(this.fromCoin.balance)) && //输入ETH值小于最大值
         new BNJS(this.toCoin.amount).lte(new BNJS(this.toCoin.balance));

@@ -144,7 +144,7 @@ export class IncomePage implements OnInit, OnDestroy {
         provider.once(tx.hash, (transactionReceipt) => {
           this.isLoading = false;
           this.getEarnedETH();
-          this.txService.txSucceeded(tx.hash);
+          this.utils.changeTxStatus(transactionReceipt.status, tx.hash);
         });
         provider.once('error', (error) => {
           console.log('provider.once==', error);
@@ -179,7 +179,10 @@ export class IncomePage implements OnInit, OnDestroy {
   }
 
   async approveCofi(event) {
+    this.resetIncomeError();
     if (!this.isApproved) {
+      this.waitingPopover = await this.utils.createTXConfirmModal();
+      await this.waitingPopover.present();
       this.utils.approveHandler(
         this.isLoadingProfit,
         this.incomeError,
@@ -218,7 +221,7 @@ export class IncomePage implements OnInit, OnDestroy {
           this.isShowModal = false;
           this.getCoFiTokenAndRewards();
           this.balance = undefined;
-          this.txService.txSucceeded(tx.hash);
+          this.utils.changeTxStatus(transactionReceipt.status, tx.hash);
         });
         provider.once('error', (error) => {
           console.log('provider.once==', error);
@@ -266,7 +269,7 @@ export class IncomePage implements OnInit, OnDestroy {
           this.isShowModal = false;
           this.getCoFiTokenAndRewards();
           this.balance = undefined;
-          this.txService.txSucceeded(tx.hash);
+          this.utils.changeTxStatus(transactionReceipt.status, tx.hash);
         });
         provider.once('error', (error) => {
           console.log('provider.once==', error);

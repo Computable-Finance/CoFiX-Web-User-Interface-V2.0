@@ -27,6 +27,7 @@ export class SwapPage implements OnInit {
   };
   changePrice: string;
   expectedCofi: string;
+  priceSpread: string;
   oracleCost: string = '0.01'; //预言机调用费
   maxFee = '0.02';
   fromCoin: CoinContent = {
@@ -176,6 +177,9 @@ export class SwapPage implements OnInit {
 
       this.expectedCofi = executionPriceAndExpectedCofi.expectedCofi;
       this.changePrice = executionPriceAndExpectedCofi.excutionPriceForOne;
+
+      this.priceSpread = new BNJS(this.changePrice); //.minus(0);
+      console.log(this.priceSpread);
     }
   }
 
@@ -273,6 +277,9 @@ export class SwapPage implements OnInit {
           this.toCoin.address
         )
       ).toString();
+
+      this.priceSpread = new BNJS(this.changePrice).minus(0);
+      console.log(this.priceSpread);
     }
     if (this.cofixService.getCurrentAccount()) {
       this.expectedCofi = '';
@@ -292,11 +299,11 @@ export class SwapPage implements OnInit {
     this.getEPAndEC();
     if (this.fromCoin.id === 'ETH') {
       this.showError =
-        !new BNJS(this.fromCoin.amount).isZero() &&
+        Number(this.fromCoin.amount) !== 0 &&
         new BNJS(this.fromCoin.amount).gte(new BNJS(this.fromCoin.balance));
     } else {
       this.showError =
-        !new BNJS(this.fromCoin.amount).isZero() &&
+        Number(this.fromCoin.amount) !== 0 &&
         new BNJS(this.fromCoin.amount).gt(new BNJS(this.fromCoin.balance));
     }
   }
@@ -380,6 +387,7 @@ export class SwapPage implements OnInit {
         t: `${this.toCoin.amount} ${this.toCoin.id}`,
       },
     };
+    console.log(params);
     if (this.fromCoin.id === 'ETH') {
       this.cofixService
         .swapExactETHForTokens(
@@ -396,6 +404,7 @@ export class SwapPage implements OnInit {
 
           const provider = this.cofixService.getCurrentProvider();
           provider.once(tx.hash, (transactionReceipt) => {
+            console.log(transactionReceipt);
             this.afterTxSucceeded(tx.hash);
           });
           provider.once('error', (error) => {
@@ -487,13 +496,13 @@ export class SwapPage implements OnInit {
     } else {
       if (this.fromCoin.id === 'ETH') {
         result =
-          !new BNJS(this.fromCoin.amount).isZero() &&
+          Number(this.fromCoin.amount) !== 0 &&
           new BNJS(this.fromCoin.balance).gt(new BNJS(this.maxFee)) &&
           new BNJS(this.fromCoin.amount).lt(new BNJS(this.fromCoin.balance));
       } else {
         result =
           this.fromCoin.isApproved &&
-          !new BNJS(this.fromCoin.amount).isZero() &&
+          Number(this.fromCoin.amount) !== 0 &&
           new BNJS(this.fromCoin.amount).lte(new BNJS(this.fromCoin.balance)); //Token要认证且输入值小于等于余额
       }
       return (

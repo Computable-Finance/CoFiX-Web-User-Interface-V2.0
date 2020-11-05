@@ -43,7 +43,6 @@ export class ConnectWalletPage implements OnInit, OnDestroy {
           this.cofixService.getCurrentNetwork()
         )
         .subscribe((res) => {
-          console.log('pending =', res);
           this.pendingCount = res;
         });
     }
@@ -51,7 +50,6 @@ export class ConnectWalletPage implements OnInit, OnDestroy {
   async connect() {
     this.isConnectLoading = true;
     await this.cofixService.connectWallet().catch((err) => {
-      console.log(err);
       this.isConnectLoading = false;
     });
     this.utils.getPairAttended();

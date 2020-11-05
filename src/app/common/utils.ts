@@ -112,8 +112,7 @@ export class Utils {
             token,
             spender
           );
-          this.txService.txSucceeded(tx.hash);
-          component.approveBtn.disabled = false;
+          this.changeTxStatus(transactionReceipt.status, tx.hash);
         });
         provider.once('error', (error) => {
           console.log('provider.once==', error);
@@ -166,5 +165,13 @@ export class Utils {
       showBackdrop: true,
       backdropDismiss: false,
     });
+  }
+
+  changeTxStatus(status, txHash) {
+    if (status) {
+      this.txService.txSucceeded(txHash);
+    } else {
+      this.txService.txFailed(txHash);
+    }
   }
 }
