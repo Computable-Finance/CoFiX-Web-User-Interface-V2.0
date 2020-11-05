@@ -17,7 +17,7 @@ import { ShareState } from 'src/app/common/state/share.store';
 import { Utils } from 'src/app/common/utils';
 import { CofiXService } from 'src/app/service/cofix.service';
 import { TxService } from 'src/app/state/tx/tx.service';
-import { CoinContent } from 'src/app/swap/swap.page';
+import { CoinContent } from 'src/app/common/types/CoinContent';
 
 const BNJS = require('bignumber.js');
 @Component({
@@ -267,7 +267,7 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
           provider.once(tx.hash, (transactionReceipt) => {
             this.isLoading.sh = false;
             this.initCoinContent();
-            this.txService.txSucceeded(tx.hash);
+            this.utils.changeTxStatus(transactionReceipt.status, tx.hash);
             this.onClose.emit({
               type: 'redeem',
               fromCoin: this.fromCoin,
@@ -319,8 +319,7 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
           const provider = this.cofixService.getCurrentProvider();
           provider.once(tx.hash, (transactionReceipt) => {
             this.isLoading.sh = false;
-            this.txService.txSucceeded(tx.hash);
-            //this.initCoinContent();
+            this.utils.changeTxStatus(transactionReceipt.status, tx.hash);
             this.onClose.emit({
               type: 'redeem',
               fromCoin: this.fromCoin,
@@ -354,10 +353,10 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
   }
   async approve() {
     this.resetRedeemError();
-    this.waitingPopover = await this.utils.createTXConfirmModal();
-    await this.waitingPopover.present();
 
     if (!this.toCoin.isApproved) {
+      this.waitingPopover = await this.utils.createTXConfirmModal();
+      await this.waitingPopover.present();
       this.utils.approveHandler(
         this.isLoading,
         this.redeemError,
@@ -372,7 +371,7 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
   canRedeem() {
     return (
       this.toCoin.isApproved &&
-      !new BNJS(this.toCoin.amount).isZero() &&
+      Number(this.toCoin.amount) !== 0 &&
       new BNJS(this.toCoin.amount).lte(new BNJS(this.todoValue))
     );
   }

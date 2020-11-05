@@ -10,12 +10,14 @@
       class="{{item.id === activeId?'active':''}}"
       (click)="selectTab(item.id)"
     >
-      {{'title_'+item.id | translate}}
+      {{'title_'+item.title | translate}}
     </div>
   </div>
   <div class="tools">
-    <app-connect-wallet (onConnected)="onConnected()" class="header-Wallet"></app-connect-wallet>
+    <app-connect-wallet
+      (onConnected)="onConnected()"
+      class="header-Wallet"
+    ></app-connect-wallet>
     <app-switch-lang></app-switch-lang>
   </div>
-  
 </ion-header>

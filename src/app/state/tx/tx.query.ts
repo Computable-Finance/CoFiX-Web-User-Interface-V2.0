@@ -20,8 +20,6 @@ export class TxQuery extends QueryEntity<TxModel> {
   }
 
   tx$(account: string, network: string) {
-    console.log(account);
-    console.log(network);
     return this.selectAll({
       filterBy: (entity) =>
         entity.account === account && entity.network === network,

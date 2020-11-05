@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { debounceTime } from 'rxjs/operators';
@@ -15,7 +15,7 @@ import { TxService } from '../state/tx/tx.service';
   templateUrl: './income.page.html',
   styleUrls: ['./income.page.scss'],
 })
-export class IncomePage implements OnInit {
+export class IncomePage implements OnInit, OnDestroy {
   public incomeContent: BannerContent = {
     title: 'help_tips',
     descriptions: ['income_desc1', 'income_desc2', 'income_desc3'],
@@ -144,7 +144,7 @@ export class IncomePage implements OnInit {
         provider.once(tx.hash, (transactionReceipt) => {
           this.isLoading = false;
           this.getEarnedETH();
-          this.txService.txSucceeded(tx.hash);
+          this.utils.changeTxStatus(transactionReceipt.status, tx.hash);
         });
         provider.once('error', (error) => {
           console.log('provider.once==', error);
@@ -179,7 +179,10 @@ export class IncomePage implements OnInit {
   }
 
   async approveCofi(event) {
+    this.resetIncomeError();
     if (!this.isApproved) {
+      this.waitingPopover = await this.utils.createTXConfirmModal();
+      await this.waitingPopover.present();
       this.utils.approveHandler(
         this.isLoadingProfit,
         this.incomeError,
@@ -218,7 +221,7 @@ export class IncomePage implements OnInit {
           this.isShowModal = false;
           this.getCoFiTokenAndRewards();
           this.balance = undefined;
-          this.txService.txSucceeded(tx.hash);
+          this.utils.changeTxStatus(transactionReceipt.status, tx.hash);
         });
         provider.once('error', (error) => {
           console.log('provider.once==', error);
@@ -266,7 +269,7 @@ export class IncomePage implements OnInit {
           this.isShowModal = false;
           this.getCoFiTokenAndRewards();
           this.balance = undefined;
-          this.txService.txSucceeded(tx.hash);
+          this.utils.changeTxStatus(transactionReceipt.status, tx.hash);
         });
         provider.once('error', (error) => {
           console.log('provider.once==', error);

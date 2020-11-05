@@ -1,0 +1,16 @@
+<ion-grid>
+  <ion-row class="ion-align-items-center ion-align-self-center title ">
+    <ion-col size="2" class="ion-text-left"><img src="./assets/images/success.png" class="success-img"></ion-col>
+    <ion-col class="ion-text-center" size="8">
+      {{title}}
+    </ion-col>
+    <ion-col size="2" (click)="close()" class="ion-text-right">
+      <div class="img-div"><img src="assets/images/close.png" class="close-img" /></div>
+    </ion-col>
+  </ion-row>
+  <ion-row class="account-info ion-align-items-center ion-align-self-center">
+    <ion-col size="12" class="ion-text-center tx-link" *ngIf="txHash" (click)="goto()">
+      {{'tx_submitted_desc' | translate}} <ion-icon name="arrow-forward-outline" color="secondary"></ion-icon>
+    </ion-col>
+  </ion-row>
+</ion-grid>

@@ -9,6 +9,7 @@ export interface EthersData {
 
 export interface TokenProps {
   nonce?: number;
+  blockNumber: number;
   owner?: string;
   spender?: string;
   from?: string;
@@ -21,6 +22,9 @@ export interface TokenProps {
   balance?: BigNumber;
   totalSupply?: BigNumber;
   timeStamp: number;
+  poolSize?: BigNumber;
+  pairTokenSymbol?: string;
+  beneficiaryAddress?: string;
 }
 
 export interface EthereumCallParams {

@@ -38,6 +38,7 @@ ion-footer {
   }
   .foot-box-mobile {
     display: block !important;
+    background: var(--white);
   }
   .foot-box {
     display: none;
@@ -77,10 +78,11 @@ ion-footer {
   display: none;
 }
 .links-mobile {
-  background: var(--concrete);
-  text-align: center;
-  height: 224px;
-  padding: 33px 0;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  border-top: solid 1px var(--mercury);
+  border-bottom: solid 1px var(--mercury);
+  background-color: var(--white);
 }
 .links-item a {
   color: var(--mine);
@@ -89,6 +91,9 @@ ion-footer {
   height: 32px;
   line-height: 32px;
   cursor: pointer;
+}
+.links-item:hover {
+  color: red;
 }
 .tools {
   background: white;
@@ -108,10 +113,44 @@ ion-footer {
   width: 24px;
   height: 24px;
   padding-bottom: 10px;
-  color: var(--dove);
+  color: var(--black);
 }
 .tools-col {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+}
+.title {
+  height: 41px;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+.title ion-col {
+  font-size: 24px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.71;
+  letter-spacing: normal;
+  text-align: center;
+  color: var(--black);
+}
+.close-img {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  right: 0px;
+  top: 5px;
+  cursor: pointer;
+}
+.img-div:hover {
+  background-color: var(--porcelain);
+  border-radius: 50%;
+}
+.img-div {
+  width: 32px;
+  height: 32px;
+  position: relative;
+  right: -285px;
+  top: -43px;
 }

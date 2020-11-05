@@ -4,22 +4,22 @@
       {{'account' | translate}}
     </ion-col>
     <ion-col size="2" (click)="close()">
-      <div class="img-div"><img src="assets/images/close.png" class="close-img" /></div>
+      <div class="img-div">
+        <img src="assets/images/close.png" class="close-img" />
+      </div>
     </ion-col>
   </ion-row>
   <div class="menu-divider"></div>
   <ion-row class="account-info ion-align-items-center ion-align-self-center">
-    <ion-col class="label" size="12">
-      {{'connect_to' | translate}}
-    </ion-col>
+    <ion-col class="label" size="12"> {{'connect_to' | translate}} </ion-col>
     <ion-col size="2">
-      <img src="./assets/images/account.png"/>
+      <img src="./assets/images/account.png" />
     </ion-col>
     <ion-col size="9" class="address">
       {{cofixService.getCurrentAccount() | walletaddress}}
     </ion-col>
   </ion-row>
-  
+
   <div class="menu-divider"></div>
   <ion-row>
     <ion-col class="ion-text-center tx-title">
@@ -29,13 +29,25 @@
   <ng-container *ngIf="txList.length === 0">
     {{'no_transactions'| translate}}
   </ng-container>
-  
-  <ng-container *ngFor="let tx of txList.reverse()" >
-    <ion-row 
-      class="ion-align-items-center ion-align-self-center tx" (click)="goto(tx.txHash,tx.network)">
-      <ion-col size="1" *ngIf="tx.status ==='success'"><img src="./assets/images/success.png"></ion-col>
-      <ion-col size="1" *ngIf="tx.status ==='pending'"><div class="tx-pending"></div></ion-col>
-      <ion-col size="11">{{tx.title}} <ion-icon name="arrow-forward-outline" color="secondary"></ion-icon></ion-col>
+
+  <ng-container *ngFor="let tx of txList.reverse()">
+    <ion-row
+      class="ion-align-items-center ion-align-self-center tx"
+      (click)="goto(tx.txHash,tx.network)"
+    >
+      <ion-col size="1" *ngIf="tx.status ==='success'"
+        ><img src="./assets/images/tx-success.png"
+      /></ion-col>
+      <ion-col size="1" *ngIf="tx.status ==='error'"
+        ><img src="./assets/images/tx-error.png"
+      /></ion-col>
+      <ion-col size="1" *ngIf="tx.status ==='pending'"
+        ><div class="tx-pending"></div
+      ></ion-col>
+      <ion-col size="11" class="tx-content"
+        >{{tx.title}}
+        <ion-icon name="arrow-forward-outline" color="secondary"></ion-icon
+      ></ion-col>
     </ion-row>
   </ng-container>
 </ion-grid>

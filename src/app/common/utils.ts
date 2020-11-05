@@ -6,6 +6,7 @@ import { CofiXService } from '../service/cofix.service';
 import { TxService } from '../state/tx/tx.service';
 import { TxConfirmPage } from './components/transaction/tx-confirm/tx-confirm.page';
 import { TxStatusPage } from './components/transaction/tx-status/tx-status.page';
+import { TxSuccessPage } from './components/transaction/tx-success/tx-success.page';
 import { BalanceTruncatePipe } from './pipes/balance.pipe';
 import { ShareStateService } from './state/share.service';
 
@@ -35,19 +36,29 @@ export class Utils {
     }
     return coin.balance;
   }
-  /*async showAlert(title, content, ev, footer = '') {
-    const popover = await this.popoverController.create({
-      component: TooltipsPage,
-      cssClass: 'tooltips-class',
-      componentProps: {
-        tipsTitle: title,
-        tipsContent: content,
-        tipsFooter: footer,
+  async showTxSuccessModal() {
+    /* let ev = {
+      target: {
+        getBoundingClientRect: () => {
+          return {
+            top: 100,
+          };
+        },
       },
-      event: ev,
+    };
+    const popover = await this.popoverController.create({
+      component: TxSuccessPage,
+      cssClass: 'txsuccess-class',
+      componentProps: {
+        title: 'sss',
+        txHash: '123',
+        network: 3,
+      },
+      showBackdrop: false,
+      event: ev as Event,
     });
-    await popover.present();
-  }*/
+    await popover.present({ ev });*/
+  }
 
   async getPairAttended() {
     const usdt = this.cofixService.getCurrentContractAddressList().USDT;
@@ -101,8 +112,7 @@ export class Utils {
             token,
             spender
           );
-          this.txService.txSucceeded(tx.hash);
-          component.approveBtn.disabled = false;
+          this.changeTxStatus(transactionReceipt.status, tx.hash);
         });
         provider.once('error', (error) => {
           console.log('provider.once==', error);
@@ -136,7 +146,7 @@ export class Utils {
     const rejected = await this.popoverController.create({
       component: TxStatusPage,
       componentProps: {
-        txHash: txHash,
+        txHash,
         network: this.cofixService.getCurrentNetwork(),
       },
       cssClass: 'txstatus-class',
@@ -155,5 +165,13 @@ export class Utils {
       showBackdrop: true,
       backdropDismiss: false,
     });
+  }
+
+  changeTxStatus(status, txHash) {
+    if (status) {
+      this.txService.txSucceeded(txHash);
+    } else {
+      this.txService.txFailed(txHash);
+    }
   }
 }

@@ -56,7 +56,6 @@ export interface WithdrewFromMiningPool extends Activity {
 }
 
 export interface WithdrewFromLiquidityPool extends Activity {
-  amount: BigNumber;
   pairTokenSymbol: string;
   beneficiaryAddress: string;
 }
@@ -68,10 +67,12 @@ export interface Token {
   MiningPoolShare: {
     [key: string]: MiningPoolShare;
   };
-  CoFi: [];
+  CoFi: {
+    [key: string]: CoFi;
+  };
 }
 
-export interface СofiToken {
+export interface CoFi {
   balance: BigNumber;
   totalSupply: BigNumber;
 }

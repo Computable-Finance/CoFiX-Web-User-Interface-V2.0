@@ -1,30 +1,45 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { ShareStateService } from '../../state/share.service';
 import { ShareStateQuery } from '../../state/share.query';
 import { EventBusService } from 'src/app/service/eventbus.service';
 import { Router } from '@angular/router';
+import { fromEvent, Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 @Component({
   selector: 'app-header',
   templateUrl: './header.page.html',
   styleUrls: ['./header.page.scss'],
 })
-export class HeaderPage implements OnInit {
+export class HeaderPage implements OnInit, OnDestroy {
   @Input() activeId: string;
   @Output() onRefresh = new EventEmitter<any>();
-  public headerItems = [
+  resizeSubscription: Subscription;
+  public tabtems = [
     {
       id: 'swap',
+      title: 'swap',
     },
     {
       id: 'liquid',
+      title: 'liquid',
     },
     {
       id: 'cofi',
+      title: 'cofi',
     },
     {
       id: 'income',
+      title: 'income',
     },
   ];
+  headerItems: any;
   constructor(
     public shareStateQuery: ShareStateQuery,
     private shareStateService: ShareStateService,
@@ -40,8 +55,38 @@ export class HeaderPage implements OnInit {
       location.reload();
     });
   }
-  ngOnInit() {}
-
+  ngOnInit() {
+    this.changeTabs();
+    this.resizeSubscription = fromEvent(window, 'resize')
+      .pipe(debounceTime(100))
+      .subscribe((event) => {
+        this.changeTabs();
+      });
+  }
+  changeTabs() {
+    if (window.innerWidth < 870) {
+      this.headerItems = [
+        {
+          id: 'swap',
+          title: 'swap',
+        },
+        {
+          id: 'liquid',
+          title: 'liquid',
+        },
+        {
+          id: 'cofi',
+          title: 'cofi_short',
+        },
+        {
+          id: 'income',
+          title: 'income',
+        },
+      ];
+    } else {
+      this.headerItems = this.tabtems;
+    }
+  }
   goto(link) {
     window.open(link);
   }
@@ -52,5 +97,10 @@ export class HeaderPage implements OnInit {
   }
   onConnected() {
     this.onRefresh.emit();
+  }
+
+  ngOnDestroy() {
+    console.log('header destroy---');
+    this.resizeSubscription.unsubscribe();
   }
 }

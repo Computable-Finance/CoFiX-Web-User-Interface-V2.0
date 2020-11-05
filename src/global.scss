@@ -318,7 +318,7 @@ ion-button {
 .loading-connect {
   position: absolute;
   top: 10px;
-  right: 5px;
+  right: 75px;
   border: 3px solid var(--ion-color-primary);
   border-bottom: 3px solid transparent;
 }
@@ -337,6 +337,16 @@ ion-button {
   .web-header {
     display: none !important;
   }
+  .txconfirm-class .popover-content,
+  .txstatus-class .popover-content,
+  .account-class .popover-content {
+    left: 0px !important;
+    top: unset !important;
+    bottom: 64px;
+    border-radius: unset !important;
+    border-top-left-radius: 16px !important;
+    border-top-right-radius: 16px !important;
+  }
 }
 
 @media only screen and (max-width: 470px) {
@@ -350,12 +360,12 @@ ion-button {
 
   .loading-connect {
     position: absolute;
-    top: 10px;
-    right: 5px;
+    top: 17px;
+    right: 120px;
   }
   .popover-warning .modal-wrapper {
     width: 90%;
-    height: 486px;
+    min-height: 486px;
   }
   .close-icon {
     top: 15px;
@@ -500,7 +510,7 @@ ion-toggle {
 .txconfirm-class .popover-content,
 .txstatus-class .popover-content {
   width: 360px;
-  height: 257px;
+  min-height: 257px;
   border-radius: 16px;
   box-shadow: 0 11px 19px 0 rgba(0, 0, 0, 0.08);
   background-color: var(--white);
@@ -512,6 +522,14 @@ ion-toggle {
 
 .txstatus-class .popover-content {
   height: 323px;
+}
+
+.txsuccess-class .popover-content {
+  width: 309px;
+  height: 90px;
+  border-radius: 4px;
+  border: solid 1px var(--concrete);
+  background-color: var(--white);
 }
 
 .banner-content .detail-content .desc {
@@ -553,6 +571,7 @@ ion-toggle {
   box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
   border: solid 1px var(--mercury);
   background-color: var(--white);
+  top: 80px !important;
 }
 
 .menu-class .popover-content .content p {
