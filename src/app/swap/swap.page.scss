@@ -48,7 +48,7 @@
   justify-content: flex-start;
 }
 .price-detail ion-row {
-  height: 33px;
+  min-height: 33px;
   line-height: 33px;
 }
 .price-detail .number {
@@ -82,12 +82,18 @@
 }
 .dot-line {
   width: 1px;
-  height: 25px;
+  height: 30px;
   background-color: #4a4a4a;
   position: relative;
-  top: 17px;
+  top: 0px;
   right: -5px;
 }
+@media only screen and (max-width: 470px) {
+  .dot-line {
+    height: 52px;
+  }
+}
+
 .margin-left {
   margin-left: 1px;
 }
@@ -100,4 +106,8 @@ ion-icon {
 }
 .trascation-doing {
   display: none;
+}
+
+.dot-col {
+  max-width: 20px !important;
 }

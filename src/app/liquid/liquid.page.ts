@@ -1,5 +1,13 @@
-import { Component, OnInit, Renderer2, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { fromEvent, Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 import { BannerContent } from '../common/components/banner/banner.page';
 import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
@@ -19,7 +27,7 @@ import { WarningDetailPage } from './warning/warning-detail/warning-detail.page'
   templateUrl: './liquid.page.html',
   styleUrls: ['./liquid.page.scss'],
 })
-export class LiquidPage implements OnInit {
+export class LiquidPage implements OnInit, OnDestroy {
   @ViewChild(AddLiquidPage, { static: false }) addLiquidView: AddLiquidPage;
   @ViewChild(RedeemLiquidPage, { static: false })
   redeemLiquidView: RedeemLiquidPage;
@@ -98,6 +106,8 @@ export class LiquidPage implements OnInit {
   showZeroInfo: boolean = false;
   tokenName = 'XTokens-gray';
   questionImgName = 'question';
+  resizeSubscription: Subscription;
+  btnTitle: any;
   constructor(
     public cofixService: CofiXService,
     private balanceTruncatePipe: BalanceTruncatePipe,
@@ -120,7 +130,28 @@ export class LiquidPage implements OnInit {
       this.showWarning();
       this.initCoinContent();
     }
+    this.changeBtnTitle();
+    this.resizeSubscription = fromEvent(window, 'resize')
+      .pipe(debounceTime(100))
+      .subscribe((event) => {
+        this.changeBtnTitle();
+      });
   }
+
+  changeBtnTitle() {
+    if (window.innerWidth < 500) {
+      this.btnTitle = {
+        deposit: 'miningpool_deposit_title_short',
+        withdraw: 'miningpool_withdraw_title_short',
+      };
+    } else {
+      this.btnTitle = {
+        deposit: 'miningpool_deposit',
+        withdraw: 'miningpool_withdraw',
+      };
+    }
+  }
+
   async showWarning() {
     const knownRisk = this.shareStateQuery.getValue().knownRisk;
     if (!knownRisk) {
@@ -362,10 +393,16 @@ export class LiquidPage implements OnInit {
     }
     return this.showZeroInfo;
   }
+
   havMining() {
     return (
       !this.pairAttended[this.toCoin.id] ||
       !this.cofixService.getCurrentAccount()
     );
+  }
+
+  ngOnDestroy() {
+    console.log('header destroy---');
+    this.resizeSubscription.unsubscribe();
   }
 }

@@ -80,27 +80,33 @@
         </ion-row>
         <ng-container *ngIf="isShowDetail">
           <ion-grid class="price-detail">
-            <ion-row>
-              <ion-col class="label" size="5">
+            <ion-row class="ion-align-items-center ion-align-self-center">
+              <ion-col size="1" class="dot-col">
+                <div class="dot"></div>
                 <div class="dot-line"></div>
                 <div class="dot"></div>
-                {{'swap_nestprice' | translate}}
               </ion-col>
-              <ion-col class="number ion-text-right" size="7">
-                1 <span class="tk1">{{fromCoin.id}}</span> =
-                <span class="changePrice"
-                  >{{changePrice | truncate:'--':2}}</span
-                >
-                {{toCoin.id}}
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col class="label" size="5">
-                <div class="dot margin-left"></div>
-                {{'swap_pricefee' | translate}}
-              </ion-col>
-              <ion-col class="number ion-text-right" size="7">
-                *** {{toCoin.id}}
+              <ion-col size="11">
+                <ion-row>
+                  <ion-col class="label" size="5">
+                    {{'swap_nestprice' | translate}}
+                  </ion-col>
+                  <ion-col class="number ion-text-right" size="7">
+                    1 <span class="tk1">{{fromCoin.id}}</span> =
+                    <span class="changePrice"
+                      >{{changePrice | truncate:'--':4}}</span
+                    >
+                    {{toCoin.id}}
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col class="label" size="5">
+                    {{'swap_pricefee' | translate}}
+                  </ion-col>
+                  <ion-col class="number ion-text-right" size="7">
+                    *** {{toCoin.id}}
+                  </ion-col>
+                </ion-row>
               </ion-col>
             </ion-row>
             <ion-row>
@@ -201,9 +207,11 @@
       <ng-container>
         <div class="button-div">
           <ion-button
-            expand="block" *ngIf="isShowApprove()"
+            expand="block"
+            *ngIf="isShowApprove()"
             class="operation-btn approve-btn"
-            (click)="approve()" id="approveBtn"
+            (click)="approve()"
+            id="approveBtn"
             [disabled]="isLoading.sq || !cofixService.getCurrentAccount() "
           >
             <div class="ion-button-label">

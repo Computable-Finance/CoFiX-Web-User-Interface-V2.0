@@ -1,0 +1,47 @@
+.title {
+  height: 29px;
+  font-size: 24px;
+  margin: 0px 0px 10px 0px;
+}
+.title ion-col {
+  font-size: 17px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.71;
+  letter-spacing: normal;
+  color: var(--black);
+}
+.success-img {
+  width: 20px;
+  height: 20px;
+}
+
+.close-img {
+  width: 24px;
+  height: 24px;
+  position: unset;
+}
+.img-div:hover {
+  background-color: var(--porcelain);
+  border-radius: 50%;
+}
+.img-div {
+  width: 32px;
+  height: 32px;
+  padding: 3px;
+}
+
+.tx-link {
+  font-size: 17px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.71;
+  letter-spacing: normal;
+  color: var(--azure);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

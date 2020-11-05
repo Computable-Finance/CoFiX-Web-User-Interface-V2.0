@@ -1,16 +1,26 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { ShareStateService } from '../../state/share.service';
 import { ShareStateQuery } from '../../state/share.query';
 import { EventBusService } from 'src/app/service/eventbus.service';
 import { Router } from '@angular/router';
+import { fromEvent, Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 @Component({
   selector: 'app-header',
   templateUrl: './header.page.html',
   styleUrls: ['./header.page.scss'],
 })
-export class HeaderPage implements OnInit {
+export class HeaderPage implements OnInit, OnDestroy {
   @Input() activeId: string;
   @Output() onRefresh = new EventEmitter<any>();
+  resizeSubscription: Subscription;
   public headerItems = [
     {
       id: 'swap',
@@ -40,8 +50,48 @@ export class HeaderPage implements OnInit {
       location.reload();
     });
   }
-  ngOnInit() {}
-
+  ngOnInit() {
+    this.changeTabs();
+    this.resizeSubscription = fromEvent(window, 'resize')
+      .pipe(debounceTime(100))
+      .subscribe((event) => {
+        this.changeTabs();
+      });
+  }
+  changeTabs() {
+    console.log(window.innerWidth);
+    if (window.innerWidth < 870) {
+      this.headerItems = [
+        {
+          id: 'swap',
+        },
+        {
+          id: 'liquid',
+        },
+        {
+          id: 'cofi_short',
+        },
+        {
+          id: 'income',
+        },
+      ];
+    } else {
+      this.headerItems = [
+        {
+          id: 'swap',
+        },
+        {
+          id: 'liquid',
+        },
+        {
+          id: 'cofi',
+        },
+        {
+          id: 'income',
+        },
+      ];
+    }
+  }
   goto(link) {
     window.open(link);
   }
@@ -52,5 +102,10 @@ export class HeaderPage implements OnInit {
   }
   onConnected() {
     this.onRefresh.emit();
+  }
+
+  ngOnDestroy() {
+    console.log('header destroy---');
+    this.resizeSubscription.unsubscribe();
   }
 }

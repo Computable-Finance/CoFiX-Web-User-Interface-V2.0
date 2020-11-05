@@ -26,6 +26,7 @@ import { MenuPage } from './switch-lang/menu/menu.page';
 import { TxListPage } from './transaction/tx-List/tx-list.page';
 import { TxConfirmPage } from './transaction/tx-confirm/tx-confirm.page';
 import { TxStatusPage } from './transaction/tx-status/tx-status.page';
+import { TxSuccessPage } from './transaction/tx-success/tx-success.page';
 
 @NgModule({
   imports: [
@@ -57,6 +58,7 @@ import { TxStatusPage } from './transaction/tx-status/tx-status.page';
     TxListPage,
     TxConfirmPage,
     TxStatusPage,
+    TxSuccessPage,
   ],
   exports: [
     FooterPage,
@@ -76,6 +78,7 @@ import { TxStatusPage } from './transaction/tx-status/tx-status.page';
     TxListPage,
     TxConfirmPage,
     TxStatusPage,
+    TxSuccessPage,
   ],
 })
 export class CommonComponentsModule {}

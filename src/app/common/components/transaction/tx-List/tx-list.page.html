@@ -35,7 +35,7 @@
       class="ion-align-items-center ion-align-self-center tx" (click)="goto(tx.txHash,tx.network)">
       <ion-col size="1" *ngIf="tx.status ==='success'"><img src="./assets/images/success.png"></ion-col>
       <ion-col size="1" *ngIf="tx.status ==='pending'"><div class="tx-pending"></div></ion-col>
-      <ion-col size="11">{{tx.title}} <ion-icon name="arrow-forward-outline" color="secondary"></ion-icon></ion-col>
+      <ion-col size="11" class="tx-content">{{tx.title}} <ion-icon name="arrow-forward-outline" color="secondary"></ion-icon></ion-col>
     </ion-row>
   </ng-container>
 </ion-grid>

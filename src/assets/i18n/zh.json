@@ -40,7 +40,7 @@
   "title_liquid": "资金池",
   "title_income": "分红",
   "title_cofi": "Claim CoFi",
-  "title_cofi_short": "CoFi",
+  "title_cofi_short": "ClaimCoFi",
   "address": "合约地址:",
   "zf_text": "支付",
   "zf_input": "输入支付数量",
@@ -266,5 +266,6 @@
   "tx_rejected_desc":"You failed confirming the transaction",
   "btn_close":"关闭",
   "tx_submitted":"Transaction Submitted",
-  "tx_submitted_desc":"View in Etherscan"
+  "tx_submitted_desc":"View in Etherscan",
+  "menu":"Menu"
 }

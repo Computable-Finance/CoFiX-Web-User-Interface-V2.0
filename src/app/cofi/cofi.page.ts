@@ -104,6 +104,8 @@ export class CofiPage implements OnInit {
 
   //领取Cofi
   async withdrawEarnedCoFi() {
+    this.utils.showTxSuccessModal();
+    return false;
     this.resetCofiError();
     if (
       await this.cofixService.getStakingPoolAddressByToken(this.coinAddress)

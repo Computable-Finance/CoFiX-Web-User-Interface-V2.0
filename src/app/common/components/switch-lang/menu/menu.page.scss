@@ -46,6 +46,7 @@ ion-button {
   --box-shadow: none;
   justify-content: flex-start;
   --border-radius: 7px;
+  margin: 10px 0px 10px 0px;
 }
 img {
   width: 24px;
@@ -61,4 +62,18 @@ img {
 }
 .button-outline {
   margin: 0px !important;
+}
+.text-align {
+  text-align: left;
+}
+@media only screen and (max-width: 820px) {
+  ion-button {
+    width: 90%;
+  }
+  .text-align {
+    text-align: right !important;
+  }
+  .select-content {
+    margin: 0px;
+  }
 }

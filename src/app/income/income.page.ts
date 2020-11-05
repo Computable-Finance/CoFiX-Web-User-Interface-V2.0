@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { debounceTime } from 'rxjs/operators';
@@ -15,7 +15,7 @@ import { TxService } from '../state/tx/tx.service';
   templateUrl: './income.page.html',
   styleUrls: ['./income.page.scss'],
 })
-export class IncomePage implements OnInit {
+export class IncomePage implements OnInit, OnDestroy {
   public incomeContent: BannerContent = {
     title: 'help_tips',
     descriptions: ['income_desc1', 'income_desc2', 'income_desc3'],
