@@ -10,7 +10,6 @@ import {
 import { Subscription, fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { BalanceTruncatePipe } from 'src/app/common/pipes/balance.pipe';
-import { ShareStateQuery } from 'src/app/common/state/share.query';
 import { ShareStateService } from 'src/app/common/state/share.service';
 import { ShareState } from 'src/app/common/state/share.store';
 import { Utils } from 'src/app/common/utils';
@@ -53,7 +52,6 @@ export class TokenMiningPage implements OnInit, OnDestroy {
     private cofixService: CofiXService,
     private balanceTruncatePipe: BalanceTruncatePipe,
     private shareStateService: ShareStateService,
-    public shareStateQuery: ShareStateQuery,
     private utils: Utils,
     private txService: TxService
   ) {}

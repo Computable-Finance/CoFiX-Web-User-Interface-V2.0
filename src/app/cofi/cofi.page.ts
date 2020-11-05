@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BannerContent } from '../common/components/banner/banner.page';
 import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
-import { ShareStateQuery } from '../common/state/share.query';
 import { ShareStateService } from '../common/state/share.service';
 import { ShareState } from '../common/state/share.store';
 import { Utils } from '../common/utils';
@@ -42,7 +41,6 @@ export class CofiPage implements OnInit {
     public cofixService: CofiXService,
     private balanceTruncatePipe: BalanceTruncatePipe,
     private shareStateService: ShareStateService,
-    public shareStateQuery: ShareStateQuery,
     private txService: TxService,
     private utils: Utils
   ) {}

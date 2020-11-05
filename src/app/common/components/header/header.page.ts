@@ -7,7 +7,6 @@ import {
   Output,
 } from '@angular/core';
 import { ShareStateService } from '../../state/share.service';
-import { ShareStateQuery } from '../../state/share.query';
 import { EventBusService } from 'src/app/service/eventbus.service';
 import { Router } from '@angular/router';
 import { fromEvent, Subscription } from 'rxjs';
@@ -41,7 +40,6 @@ export class HeaderPage implements OnInit, OnDestroy {
   ];
   headerItems: any;
   constructor(
-    public shareStateQuery: ShareStateQuery,
     private shareStateService: ShareStateService,
     private eventbusService: EventBusService,
     private router: Router

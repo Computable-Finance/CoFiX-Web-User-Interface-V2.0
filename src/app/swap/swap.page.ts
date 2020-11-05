@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { BannerContent } from '../common/components/banner/banner.page';
-import { ShareStateQuery } from '../common/state/share.query';
 import { CofiXService } from '../service/cofix.service';
 import { Utils } from 'src/app/common/utils';
 import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
@@ -59,7 +58,6 @@ export class SwapPage implements OnInit, OnDestroy {
   waitingPopover: any;
 
   private balanceHandler = (balance) => {
-    console.log(balance);
     this.fromCoin.balance = balance;
     this.getERC20BalanceOfPair();
     this.isShowFromMax = true;
@@ -67,7 +65,6 @@ export class SwapPage implements OnInit, OnDestroy {
 
   constructor(
     public cofixService: CofiXService,
-    public shareStateQuery: ShareStateQuery,
     private balancePipe: BalanceTruncatePipe,
     private utils: Utils,
     private txService: TxService,
@@ -229,7 +226,7 @@ export class SwapPage implements OnInit, OnDestroy {
     if (event.coin === 'ETH' && this.fromCoin.id === event.coin) {
       return false;
     }
-
+    this.fromCoin.subscription?.unsubscribe();
     if (event.coin === this.toCoin.id) {
       this.changeCoin();
     } else {
@@ -250,6 +247,7 @@ export class SwapPage implements OnInit, OnDestroy {
     if (event.coin === this.toCoin.id) {
       return false;
     }
+    this.fromCoin.subscription?.unsubscribe();
     if (event.coin === this.fromCoin.id) {
       this.changeCoin();
     } else {
@@ -293,7 +291,6 @@ export class SwapPage implements OnInit, OnDestroy {
       ).toString();
 
       this.priceSpread = new BNJS(this.changePrice).minus(0);
-      console.log(this.priceSpread);
     }
     if (this.cofixService.getCurrentAccount()) {
       this.fromCoin.subscription?.unsubscribe();
@@ -384,13 +381,12 @@ export class SwapPage implements OnInit, OnDestroy {
     this.utils.showTXSubmitModal(txHash);
   }
 
-  private afterTxSucceeded(txHash) {
-    console.log('afterTxSucceeded ==');
+  private afterTxSucceeded(status, txHash) {
     this.isLoading.dh = false;
     this.resetAmount();
     this.initCoinContent();
     this.getIsApproved();
-    this.txService.txSucceeded(txHash);
+    this.utils.changeTxStatus(status, txHash);
   }
 
   private catchTXError(error) {
@@ -415,7 +411,6 @@ export class SwapPage implements OnInit, OnDestroy {
         t: `${this.toCoin.amount} ${this.toCoin.id}`,
       },
     };
-    console.log(params);
     if (this.fromCoin.id === 'ETH') {
       this.cofixService
         .swapExactETHForTokens(
@@ -432,8 +427,7 @@ export class SwapPage implements OnInit, OnDestroy {
 
           const provider = this.cofixService.getCurrentProvider();
           provider.once(tx.hash, (transactionReceipt) => {
-            console.log(transactionReceipt);
-            this.afterTxSucceeded(tx.hash);
+            this.afterTxSucceeded(transactionReceipt.status, tx.hash);
           });
           provider.once('error', (error) => {
             console.log('provider.error==', error);
@@ -464,7 +458,7 @@ export class SwapPage implements OnInit, OnDestroy {
             this.afterTXSubmitted(tx.hash, params);
             const provider = this.cofixService.getCurrentProvider();
             provider.once(tx.hash, (transactionReceipt) => {
-              this.afterTxSucceeded(tx.hash);
+              this.afterTxSucceeded(transactionReceipt.status, tx.hash);
             });
             provider.once('error', (error) => {
               console.log('provider.once==', error);
@@ -501,7 +495,7 @@ export class SwapPage implements OnInit, OnDestroy {
             this.afterTXSubmitted(tx.hash, params);
             const provider = this.cofixService.getCurrentProvider();
             provider.once(tx.hash, (transactionReceipt) => {
-              this.afterTxSucceeded(tx.hash);
+              this.afterTxSucceeded(transactionReceipt.status, tx.hash);
             });
             provider.once('error', (error) => {
               console.log('provider.once==', error);
