@@ -65,17 +65,97 @@
         <ts:string xml:lang="en">CoFix Liquidity Pool Share</ts:string>
     </ts:label>
 
-    <ts:contract name="NEST">
-	   <ts:address network="1">0x04abEdA201850aC0124161F037Efd70c74ddC74C</ts:address>
-    </ts:contract>
-    <ts:contract name="CoFiXRouter">
-	   <ts:address network="1">0x26aaD4D82f6c9FA6E34D8c1067429C986A055872</ts:address>
-    </ts:contract>
+    <ts:contract name="USDT" xml:base="file:/home/a/IdeaProjects/token-api-poc/tokenscripts/contracts.lst">
+	<ts:address network="1">0xdAC17F958D2ee523a2206206994597C13D831ec7</ts:address>
+	<ts:address network="3">0x200506568C2980B4943B5EaA8713A5740eb2c98A</ts:address>
+</ts:contract>
+<ts:contract name="HBTC" xml:base="file:/home/a/IdeaProjects/token-api-poc/tokenscripts/contracts.lst">
+	<ts:address network="1">0x0316EB71485b0Ab14103307bf65a021042c6d380</ts:address>
+	<ts:address network="3">0xA674f71ce49CE7F298aea2F23D918d114965eb40</ts:address>
+</ts:contract>
+<ts:contract name="NEST" xml:base="file:/home/a/IdeaProjects/token-api-poc/tokenscripts/contracts.lst">
+	<ts:address network="1">0x04abEdA201850aC0124161F037Efd70c74ddC74C</ts:address>
+	<ts:address network="3">0xD287Bc43eCD3D892204aA3792165fe8728636E29</ts:address>
+</ts:contract>
+<ts:contract name="WETH" xml:base="file:/home/a/IdeaProjects/token-api-poc/tokenscripts/contracts.lst">
+	<ts:address network="1">0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2</ts:address>
+	<ts:address network="3">0x59b8881812Ac484Ab78b8fc7c10b2543e079a6C3</ts:address>
+</ts:contract>
+<ts:contract name="NestPriceOracle" xml:base="file:/home/a/IdeaProjects/token-api-poc/tokenscripts/contracts.lst">
+	<ts:address network="1">0x94F36FAa6bB4f74009637292b09C355CcD3e80Eb</ts:address>
+	<ts:address network="3">0x70B9b6F0e1E4073403cF7143b45a862fe73af3B9</ts:address>
+</ts:contract>
+<ts:contract name="NEST3VoteFactory" xml:base="file:/home/a/IdeaProjects/token-api-poc/tokenscripts/contracts.lst">
+	<ts:address network="1">0x6Cd5698E8854Fb6879d6B1C694223b389B465dea</ts:address>
+	<ts:address network="3">0xAB996648c3e7E16253988d4a916456F6f63F04Ee</ts:address>
+</ts:contract>
+<ts:contract name="CoFiXKTable" xml:base="file:/home/a/IdeaProjects/token-api-poc/tokenscripts/contracts.lst">
+	<ts:address network="1">0x75E360Be6248Bd46030C6818624a09403EF5eC21</ts:address>
+	<ts:address network="3">0xe609B978635c7Bb8D22Ffc4Ec7f7a16615a3b1cA</ts:address>
+</ts:contract>
+<ts:contract name="CoFiToken" xml:base="file:/home/a/IdeaProjects/token-api-poc/tokenscripts/contracts.lst">
+	<ts:address network="1">0x1a23a6BfBAdB59fa563008c0fB7cf96dfCF34Ea1</ts:address>
+	<ts:address network="3">0x72Fd35b1dB364db812A8E726891685A25a9135D3</ts:address>
+</ts:contract>
+<ts:contract name="CoFiXNode" xml:base="file:/home/a/IdeaProjects/token-api-poc/tokenscripts/contracts.lst">
+	<ts:address network="1">0x558201DC4741efc11031Cdc3BC1bC728C23bF512</ts:address>
+	<ts:address network="3">0x655C281DC8610003d8AE490D462B950BdA71582f</ts:address>
+</ts:contract>
+<ts:contract name="CoFiXFactory" xml:base="file:/home/a/IdeaProjects/token-api-poc/tokenscripts/contracts.lst">
+	<ts:address network="1">0x66C64ecC3A6014733325a8f2EBEE46B4CA3ED550</ts:address>
+	<ts:address network="3">0x8E636BDB79752BFa2C41285535852bbBDd50b2ca</ts:address>
+</ts:contract>
+<ts:contract name="CoFiXRouter" xml:base="file:/home/a/IdeaProjects/token-api-poc/tokenscripts/contracts.lst">
+	<ts:address network="1">0x26aaD4D82f6c9FA6E34D8c1067429C986A055872</ts:address>
+	<ts:address network="3">0xbeE8674291328D09831cAf96eFceaCDf53066B86</ts:address>
+</ts:contract>
+<ts:contract name="CoFiXController" xml:base="file:/home/a/IdeaProjects/token-api-poc/tokenscripts/contracts.lst">
+	<ts:address network="1">0xd694eF4C82E50F3f184877572dCD6A45B8FEae87</ts:address>
+	<ts:address network="3">0xEB95E090b27A67f574005F41eea83794D5ac1650</ts:address>
+</ts:contract>
+<ts:contract name="CoFiXVaultForLP" xml:base="file:/home/a/IdeaProjects/token-api-poc/tokenscripts/contracts.lst">
+	<ts:address network="1">0x6903b1C17A5A0A9484c7346E5c0956027A713fCF</ts:address>
+	<ts:address network="3">0x2494853258c33A99581Abddc7b85b11D1D1885DF</ts:address>
+</ts:contract>
+<ts:contract name="CoFiXVaultForTrader" xml:base="file:/home/a/IdeaProjects/token-api-poc/tokenscripts/contracts.lst">
+	<ts:address network="1">0xE6183d3094a9e360B123Ec1330afAE76A74d1cbF</ts:address>
+	<ts:address network="3">0xe901e7f88a377D01028aE947cFA3192b3c5f7587</ts:address>
+</ts:contract>
+<ts:contract name="CoFiXVaultForCNode" xml:base="file:/home/a/IdeaProjects/token-api-poc/tokenscripts/contracts.lst">
+	<ts:address network="1">0x7eDa8251aC08E7898E986DbeC4Ba97B421d545DD</ts:address>
+	<ts:address network="3">0x159894c1e9712bF2EeDB4b2B84dFDA154893088B</ts:address>
+</ts:contract>
+<ts:contract name="CoFiStakingRewards" xml:base="file:/home/a/IdeaProjects/token-api-poc/tokenscripts/contracts.lst">
+	<ts:address network="1">0x0061c52768378b84306b2665f098c3e0b2C03308</ts:address>
+	<ts:address network="3">0x2a603D9e8b3152B6e235c7eFA41dFc073764d96a</ts:address>
+</ts:contract>
+<ts:contract name="ETH-USDT_Pair" xml:base="file:/home/a/IdeaProjects/token-api-poc/tokenscripts/contracts.lst">
+	<ts:address network="1">0xb2b7BeDd7d7fc19804C7Dd4a4E8174C4c73C210d</ts:address>
+	<ts:address network="3">0xffe14368FC46EB507e5221459a480646F22558b6</ts:address>
+</ts:contract>
+<ts:contract name="ETH-HBTC_Pair" xml:base="file:/home/a/IdeaProjects/token-api-poc/tokenscripts/contracts.lst">
+	<ts:address network="1">0x7C2d7b53AcA4038f2Eb649164181114B9AEE93CB</ts:address>
+	<ts:address network="3">0xe0297aBDCCf60Ab85365694E53AF92A433c2852e</ts:address>
+</ts:contract>
+<ts:contract name="CoFiXStakingRewards_ETH-USDT" xml:base="file:/home/a/IdeaProjects/token-api-poc/tokenscripts/contracts.lst">
+	<ts:address network="1">0x3B67fe44216d3e147bA8ccF6E49d2E576441cb10</ts:address>
+	<ts:address network="3">0x58FEf07559C7b19926BF4104463F80360A677144</ts:address>
+</ts:contract>
+<ts:contract name="CoFiXStakingRewards_ETH-HBTC" xml:base="file:/home/a/IdeaProjects/token-api-poc/tokenscripts/contracts.lst">
+	<ts:address network="1">0x5Fd4Eb552965F0Db9F50Ac285C55C8397F19F45B</ts:address>
+	<ts:address network="3">0xfdFc41f8b9D8b667b7DE8a976F446C557c697981</ts:address>
+</ts:contract>
+<ts:contract name="CNodeStakingRewards_CNode" xml:base="file:/home/a/IdeaProjects/token-api-poc/tokenscripts/contracts.lst">
+	<ts:address network="1">0xb697A2528D57a2BA8E75E2F33eD56B594cf9F308</ts:address>
+	<ts:address network="3">0x3ECD22524CDdC3E3AC2f52a595A9C7FA3b677ec1</ts:address>
+</ts:contract>
+
 
     <ts:cards>
         <ts:card name="Mint" type="activity">
             <ts:origins>
-                <ethereum:event contract="pool" filter="sender=${ownerAddress}" type="Mint"></ethereum:event>
+                
+                <ethereum:event contract="pool" type="Mint"></ethereum:event>
             </ts:origins>
         </ts:card>
     </ts:cards>
