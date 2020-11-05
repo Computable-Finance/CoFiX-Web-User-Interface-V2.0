@@ -9,6 +9,7 @@ import {
   to, TokenCard
 } from './lib';
 import { EthersData } from './types';
+import {filter, tap} from 'rxjs/operators';
 
 declare global {
   interface Window {
@@ -56,7 +57,7 @@ export class TokenService {
   public negotiateToken(): Observable<Token> {
     this.init();
     this.tokenGenerator$ = new BehaviorSubject<any>({} as Token);
-    return this.tokenGenerator$.asObservable();
+    return this.tokenGenerator$.asObservable().pipe(filter((item) => Object.keys(item).length > 0 ) );
   }
 
   public negotiateTokenByContent(xmlContent: string): void {
@@ -78,6 +79,9 @@ export class TokenService {
       }
       (this.debug > 0) && console.log(`negotiate fired for  ${tokenName}`);
 
+      const commonInitProps = extendPropsWithContracts(this.tokens[tokenName].xmlDoc, {}, this.ethersData);
+      commonInitProps.ownerAddress = this.ethersData.userAddress;
+
       const initialTokenInstance = new TokenCard({
         xmlDoc: this.tokens[tokenName].xmlDoc,
         lang: this.lang,
@@ -85,11 +89,10 @@ export class TokenService {
         tokenName,
         ethersData: this.ethersData,
         filter: this.tokens[tokenName].filter,
-        debug: this.debug
+        debug: this.debug,
+        props: commonInitProps
       });
       const distinctProps = await initialTokenInstance.getDistinctItems();
-      const commonInitProps = extendPropsWithContracts(this.tokens[tokenName].xmlDoc, {}, this.ethersData);
-      commonInitProps.ownerAddress = this.ethersData.userAddress;
 
       if (distinctProps && distinctProps.items && distinctProps.items.length) {
 

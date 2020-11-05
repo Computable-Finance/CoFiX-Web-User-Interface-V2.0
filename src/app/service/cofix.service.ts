@@ -122,25 +122,36 @@ export class CofiXService {
   }
 
   private initTokenScript() {
-    this.integrationSubscription = this.integrationService
-      .connect()
-      .pipe(filter((value) => Object.keys(value).length !== 0))
-      .subscribe((val) => {
-        console.log(val);
-        console.log(
-          Object.keys(val.CoFi).forEach((k) => console.log(val.CoFi[k]))
-        );
-        console.log(
-          Object.keys(val.LiquidityPoolShare).forEach((k) =>
-            console.log(val.LiquidityPoolShare[k])
-          )
-        );
-        console.log(
-          Object.keys(val.MiningPoolShare).forEach((k) =>
-            console.log(val.MiningPoolShare[k])
-          )
-        );
-      });
+    this.integrationSubscription = this.integrationService.connect().subscribe(val => {
+      console.log(val);
+      if (val.CoFi) {
+        Object.keys(val.CoFi).forEach((k) => {
+          console.log(`CoFi instance with ID "${k}":`);
+          console.log(val.CoFi[k]);
+        });
+      } else {
+        console.log('No CoFi token defined');
+      }
+
+      if (val.LiquidityPoolShare) {
+        Object.keys(val.LiquidityPoolShare).forEach((k) => {
+          console.log(`LiquidityPoolShare instance with ID "${k}":`);
+          console.log(val.LiquidityPoolShare[k]);
+        });
+      } else {
+        console.log('No LiquidityPoolShare token defined');
+      }
+
+      if (val.MiningPoolShare) {
+        Object.keys(val.MiningPoolShare).forEach((k) => {
+          console.log(`MiningPoolShare instance with ID "${k}":`);
+          console.log(val.MiningPoolShare[k]);
+        });
+      } else {
+        console.log('No MiningPoolShare token defined');
+      }
+
+    });
   }
 
   private registerWeb3EventHandler() {
