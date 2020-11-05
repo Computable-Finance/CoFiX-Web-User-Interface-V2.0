@@ -16,7 +16,7 @@ import { ShareStateService } from '../common/state/share.service';
 import { ShareState } from '../common/state/share.store';
 import { Utils } from '../common/utils';
 import { CofiXService } from '../service/cofix.service';
-import { CoinContent } from '../swap/swap.page';
+import { CoinContent } from '../common/types/CoinContent';
 import { AddLiquidPage } from './add/add-liquid.page';
 import { TokenMiningPage } from './mining/mining.page';
 import { RedeemLiquidPage } from './redeem/redeem-liquid.page';

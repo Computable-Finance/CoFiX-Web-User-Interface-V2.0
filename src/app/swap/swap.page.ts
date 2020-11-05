@@ -7,14 +7,8 @@ import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
 import { CoinInputPage } from '../common/components/coin-input/coin-input.page';
 import { BigNumber } from 'ethers';
 import { TxService } from '../state/tx/tx.service';
+import { CoinContent } from '../common/types/CoinContent';
 const BNJS = require('bignumber.js');
-export interface CoinContent {
-  id: string;
-  address: string;
-  amount: string;
-  isApproved: boolean;
-  balance: string;
-}
 @Component({
   selector: 'app-swap',
   templateUrl: './swap.page.html',

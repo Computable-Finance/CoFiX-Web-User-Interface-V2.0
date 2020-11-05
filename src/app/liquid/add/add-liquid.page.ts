@@ -18,7 +18,7 @@ import { ShareStateService } from 'src/app/common/state/share.service';
 import { Utils } from 'src/app/common/utils';
 import { CofiXService } from 'src/app/service/cofix.service';
 import { TxService } from 'src/app/state/tx/tx.service';
-import { CoinContent } from 'src/app/swap/swap.page';
+import { CoinContent } from 'src/app/common/types/CoinContent';
 import { WarningDetailPage } from '../warning/warning-detail/warning-detail.page';
 
 const BNJS = require('bignumber.js');
