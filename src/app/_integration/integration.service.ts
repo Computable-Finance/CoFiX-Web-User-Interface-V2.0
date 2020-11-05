@@ -9,14 +9,13 @@ import {
   DepositedForMiningPool,
   Token,
   WithdrewFromLiquidityPool,
-  WithdrewFromMiningPool
+  WithdrewFromMiningPool,
 } from './types';
-
 
 @Injectable({
   providedIn: 'root',
 })
-export class HuAndHuService {
+export class IntegrationService {
   constructor(private pool: PoolService) {}
 
   /**

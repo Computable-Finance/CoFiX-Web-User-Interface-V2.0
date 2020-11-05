@@ -2,12 +2,15 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BigNumber, Contract, ethers } from 'ethers';
 import { PCacheable } from 'ngx-cacheable';
+import { Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
 import { PermissionsQuery } from 'src/app/state/permission/permission.query';
 import { PermissionsService } from 'src/app/state/permission/permission.service';
 import { TokensInfoQuery } from 'src/app/state/token/token.query';
 import { TokenInfoService } from 'src/app/state/token/token.service';
 import { environment } from 'src/environments/environment';
 
+import { IntegrationService } from '../_integration/integration.service';
 import {
   BLOCKNUMS_IN_A_DAY,
   ETHER_DECIMALS,
@@ -52,6 +55,8 @@ export class CofiXService {
   private currentNetwork;
   private contractAddressList: any;
 
+  private integrationSubscription: Subscription;
+
   constructor(
     private shareStateService: ShareStateService,
     private eventbusService: EventBusService,
@@ -63,6 +68,7 @@ export class CofiXService {
     private balancesQuery: BalancesQuery,
     private marketDetailsService: MarketDetailsService,
     private marketDetailsQuery: MarketDetailsQuery,
+    private integrationService: IntegrationService,
     private http: HttpClient
   ) {
     BNJS.config({ EXPONENTIAL_AT: 100, ROUNDING_MODE: BNJS.ROUND_DOWN });
@@ -91,7 +97,6 @@ export class CofiXService {
   }
 
   private async setup(isEnabled: boolean) {
-    console.log('setup');
     if (window.ethereum === undefined) {
       throw new Error('Non-Ethereum browser detected. Install MetaMask.');
     }
@@ -113,6 +118,29 @@ export class CofiXService {
 
     this.registerWeb3EventHandler();
     this.trackingBlockchain();
+    this.initTokenScript();
+  }
+
+  private initTokenScript() {
+    this.integrationSubscription = this.integrationService
+      .connect()
+      .pipe(filter((value) => Object.keys(value).length !== 0))
+      .subscribe((val) => {
+        console.log(val);
+        console.log(
+          Object.keys(val.CoFi).forEach((k) => console.log(val.CoFi[k]))
+        );
+        console.log(
+          Object.keys(val.LiquidityPoolShare).forEach((k) =>
+            console.log(val.LiquidityPoolShare[k])
+          )
+        );
+        console.log(
+          Object.keys(val.MiningPoolShare).forEach((k) =>
+            console.log(val.MiningPoolShare[k])
+          )
+        );
+      });
   }
 
   private registerWeb3EventHandler() {
@@ -527,6 +555,7 @@ export class CofiXService {
   }
 
   private reset() {
+    this.integrationSubscription?.unsubscribe();
     this.untrackingBlockchain();
     this.provider = this.defaultProvider();
     this.currentAccount = undefined;
@@ -1144,6 +1173,12 @@ export class CofiXService {
         this.contractAddressList.CoFiXVaultForLP,
         this.provider
       );
+
+      const pairAddress = await this.getPairAddressByToken(tokenAddress);
+      if (pairAddress === '0x0000000000000000000000000000000000000000') {
+        throw new Error('invalid invocation!!!!!');
+      }
+
       this.tokenInfoService.updateTokenInfo(tokenAddress, {
         stakingPoolAddress: await coFiXVaultForLP.stakingPoolForPair(
           await this.getPairAddressByToken(tokenAddress)
