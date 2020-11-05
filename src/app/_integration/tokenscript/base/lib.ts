@@ -13,6 +13,7 @@ import {
   CoFiToken,
   CoFiXStakingRewards,
   CoFiStakingRewards,
+  WETHabi
 } from './abi';
 import { tokenName } from '@angular/compiler';
 
@@ -355,6 +356,11 @@ export async function getJSONAbi(
     case 'CoFiToken'.toLowerCase():
       return CoFiToken;
       break;
+
+    case 'WETH'.toLowerCase():
+      return WETHabi;
+      break;
+
 
     default:
       try {
