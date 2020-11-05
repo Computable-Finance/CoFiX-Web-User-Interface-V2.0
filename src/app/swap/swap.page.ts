@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { BannerContent } from '../common/components/banner/banner.page';
 import { ShareStateQuery } from '../common/state/share.query';
 import { CofiXService } from '../service/cofix.service';
@@ -8,13 +8,14 @@ import { CoinInputPage } from '../common/components/coin-input/coin-input.page';
 import { BigNumber } from 'ethers';
 import { TxService } from '../state/tx/tx.service';
 import { CoinContent } from '../common/types/CoinContent';
+import { BalancesQuery } from '../state/balance/balance.query';
 const BNJS = require('bignumber.js');
 @Component({
   selector: 'app-swap',
   templateUrl: './swap.page.html',
   styleUrls: ['./swap.page.scss'],
 })
-export class SwapPage implements OnInit {
+export class SwapPage implements OnInit, OnDestroy {
   @ViewChild(CoinInputPage, { static: false }) fromCoinInputView: CoinInputPage;
   @ViewChild(CoinInputPage, { static: false }) toCoinInputView: CoinInputPage;
   public swapContent: BannerContent = {
@@ -55,15 +56,28 @@ export class SwapPage implements OnInit {
   swapError = { isError: false, msg: '' };
   isShowDetail = false;
   minimum: any;
-
   waitingPopover: any;
+
+  private balanceHandler = (balance) => {
+    console.log(balance);
+    this.fromCoin.balance = balance;
+    this.getERC20BalanceOfPair();
+    this.isShowFromMax = true;
+  };
+
   constructor(
     public cofixService: CofiXService,
     public shareStateQuery: ShareStateQuery,
     private balancePipe: BalanceTruncatePipe,
     private utils: Utils,
-    private txService: TxService
+    private txService: TxService,
+    private balancesQuery: BalancesQuery
   ) {}
+
+  ngOnDestroy(): void {
+    this.fromCoin.subscription?.unsubscribe();
+    this.toCoin.subscription?.unsubscribe();
+  }
 
   async ngOnInit() {
     if (this.cofixService.getCurrentAccount() === undefined) {
@@ -282,9 +296,23 @@ export class SwapPage implements OnInit {
       console.log(this.priceSpread);
     }
     if (this.cofixService.getCurrentAccount()) {
+      this.fromCoin.subscription?.unsubscribe();
+      if (this.fromCoin.id === 'ETH') {
+        this.fromCoin.subscription = this.balancesQuery
+          .currentETHBalance$(this.cofixService.getCurrentAccount())
+          .subscribe(this.balanceHandler);
+      } else {
+        this.fromCoin.balance = await this.utils.getBalanceByCoin(
+          this.fromCoin
+        );
+        this.fromCoin.subscription = this.balancesQuery
+          .currentERC20Balance$(
+            this.cofixService.getCurrentAccount(),
+            this.fromCoin.address
+          )
+          .subscribe(this.balanceHandler);
+      }
       this.expectedCofi = '';
-      this.fromCoin.balance = await this.utils.getBalanceByCoin(this.fromCoin);
-      this.isShowFromMax = this.fromCoin.balance ? true : false;
     }
   }
   resetSwapError() {

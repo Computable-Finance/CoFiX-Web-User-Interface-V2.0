@@ -1453,8 +1453,11 @@ export class CofiXService {
   private async updateNAVPerShare(address: string) {
     const checkedPriceNow = await this.checkPriceNow(address);
     const pairAddress = await this.getPairAddressByToken(address);
-    const coFiXPair = getCoFixPair(pairAddress, this.provider);
 
+    if (pairAddress === '0x0000000000000000000000000000000000000000') {
+      throw new Error('invalid invocation!!!!!');
+    }
+    const coFiXPair = getCoFixPair(pairAddress, this.provider);
     this.marketDetailsService.updateMarketDetails(address, {
       navPerShare: ethersOf(
         await coFiXPair.getNAVPerShare(

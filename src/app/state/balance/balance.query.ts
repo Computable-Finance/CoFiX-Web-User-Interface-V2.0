@@ -8,8 +8,12 @@ export class BalancesQuery extends Query<BalancesModel> {
     super(store);
   }
 
-  observeBalancesByAccount(account: string) {
-    return this.select(account);
+  currentETHBalance$(account: string) {
+    return this.select((state) => state[account].ethBalance);
+  }
+
+  currentERC20Balance$(account: string, address: string) {
+    return this.select((state) => state[account].erc20Balances[address]);
   }
 
   getBalancesByAccount(account: string) {
