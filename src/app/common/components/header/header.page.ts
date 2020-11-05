@@ -21,20 +21,25 @@ export class HeaderPage implements OnInit, OnDestroy {
   @Input() activeId: string;
   @Output() onRefresh = new EventEmitter<any>();
   resizeSubscription: Subscription;
-  public headerItems = [
+  public tabtems = [
     {
       id: 'swap',
+      title: 'swap',
     },
     {
       id: 'liquid',
+      title: 'liquid',
     },
     {
       id: 'cofi',
+      title: 'cofi',
     },
     {
       id: 'income',
+      title: 'income',
     },
   ];
+  headerItems: any;
   constructor(
     public shareStateQuery: ShareStateQuery,
     private shareStateService: ShareStateService,
@@ -64,32 +69,23 @@ export class HeaderPage implements OnInit, OnDestroy {
       this.headerItems = [
         {
           id: 'swap',
+          title: 'swap',
         },
         {
           id: 'liquid',
-        },
-        {
-          id: 'cofi_short',
-        },
-        {
-          id: 'income',
-        },
-      ];
-    } else {
-      this.headerItems = [
-        {
-          id: 'swap',
-        },
-        {
-          id: 'liquid',
+          title: 'liquid',
         },
         {
           id: 'cofi',
+          title: 'cofi_short',
         },
         {
           id: 'income',
+          title: 'income',
         },
       ];
+    } else {
+      this.headerItems = this.tabtems;
     }
   }
   goto(link) {
