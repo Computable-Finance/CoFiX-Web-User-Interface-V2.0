@@ -70,6 +70,9 @@ export interface Token {
   CoFi: {
     [key: string]: CoFi;
   };
+  DividendPoolShare: {
+    [key: string]: DividendPoolShare;
+  };
 }
 
 export interface CoFi {
