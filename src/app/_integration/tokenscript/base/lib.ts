@@ -13,7 +13,8 @@ import {
   CoFiToken,
   CoFiXStakingRewards,
   CoFiStakingRewards,
-  WETHabi
+  WETHabi,
+  NEST3PriceOracleMock
 } from './abi';
 import { tokenName } from '@angular/compiler';
 
@@ -345,6 +346,10 @@ export async function getJSONAbi(
 
     case 'DividendPool'.toLowerCase():
       return CoFiXStakingRewards;
+      break;
+
+    case 'NestPriceOracle'.toLowerCase():
+      return NEST3PriceOracleMock;
       break;
 
     case 'Miningpool'.toLowerCase():
@@ -936,9 +941,12 @@ export class TokenCard {
         if (error) {
           console.error(`error while try to get attribute "${name}" value`);
         } else {
-          this.debug > 1 && console.log(`correct output for "${name}"`);
-          this.debug > 1 && console.log(output);
-          res = output;
+          this.debug > 1 && console.log(`correct output for "${name}":`, output);
+          if (ethCallAttributtes.select && output && output.length ) {
+            res = output[ethCallAttributtes.select];
+          } else {
+            res = output;
+          }
         }
 
         break;

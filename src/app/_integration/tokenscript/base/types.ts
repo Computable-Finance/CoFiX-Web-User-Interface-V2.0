@@ -29,7 +29,11 @@ export interface TokenProps {
 
 export interface EthereumCallParams {
   params: [any];
-  ethCallAttributtes: { contract?: string; function?: string };
+  ethCallAttributtes: {
+    contract?: string;
+    function?: string;
+    select?: string;
+  };
 }
 
 export interface ContractAddress {
