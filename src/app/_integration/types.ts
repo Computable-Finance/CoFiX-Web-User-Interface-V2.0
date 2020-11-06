@@ -18,6 +18,11 @@ export interface LiquidityPoolShare {
   navPerShare: BigNumber;
   navPerShareSubscription: BigNumber;
   navPerShareRedemption: BigNumber;
+  kInfoK: number;
+  kInfoTheta: number;
+  referenceExchangeRateEthAmount: BigNumber;
+  referenceExchangeRateErc20Amount: BigNumber;
+  referenceExchangeRateBlockNumblockNum: BigNumber;
 }
 
 export interface MiningPoolShare {

@@ -172,7 +172,7 @@
     <ts:cards>
         <ts:card name="Mint" type="activity">
             <ts:origins>
-                
+
                 <ethereum:event contract="pool" type="Mint"></ethereum:event>
             </ts:origins>
         </ts:card>
@@ -219,7 +219,7 @@
             <ts:syntax>1.3.6.1.4.1.1466.115.121.1.6</ts:syntax>
         </ts:type>
         <ts:origins>
-            
+
             <ts:attribute ref="pairSymbol">
                 <ts:mapping>
                     <ts:option key="USDT">
@@ -270,7 +270,7 @@
         </ts:origins>
     </ts:attribute>
 
-    <ts:attribute name="referenceExchangeRate-ethAmount">
+    <ts:attribute name="referenceExchangeRateEthAmount">
         <ts:type>
             <ts:syntax>1.3.6.1.4.1.1466.115.121.1.27</ts:syntax>
         </ts:type>
@@ -280,8 +280,8 @@
             </ethereum:call>
         </ts:origins>
     </ts:attribute>
-    
-    <ts:attribute name="referenceExchangeRate-erc20Amount">
+
+    <ts:attribute name="referenceExchangeRateErc20Amount">
         <ts:type>
             <ts:syntax>1.3.6.1.4.1.1466.115.121.1.27</ts:syntax>
         </ts:type>
@@ -291,8 +291,8 @@
             </ethereum:call>
         </ts:origins>
     </ts:attribute>
-    
-    <ts:attribute name="referenceExchangeRate-blockNum">
+
+    <ts:attribute name="referenceExchangeRateBlockNumblockNum">
         <ts:type>
             <ts:syntax>1.3.6.1.4.1.1466.115.121.1.27</ts:syntax>
         </ts:type>
@@ -302,7 +302,7 @@
             </ethereum:call>
         </ts:origins>
     </ts:attribute>
-    
+
     <ts:attribute name="navPerShare">
         <ts:type>
             <ts:syntax>1.3.6.1.4.1.1466.115.121.1.27</ts:syntax>
@@ -310,14 +310,14 @@
         <ts:origins>
             <ethereum:call contract="pool" function="getNAVPerShare">
                 <ts:data>
-                    <ts:uint256 ref="referenceExchangeRate-ethAmount"></ts:uint256>
-                    <ts:uint256 ref="referenceExchangeRate-erc20Amount"></ts:uint256>
+                    <ts:uint256 ref="referenceExchangeRateEthAmount"></ts:uint256>
+                    <ts:uint256 ref="referenceExchangeRateErc20Amount"></ts:uint256>
                 </ts:data>
             </ethereum:call>
         </ts:origins>
     </ts:attribute>
-    
-    <ts:attribute name="kInfo-k">
+
+    <ts:attribute name="kInfoK">
         <ts:type>
             <ts:syntax>1.3.6.1.4.1.1466.115.121.1.27</ts:syntax>
         </ts:type>
@@ -329,9 +329,9 @@
             </ethereum:call>
         </ts:origins>
     </ts:attribute>
-    
-    
-    <ts:attribute name="kInfo-theta">
+
+
+    <ts:attribute name="kInfoTheta">
         <ts:type>
             <ts:syntax>1.3.6.1.4.1.1466.115.121.1.27</ts:syntax>
         </ts:type>
@@ -343,7 +343,7 @@
             </ethereum:call>
         </ts:origins>
     </ts:attribute>
-    
+
     <ts:attribute name="navPerShareSubscription">
         <ts:type>
             <ts:syntax>1.3.6.1.4.1.1466.115.121.1.27</ts:syntax>
@@ -353,17 +353,17 @@
                 <ts:data>
 
                     <ts:data>
-                        <ts:uint256 ref="referenceExchangeRate-ethAmount"></ts:uint256>
-                        <ts:uint256 ref="referenceExchangeRate-erc20Amount"></ts:uint256>
-                        <ts:uint256 ref="referenceExchangeRate-blockNum"></ts:uint256>
-                        <ts:uint256 ref="kInfo-k"></ts:uint256>
-                        <ts:uint256 ref="kInfo-theta"></ts:uint256>
+                        <ts:uint256 ref="referenceExchangeRateEthAmount"></ts:uint256>
+                        <ts:uint256 ref="referenceExchangeRateErc20Amount"></ts:uint256>
+                        <ts:uint256 ref="referenceExchangeRateBlockNumblockNum"></ts:uint256>
+                        <ts:uint256 ref="kInfoK"></ts:uint256>
+                        <ts:uint256 ref="kInfoTheta"></ts:uint256>
                     </ts:data>
                 </ts:data>
             </ethereum:call>
         </ts:origins>
     </ts:attribute>
-    
+
     <ts:attribute name="navPerShareRedemption">
         <ts:type>
             <ts:syntax>1.3.6.1.4.1.1466.115.121.1.27</ts:syntax>
@@ -371,13 +371,13 @@
         <ts:origins>
             <ethereum:call contract="pool" function="getNAVPerShareForBurn">
                 <ts:data>
-                    
+
                     <ts:data>
-                        <ts:uint256 ref="referenceExchangeRate-ethAmount"></ts:uint256>
-                        <ts:uint256 ref="referenceExchangeRate-erc20Amount"></ts:uint256>
-                        <ts:uint256 ref="referenceExchangeRate-blockNum"></ts:uint256>
-                        <ts:uint256 ref="kInfo-k"></ts:uint256>
-                        <ts:uint256 ref="kInfo-theta"></ts:uint256>
+                        <ts:uint256 ref="referenceExchangeRateEthAmount"></ts:uint256>
+                        <ts:uint256 ref="referenceExchangeRateErc20Amount"></ts:uint256>
+                        <ts:uint256 ref="referenceExchangeRateBlockNumblockNum"></ts:uint256>
+                        <ts:uint256 ref="kInfoK"></ts:uint256>
+                        <ts:uint256 ref="kInfoTheta"></ts:uint256>
                     </ts:data>
                 </ts:data>
             </ethereum:call>

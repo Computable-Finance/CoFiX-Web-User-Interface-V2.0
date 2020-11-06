@@ -34,7 +34,7 @@ export class PoolService {
       'assets/tokens/CoFi.xml',
       'assets/tokens/DividendPoolShare.xml',
       'assets/tokens/USDT.xml',
-      'assets/tokens/HBTC.xml'
+      'assets/tokens/HBTC.xml',
     ];
     for (const path of files) {
       this.token.negotiateTokenByPath(path);
@@ -63,6 +63,14 @@ export class PoolService {
                   navPerShareSubscription:
                     tokenInstance.navPerShareSubscription,
                   navPerShareRedemption: tokenInstance.navPerShareRedemption,
+                  kInfoK: tokenInstance.kInfoK,
+                  kInfoTheta: tokenInstance.kInfoTheta,
+                  referenceExchangeRateBlockNumblockNum:
+                    tokenInstance.referenceExchangeRateBlockNumblockNum,
+                  referenceExchangeRateErc20Amount:
+                    tokenInstance.referenceExchangeRateErc20Amount,
+                  referenceExchangeRateEthAmount:
+                    tokenInstance.referenceExchangeRateEthAmount,
                 } as LiquidityPoolShare;
                 break;
               case 'MiningPoolShare':

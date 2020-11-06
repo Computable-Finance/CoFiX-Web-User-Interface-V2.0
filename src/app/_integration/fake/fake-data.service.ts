@@ -4,12 +4,13 @@ import {
   Activity,
   ApprovedForLiquidityPool,
   ApprovedForMiningPool,
-  DepositedForMiningPool, DividendPoolShare,
+  CoFi,
+  DepositedForMiningPool,
+  DividendPoolShare,
   LiquidityPoolShare,
   MiningPoolShare,
   Token,
   WithdrewFromLiquidityPool,
-  CoFi
 } from '../types';
 import { random, uuidv4 } from './utility';
 
@@ -19,7 +20,10 @@ import { random, uuidv4 } from './utility';
 export class FakeDataService {
   constructor() {}
 
-  public generateApprovedActivity<T extends Activity>(transactionNonce, returnType): T {
+  public generateApprovedActivity<T extends Activity>(
+    transactionNonce,
+    returnType
+  ): T {
     let fakeObject;
     switch (returnType) {
       case 'ApprovedForLiquidityPool': {
@@ -96,17 +100,29 @@ export class FakeDataService {
   public generateToken(): Token {
     return {
       LiquidityPoolShare: {
-        '0xdAC17F958D2ee523a2206206994597C13D831ec7': this.generateLiquidityPoolShare('USDT'),
-        '0x0316EB71485b0Ab14103307bf65a021042c6d380': this.generateLiquidityPoolShare('HBTC'),
+        '0xdAC17F958D2ee523a2206206994597C13D831ec7': this.generateLiquidityPoolShare(
+          'USDT'
+        ),
+        '0x0316EB71485b0Ab14103307bf65a021042c6d380': this.generateLiquidityPoolShare(
+          'HBTC'
+        ),
       },
       MiningPoolShare: {
-        '0xdAC17F958D2ee523a2206206994597C13D831ec7': this.generateMiningPoolShare('USDT'),
-        '0x0316EB71485b0Ab14103307bf65a021042c6d380': this.generateMiningPoolShare('HBTC'),
+        '0xdAC17F958D2ee523a2206206994597C13D831ec7': this.generateMiningPoolShare(
+          'USDT'
+        ),
+        '0x0316EB71485b0Ab14103307bf65a021042c6d380': this.generateMiningPoolShare(
+          'HBTC'
+        ),
       },
       CoFi: {
         '0xdAC17F958D2ee523a2206206994597C13D831ec7': this.generateСofiToken(),
         '0x0316EB71485b0Ab14103307bf65a021042c6d380': this.generateСofiToken(),
-      }
+      },
+      DividendPoolShare: {
+        '0xdAC17F958D2ee523a2206206994597C13D831ec7': this.generateDividendPoolShare(),
+        '0x0316EB71485b0Ab14103307bf65a021042c6d380': this.generateDividendPoolShare(),
+      },
     };
   }
 
@@ -120,6 +136,11 @@ export class FakeDataService {
       navPerShare: BigNumber.from(1),
       navPerShareSubscription: BigNumber.from(1),
       navPerShareRedemption: BigNumber.from(1),
+      kInfoK: 1,
+      kInfoTheta: 1,
+      referenceExchangeRateEthAmount: BigNumber.from(1),
+      referenceExchangeRateErc20Amount: BigNumber.from(1),
+      referenceExchangeRateBlockNumblockNum: BigNumber.from(1),
     };
   }
 
