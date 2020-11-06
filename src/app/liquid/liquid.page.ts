@@ -135,6 +135,7 @@ export class LiquidPage implements OnInit, OnDestroy {
 
   private earnedRateSubscription: Subscription;
   private cofiBalanceSubscription: Subscription;
+  private hadValueSubscription: Subscription;
   private todoValueSubscription: Subscription;
 
   ngOnInit() {
@@ -163,6 +164,7 @@ export class LiquidPage implements OnInit, OnDestroy {
   private unsubscribeAll() {
     this.earnedRateSubscription?.unsubscribe();
     this.cofiBalanceSubscription?.unsubscribe();
+    this.hadValueSubscription?.unsubscribe();
     this.todoValueSubscription?.unsubscribe();
   }
 
@@ -301,16 +303,6 @@ export class LiquidPage implements OnInit, OnDestroy {
             this.toCoin.id
           ] = await this.balanceTruncatePipe.transform(balance);
 
-          const stakingPoolAddress = await this.cofixService.getStakingPoolAddressByToken(
-            this.cofixService.getCurrentContractAddressList()[this.toCoin.id]
-          );
-
-          this.hadValue[
-            this.toCoin.id
-          ] = await this.balanceTruncatePipe.transform(
-            await this.cofixService.getERC20Balance(stakingPoolAddress)
-          );
-
           const resultETH = await this.cofixService.getETHAmountForRemoveLiquidity(
             this.coinAddress,
             pairAddress,
@@ -325,6 +317,23 @@ export class LiquidPage implements OnInit, OnDestroy {
           );
           this.tokenAmountForRemoveLiquidity[this.toCoin.id] =
             resultToken.result;
+        });
+
+      const stakingPoolAddress = await this.cofixService.getStakingPoolAddressByToken(
+        this.cofixService.getCurrentContractAddressList()[this.toCoin.id]
+      );
+      this.hadValue[this.toCoin.id] = await this.balanceTruncatePipe.transform(
+        await this.cofixService.getERC20Balance(stakingPoolAddress)
+      );
+      this.hadValueSubscription = this.balancesQuery
+        .currentERC20Balance$(
+          this.cofixService.getCurrentAccount(),
+          stakingPoolAddress
+        )
+        .subscribe(async (balance) => {
+          this.hadValue[
+            this.toCoin.id
+          ] = await this.balanceTruncatePipe.transform(balance);
         });
     } else {
       this.earnedRate[this.toCoin.id] = (

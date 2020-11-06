@@ -7,14 +7,15 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { Subscription, fromEvent } from 'rxjs';
+import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { BalanceTruncatePipe } from 'src/app/common/pipes/balance.pipe';
 import { ShareStateService } from 'src/app/common/state/share.service';
-import { ShareState } from 'src/app/common/state/share.store';
 import { Utils } from 'src/app/common/utils';
 import { CofiXService } from 'src/app/service/cofix.service';
+import { BalancesQuery } from 'src/app/state/balance/balance.query';
 import { TxService } from 'src/app/state/tx/tx.service';
+
 import { ProfitPage } from '../profit/profit.page';
 
 @Component({
@@ -23,21 +24,27 @@ import { ProfitPage } from '../profit/profit.page';
   styleUrls: ['./mining.page.scss'],
 })
 export class TokenMiningPage implements OnInit, OnDestroy {
+  constructor(
+    private cofixService: CofiXService,
+    private balanceTruncatePipe: BalanceTruncatePipe,
+    private shareStateService: ShareStateService,
+    private utils: Utils,
+    private txService: TxService,
+    private balancesQuery: BalancesQuery
+  ) {}
+
   @ViewChild(ProfitPage, { static: false }) cofiProfitView: ProfitPage;
   @Input() profit: any = { title: '', subtitle: '', isDeposit: false };
   @Output() onClose = new EventEmitter<any>();
   @Input() miningSpeed: any;
+
   showInputSelect = false;
-  coin: string = 'USDT';
+  coin = 'USDT';
   coinAddress: string;
-  earnedRate: any;
   todoValue: string;
   hadValue: string;
-  shareState: ShareState;
-  canReceive = false;
-  isLoading = false;
   isLoadingProfit = { sq: false, cr: false, qc: false };
-  balance: string = '';
+  balance = '';
   profitCoin = 'XTokens';
   isApproved = false;
   cofiError = { isError: false, msg: '' };
@@ -48,13 +55,10 @@ export class TokenMiningPage implements OnInit, OnDestroy {
     subtitle: '',
   };
   waitingPopover: any;
-  constructor(
-    private cofixService: CofiXService,
-    private balanceTruncatePipe: BalanceTruncatePipe,
-    private shareStateService: ShareStateService,
-    private utils: Utils,
-    private txService: TxService
-  ) {}
+  isDeposit = false;
+
+  private todoValueSubscription: Subscription;
+  private hadValueSubscription: Subscription;
 
   ngOnInit() {
     if (this.cofixService.getCurrentAccount() === undefined) {
@@ -71,6 +75,13 @@ export class TokenMiningPage implements OnInit, OnDestroy {
         this.changeCartTitle();
       });
   }
+
+  ngOnDestroy() {
+    this.resizeSubscription.unsubscribe();
+    this.todoValueSubscription?.unsubscribe();
+    this.hadValueSubscription?.unsubscribe();
+  }
+
   changeCartTitle() {
     if (window.innerWidth < 500) {
       this.cardTitle = {
@@ -84,15 +95,20 @@ export class TokenMiningPage implements OnInit, OnDestroy {
       };
     }
   }
+
   refreshPage() {
     this.getCoFiTokenAndRewards();
     this.getIsApproved();
   }
+
   gotoLiquid() {
     this.shareStateService.updateActiveTab('liquid');
   }
 
   async getCoFiTokenAndRewards() {
+    this.todoValueSubscription?.unsubscribe();
+    this.hadValueSubscription?.unsubscribe();
+
     if (this.cofixService.getCurrentAccount()) {
       this.coinAddress = this.cofixService.getCurrentContractAddressList()[
         this.coin
@@ -103,37 +119,36 @@ export class TokenMiningPage implements OnInit, OnDestroy {
           await this.cofixService.getPairAddressByToken(this.coinAddress)
         )
       );
-      this.earnedRate = await this.cofixService.earnedCofiAndRewardRate(
-        this.coinAddress
-      );
-      this.canReceive =
-        (await this.balanceTruncatePipe.transform(this.earnedRate.earned)) !==
-        '--';
+      this.todoValueSubscription = this.balancesQuery
+        .currentERC20Balance$(
+          this.cofixService.getCurrentAccount(),
+          await this.cofixService.getPairAddressByToken(this.coinAddress)
+        )
+        .subscribe(async (balance) => {
+          this.todoValue = await this.balanceTruncatePipe.transform(balance);
+        });
 
       this.hadValue = await this.balanceTruncatePipe.transform(
         await this.cofixService.getERC20Balance(
           await this.cofixService.getStakingPoolAddressByToken(this.coinAddress)
         )
       );
+      this.hadValueSubscription = this.balancesQuery
+        .currentERC20Balance$(
+          this.cofixService.getCurrentAccount(),
+          await this.cofixService.getStakingPoolAddressByToken(this.coinAddress)
+        )
+        .subscribe(async (balance) => {
+          this.hadValue = await this.balanceTruncatePipe.transform(balance);
+        });
     }
-  }
-
-  changeCoin(event) {
-    this.coin = event.coin;
-    this.todoValue = '';
-    this.hadValue = '';
-    this.earnedRate = undefined;
-    this.getCoFiTokenAndRewards();
-    this.getIsApproved();
-    this.cofiProfitView.resetInputSubscription();
-    this.cofiProfitView._balance = '';
-    this.resetCofiError();
   }
 
   resetCofiError() {
     this.cofiError = { isError: false, msg: '' };
     this.withdrawError = { isError: false, msg: '' };
   }
+
   async getIsApproved() {
     if (this.cofixService.getCurrentAccount()) {
       this.isApproved = await this.cofixService.approved(
@@ -190,8 +205,6 @@ export class TokenMiningPage implements OnInit, OnDestroy {
         const provider = this.cofixService.getCurrentProvider();
         provider.once(tx.hash, (transactionReceipt) => {
           this.isLoadingProfit.cr = false;
-          this.getCoFiTokenAndRewards();
-          this.balance = undefined;
           this.utils.changeTxStatus(transactionReceipt.status, tx.hash);
         });
         provider.once('error', (error) => {
@@ -243,8 +256,6 @@ export class TokenMiningPage implements OnInit, OnDestroy {
         const provider = this.cofixService.getCurrentProvider();
         provider.once(tx.hash, (transactionReceipt) => {
           this.isLoadingProfit.qc = false;
-          this.getCoFiTokenAndRewards();
-          this.balance = undefined;
           this.utils.changeTxStatus(transactionReceipt.status, tx.hash);
         });
         provider.once('error', (error) => {
@@ -264,13 +275,8 @@ export class TokenMiningPage implements OnInit, OnDestroy {
         }
       });
   }
-  isDeposit: boolean = false;
 
   cancel() {
     this.onClose.emit();
-  }
-  ngOnDestroy() {
-    console.log('destroy---');
-    this.resizeSubscription.unsubscribe();
   }
 }
