@@ -9,7 +9,7 @@ import {
   to, TokenCard
 } from './lib';
 import { EthersData } from './types';
-import {filter, tap} from 'rxjs/operators';
+import {filter} from 'rxjs/operators';
 
 declare global {
   interface Window {
@@ -167,8 +167,8 @@ export class TokenService {
     if (justReturn) {
       return output;
     }
-    (this.debug > 1 ) && console.log('this.tokenGenerator$.next fired');
-    (this.debug > 1 ) && console.log(output);
+    (this.debug > 0 ) && console.log('this.tokenGenerator$.next fired with data:->>');
+    (this.debug > 0 ) && console.log(output);
     this.tokenGenerator$.next(output);
   }
 

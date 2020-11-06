@@ -19,7 +19,10 @@ export class PoolService {
       'assets/tokens/LiquidityPoolShare.xml',
       // 'assets/tokens/BOOKY.xml',
       'assets/tokens/MiningPoolShare.xml',
-      'assets/tokens/CoFi.xml'
+      'assets/tokens/CoFi.xml',
+      'assets/tokens/DividendPoolShare.xml',
+      'assets/tokens/USDT.xml',
+      'assets/tokens/HBTC.xml',
     ];
     for (const path of files) {
       this.token.negotiateTokenByPath(path);

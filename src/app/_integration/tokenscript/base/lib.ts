@@ -14,7 +14,8 @@ import {
   CoFiXStakingRewards,
   CoFiStakingRewards,
   WETHabi,
-  NEST3PriceOracleMock
+  NEST3PriceOracleMock,
+  CoFiXController
 } from './abi';
 import { tokenName } from '@angular/compiler';
 
@@ -340,6 +341,8 @@ export async function getJSONAbi(
       break;
 
     case 'pair':
+    case 'HBTC'.toLowerCase():
+    case 'USDT'.toLowerCase():
     case 'booky':
       return erc20abi;
       break;
@@ -366,6 +369,9 @@ export async function getJSONAbi(
       return WETHabi;
       break;
 
+    case 'CoFiXController'.toLowerCase():
+      return CoFiXController;
+      break;
 
     default:
       try {
@@ -428,8 +434,6 @@ export function getEthereumCallParams({
   let defaultContract = xmlNode ? xmlNode.getAttribute('contract') : '';
   defaultContract = defaultContract ? defaultContract : tokenName;
 
-  const params = [];
-
   if (!ethereumNode) {
     console.log('cant see attribute');
     return {
@@ -448,17 +452,31 @@ export function getEthereumCallParams({
     ? ethCallAttributtes.contract
     : defaultContract;
 
+  const dataNode = getXMLItem(xmlDoc, 'ts:data', ethereumNode);
+
+  const params = getDataArrayFromNode(xmlDoc, dataNode, props);
+
+  return {
+    // @ts-ignore
+    params,
+    ethCallAttributtes,
+  };
+}
+
+export function getDataArrayFromNode(xmlDoc, node, props ): any[] {
+  const params = [];
+  if (!node) { return params; }
   const nsResolver = xmlDoc.createNSResolver(
-    xmlDoc.ownerDocument == null
-      ? xmlDoc.documentElement
-      : xmlDoc.ownerDocument.documentElement
+      xmlDoc.ownerDocument == null
+          ? xmlDoc.documentElement
+          : xmlDoc.ownerDocument.documentElement
   );
   const xmlNodeSet = xmlDoc.evaluate(
-    'ts:data/*',
-    ethereumNode,
-    nsResolver,
-    XPathResult.ANY_TYPE,
-    null
+      '*',
+      node,
+      nsResolver,
+      XPathResult.ANY_TYPE,
+      null
   );
 
   let item;
@@ -468,16 +486,13 @@ export function getEthereumCallParams({
     const ref = item.getAttribute('ref');
     if (props.hasOwnProperty(ref)) {
       params.push(props[ref]);
+    } else if (item.tagName === 'ts:data') {
+      params.push(getDataArrayFromNode(xmlDoc, item, props));
     } else if (item.innerHTML) {
       params.push(item.innerHTML);
     }
   }
-
-  return {
-    // @ts-ignore
-    params,
-    ethCallAttributtes,
-  };
+  return params;
 }
 
 export function getErc20EventParams(erc20EventName, xmlDoc): {} {
@@ -947,6 +962,7 @@ export class TokenCard {
           } else {
             res = output;
           }
+          this.debug > 1 && console.log(`use next value for "${name}":`, res);
         }
 
         break;
