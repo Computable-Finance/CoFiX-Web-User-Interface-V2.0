@@ -17,7 +17,7 @@ export class PoolService {
     this.token.init();
     const files = [
       'assets/tokens/LiquidityPoolShare.xml',
-    //   'assets/tokens/BOOKY.xml',
+      // 'assets/tokens/BOOKY.xml',
       'assets/tokens/MiningPoolShare.xml',
       'assets/tokens/CoFi.xml'
     ];
@@ -25,7 +25,6 @@ export class PoolService {
       this.token.negotiateTokenByPath(path);
     }
 
-    // return this.token.negotiateToken().pipe(map(x => x));
     return this.token.negotiateToken().pipe(
     map(x => {
         const output = {} as Token;
@@ -251,7 +250,7 @@ export class PoolService {
                   tokenInstance: 'ownerAddress=0xcf91479f4AeC538bEc575Dc07Ecfb7f4640f4D61',
                   cardName: 'received',
                   cardType,
-                  cardView: 'item-view',
+                  cardView: 'item-view3',
                   returnHistory: true,
                   listenNewEvents: true,
                   transactionNonce,

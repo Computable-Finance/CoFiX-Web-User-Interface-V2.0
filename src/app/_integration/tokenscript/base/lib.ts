@@ -784,7 +784,7 @@ export class TokenCard {
         this.debug > 1 && console.log('its ts:token-id, just use tokenID ');
         break;
       case 'ts:data':
-        this.debug > 1 && console.log(`its ts:data ${name}`);
+        this.debug > 1 && console.log(`its ts:data for attr: ${name}`);
         const attributeDataNodes = this.xmlDoc.evaluate(
           'ts:address',
           originsInnerNode,
@@ -800,25 +800,44 @@ export class TokenCard {
           attributeDataNodes &&
           (addressNode = attributeDataNodes.iterateNext())
         ) {
-          if (addressNode && addressNode.innerHTML) {
-            res.push(addressNode.innerHTML);
+          if (addressNode) {
+            // res.push(this.getNodeValue(addressNode) );
+            const refName = addressNode.getAttribute('ref');
+            if (refName) {
+              const value = this.props[refName];
+              if (value && typeof value === 'string') {
+                res.push(value);
+              }
+            } else if (addressNode.innerHTML) {
+              res.push(addressNode.innerHTML);
+            }
           }
         }
         this.debug > 1 && console.log(JSON.stringify(res));
         break;
 
       case 'ts:attribute':
-        this.debug > 1 && console.log(`its ts:attribute ${name}`);
+        this.debug > 1 && console.log(`its ts:attribute with name : ${name}`);
         const ref = originsInnerNode.getAttribute('ref');
         const key = this.props[ref];
         if (typeof key === 'string') {
           const selector = `ts:mapping/ts:option[@key="${key}"]/ts:value`;
-          res = getXMLItemText(
+          const valNode = getXMLItem(
             this.xmlDoc,
             `${selector}[@xml:lang="${this.lang}"][1]`,
             originsInnerNode,
             `${selector}[@xml:lang="${this.fallbackLang}"][1]`
           );
+
+          const refName = valNode.getAttribute('ref');
+          if (refName) {
+            const value = this.props[refName];
+            if (value && typeof value === 'string') {
+              res = value;
+            }
+          } else if (valNode.innerHTML) {
+            res = valNode.innerHTML;
+          }
         }
         this.debug > 1 && console.log(JSON.stringify(res));
         break;
@@ -1159,48 +1178,33 @@ export class TokenCard {
         }
 
         if (listenNewEvents) {
-          contract.on(filter, (src, dst, sum, blockData) => {
+          contract.on(filter, (...args) => {
             this.debug > 2 &&
-              console.log(
-                `Listen Result for ${eventType}, where name=${cardName} and type=${cardType};`
-              );
-            this.debug > 2 && console.log(src, dst, sum, blockData);
+            console.log(
+                `Listen Result for ${eventType}, where name=${cardName} and type=${cardType}; args = `, args);
 
-            const paramNames = [];
-            abi.forEach((method) => {
-              if (method.name === eventType && method.type === 'event') {
-                if (method.inputs.length) {
-                  method.inputs.forEach((input) => paramNames.push(input.name));
-                }
-              }
-            });
-            if (src && dst && sum) {
-              const args = {};
-              // let paramNames = Object.keys(params);
-              args[paramNames[0]] = src;
-              args[paramNames[1]] = dst;
-              args[paramNames[2]] = sum;
-
-              const activityProps = filterResultConverter(args, props);
-              activityProps.timeStamp = blockData.timestamp;
-              activityProps.blockNumber = blockData.blockNumber;
+            if (args.length) {
+              const eventblockData = args[args.length - 1];
+              const activityProps = Object.assign(props, eventblockData.args);
+              activityProps.blockNumber = eventblockData.blockNumber;
               this.ethersData.provider
-                .getBlock(blockData.blockNumber)
-                .then((block) => {
-                  activityProps.timeStamp = block.timestamp;
-                  this.debug > 2 &&
+                  .getBlock(eventblockData.blockNumber)
+                  .then((block) => {
+                    activityProps.timeStamp = block.timestamp;
+                    this.debug > 2 &&
                     console.log(
-                      `render props: ${JSON.stringify(activityProps)}`
+                        `render props: ${JSON.stringify(activityProps)}`
                     );
-                  this.render({
-                    props: activityProps,
-                    cardName,
-                    cardType,
-                    cardView,
-                    listener$,
+                    this.render({
+                      props: activityProps,
+                      cardName,
+                      cardType,
+                      cardView,
+                      listener$,
+                    });
                   });
-                });
             }
+
           });
         }
       }

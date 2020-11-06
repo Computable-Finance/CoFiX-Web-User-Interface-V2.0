@@ -166,8 +166,8 @@
         </ts:type>
         <ts:origins>
             <ts:data>
-                <ts:address>0xdAC17F958D2ee523a2206206994597C13D831ec7</ts:address>
-                <ts:address>0x0316EB71485b0Ab14103307bf65a021042c6d380</ts:address>
+                <ts:address ref="USDT"></ts:address>
+                <ts:address ref="HBTC"></ts:address>
             </ts:data>
         </ts:origins>
     </ts:attribute>
@@ -182,7 +182,13 @@
                     <ts:option key="0xdAC17F958D2ee523a2206206994597C13D831ec7">
                         <ts:value xml:lang="en">USDT</ts:value>
                     </ts:option>
+                    <ts:option key="0x200506568C2980B4943B5EaA8713A5740eb2c98A">
+                        <ts:value xml:lang="en">USDT</ts:value>
+                    </ts:option>
                     <ts:option key="0x0316EB71485b0Ab14103307bf65a021042c6d380">
+                        <ts:value xml:lang="en">HBTC</ts:value>
+                    </ts:option>
+                    <ts:option key="0xA674f71ce49CE7F298aea2F23D918d114965eb40">
                         <ts:value xml:lang="en">HBTC</ts:value>
                     </ts:option>
                 </ts:mapping>
@@ -195,14 +201,13 @@
             <ts:syntax>1.3.6.1.4.1.1466.115.121.1.6</ts:syntax>
         </ts:type>
         <ts:origins>
-            
-            <ts:attribute ref="pair">
+            <ts:attribute ref="pairSymbol">
                 <ts:mapping>
-                    <ts:option key="0xdAC17F958D2ee523a2206206994597C13D831ec7">
-                        <ts:value xml:lang="en">0xb2b7BeDd7d7fc19804C7Dd4a4E8174C4c73C210d</ts:value>
+                    <ts:option key="USDT">
+                        <ts:value ref="ETH-USDT_Pair" xml:lang="en"></ts:value>
                     </ts:option>
-                    <ts:option key="0x0316EB71485b0Ab14103307bf65a021042c6d380">
-                        <ts:value xml:lang="en">0x7C2d7b53AcA4038f2Eb649164181114B9AEE93CB</ts:value>
+                    <ts:option key="HBTC">
+                        <ts:value ref="ETH-HBTC_Pair" xml:lang="en"></ts:value>
                     </ts:option>
                 </ts:mapping>
             </ts:attribute>
