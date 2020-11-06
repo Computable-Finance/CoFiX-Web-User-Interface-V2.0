@@ -22,7 +22,7 @@
       <app-taken-info
         [infoTitle]="'ywc'"
         [token]="'CoFi'"
-        [tokenBalance]="earnedRate?.earned"
+        [tokenBalance]="cofiBalance"
         [alertContent]="'claim_tooltips_unclaimed'"
       >
       </app-taken-info>
@@ -36,7 +36,7 @@
             class="ion-text-right number"
             size="7"
             *ngIf="!showSkeleton(earnedRate)"
-            >{{earnedRate?.rewardRate | truncate:'--'}} CoFi/week
+            >{{earnedRate | truncate:'--'}} CoFi/week
           </ion-col>
           <ion-col size="7" *ngIf="showSkeleton(earnedRate)">
             <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
@@ -84,7 +84,7 @@
           <ion-col
             class="ion-text-right number"
             size="4"
-            *ngIf="!showSkeleton(todoValue)"
+            *ngIf="!showSkeleton(currentCoFiPrice)"
           >
             {{currentCoFiPrice}} USD
           </ion-col>

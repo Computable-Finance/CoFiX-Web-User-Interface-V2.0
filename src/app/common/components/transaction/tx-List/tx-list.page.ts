@@ -54,6 +54,6 @@ export class TxListPage implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.txListSubscription.unsubscribe();
+    this.txListSubscription?.unsubscribe();
   }
 }

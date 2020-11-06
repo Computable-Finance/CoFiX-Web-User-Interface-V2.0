@@ -62,7 +62,7 @@ export class ConnectWalletPage implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.txLastPendingSubscription.unsubscribe();
+    this.txLastPendingSubscription?.unsubscribe();
   }
   async showTXList(ev) {
     const popover = await this.popoverController.create({

@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { BannerContent } from '../common/components/banner/banner.page';
 import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
 import { ShareStateService } from '../common/state/share.service';
 import { ShareState } from '../common/state/share.store';
 import { Utils } from '../common/utils';
 import { CofiXService } from '../service/cofix.service';
+import { BalancesQuery } from '../state/balance/balance.query';
+import { MarketDetailsQuery } from '../state/market/market.query';
 import { TxService } from '../state/tx/tx.service';
 
 @Component({
@@ -12,7 +15,17 @@ import { TxService } from '../state/tx/tx.service';
   templateUrl: './cofi.page.html',
   styleUrls: ['./cofi.page.scss'],
 })
-export class CofiPage implements OnInit {
+export class CofiPage implements OnInit, OnDestroy {
+  constructor(
+    public cofixService: CofiXService,
+    private balanceTruncatePipe: BalanceTruncatePipe,
+    private shareStateService: ShareStateService,
+    private txService: TxService,
+    private utils: Utils,
+    private balancesQuery: BalancesQuery,
+    private marketDetailsQuery: MarketDetailsQuery
+  ) {}
+
   public cofixContent: BannerContent = {
     title: 'help_tips',
     descriptions: ['cofix_desc1', 'cofix_desc2', 'cofix_desc3'],
@@ -22,28 +35,33 @@ export class CofiPage implements OnInit {
         'https://github.com/Computable-Finance/Doc#7-token-mining-incentive-system',
     },
   };
+
   showInputSelect = false;
-  coin: string = 'USDT';
+  coin = 'USDT';
   coinAddress: string;
+  cofiBalance: string;
   earnedRate: any;
   todoValue: string;
   hadValue: string;
   shareState: ShareState;
   canReceive = false;
   isLoading = { sq: false, qc: false };
-  balance: string = '';
+  balance = '';
   profitCoin = 'XTokens';
   withdrawError = { isError: false, msg: '' };
-  isDeposit: boolean = true;
-  currentCoFiPrice = '--';
+  isDeposit = true;
+  currentCoFiPrice;
   waitingPopover: any;
-  constructor(
-    public cofixService: CofiXService,
-    private balanceTruncatePipe: BalanceTruncatePipe,
-    private shareStateService: ShareStateService,
-    private txService: TxService,
-    private utils: Utils
-  ) {}
+  isApproved = false;
+
+  private earnedRateSubscription: Subscription;
+  private cofiBalanceSubscription: Subscription;
+  private hadValueSubscription: Subscription;
+  private todoValueSubscription: Subscription;
+
+  ngOnDestroy(): void {
+    this.unsubscribeAll();
+  }
 
   async ngOnInit() {
     if (this.cofixService.getCurrentAccount() === undefined) {
@@ -53,57 +71,111 @@ export class CofiPage implements OnInit {
     } else {
       this.refreshPage();
     }
+
     this.currentCoFiPrice = await this.cofixService.currentCoFiPrice();
+    setInterval(
+      async () =>
+        (this.currentCoFiPrice = await this.cofixService.currentCoFiPrice()),
+      60 * 1000
+    );
   }
+
+  private unsubscribeAll() {
+    this.earnedRateSubscription?.unsubscribe();
+    this.cofiBalanceSubscription?.unsubscribe();
+    this.hadValueSubscription?.unsubscribe();
+    this.todoValueSubscription?.unsubscribe();
+  }
+
   refreshPage() {
+    this.todoValue = '';
+    this.hadValue = '';
     this.getCoFiTokenAndRewards();
     this.getIsApproved();
+    this.resetCofiError();
   }
+
   gotoLiquid() {
     this.shareStateService.updateActiveTab('liquid');
   }
 
   async getCoFiTokenAndRewards() {
+    this.unsubscribeAll();
+    this.coinAddress = this.cofixService.getCurrentContractAddressList()[
+      this.coin
+    ];
+
     if (this.cofixService.getCurrentAccount()) {
-      this.coinAddress = this.cofixService.getCurrentContractAddressList()[
-        this.coin
-      ];
       this.todoValue = await this.balanceTruncatePipe.transform(
         await this.cofixService.getERC20Balance(
           await this.cofixService.getPairAddressByToken(this.coinAddress)
         )
       );
-      this.earnedRate = await this.cofixService.earnedCofiAndRewardRate(
+      this.todoValueSubscription = this.balancesQuery
+        .currentERC20Balance$(
+          this.cofixService.getCurrentAccount(),
+          await this.cofixService.getPairAddressByToken(this.coinAddress)
+        )
+        .subscribe(async (balance) => {
+          this.todoValue = await this.balanceTruncatePipe.transform(balance);
+        });
+
+      const result = await this.cofixService.earnedCofiAndRewardRate(
         this.coinAddress
       );
-      const cofiBalance = await this.balanceTruncatePipe.transform(
+
+      this.earnedRate = result.rewardRate;
+      this.cofiBalance = await this.balanceTruncatePipe.transform(
         this.earnedRate.earned
       );
-      console.log(
-        await this.balanceTruncatePipe.transform(this.earnedRate.earned)
-      );
-      this.canReceive = cofiBalance !== '--' && cofiBalance !== '0';
+
+      this.cofiBalanceSubscription = this.balancesQuery
+        .currentUnclaimedCoFi$(
+          this.cofixService.getCurrentAccount(),
+          this.coinAddress
+        )
+        .subscribe(async (balance) => {
+          this.cofiBalance = await this.balanceTruncatePipe.transform(balance);
+          this.canReceive =
+            this.cofiBalance !== '--' && this.cofiBalance !== '0';
+        });
+
+      this.earnedRateSubscription = this.marketDetailsQuery
+        .marketDetails$(this.coinAddress, 'rewardRate')
+        .subscribe((data) => (this.earnedRate = data));
 
       this.hadValue = await this.balanceTruncatePipe.transform(
         await this.cofixService.getERC20Balance(
           await this.cofixService.getStakingPoolAddressByToken(this.coinAddress)
         )
       );
+      this.hadValueSubscription = this.balancesQuery
+        .currentERC20Balance$(
+          this.cofixService.getCurrentAccount(),
+          await this.cofixService.getStakingPoolAddressByToken(this.coinAddress)
+        )
+        .subscribe(async (balance) => {
+          this.hadValue = await this.balanceTruncatePipe.transform(balance);
+        });
+    } else {
+      this.earnedRate = (
+        await this.cofixService.earnedCofiAndRewardRate(this.coinAddress)
+      ).rewardRate;
+
+      this.earnedRateSubscription = this.marketDetailsQuery
+        .marketDetails$(this.coinAddress, 'rewardRate')
+        .subscribe((data) => (this.earnedRate = data));
     }
   }
+
   changeCoin(event) {
     this.coin = event.coin;
-    this.todoValue = '';
-    this.hadValue = '';
-    this.earnedRate = undefined;
-    this.getCoFiTokenAndRewards();
-    this.resetCofiError();
+
+    this.refreshPage();
   }
 
-  //领取Cofi
   async withdrawEarnedCoFi() {
     this.resetCofiError();
-    console.log('this.isDeposit', this.isDeposit);
     if (
       await this.cofixService.getStakingPoolAddressByToken(this.coinAddress)
     ) {
@@ -134,7 +206,6 @@ export class CofiPage implements OnInit {
           provider.once(tx.hash, (transactionReceipt) => {
             console.log(transactionReceipt);
             this.isLoading.qc = false;
-            this.getCoFiTokenAndRewards();
             this.balance = undefined;
             this.utils.changeTxStatus(transactionReceipt.status, tx.hash);
           });
@@ -155,6 +226,7 @@ export class CofiPage implements OnInit {
         });
     }
   }
+
   resetCofiError() {
     this.withdrawError = { isError: false, msg: '' };
   }
@@ -162,7 +234,7 @@ export class CofiPage implements OnInit {
   showSkeleton(value) {
     return value === undefined || value === '';
   }
-  isApproved: boolean = false;
+
   async getIsApproved() {
     if (this.cofixService.getCurrentAccount()) {
       this.isApproved = await this.cofixService.approved(
