@@ -43,6 +43,24 @@
             </sequence>
         </type>
     </namedType>
+    <namedType name="Burn">
+        <type>
+            <sequence>
+                <element name="sender" ethereum:indexed="false" ethereum:type="address"></element>
+                <element name="amount0" ethereum:indexed="false" ethereum:type="uint256"></element>
+                <element name="amount1" ethereum:indexed="false" ethereum:type="uint256"></element>
+            </sequence>
+        </type>
+    </namedType>
+    <namedType name="Mint">
+        <type>
+            <sequence>
+                <element name="sender" ethereum:indexed="false" ethereum:type="address"></element>
+                <element name="amount0" ethereum:indexed="false" ethereum:type="uint256"></element>
+                <element name="amount1" ethereum:indexed="false" ethereum:type="uint256"></element>
+            </sequence>
+        </type>
+    </namedType>
     <namedType name="Staked">
         <type>
             <sequence>
@@ -201,6 +219,7 @@
             <ts:syntax>1.3.6.1.4.1.1466.115.121.1.6</ts:syntax>
         </ts:type>
         <ts:origins>
+            
             <ts:attribute ref="pairSymbol">
                 <ts:mapping>
                     <ts:option key="USDT">
@@ -289,7 +308,7 @@
             <ts:syntax>1.3.6.1.4.1.1466.115.121.1.27</ts:syntax>
         </ts:type>
         <ts:origins>
-            <ethereum:call function="getNAVPerShare">
+            <ethereum:call contract="pool" function="getNAVPerShare">
                 <ts:data>
                     <ts:uint256 ref="referenceExchangeRate-ethAmount"></ts:uint256>
                     <ts:uint256 ref="referenceExchangeRate-erc20Amount"></ts:uint256>
@@ -303,7 +322,7 @@
             <ts:syntax>1.3.6.1.4.1.1466.115.121.1.27</ts:syntax>
         </ts:type>
         <ts:origins>
-            <ethereum:call function="getKInfo" select="k">
+            <ethereum:call contract="CoFiXController" function="getKInfo" select="k">
                 <ts:data>
                     <ts:address ref="pair"></ts:address>
                 </ts:data>
@@ -317,7 +336,7 @@
             <ts:syntax>1.3.6.1.4.1.1466.115.121.1.27</ts:syntax>
         </ts:type>
         <ts:origins>
-            <ethereum:call function="getKInfo" select="theta">
+            <ethereum:call contract="CoFiXController" function="getKInfo" select="theta">
                 <ts:data>
                     <ts:address ref="pair"></ts:address>
                 </ts:data>
@@ -330,7 +349,7 @@
             <ts:syntax>1.3.6.1.4.1.1466.115.121.1.27</ts:syntax>
         </ts:type>
         <ts:origins>
-            <ethereum:call function="getNAVPerShareForMint">
+            <ethereum:call contract="pool" function="getNAVPerShareForMint">
                 <ts:data>
                     
                     <ts:data>
@@ -350,7 +369,7 @@
             <ts:syntax>1.3.6.1.4.1.1466.115.121.1.27</ts:syntax>
         </ts:type>
         <ts:origins>
-            <ethereum:call function="getNAVPerShareForBurn">
+            <ethereum:call contract="pool" function="getNAVPerShareForBurn">
                 <ts:data>
                     
                     <ts:data>
