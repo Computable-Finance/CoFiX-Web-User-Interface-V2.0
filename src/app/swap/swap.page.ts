@@ -8,6 +8,8 @@ import { BigNumber } from 'ethers';
 import { TxService } from '../state/tx/tx.service';
 import { CoinContent } from '../common/types/CoinContent';
 import { BalancesQuery } from '../state/balance/balance.query';
+import { MarketDetailsQuery } from '../state/market/market.query';
+import { Subscription } from 'rxjs';
 const BNJS = require('bignumber.js');
 @Component({
   selector: 'app-swap',
@@ -28,7 +30,7 @@ export class SwapPage implements OnInit, OnDestroy {
   changePrice: string;
   expectedCofi: string;
   priceSpread: string;
-  oracleCost: string = '0.01'; //预言机调用费
+  oracleCost = '0.01'; //预言机调用费
   maxFee = '0.02';
   fromCoin: CoinContent = {
     id: 'ETH',
@@ -57,6 +59,9 @@ export class SwapPage implements OnInit, OnDestroy {
   minimum: any;
   waitingPopover: any;
 
+  changePriceOfFromTokenSubscription: Subscription;
+  changePriceOfToTokenSubscription: Subscription;
+
   private balanceHandler = (balance) => {
     this.fromCoin.balance = balance;
     this.getERC20BalanceOfPair();
@@ -68,12 +73,18 @@ export class SwapPage implements OnInit, OnDestroy {
     private balancePipe: BalanceTruncatePipe,
     private utils: Utils,
     private txService: TxService,
-    private balancesQuery: BalancesQuery
+    private balancesQuery: BalancesQuery,
+    private marketDetailsQuery: MarketDetailsQuery
   ) {}
 
   ngOnDestroy(): void {
+    this.unsubscribeAll();
+  }
+
+  private unsubscribeAll() {
     this.fromCoin.subscription?.unsubscribe();
-    this.toCoin.subscription?.unsubscribe();
+    this.changePriceOfFromTokenSubscription?.unsubscribe();
+    this.changePriceOfToTokenSubscription?.unsubscribe();
   }
 
   async ngOnInit() {
@@ -130,7 +141,7 @@ export class SwapPage implements OnInit, OnDestroy {
         this.showError = true;
         this.fromCoin.amount = '0';
         this.toCoin.amount = '';
-        return; //不进行后面的计算
+        return;
       } else {
         this.showError = false;
       }
@@ -142,8 +153,6 @@ export class SwapPage implements OnInit, OnDestroy {
     this.getEPAndEC();
 
     if (this.toCoin.id !== 'ETH') {
-      //计算结果
-
       if (
         new BNJS(this.toCoin.amount).gt(
           new BNJS(this.ERC20BalanceOfPair[this.toCoin.id])
@@ -188,9 +197,7 @@ export class SwapPage implements OnInit, OnDestroy {
 
       this.expectedCofi = executionPriceAndExpectedCofi.expectedCofi;
       this.changePrice = executionPriceAndExpectedCofi.excutionPriceForOne;
-
-      this.priceSpread = new BNJS(this.changePrice); //.minus(0);
-      console.log(this.priceSpread);
+      this.priceSpread = new BNJS(this.changePrice);
     }
   }
 
@@ -226,7 +233,7 @@ export class SwapPage implements OnInit, OnDestroy {
     if (event.coin === 'ETH' && this.fromCoin.id === event.coin) {
       return false;
     }
-    this.fromCoin.subscription?.unsubscribe();
+    this.unsubscribeAll();
     if (event.coin === this.toCoin.id) {
       this.changeCoin();
     } else {
@@ -283,17 +290,31 @@ export class SwapPage implements OnInit, OnDestroy {
       this.toCoin.address = this.cofixService.getCurrentContractAddressList()[
         this.toCoin.id
       ];
-      this.changePrice = (
-        await this.cofixService.changePrice(
-          this.fromCoin.address,
-          this.toCoin.address
-        )
-      ).toString();
+      this.changePrice = await this.cofixService.changePrice(
+        this.fromCoin.address,
+        this.toCoin.address
+      );
+      if (this.fromCoin.id !== 'ETH') {
+        this.changePriceOfFromTokenSubscription = this.marketDetailsQuery
+          .marketDetails$(this.fromCoin.address, 'checkedPriceNow')
+          .subscribe(async (price) => {
+            this.getEPAndEC();
+          });
+      }
+
+      if (this.toCoin.id !== 'ETH') {
+        this.changePriceOfToTokenSubscription = this.marketDetailsQuery
+          .marketDetails$(this.toCoin.address, 'checkedPriceNow')
+          .subscribe(async (price) => {
+            this.getEPAndEC();
+          });
+      }
 
       this.priceSpread = new BNJS(this.changePrice).minus(0);
     }
     if (this.cofixService.getCurrentAccount()) {
-      this.fromCoin.subscription?.unsubscribe();
+      this.unsubscribeAll();
+
       if (this.fromCoin.id === 'ETH') {
         this.fromCoin.subscription = this.balancesQuery
           .currentETHBalance$(this.cofixService.getCurrentAccount())
@@ -309,6 +330,7 @@ export class SwapPage implements OnInit, OnDestroy {
           )
           .subscribe(this.balanceHandler);
       }
+
       this.expectedCofi = '';
     }
   }
@@ -350,6 +372,7 @@ export class SwapPage implements OnInit, OnDestroy {
       this.expectedCofi = executionPriceAndExpectedCofi.expectedCofi;
     }
   }
+
   async approve() {
     this.resetSwapError();
 
@@ -539,6 +562,7 @@ export class SwapPage implements OnInit, OnDestroy {
   selectArrowChange(event) {
     this.isShowDetail = event.isDown;
   }
+
   showSkeleton(value) {
     return value === undefined || value === '';
   }

@@ -77,7 +77,6 @@ export class CoinInputPage implements OnInit, OnDestroy {
   }
 
   txtChanged(event) {
-    console.log(event);
     this.onInputChange.emit({ amount: this.amount, coin: this.coin });
   }
 
