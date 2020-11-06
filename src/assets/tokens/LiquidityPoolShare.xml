@@ -251,4 +251,117 @@
         </ts:origins>
     </ts:attribute>
 
+    <ts:attribute name="referenceExchangeRate-ethAmount">
+        <ts:type>
+            <ts:syntax>1.3.6.1.4.1.1466.115.121.1.27</ts:syntax>
+        </ts:type>
+        <ts:origins>
+            <ethereum:call contract="NestPriceOracle" function="checkPriceNow" select="ethAmount">
+                <ts:data><ts:address ref="pair"></ts:address></ts:data>
+            </ethereum:call>
+        </ts:origins>
+    </ts:attribute>
+    
+    <ts:attribute name="referenceExchangeRate-erc20Amount">
+        <ts:type>
+            <ts:syntax>1.3.6.1.4.1.1466.115.121.1.27</ts:syntax>
+        </ts:type>
+        <ts:origins>
+            <ethereum:call contract="NestPriceOracle" function="checkPriceNow" select="erc20Amount">
+                <ts:data><ts:address ref="pair"></ts:address></ts:data>
+            </ethereum:call>
+        </ts:origins>
+    </ts:attribute>
+    
+    <ts:attribute name="referenceExchangeRate-blockNum">
+        <ts:type>
+            <ts:syntax>1.3.6.1.4.1.1466.115.121.1.27</ts:syntax>
+        </ts:type>
+        <ts:origins>
+            <ethereum:call contract="NestPriceOracle" function="checkPriceNow" select="blockNum">
+                <ts:data><ts:address ref="pair"></ts:address></ts:data>
+            </ethereum:call>
+        </ts:origins>
+    </ts:attribute>
+    
+    <ts:attribute name="navPerShare">
+        <ts:type>
+            <ts:syntax>1.3.6.1.4.1.1466.115.121.1.27</ts:syntax>
+        </ts:type>
+        <ts:origins>
+            <ethereum:call function="getNAVPerShare">
+                <ts:data>
+                    <ts:uint256 ref="referenceExchangeRate-ethAmount"></ts:uint256>
+                    <ts:uint256 ref="referenceExchangeRate-erc20Amount"></ts:uint256>
+                </ts:data>
+            </ethereum:call>
+        </ts:origins>
+    </ts:attribute>
+    
+    <ts:attribute name="kInfo-k">
+        <ts:type>
+            <ts:syntax>1.3.6.1.4.1.1466.115.121.1.27</ts:syntax>
+        </ts:type>
+        <ts:origins>
+            <ethereum:call function="getKInfo" select="k">
+                <ts:data>
+                    <ts:address ref="pair"></ts:address>
+                </ts:data>
+            </ethereum:call>
+        </ts:origins>
+    </ts:attribute>
+    
+    
+    <ts:attribute name="kInfo-theta">
+        <ts:type>
+            <ts:syntax>1.3.6.1.4.1.1466.115.121.1.27</ts:syntax>
+        </ts:type>
+        <ts:origins>
+            <ethereum:call function="getKInfo" select="theta">
+                <ts:data>
+                    <ts:address ref="pair"></ts:address>
+                </ts:data>
+            </ethereum:call>
+        </ts:origins>
+    </ts:attribute>
+    
+    <ts:attribute name="navPerShareSubscription">
+        <ts:type>
+            <ts:syntax>1.3.6.1.4.1.1466.115.121.1.27</ts:syntax>
+        </ts:type>
+        <ts:origins>
+            <ethereum:call function="getNAVPerShareForMint">
+                <ts:data>
+                    
+                    <ts:data>
+                        <ts:uint256 ref="referenceExchangeRate-ethAmount"></ts:uint256>
+                        <ts:uint256 ref="referenceExchangeRate-erc20Amount"></ts:uint256>
+                        <ts:uint256 ref="referenceExchangeRate-blockNum"></ts:uint256>
+                        <ts:uint256 ref="kInfo-k"></ts:uint256>
+                        <ts:uint256 ref="kInfo-theta"></ts:uint256>
+                    </ts:data>
+                </ts:data>
+            </ethereum:call>
+        </ts:origins>
+    </ts:attribute>
+    
+    <ts:attribute name="navPerShareRedemption">
+        <ts:type>
+            <ts:syntax>1.3.6.1.4.1.1466.115.121.1.27</ts:syntax>
+        </ts:type>
+        <ts:origins>
+            <ethereum:call function="getNAVPerShareForBurn">
+                <ts:data>
+                    
+                    <ts:data>
+                        <ts:uint256 ref="referenceExchangeRate-ethAmount"></ts:uint256>
+                        <ts:uint256 ref="referenceExchangeRate-erc20Amount"></ts:uint256>
+                        <ts:uint256 ref="referenceExchangeRate-blockNum"></ts:uint256>
+                        <ts:uint256 ref="kInfo-k"></ts:uint256>
+                        <ts:uint256 ref="kInfo-theta"></ts:uint256>
+                    </ts:data>
+                </ts:data>
+            </ethereum:call>
+        </ts:origins>
+    </ts:attribute>
 </ts:token>
