@@ -20,6 +20,8 @@ import { CofiXService } from 'src/app/service/cofix.service';
 import { TxService } from 'src/app/state/tx/tx.service';
 import { CoinContent } from 'src/app/common/types/CoinContent';
 import { WarningDetailPage } from '../warning/warning-detail/warning-detail.page';
+import { MarketDetailsQuery } from 'src/app/state/market/market.query';
+import { BalancesQuery } from 'src/app/state/balance/balance.query';
 
 const BNJS = require('bignumber.js');
 @Component({
@@ -67,14 +69,19 @@ export class AddLiquidPage implements OnInit, OnDestroy {
   isShowToMax = false;
   cardTitle = { title: 'liquidpool_add', subtitle: 'liquidpool_add_subtitle' };
   waitingPopover: any;
+
   private resizeSubscription: Subscription;
+  private changePriceOfToTokenSubscription: Subscription;
+
   constructor(
     public cofixService: CofiXService,
     public shareStateQuery: ShareStateQuery,
     private utils: Utils,
     private modalController: ModalController,
     private shareStateService: ShareStateService,
-    private txService: TxService
+    private txService: TxService,
+    private balancesQuery: BalancesQuery,
+    private marketDetailsQuery: MarketDetailsQuery
   ) {}
 
   ngOnInit() {
@@ -89,6 +96,18 @@ export class AddLiquidPage implements OnInit, OnDestroy {
         this.changeCartTitle();
       });
   }
+
+  ngOnDestroy() {
+    this.resizeSubscription.unsubscribe();
+    this.unsubscribeAll();
+  }
+
+  private unsubscribeAll() {
+    this.fromCoin.subscription?.unsubscribe();
+    this.toCoin.subscription?.unsubscribe();
+    this.changePriceOfToTokenSubscription?.unsubscribe();
+  }
+
   changeCartTitle() {
     if (window.innerWidth < 500) {
       this.cardTitle = {
@@ -123,6 +142,7 @@ export class AddLiquidPage implements OnInit, OnDestroy {
       });
     }
   }
+
   async getIsApproved() {
     if (this.cofixService.getCurrentAccount()) {
       this.toCoin.isApproved = await this.cofixService.approved(
@@ -278,6 +298,7 @@ export class AddLiquidPage implements OnInit, OnDestroy {
   resetLiquidError() {
     this.addLiquidError = { isError: false, msg: '' };
   }
+
   async approve() {
     this.resetLiquidError();
     this.waitingPopover = await this.utils.createTXConfirmModal();
@@ -317,6 +338,9 @@ export class AddLiquidPage implements OnInit, OnDestroy {
     this.expectedXToken = '';
     this.showToError = false;
     this.showFromError = false;
+
+    this.unsubscribeAll();
+
     if (this.cofixService.getCurrentProvider) {
       this.fromCoin.address = this.cofixService.getCurrentContractAddressList()[
         this.fromCoin.id
@@ -324,12 +348,31 @@ export class AddLiquidPage implements OnInit, OnDestroy {
       this.toCoin.address = this.cofixService.getCurrentContractAddressList()[
         this.toCoin.id
       ];
+      this.changePriceOfToTokenSubscription = this.marketDetailsQuery
+        .marketDetails$(this.toCoin.address, 'checkedPriceNow')
+        .subscribe(async (price) => {
+          this.setExpectedXToken();
+        });
     }
     if (this.cofixService.getCurrentAccount()) {
       this.fromCoin.balance = await this.utils.getBalanceByCoin(this.fromCoin);
-      this.isShowFromMax = this.fromCoin.balance ? true : false;
+      this.fromCoin.subscription = this.balancesQuery
+        .currentETHBalance$(this.cofixService.getCurrentAccount())
+        .subscribe((balance) => {
+          this.fromCoin.balance = balance;
+          this.isShowFromMax = this.fromCoin.balance ? true : false;
+        });
+
       this.toCoin.balance = await this.utils.getBalanceByCoin(this.toCoin);
-      this.isShowToMax = this.toCoin.balance ? true : false;
+      this.toCoin.subscription = this.balancesQuery
+        .currentERC20Balance$(
+          this.cofixService.getCurrentAccount(),
+          this.toCoin.address
+        )
+        .subscribe((balance) => {
+          this.toCoin.balance = balance;
+          this.isShowToMax = this.toCoin.balance ? true : false;
+        });
     }
   }
 
@@ -351,7 +394,6 @@ export class AddLiquidPage implements OnInit, OnDestroy {
 
   async toCoinInput(event) {
     this.toCoin.amount = event.amount;
-
     this.resetLiquidError();
     this.setExpectedXToken();
     this.canShowError();
@@ -381,8 +423,5 @@ export class AddLiquidPage implements OnInit, OnDestroy {
       !this.toCoin.isApproved &&
       new BNJS(this.toCoin.amount).gt(0)
     );
-  }
-  ngOnDestroy() {
-    this.resizeSubscription.unsubscribe();
   }
 }
