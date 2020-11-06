@@ -66,13 +66,13 @@
   font-weight: 600;
   font-stretch: normal;
   font-style: normal;
-  line-height: 2.29;
+  /*line-height: 2.29;*/
   letter-spacing: normal;
   color: var(--azure);
-  height: 35px;
+  /*max-height: 35px;*/
   cursor: pointer;
   img {
-    padding-top: 10px;
+    padding-top: 5px;
   }
 }
 .tx-pending {

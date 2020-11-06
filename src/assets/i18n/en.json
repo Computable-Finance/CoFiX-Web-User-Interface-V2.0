@@ -41,7 +41,7 @@
   "title_liquid": "Pool",
   "title_income": "Dividend",
   "title_cofi": "Claim CoFi",
-  "title_cofi_short": "ClaimCoFi",
+  "title_cofi_short": "CoFi",
   "address": "Contract address:",
   "zf_text": "FROM",
   "zf_input": "Enter amount",
@@ -248,7 +248,7 @@
   "dividend_tooltips_share20": "20% of all swap trading fees are collected towards the Dividend Pool.",
   "dividend_tooltips_share80": "80% of all swap trading fees are collected towards the Saving Pool. CoFi is a governance token, and holders will be able to vote on what to do with the collected fees once the DAO has been launched (upcoming phase).",
   "sel_lang": "SELECT LANGUAGE",
-  "pending": "Pending",
+  "pending": " Pending",
   "account": "Account",
   "connect_to": "CONNECTED TO",
   "recent_tx": "Recent Trancations",
@@ -261,7 +261,7 @@
   "tx_depositCoFi": "Deposited {{d}} CoFi",
   "tx_withdrawCoFi": "Withdrawed {{w}} CoFi Tokens",
   "tx_depositMining": "Deposited {{d}} CoFi",
-  "tx_widthdrawMining": "Withdraw {{w}} CoFi",
+  "tx_widthdrawMining": "Withdrawed {{w}} CoFi",
   "no_transactions": "No transactions",
   "tx_waiting": "Waiting For Confirmation",
   "tx_waiting_desc": "Confirm the transaction in your Wallet",
@@ -270,5 +270,6 @@
   "btn_close": "Close",
   "tx_submitted": "Transaction Submitted",
   "tx_submitted_desc": "View in Etherscan",
-  "menu": "Menu"
+  "menu": "Menu",
+  "mining_speed": "CoFi/Day"
 }

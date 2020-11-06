@@ -261,7 +261,7 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
     const params = {
       t: 'tx_withdrawLiquid',
       p: {
-        w: this.toCoin.amount,
+        w: new BNJS(this.toCoin.amount),
       },
     };
     this.waitingPopover = await this.utils.createTXConfirmModal();
@@ -310,8 +310,8 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
           console.log(error);
 
           this.isLoading.sh = false;
+          this.waitingPopover.dismiss();
           if (error.message.indexOf('User denied') > -1) {
-            this.waitingPopover.dismiss();
             this.utils.showTXRejectModal();
           } else {
             this.redeemError = { isError: true, msg: error.message };
@@ -360,8 +360,8 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
         .catch((error) => {
           console.log(error);
           this.isLoading.sh = false;
+          this.waitingPopover.dismiss();
           if (error.message.indexOf('User denied') > -1) {
-            this.waitingPopover.dismiss();
             this.utils.showTXRejectModal();
           } else {
             this.redeemError = { isError: true, msg: error.message };

@@ -1,4 +1,3 @@
-
 <app-coin-input
   #coinInputView
   (onMaxClick)="setCoinMax()"
@@ -15,21 +14,21 @@
 <div class="count">
   <div class="explain-div">
     <ion-grid class="ion-no-padding" *ngIf="isDeposit">
-      <ion-row class="ion-align-items-center ion-align-self-center conversionPrice">
-        <ion-col class="label" size="4">{{'miningpool_speed' | translate}}
-      
-        </ion-col>
-        <ion-col class="ion-text-right" size="8">{{miningSpeed | truncate:'--'}} CoFi/week
-        </ion-col>
-      </ion-row>
-      
       <ion-row
         class="ion-align-items-center ion-align-self-center conversionPrice"
       >
-        <ion-col class="label" size="8"
-          >{{hadLabel | translate}}
-          
+        <ion-col class="label" size="4"
+          >{{'miningpool_speed' | translate}}
         </ion-col>
+        <ion-col class="ion-text-right" size="8"
+          >{{miningSpeed | truncate:'--'}} {{'mining_speed' | translate}}
+        </ion-col>
+      </ion-row>
+
+      <ion-row
+        class="ion-align-items-center ion-align-self-center conversionPrice"
+      >
+        <ion-col class="label" size="8">{{hadLabel | translate}} </ion-col>
         <ion-col class="ion-text-right" size="4" *ngIf="!showSkeleton(hadValue)"
           >{{hadValue | truncate:'--'}}
         </ion-col>
@@ -38,26 +37,40 @@
           <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
         </ion-col>
       </ion-row>
-      <ion-row class="ion-align-items-center ion-align-self-center conversionPrice">
-        <ion-col class="label" size="8">{{todoLabel | translate}}
-        </ion-col>
-        <ion-col class="ion-text-right" size="4"  *ngIf="!showSkeleton(todoValue)">{{todoValue | truncate:'--'}}
+      <ion-row
+        class="ion-align-items-center ion-align-self-center conversionPrice"
+      >
+        <ion-col class="label" size="8">{{todoLabel | translate}} </ion-col>
+        <ion-col
+          class="ion-text-right"
+          size="4"
+          *ngIf="!showSkeleton(todoValue)"
+          >{{todoValue | truncate:'--'}}
         </ion-col>
 
         <ion-col size="4" *ngIf="showSkeleton(todoValue)">
           <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
         </ion-col>
       </ion-row>
-      <ion-row class="ion-align-items-center ion-align-self-center conversionPrice" *ngIf="transcationError.isError">
-        <ion-col class="error" size="12">{{'transaction-error' | translate}}[{{transcationError.msg}}]</ion-col>
+      <ion-row
+        class="ion-align-items-center ion-align-self-center conversionPrice"
+        *ngIf="transcationError.isError"
+      >
+        <ion-col class="error" size="12"
+          >{{'transaction-error' |
+          translate}}[{{transcationError.msg}}]</ion-col
+        >
       </ion-row>
     </ion-grid>
     <ion-grid class="ion-no-padding" *ngIf="!isDeposit">
-      <ion-row class="ion-align-items-center ion-align-self-center conversionPrice">
-        <ion-col class="label" size="8">{{'miningpool_token' | translate}}
-    
+      <ion-row
+        class="ion-align-items-center ion-align-self-center conversionPrice"
+      >
+        <ion-col class="label" size="8"
+          >{{'miningpool_token' | translate}}
         </ion-col>
-        <ion-col class="ion-text-right" size="4"  *ngIf="!showSkeleton(hadValue)">{{hadValue | truncate:'--'}} 
+        <ion-col class="ion-text-right" size="4" *ngIf="!showSkeleton(hadValue)"
+          >{{hadValue | truncate:'--'}}
         </ion-col>
 
         <ion-col size="4" *ngIf="showSkeleton(hadValue)">
@@ -88,12 +101,12 @@
     [disabled]="isLoading.cr || !canSave()"
   >
     <div class="ion-button-label" *ngIf="canSave()">
-      <div  *ngIf="!isLoading.cr">{{'miningpool_deposit_title' | translate}}</div>
+      <div *ngIf="!isLoading.cr">
+        {{'miningpool_deposit_title' | translate}}
+      </div>
       <div class="loading" *ngIf="isLoading.cr"></div>
     </div>
-    <div class="ion-button-label" *ngIf="!canSave()">
-      {{'add' | translate}}
-    </div>
+    <div class="ion-button-label" *ngIf="!canSave()">{{'add' | translate}}</div>
   </ion-button>
 </div>
 <div class="button-div" *ngIf="!isDeposit">

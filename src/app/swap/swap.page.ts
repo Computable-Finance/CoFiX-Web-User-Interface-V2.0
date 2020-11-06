@@ -62,8 +62,8 @@ export class SwapPage implements OnInit, OnDestroy {
   changePriceOfFromTokenSubscription: Subscription;
   changePriceOfToTokenSubscription: Subscription;
 
-  private balanceHandler = (balance) => {
-    this.fromCoin.balance = balance;
+  private balanceHandler = async (balance) => {
+    this.fromCoin.balance = await this.balanceTruncatePipe.transform(balance);
     this.getERC20BalanceOfPair();
     this.isShowFromMax = true;
   };
@@ -74,7 +74,8 @@ export class SwapPage implements OnInit, OnDestroy {
     private utils: Utils,
     private txService: TxService,
     private balancesQuery: BalancesQuery,
-    private marketDetailsQuery: MarketDetailsQuery
+    private marketDetailsQuery: MarketDetailsQuery,
+    private balanceTruncatePipe: BalanceTruncatePipe
   ) {}
 
   ngOnDestroy(): void {
@@ -413,27 +414,29 @@ export class SwapPage implements OnInit, OnDestroy {
   }
 
   private catchTXError(error) {
+    this.waitingPopover.dismiss();
     if (error.message.indexOf('User denied') > -1) {
-      this.waitingPopover.dismiss();
       this.utils.showTXRejectModal();
     } else {
       this.swapError = { isError: true, msg: error.message };
       this.isLoading.dh = false;
     }
   }
-
+  getTXParams() {
+    return {
+      t: 'tx_swapped',
+      p: {
+        f: `${new BNJS(this.fromCoin.amount)} ${this.fromCoin.id}`,
+        t: `${new BNJS(this.toCoin.amount)} ${this.toCoin.id}`,
+      },
+    };
+  }
   async swap() {
     this.resetSwapError();
 
     this.waitingPopover = await this.utils.createTXConfirmModal();
     await this.waitingPopover.present();
-    let params = {
-      t: 'tx_swapped',
-      p: {
-        f: `${this.fromCoin.amount} ${this.fromCoin.id}`,
-        t: `${this.toCoin.amount} ${this.toCoin.id}`,
-      },
-    };
+
     if (this.fromCoin.id === 'ETH') {
       this.cofixService
         .swapExactETHForTokens(
@@ -446,7 +449,7 @@ export class SwapPage implements OnInit, OnDestroy {
         )
         .then(async (tx: any) => {
           console.log('tx.hash', tx.hash);
-          this.afterTXSubmitted(tx.hash, params);
+          this.afterTXSubmitted(tx.hash, this.getTXParams());
 
           const provider = this.cofixService.getCurrentProvider();
           provider.once(tx.hash, (transactionReceipt) => {
@@ -477,8 +480,7 @@ export class SwapPage implements OnInit, OnDestroy {
           )
           .then((tx: any) => {
             console.log('tx.hash', tx.hash);
-
-            this.afterTXSubmitted(tx.hash, params);
+            this.afterTXSubmitted(tx.hash, this.getTXParams());
             const provider = this.cofixService.getCurrentProvider();
             provider.once(tx.hash, (transactionReceipt) => {
               this.afterTxSucceeded(transactionReceipt.status, tx.hash);
@@ -514,8 +516,7 @@ export class SwapPage implements OnInit, OnDestroy {
           )
           .then((tx: any) => {
             console.log('tx.hash', tx.hash);
-
-            this.afterTXSubmitted(tx.hash, params);
+            this.afterTXSubmitted(tx.hash, this.getTXParams());
             const provider = this.cofixService.getCurrentProvider();
             provider.once(tx.hash, (transactionReceipt) => {
               this.afterTxSucceeded(transactionReceipt.status, tx.hash);

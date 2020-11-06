@@ -122,8 +122,8 @@ export class Utils {
       })
       .catch((error) => {
         console.log(error);
+        component.waitingPopover.dismiss();
         if (error.message.indexOf('User denied') > -1) {
-          component.waitingPopover.dismiss();
           this.showTXRejectModal();
         } else {
           errorComponent = { isError: true, msg: error.message };

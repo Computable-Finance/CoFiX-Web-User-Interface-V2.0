@@ -168,7 +168,8 @@
             size="7"
             *ngIf="!showSkeleton(earnedRate[toCoin.id])"
           >
-            {{earnedRate[toCoin.id] | truncate:'--'}} CoFi/Day
+            {{earnedRate[toCoin.id] | truncate:'--'}} {{'mining_speed' |
+            translate}}
           </ion-col>
           <ion-col
             class="ion-text-right number"

@@ -30,7 +30,7 @@
     {{'no_transactions'| translate}}
   </ng-container>
 
-  <ng-container *ngFor="let tx of txList.reverse()">
+  <ng-container *ngFor="let tx of txList.reverse();let i=index">
     <ion-row
       class="ion-align-items-center ion-align-self-center tx"
       (click)="goto(tx.txHash,tx.network)"
@@ -45,7 +45,7 @@
         ><div class="tx-pending"></div
       ></ion-col>
       <ion-col size="11" class="tx-content"
-        >{{tx.title}}
+        >{{tx.title}}&nbsp;&nbsp;
         <ion-icon name="arrow-forward-outline" color="secondary"></ion-icon
       ></ion-col>
     </ion-row>

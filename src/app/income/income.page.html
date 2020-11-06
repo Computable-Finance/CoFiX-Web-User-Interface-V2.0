@@ -220,7 +220,7 @@
       <img
         src="./assets/images/left-arrow.png"
         class="close-img"
-        (click)="cancel('deposit')"
+        (click)="cancel()"
       />
       <div class="card-content">
         <app-card-title
@@ -233,7 +233,6 @@
           [todoValue]="cofiToken"
           [hadValue]="cofiStakingRewards"
           [isApproved]="isApproved"
-          [balance]="balance"
           [isLoading]="isLoadingProfit"
           (onApprove)="approveCofi($event)"
           (onSave)="saveCofi($event)"

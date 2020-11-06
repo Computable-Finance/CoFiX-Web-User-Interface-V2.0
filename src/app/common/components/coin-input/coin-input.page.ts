@@ -8,7 +8,6 @@ import {
 } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Subject, Subscription } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
 
 import { CoinSelectPage } from './select/coin-select.page';
 

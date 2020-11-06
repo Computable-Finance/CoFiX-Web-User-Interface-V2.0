@@ -22,6 +22,7 @@ import { CoinContent } from 'src/app/common/types/CoinContent';
 import { WarningDetailPage } from '../warning/warning-detail/warning-detail.page';
 import { MarketDetailsQuery } from 'src/app/state/market/market.query';
 import { BalancesQuery } from 'src/app/state/balance/balance.query';
+import { BalanceTruncatePipe } from 'src/app/common/pipes/balance.pipe';
 
 const BNJS = require('bignumber.js');
 @Component({
@@ -81,7 +82,8 @@ export class AddLiquidPage implements OnInit, OnDestroy {
     private shareStateService: ShareStateService,
     private txService: TxService,
     private balancesQuery: BalancesQuery,
-    private marketDetailsQuery: MarketDetailsQuery
+    private marketDetailsQuery: MarketDetailsQuery,
+    private balanceTruncatePipe: BalanceTruncatePipe
   ) {}
 
   ngOnInit() {
@@ -249,11 +251,11 @@ export class AddLiquidPage implements OnInit, OnDestroy {
           p: {
             a: `${
               this.fromCoin.amount
-                ? this.fromCoin.amount + ' ' + this.fromCoin.id
+                ? new BNJS(this.fromCoin.amount) + ' ' + this.fromCoin.id
                 : ''
-            } ${
+            } ${this.fromCoin.amount && this.toCoin.amount ? ',' : ''} ${
               this.toCoin.amount
-                ? this.toCoin.amount + ' ' + this.toCoin.id
+                ? new BNJS(this.toCoin.amount) + ' ' + this.toCoin.id
                 : ''
             }`,
           },
@@ -286,8 +288,8 @@ export class AddLiquidPage implements OnInit, OnDestroy {
       .catch((error) => {
         console.log(error);
         this.isLoading.cr = false;
+        this.waitingPopover.dismiss();
         if (error.message.indexOf('User denied') > -1) {
-          this.waitingPopover.dismiss();
           this.utils.showTXRejectModal();
         } else {
           this.addLiquidError = { isError: true, msg: error.message };
@@ -345,8 +347,10 @@ export class AddLiquidPage implements OnInit, OnDestroy {
       this.fromCoin.balance = await this.utils.getBalanceByCoin(this.fromCoin);
       this.fromCoin.subscription = this.balancesQuery
         .currentETHBalance$(this.cofixService.getCurrentAccount())
-        .subscribe((balance) => {
-          this.fromCoin.balance = balance;
+        .subscribe(async (balance) => {
+          this.fromCoin.balance = await this.balanceTruncatePipe.transform(
+            balance
+          );
           this.isShowFromMax = this.fromCoin.balance ? true : false;
         });
 

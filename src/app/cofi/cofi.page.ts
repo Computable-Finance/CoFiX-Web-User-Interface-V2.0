@@ -108,13 +108,13 @@ export class CofiPage implements OnInit, OnDestroy {
     if (this.cofixService.getCurrentAccount()) {
       this.todoValue = await this.balanceTruncatePipe.transform(
         await this.cofixService.getERC20Balance(
-          await this.cofixService.getPairAddressByToken(this.coinAddress)
+          await this.cofixService.getCurrentContractAddressList().CoFiToken
         )
       );
       this.todoValueSubscription = this.balancesQuery
         .currentERC20Balance$(
           this.cofixService.getCurrentAccount(),
-          await this.cofixService.getPairAddressByToken(this.coinAddress)
+          await this.cofixService.getCurrentContractAddressList().CoFiToken
         )
         .subscribe(async (balance) => {
           this.todoValue = await this.balanceTruncatePipe.transform(balance);
@@ -128,7 +128,6 @@ export class CofiPage implements OnInit, OnDestroy {
       this.cofiBalance = await this.balanceTruncatePipe.transform(
         result.earned
       );
-
       this.cofiBalanceSubscription = this.balancesQuery
         .currentUnclaimedCoFi$(
           this.cofixService.getCurrentAccount(),
@@ -192,7 +191,7 @@ export class CofiPage implements OnInit, OnDestroy {
           this.isLoading.qc = true;
           const params = {
             t: 'tx_claimCoFi',
-            p: { w: this.earnedRate?.earned },
+            p: { w: this.cofiBalance },
           };
           this.txService.add(
             tx.hash,
@@ -204,7 +203,6 @@ export class CofiPage implements OnInit, OnDestroy {
           this.utils.showTXSubmitModal(tx.hash);
           const provider = this.cofixService.getCurrentProvider();
           provider.once(tx.hash, (transactionReceipt) => {
-            console.log(transactionReceipt);
             this.isLoading.qc = false;
             this.balance = undefined;
             this.utils.changeTxStatus(transactionReceipt.status, tx.hash);
@@ -217,8 +215,8 @@ export class CofiPage implements OnInit, OnDestroy {
         })
         .catch((error) => {
           this.isLoading.qc = false;
+          this.waitingPopover.dismiss();
           if (error.message.indexOf('User denied') > -1) {
-            this.waitingPopover.dismiss();
             this.utils.showTXRejectModal();
           } else {
             this.withdrawError = { isError: true, msg: error.message };
@@ -246,8 +244,8 @@ export class CofiPage implements OnInit, OnDestroy {
 
   canWithdraw() {
     return (
-      (this.isLoading.qc || !this.canReceive) &&
-      !(this.isDeposit && this.isApproved)
+      this.isLoading.qc ||
+      (!this.canReceive && !(this.isDeposit && this.isApproved))
     );
   }
 

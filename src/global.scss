@@ -511,7 +511,7 @@ ion-toggle {
 .txconfirm-class .popover-content,
 .txstatus-class .popover-content {
   width: 360px;
-  min-height: 257px;
+  min-height: 260px;
   border-radius: 16px;
   box-shadow: 0 11px 19px 0 rgba(0, 0, 0, 0.08);
   background-color: var(--white);
@@ -521,9 +521,9 @@ ion-toggle {
   height: 257px;
 }
 
-.txstatus-class .popover-content {
+/*.txstatus-class .popover-content {
   height: 323px;
-}
+}*/
 
 .txsuccess-class .popover-content {
   width: 309px;

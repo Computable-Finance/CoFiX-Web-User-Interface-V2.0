@@ -18,6 +18,7 @@ import { TxService } from 'src/app/state/tx/tx.service';
 
 import { ProfitPage } from '../profit/profit.page';
 
+const BNJS = require('bignumber.js');
 @Component({
   selector: 'app-token-mining',
   templateUrl: './mining.page.html',
@@ -190,7 +191,7 @@ export class TokenMiningPage implements OnInit, OnDestroy {
         const params = {
           t: 'tx_depositMining',
           p: {
-            d: event.balance,
+            d: new BNJS(event.balance),
           },
         };
         console.log(params);
@@ -205,7 +206,9 @@ export class TokenMiningPage implements OnInit, OnDestroy {
         const provider = this.cofixService.getCurrentProvider();
         provider.once(tx.hash, (transactionReceipt) => {
           this.isLoadingProfit.cr = false;
+          this.balance = undefined;
           this.utils.changeTxStatus(transactionReceipt.status, tx.hash);
+          this.onClose.emit();
         });
         provider.once('error', (error) => {
           console.log('provider.once==', error);
@@ -217,8 +220,8 @@ export class TokenMiningPage implements OnInit, OnDestroy {
         console.log('catch==', error);
         console.log(error.code);
         this.isLoadingProfit.cr = false;
+        this.waitingPopover.dismiss();
         if (error.message.indexOf('User denied') > -1) {
-          this.waitingPopover.dismiss();
           this.utils.showTXRejectModal();
         } else {
           this.cofiError = { isError: true, msg: error.message };
@@ -239,7 +242,7 @@ export class TokenMiningPage implements OnInit, OnDestroy {
         const params = {
           t: 'tx_widthdrawMining',
           p: {
-            w: event.balance,
+            w: new BNJS(event.balance),
           },
         };
         console.log(params);
@@ -256,7 +259,9 @@ export class TokenMiningPage implements OnInit, OnDestroy {
         const provider = this.cofixService.getCurrentProvider();
         provider.once(tx.hash, (transactionReceipt) => {
           this.isLoadingProfit.qc = false;
+          this.balance = undefined;
           this.utils.changeTxStatus(transactionReceipt.status, tx.hash);
+          this.onClose.emit();
         });
         provider.once('error', (error) => {
           console.log('provider.once==', error);
@@ -267,8 +272,8 @@ export class TokenMiningPage implements OnInit, OnDestroy {
       .catch((error) => {
         console.log(error);
         this.isLoadingProfit.qc = false;
+        this.waitingPopover.dismiss();
         if (error.message.indexOf('User denied') > -1) {
-          this.waitingPopover.dismiss();
           this.utils.showTXRejectModal();
         } else {
           this.cofiError = { isError: true, msg: error.message };

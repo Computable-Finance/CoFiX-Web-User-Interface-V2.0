@@ -10,6 +10,7 @@ import { CofiXService } from '../service/cofix.service';
 import { BalancesQuery } from '../state/balance/balance.query';
 import { TxService } from '../state/tx/tx.service';
 
+const BNJS = require('bignumber.js');
 @Component({
   selector: 'app-income',
   templateUrl: './income.page.html',
@@ -32,7 +33,6 @@ export class IncomePage implements OnInit, OnDestroy {
   earnedETH: string;
   canReceive = false;
   isLoading = false;
-  balance = '';
   isLoadingProfit = { sq: false, cr: false, qc: false };
   profitCoin = 'CoFi';
   isApproved = false;
@@ -190,8 +190,8 @@ export class IncomePage implements OnInit, OnDestroy {
       .catch((error) => {
         console.log(error);
         this.isLoading = false;
+        this.waitingPopover.dismiss();
         if (error.message.indexOf('User denied') > -1) {
-          this.waitingPopover.dismiss();
           this.utils.showTXRejectModal();
         } else {
           this.receiveError = { isError: true, msg: error.message };
@@ -241,7 +241,7 @@ export class IncomePage implements OnInit, OnDestroy {
         this.isLoadingProfit.cr = true;
         const params = {
           t: 'tx_depositCoFi',
-          p: { d: event.balance },
+          p: { d: new BNJS(event.balance) },
         };
         this.txService.add(
           tx.hash,
@@ -266,8 +266,8 @@ export class IncomePage implements OnInit, OnDestroy {
       .catch((error) => {
         console.log(error);
         this.isLoadingProfit.cr = false;
+        this.waitingPopover.dismiss();
         if (error.message.indexOf('User denied') > -1) {
-          this.waitingPopover.dismiss();
           this.utils.showTXRejectModal();
         } else {
           this.incomeError = { isError: true, msg: error.message };
@@ -288,7 +288,7 @@ export class IncomePage implements OnInit, OnDestroy {
         this.isLoadingProfit.qc = true;
         const params = {
           t: 'tx_withdrawCoFi',
-          p: { w: event.balance },
+          p: { w: new BNJS(event.balance) },
         };
         this.txService.add(
           tx.hash,
@@ -313,8 +313,8 @@ export class IncomePage implements OnInit, OnDestroy {
       .catch((error) => {
         console.log(error);
         this.isLoadingProfit.qc = false;
+        this.waitingPopover.dismiss();
         if (error.message.indexOf('User denied') > -1) {
-          this.waitingPopover.dismiss();
           this.utils.showTXRejectModal();
         } else {
           this.incomeError = { isError: true, msg: error.message };
