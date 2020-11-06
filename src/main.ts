@@ -13,7 +13,13 @@ if (environment.production) {
     include: ['permissions', 'token-info', 'settings', 'metadata'],
   });
 } else {
-  storage = persistState();
+  // pls uncomment the following for debugging
+  // storage = persistState();
+
+  // comment this if above codeline is uncommented
+  storage = persistState({
+    include: ['permissions', 'token-info', 'settings', 'metadata'],
+  });
 }
 
 enableAkitaProdMode();
