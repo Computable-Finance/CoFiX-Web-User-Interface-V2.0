@@ -7,17 +7,16 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { Subscription, fromEvent } from 'rxjs';
+import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { CoinInputPage } from 'src/app/common/components/coin-input/coin-input.page';
 import { BalanceTruncatePipe } from 'src/app/common/pipes/balance.pipe';
-import { ShareStateQuery } from 'src/app/common/state/share.query';
-import { ShareStateService } from 'src/app/common/state/share.service';
-import { ShareState } from 'src/app/common/state/share.store';
+import { CoinContent } from 'src/app/common/types/CoinContent';
 import { Utils } from 'src/app/common/utils';
 import { CofiXService } from 'src/app/service/cofix.service';
+import { BalancesQuery } from 'src/app/state/balance/balance.query';
+import { MarketDetailsQuery } from 'src/app/state/market/market.query';
 import { TxService } from 'src/app/state/tx/tx.service';
-import { CoinContent } from 'src/app/common/types/CoinContent';
 
 const BNJS = require('bignumber.js');
 @Component({
@@ -50,9 +49,7 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
   coinAddress: string;
   todoValue: string;
   hadValue: string;
-  NAVPerShare: string;
-  oracleCost = 0.01;
-  shareState: ShareState;
+  oracleCost = '0.01';
   isLoading = { sh: false, sq: false };
   showError = false;
   ETHAmountForRemoveLiquidity: number;
@@ -64,14 +61,19 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
     subtitle: 'liquidpool_withdraw_subtitle',
   };
   waitingPopover: any;
+
   private resizeSubscription: Subscription;
+  private todoValueSubscription: Subscription;
+  private hadValueSubscription: Subscription;
+  private changePriceOfToTokenSubscription: Subscription;
+
   constructor(
     public cofixService: CofiXService,
     private balanceTruncatePipe: BalanceTruncatePipe,
-    private shareStateService: ShareStateService,
-    public shareStateQuery: ShareStateQuery,
     private utils: Utils,
-    private txService: TxService
+    private txService: TxService,
+    private balancesQuery: BalancesQuery,
+    private marketDetailsQuery: MarketDetailsQuery
   ) {}
 
   ngOnInit() {
@@ -86,6 +88,14 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
         this.changeCartTitle();
       });
   }
+
+  ngOnDestroy() {
+    this.resizeSubscription.unsubscribe();
+    this.todoValueSubscription?.unsubscribe();
+    this.hadValueSubscription?.unsubscribe();
+    this.changePriceOfToTokenSubscription?.unsubscribe();
+  }
+
   changeCartTitle() {
     if (window.innerWidth < 500) {
       this.cardTitle = {
@@ -135,36 +145,45 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
     this.resetRedeemError();
   }
 
-  changeCoin(event) {
-    this.toCoin.id = event.coin;
-    this.initCoinContent();
-    this.getRemoveLiquidity();
-    this.getIsApproved();
-    this.toCoinInputView.resetSubscription();
-  }
-
   async initCoinContent() {
     this.fromCoin.amount = '';
     this.toCoin.amount = '';
     this.todoValue = '';
     this.hadValue = '';
-    this.NAVPerShare = '';
     this.isETHChecked = false;
     this.isTokenChecked = false;
     this.resetRedeemError();
-    this.shareState = this.shareStateQuery.getValue();
+
+    this.fromCoin.address = this.cofixService.getCurrentContractAddressList()[
+      this.fromCoin.id
+    ];
+    this.toCoin.address = this.cofixService.getCurrentContractAddressList()[
+      this.toCoin.id
+    ];
+
+    this.changePriceOfToTokenSubscription = this.marketDetailsQuery
+      .marketDetails$(this.toCoin.address, 'checkedPriceNow')
+      .subscribe(async (price) => {
+        this.getRemoveLiquidity();
+      });
+
     if (this.cofixService.getCurrentAccount()) {
-      this.fromCoin.address = this.cofixService.getCurrentContractAddressList()[
-        this.fromCoin.id
-      ];
-      this.toCoin.address = this.cofixService.getCurrentContractAddressList()[
-        this.toCoin.id
-      ];
+      this.todoValueSubscription?.unsubscribe();
+      this.hadValueSubscription?.unsubscribe();
+
       this.todoValue = await this.balanceTruncatePipe.transform(
         await this.cofixService.getERC20Balance(
           await this.cofixService.getPairAddressByToken(this.toCoin.address)
         )
       );
+      this.todoValueSubscription = this.balancesQuery
+        .currentERC20Balance$(
+          this.cofixService.getCurrentAccount(),
+          await this.cofixService.getPairAddressByToken(this.toCoin.address)
+        )
+        .subscribe(async (balance) => {
+          this.todoValue = await this.balanceTruncatePipe.transform(balance);
+        });
 
       this.hadValue = await this.balanceTruncatePipe.transform(
         await this.cofixService.getERC20Balance(
@@ -173,9 +192,19 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
           )
         )
       );
-      this.shareStateService.updateShareStore(this.shareState);
+      this.hadValueSubscription = this.balancesQuery
+        .currentERC20Balance$(
+          this.cofixService.getCurrentAccount(),
+          await this.cofixService.getStakingPoolAddressByToken(
+            this.toCoin.address
+          )
+        )
+        .subscribe(async (balance) => {
+          this.hadValue = await this.balanceTruncatePipe.transform(balance);
+        });
     }
   }
+
   async walletConnected() {
     this.initCoinContent();
     this.getIsApproved();
@@ -198,9 +227,7 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
         this.toCoin.amount || '0'
       );
 
-      console.log(result);
       this.ETHAmountForRemoveLiquidity = result.result;
-      this.NAVPerShare = result.nAVPerShareForBurn;
     }
     if (this.isTokenChecked) {
       const result = await this.cofixService.getTokenAmountForRemoveLiquidity(
@@ -209,7 +236,6 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
         this.toCoin.amount || '0'
       );
       this.tokenAmountForRemoveLiquidity = result.result;
-      this.NAVPerShare = result.nAVPerShareForBurn;
     }
     this.canShowError();
   }
@@ -248,7 +274,7 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
           token,
           this.toCoin.amount || '0',
           ethAmount.toString(),
-          this.oracleCost.toString()
+          this.oracleCost
         )
         .then((tx: any) => {
           console.log('tx.hash', tx.hash);
@@ -266,7 +292,6 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
           const provider = this.cofixService.getCurrentProvider();
           provider.once(tx.hash, (transactionReceipt) => {
             this.isLoading.sh = false;
-            this.initCoinContent();
             this.utils.changeTxStatus(transactionReceipt.status, tx.hash);
             this.onClose.emit({
               type: 'redeem',
@@ -274,10 +299,7 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
               toCoin: this.toCoin,
             });
           });
-          /*provider.once(tx.hash, (transaction) => {
-            this.isLoading.sh = false;
-            this.initCoinContent();
-          });*/
+
           provider.once('error', (error) => {
             console.log('provider.once==', error);
             this.isLoading.sh = false;
@@ -304,7 +326,7 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
           token,
           this.toCoin.amount || '0',
           ethAmount?.toString(),
-          this.oracleCost.toString()
+          this.oracleCost
         )
         .then((tx: any) => {
           console.log('tx.hash', tx.hash);
@@ -328,7 +350,6 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
           });
           provider.once(tx.hash, (transaction) => {
             this.isLoading.sh = false;
-            this.initCoinContent();
             this.txService.txFailed(tx.hash);
           });
           provider.once('error', (error) => {
@@ -378,10 +399,5 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
 
   canShowError() {
     this.showError = new BNJS(this.toCoin.amount).gt(new BNJS(this.todoValue));
-  }
-
-  ngOnDestroy() {
-    console.log('destroy---');
-    this.resizeSubscription.unsubscribe();
   }
 }

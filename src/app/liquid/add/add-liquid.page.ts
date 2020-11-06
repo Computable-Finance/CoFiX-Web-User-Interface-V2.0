@@ -31,7 +31,7 @@ const BNJS = require('bignumber.js');
 })
 export class AddLiquidPage implements OnInit, OnDestroy {
   @Input() coin: string;
-  @Input() pairAttended: boolean = false;
+  @Input() pairAttended = false;
   @Output() onClose = new EventEmitter<any>();
   @ViewChild(CoinInputPage, { static: false }) fromCoinInputView: CoinInputPage;
   @ViewChild(CoinInputPage, { static: false }) toCoinInputView: CoinInputPage;
@@ -174,7 +174,7 @@ export class AddLiquidPage implements OnInit, OnDestroy {
         this.showFromError = true;
         this.fromCoin.amount = '0';
         this.toCoin.amount = '';
-        return; //不进行后面的计算
+        return;
       } else {
         this.showFromError = false;
       }
@@ -317,19 +317,6 @@ export class AddLiquidPage implements OnInit, OnDestroy {
 
   checkAdd() {
     this.isStake = !this.isStake;
-  }
-
-  changeCoin(event) {
-    this.toCoin.id = event.coin;
-    if (event.coin === 'USDT') {
-      this.xtValue = 'XT-1';
-    } else {
-      this.xtValue = 'XT-2';
-    }
-    this.resetLiquidError();
-    this.initCoinContent();
-    this.fromCoinInputView.resetSubscription();
-    this.toCoinInputView.resetSubscription();
   }
 
   async initCoinContent() {
