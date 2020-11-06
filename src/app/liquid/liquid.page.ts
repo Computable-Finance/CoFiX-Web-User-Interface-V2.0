@@ -21,6 +21,8 @@ import { AddLiquidPage } from './add/add-liquid.page';
 import { TokenMiningPage } from './mining/mining.page';
 import { RedeemLiquidPage } from './redeem/redeem-liquid.page';
 import { WarningDetailPage } from './warning/warning-detail/warning-detail.page';
+import { MarketDetailsQuery } from '../state/market/market.query';
+import { BalancesQuery } from '../state/balance/balance.query';
 
 @Component({
   selector: 'app-liquid',
@@ -28,11 +30,26 @@ import { WarningDetailPage } from './warning/warning-detail/warning-detail.page'
   styleUrls: ['./liquid.page.scss'],
 })
 export class LiquidPage implements OnInit, OnDestroy {
+  constructor(
+    public cofixService: CofiXService,
+    private balanceTruncatePipe: BalanceTruncatePipe,
+    public shareStateQuery: ShareStateQuery,
+    private utils: Utils,
+    private modalController: ModalController,
+    private shareStateService: ShareStateService,
+    private rd: Renderer2,
+    private balancesQuery: BalancesQuery,
+    private marketDetailsQuery: MarketDetailsQuery
+  ) {
+    this.liquidContent_origin = this.liquidContent;
+  }
+
   @ViewChild(AddLiquidPage, { static: false }) addLiquidView: AddLiquidPage;
   @ViewChild(RedeemLiquidPage, { static: false })
   redeemLiquidView: RedeemLiquidPage;
   @ViewChild(TokenMiningPage, { static: false })
   tokenDepositView: TokenMiningPage;
+
   public liquidContent: BannerContent = {
     title: 'liquid_title',
     descriptions: ['liquid_desc1', 'liquid_desc2', 'liquid_desc3'],
@@ -54,6 +71,7 @@ export class LiquidPage implements OnInit, OnDestroy {
       url: 'https://github.com/Computable-Finance/Doc#4-market-maker-mechanism',
     },
   };
+
   lpwithdrawContent: BannerContent = {
     title: 'help_tips',
     descriptions: [
@@ -66,7 +84,9 @@ export class LiquidPage implements OnInit, OnDestroy {
       url: 'https://github.com/Computable-Finance/Doc#4-market-maker-mechanism',
     },
   };
+
   liquidContent_origin: BannerContent;
+
   fromCoin: CoinContent = {
     id: 'ETH',
     address: '',
@@ -74,6 +94,7 @@ export class LiquidPage implements OnInit, OnDestroy {
     isApproved: false,
     balance: '',
   };
+
   toCoin: CoinContent = {
     id: 'USDT',
     address: '',
@@ -81,6 +102,7 @@ export class LiquidPage implements OnInit, OnDestroy {
     isApproved: false,
     balance: '',
   };
+
   isDropDown: false;
   xtValue = 'XT-1';
   isChecked = true;
@@ -89,7 +111,6 @@ export class LiquidPage implements OnInit, OnDestroy {
   coinAddress: string;
   todoValue = { USDT: '', HBTC: '' };
   hadValue = { USDT: '', HBTC: '' };
-  NAVPerShare = { USDT: '', HBTC: '' };
 
   ETHAmountForRemoveLiquidity = { USDT: '', HBTC: '' };
   tokenAmountForRemoveLiquidity = { USDT: '', HBTC: '' };
@@ -98,27 +119,23 @@ export class LiquidPage implements OnInit, OnDestroy {
   showLiquidInfo = false;
   isRotate = { USDT: false, HBTC: false };
   showRedemtionModel = false;
-  pairAttended = { USDT: true, HBTC: true };
+  pairAttended = { USDT: false, HBTC: false };
   coinList = ['USDT', 'HBTC'];
   selectCoin: string;
   colSize = '7';
   miningProfit = { title: '', subtitle: '', isDeposit: false };
-  showZeroInfo: boolean = false;
+  showZeroInfo = false;
   tokenName = 'XTokens-gray';
   questionImgName = 'question';
   resizeSubscription: Subscription;
   btnTitle: any;
-  constructor(
-    public cofixService: CofiXService,
-    private balanceTruncatePipe: BalanceTruncatePipe,
-    public shareStateQuery: ShareStateQuery,
-    private utils: Utils,
-    private modalController: ModalController,
-    private shareStateService: ShareStateService,
-    private rd: Renderer2
-  ) {
-    this.liquidContent_origin = this.liquidContent;
-  }
+  showMiningModel = false;
+
+  cofiBalance: string;
+
+  private earnedRateSubscription: Subscription;
+  private cofiBalanceSubscription: Subscription;
+  private todoValueSubscription: Subscription;
 
   ngOnInit() {
     if (this.cofixService.getCurrentAccount() === undefined) {
@@ -136,6 +153,17 @@ export class LiquidPage implements OnInit, OnDestroy {
       .subscribe((event) => {
         this.changeBtnTitle();
       });
+  }
+
+  ngOnDestroy() {
+    this.resizeSubscription.unsubscribe();
+    this.unsubscribeAll();
+  }
+
+  private unsubscribeAll() {
+    this.earnedRateSubscription?.unsubscribe();
+    this.cofiBalanceSubscription?.unsubscribe();
+    this.todoValueSubscription?.unsubscribe();
   }
 
   changeBtnTitle() {
@@ -171,6 +199,7 @@ export class LiquidPage implements OnInit, OnDestroy {
       });
     }
   }
+
   refreshPage() {
     this.initCoinContent();
     if (this.showAddModel) {
@@ -180,6 +209,7 @@ export class LiquidPage implements OnInit, OnDestroy {
       this.redeemLiquidView.ngOnInit();
     }
   }
+
   async setExpectedXToken() {
     this.expectedXToken = await this.cofixService.expectedXToken(
       this.toCoin.address,
@@ -195,8 +225,8 @@ export class LiquidPage implements OnInit, OnDestroy {
     this.selectCoin = coin;
     this.toCoin.id = coin;
   }
+
   async closeAddLiquid(event) {
-    console.log(event);
     this.showAddModel = false;
     if (event.type === 'add') {
       this.fromCoin = event.fromCoin;
@@ -214,81 +244,96 @@ export class LiquidPage implements OnInit, OnDestroy {
     this.initCoinContent();
   }
 
-  getValueFromStateQuery() {
-    this.coinList.forEach(async (coinItem) => {
-      this.pairAttended[
-        coinItem
-      ] = this.shareStateQuery.getValue().pairAttended[coinItem];
-    });
+  async getPairAttended() {
+    this.pairAttended[this.toCoin.id] = await this.cofixService.pairAttended(
+      this.coinAddress
+    );
   }
 
   async initCoinContent() {
     this.fromCoin.amount = '';
     this.toCoin.amount = '';
     this.expectedXToken = '';
-    console.log(this.earnedRate);
-    this.coinList.forEach(async (coinItem) => {
-      this.earnedRate[
-        coinItem
-      ] = await this.cofixService.earnedCofiAndRewardRate(
-        this.cofixService.getCurrentContractAddressList()[coinItem]
-      );
-    });
+    this.coinAddress = this.cofixService.getCurrentContractAddressList()[
+      this.toCoin.id
+    ];
+
+    this.unsubscribeAll();
+
     if (this.cofixService.getCurrentAccount()) {
-      this.fromCoin.address = this.cofixService.getCurrentContractAddressList()[
-        this.fromCoin.id
-      ];
-      this.toCoin.address = this.cofixService.getCurrentContractAddressList()[
-        this.toCoin.id
-      ];
-      this.getValueFromStateQuery();
-      if (!this.pairAttended.USDT || !this.pairAttended.HBTC) {
-        await this.utils.getPairAttended();
-        this.getValueFromStateQuery();
-      }
-      this.coinList.forEach(async (coinItem) => {
-        const pairAddress = await this.cofixService.getPairAddressByToken(
-          this.cofixService.getCurrentContractAddressList()[coinItem]
-        );
-        const stakingPoolAddress = await this.cofixService.getStakingPoolAddressByToken(
-          this.cofixService.getCurrentContractAddressList()[coinItem]
-        );
-        this.todoValue[coinItem] = await this.balanceTruncatePipe.transform(
-          await this.cofixService.getERC20Balance(pairAddress)
-        );
-        console.log(
-          this.cofixService.getCurrentContractAddressList()[coinItem]
-        );
-        console.log(stakingPoolAddress);
+      const result = await this.cofixService.earnedCofiAndRewardRate(
+        this.coinAddress
+      );
 
-        this.hadValue[coinItem] = await this.balanceTruncatePipe.transform(
-          await this.cofixService.getERC20Balance(stakingPoolAddress)
-        );
-        this.NAVPerShare[coinItem] = (
-          await this.cofixService.calculateArgumentsUsedByGetAmountRemoveLiquidity(
-            this.cofixService.getCurrentContractAddressList()[coinItem],
+      this.earnedRate[this.toCoin.id] = result.rewardRate;
+      this.cofiBalance = await this.balanceTruncatePipe.transform(
+        result.earned
+      );
+
+      this.cofiBalanceSubscription = this.balancesQuery
+        .currentUnclaimedCoFi$(
+          this.cofixService.getCurrentAccount(),
+          this.coinAddress
+        )
+        .subscribe(async (balance) => {
+          this.cofiBalance = await this.balanceTruncatePipe.transform(balance);
+        });
+
+      this.earnedRateSubscription = this.marketDetailsQuery
+        .marketDetails$(this.coinAddress, 'rewardRate')
+        .subscribe((data) => (this.earnedRate[this.toCoin.id] = data));
+
+      await this.getPairAttended();
+
+      const pairAddress = await this.cofixService.getPairAddressByToken(
+        this.cofixService.getCurrentContractAddressList()[this.toCoin.id]
+      );
+      this.todoValue[this.toCoin.id] = await this.balanceTruncatePipe.transform(
+        await this.cofixService.getERC20Balance(pairAddress)
+      );
+      this.todoValueSubscription = this.balancesQuery
+        .currentERC20Balance$(
+          this.cofixService.getCurrentAccount(),
+          pairAddress
+        )
+        .subscribe(async (balance) => {
+          this.todoValue[
+            this.toCoin.id
+          ] = await this.balanceTruncatePipe.transform(balance);
+
+          const stakingPoolAddress = await this.cofixService.getStakingPoolAddressByToken(
+            this.cofixService.getCurrentContractAddressList()[this.toCoin.id]
+          );
+
+          this.hadValue[
+            this.toCoin.id
+          ] = await this.balanceTruncatePipe.transform(
+            await this.cofixService.getERC20Balance(stakingPoolAddress)
+          );
+
+          const resultETH = await this.cofixService.getETHAmountForRemoveLiquidity(
+            this.coinAddress,
             pairAddress,
-            '1',
-            false
-          )
-        ).nAVPerShareForBurn;
+            this.todoValue[this.toCoin.id] || '0'
+          );
+          this.ETHAmountForRemoveLiquidity[this.toCoin.id] = resultETH.result;
 
-        const address = this.cofixService.getCurrentContractAddressList()[
-          coinItem
-        ];
-        const resultETH = await this.cofixService.getETHAmountForRemoveLiquidity(
-          address,
-          pairAddress,
-          this.todoValue[coinItem] || '0'
-        );
-        this.ETHAmountForRemoveLiquidity[coinItem] = resultETH.result;
-        const resultToken = await this.cofixService.getTokenAmountForRemoveLiquidity(
-          address,
-          pairAddress,
-          this.todoValue[coinItem] || '0'
-        );
-        this.tokenAmountForRemoveLiquidity[coinItem] = resultToken.result;
-      });
+          const resultToken = await this.cofixService.getTokenAmountForRemoveLiquidity(
+            this.coinAddress,
+            pairAddress,
+            this.todoValue[this.toCoin.id] || '0'
+          );
+          this.tokenAmountForRemoveLiquidity[this.toCoin.id] =
+            resultToken.result;
+        });
+    } else {
+      this.earnedRate[this.toCoin.id] = (
+        await this.cofixService.earnedCofiAndRewardRate(this.coinAddress)
+      ).rewardRate;
+
+      this.earnedRateSubscription = this.marketDetailsQuery
+        .marketDetails$(this.coinAddress, 'rewardRate')
+        .subscribe((data) => (this.earnedRate[this.toCoin.id] = data));
     }
   }
 
@@ -326,12 +371,13 @@ export class LiquidPage implements OnInit, OnDestroy {
   showSkeleton(value) {
     return value === undefined || value === '';
   }
+
   canShow() {
     return (
       !this.showMiningModel && !this.showAddModel && !this.showRedemtionModel
     );
   }
-  showMiningModel: boolean = false;
+
   depositToken(coin) {
     this.miningProfit = {
       title: 'miningpool_deposit_title',
@@ -354,12 +400,10 @@ export class LiquidPage implements OnInit, OnDestroy {
     this.showLiquidInfo = false;
     this.selectCoin = coin;
     this.toCoin.id = coin;
-    console.log('$$$$');
     this.liquidContent = this.withdrawContent;
   }
 
   async closeMiningToken(event) {
-    console.log(event);
     this.showMiningModel = false;
     this.liquidContent = this.liquidContent_origin;
   }
@@ -370,22 +414,22 @@ export class LiquidPage implements OnInit, OnDestroy {
       this.tokenName = 'XTokens-gray';
       this.questionImgName = 'question-gray';
 
-      let content = document.getElementById('minningPool');
+      const content = document.getElementById('minningPool');
       if (content) {
         this.rd.addClass(content, 'no-mining');
       }
-      let tokenInfo = document.getElementById('tokenInfo');
+      const tokenInfo = document.getElementById('tokenInfo');
       if (content) {
         this.rd.addClass(tokenInfo, 'no-mining');
       }
     } else {
       this.tokenName = 'XTokens';
       this.questionImgName = 'question';
-      let content = document.getElementById('minningPool');
+      const content = document.getElementById('minningPool');
       if (content) {
         this.rd.removeClass(content, 'no-mining');
       }
-      let tokenInfo = document.getElementById('tokenInfo');
+      const tokenInfo = document.getElementById('tokenInfo');
       if (content) {
         this.rd.removeClass(tokenInfo, 'no-mining');
       }
@@ -399,10 +443,5 @@ export class LiquidPage implements OnInit, OnDestroy {
       !this.pairAttended[this.toCoin.id] ||
       !this.cofixService.getCurrentAccount()
     );
-  }
-
-  ngOnDestroy() {
-    console.log('header destroy---');
-    this.resizeSubscription.unsubscribe();
   }
 }

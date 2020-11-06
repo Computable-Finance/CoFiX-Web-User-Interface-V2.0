@@ -126,7 +126,7 @@ export class CofiPage implements OnInit, OnDestroy {
 
       this.earnedRate = result.rewardRate;
       this.cofiBalance = await this.balanceTruncatePipe.transform(
-        this.earnedRate.earned
+        result.earned
       );
 
       this.cofiBalanceSubscription = this.balancesQuery

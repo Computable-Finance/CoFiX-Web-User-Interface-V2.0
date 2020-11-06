@@ -140,13 +140,13 @@
           <ion-col
             class="ion-text-right number"
             size="4"
-            *ngIf="!showSkeleton(ETHAmountForRemoveLiquidity[toCoin.id])"
-            >{{earnedRate[toCoin.id]?.earned | truncate:'--'}}
+            *ngIf="!showSkeleton(cofiBalance)"
+            >{{cofiBalance | truncate:'--'}}
           </ion-col>
           <ion-col
             class="ion-text-right number"
             size="4"
-            *ngIf="showSkeleton(ETHAmountForRemoveLiquidity[toCoin.id])"
+            *ngIf="showSkeleton(cofiBalance)"
           >
             <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
           </ion-col>
@@ -166,14 +166,14 @@
           <ion-col
             class="ion-text-right number"
             size="7"
-            *ngIf="!showSkeleton(tokenAmountForRemoveLiquidity[toCoin.id])"
+            *ngIf="!showSkeleton(earnedRate[toCoin.id])"
           >
-            {{earnedRate[toCoin.id]?.rewardRate | truncate:'--'}} CoFi/week
+            {{earnedRate[toCoin.id] | truncate:'--'}} CoFi/Day
           </ion-col>
           <ion-col
             class="ion-text-right number"
             size="7"
-            *ngIf="showSkeleton(tokenAmountForRemoveLiquidity[toCoin.id])"
+            *ngIf="showSkeleton(earnedRate[toCoin.id])"
           >
             <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
           </ion-col>
@@ -246,7 +246,7 @@
     #tokenDepositView
     *ngIf="showMiningModel"
     [profit]="miningProfit"
-    [miningSpeed]="earnedRate[toCoin.id]?.rewardRate"
+    [miningSpeed]="earnedRate[toCoin.id]"
     (onClose)="closeMiningToken($event)"
   ></app-token-mining>
 
