@@ -5,9 +5,9 @@ import { debounceTime } from 'rxjs/operators';
 
 import { BannerContent } from '../common/components/banner/banner.page';
 import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
-import { ShareStateQuery } from '../common/state/share.query';
 import { Utils } from '../common/utils';
 import { CofiXService } from '../service/cofix.service';
+import { BalancesQuery } from '../state/balance/balance.query';
 import { TxService } from '../state/tx/tx.service';
 
 @Component({
@@ -24,13 +24,13 @@ export class IncomePage implements OnInit, OnDestroy {
       url: 'https://github.com/Computable-Finance/Doc',
     },
   };
+
   cofiTokenAddress: string;
   cofiStakingRewards: string;
   cofiToken: string;
   cofiStakingRewardsAddress: string;
   earnedETH: string;
   canReceive = false;
-  shareState: any;
   isLoading = false;
   balance = '';
   isLoadingProfit = { sq: false, cr: false, qc: false };
@@ -38,37 +38,44 @@ export class IncomePage implements OnInit, OnDestroy {
   isApproved = false;
   incomeError = { isError: false, msg: '' };
   receiveError = { isError: false, msg: '' };
-  isShowModal: boolean = false;
+  isShowModal = false;
   profit = { title: '', subtitle: '', isDeposit: false };
   cardTitle = { title: '' };
   buttonTitle = {
     deposit: 'income_deposit_btn',
     withdraw: 'income_withdraw_btn',
   };
+
   private resizeSubscription: Subscription;
+  private dividendSubscription: Subscription;
+  private cofiBalanceSubscription: Subscription;
+  private cofiStakingRewardsSubscription: Subscription;
+
   constructor(
     public cofixService: CofiXService,
     private balanceTruncatePipe: BalanceTruncatePipe,
-    public shareStateQuery: ShareStateQuery,
     private utils: Utils,
-    private txService: TxService
+    private txService: TxService,
+    private balancesQuery: BalancesQuery
   ) {}
 
   ngOnInit() {
     if (this.cofixService.getCurrentAccount() === undefined) {
       setTimeout(() => {
-        this.refreshPage();
+        this.initPage();
       }, 3000);
     } else {
-      this.refreshPage();
+      this.initPage();
     }
-    this.changeButtonTitle();
-    this.resizeSubscription = fromEvent(window, 'resize')
-      .pipe(debounceTime(100))
-      .subscribe((event) => {
-        this.changeButtonTitle();
-      });
   }
+
+  ngOnDestroy() {
+    this.resizeSubscription?.unsubscribe();
+    this.dividendSubscription?.unsubscribe();
+    this.cofiBalanceSubscription?.unsubscribe();
+    this.cofiStakingRewardsSubscription?.unsubscribe();
+  }
+
   changeButtonTitle() {
     if (window.innerWidth < 500) {
       this.buttonTitle = {
@@ -84,39 +91,68 @@ export class IncomePage implements OnInit, OnDestroy {
       this.cardTitle.title = this.profit.title;
     }
   }
-  refreshPage() {
+
+  initPage() {
     this.resetReceiveError();
-    this.getCoFiTokenAndRewards();
+    this.getCoFiTokenAndRewardsAndSubscribe();
     this.getIsApproved();
+    this.changeButtonTitle();
+    this.resizeSubscription = fromEvent(window, 'resize')
+      .pipe(debounceTime(100))
+      .subscribe((event) => {
+        this.changeButtonTitle();
+      });
   }
-  async getCoFiTokenAndRewards() {
-    this.shareState = this.shareStateQuery.getValue();
+
+  async getCoFiTokenAndRewardsAndSubscribe() {
     if (this.cofixService.getCurrentAccount()) {
-      this.cofiTokenAddress = this.cofixService.getCurrentContractAddressList()[
-        'CoFiToken'
-      ];
-      this.cofiStakingRewardsAddress = this.cofixService.getCurrentContractAddressList()[
-        'CoFiStakingRewards'
-      ];
+      this.cofiTokenAddress = this.cofixService.getCurrentContractAddressList().CoFiToken;
       this.cofiToken = await this.balanceTruncatePipe.transform(
         await this.cofixService.getERC20Balance(this.cofiTokenAddress)
       );
+      this.balancesQuery
+        .currentERC20Balance$(
+          this.cofixService.getCurrentAccount(),
+          this.cofiTokenAddress
+        )
+        .subscribe(async (balance) => {
+          this.cofiToken = await this.balanceTruncatePipe.transform(balance);
+        });
+
+      this.cofiStakingRewardsAddress = this.cofixService.getCurrentContractAddressList().CoFiStakingRewards;
       this.cofiStakingRewards = await this.balanceTruncatePipe.transform(
         await this.cofixService.getERC20Balance(this.cofiStakingRewardsAddress)
       );
-      this.getEarnedETH();
+      this.balancesQuery
+        .currentERC20Balance$(
+          this.cofixService.getCurrentAccount(),
+          this.cofiStakingRewardsAddress
+        )
+        .subscribe(async (balance) => {
+          this.cofiStakingRewards = await this.balanceTruncatePipe.transform(
+            balance
+          );
+        });
+
+      this.getEarnedETHAndSubscribe();
     }
-    this.balance = '';
   }
 
-  async getEarnedETH() {
+  async getEarnedETHAndSubscribe() {
     this.earnedETH = await this.cofixService.earnedETH();
-    this.canReceive =
-      (await this.balanceTruncatePipe.transform(this.earnedETH)) !== '0' &&
-      (await this.balanceTruncatePipe.transform(this.earnedETH)) !== '--';
-    console.log(this.canReceive);
+    if (!this.dividendSubscription) {
+      this.balancesQuery
+        .currentDividendBalance$(this.cofixService.getCurrentAccount())
+        .subscribe(async (dividend) => {
+          this.earnedETH = dividend;
+          this.canReceive =
+            (await this.balanceTruncatePipe.transform(this.earnedETH)) !==
+              '0' &&
+            (await this.balanceTruncatePipe.transform(this.earnedETH)) !== '--';
+        });
+    }
   }
-  //领取ETH
+
   async receiveETH() {
     this.resetReceiveError();
     this.waitingPopover = await this.utils.createTXConfirmModal();
@@ -143,7 +179,6 @@ export class IncomePage implements OnInit, OnDestroy {
         const provider = this.cofixService.getCurrentProvider();
         provider.once(tx.hash, (transactionReceipt) => {
           this.isLoading = false;
-          this.getEarnedETH();
           this.utils.changeTxStatus(transactionReceipt.status, tx.hash);
         });
         provider.once('error', (error) => {
@@ -163,12 +198,15 @@ export class IncomePage implements OnInit, OnDestroy {
         }
       });
   }
+
   resetReceiveError() {
     this.receiveError = { isError: false, msg: '' };
   }
+
   resetIncomeError() {
     this.incomeError = { isError: false, msg: '' };
   }
+
   async getIsApproved() {
     if (this.cofixService.getCurrentAccount()) {
       this.isApproved = await this.cofixService.approved(
@@ -200,8 +238,6 @@ export class IncomePage implements OnInit, OnDestroy {
     this.cofixService
       .depositCoFi(event.balance)
       .then((tx: any) => {
-        console.log('tx.hash', tx.hash);
-
         this.isLoadingProfit.cr = true;
         const params = {
           t: 'tx_depositCoFi',
@@ -219,8 +255,6 @@ export class IncomePage implements OnInit, OnDestroy {
         provider.once(tx.hash, (transactionReceipt) => {
           this.isLoadingProfit.cr = false;
           this.isShowModal = false;
-          this.getCoFiTokenAndRewards();
-          this.balance = undefined;
           this.utils.changeTxStatus(transactionReceipt.status, tx.hash);
         });
         provider.once('error', (error) => {
@@ -242,6 +276,7 @@ export class IncomePage implements OnInit, OnDestroy {
   }
 
   waitingPopover: any;
+
   async receiveCofi(event) {
     this.waitingPopover = await this.utils.createTXConfirmModal();
     await this.waitingPopover.present();
@@ -267,8 +302,6 @@ export class IncomePage implements OnInit, OnDestroy {
         provider.once(tx.hash, (transactionReceipt) => {
           this.isLoadingProfit.qc = false;
           this.isShowModal = false;
-          this.getCoFiTokenAndRewards();
-          this.balance = undefined;
           this.utils.changeTxStatus(transactionReceipt.status, tx.hash);
         });
         provider.once('error', (error) => {
@@ -310,16 +343,11 @@ export class IncomePage implements OnInit, OnDestroy {
     this.changeButtonTitle();
   }
 
-  cancel(type) {
-    console.log(type);
+  cancel() {
     this.isShowModal = false;
   }
 
   showSkeleton(value) {
     return value === undefined || value === '';
-  }
-
-  ngOnDestroy() {
-    this.resizeSubscription.unsubscribe();
   }
 }

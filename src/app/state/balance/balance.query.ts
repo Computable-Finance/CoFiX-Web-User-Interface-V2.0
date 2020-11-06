@@ -16,6 +16,14 @@ export class BalancesQuery extends Query<BalancesModel> {
     return this.select((state) => state[account].erc20Balances[address]);
   }
 
+  currentUnclaimedCoFi$(account: string, address: string) {
+    return this.select((state) => state[account].unclaimedCoFis[address]);
+  }
+
+  currentDividendBalance$(account: string) {
+    return this.select((state) => state[account].dividend);
+  }
+
   getBalancesByAccount(account: string) {
     return this.store.getValue()[account];
   }

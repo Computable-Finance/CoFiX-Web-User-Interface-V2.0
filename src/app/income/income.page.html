@@ -1,6 +1,14 @@
-<app-header [activeId]="'income'" (onRefresh)="refreshPage()" class="web-header"></app-header>
+<app-header
+  [activeId]="'income'"
+  (onRefresh)="initPage()"
+  class="web-header"
+></app-header>
 <ion-content [fullscreen]="true">
-  <app-header [activeId]="'income'" (onRefresh)="refreshPage()"  class="mobile-header"></app-header>
+  <app-header
+    [activeId]="'income'"
+    (onRefresh)="initPage()"
+    class="mobile-header"
+  ></app-header>
   <ng-container *ngIf="!isShowModal">
     <ion-card class="swap-card">
       <div class="card-content">
@@ -47,7 +55,9 @@
                   >{{'income_swap_fee' | translate}}<img
                     class="alert-icon"
                     src="./assets/images/question.png"
-                    tooltip  event="hover" tipsContent="dividend_tooltips_fee" 
+                    tooltip
+                    event="hover"
+                    tipsContent="dividend_tooltips_fee"
                   />
                 </ion-col>
                 <ion-col
@@ -70,7 +80,9 @@
                   >{{'income_dividend_percent' | translate}}<img
                     class="alert-icon"
                     src="./assets/images/question.png"
-                    tooltip  event="hover" tipsContent="dividend_tooltips_share20"
+                    tooltip
+                    event="hover"
+                    tipsContent="dividend_tooltips_share20"
                   />
                 </ion-col>
                 <ion-col
@@ -94,7 +106,9 @@
                   >{{'income_saving_percent' | translate}}<img
                     class="alert-icon"
                     src="./assets/images/question.png"
-                    tooltip  event="hover" tipsContent="dividend_tooltips_share80" 
+                    tooltip
+                    event="hover"
+                    tipsContent="dividend_tooltips_share80"
                   />
                 </ion-col>
                 <ion-col
@@ -114,7 +128,7 @@
             </ion-grid>
           </div>
         </div>
-        <div class="button-div" >
+        <div class="button-div">
           <ion-button
             expand="block"
             class="operation-btn approve-btn full-btn"
@@ -130,7 +144,7 @@
           <ion-button
             fill="outline"
             class="operation-btn approve-btn full-btn"
-            (click)="showModal('withdraw')" 
+            (click)="showModal('withdraw')"
             [disabled]="!cofixService.getCurrentAccount()"
           >
             <div class="ion-button-label">
@@ -184,14 +198,13 @@
           </ion-row>
         </ion-grid>
       </div>
-      <div
-        class="button-div connect-card"
-      >
+      <div class="button-div connect-card">
         <ion-button
           expand="block"
           class="operation-btn full-btn"
           [disabled]="isLoading || !canReceive"
-          (click)="receiveETH()" id="receiveBtn"
+          (click)="receiveETH()"
+          id="receiveBtn"
         >
           <div class="ion-button-label">
             <div *ngIf="!isLoading">{{'lq_text' | translate}}</div>
@@ -236,4 +249,4 @@
     </ion-card>
   </ng-container>
 </ion-content>
-<app-footer (onRefresh)="refreshPage()"></app-footer>
+<app-footer (onRefresh)="initPage()"></app-footer>
