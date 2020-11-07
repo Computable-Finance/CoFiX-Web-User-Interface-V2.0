@@ -94,7 +94,7 @@
                   <ion-col class="number ion-text-right" size="7">
                     1 <span class="tk1">{{fromCoin.id}}</span> =
                     <span class="changePrice"
-                      >{{changePrice | truncate:'--':4}}</span
+                      >{{nestPrice | truncate:'--':4}}</span
                     >
                     {{toCoin.id}}
                   </ion-col>
@@ -104,7 +104,7 @@
                     {{'swap_pricefee' | translate}}
                   </ion-col>
                   <ion-col class="number ion-text-right" size="7">
-                    {{priceSpread}} {{toCoin.id}}
+                    {{priceSpread | truncate}} {{toCoin.id}}
                   </ion-col>
                 </ion-row>
               </ion-col>

@@ -28,6 +28,7 @@ export class SwapPage implements OnInit, OnDestroy {
     },
   };
   changePrice: string;
+  nestPrice: string;
   expectedCofi: string;
   priceSpread: string;
   oracleCost = '0.01'; //预言机调用费
@@ -198,7 +199,14 @@ export class SwapPage implements OnInit, OnDestroy {
 
       this.expectedCofi = executionPriceAndExpectedCofi.expectedCofi;
       this.changePrice = executionPriceAndExpectedCofi.excutionPriceForOne;
-      this.priceSpread = new BNJS(this.changePrice);
+      this.nestPrice = await this.cofixService.changePrice(
+        this.fromCoin.address,
+        this.toCoin.address
+      );
+
+      this.priceSpread = new BNJS(this.nestPrice)
+        .minus(this.changePrice)
+        .toString();
     }
   }
 
