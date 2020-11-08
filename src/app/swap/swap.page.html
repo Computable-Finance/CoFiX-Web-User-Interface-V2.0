@@ -51,7 +51,11 @@
           <ion-row
             class="ion-align-items-center ion-align-self-center conversionPrice {{isShowDetail?'show-detail':''}}"
           >
-            <ion-col class="label" size="4"
+            <ion-col
+              class="label"
+              size="4"
+              (click)="showDetail($event)"
+              id="price-col"
               >{{'dhjg_text' | translate}}
               <img
                 class="alert-icon"

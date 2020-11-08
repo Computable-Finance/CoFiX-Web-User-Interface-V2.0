@@ -21,14 +21,13 @@ export class ConnectWalletPage implements OnDestroy {
     private txQuery: TxQuery,
     private popoverController: PopoverController
   ) {}
+
   pendingCount = 0;
   txLastPendingSubscription: Subscription;
 
-  subscribeIfNot() {
-    if (
-      this.cofixService.getCurrentAccount() &&
-      !this.txLastPendingSubscription
-    ) {
+  subscribe() {
+    if (this.cofixService.getCurrentAccount()) {
+      this.txLastPendingSubscription?.unsubscribe();
       this.txLastPendingSubscription = this.txQuery
         .pendingTxCount$(
           this.cofixService.getCurrentAccount(),
@@ -51,7 +50,7 @@ export class ConnectWalletPage implements OnDestroy {
   }
 
   showPending() {
-    this.subscribeIfNot();
+    this.subscribe();
     return this.pendingCount > 0;
   }
 
