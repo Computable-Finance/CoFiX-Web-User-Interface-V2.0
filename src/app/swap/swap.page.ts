@@ -170,7 +170,7 @@ export class SwapPage implements OnInit, OnDestroy {
     let toAddress = this.toCoin.address;
 
     if (this.toCoin.id === 'ETH') {
-      toAddress = this.cofixService.getCurrentContractAddressList()['WETH9'];
+      toAddress = this.cofixService.getCurrentContractAddressList().WETH9;
       fromAddress = this.fromCoin.address;
     } else {
       fromAddress = this.toCoin.address;
@@ -343,16 +343,15 @@ export class SwapPage implements OnInit, OnDestroy {
       this.expectedCofi = '';
     }
   }
+
   resetSwapError() {
     this.swapError = { isError: false, msg: '' };
   }
+
   fromCoinInput(event) {
-    console.log(new Date().toISOString);
     this.resetSwapError();
     this.fromCoin.id = event.coin;
     this.fromCoin.amount = event.amount;
-    //this.toCoin.amount = '';
-    this.expectedCofi = '';
     this.getEPAndEC();
     if (this.fromCoin.id === 'ETH') {
       this.showError =

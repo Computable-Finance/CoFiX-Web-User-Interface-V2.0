@@ -7,7 +7,8 @@ import {
   Output,
 } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { Subject, Subscription } from 'rxjs';
+import { EMPTY, Subject, Subscription } from 'rxjs';
+import { debounceTime, switchMap } from 'rxjs/operators';
 
 import { CoinSelectPage } from './select/coin-select.page';
 
@@ -19,8 +20,8 @@ const BNJS = require('bignumber.js');
 })
 export class CoinInputPage implements OnInit, OnDestroy {
   modelChanged: Subject<string> = new Subject<string>();
-  private subscription: Subscription;
-  debounceTime = 500;
+  subscription: Subscription;
+  debounceTime = 250;
 
   @Output() onMaxClick = new EventEmitter<any>();
   @Output() onChangeCoin = new EventEmitter<any>();
@@ -42,16 +43,15 @@ export class CoinInputPage implements OnInit, OnDestroy {
   constructor(private modalController: ModalController) {}
 
   ngOnInit() {
-    // this.subscription = this.modelChanged
-    //   .pipe(
-    //     debounceTime(this.debounceTime),
-    //     distinctUntilChanged(),
-    //     switchMap((event) => {
-    //       this.onInputChange.emit({ amount: this.amount, coin: this.coin });
-    //       return EMPTY;
-    //     })
-    //   )
-    //   .subscribe();
+    this.subscription = this.modelChanged
+      .pipe(
+        debounceTime(this.debounceTime),
+        switchMap((event) => {
+          this.onInputChange.emit({ amount: this.amount, coin: this.coin });
+          return EMPTY;
+        })
+      )
+      .subscribe();
   }
 
   async showCoinSelect(event: any) {
@@ -84,7 +84,7 @@ export class CoinInputPage implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // this.subscription.unsubscribe();
+    this.subscription.unsubscribe();
   }
   overLiquid() {
     return new BNJS(this.amount).gt(new BNJS(this.maxLiquid));

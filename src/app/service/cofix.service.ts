@@ -266,11 +266,7 @@ export class CofiXService {
       const price = await this.checkPriceNow(fromToken);
       result2 = new BNJS(1).div(new BNJS(price.changePrice));
     }
-
     const result = result1.times(result2);
-
-    console.log(result.toString());
-
     return result.toString();
   }
 
@@ -409,26 +405,14 @@ export class CofiXService {
     eth2ERC20: boolean = true
   ) {
     const pairAddress = await this.getPairAddressByToken(token);
-    const erc20 = getERC20Contract(token, this.provider);
-    const balanceOfPair = await erc20.balanceOf(pairAddress);
-    const decimals = await this.getERC20Decimals(token);
+    const balanceOfPair = await this.getERC20BalanceOfPair(token, token);
     const tokens = this.parseEthers(
-      new BNJS(unitsOf(balanceOfPair, decimals))
-        .div(checkedPriceNow.changePrice)
-        .toFixed(8)
+      new BNJS(balanceOfPair).div(checkedPriceNow.changePrice).toFixed(8)
     );
-
-    const weth9 = getERC20Contract(
-      this.contractAddressList.WETH9,
-      this.provider
+    const weth9Balance = this.parseEthers(
+      await this.getERC20BalanceOfPair(token, this.contractAddressList.WETH9)
     );
-    const weth9Balance = await weth9.balanceOf(pairAddress);
     const navPerShare = this.parseEthers(await this.getNavPerShare(token));
-    const trader = getCoFiXVaultForTrader(
-      this.contractAddressList.CoFiXVaultForTrader,
-      this.provider
-    );
-
     let x;
     let y;
     if (eth2ERC20) {
@@ -438,7 +422,10 @@ export class CofiXService {
       x = tokens;
       y = weth9Balance;
     }
-
+    const trader = getCoFiXVaultForTrader(
+      this.contractAddressList.CoFiXVaultForTrader,
+      this.provider
+    );
     const actualMiningAmountAndDensity = await trader.actualMiningAmountAndDensity(
       pairAddress,
       fee,
@@ -446,7 +433,6 @@ export class CofiXService {
       y,
       navPerShare
     );
-
     const value = new BNJS(ethersOf(actualMiningAmountAndDensity.amount)).times(
       0.8
     );
