@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { fromEvent } from 'rxjs/internal/observable/fromEvent';
+import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 import { BannerContent } from '../common/components/banner/banner.page';
 import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
 import { ShareStateService } from '../common/state/share.service';
@@ -53,7 +55,8 @@ export class CofiPage implements OnInit, OnDestroy {
   currentCoFiPrice;
   waitingPopover: any;
   isApproved = false;
-
+  resizeSubscription: Subscription;
+  claimTitle: string = 'claimcofi_text';
   private earnedRateSubscription: Subscription;
   private cofiBalanceSubscription: Subscription;
   private hadValueSubscription: Subscription;
@@ -61,9 +64,16 @@ export class CofiPage implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.unsubscribeAll();
+    this.resizeSubscription?.unsubscribe();
   }
 
-  async ngOnInit() {
+  ngOnInit() {
+    this.setBtnTitle();
+    this.resizeSubscription = fromEvent(window, 'resize')
+      .pipe(debounceTime(100))
+      .subscribe((event) => {
+        this.setBtnTitle();
+      });
     if (this.cofixService.getCurrentAccount() === undefined) {
       setTimeout(() => {
         this.refreshPage();
@@ -72,14 +82,23 @@ export class CofiPage implements OnInit, OnDestroy {
       this.refreshPage();
     }
 
-    this.currentCoFiPrice = await this.cofixService.currentCoFiPrice();
+    setTimeout(async () => {
+      this.currentCoFiPrice = await this.cofixService.currentCoFiPrice();
+    }, 500);
+
     setInterval(
       async () =>
         (this.currentCoFiPrice = await this.cofixService.currentCoFiPrice()),
       60 * 1000
     );
   }
-
+  setBtnTitle() {
+    if (window.innerWidth < 470) {
+      this.claimTitle = 'claimcofi_text_short';
+    } else {
+      this.claimTitle = 'claimcofi_text';
+    }
+  }
   private unsubscribeAll() {
     this.earnedRateSubscription?.unsubscribe();
     this.cofiBalanceSubscription?.unsubscribe();

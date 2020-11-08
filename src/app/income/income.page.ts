@@ -22,7 +22,8 @@ export class IncomePage implements OnInit, OnDestroy {
     descriptions: ['income_desc1', 'income_desc2', 'income_desc3'],
     more: {
       text: 'income_more',
-      url: 'https://github.com/Computable-Finance/Doc',
+      url:
+        'https://github.com/Computable-Finance/Doc#75-cofi-token-dividend-and-repurchase-model',
     },
   };
 

@@ -9,141 +9,144 @@
     (onRefresh)="refreshPage()"
     class="mobile-header"
   ></app-header>
-  <app-liquid-input
-    class="liquid-input"
-    (onChangeCoin)="changeCoin($event)"
-  ></app-liquid-input>
-  <ion-card class="swap-card">
-    <div class="card-content">
-      <app-card-title
-        [cardTitle]="'cofi_claim_title'"
-        [cardSubTitle]="'cofi_claim_desc'"
-      ></app-card-title>
-      <app-taken-info
-        [infoTitle]="'ywc'"
-        [token]="'CoFi'"
-        [tokenBalance]="cofiBalance"
-        [alertContent]="'claim_tooltips_unclaimed'"
-      >
-      </app-taken-info>
+  <div class="main-content">
+    <app-liquid-input
+      class="liquid-input"
+      (onChangeCoin)="changeCoin($event)"
+    ></app-liquid-input>
+    <ion-card class="swap-card">
+      <div class="card-content">
+        <app-card-title
+          [cardTitle]="'cofi_claim_title'"
+          [cardSubTitle]="'cofi_claim_desc'"
+        ></app-card-title>
+        <app-taken-info
+          [infoTitle]="'ywc'"
+          [token]="'CoFi'"
+          [tokenBalance]="cofiBalance"
+          [alertContent]="'claim_tooltips_unclaimed'"
+        >
+        </app-taken-info>
 
-      <ion-grid class="ion-no-padding">
-        <ion-row
-          class="ion-align-items-center ion-align-self-center conversionPrice"
-        >
-          <ion-col class="label" size="5">{{'dragcoin' | translate}}</ion-col>
-          <ion-col
-            class="ion-text-right number"
-            size="7"
-            *ngIf="!showSkeleton(earnedRate)"
-            >{{earnedRate | truncate:'--'}} {{'mining_speed' | translate}}
-          </ion-col>
-          <ion-col size="7" *ngIf="showSkeleton(earnedRate)">
-            <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
-          </ion-col>
-        </ion-row>
-        <ion-row
-          class="ion-align-items-center ion-align-self-center conversionPrice"
-        >
-          <ion-col class="label" size="8"
-            >{{'cofi_already' | translate}}</ion-col
+        <ion-grid class="ion-no-padding">
+          <ion-row
+            class="ion-align-items-center ion-align-self-center conversionPrice"
           >
-          <ion-col
-            class="ion-text-right number"
-            size="4"
-            *ngIf="!showSkeleton(earnedRate)"
-            >**
-          </ion-col>
-          <ion-col size="4" *ngIf="showSkeleton(earnedRate)">
-            <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
-          </ion-col>
-        </ion-row>
+            <ion-col class="label" size="5">{{'dragcoin' | translate}}</ion-col>
+            <ion-col
+              class="ion-text-right number"
+              size="7"
+              *ngIf="!showSkeleton(earnedRate)"
+              >{{earnedRate | truncate:'--'}} {{'mining_speed' | translate}}
+            </ion-col>
+            <ion-col size="7" *ngIf="showSkeleton(earnedRate)">
+              <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
+            </ion-col>
+          </ion-row>
+          <ion-row
+            class="ion-align-items-center ion-align-self-center conversionPrice"
+          >
+            <ion-col class="label" size="8"
+              >{{'cofi_already' | translate}}</ion-col
+            >
+            <ion-col
+              class="ion-text-right number"
+              size="4"
+              *ngIf="!showSkeleton(earnedRate)"
+              >**
+            </ion-col>
+            <ion-col size="4" *ngIf="showSkeleton(earnedRate)">
+              <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
+            </ion-col>
+          </ion-row>
 
-        <ion-row
-          class="ion-align-items-center ion-align-self-center conversionPrice"
-        >
-          <ion-col class="label" size="8"
-            >{{'cofi_wallet' | translate}}</ion-col
+          <ion-row
+            class="ion-align-items-center ion-align-self-center conversionPrice"
           >
-          <ion-col
-            class="ion-text-right number"
-            size="4"
-            *ngIf="!showSkeleton(todoValue)"
-            >{{todoValue | truncate:'--' }}
-          </ion-col>
-          <ion-col size="4" *ngIf="showSkeleton(todoValue)">
-            <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
-          </ion-col>
-        </ion-row>
-        <ion-row
-          class="ion-align-items-center ion-align-self-center conversionPrice"
-        >
-          <ion-col class="label" size="8"
-            >{{'cofi_market_price' | translate}}</ion-col
+            <ion-col class="label" size="8"
+              >{{'cofi_wallet' | translate}}</ion-col
+            >
+            <ion-col
+              class="ion-text-right number"
+              size="4"
+              *ngIf="!showSkeleton(todoValue)"
+              >{{todoValue | truncate:'--' }}
+            </ion-col>
+            <ion-col size="4" *ngIf="showSkeleton(todoValue)">
+              <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
+            </ion-col>
+          </ion-row>
+          <ion-row
+            class="ion-align-items-center ion-align-self-center conversionPrice"
           >
-          <ion-col
-            class="ion-text-right number"
-            size="4"
-            *ngIf="!showSkeleton(currentCoFiPrice)"
-          >
-            {{currentCoFiPrice}} USD
-          </ion-col>
-          <ion-col size="4" *ngIf="showSkeleton(currentCoFiPrice)">
-            <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
-          </ion-col>
-        </ion-row>
+            <ion-col class="label" size="8"
+              >{{'cofi_market_price' | translate}}</ion-col
+            >
+            <ion-col
+              class="ion-text-right number"
+              size="4"
+              *ngIf="!showSkeleton(currentCoFiPrice)"
+            >
+              {{currentCoFiPrice}} USD
+            </ion-col>
+            <ion-col size="4" *ngIf="showSkeleton(currentCoFiPrice)">
+              <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
+            </ion-col>
+          </ion-row>
 
-        <ion-row
-          class="ion-align-items-center ion-align-self-center conversionPrice"
-        >
-          <ion-col class="label" size="10"
-            >{{'cofi_isdeposit' | translate}}
-            <img
-              class="alert-icon"
-              src="./assets/images/question.png"
-              tooltip
-              event="hover"
-              tipsContent="claim_tooltips_deposit"
-            />
-          </ion-col>
-          <ion-col class="ion-text-right" size="2">
-            <ion-toggle [(ngModel)]="isDeposit"></ion-toggle>
-          </ion-col>
-        </ion-row>
-        <ion-row
-          class="ion-align-items-center ion-align-self-center conversionPrice"
-          *ngIf="withdrawError.isError"
-        >
-          <ion-col class="error" size="12"
-            >{{'transaction-error' | translate}}[{{withdrawError.msg}}]</ion-col
+          <ion-row
+            class="ion-align-items-center ion-align-self-center conversionPrice"
           >
-        </ion-row>
-      </ion-grid>
-    </div>
-    <div class="button-div connect-card">
-      <ion-button
-        expand="block"
-        class="operation-btn approve-btn"
-        (click)="approve()"
-        *ngIf="!isApproved && isDeposit"
-      >
-        <div class="ion-button-label">
-          <div *ngIf="!isLoading.sq">{{'sq_text' | translate}}</div>
-          <div class="loading" *ngIf="isLoading.sq"></div>
-        </div>
-      </ion-button>
-      <ion-button
-        expand="block"
-        class="operation-btn"
-        [ngClass]="{'swap-btn':!isApproved  && isDeposit,'full-btn':isApproved || !isDeposit}"
-        (click)="withdrawEarnedCoFi()"
-        [disabled]="canWithdraw()"
-      >
-        <div *ngIf="!isLoading.qc">{{'lq_text' | translate}}</div>
-        <div class="loading" *ngIf="isLoading.qc"></div>
-      </ion-button>
-    </div>
-  </ion-card>
+            <ion-col class="label" size="10"
+              >{{'cofi_isdeposit' | translate}}
+              <img
+                class="alert-icon"
+                src="./assets/images/question.png"
+                tooltip
+                event="hover"
+                tipsContent="claim_tooltips_deposit"
+              />
+            </ion-col>
+            <ion-col class="ion-text-right" size="2">
+              <ion-toggle [(ngModel)]="isDeposit"></ion-toggle>
+            </ion-col>
+          </ion-row>
+          <ion-row
+            class="ion-align-items-center ion-align-self-center conversionPrice"
+            *ngIf="withdrawError.isError"
+          >
+            <ion-col class="error" size="12"
+              >{{'transaction-error' |
+              translate}}[{{withdrawError.msg}}]</ion-col
+            >
+          </ion-row>
+        </ion-grid>
+      </div>
+      <div class="button-div connect-card">
+        <ion-button
+          expand="block"
+          class="operation-btn approve-btn"
+          (click)="approve()"
+          *ngIf="!isApproved && isDeposit"
+        >
+          <div class="ion-button-label">
+            <div *ngIf="!isLoading.sq">{{'sq_text' | translate}}</div>
+            <div class="loading" *ngIf="isLoading.sq"></div>
+          </div>
+        </ion-button>
+        <ion-button
+          expand="block"
+          class="operation-btn"
+          [ngClass]="{'swap-btn':!isApproved  && isDeposit,'full-btn':isApproved || !isDeposit}"
+          (click)="withdrawEarnedCoFi()"
+          [disabled]="canWithdraw()"
+        >
+          <div *ngIf="!isLoading.qc">{{claimTitle | translate}}</div>
+          <div class="loading" *ngIf="isLoading.qc"></div>
+        </ion-button>
+      </div>
+    </ion-card>
+  </div>
   <app-banner [bannerConent]="cofixContent" class="desc_line"></app-banner>
 </ion-content>
 <app-footer (onRefresh)="refreshPage()"></app-footer>

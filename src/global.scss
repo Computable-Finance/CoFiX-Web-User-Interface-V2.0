@@ -329,7 +329,7 @@ ion-button {
     right: 125px;
   }
   .card-content {
-    margin: 0 10px;
+    margin: 0 8px;
   }
   .mobile-header {
     display: block !important;
@@ -340,9 +340,10 @@ ion-button {
 }
 
 @media only screen and (max-width: 470px) {
-  .swap-card,
-  .button-card {
-    width: 90% !important;
+  .swap-card {
+    width: 100% !important;
+    margin-left: 0px;
+    margin-right: 0px;
   }
   .card-title {
     width: 90% !important;
@@ -366,11 +367,19 @@ ion-button {
   .account-class .popover-content {
     left: 0px !important;
     top: unset !important;
-    bottom: 64px;
+    bottom: 0px;
     width: 100% !important;
     border-radius: unset !important;
     border-top-left-radius: 16px !important;
     border-top-right-radius: 16px !important;
+  }
+
+  .main-content {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  .tooltips-class .popover-content {
+    width: 270px !important;
   }
 }
 
@@ -393,10 +402,6 @@ ion-button {
 .connect-card {
   width: 510px;
   margin: 32px auto;
-  background: unset;
-}
-.button-card {
-  width: 510px;
   background: unset;
 }
 .error_warn {

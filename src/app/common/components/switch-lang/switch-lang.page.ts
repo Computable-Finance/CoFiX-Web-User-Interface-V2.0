@@ -23,6 +23,7 @@ export class SwitchLangPage implements OnInit {
   async showLang(ev) {
     const popover = await this.popoverController.create({
       component: MenuPage,
+      componentProps: { style: 'pop' },
       cssClass: 'menu-class',
       event: ev,
     });

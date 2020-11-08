@@ -9,249 +9,253 @@
     (onRefresh)="refreshPage()"
     class="mobile-header"
   ></app-header>
-  <app-liquid-input
-    class="liquid-input"
-    (onChangeCoin)="changeCoin($event)"
-    [coin]="toCoin.id"
-    *ngIf="canShow()"
-  ></app-liquid-input>
-  <ion-card class="swap-card" *ngIf="canShow()">
-    <div class="card-content">
-      <app-card-title
-        [cardTitle]="'liquidpool_title'"
-        [cardSubTitle]="'liquidpool_desc'"
-      ></app-card-title>
-      <app-taken-info
-        [infoTitle]="'liquidpool_xtoken'"
-        [token]="'XTokens'"
-        [tokenBalance]="todoValue[toCoin.id]"
-        [showZeroInfo]="canShowZeroInfo()"
-        [alertContent]="'pool_tooltips_liquidpool_xtoken'"
-      >
-      </app-taken-info>
+  <div class="main-content">
+    <app-liquid-input
+      class="liquid-input"
+      (onChangeCoin)="changeCoin($event)"
+      [coin]="toCoin.id"
+      *ngIf="canShow()"
+    ></app-liquid-input>
+    <ion-card class="swap-card" *ngIf="canShow()">
+      <div class="card-content">
+        <app-card-title
+          [cardTitle]="'liquidpool_title'"
+          [cardSubTitle]="'liquidpool_desc'"
+        ></app-card-title>
+        <app-taken-info
+          [infoTitle]="'liquidpool_xtoken'"
+          [token]="'XTokens'"
+          [tokenBalance]="todoValue[toCoin.id]"
+          [showZeroInfo]="canShowZeroInfo()"
+          [alertContent]="'pool_tooltips_liquidpool_xtoken'"
+        >
+        </app-taken-info>
 
-      <ion-grid class="ion-no-padding">
-        <ion-row
-          class="ion-align-items-center ion-align-self-center conversionPrice"
-        >
-          <ion-col class="label" size="8"
-            >{{'liquidpool_eth' | translate}}<img
-              class="alert-icon"
-              src="./assets/images/{{questionImgName}}.png"
-              tooltip
-              event="hover"
-              tipsContent="pool_tooltips_liquidpool_eth"
-            />
-          </ion-col>
-          <ion-col
-            class="ion-text-right number"
-            size="4"
-            *ngIf="!showSkeleton(ETHAmountForRemoveLiquidity[toCoin.id])"
-            >{{ETHAmountForRemoveLiquidity[toCoin.id] | truncate:'--'}}
-          </ion-col>
-          <ion-col
-            class="ion-text-right number"
-            size="4"
-            *ngIf="showSkeleton(ETHAmountForRemoveLiquidity[toCoin.id])"
+        <ion-grid class="ion-no-padding">
+          <ion-row
+            class="ion-align-items-center ion-align-self-center conversionPrice"
           >
-            <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
-          </ion-col>
-        </ion-row>
-        <ion-row
-          class="ion-align-items-center ion-align-self-center conversionPrice"
-        >
-          <ion-col class="label" size="8">
-            <div
-              translate="liquidpool_token"
-              [translateParams]="{token: toCoin.id}"
-            ></div>
-            <img
-              class="alert-icon"
-              src="./assets/images/{{questionImgName}}.png"
-              tooltip
-              event="hover"
-              tipsContent="pool_tooltips_liquidpool_usdt"
-            />
-          </ion-col>
-          <ion-col
-            class="ion-text-right number"
-            size="4"
-            *ngIf="!showSkeleton(tokenAmountForRemoveLiquidity[toCoin.id])"
-            >{{tokenAmountForRemoveLiquidity[toCoin.id] | truncate:'--'}}
-          </ion-col>
-          <ion-col
-            class="ion-text-right number"
-            size="4"
-            *ngIf="showSkeleton(tokenAmountForRemoveLiquidity[toCoin.id])"
+            <ion-col class="label" size="8"
+              >{{'liquidpool_eth' | translate}}<img
+                class="alert-icon"
+                src="./assets/images/{{questionImgName}}.png"
+                tooltip
+                event="hover"
+                tipsContent="pool_tooltips_liquidpool_eth"
+              />
+            </ion-col>
+            <ion-col
+              class="ion-text-right number"
+              size="4"
+              *ngIf="!showSkeleton(ETHAmountForRemoveLiquidity[toCoin.id])"
+              >{{ETHAmountForRemoveLiquidity[toCoin.id] | truncate:'--'}}
+            </ion-col>
+            <ion-col
+              class="ion-text-right number"
+              size="4"
+              *ngIf="showSkeleton(ETHAmountForRemoveLiquidity[toCoin.id])"
+            >
+              <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
+            </ion-col>
+          </ion-row>
+          <ion-row
+            class="ion-align-items-center ion-align-self-center conversionPrice"
           >
-            <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <div class="button-div">
-        <ion-button
-          expand="block"
-          class="operation-btn approve-btn full-btn"
-          (click)="addLiquid(toCoin.id)"
-          [disabled]="!cofixService.getCurrentAccount()"
-        >
-          <div class="ion-button-label">{{'liquidpool_add' | translate}}</div>
-        </ion-button>
+            <ion-col class="label" size="8">
+              <div
+                translate="liquidpool_token"
+                [translateParams]="{token: toCoin.id}"
+              ></div>
+              <img
+                class="alert-icon"
+                src="./assets/images/{{questionImgName}}.png"
+                tooltip
+                event="hover"
+                tipsContent="pool_tooltips_liquidpool_usdt"
+              />
+            </ion-col>
+            <ion-col
+              class="ion-text-right number"
+              size="4"
+              *ngIf="!showSkeleton(tokenAmountForRemoveLiquidity[toCoin.id])"
+              >{{tokenAmountForRemoveLiquidity[toCoin.id] | truncate:'--'}}
+            </ion-col>
+            <ion-col
+              class="ion-text-right number"
+              size="4"
+              *ngIf="showSkeleton(tokenAmountForRemoveLiquidity[toCoin.id])"
+            >
+              <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <div class="button-div">
+          <ion-button
+            expand="block"
+            class="operation-btn approve-btn full-btn"
+            (click)="addLiquid(toCoin.id)"
+            [disabled]="!cofixService.getCurrentAccount()"
+          >
+            <div class="ion-button-label">{{'liquidpool_add' | translate}}</div>
+          </ion-button>
+        </div>
+        <div class="button-outline">
+          <ion-button
+            fill="outline"
+            class="operation-btn approve-btn full-btn"
+            (click)="redemption(toCoin.id)"
+            [disabled]="!cofixService.getCurrentAccount()"
+          >
+            <div class="ion-button-label">
+              {{'liquidpool_withdraw' | translate}}
+            </div>
+          </ion-button>
+        </div>
       </div>
-      <div class="button-outline">
-        <ion-button
-          fill="outline"
-          class="operation-btn approve-btn full-btn"
-          (click)="redemption(toCoin.id)"
-          [disabled]="!cofixService.getCurrentAccount()"
+    </ion-card>
+
+    <ion-card class="swap-card" *ngIf="canShow()">
+      <div class="card-content" id="minningPool">
+        <app-card-title
+          [cardTitle]="'miningpool_title'"
+          [cardSubTitle]="'miningpool_desc'"
+        ></app-card-title>
+        <app-taken-info
+          [infoTitle]="'miningpool_token'"
+          [token]="tokenName"
+          [tokenBalance]="hadValue[toCoin.id]"
+          [showZeroInfo]="canShowZeroInfo()"
+          id="tokenInfo"
+          [questionImgName]="questionImgName"
+          [alertContent]="'pool_tooltips_miningpool_xtoken'"
         >
-          <div class="ion-button-label">
-            {{'liquidpool_withdraw' | translate}}
-          </div>
-        </ion-button>
+        </app-taken-info>
+
+        <ion-grid class="ion-no-padding">
+          <ion-row
+            class="ion-align-items-center ion-align-self-center conversionPrice"
+          >
+            <ion-col class="label" size="8"
+              >{{'miningpool_mined' | translate}}
+            </ion-col>
+            <ion-col
+              class="ion-text-right number"
+              size="4"
+              *ngIf="!showSkeleton(cofiBalance)"
+              >{{cofiBalance | truncate:'--'}}
+            </ion-col>
+            <ion-col
+              class="ion-text-right number"
+              size="4"
+              *ngIf="showSkeleton(cofiBalance)"
+            >
+              <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
+            </ion-col>
+          </ion-row>
+          <ion-row
+            class="ion-align-items-center ion-align-self-center conversionPrice"
+          >
+            <ion-col class="label" size="5"
+              >{{'miningpool_speed' | translate}}<img
+                class="alert-icon"
+                src="./assets/images/{{questionImgName}}.png"
+                tooltip
+                event="hover"
+                tipsContent="pool_tooltips_miningpool_speed"
+              />
+            </ion-col>
+            <ion-col
+              class="ion-text-right number"
+              size="7"
+              *ngIf="!showSkeleton(earnedRate[toCoin.id])"
+            >
+              {{earnedRate[toCoin.id] | truncate:'--'}} {{'mining_speed' |
+              translate}}
+            </ion-col>
+            <ion-col
+              class="ion-text-right number"
+              size="7"
+              *ngIf="showSkeleton(earnedRate[toCoin.id])"
+            >
+              <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
+            </ion-col>
+          </ion-row>
+          <ion-row
+            class="ion-align-items-center ion-align-self-center conversionPrice"
+          >
+            <ion-col class="label" size="9"
+              >{{'miningpool_wallet' | translate}}<img
+                class="alert-icon"
+                src="./assets/images/{{questionImgName}}.png"
+                tooltip
+                event="hover"
+                tipsContent="pool_tooltips_miningpool_deposittokens"
+              />
+            </ion-col>
+            <ion-col
+              class="ion-text-right number"
+              size="3"
+              *ngIf="!showSkeleton(tokenAmountForRemoveLiquidity[toCoin.id])"
+            >
+              {{todoValue[toCoin.id] | truncate:'--'}}
+            </ion-col>
+            <ion-col
+              class="ion-text-right number"
+              size="3"
+              *ngIf="showSkeleton(tokenAmountForRemoveLiquidity[toCoin.id])"
+            >
+              <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <div class="button-div">
+          <ion-button
+            expand="block"
+            class="operation-btn approve-btn full-btn"
+            (click)="depositToken(toCoin.id)"
+            [disabled]="havMining()"
+          >
+            <div class="ion-button-label">{{btnTitle.deposit | translate}}</div>
+          </ion-button>
+        </div>
+        <div class="button-outline">
+          <ion-button
+            fill="outline"
+            class="operation-btn approve-btn full-btn"
+            (click)="withdrawToken(toCoin.id)"
+            [disabled]="havMining()"
+          >
+            <div class="ion-button-label">
+              {{btnTitle.withdraw | translate}}
+            </div>
+          </ion-button>
+        </div>
       </div>
-    </div>
-  </ion-card>
+    </ion-card>
 
-  <ion-card class="swap-card" *ngIf="canShow()">
-    <div class="card-content" id="minningPool">
-      <app-card-title
-        [cardTitle]="'miningpool_title'"
-        [cardSubTitle]="'miningpool_desc'"
-      ></app-card-title>
-      <app-taken-info
-        [infoTitle]="'miningpool_token'"
-        [token]="tokenName"
-        [tokenBalance]="hadValue[toCoin.id]"
-        [showZeroInfo]="canShowZeroInfo()"
-        id="tokenInfo"
-        [questionImgName]="questionImgName"
-        [alertContent]="'pool_tooltips_miningpool_xtoken'"
-      >
-      </app-taken-info>
+    <app-add-liquid
+      #addLiquidView
+      *ngIf="showAddModel"
+      [pairAttended]="pairAttended"
+      [coin]="selectCoin"
+      (onClose)="closeAddLiquid($event)"
+    ></app-add-liquid>
+    <app-redeem-liquid
+      #redeemLiquidView
+      *ngIf="showRedemtionModel"
+      (onClose)="closeRedeemLiquid($event)"
+      [coin]="selectCoin"
+    ></app-redeem-liquid>
+    <app-token-mining
+      #tokenDepositView
+      *ngIf="showMiningModel"
+      [profit]="miningProfit"
+      [miningSpeed]="earnedRate[toCoin.id]"
+      (onClose)="closeMiningToken($event)"
+    ></app-token-mining>
 
-      <ion-grid class="ion-no-padding">
-        <ion-row
-          class="ion-align-items-center ion-align-self-center conversionPrice"
-        >
-          <ion-col class="label" size="8"
-            >{{'miningpool_mined' | translate}}
-          </ion-col>
-          <ion-col
-            class="ion-text-right number"
-            size="4"
-            *ngIf="!showSkeleton(cofiBalance)"
-            >{{cofiBalance | truncate:'--'}}
-          </ion-col>
-          <ion-col
-            class="ion-text-right number"
-            size="4"
-            *ngIf="showSkeleton(cofiBalance)"
-          >
-            <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
-          </ion-col>
-        </ion-row>
-        <ion-row
-          class="ion-align-items-center ion-align-self-center conversionPrice"
-        >
-          <ion-col class="label" size="5"
-            >{{'miningpool_speed' | translate}}<img
-              class="alert-icon"
-              src="./assets/images/{{questionImgName}}.png"
-              tooltip
-              event="hover"
-              tipsContent="pool_tooltips_miningpool_speed"
-            />
-          </ion-col>
-          <ion-col
-            class="ion-text-right number"
-            size="7"
-            *ngIf="!showSkeleton(earnedRate[toCoin.id])"
-          >
-            {{earnedRate[toCoin.id] | truncate:'--'}} {{'mining_speed' |
-            translate}}
-          </ion-col>
-          <ion-col
-            class="ion-text-right number"
-            size="7"
-            *ngIf="showSkeleton(earnedRate[toCoin.id])"
-          >
-            <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
-          </ion-col>
-        </ion-row>
-        <ion-row
-          class="ion-align-items-center ion-align-self-center conversionPrice"
-        >
-          <ion-col class="label" size="9"
-            >{{'miningpool_wallet' | translate}}<img
-              class="alert-icon"
-              src="./assets/images/{{questionImgName}}.png"
-              tooltip
-              event="hover"
-              tipsContent="pool_tooltips_miningpool_deposittokens"
-            />
-          </ion-col>
-          <ion-col
-            class="ion-text-right number"
-            size="3"
-            *ngIf="!showSkeleton(tokenAmountForRemoveLiquidity[toCoin.id])"
-          >
-            {{todoValue[toCoin.id] | truncate:'--'}}
-          </ion-col>
-          <ion-col
-            class="ion-text-right number"
-            size="3"
-            *ngIf="showSkeleton(tokenAmountForRemoveLiquidity[toCoin.id])"
-          >
-            <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <div class="button-div">
-        <ion-button
-          expand="block"
-          class="operation-btn approve-btn full-btn"
-          (click)="depositToken(toCoin.id)"
-          [disabled]="havMining()"
-        >
-          <div class="ion-button-label">{{btnTitle.deposit | translate}}</div>
-        </ion-button>
-      </div>
-      <div class="button-outline">
-        <ion-button
-          fill="outline"
-          class="operation-btn approve-btn full-btn"
-          (click)="withdrawToken(toCoin.id)"
-          [disabled]="havMining()"
-        >
-          <div class="ion-button-label">{{btnTitle.withdraw | translate}}</div>
-        </ion-button>
-      </div>
-    </div>
-  </ion-card>
-
-  <app-add-liquid
-    #addLiquidView
-    *ngIf="showAddModel"
-    [pairAttended]="pairAttended"
-    [coin]="selectCoin"
-    (onClose)="closeAddLiquid($event)"
-  ></app-add-liquid>
-  <app-redeem-liquid
-    #redeemLiquidView
-    *ngIf="showRedemtionModel"
-    (onClose)="closeRedeemLiquid($event)"
-    [coin]="selectCoin"
-  ></app-redeem-liquid>
-  <app-token-mining
-    #tokenDepositView
-    *ngIf="showMiningModel"
-    [profit]="miningProfit"
-    [miningSpeed]="earnedRate[toCoin.id]"
-    (onClose)="closeMiningToken($event)"
-  ></app-token-mining>
-
-  <app-warning-liquid *ngIf="canShow()"></app-warning-liquid>
-  <app-banner [bannerConent]="liquidContent"></app-banner>
+    <app-warning-liquid *ngIf="canShow()"></app-warning-liquid>
+    <app-banner [bannerConent]="liquidContent"></app-banner>
+  </div>
 </ion-content>
 <app-footer (onRefresh)="refreshPage()"></app-footer>

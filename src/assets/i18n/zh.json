@@ -270,5 +270,7 @@
   "tx_submitted": "交易已提交",
   "tx_submitted_desc": "在 Etherscan 中查看",
   "menu": "菜单",
-  "mining_speed": "CoFi/Day"
+  "mining_speed": "CoFi/Day",
+  "claimcofi_text": "领取",
+  "claimcofi_text_short": "领取"
 }

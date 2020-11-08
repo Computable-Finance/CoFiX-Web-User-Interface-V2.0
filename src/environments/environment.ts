@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  lang: 'zh',
+  lang: 'en',
   infura: {
     network: 'ropsten',
     apiAccessToken: '795587fc9545486b8a5e190a44e3ae7d',

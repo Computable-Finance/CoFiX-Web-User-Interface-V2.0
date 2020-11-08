@@ -254,7 +254,7 @@
   "recent_tx": "Recent Trancations",
   "tx_swapped": "Swapped {{f}} to {{t}}",
   "tx_addLiquid": "Added {{a}}",
-  "tx_withdrawLiquid": "Withdrawed {{w}} CoFi",
+  "tx_withdrawLiquid": "Redeemed {{w}} XTokens",
   "tx_approve": "Approved {{a}}",
   "tx_claimCoFi": "Claimed {{w}} CoFi",
   "tx_claimETH": "Claimed {{e}} ETH",
@@ -271,5 +271,7 @@
   "tx_submitted": "Transaction Submitted",
   "tx_submitted_desc": "View in Etherscan",
   "menu": "Menu",
-  "mining_speed": "CoFi/Day"
+  "mining_speed": "CoFi/Day",
+  "claimcofi_text": "Claim CoFi Tokens",
+  "claimcofi_text_short": "Claim CoFi"
 }

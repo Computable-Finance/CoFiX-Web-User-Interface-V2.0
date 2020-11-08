@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { PopoverController } from '@ionic/angular';
 import { ShareStateQuery } from 'src/app/common/state/share.query';
@@ -10,6 +10,7 @@ import { FOOTER_ITEMS, LANG_ITEMS } from 'src/app/common/constants';
   styleUrls: ['./menu.page.scss'],
 })
 export class MenuPage implements OnInit {
+  @Input() style: string = 'component';
   menuItems: any;
   langItems: any;
   constructor(
@@ -27,7 +28,9 @@ export class MenuPage implements OnInit {
   changeLang(lang) {
     this.translate.use(lang);
     this.shareStateService.updateLang(lang);
-    this.popoverController.dismiss();
+    if (this.style === 'pop') {
+      this.popoverController?.dismiss();
+    }
   }
   goto(link) {
     window.open(link);

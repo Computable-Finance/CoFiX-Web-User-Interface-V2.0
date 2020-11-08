@@ -347,10 +347,11 @@ export class SwapPage implements OnInit, OnDestroy {
     this.swapError = { isError: false, msg: '' };
   }
   fromCoinInput(event) {
+    console.log(new Date().toISOString);
     this.resetSwapError();
     this.fromCoin.id = event.coin;
     this.fromCoin.amount = event.amount;
-    this.toCoin.amount = '';
+    //this.toCoin.amount = '';
     this.expectedCofi = '';
     this.getEPAndEC();
     if (this.fromCoin.id === 'ETH') {
@@ -571,7 +572,12 @@ export class SwapPage implements OnInit, OnDestroy {
   selectArrowChange(event) {
     this.isShowDetail = event.isDown;
   }
-
+  showDetail(event) {
+    console.log(event.srcElement.id);
+    if (event.srcElement.id) {
+      this.isShowDetail = !this.isShowDetail;
+    }
+  }
   showSkeleton(value) {
     return value === undefined || value === '';
   }
