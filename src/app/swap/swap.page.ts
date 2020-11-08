@@ -199,7 +199,7 @@ export class SwapPage implements OnInit, OnDestroy {
 
       this.expectedCofi = executionPriceAndExpectedCofi.expectedCofi;
       this.changePrice = executionPriceAndExpectedCofi.excutionPriceForOne;
-      this.nestPrice = await this.cofixService.changePrice(
+      this.nestPrice = await this.cofixService.nestPrice(
         this.fromCoin.address,
         this.toCoin.address
       );

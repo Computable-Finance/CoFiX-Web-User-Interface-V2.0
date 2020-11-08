@@ -118,42 +118,44 @@ export class CofiXService {
 
     this.registerWeb3EventHandler();
     this.trackingBlockchain();
-    this.initTokenScript();
+    // this.initTokenScript();
   }
 
-  private initTokenScript() {
-    this.integrationSubscription = this.integrationService
-      .connect()
-      .subscribe((val) => {
-        console.log(val);
-        if (val.CoFi) {
-          Object.keys(val.CoFi).forEach((k) => {
-            console.log(`CoFi instance with ID "${k}":`);
-            console.log(val.CoFi[k]);
-          });
-        } else {
-          console.log('No CoFi token defined');
-        }
+  // private initTokenScript() {
+  //   this.integrationSubscription = this.integrationService
+  //     .connect()
+  //     .subscribe((val) => {
+  //       console.log(val.DividendPoolShare.ethTotalClaimed);
+  //       console.log(val.MiningPoolShare.cofiTotalClaimed);
+  //       if (val.CoFi) {
+  //         Object.keys(val.CoFi).forEach((k) => {
+  //           console.log(`CoFi instance with ID "${k}":`);
+  //           console.log(val.CoFi[k]);
+  //         });
+  //       } else {
+  //         console.log('No CoFi token defined');
+  //       }
 
-        if (val.LiquidityPoolShare) {
-          Object.keys(val.LiquidityPoolShare).forEach((k) => {
-            console.log(`LiquidityPoolShare instance with ID "${k}":`);
-            console.log(val.LiquidityPoolShare[k]);
-          });
-        } else {
-          console.log('No LiquidityPoolShare token defined');
-        }
+  //       if (val.LiquidityPoolShare) {
+  //         Object.keys(val.LiquidityPoolShare).forEach((k) => {
+  //           console.log(`LiquidityPoolShare instance with ID "${k}":`);
+  //           console.log(val.LiquidityPoolShare[k]);
+  //         });
+  //       } else {
+  //         console.log('No LiquidityPoolShare token defined');
+  //       }
 
-        if (val.MiningPoolShare) {
-          Object.keys(val.MiningPoolShare).forEach((k) => {
-            console.log(`MiningPoolShare instance with ID "${k}":`);
-            console.log(val.MiningPoolShare[k]);
-          });
-        } else {
-          console.log('No MiningPoolShare token defined');
-        }
-      });
-  }
+  //       if (val.MiningPoolShare) {
+  //         console.log(val.MiningPoolShare.cofiTotalClaimed);
+  //         Object.keys(val.MiningPoolShare).forEach((k) => {
+  //           console.log(`MiningPoolShare instance with ID "${k}":`);
+  //           console.log(val.MiningPoolShare[k]);
+  //         });
+  //       } else {
+  //         console.log('No MiningPoolShare token defined');
+  //       }
+  //     });
+  // }
 
   private registerWeb3EventHandler() {
     window.ethereum
@@ -243,6 +245,32 @@ export class CofiXService {
     }
 
     const result = result1.times(result2);
+    return result.toString();
+  }
+
+  // 获得预言机单价，不考虑冲击成本，k 和 theta
+  // 参数含义同上
+  async nestPrice(fromToken: string, toToken: string) {
+    if (!this.provider) {
+      return;
+    }
+
+    let result1 = new BNJS(1);
+    let result2 = new BNJS(1);
+    if (toToken !== undefined) {
+      const price = await this.checkPriceNow(toToken);
+      result1 = new BNJS(price.changePrice);
+    }
+
+    if (fromToken !== undefined) {
+      const price = await this.checkPriceNow(fromToken);
+      result2 = new BNJS(1).div(new BNJS(price.changePrice));
+    }
+
+    const result = result1.times(result2);
+
+    console.log(result.toString());
+
     return result.toString();
   }
 
