@@ -1,12 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  OnChanges,
-  OnDestroy,
-  OnInit,
-  Output,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { CofiXService } from 'src/app/service/cofix.service';
@@ -20,7 +12,7 @@ import { TxListPage } from '../transaction/tx-List/tx-list.page';
   templateUrl: './connect-wallet.page.html',
   styleUrls: ['./connect-wallet.page.scss'],
 })
-export class ConnectWalletPage implements OnInit, OnDestroy {
+export class ConnectWalletPage implements OnDestroy {
   @Output() onConnected = new EventEmitter<any>();
   isConnectLoading = false;
   constructor(
@@ -29,10 +21,10 @@ export class ConnectWalletPage implements OnInit, OnDestroy {
     private txQuery: TxQuery,
     private popoverController: PopoverController
   ) {}
-  pendingCount: number = 0;
+  pendingCount = 0;
   txLastPendingSubscription: Subscription;
-  ngOnInit() {}
-  ngAfterViewChecked() {
+
+  subscribeIfNot() {
     if (
       this.cofixService.getCurrentAccount() &&
       !this.txLastPendingSubscription
@@ -47,6 +39,7 @@ export class ConnectWalletPage implements OnInit, OnDestroy {
         });
     }
   }
+
   async connect() {
     this.isConnectLoading = true;
     await this.cofixService.connectWallet().catch((err) => {
@@ -58,12 +51,14 @@ export class ConnectWalletPage implements OnInit, OnDestroy {
   }
 
   showPending() {
+    this.subscribeIfNot();
     return this.pendingCount > 0;
   }
 
   ngOnDestroy(): void {
     this.txLastPendingSubscription?.unsubscribe();
   }
+
   async showTXList(ev) {
     const popover = await this.popoverController.create({
       component: TxListPage,
