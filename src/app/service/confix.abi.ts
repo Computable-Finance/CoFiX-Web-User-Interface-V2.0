@@ -67,6 +67,8 @@ export const COFISTAKINGREWARDS_ABI = [
   'function getReward() external',
   'function withdraw(uint256 amount) external',
   'function stake(uint256 amount) external',
+  'function pendingSavingAmount() view returns (uint256)',
+  'function totalSupply() external view returns (uint256)',
 ];
 
 export function getCoFiStakingRewards(address: string, provider) {

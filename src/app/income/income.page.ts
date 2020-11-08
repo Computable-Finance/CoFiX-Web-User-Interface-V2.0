@@ -31,6 +31,9 @@ export class IncomePage implements OnInit, OnDestroy {
   cofiStakingRewards: string;
   cofiToken: string;
   cofiStakingRewardsAddress: string;
+  shareInDividendPool: string;
+  totalETHFromSwapFees: string;
+  totalETHInDividendPool: string;
   earnedETH: string;
   canReceive = false;
   isLoading = false;
@@ -60,7 +63,7 @@ export class IncomePage implements OnInit, OnDestroy {
     private balancesQuery: BalancesQuery
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     if (this.cofixService.getCurrentAccount() === undefined) {
       setTimeout(() => {
         this.initPage();
@@ -111,7 +114,7 @@ export class IncomePage implements OnInit, OnDestroy {
       this.cofiToken = await this.balanceTruncatePipe.transform(
         await this.cofixService.getERC20Balance(this.cofiTokenAddress)
       );
-      this.balancesQuery
+      this.cofiBalanceSubscription = this.balancesQuery
         .currentERC20Balance$(
           this.cofixService.getCurrentAccount(),
           this.cofiTokenAddress
@@ -124,7 +127,16 @@ export class IncomePage implements OnInit, OnDestroy {
       this.cofiStakingRewards = await this.balanceTruncatePipe.transform(
         await this.cofixService.getERC20Balance(this.cofiStakingRewardsAddress)
       );
-      this.balancesQuery
+      this.shareInDividendPool = await this.balanceTruncatePipe.transform(
+        await this.cofixService.shareInDividendPool()
+      );
+      this.totalETHFromSwapFees = await this.balanceTruncatePipe.transform(
+        await this.cofixService.totalETHFromSwapFees()
+      );
+      this.totalETHInDividendPool = await this.balanceTruncatePipe.transform(
+        await this.cofixService.totalETHInDividendPool()
+      );
+      this.cofiStakingRewardsSubscription = this.balancesQuery
         .currentERC20Balance$(
           this.cofixService.getCurrentAccount(),
           this.cofiStakingRewardsAddress
@@ -132,6 +144,15 @@ export class IncomePage implements OnInit, OnDestroy {
         .subscribe(async (balance) => {
           this.cofiStakingRewards = await this.balanceTruncatePipe.transform(
             balance
+          );
+          this.shareInDividendPool = await this.balanceTruncatePipe.transform(
+            await this.cofixService.shareInDividendPool()
+          );
+          this.totalETHFromSwapFees = await this.balanceTruncatePipe.transform(
+            await this.cofixService.totalETHFromSwapFees()
+          );
+          this.totalETHInDividendPool = await this.balanceTruncatePipe.transform(
+            await this.cofixService.totalETHInDividendPool()
           );
         });
 
@@ -142,7 +163,7 @@ export class IncomePage implements OnInit, OnDestroy {
   async getEarnedETHAndSubscribe() {
     this.earnedETH = await this.cofixService.earnedETH();
     if (!this.dividendSubscription) {
-      this.balancesQuery
+      this.dividendSubscription = this.balancesQuery
         .currentDividendBalance$(this.cofixService.getCurrentAccount())
         .subscribe(async (dividend) => {
           this.earnedETH = dividend;
@@ -162,7 +183,7 @@ export class IncomePage implements OnInit, OnDestroy {
       t: 'tx_claimETH',
       p: { e: this.earnedETH },
     };
-    console.log(params);
+
     this.cofixService
       .withdrawEarnedETH()
       .then((tx: any) => {

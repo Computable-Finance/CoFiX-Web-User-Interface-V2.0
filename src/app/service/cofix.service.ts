@@ -1527,4 +1527,51 @@ export class CofiXService {
     }
     return rewardRate;
   }
+
+  async totalETHFromSwapFees() {
+    const cofiStakingRewards = getCoFiStakingRewards(
+      this.contractAddressList.CoFiStakingRewards,
+      this.provider
+    );
+
+    return new BNJS(ethersOf(await cofiStakingRewards.pendingSavingAmount()))
+      .times(100)
+      .div(80)
+      .toString();
+  }
+
+  async totalETHInDividendPool() {
+    const wethContract = getERC20Contract(
+      this.contractAddressList.WETH9,
+      this.provider
+    );
+    const ethOfDividendPool = ethersOf(
+      await wethContract.balanceOf(this.contractAddressList.CoFiStakingRewards)
+    );
+
+    const cofiStakingRewards = getCoFiStakingRewards(
+      this.contractAddressList.CoFiStakingRewards,
+      this.provider
+    );
+    const pendingSavingAmount = ethersOf(
+      await cofiStakingRewards.pendingSavingAmount()
+    );
+
+    return new BNJS(ethOfDividendPool).minus(pendingSavingAmount).toString();
+  }
+
+  async shareInDividendPool() {
+    const balance = await this.getERC20Balance(
+      this.contractAddressList.CoFiStakingRewards
+    );
+
+    const cofiStakingRewards = getCoFiStakingRewards(
+      this.contractAddressList.CoFiStakingRewards,
+      this.provider
+    );
+    const totalSupply = ethersOf(await cofiStakingRewards.totalSupply());
+    const result = new BNJS(balance).div(totalSupply).times(100).toString();
+
+    return result;
+  }
 }

@@ -65,7 +65,7 @@
                     class="ion-text-right number"
                     size="4"
                     *ngIf="!showSkeleton(cofiToken)"
-                    >** ETH
+                    >{{totalETHFromSwapFees}} ETH
                   </ion-col>
                   <ion-col size="4" *ngIf="showSkeleton(cofiToken)">
                     <ion-skeleton-text
@@ -236,6 +236,8 @@
             [hadLabel]="'ycr_text'"
             [todoValue]="cofiToken"
             [hadValue]="cofiStakingRewards"
+            [shareInDividendPool]="shareInDividendPool"
+            [totalETHInDividendPool]="totalETHInDividendPool"
             [isApproved]="isApproved"
             [isLoading]="isLoadingProfit"
             (onApprove)="approveCofi($event)"

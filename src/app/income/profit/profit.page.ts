@@ -22,6 +22,8 @@ export class IncomeProfitPage implements OnInit, OnDestroy {
   @ViewChild(CoinInputPage, { static: false }) coinInputView: CoinInputPage;
   @Input() todoLabel: string;
   @Input() hadLabel: string;
+  @Input() shareInDividendPool: string;
+  @Input() totalETHInDividendPool: string;
   @Input() isApproved: boolean = false;
   @Input() isLoading: any;
   @Output() onApprove = new EventEmitter<any>();
