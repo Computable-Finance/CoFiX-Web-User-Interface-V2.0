@@ -3,28 +3,28 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: ':lang/swap',
+    path: 'swap',
     loadChildren: () =>
       import('./swap/swap.module').then((m) => m.SwapPageModule),
   },
   {
-    path: ':lang/liquid',
+    path: 'liquid',
     loadChildren: () =>
       import('./liquid/liquid.module').then((m) => m.LiquidPageModule),
   },
   {
-    path: ':lang/income',
+    path: 'income',
     loadChildren: () =>
       import('./income/income.module').then((m) => m.IncomePageModule),
   },
   {
-    path: ':lang/cofi',
+    path: 'cofi',
     loadChildren: () =>
       import('./cofi/cofi.module').then((m) => m.CofiPageModule),
   },
   {
     path: '',
-    redirectTo: ':lang/swap',
+    redirectTo: 'swap',
     pathMatch: 'full',
   },
 ];
@@ -33,7 +33,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes, {
       preloadingStrategy: PreloadAllModules,
-      //useHash: true,
+      useHash: true,
     }),
   ],
   exports: [RouterModule],

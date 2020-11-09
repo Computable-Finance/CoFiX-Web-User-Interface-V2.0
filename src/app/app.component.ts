@@ -74,9 +74,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.router.navigateByUrl(
-      `${this.shareStateQuery.getValue().lang}/` +
-        this.shareStateQuery.getValue().activeTab
-    );
+    this.router.navigateByUrl(this.shareStateQuery.getValue().activeTab);
   }
 }

@@ -93,16 +93,13 @@ export class HeaderPage implements OnInit, OnDestroy {
 
   selectTab(tabId) {
     this.shareStateService.updateActiveTab(tabId);
-    this.router.navigateByUrl(
-      `${this.shareStateQuery.getValue().lang}/${tabId}`
-    );
+    this.router.navigateByUrl(tabId);
   }
   onConnected() {
     this.onRefresh.emit();
   }
 
   ngOnDestroy() {
-    console.log('header destroy---');
     this.resizeSubscription.unsubscribe();
   }
 }
