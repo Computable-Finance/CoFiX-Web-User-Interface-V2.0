@@ -328,14 +328,12 @@ export class SwapPage implements OnInit, OnDestroy {
     }
 
     if (this.cofixService.getCurrentAccount()) {
+      this.fromCoin.balance = await this.utils.getBalanceByCoin(this.fromCoin);
       if (this.fromCoin.id === 'ETH') {
         this.fromCoin.subscription = this.balancesQuery
           .currentETHBalance$(this.cofixService.getCurrentAccount())
           .subscribe(this.balanceHandler);
       } else {
-        this.fromCoin.balance = await this.utils.getBalanceByCoin(
-          this.fromCoin
-        );
         this.fromCoin.subscription = this.balancesQuery
           .currentERC20Balance$(
             this.cofixService.getCurrentAccount(),
@@ -576,7 +574,6 @@ export class SwapPage implements OnInit, OnDestroy {
     this.isShowDetail = event.isDown;
   }
   showDetail(event) {
-    console.log(event.srcElement.id);
     if (event.srcElement.id) {
       this.isShowDetail = !this.isShowDetail;
     }

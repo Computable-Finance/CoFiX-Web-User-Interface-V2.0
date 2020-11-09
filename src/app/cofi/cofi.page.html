@@ -127,7 +127,7 @@
           expand="block"
           class="operation-btn approve-btn"
           (click)="approve()"
-          *ngIf="!isApproved && isDeposit"
+          *ngIf="!isApproved && isDeposit && cofixService.getCurrentAccount()"
         >
           <div class="ion-button-label">
             <div *ngIf="!isLoading.sq">{{'sq_text' | translate}}</div>
@@ -137,7 +137,7 @@
         <ion-button
           expand="block"
           class="operation-btn"
-          [ngClass]="{'swap-btn':!isApproved  && isDeposit,'full-btn':isApproved || !isDeposit}"
+          [ngClass]="{'swap-btn':!isApproved  && isDeposit,'full-btn':isApproved || !isDeposit || !cofixService.getCurrentAccount()}"
           (click)="withdrawEarnedCoFi()"
           [disabled]="canWithdraw()"
         >
