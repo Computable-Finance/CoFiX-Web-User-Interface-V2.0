@@ -140,7 +140,7 @@ export class FakeDataService {
       kInfoTheta: 1,
       referenceExchangeRateEthAmount: BigNumber.from(1),
       referenceExchangeRateErc20Amount: BigNumber.from(1),
-      referenceExchangeRateBlockNumblockNum: BigNumber.from(1),
+      referenceExchangeRateBlockNum: BigNumber.from(1),
     };
   }
 

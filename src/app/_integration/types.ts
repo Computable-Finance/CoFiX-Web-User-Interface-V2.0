@@ -22,7 +22,7 @@ export interface LiquidityPoolShare {
   kInfoTheta: number;
   referenceExchangeRateEthAmount: BigNumber;
   referenceExchangeRateErc20Amount: BigNumber;
-  referenceExchangeRateBlockNumblockNum: BigNumber;
+  referenceExchangeRateBlockNum: BigNumber;
 }
 
 export interface MiningPoolShare {

@@ -65,8 +65,8 @@ export class PoolService {
                   navPerShareRedemption: tokenInstance.navPerShareRedemption,
                   kInfoK: tokenInstance.kInfoK,
                   kInfoTheta: tokenInstance.kInfoTheta,
-                  referenceExchangeRateBlockNumblockNum:
-                    tokenInstance.referenceExchangeRateBlockNumblockNum,
+                  referenceExchangeRateBlockNum:
+                    tokenInstance.referenceExchangeRateBlockNum,
                   referenceExchangeRateErc20Amount:
                     tokenInstance.referenceExchangeRateErc20Amount,
                   referenceExchangeRateEthAmount:
