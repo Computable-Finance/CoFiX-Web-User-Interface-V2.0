@@ -197,7 +197,18 @@ export class SwapPage implements OnInit, OnDestroy {
         .times(0.99)
         .toString();
 
-      this.expectedCofi = executionPriceAndExpectedCofi.expectedCofi;
+      if (executionPriceAndExpectedCofi.expectedCofi.length < 2) {
+        this.expectedCofi = (
+          await executionPriceAndExpectedCofi.expectedCofi[0]
+        ).toString();
+      } else {
+        this.expectedCofi = (
+          await executionPriceAndExpectedCofi.expectedCofi[0]
+        )
+          .plus(await executionPriceAndExpectedCofi.expectedCofi[1])
+          .toString();
+      }
+
       this.changePrice = executionPriceAndExpectedCofi.excutionPriceForOne;
       this.nestPrice = await this.cofixService.nestPrice(
         this.fromCoin.address,
@@ -380,7 +391,17 @@ export class SwapPage implements OnInit, OnDestroy {
       this.fromCoin.amount = await this.balancePipe.transform(
         executionPriceAndExpectedCofi.excutionPrice
       );
-      this.expectedCofi = executionPriceAndExpectedCofi.expectedCofi;
+      if (executionPriceAndExpectedCofi.expectedCofi.length < 2) {
+        this.expectedCofi = (
+          await executionPriceAndExpectedCofi.expectedCofi[0]
+        ).toString();
+      } else {
+        this.expectedCofi = (
+          await executionPriceAndExpectedCofi.expectedCofi[0]
+        )
+          .plus(await executionPriceAndExpectedCofi.expectedCofi[1])
+          .toString();
+      }
     }
   }
 

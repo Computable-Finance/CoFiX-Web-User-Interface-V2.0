@@ -332,9 +332,9 @@ export class CofiXService {
     }
 
     let excutionPrice1 = new BNJS(1);
-    let expectedCofi1 = new BNJS(0);
+    let expectedCofi = [];
     let excutionPrice2 = new BNJS(1);
-    let expectedCofi2 = new BNJS(0);
+    // let expectedCofi2 = new BNJS(0);
 
     let innerAmount = amount;
 
@@ -344,7 +344,7 @@ export class CofiXService {
         innerAmount
       );
       excutionPrice1 = result.excutionPrice;
-      expectedCofi1 = result.expectedCofi;
+      expectedCofi.push(result.expectedCofi);
       innerAmount = excutionPrice1.times(amount).toString();
     }
 
@@ -354,13 +354,15 @@ export class CofiXService {
         innerAmount
       );
       excutionPrice2 = result.excutionPrice;
-      expectedCofi2 = result.expectedCofi;
+      expectedCofi.push(result.expectedCofi);
       innerAmount = excutionPrice2.times(innerAmount).toString();
     }
 
     const excutionPriceForOne = excutionPrice1.times(excutionPrice2).toString();
     const excutionPrice = innerAmount;
-    const expectedCofi = expectedCofi1.plus(expectedCofi2).toString();
+    // const expectedCofi = (await expectedCofi1)
+    //   .plus(await expectedCofi2)
+    //   .toString();
 
     return {
       excutionPriceForOne,
@@ -390,17 +392,10 @@ export class CofiXService {
     const excutionPrice = new BNJS(price.changePrice)
       .times(new BNJS(1).minus(new BNJS(kinfo.k).plus(c)))
       .times(new BNJS(1).minus(kinfo.theta));
-    const expectedCofi = await this.expectedCoFi(
-      token,
-      price,
-      kinfo,
-      fee,
-      true
-    );
 
     return {
       excutionPrice,
-      expectedCofi,
+      expectedCofi: this.expectedCoFi(token, price, kinfo, fee, true),
     };
   }
 
@@ -430,17 +425,10 @@ export class CofiXService {
           new BNJS(1).plus(new BNJS(kinfo.k).plus(c))
         )
       );
-    const expectedCofi = await this.expectedCoFi(
-      token,
-      price,
-      kinfo,
-      fee,
-      false
-    );
 
     return {
       excutionPrice,
-      expectedCofi,
+      expectedCofi: this.expectedCoFi(token, price, kinfo, fee, false),
     };
   }
 
