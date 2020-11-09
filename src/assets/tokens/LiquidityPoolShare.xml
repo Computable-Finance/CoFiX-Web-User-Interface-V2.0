@@ -327,8 +327,8 @@
         <ts:origins>
             <ethereum:call contract="pool" function="getNAVPerShare">
                 <ts:data>
-                    <ts:uint256 ref="referenceExchangeRate-ethAmount"></ts:uint256>
-                    <ts:uint256 ref="referenceExchangeRate-erc20Amount"></ts:uint256>
+                    <ts:uint256 ref="referenceExchangeRateEthAmount"></ts:uint256>
+                    <ts:uint256 ref="referenceExchangeRateErc20Amount"></ts:uint256>
                 </ts:data>
             </ethereum:call>
         </ts:origins>
@@ -370,11 +370,11 @@
                 <ts:data>
                     
                     <ts:data>
-                        <ts:uint256 ref="referenceExchangeRate-ethAmount"></ts:uint256>
-                        <ts:uint256 ref="referenceExchangeRate-erc20Amount"></ts:uint256>
-                        <ts:uint256 ref="referenceExchangeRate-blockNum"></ts:uint256>
-                        <ts:uint256 ref="kInfo-k"></ts:uint256>
-                        <ts:uint256 ref="kInfo-theta"></ts:uint256>
+                        <ts:uint256 ref="referenceExchangeRateEthAmount"></ts:uint256>
+                        <ts:uint256 ref="referenceExchangeRateErc20Amount"></ts:uint256>
+                        <ts:uint256 ref="referenceExchangeRateBlockNum"></ts:uint256>
+                        <ts:uint256 ref="kInfoK"></ts:uint256>
+                        <ts:uint256 ref="kInfoTheta"></ts:uint256>
                     </ts:data>
                 </ts:data>
             </ethereum:call>
@@ -390,11 +390,11 @@
                 <ts:data>
                     
                     <ts:data>
-                        <ts:uint256 ref="referenceExchangeRate-ethAmount"></ts:uint256>
-                        <ts:uint256 ref="referenceExchangeRate-erc20Amount"></ts:uint256>
-                        <ts:uint256 ref="referenceExchangeRate-blockNum"></ts:uint256>
-                        <ts:uint256 ref="kInfo-k"></ts:uint256>
-                        <ts:uint256 ref="kInfo-theta"></ts:uint256>
+                        <ts:uint256 ref="referenceExchangeRateEthAmount"></ts:uint256>
+                        <ts:uint256 ref="referenceExchangeRateErc20Amount"></ts:uint256>
+                        <ts:uint256 ref="referenceExchangeRateBlockNum"></ts:uint256>
+                        <ts:uint256 ref="kInfoK"></ts:uint256>
+                        <ts:uint256 ref="kInfoTheta"></ts:uint256>
                     </ts:data>
                 </ts:data>
             </ethereum:call>
