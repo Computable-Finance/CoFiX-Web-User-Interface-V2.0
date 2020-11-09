@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { BigNumber, Contract, ethers } from 'ethers';
 import { PCacheable } from 'ngx-cacheable';
 import { Subscription } from 'rxjs';
-import { filter } from 'rxjs/operators';
 import { PermissionsQuery } from 'src/app/state/permission/permission.query';
 import { PermissionsService } from 'src/app/state/permission/permission.service';
 import { TokensInfoQuery } from 'src/app/state/token/token.query';
@@ -121,41 +120,92 @@ export class CofiXService {
     // this.initTokenScript();
   }
 
-  // private initTokenScript() {
-  //   this.integrationSubscription = this.integrationService
-  //     .connect()
-  //     .subscribe((val) => {
-  //       console.log(val.DividendPoolShare.ethTotalClaimed);
-  //       console.log(val.MiningPoolShare.cofiTotalClaimed);
-  //       if (val.CoFi) {
-  //         Object.keys(val.CoFi).forEach((k) => {
-  //           console.log(`CoFi instance with ID "${k}":`);
-  //           console.log(val.CoFi[k]);
-  //         });
-  //       } else {
-  //         console.log('No CoFi token defined');
-  //       }
-
-  //       if (val.LiquidityPoolShare) {
-  //         Object.keys(val.LiquidityPoolShare).forEach((k) => {
-  //           console.log(`LiquidityPoolShare instance with ID "${k}":`);
-  //           console.log(val.LiquidityPoolShare[k]);
-  //         });
-  //       } else {
-  //         console.log('No LiquidityPoolShare token defined');
-  //       }
-
-  //       if (val.MiningPoolShare) {
-  //         console.log(val.MiningPoolShare.cofiTotalClaimed);
-  //         Object.keys(val.MiningPoolShare).forEach((k) => {
-  //           console.log(`MiningPoolShare instance with ID "${k}":`);
-  //           console.log(val.MiningPoolShare[k]);
-  //         });
-  //       } else {
-  //         console.log('No MiningPoolShare token defined');
-  //       }
-  //     });
-  // }
+  private initTokenScript() {
+    this.integrationSubscription = this.integrationService
+      .connect()
+      .subscribe((val) => {
+        // if (val.CoFi) {
+        //   Object.keys(val.CoFi).forEach((k) => {
+        //     console.log(`CoFi instance with ID ${k}:`);
+        //     Object.keys(val.CoFi[k]).forEach((kk) => {
+        //       if (val.CoFi[k][kk] === undefined) {
+        //         console.error(
+        //           `CoFi instance with ID ${k}\n, key ${kk} === undefined`
+        //         );
+        //       } else {
+        //         console.log(
+        //           `CoFi instance with ID ${k}\n, key ${kk} ===${val.CoFi[k][
+        //             kk
+        //           ].toString()}`
+        //         );
+        //       }
+        //     });
+        //   });
+        // } else {
+        //   console.log('No CoFi token defined');
+        // }
+        // if (val.LiquidityPoolShare) {
+        //   Object.keys(val.LiquidityPoolShare).forEach((k) => {
+        //     console.log(`LiquidityPoolShare instance with ID ${k}:`);
+        //     Object.keys(val.LiquidityPoolShare[k]).forEach((kk) => {
+        //       if (val.LiquidityPoolShare[k][kk] === undefined) {
+        //         console.error(
+        //           `LiquidityPoolShare instance with ID ${k}\n, key ${kk} === undefined`
+        //         );
+        //       } else {
+        //         console.log(
+        //           `LiquidityPoolShare instance with ID ${k}\n, key ${kk} ===${val.LiquidityPoolShare[
+        //             k
+        //           ][kk].toString()}`
+        //         );
+        //       }
+        //     });
+        //   });
+        // } else {
+        //   console.log('No LiquidityPoolShare token defined');
+        // }
+        // if (val.MiningPoolShare) {
+        //   Object.keys(val.MiningPoolShare).forEach((k) => {
+        //     console.log(`MiningPoolShare instance with ID ${k}:`);
+        //     Object.keys(val.MiningPoolShare[k]).forEach((kk) => {
+        //       if (val.MiningPoolShare[k][kk] === undefined) {
+        //         console.error(
+        //           `MiningPoolShare instance with ID ${k}\n, key ${kk} === undefined`
+        //         );
+        //       } else {
+        //         console.log(
+        //           `MiningPoolShare instance with ID ${k}\n, key ${kk} ===${val.MiningPoolShare[
+        //             k
+        //           ][kk].toString()}`
+        //         );
+        //       }
+        //     });
+        //   });
+        // } else {
+        //   console.log('No MiningPoolShare token defined');
+        // }
+        // if (val.DividendPoolShare) {
+        //   Object.keys(val.DividendPoolShare).forEach((k) => {
+        //     console.log(`DividendPoolShare instance with ID ${k}:`);
+        //     Object.keys(val.DividendPoolShare[k]).forEach((kk) => {
+        //       if (val.DividendPoolShare[k][kk] === undefined) {
+        //         console.error(
+        //           `DividendPoolShare instance with ID ${k}\n, key ${kk} === undefined`
+        //         );
+        //       } else {
+        //         console.log(
+        //           `DividendPoolShare instance with ID ${k}\n, key ${kk} ===${val.DividendPoolShare[
+        //             k
+        //           ][kk].toString()}`
+        //         );
+        //       }
+        //     });
+        //   });
+        // } else {
+        //   console.log('No DividendPoolShare token defined');
+        // }
+      });
+  }
 
   private registerWeb3EventHandler() {
     window.ethereum
@@ -185,7 +235,8 @@ export class CofiXService {
     return this.provider;
   }
 
-  // 未链接钱包时，可以用 infura 去查公开信息，比如：兑换率等
+  // an infura provider used when wallect is not connected
+  // with this provider, pages can get all public information, such as changePrice
   private defaultProvider() {
     return new ethers.providers.InfuraProvider(
       environment.infura.network,

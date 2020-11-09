@@ -8,8 +8,14 @@ export class MarketDetailsQuery extends Query<MarketDetailsModel> {
     super(store);
   }
 
-  marketDetails$(address: string, key: string) {
-    return this.select((state) => state[address][key]);
+  marketDetails$(address: string, key: string, keyOfKey: string = '') {
+    return this.select((state) => {
+      if (!keyOfKey) {
+        return state[address][key];
+      } else {
+        return state[address][key][keyOfKey];
+      }
+    });
   }
 
   getKInfo(address: string) {

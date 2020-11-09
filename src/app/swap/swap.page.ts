@@ -290,6 +290,7 @@ export class SwapPage implements OnInit, OnDestroy {
   }
 
   async initCoinContent() {
+    this.unsubscribeAll();
     this.showError = false;
     this.isInsufficientError = false;
     if (this.cofixService.getCurrentProvider) {
@@ -305,7 +306,11 @@ export class SwapPage implements OnInit, OnDestroy {
       );
       if (this.fromCoin.id !== 'ETH') {
         this.changePriceOfFromTokenSubscription = this.marketDetailsQuery
-          .marketDetails$(this.fromCoin.address, 'checkedPriceNow')
+          .marketDetails$(
+            this.fromCoin.address,
+            'checkedPriceNow',
+            'changePrice'
+          )
           .subscribe(async (price) => {
             this.getEPAndEC();
           });
@@ -313,7 +318,7 @@ export class SwapPage implements OnInit, OnDestroy {
 
       if (this.toCoin.id !== 'ETH') {
         this.changePriceOfToTokenSubscription = this.marketDetailsQuery
-          .marketDetails$(this.toCoin.address, 'checkedPriceNow')
+          .marketDetails$(this.toCoin.address, 'checkedPriceNow', 'changePrice')
           .subscribe(async (price) => {
             this.getEPAndEC();
           });
@@ -321,9 +326,8 @@ export class SwapPage implements OnInit, OnDestroy {
 
       this.priceSpread = new BNJS(this.changePrice).minus(0);
     }
-    if (this.cofixService.getCurrentAccount()) {
-      this.unsubscribeAll();
 
+    if (this.cofixService.getCurrentAccount()) {
       if (this.fromCoin.id === 'ETH') {
         this.fromCoin.subscription = this.balancesQuery
           .currentETHBalance$(this.cofixService.getCurrentAccount())

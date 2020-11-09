@@ -162,7 +162,7 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
     ];
 
     this.changePriceOfToTokenSubscription = this.marketDetailsQuery
-      .marketDetails$(this.toCoin.address, 'checkedPriceNow')
+      .marketDetails$(this.toCoin.address, 'checkedPriceNow', 'changePrice')
       .subscribe(async (price) => {
         this.getRemoveLiquidity();
       });
