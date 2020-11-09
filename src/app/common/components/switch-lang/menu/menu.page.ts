@@ -4,6 +4,7 @@ import { PopoverController } from '@ionic/angular';
 import { ShareStateQuery } from 'src/app/common/state/share.query';
 import { ShareStateService } from 'src/app/common/state/share.service';
 import { FOOTER_ITEMS, LANG_ITEMS } from 'src/app/common/constants';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.page.html',
@@ -17,7 +18,8 @@ export class MenuPage implements OnInit {
     private translate: TranslateService,
     public shareStateQuery: ShareStateQuery,
     private shareStateService: ShareStateService,
-    private popoverController: PopoverController
+    private popoverController: PopoverController,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -28,9 +30,12 @@ export class MenuPage implements OnInit {
   changeLang(lang) {
     this.translate.use(lang);
     this.shareStateService.updateLang(lang);
+
     if (this.style === 'pop') {
       this.popoverController?.dismiss();
     }
+    const tabId = this.router.url.split('/')[2];
+    this.router.navigateByUrl(`${lang}/${tabId}`);
   }
   goto(link) {
     window.open(link);
