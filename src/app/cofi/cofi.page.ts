@@ -84,7 +84,7 @@ export class CofiPage implements OnInit, OnDestroy {
     setInterval(
       async () =>
         (this.currentCoFiPrice = await this.cofixService.currentCoFiPrice()),
-      60 * 1000
+      60 * 1000 * 30
     );
   }
 
