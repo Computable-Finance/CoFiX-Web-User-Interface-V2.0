@@ -1259,7 +1259,14 @@ export class CofiXService {
     const decimals = this.tokenInfoQuery.getDecimals(tokenAddress);
     if (!decimals) {
       const contract = getERC20Contract(tokenAddress, this.provider);
-      const result = (await contract.decimals()).toString();
+      let result;
+      try {
+        result = await contract.decimals();
+      } catch (e) {
+        // 某些合约有 balanceOf 但没有 decimals 方法，这些合约实际不属于 erc20
+        // 但目前采用此权宜之计，未来改进
+        result = '18';
+      }
       this.tokenInfoService.updateTokenInfo(tokenAddress, {
         decimals: result,
       });
