@@ -245,6 +245,15 @@ export class TokenService {
     }
     const iframeId = `${cardName}_${cardType}_${cardView}`;
 
+    if (listenNewEvents) {
+      listener$.subscribe(x => {
+        instance.getProps().then(newProps => {
+          this.tokens[tokenName].instances[tokenInstance].props = newProps;
+          this.returnTokens();
+        });
+      });
+    }
+
     let iframeDoc;
     let iframe = instance.iframes[iframeId];
     if (!iframe) {
