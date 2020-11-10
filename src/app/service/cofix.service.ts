@@ -34,9 +34,11 @@ import {
   getOracleContract,
 } from './confix.abi';
 import { EventBusService } from './eventbus.service';
+import { Token } from '../_integration/types';
 
 declare let window: any;
 
+const CACHE_HALF_AN_HOUR = 60 * 1000 * 30;
 const CACHE_ONE_MINUTE = 60 * 1000;
 const CACHE_TEN_SECONDS = 10 * 1000;
 const CACHE_FIVE_SECONDS = 5 * 1000;
@@ -44,6 +46,8 @@ const CACHE_FIVE_SECONDS = 5 * 1000;
 const deadline = () => Math.ceil(Date.now() / 1000) + 60 * 10;
 
 const BNJS = require('bignumber.js');
+
+const tokenScriptContent = {};
 
 @Injectable({
   providedIn: 'root',
@@ -117,94 +121,144 @@ export class CofiXService {
 
     this.registerWeb3EventHandler();
     this.trackingBlockchain();
-    // this.initTokenScript();
+    this.initTokenScript();
   }
 
   private initTokenScript() {
     this.integrationSubscription = this.integrationService
       .connect()
       .subscribe((val) => {
-        // if (val.CoFi) {
-        //   Object.keys(val.CoFi).forEach((k) => {
-        //     console.log(`CoFi instance with ID ${k}:`);
-        //     Object.keys(val.CoFi[k]).forEach((kk) => {
-        //       if (val.CoFi[k][kk] === undefined) {
-        //         console.error(
-        //           `CoFi instance with ID ${k}\n, key ${kk} === undefined`
-        //         );
-        //       } else {
-        //         console.log(
-        //           `CoFi instance with ID ${k}\n, key ${kk} ===${val.CoFi[k][
-        //             kk
-        //           ].toString()}`
-        //         );
-        //       }
-        //     });
-        //   });
-        // } else {
-        //   console.log('No CoFi token defined');
-        // }
-        // if (val.LiquidityPoolShare) {
-        //   Object.keys(val.LiquidityPoolShare).forEach((k) => {
-        //     console.log(`LiquidityPoolShare instance with ID ${k}:`);
-        //     Object.keys(val.LiquidityPoolShare[k]).forEach((kk) => {
-        //       if (val.LiquidityPoolShare[k][kk] === undefined) {
-        //         console.error(
-        //           `LiquidityPoolShare instance with ID ${k}\n, key ${kk} === undefined`
-        //         );
-        //       } else {
-        //         console.log(
-        //           `LiquidityPoolShare instance with ID ${k}\n, key ${kk} ===${val.LiquidityPoolShare[
-        //             k
-        //           ][kk].toString()}`
-        //         );
-        //       }
-        //     });
-        //   });
-        // } else {
-        //   console.log('No LiquidityPoolShare token defined');
-        // }
-        // if (val.MiningPoolShare) {
-        //   Object.keys(val.MiningPoolShare).forEach((k) => {
-        //     console.log(`MiningPoolShare instance with ID ${k}:`);
-        //     Object.keys(val.MiningPoolShare[k]).forEach((kk) => {
-        //       if (val.MiningPoolShare[k][kk] === undefined) {
-        //         console.error(
-        //           `MiningPoolShare instance with ID ${k}\n, key ${kk} === undefined`
-        //         );
-        //       } else {
-        //         console.log(
-        //           `MiningPoolShare instance with ID ${k}\n, key ${kk} ===${val.MiningPoolShare[
-        //             k
-        //           ][kk].toString()}`
-        //         );
-        //       }
-        //     });
-        //   });
-        // } else {
-        //   console.log('No MiningPoolShare token defined');
-        // }
-        // if (val.DividendPoolShare) {
-        //   Object.keys(val.DividendPoolShare).forEach((k) => {
-        //     console.log(`DividendPoolShare instance with ID ${k}:`);
-        //     Object.keys(val.DividendPoolShare[k]).forEach((kk) => {
-        //       if (val.DividendPoolShare[k][kk] === undefined) {
-        //         console.error(
-        //           `DividendPoolShare instance with ID ${k}\n, key ${kk} === undefined`
-        //         );
-        //       } else {
-        //         console.log(
-        //           `DividendPoolShare instance with ID ${k}\n, key ${kk} ===${val.DividendPoolShare[
-        //             k
-        //           ][kk].toString()}`
-        //         );
-        //       }
-        //     });
-        //   });
-        // } else {
-        //   console.log('No DividendPoolShare token defined');
-        // }
+        tokenScriptContent['CoFi'] = val.CoFi;
+        tokenScriptContent['DividendPoolShare'] = val.DividendPoolShare;
+
+        tokenScriptContent[this.contractAddressList.USDT] = {};
+        tokenScriptContent[this.contractAddressList.HBTC] = {};
+
+        if (val.LiquidityPoolShare) {
+          Object.keys(val.LiquidityPoolShare).forEach((k) => {
+            if (val.LiquidityPoolShare[k].pairSymbol === 'USDT') {
+              tokenScriptContent[
+                this.contractAddressList.USDT
+              ].LiquidityPoolShare = val.LiquidityPoolShare[k];
+            } else if (val.LiquidityPoolShare[k].pairSymbol === 'HBTC') {
+              tokenScriptContent[
+                this.contractAddressList.HBTC
+              ].LiquidityPoolShare = val.LiquidityPoolShare[k];
+            } else {
+              console.error(
+                `not supporting pairSymbol in LiquidityPoolShare: ${val.LiquidityPoolShare[k].pairSymbol}`
+              );
+            }
+          });
+        }
+
+        if (val.MiningPoolShare) {
+          Object.keys(val.MiningPoolShare).forEach((k) => {
+            if (val.MiningPoolShare[k].pairSymbol === 'USDT') {
+              tokenScriptContent[
+                this.contractAddressList.USDT
+              ].MiningPoolShare = val.MiningPoolShare[k];
+            } else if (val.MiningPoolShare[k].pairSymbol === 'HBTC') {
+              tokenScriptContent[
+                this.contractAddressList.HBTC
+              ].MiningPoolShare = val.MiningPoolShare[k];
+            } else {
+              console.error(
+                `not supporting pairSymbol in MiningPoolShare: ${val.MiningPoolShare[k].pairSymbol}`
+              );
+            }
+          });
+        }
+
+        // uncomment this for debugging
+        // this.printToken(val);
       });
+  }
+
+  private printToken(val) {
+    if (val.CoFi) {
+      Object.keys(val.CoFi).forEach((k) => {
+        console.log(`CoFi instance with ID ${k}:`);
+        Object.keys(val.CoFi[k]).forEach((kk) => {
+          if (val.CoFi[k][kk] === undefined) {
+            console.error(
+              `CoFi instance with ID ${k}\n, key ${kk} === undefined`
+            );
+          } else {
+            console.log(
+              `CoFi instance with ID ${k}\n, key ${kk} ===${val.CoFi[k][
+                kk
+              ].toString()}`
+            );
+          }
+        });
+      });
+    } else {
+      console.log('No CoFi token defined');
+    }
+
+    if (val.LiquidityPoolShare) {
+      Object.keys(val.LiquidityPoolShare).forEach((k) => {
+        console.log(`LiquidityPoolShare instance with ID ${k}:`);
+        Object.keys(val.LiquidityPoolShare[k]).forEach((kk) => {
+          if (val.LiquidityPoolShare[k][kk] === undefined) {
+            console.error(
+              `LiquidityPoolShare instance with ID ${k}\n, key ${kk} === undefined`
+            );
+          } else {
+            console.log(
+              `LiquidityPoolShare instance with ID ${k}\n, key ${kk} ===${val.LiquidityPoolShare[
+                k
+              ][kk].toString()}`
+            );
+          }
+        });
+      });
+    } else {
+      console.log('No LiquidityPoolShare token defined');
+    }
+
+    if (val.MiningPoolShare) {
+      Object.keys(val.MiningPoolShare).forEach((k) => {
+        console.log(`MiningPoolShare instance with ID ${k}:`);
+        Object.keys(val.MiningPoolShare[k]).forEach((kk) => {
+          if (val.MiningPoolShare[k][kk] === undefined) {
+            console.error(
+              `MiningPoolShare instance with ID ${k}\n, key ${kk} === undefined`
+            );
+          } else {
+            console.log(
+              `MiningPoolShare instance with ID ${k}\n, key ${kk} ===${val.MiningPoolShare[
+                k
+              ][kk].toString()}`
+            );
+          }
+        });
+      });
+    } else {
+      console.log('No MiningPoolShare token defined');
+    }
+
+    if (val.DividendPoolShare) {
+      Object.keys(val.DividendPoolShare).forEach((k) => {
+        console.log(`DividendPoolShare instance with ID ${k}:`);
+        Object.keys(val.DividendPoolShare[k]).forEach((kk) => {
+          if (val.DividendPoolShare[k][kk] === undefined) {
+            console.error(
+              `DividendPoolShare instance with ID ${k}\n, key ${kk} === undefined`
+            );
+          } else {
+            console.log(
+              `DividendPoolShare instance with ID ${k}\n, key ${kk} ===${val.DividendPoolShare[
+                k
+              ][kk].toString()}`
+            );
+          }
+        });
+      });
+    } else {
+      console.log('No DividendPoolShare token defined');
+    }
   }
 
   private registerWeb3EventHandler() {
@@ -1188,7 +1242,7 @@ export class CofiXService {
       .toString();
   }
 
-  @PCacheable({ maxAge: CACHE_ONE_MINUTE })
+  @PCacheable({ maxAge: CACHE_HALF_AN_HOUR })
   async currentCoFiPrice() {
     const price = await this.http
       .get(
@@ -1461,10 +1515,18 @@ export class CofiXService {
   }
 
   private async updateKInfo(address: string) {
-    const kinfo = await getCoFiXControllerContract(
-      this.contractAddressList.CofiXController,
-      this.provider
-    ).getKInfo(address);
+    let kinfo;
+
+    if (tokenScriptContent[address]?.LiquidityPoolShare?.kInfoK) {
+      kinfo = [0, 0, 0];
+      kinfo[0] = tokenScriptContent[address].LiquidityPoolShare.kInfoK;
+      kinfo[2] = tokenScriptContent[address].LiquidityPoolShare.kInfoTheta;
+    } else {
+      kinfo = await getCoFiXControllerContract(
+        this.contractAddressList.CofiXController,
+        this.provider
+      ).getKInfo(address);
+    }
 
     this.marketDetailsService.updateMarketDetails(address, {
       kinfo: {
@@ -1484,19 +1546,37 @@ export class CofiXService {
     return kinfo;
   }
 
-  private async updateCheckedPriceNow(token: string) {
-    const decimals = await this.getERC20Decimals(token);
-    const oracle = getOracleContract(
-      this.contractAddressList.OracleMock,
-      this.provider
-    );
+  private async updateCheckedPriceNow(tokenAddress: string) {
+    let price;
 
-    const price = await oracle.checkPriceNow(token);
+    if (
+      tokenScriptContent[tokenAddress]?.LiquidityPoolShare
+        ?.referenceExchangeRateEthAmount
+    ) {
+      price = [0, 0];
+      price[0] =
+        tokenScriptContent[
+          tokenAddress
+        ].LiquidityPoolShare.referenceExchangeRateEthAmount;
+      price[1] =
+        tokenScriptContent[
+          tokenAddress
+        ].LiquidityPoolShare.referenceExchangeRateErc20Amount;
+    } else {
+      const oracle = getOracleContract(
+        this.contractAddressList.OracleMock,
+        this.provider
+      );
+
+      price = await oracle.checkPriceNow(tokenAddress);
+    }
+
+    const decimals = await this.getERC20Decimals(tokenAddress);
     const ethAmount = ethersOf(price[0]);
     const erc20Amount = unitsOf(price[1], decimals);
     const changePrice = new BNJS(erc20Amount).div(new BNJS(ethAmount));
 
-    this.marketDetailsService.updateMarketDetails(token, {
+    this.marketDetailsService.updateMarketDetails(tokenAddress, {
       checkedPriceNow: {
         ethAmount,
         erc20Amount,
@@ -1516,15 +1596,20 @@ export class CofiXService {
   }
 
   private async updateNAVPerShare(address: string) {
-    const checkedPriceNow = await this.checkPriceNow(address);
-    const pairAddress = await this.getPairAddressByToken(address);
+    let navPerShare;
+    if (tokenScriptContent[address]?.LiquidityPoolShare?.navPerShare) {
+      navPerShare = ethersOf(
+        tokenScriptContent[address]?.LiquidityPoolShare?.navPerShare
+      );
+    } else {
+      const checkedPriceNow = await this.checkPriceNow(address);
+      const pairAddress = await this.getPairAddressByToken(address);
 
-    if (pairAddress === '0x0000000000000000000000000000000000000000') {
-      throw new Error('invalid invocation!!!!!');
-    }
-    const coFiXPair = getCoFixPair(pairAddress, this.provider);
-    this.marketDetailsService.updateMarketDetails(address, {
-      navPerShare: ethersOf(
+      if (pairAddress === '0x0000000000000000000000000000000000000000') {
+        throw new Error('invalid invocation!!!!!');
+      }
+      const coFiXPair = getCoFixPair(pairAddress, this.provider);
+      navPerShare = ethersOf(
         await coFiXPair.getNAVPerShare(
           this.parseEthers(checkedPriceNow.ethAmount),
           this.parseUnits(
@@ -1532,7 +1617,11 @@ export class CofiXService {
             await this.getERC20Decimals(address)
           )
         )
-      ),
+      );
+    }
+
+    this.marketDetailsService.updateMarketDetails(address, {
+      navPerShare,
     });
   }
 
@@ -1546,13 +1635,18 @@ export class CofiXService {
   }
 
   private async updateRewardRate(address: string) {
-    const coFiXStakingRewards = getCoFiXStakingRewards(
-      await this.getStakingPoolAddressByToken(address),
-      this.provider
-    );
-    const rewardRate = new BNJS(
-      ethersOf(await coFiXStakingRewards.rewardRate())
-    )
+    let miningRate;
+    if (tokenScriptContent[address]?.MiningPoolShare?.cofiMiningRate) {
+      miningRate = tokenScriptContent[address].MiningPoolShare.cofiMiningRate;
+    } else {
+      const coFiXStakingRewards = getCoFiXStakingRewards(
+        await this.getStakingPoolAddressByToken(address),
+        this.provider
+      );
+      miningRate = await coFiXStakingRewards.rewardRate();
+    }
+
+    const rewardRate = new BNJS(ethersOf(miningRate))
       .times(BLOCKNUMS_IN_A_DAY)
       .toString();
     this.marketDetailsService.updateMarketDetails(address, { rewardRate });
@@ -1612,5 +1706,11 @@ export class CofiXService {
     const result = new BNJS(balance).div(totalSupply).times(100).toString();
 
     return result;
+  }
+
+  getETHTotalClaimed() {
+    if (tokenScriptContent['DividendPoolShare']?.ethTotalClaimed) {
+      return ethersOf(tokenScriptContent['DividendPoolShare'].ethTotalClaimed);
+    }
   }
 }
