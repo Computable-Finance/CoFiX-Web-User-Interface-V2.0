@@ -272,5 +272,8 @@
   "menu": "菜单",
   "mining_speed": "CoFi/Day",
   "claimcofi_text": "领取",
-  "claimcofi_text_short": "领取"
+  "claimcofi_text_short": "领取",
+  "btn_connect": "连接钱包",
+  "connect_title": "连接至 CoFiX",
+  "connect_desc": "单击下面的按钮连接到 CoFiX dapp"
 }

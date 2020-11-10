@@ -5,7 +5,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, PopoverController } from '@ionic/angular';
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
@@ -23,6 +23,7 @@ import { RedeemLiquidPage } from './redeem/redeem-liquid.page';
 import { WarningDetailPage } from './warning/warning-detail/warning-detail.page';
 import { MarketDetailsQuery } from '../state/market/market.query';
 import { BalancesQuery } from '../state/balance/balance.query';
+import { ConnectPage } from '../common/components/connect-modal/connect.page';
 
 @Component({
   selector: 'app-liquid',
@@ -39,7 +40,8 @@ export class LiquidPage implements OnInit, OnDestroy {
     private shareStateService: ShareStateService,
     private rd: Renderer2,
     private balancesQuery: BalancesQuery,
-    private marketDetailsQuery: MarketDetailsQuery
+    private marketDetailsQuery: MarketDetailsQuery,
+    private popoverController: PopoverController
   ) {
     this.liquidContent_origin = this.liquidContent;
   }
@@ -139,21 +141,32 @@ export class LiquidPage implements OnInit, OnDestroy {
   private todoValueSubscription: Subscription;
 
   ngOnInit() {
-    if (this.cofixService.getCurrentAccount() === undefined) {
-      setTimeout(() => {
-        this.showWarning();
-        this.initCoinContent();
-      }, 3000);
-    } else {
-      this.showWarning();
-      this.initCoinContent();
-    }
     this.changeBtnTitle();
     this.resizeSubscription = fromEvent(window, 'resize')
       .pipe(debounceTime(100))
       .subscribe((event) => {
         this.changeBtnTitle();
       });
+    if (this.cofixService.getCurrentAccount()) {
+      this.showWarning();
+      this.initCoinContent();
+    }
+  }
+
+  ionViewWillEnter() {
+    if (this.cofixService.getCurrentAccount() === undefined) {
+      this.showConnectModal();
+    }
+  }
+  async showConnectModal() {
+    const popover = await this.utils.showConnectModal();
+    await popover.present();
+    popover.onDidDismiss().then((res: any) => {
+      if (res?.data?.connected) {
+        this.showWarning();
+        this.initCoinContent();
+      }
+    });
   }
 
   ngOnDestroy() {
@@ -261,7 +274,6 @@ export class LiquidPage implements OnInit, OnDestroy {
     ];
 
     this.unsubscribeAll();
-
     if (this.cofixService.getCurrentAccount()) {
       const result = await this.cofixService.earnedCofiAndRewardRate(
         this.coinAddress

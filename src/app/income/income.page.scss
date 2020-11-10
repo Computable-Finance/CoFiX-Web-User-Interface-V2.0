@@ -39,7 +39,7 @@ ion-menu-button {
   color: var(--dove);
 }
 .button-div {
-  margin: 32px auto 8px auto;
+  margin: 30px auto 8px auto;
 }
 
 .close-img {
@@ -48,4 +48,8 @@ ion-menu-button {
 
 .swap-card {
   margin-top: 26px;
+}
+.button-outline,
+.claim-btn {
+  margin-bottom: 30px;
 }

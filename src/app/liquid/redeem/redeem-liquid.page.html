@@ -86,10 +86,9 @@
       class="explain-div"
     ></app-explain-liquid>
 
-    <ion-grid>
+    <ion-grid *ngIf="redeemError.isError">
       <ion-row
         class="ion-align-items-center ion-align-self-center conversionPrice border-top redeemError"
-        *ngIf="redeemError.isError"
       >
         <ion-col class="error" size="12"
           >{{'transaction-error' | translate}}[{{redeemError.msg}}]</ion-col

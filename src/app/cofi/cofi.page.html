@@ -121,29 +121,29 @@
             >
           </ion-row>
         </ion-grid>
-      </div>
-      <div class="button-div connect-card">
-        <ion-button
-          expand="block"
-          class="operation-btn approve-btn"
-          (click)="approve()"
-          *ngIf="!isApproved && isDeposit && cofixService.getCurrentAccount()"
-        >
-          <div class="ion-button-label">
-            <div *ngIf="!isLoading.sq">{{'sq_text' | translate}}</div>
-            <div class="loading" *ngIf="isLoading.sq"></div>
-          </div>
-        </ion-button>
-        <ion-button
-          expand="block"
-          class="operation-btn"
-          [ngClass]="{'swap-btn':!isApproved  && isDeposit,'full-btn':isApproved || !isDeposit || !cofixService.getCurrentAccount()}"
-          (click)="withdrawEarnedCoFi()"
-          [disabled]="canWithdraw()"
-        >
-          <div *ngIf="!isLoading.qc">{{claimTitle | translate}}</div>
-          <div class="loading" *ngIf="isLoading.qc"></div>
-        </ion-button>
+        <div class="button-div">
+          <ion-button
+            expand="block"
+            class="operation-btn approve-btn"
+            (click)="approve()"
+            *ngIf="!isApproved && isDeposit && cofixService.getCurrentAccount()"
+          >
+            <div class="ion-button-label">
+              <div *ngIf="!isLoading.sq">{{'sq_text' | translate}}</div>
+              <div class="loading" *ngIf="isLoading.sq"></div>
+            </div>
+          </ion-button>
+          <ion-button
+            expand="block"
+            class="operation-btn"
+            [ngClass]="{'swap-btn':!isApproved  && isDeposit,'full-btn':isApproved || !isDeposit || !cofixService.getCurrentAccount()}"
+            (click)="withdrawEarnedCoFi()"
+            [disabled]="canWithdraw()"
+          >
+            <div *ngIf="!isLoading.qc">{{claimTitle | translate}}</div>
+            <div class="loading" *ngIf="isLoading.qc"></div>
+          </ion-button>
+        </div>
       </div>
     </ion-card>
   </div>

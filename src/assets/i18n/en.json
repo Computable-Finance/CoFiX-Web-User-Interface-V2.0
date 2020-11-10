@@ -273,5 +273,8 @@
   "menu": "Menu",
   "mining_speed": "CoFi/Day",
   "claimcofi_text": "Claim CoFi Tokens",
-  "claimcofi_text_short": "Claim CoFi"
+  "claimcofi_text_short": "Claim CoFi",
+  "btn_connect": "Connect to Wallet",
+  "connect_title": "Connect to to CoFiX",
+  "connect_desc": "Click the button below to connect to CoFiX dapp"
 }

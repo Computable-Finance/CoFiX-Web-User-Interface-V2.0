@@ -64,13 +64,24 @@ export class IncomePage implements OnInit, OnDestroy {
   ) {}
 
   async ngOnInit() {
-    if (this.cofixService.getCurrentAccount() === undefined) {
-      setTimeout(() => {
-        this.initPage();
-      }, 3000);
-    } else {
+    if (this.cofixService.getCurrentAccount()) {
       this.initPage();
     }
+  }
+  ionViewWillEnter() {
+    if (this.cofixService.getCurrentAccount() === undefined) {
+      this.showConnectModal();
+    }
+  }
+
+  async showConnectModal() {
+    const popover = await this.utils.showConnectModal();
+    await popover.present();
+    popover.onDidDismiss().then((res: any) => {
+      if (res?.data?.connected) {
+        this.initPage();
+      }
+    });
   }
 
   ngOnDestroy() {

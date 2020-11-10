@@ -201,20 +201,20 @@
               >
             </ion-row>
           </ion-grid>
-        </div>
-        <div class="button-div connect-card">
-          <ion-button
-            expand="block"
-            class="operation-btn full-btn"
-            [disabled]="isLoading || !canReceive"
-            (click)="receiveETH()"
-            id="receiveBtn"
-          >
-            <div class="ion-button-label">
-              <div *ngIf="!isLoading">{{'lq_text' | translate}}</div>
-              <div class="loading" *ngIf="isLoading"></div>
-            </div>
-          </ion-button>
+          <div class="button-div">
+            <ion-button
+              expand="block"
+              class="operation-btn full-btn claim-btn"
+              [disabled]="isLoading || !canReceive"
+              (click)="receiveETH()"
+              id="receiveBtn"
+            >
+              <div class="ion-button-label">
+                <div *ngIf="!isLoading">{{'lq_text' | translate}}</div>
+                <div class="loading" *ngIf="isLoading"></div>
+              </div>
+            </ion-button>
+          </div>
         </div>
       </ion-card>
       <app-banner [bannerConent]="incomeContent" class="desc_line"></app-banner>

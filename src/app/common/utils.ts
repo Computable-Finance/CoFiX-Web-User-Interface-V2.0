@@ -4,9 +4,9 @@ import { PermissionsService } from 'src/app/state/permission/permission.service'
 
 import { CofiXService } from '../service/cofix.service';
 import { TxService } from '../state/tx/tx.service';
+import { ConnectPage } from './components/connect-modal/connect.page';
 import { TxConfirmPage } from './components/transaction/tx-confirm/tx-confirm.page';
 import { TxStatusPage } from './components/transaction/tx-status/tx-status.page';
-import { TxSuccessPage } from './components/transaction/tx-success/tx-success.page';
 import { BalanceTruncatePipe } from './pipes/balance.pipe';
 import { ShareStateService } from './state/share.service';
 
@@ -35,29 +35,6 @@ export class Utils {
       );
     }
     return coin.balance;
-  }
-  async showTxSuccessModal() {
-    /* let ev = {
-      target: {
-        getBoundingClientRect: () => {
-          return {
-            top: 100,
-          };
-        },
-      },
-    };
-    const popover = await this.popoverController.create({
-      component: TxSuccessPage,
-      cssClass: 'txsuccess-class',
-      componentProps: {
-        title: 'sss',
-        txHash: '123',
-        network: 3,
-      },
-      showBackdrop: false,
-      event: ev as Event,
-    });
-    await popover.present({ ev });*/
   }
 
   async getPairAttended() {
@@ -156,7 +133,15 @@ export class Utils {
     });
     await rejected.present();
   }
-
+  async showConnectModal() {
+    return await this.popoverController.create({
+      component: ConnectPage,
+      cssClass: 'connect-class',
+      keyboardClose: false,
+      showBackdrop: true,
+      backdropDismiss: false,
+    });
+  }
   async createTXConfirmModal() {
     return await this.popoverController.create({
       component: TxConfirmPage,

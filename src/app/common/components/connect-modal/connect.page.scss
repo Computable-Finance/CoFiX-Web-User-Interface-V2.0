@@ -1,7 +1,7 @@
 .title {
-  height: 29px;
+  height: 39px;
   font-size: 24px;
-  margin: 0px 0px 10px 0px;
+  margin: 10px 0px 10px 0px;
 }
 .title ion-col {
   font-size: 17px;
@@ -12,9 +12,9 @@
   letter-spacing: normal;
   color: var(--black);
 }
-.success-img {
-  width: 20px;
-  height: 20px;
+.connect-img {
+  width: 80px;
+  height: 80px;
 }
 
 .close-img {
@@ -31,17 +31,26 @@
   height: 32px;
   padding: 3px;
 }
-
-.tx-link {
-  font-size: 17px;
+.tx-title {
+  font-size: 24px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: var(--black);
+}
+.tx-desc {
+  font-size: 14px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
-  line-height: 1.71;
   letter-spacing: normal;
-  color: var(--azure);
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
+  color: var(--mine);
+}
+.connect-btn {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }

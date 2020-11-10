@@ -137,7 +137,6 @@ export class AddLiquidPage implements OnInit, OnDestroy {
       });
       await modal.present();
       modal.onDidDismiss().then((data: any) => {
-        console.log(data.data);
         if (data.data.knownRisk) {
           this.shareStateService.updateKnownRiskForAdd(data.data.knownRisk);
         }

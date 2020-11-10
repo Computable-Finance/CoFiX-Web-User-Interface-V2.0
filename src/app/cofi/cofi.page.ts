@@ -74,14 +74,9 @@ export class CofiPage implements OnInit, OnDestroy {
       .subscribe((event) => {
         this.setBtnTitle();
       });
-    if (this.cofixService.getCurrentAccount() === undefined) {
-      setTimeout(() => {
-        this.refreshPage();
-      }, 3000);
-    } else {
+    if (this.cofixService.getCurrentAccount()) {
       this.refreshPage();
     }
-
     setTimeout(async () => {
       this.currentCoFiPrice = await this.cofixService.currentCoFiPrice();
     }, 500);
@@ -92,6 +87,23 @@ export class CofiPage implements OnInit, OnDestroy {
       60 * 1000
     );
   }
+
+  ionViewWillEnter() {
+    if (this.cofixService.getCurrentAccount() === undefined) {
+      this.showConnectModal();
+    }
+  }
+
+  async showConnectModal() {
+    const popover = await this.utils.showConnectModal();
+    await popover.present();
+    popover.onDidDismiss().then((res: any) => {
+      if (res?.data?.connected) {
+        this.refreshPage();
+      }
+    });
+  }
+
   setBtnTitle() {
     if (window.innerWidth < 470) {
       this.claimTitle = 'claimcofi_text_short';

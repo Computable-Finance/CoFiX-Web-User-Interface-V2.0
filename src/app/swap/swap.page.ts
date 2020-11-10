@@ -90,6 +90,15 @@ export class SwapPage implements OnInit, OnDestroy {
   }
 
   async ngOnInit() {
+    /*if (this.cofixService.getCurrentAccount() === undefined) {
+      setTimeout(() => {
+        this.refreshPage();
+      }, 3000);
+    } else {
+      this.refreshPage();
+    }*/
+  }
+  ionViewWillEnter() {
     if (this.cofixService.getCurrentAccount() === undefined) {
       setTimeout(() => {
         this.refreshPage();
@@ -98,7 +107,6 @@ export class SwapPage implements OnInit, OnDestroy {
       this.refreshPage();
     }
   }
-
   refreshPage() {
     this.initCoinContent();
     this.getIsApproved();

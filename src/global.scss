@@ -217,7 +217,7 @@ ion-button {
 .button-div {
   display: flex;
   justify-content: space-between;
-  margin: 32px auto;
+  margin: 30px auto;
 }
 
 .swap-btn,
@@ -364,7 +364,8 @@ ion-button {
   }
   .txconfirm-class .popover-content,
   .txstatus-class .popover-content,
-  .account-class .popover-content {
+  .account-class .popover-content,
+  .connect-class .popover-content {
     left: 0px !important;
     top: unset !important;
     bottom: 0px;
@@ -521,21 +522,16 @@ ion-toggle {
   box-shadow: 0 11px 19px 0 rgba(0, 0, 0, 0.08);
   background-color: var(--white);
 }
+.connect-class .popover-content {
+  width: 360px;
+  min-height: 323px;
+  border-radius: 16px;
+  box-shadow: 0 11px 19px 0 rgba(0, 0, 0, 0.08);
+  background-color: var(--white);
+}
 
 .txconfirm-class .popover-content {
   height: 257px;
-}
-
-/*.txstatus-class .popover-content {
-  height: 323px;
-}*/
-
-.txsuccess-class .popover-content {
-  width: 309px;
-  height: 90px;
-  border-radius: 4px;
-  border: solid 1px var(--concrete);
-  background-color: var(--white);
 }
 
 .banner-content .detail-content .desc {
