@@ -34,7 +34,6 @@ import {
   getOracleContract,
 } from './confix.abi';
 import { EventBusService } from './eventbus.service';
-import { Token } from '../_integration/types';
 
 declare let window: any;
 
@@ -47,7 +46,7 @@ const deadline = () => Math.ceil(Date.now() / 1000) + 60 * 10;
 
 const BNJS = require('bignumber.js');
 
-const tokenScriptContent = {};
+let tokenScriptContent = {};
 
 @Injectable({
   providedIn: 'root',
@@ -674,6 +673,7 @@ export class CofiXService {
   }
 
   private reset() {
+    tokenScriptContent = {};
     this.integrationSubscription?.unsubscribe();
     this.untrackingBlockchain();
     this.provider = this.defaultProvider();
@@ -1364,10 +1364,11 @@ export class CofiXService {
   private async trackingBlockchain() {
     if (this.provider) {
       if (this.currentAccount) {
+        console.log('updating ...');
+
         await this.updateETHBalance();
         await this.updateDividend();
         this.provider.on('block', async (blockNum) => {
-          console.log('updating ...');
           await this.updateETHBalance();
           await this.updateDividend();
           this.updateERC20Balances();
@@ -1376,7 +1377,6 @@ export class CofiXService {
         });
       } else {
         this.provider.on('block', async (blockNum) => {
-          console.log('updating ...');
           this.updateMarketDetails();
         });
       }
