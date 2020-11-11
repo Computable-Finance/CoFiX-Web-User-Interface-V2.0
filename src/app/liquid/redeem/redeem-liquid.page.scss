@@ -42,6 +42,11 @@
   font-size: 17px;
   height: unset;
 }
+
+.claimETH .conversionPrice {
+  margin-top: 5px;
+}
+
 .title {
   font-weight: 600;
   font-stretch: normal;
@@ -52,4 +57,7 @@
 .title-alert {
   width: 18px !important;
   height: 18px !important;
+}
+.margin-bottom {
+  margin-bottom: 10px;
 }

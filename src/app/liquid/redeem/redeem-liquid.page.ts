@@ -61,6 +61,8 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
     subtitle: 'liquidpool_withdraw_subtitle',
   };
   waitingPopover: any;
+  maxERC20Liquid: string;
+  maxETHLiquid: string;
 
   private resizeSubscription: Subscription;
   private todoValueSubscription: Subscription;
@@ -203,6 +205,16 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
           this.hadValue = await this.balanceTruncatePipe.transform(balance);
         });
     }
+    this.maxERC20Liquid = await this.cofixService.getERC20BalanceOfPair(
+      this.toCoin.address,
+      this.toCoin.address
+    );
+    this.maxETHLiquid = await this.cofixService.getERC20BalanceOfPair(
+      this.toCoin.address,
+      this.cofixService.getCurrentContractAddressList().WETH9
+    );
+    console.log(this.maxERC20Liquid);
+    console.log(this.maxETHLiquid);
   }
 
   async walletConnected() {
@@ -399,5 +411,20 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
 
   canShowError() {
     this.showError = new BNJS(this.toCoin.amount).gt(new BNJS(this.todoValue));
+  }
+
+  overERC20Liquid() {
+    return (
+      this.isTokenChecked &&
+      new BNJS(this.tokenAmountForRemoveLiquidity).gt(
+        new BNJS(this.maxERC20Liquid)
+      )
+    );
+  }
+  overETHLiquid() {
+    return (
+      this.isETHChecked &&
+      new BNJS(this.ETHAmountForRemoveLiquidity).gt(new BNJS(this.maxETHLiquid))
+    );
   }
 }

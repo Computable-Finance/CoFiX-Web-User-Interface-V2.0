@@ -57,6 +57,16 @@
             color="secondary"
           ></ion-toggle>
         </ion-col>
+
+        <ion-col size="12">
+          <span class="error">
+            <ng-container *ngIf="overETHLiquid()">
+              {{'token_balance_of_pair' | translate}} {{maxETHLiquid |
+              truncate:'--'}}
+            </ng-container>
+            &nbsp;
+          </span>
+        </ion-col>
       </ion-row>
       <ion-row
         class="ion-align-items-center ion-align-self-center conversionPrice"
@@ -75,6 +85,14 @@
             (ionChange)="changeTokenCheck()"
             color="secondary"
           ></ion-toggle>
+        </ion-col>
+        <ion-col size="12" class="margin-bottom">
+          <span class="error">
+            <ng-container *ngIf="overERC20Liquid()">
+              {{'token_balance_of_pair' | translate}} {{maxERC20Liquid |
+              truncate:'--'}} </ng-container
+            >&nbsp;
+          </span>
         </ion-col>
       </ion-row>
     </ion-grid>
