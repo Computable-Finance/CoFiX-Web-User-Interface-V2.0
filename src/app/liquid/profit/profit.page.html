@@ -33,9 +33,7 @@
           >{{hadValue | truncate:'--'}}
         </ion-col>
 
-        <ion-col size="4" *ngIf="showSkeleton(hadValue)">
-          <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
-        </ion-col>
+        <ion-col size="4" *ngIf="showSkeleton(hadValue)" skeleton> </ion-col>
       </ion-row>
       <ion-row
         class="ion-align-items-center ion-align-self-center conversionPrice"
@@ -48,9 +46,7 @@
           >{{todoValue | truncate:'--'}}
         </ion-col>
 
-        <ion-col size="4" *ngIf="showSkeleton(todoValue)">
-          <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
-        </ion-col>
+        <ion-col size="4" *ngIf="showSkeleton(todoValue)" skeleton> </ion-col>
       </ion-row>
       <ion-row
         class="ion-align-items-center ion-align-self-center conversionPrice"
@@ -73,9 +69,7 @@
           >{{hadValue | truncate:'--'}}
         </ion-col>
 
-        <ion-col size="4" *ngIf="showSkeleton(hadValue)">
-          <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
-        </ion-col>
+        <ion-col size="4" *ngIf="showSkeleton(hadValue)" skeleton> </ion-col>
       </ion-row>
     </ion-grid>
   </div>

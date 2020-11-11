@@ -38,9 +38,11 @@
             </span>
             {{coin}}
           </ng-container>
-          <ng-container *ngIf="showSkeleton(maxAmount)">
-            <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
-          </ng-container>
+          <div
+            *ngIf="showSkeleton(maxAmount)"
+            skeleton
+            [cssName]="'skeleton-input'"
+          ></div>
         </div>
 
         <div *ngIf="isShowError" class="error">

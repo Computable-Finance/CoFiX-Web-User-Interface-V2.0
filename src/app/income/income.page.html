@@ -42,11 +42,7 @@
                     >{{cofiToken | truncate:'--'}}
                   </ion-col>
 
-                  <ion-col size="4" *ngIf="showSkeleton(cofiToken)">
-                    <ion-skeleton-text
-                      animated
-                      class="skeleton"
-                    ></ion-skeleton-text>
+                  <ion-col size="4" *ngIf="showSkeleton(cofiToken)" skeleton>
                   </ion-col>
                 </ion-row>
                 <ion-row
@@ -67,11 +63,7 @@
                     *ngIf="!showSkeleton(cofiToken)"
                     >{{totalETHFromSwapFees}} ETH
                   </ion-col>
-                  <ion-col size="4" *ngIf="showSkeleton(cofiToken)">
-                    <ion-skeleton-text
-                      animated
-                      class="skeleton"
-                    ></ion-skeleton-text>
+                  <ion-col size="4" *ngIf="showSkeleton(cofiToken)" skeleton>
                   </ion-col>
                 </ion-row>
                 <ion-row
@@ -93,11 +85,7 @@
                     >20%
                   </ion-col>
 
-                  <ion-col size="2" *ngIf="showSkeleton(cofiToken)">
-                    <ion-skeleton-text
-                      animated
-                      class="skeleton"
-                    ></ion-skeleton-text>
+                  <ion-col size="2" *ngIf="showSkeleton(cofiToken)" skeleton>
                   </ion-col>
                 </ion-row>
                 <ion-row
@@ -119,11 +107,7 @@
                     >80%
                   </ion-col>
 
-                  <ion-col size="2" *ngIf="showSkeleton(cofiToken)">
-                    <ion-skeleton-text
-                      animated
-                      class="skeleton"
-                    ></ion-skeleton-text>
+                  <ion-col size="2" *ngIf="showSkeleton(cofiToken)" skeleton>
                   </ion-col>
                 </ion-row>
               </ion-grid>
@@ -185,11 +169,7 @@
                 >{{ethTotalClaimed}} ETH
               </ion-col>
 
-              <ion-col size="4" *ngIf="showSkeleton(cofiToken)">
-                <ion-skeleton-text
-                  animated
-                  class="skeleton"
-                ></ion-skeleton-text>
+              <ion-col size="4" *ngIf="showSkeleton(cofiToken)" skeleton>
               </ion-col>
             </ion-row>
             <ion-row

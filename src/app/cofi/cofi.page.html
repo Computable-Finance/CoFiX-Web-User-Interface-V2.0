@@ -39,8 +39,7 @@
               *ngIf="!showSkeleton(earnedRate)"
               >{{earnedRate | truncate:'--'}} {{'mining_speed' | translate}}
             </ion-col>
-            <ion-col size="7" *ngIf="showSkeleton(earnedRate)">
-              <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
+            <ion-col size="7" *ngIf="showSkeleton(earnedRate)" skeleton>
             </ion-col>
           </ion-row>
           <!-- <ion-row
@@ -55,8 +54,7 @@
               *ngIf="!showSkeleton(earnedRate)"
               >**
             </ion-col>
-            <ion-col size="4" *ngIf="showSkeleton(earnedRate)">
-              <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
+            <ion-col size="4" *ngIf="showSkeleton(earnedRate)" skeleton>
             </ion-col>
           </ion-row> -->
 
@@ -72,8 +70,7 @@
               *ngIf="!showSkeleton(todoValue)"
               >{{todoValue | truncate:'--' }}
             </ion-col>
-            <ion-col size="4" *ngIf="showSkeleton(todoValue)">
-              <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
+            <ion-col size="4" *ngIf="showSkeleton(todoValue)" skeleton>
             </ion-col>
           </ion-row>
           <ion-row
@@ -89,8 +86,7 @@
             >
               {{currentCoFiPrice}} USD
             </ion-col>
-            <ion-col size="4" *ngIf="showSkeleton(currentCoFiPrice)">
-              <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
+            <ion-col size="4" *ngIf="showSkeleton(currentCoFiPrice)" skeleton>
             </ion-col>
           </ion-row>
 
