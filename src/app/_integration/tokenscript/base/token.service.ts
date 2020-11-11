@@ -10,6 +10,7 @@ import {
 } from './lib';
 import { EthersData } from './types';
 import {filter} from 'rxjs/operators';
+import {ethers} from 'ethers';
 
 declare global {
   interface Window {
@@ -30,6 +31,8 @@ export class TokenService {
 
   private tokenGenerator$: BehaviorSubject<any>;
   private tokens = {};
+  private lastBlock = 0;
+  private blockTimeout = 5000;
 
   // private debug = false;
   // debug = 1 - show only common step notifies and errors
@@ -57,7 +60,40 @@ export class TokenService {
   public negotiateToken(): Observable<Token> {
     this.init();
     this.tokenGenerator$ = new BehaviorSubject<any>({} as Token);
+    setInterval(() => this.updateAllProps(), this.blockTimeout);
     return this.tokenGenerator$.asObservable().pipe(filter((item) => Object.keys(item).length > 0 ) );
+  }
+
+  private updateAllProps(): void{
+    if (!this.tokens) {
+      return;
+    }
+
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    provider.getBlockNumber().then(async blockNumber => {
+      if (blockNumber > this.lastBlock) {
+        this.lastBlock = blockNumber;
+        const tokenNames = Object.keys(this.tokens);
+        if (tokenNames && tokenNames.length) {
+          let i = 0;
+          for (; i < tokenNames.length; i++) {
+            const instances = this.tokens[ tokenNames[i] ].instances;
+            const instanceIDs = Object.keys(instances);
+            let j = 0;
+            for (; j < instanceIDs.length; j++) {
+              (this.debug > 2 ) && console.log(`${tokenNames[i]} - ${instanceIDs[j]}`);
+              const instance = instances[instanceIDs[j]];
+              const [propsError, newProps] = await to(instance.getProps());
+              if (newProps) {
+                this.tokens[ tokenNames[i] ].instances[instanceIDs[j]].props = newProps;
+              }
+            }
+          }
+          this.returnTokens();
+        }
+      }
+    });
+
   }
 
   public negotiateTokenByContent(xmlContent: string): void {
