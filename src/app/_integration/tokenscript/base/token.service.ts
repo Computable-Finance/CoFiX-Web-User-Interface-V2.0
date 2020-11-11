@@ -32,7 +32,7 @@ export class TokenService {
   private tokenGenerator$: BehaviorSubject<any>;
   private tokens = {};
   private lastBlock = 0;
-  private blockTimeout = 5000;
+  private blockTimeout = 2000;
 
   // private debug = false;
   // debug = 1 - show only common step notifies and errors
@@ -72,8 +72,10 @@ export class TokenService {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     provider.getBlockNumber().then(async blockNumber => {
       if (blockNumber > this.lastBlock) {
+        const renderStart = new Date().getTime();
         this.lastBlock = blockNumber;
         const tokenNames = Object.keys(this.tokens);
+        const thisService = this;
         if (tokenNames && tokenNames.length) {
           let i = 0;
           for (; i < tokenNames.length; i++) {
@@ -83,17 +85,21 @@ export class TokenService {
             for (; j < instanceIDs.length; j++) {
               (this.debug > 2 ) && console.log(`${tokenNames[i]} - ${instanceIDs[j]}`);
               const instance = instances[instanceIDs[j]];
-              const [propsError, newProps] = await to(instance.getProps());
-              if (newProps) {
-                this.tokens[ tokenNames[i] ].instances[instanceIDs[j]].props = newProps;
-              }
+              instance.getProps().then( ( inst => {
+                return newProps => {
+                  if (newProps) {
+                    inst.props = newProps;
+                    const elapsed = new Date().getTime() - renderStart;
+                    (this.debug > 0 ) && console.log('Rendered in ' + elapsed + 'ms');
+                    thisService.returnTokens();
+                  }
+                };
+              })(this.tokens[ tokenNames[i] ].instances[instanceIDs[j]]) );
             }
           }
-          this.returnTokens();
         }
       }
     });
-
   }
 
   public negotiateTokenByContent(xmlContent: string): void {
