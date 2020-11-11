@@ -32,7 +32,7 @@ export class TokenService {
   private tokenGenerator$: BehaviorSubject<any>;
   private tokens = {};
   private lastBlock = 0;
-  private blockTimeout = 2000;
+  private timerID: any;
 
   // private debug = false;
   // debug = 1 - show only common step notifies and errors
@@ -60,7 +60,15 @@ export class TokenService {
   public negotiateToken(): Observable<Token> {
     this.init();
     this.tokenGenerator$ = new BehaviorSubject<any>({} as Token);
-    setInterval(() => this.updateAllProps(), this.blockTimeout);
+
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+    provider.on('block', block => {
+      if (this.timerID) {
+        clearTimeout(this.timerID);
+      }
+      this.timerID = setTimeout(() => this.updateAllProps(), 50);
+    } );
     return this.tokenGenerator$.asObservable().pipe(filter((item) => Object.keys(item).length > 0 ) );
   }
 
@@ -68,6 +76,7 @@ export class TokenService {
     if (!this.tokens) {
       return;
     }
+    this.timerID = null;
 
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     provider.getBlockNumber().then(async blockNumber => {
