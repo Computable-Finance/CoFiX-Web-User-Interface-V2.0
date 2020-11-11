@@ -79,8 +79,7 @@
                 ></app-select-arrow>
               </ion-col>
             </ng-container>
-            <ion-col size="8" *ngIf="showSkeleton(changePrice)">
-              <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
+            <ion-col size="8" *ngIf="showSkeleton(changePrice)" skeleton>
             </ion-col>
           </ion-row>
           <ng-container *ngIf="isShowDetail">
@@ -172,8 +171,7 @@
             >{{minimum | truncate:'--'}} {{toCoin.id}}
           </ion-col>
 
-          <ion-col size="6" *ngIf="showSkeleton(changePrice)">
-            <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
+          <ion-col size="6" *ngIf="showSkeleton(changePrice)" skeleton>
           </ion-col>
         </ion-row> -->
           <ion-row
@@ -196,8 +194,7 @@
               *ngIf="!showSkeleton(changePrice)"
               >{{expectedCofi | truncate:'--'}} CoFi
             </ion-col>
-            <ion-col size="6" *ngIf="showSkeleton(changePrice)">
-              <ion-skeleton-text animated class="skeleton"></ion-skeleton-text>
+            <ion-col size="6" *ngIf="showSkeleton(changePrice)" skeleton>
             </ion-col>
           </ion-row>
           <ion-row
