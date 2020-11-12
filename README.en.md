@@ -1,58 +1,96 @@
 # CoFiX-Web-User-Interface
 
-The web interface for the CoFiX DEX.
+[中文](https://github.com/Computable-Finance/CoFiX-Web-User-Interface/blob/main/README.md)
 
-## Contract address constants
+The application is developed with Ionic 5 and Angular 10. Key npm packages:
 
-Contract addresses related to the CoFiX protocol can be found here: src/app/common/constants.ts
-
-## Operating environment constants
-
-Divided into two environments: development and production:
-
-- Parameter definition for development: src/environments/environment.ts
-- Parameter definition for production: src/environments/environment.prod.ts
-
-Meaning of internal parameters:
-
-- production, whether it is in the production environment or not
-- lang, the language of the packaging settings
-- infura, the infura configuration used to display public information (such as exchange rates) when the wallet is not connected.
-- network, the network id used by infura
-
-## Program description
-
-The entire application is based on Ionic 5 and Angular 10. Therefore, in theory, the program can be packaged into the following three forms:
-
-- Ordinary Web, its current form.
-- Mobile App: android and ios, there is a certain amount of work when actually packaging, and there may be some adjustments.
-- PWA, commonly known as the Google version of applet, needs additional dependencies and may also have fine-tuning.
-
-The key npm packages used:
-
-- ethers.js 5: for contract interaction
+- ethers.js 5, smart contract interaction
 - akita, state management
+
+## Constants
+
+### Contract Addresses
+
+Address about CoFix contracts: src/app/common/constants.ts.
+
+### Environment Constants
+
+There are two settings:
+
+- Development environment: src/environments/environment.ts
+- Production environment: src/environments/environment.prod.ts
+
+Parameters meaning:
+
+- production, boolean for product environment
+- lang, the default language
+- infura, infura configuration for displaying public information (such as exchange prices) when no wallet is connected.
+- network, infura network id
 
 ## Development
 
-In the project directory, execute the following command to install the dependencies:
+Basic Steps
 
-`npm i`
+1. `git clone`
+1. `npm i`, install dependencies
+1. `ionic serve`, run it locally. Visit http://localhost:8100 in your browser.
 
-To start the application:
-
-`Ionic serve`
-
-Visit http://localhost:8100 in the browser
-
-## Build command
-
-The whole process of packaging and building is as follows:
+Build for deployment:
 
 `ng build --prod --aot`
 
-A www folder will be created in the project directory with the compiled static files.
+Copy the `www` folder in your project directory and upload it to your remote web server（AWS S3 or something like that）.
 
 ## Git Log Specification
 
-Using Angular's git log specification, please use [git-cz](https://www.npmjs.com/package/git-cz).
+Follow Angular git log specification. Recommend [git-cz](https://www.npmjs.com/package/git-cz) which will make it easier.
+
+## CI / CD
+
+Currently, the CI/CD will serves two environments.
+
+- Test environment, stage.cofix.io
+- Production environment, cofix.io
+
+The whole mechanism is done with github actions.
+
+The general idea is to trigger the whole pipeline based on `git push` on branch. At the same time, in order to avoid releasing at every push, because not every push is worth being released, we need some control. Unfortunately, github doesn't currently support manual triggering like gitlab does, so we take a workaround, here's the design and the main steps.
+
+### Branch Model
+
+The following defines the branch model for future development, making it easier to work with CI/CD.
+
+1. `main` branch, which no longer allows direct pushes, update will be done by PRs from other branches. After each PR being merged, the deployment to the production environment is automatically triggered.
+1. `stage` branch, as above, the only change is it will use test environment.
+1. Dev branch, which will receive the daily commits from developers and be named after sementic version (such as branch `v1.1.0`) . Also, it will be deleted when all of its updates are merged into `main` branch.
+1. `hotfix` branch, it is for emergency fix after production is released and will be created from `main` branch.
+
+### Processes and Steps
+
+1. Delopyment to testing environment.
+   - Development Branch -> `stage` branch PR
+   - Triggered after merging, `stage.cofix.io`
+1. Delopyment to the production environment:
+   - Development Branch -> `main` Branch PR
+   - Triggered after merging, `www.cofix.io`.
+1. Emergency release
+   - `hotfix` -> `stage` test -> `main` release.
+
+Also, for merging after a hotfix occurs:
+
+- If the difference is not significant, `hotfix` -> development branch.
+- If the difference is large, manual synchronization is recommended.
+
+### Functional Goal
+
+Since automation testing is not yet ready, this CI/CD has only two main purposes.
+
+- verify compilation
+- deployment
+
+In the future, as automated tests are in place and git log specification is established, the following will be added: (all will be happened on every commit on dev branch).
+
+- commitlint: pipeline will fail if commit logs do follow angular commit log specification.
+- [gts](https://github.com/google/gts), pipeline will fail when code style does notcomply with specifications.
+- Automation testing: unit testing + integration testing + e2e testing
+- [Semantic Publishing](https://semantic-release.gitbook.io/semantic-release/): Generate tag and change logs automatically.
