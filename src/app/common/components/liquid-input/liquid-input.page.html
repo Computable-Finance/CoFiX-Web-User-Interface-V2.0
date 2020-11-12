@@ -1,19 +1,14 @@
 <ion-grid class="select-box">
   <ion-row class="select-row">
-    <ion-col size="12" class="ion-text-center">
+    <ion-col size="12" class="ion-text-center" (click)="selectAddType($event)">
       <ion-button class="select-liquid-button" fill="outline">
         <ion-grid>
           <ion-row class="ion-align-items-center ion-align-self-center">
             <ion-col size="2">
               <img src="./assets/images/left-expand.png" class="sel" />
             </ion-col>
-            <ion-col
-              class="ion-text-center"
-              size="8"
-              (click)="selectAddType($event)"
-            >
+            <ion-col class="ion-text-center" size="8">
               <div class="input-group-prepend">
-                
                 <span class="input-group-text"
                   ><img
                     src="./assets/images/icon/ETH.png"
