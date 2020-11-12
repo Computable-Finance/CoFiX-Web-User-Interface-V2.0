@@ -1371,11 +1371,11 @@ export class CofiXService {
   private async trackingBlockchain() {
     if (this.provider) {
       if (this.currentAccount) {
-        console.log('updating ...');
-
         await this.updateETHBalance();
         await this.updateDividend();
         this.provider.on('block', async (blockNum) => {
+          console.log('updating ...');
+
           await this.updateETHBalance();
           await this.updateDividend();
           this.updateERC20Balances();
@@ -1384,6 +1384,8 @@ export class CofiXService {
         });
       } else {
         this.provider.on('block', async (blockNum) => {
+          console.log('updating ...');
+
           this.updateMarketDetails();
         });
       }
