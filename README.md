@@ -41,6 +41,14 @@ CoFix 相关合约地址常量：src/app/common/constants.ts 。
 
 复制工程目录下的 `www` 文件夹，然后上传到远端服务器（推荐 AWS S3 或类似云厂商的服务）即可。
 
+git 工作流，在工作分支：
+
+1. git pull origin \[dev branch\] --rebase
+1. git commit locally
+1. git push orgin \[dev branch\]
+
+另外，请避免 `git push -f`。
+
 ## Git Log 规范
 
 采用 Angular 的 git log 规范，请配合 [git-cz](https://www.npmjs.com/package/git-cz) 一起使用。

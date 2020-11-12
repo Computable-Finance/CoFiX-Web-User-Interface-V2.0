@@ -41,6 +41,14 @@ Build for deployment:
 
 Copy the `www` folder in your project directory and upload it to your remote web server（AWS S3 or something like that）.
 
+git workflow, at work branch:
+
+1. git pull origin \[dev branch\] --rebase
+1. git commit locally
+1. git push orgin \[dev branch\]
+
+Also, please do not use `git push -f` .
+
 ## Git Log Specification
 
 Follow Angular git log specification. Recommend [git-cz](https://www.npmjs.com/package/git-cz) which will make it easier.
