@@ -61,8 +61,10 @@ jobs:
           TF_WORKSPACE=default terraform init -upgrade
           if [ -f "${TF_WORKSPACE}.workspace.tfvars" ]; then
             echo "Use tfvars: ${TF_WORKSPACE}.workspace.tfvars"
+            terraform plan -var-file "${TF_WORKSPACE}.workspace.tfvars"
             terraform apply -auto-approve -var-file "${TF_WORKSPACE}.workspace.tfvars"
           else
             echo "Use default config"
+            terraform plan
             terraform apply -auto-approve
           fi
