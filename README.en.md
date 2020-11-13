@@ -1,6 +1,6 @@
 # CoFiX-Web-User-Interface
 
-[中文](https://github.com/Computable-Finance/CoFiX-Web-User-Interface/blob/main/README.md)
+[中文](./README.md)
 
 The application is developed with Ionic 5 and Angular 10. Key npm packages:
 

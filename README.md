@@ -1,6 +1,6 @@
 # CoFiX-Web-User-Interface
 
-[English](https://github.com/Computable-Finance/CoFiX-Web-User-Interface/blob/main/README.en.md)
+[English](./README.en.md)
 
 整个应用基于 Ionic 5 和 Angular 10 完成，用到的关键 npm package ：
 
