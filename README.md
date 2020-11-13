@@ -55,10 +55,11 @@ git 工作流，在工作分支：
 
 ## CI / CD
 
-目前准备投入的 CI/CD 主要服务于两个环境：
+目前准备投入的 CI/CD 主要服务于三个环境：
 
 - 测试环境，stage.cofix.io
-- 产品环境，cofix.io
+- 产品环境，cofix.io / www.cofix.io
+- Hotfix 环境, hotfix.cofix.io
 
 整个机制结合 github action 完成。
 
@@ -84,7 +85,7 @@ git 工作流，在工作分支：
    - 开发分支 -> `main` 分支 PR
    - merge 后触发，`www.cofix.io`。
 1. 紧急发布
-   - `hotfix` -> `stage` 测试 -> `main` 发布。
+   - `hotfix` -> `hotfix` 测试 -> `main` 发布。
 
 同时，在 hotfix 发生后的合并问题：
 

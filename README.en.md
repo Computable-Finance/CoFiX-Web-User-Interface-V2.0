@@ -55,10 +55,11 @@ Follow Angular git log specification. Recommend [git-cz](https://www.npmjs.com/p
 
 ## CI / CD
 
-Currently, the CI/CD will serves two environments.
+Currently, the CI/CD will serves three environments.
 
-- Test environment, stage.cofix.io
-- Production environment, cofix.io
+- Test environment: stage.cofix.io
+- Production environment: cofix.io / www.cofix.io
+- Hotfix environment: hotfix.cofix.io
 
 The whole mechanism is done with github actions.
 
@@ -84,7 +85,7 @@ At the same time, `stage` branch will be the default branch.
    - Development Branch -> `main` Branch PR
    - Triggered after merging, `www.cofix.io`.
 1. Emergency release
-   - `hotfix` -> `stage` test -> `main` release.
+   - `hotfix` -> `hotfix` test -> `main` release.
 
 Also, for merging after a hotfix occurs:
 

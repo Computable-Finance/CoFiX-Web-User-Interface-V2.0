@@ -23,7 +23,12 @@ jobs:
   deploy:
     needs: build_and_test
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/') && endsWith(github.ref, '-release')
+    # Only push to stage, hotfix, or main will trigger deployment
+    if: github.event_name == 'push' && (
+      github.ref == 'refs/heads/main' ||
+      github.ref == 'refs/heads/stage' ||
+      github.ref == 'refs/heads/hotfix'
+      )
     steps:
       - name: get terraform scripts
         uses: actions/checkout@v2
