@@ -73,6 +73,8 @@ The following defines the branch model for future development, making it easier 
 1. Dev branch, which will receive the daily commits from developers and be named after sementic version (such as branch `v1.1.0`) . Also, it will be deleted when all of its updates are merged into `main` branch.
 1. `hotfix` branch, it is for emergency fix after production is released and will be created from `main` branch.
 
+At the same time, `stage` branch will be the default branch.
+
 ### Processes and Steps
 
 1. Delopyment to testing environment.
