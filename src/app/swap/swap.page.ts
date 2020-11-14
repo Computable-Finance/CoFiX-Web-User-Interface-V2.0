@@ -99,13 +99,9 @@ export class SwapPage implements OnInit, OnDestroy {
     }*/
   }
   ionViewWillEnter() {
-    if (this.cofixService.getCurrentAccount() === undefined) {
-      setTimeout(() => {
-        this.refreshPage();
-      }, 3000);
-    } else {
+    setTimeout(() => {
       this.refreshPage();
-    }
+    }, 3000);
   }
   refreshPage() {
     this.initCoinContent();

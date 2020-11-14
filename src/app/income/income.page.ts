@@ -65,14 +65,20 @@ export class IncomePage implements OnInit, OnDestroy {
   ) {}
 
   async ngOnInit() {
-    if (this.cofixService.getCurrentAccount()) {
-      this.initPage();
-    }
+    this.resizeSubscription = fromEvent(window, 'resize')
+      .pipe(debounceTime(100))
+      .subscribe((event) => {
+        this.changeButtonTitle();
+      });
   }
   ionViewWillEnter() {
-    if (this.cofixService.getCurrentAccount() === undefined) {
-      this.showConnectModal();
-    }
+    setTimeout(() => {
+      if (this.cofixService.getCurrentAccount()) {
+        this.initPage();
+      } else {
+        this.showConnectModal();
+      }
+    }, 500);
   }
 
   async showConnectModal() {
@@ -113,71 +119,64 @@ export class IncomePage implements OnInit, OnDestroy {
     this.getCoFiTokenAndRewardsAndSubscribe();
     this.getIsApproved();
     this.changeButtonTitle();
-    this.resizeSubscription = fromEvent(window, 'resize')
-      .pipe(debounceTime(100))
-      .subscribe((event) => {
-        this.changeButtonTitle();
-      });
   }
 
   async getCoFiTokenAndRewardsAndSubscribe() {
-    if (this.cofixService.getCurrentAccount()) {
-      this.cofiTokenAddress = this.cofixService.getCurrentContractAddressList().CoFiToken;
-      this.cofiToken = await this.balanceTruncatePipe.transform(
-        await this.cofixService.getERC20Balance(this.cofiTokenAddress)
-      );
-      this.cofiBalanceSubscription = this.balancesQuery
-        .currentERC20Balance$(
-          this.cofixService.getCurrentAccount(),
-          this.cofiTokenAddress
-        )
-        .subscribe(async (balance) => {
-          this.cofiToken = await this.balanceTruncatePipe.transform(balance);
-        });
+    this.cofiTokenAddress = this.cofixService.getCurrentContractAddressList().CoFiToken;
+    this.cofiToken = await this.balanceTruncatePipe.transform(
+      await this.cofixService.getERC20Balance(this.cofiTokenAddress)
+    );
+    this.cofiBalanceSubscription = this.balancesQuery
+      .currentERC20Balance$(
+        this.cofixService.getCurrentAccount(),
+        this.cofiTokenAddress
+      )
+      .subscribe(async (balance) => {
+        this.cofiToken = await this.balanceTruncatePipe.transform(balance);
+      });
 
-      this.cofiStakingRewardsAddress = this.cofixService.getCurrentContractAddressList().CoFiStakingRewards;
-      this.cofiStakingRewards = await this.balanceTruncatePipe.transform(
-        await this.cofixService.getERC20Balance(this.cofiStakingRewardsAddress)
-      );
-      this.shareInDividendPool = await this.balanceTruncatePipe.transform(
-        await this.cofixService.shareInDividendPool()
-      );
-      this.totalETHFromSwapFees = await this.balanceTruncatePipe.transform(
-        await this.cofixService.totalETHFromSwapFees()
-      );
-      this.totalETHInDividendPool = await this.balanceTruncatePipe.transform(
-        await this.cofixService.totalETHInDividendPool()
-      );
-      this.ethTotalClaimed = await this.balanceTruncatePipe.transform(
-        this.cofixService.getETHTotalClaimed()
-      );
+    this.cofiStakingRewardsAddress = this.cofixService.getCurrentContractAddressList().CoFiStakingRewards;
+    this.cofiStakingRewards = await this.balanceTruncatePipe.transform(
+      await this.cofixService.getERC20Balance(this.cofiStakingRewardsAddress)
+    );
+    this.shareInDividendPool = await this.balanceTruncatePipe.transform(
+      await this.cofixService.shareInDividendPool()
+    );
+    this.totalETHFromSwapFees = await this.balanceTruncatePipe.transform(
+      await this.cofixService.totalETHFromSwapFees()
+    );
+    this.totalETHInDividendPool = await this.balanceTruncatePipe.transform(
+      await this.cofixService.totalETHInDividendPool()
+    );
+    this.ethTotalClaimed = await this.balanceTruncatePipe.transform(
+      this.cofixService.getETHTotalClaimed()
+    );
 
-      console.log(this.ethTotalClaimed);
-      this.cofiStakingRewardsSubscription = this.balancesQuery
-        .currentERC20Balance$(
-          this.cofixService.getCurrentAccount(),
-          this.cofiStakingRewardsAddress
-        )
-        .subscribe(async (balance) => {
-          this.cofiStakingRewards = await this.balanceTruncatePipe.transform(
-            balance
-          );
-          this.shareInDividendPool = await this.balanceTruncatePipe.transform(
-            await this.cofixService.shareInDividendPool()
-          );
-          this.totalETHFromSwapFees = await this.balanceTruncatePipe.transform(
-            await this.cofixService.totalETHFromSwapFees()
-          );
-          this.totalETHInDividendPool = await this.balanceTruncatePipe.transform(
-            await this.cofixService.totalETHInDividendPool()
-          );
-          this.ethTotalClaimed = await this.balanceTruncatePipe.transform(
-            this.cofixService.getETHTotalClaimed()
-          );
-        });
+    console.log(this.ethTotalClaimed);
+    this.cofiStakingRewardsSubscription = this.balancesQuery
+      .currentERC20Balance$(
+        this.cofixService.getCurrentAccount(),
+        this.cofiStakingRewardsAddress
+      )
+      .subscribe(async (balance) => {
+        this.cofiStakingRewards = await this.balanceTruncatePipe.transform(
+          balance
+        );
+        this.shareInDividendPool = await this.balanceTruncatePipe.transform(
+          await this.cofixService.shareInDividendPool()
+        );
+        this.totalETHFromSwapFees = await this.balanceTruncatePipe.transform(
+          await this.cofixService.totalETHFromSwapFees()
+        );
+        this.totalETHInDividendPool = await this.balanceTruncatePipe.transform(
+          await this.cofixService.totalETHInDividendPool()
+        );
+        this.ethTotalClaimed = await this.balanceTruncatePipe.transform(
+          this.cofixService.getETHTotalClaimed()
+        );
+      });
 
-      this.getEarnedETHAndSubscribe();
-    }
+    this.getEarnedETHAndSubscribe();
   }
 
   async getEarnedETHAndSubscribe() {

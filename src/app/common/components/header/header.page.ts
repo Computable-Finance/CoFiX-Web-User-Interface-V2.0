@@ -11,7 +11,6 @@ import { EventBusService } from 'src/app/service/eventbus.service';
 import { Router } from '@angular/router';
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import { ShareStateQuery } from '../../state/share.query';
 @Component({
   selector: 'app-header',
   templateUrl: './header.page.html',
@@ -43,7 +42,6 @@ export class HeaderPage implements OnInit, OnDestroy {
   constructor(
     private shareStateService: ShareStateService,
     private eventbusService: EventBusService,
-    private shareStateQuery: ShareStateQuery,
     private router: Router
   ) {
     this.eventbusService.on('accountsChanged', (account) => {

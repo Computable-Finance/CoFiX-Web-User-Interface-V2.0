@@ -147,16 +147,17 @@ export class LiquidPage implements OnInit, OnDestroy {
       .subscribe((event) => {
         this.changeBtnTitle();
       });
-    if (this.cofixService.getCurrentAccount()) {
-      this.showWarning();
-      this.initCoinContent();
-    }
   }
 
   ionViewWillEnter() {
-    if (this.cofixService.getCurrentAccount() === undefined) {
-      this.showConnectModal();
-    }
+    setTimeout(() => {
+      if (this.cofixService.getCurrentAccount() === undefined) {
+        this.showConnectModal();
+      } else {
+        this.showWarning();
+        this.initCoinContent();
+      }
+    }, 500);
   }
   async showConnectModal() {
     const popover = await this.utils.showConnectModal();
@@ -197,6 +198,7 @@ export class LiquidPage implements OnInit, OnDestroy {
 
   async showWarning() {
     const knownRisk = this.shareStateQuery.getValue().knownRisk;
+    console.log(knownRisk);
     if (!knownRisk) {
       const modal = await this.modalController.create({
         component: WarningDetailPage,
