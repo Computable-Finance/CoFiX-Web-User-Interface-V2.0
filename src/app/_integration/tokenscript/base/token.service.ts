@@ -32,13 +32,12 @@ export class TokenService {
   private tokenGenerator$: BehaviorSubject<any>;
   private tokens = {};
   private lastBlock = 0;
-  private timerID: any;
 
   // private debug = false;
   // debug = 1 - show only common step notifies and errors
   // debug = 2 - show object's data values
   // debug = 3 - verbose logs
-  private debug = 0; // environment.debug;
+  private debug = 1; // environment.debug;
   private inited = false;
   private lang: string;
   private config = {
@@ -63,20 +62,64 @@ export class TokenService {
 
     const provider = new ethers.providers.Web3Provider(window.ethereum);
 
-    provider.on('block', block => {
-      if (this.timerID) {
-        clearTimeout(this.timerID);
-      }
-      this.timerID = setTimeout(() => this.updateAllProps(), 50);
-    } );
     return this.tokenGenerator$.asObservable().pipe(filter((item) => Object.keys(item).length > 0 ) );
+  }
+
+  public updateSomeProps(propsToUpdate): void{
+    if (!this.tokens) {
+      return;
+    }
+
+    const renderStart = new Date().getTime();
+    const tokenNames = Object.keys(propsToUpdate);
+    const thisService = this;
+    tokenNames.forEach(tokenName => {
+      if (!this.tokens || !this.tokens.hasOwnProperty(tokenName)) {
+        return;
+      }
+      const instanceProps = propsToUpdate[tokenName];
+      if (!instanceProps || !instanceProps.length) {
+        return;
+      }
+      instanceProps.forEach(propName => {
+        const instances = this.tokens[tokenName].instances;
+        const instanceIDs = Object.keys(instances);
+        if (!instanceIDs || !instanceIDs.length) {
+          return;
+        }
+        instanceIDs.forEach(instanceID => {
+          const instance = instances[instanceID];
+          instance.getAttributeValue(propName).then(((inst, prop) => {
+            return newPropValue => {
+              if (newPropValue) {
+                const prevVal = inst.props[prop];
+                const elapsed = new Date().getTime() - renderStart;
+                if (this.debug > 0) { console.log('Rendered in ' + elapsed + 'ms'); }
+                if ( JSON.stringify(prevVal) !== JSON.stringify(newPropValue) ) {
+                  if (this.debug > 1) {
+                    console.log(`lets change ${prop}. prev inst.props = ${JSON.stringify(inst.props)}`);
+                  }
+                  inst.props[prop] = newPropValue;
+                  if (this.debug > 1) {
+                    console.log(`cur inst.props = ${JSON.stringify(inst.props)}`);
+                  }
+                  if (this.debug) {
+                    console.log(`new prop "${prop}" received. update prop fired`);
+                  }
+                  thisService.returnTokens();
+                }
+              }
+            };
+          })(instance, propName));
+        });
+      });
+    });
   }
 
   private updateAllProps(): void{
     if (!this.tokens) {
       return;
     }
-    this.timerID = null;
 
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     provider.getBlockNumber().then(async blockNumber => {
@@ -92,14 +135,14 @@ export class TokenService {
             const instanceIDs = Object.keys(instances);
             let j = 0;
             for (; j < instanceIDs.length; j++) {
-              (this.debug > 2 ) && console.log(`${tokenNames[i]} - ${instanceIDs[j]}`);
+              if (this.debug > 2 ) { console.log(`${tokenNames[i]} - ${instanceIDs[j]}`); }
               const instance = instances[instanceIDs[j]];
               instance.getProps().then( ( inst => {
                 return newProps => {
                   if (newProps) {
                     inst.props = newProps;
                     const elapsed = new Date().getTime() - renderStart;
-                    (this.debug > 0 ) && console.log('Rendered in ' + elapsed + 'ms');
+                    if (this.debug > 0 ) { console.log('Rendered in ' + elapsed + 'ms'); }
                     thisService.returnTokens();
                   }
                 };
@@ -128,7 +171,7 @@ export class TokenService {
       if (!this.ethersData || !Object.keys(this.ethersData).length) {
         this.ethersData = await getEthersData();
       }
-      (this.debug > 0) && console.log(`negotiate fired for  ${tokenName}`);
+      if (this.debug > 0) { console.log(`negotiate fired for  ${tokenName}`); }
 
       const commonInitProps = extendPropsWithContracts(this.tokens[tokenName].xmlDoc, {}, this.ethersData);
       commonInitProps.ownerAddress = this.ethersData.userAddress;
@@ -150,7 +193,7 @@ export class TokenService {
         let i = 0;
         for (; i < distinctProps.items.length; i++) {
           const distinctItem = distinctProps.items[i];
-          (this.debug > 2) && console.log(`lets add instance : ${distinctItem}`);
+          if (this.debug > 2) { console.log(`lets add instance : ${distinctItem}`); }
 
           const initProps = Object.assign({}, commonInitProps);
           initProps[distinctProps.distinctName] = distinctItem;
@@ -167,11 +210,14 @@ export class TokenService {
           });
 
           const [propsError, props] = await to(tokenInstance.getProps() );
+          if (propsError) {
+            console.log('getProps error received', propsError);
+          }
           this.tokens[tokenName].props = props;
 
           const compareRes = compareStringToProps(this.tokens[tokenName].filter, props);
           if (!compareRes) {
-            (this.debug > 0) && console.log('compare failed');
+            if (this.debug > 0) { console.log('compare failed'); }
             continue;
           }
 
@@ -179,13 +225,12 @@ export class TokenService {
         }
       }
       this.tokens[tokenName].working = false;
-      this.debug > 2 && console.log('Token Service tokens:');
-      (this.debug > 2) && console.log(this.tokens);
+      if (this.debug > 2) { console.log('Token Service tokens:', this.tokens); }
       this.returnTokens();
 
     } catch (e) {
       const message = `negotiate error = ${e}`;
-      this.debug && console.log(message, e);
+      if (this.debug) { console.log(message, e); }
       this.tokens[tokenName].working = false;
       throw new Error(message);
     }
@@ -205,8 +250,7 @@ export class TokenService {
    * Render tokens output in format {TokenName: [tokenInstance1,...]}
    */
   private returnTokens(justReturn = 0): any {
-    (this.debug > 2 ) && console.log('this.tokens');
-    (this.debug > 2 ) && console.log(this.tokens);
+    if (this.debug > 2 ) { console.log('this.tokens', this.tokens); }
     const output = {};
     Object.keys(this.tokens).forEach(key => {
       const instances = this.tokens[key].instances;
@@ -218,8 +262,7 @@ export class TokenService {
     if (justReturn) {
       return output;
     }
-    (this.debug > 0 ) && console.log('this.tokenGenerator$.next fired with data:->>');
-    (this.debug > 0 ) && console.log(output);
+    if (this.debug > 0 ) { console.log('this.tokenGenerator$.next fired with data:->>', output); }
     this.tokenGenerator$.next(output);
   }
 
@@ -268,7 +311,7 @@ export class TokenService {
   }
 
   private async reInit(): Promise<any>{
-    this.debug && console.log('network data changed. start reinit token instances...');
+    if (this.debug) { console.log('network data changed. start reinit token instances...'); }
     this.ethersData = await getEthersData();
     if (this.tokens) {
       Object.keys(this.tokens).forEach((tokenName) => {
@@ -283,7 +326,10 @@ export class TokenService {
     this.lang = lang;
   }
 
-  public renderCards({listener$, tokenName, tokenInstance, cardName, cardType, cardView, returnHistory, listenNewEvents, transactionNonce, returnType}): any {
+  public renderCards({
+        listener$, tokenName, tokenInstance, cardName,
+        cardType, cardView, returnHistory, listenNewEvents, transactionNonce, returnType
+      }): any {
     const token = this.tokens[tokenName];
     if (!token) {
       console.log(`cant see token name = ${tokenName}`);
@@ -321,7 +367,7 @@ export class TokenService {
 
       const cardNode = getXMLItem(instance.xmlDoc, selector );
       if (!cardNode) {
-        this.debug && console.log(`cant see card for >>>${selector}<<<`);
+        if (this.debug) { console.log(`cant see card for >>>${selector}<<<`); }
       } else {
         cardHtml = getXMLItemText(
           instance.xmlDoc,
@@ -329,7 +375,7 @@ export class TokenService {
           cardNode,
           `ts:${cardView}[@xml:lang="${instance.fallbackLang}"][1]`, instance.debug );
 
-        (instance.debug > 2) && console.log(`renderCardView started for name=${cardName} type = ${cardType}; itemType=${cardView}`);
+        if (instance.debug > 2) { console.log(`renderCardView started for name=${cardName} type = ${cardType}; itemType=${cardView}`); }
       }
 
       iframe = document.createElement('iframe');
@@ -339,7 +385,7 @@ export class TokenService {
       const body = document.querySelector('body');
       iframe.onload = () => {
 
-        (this.debug > 2) && console.log('iframe.onload fired;');
+        if (this.debug > 2) { console.log('iframe.onload fired;'); }
         iframe.contentWindow.onerror = e => {console.log('iframe error'); console.log(e); };
 
         iframeDoc = iframe.contentDocument ? iframe.contentDocument : iframe.contentWindow.document;
@@ -368,8 +414,10 @@ export class TokenService {
         // test iframe ethereum and web3
         const iframeEthereumExists = iframe.contentWindow.is_ethereum_exists();
         const iframeWeb3Exists = iframe.contentWindow.is_web3_exists();
-        (this.debug > 2) && console.log(`iframeEthereumExists = ${iframeEthereumExists}`);
-        (this.debug > 2) && console.log(`iframeWeb3Exists =  ${iframeWeb3Exists}`);
+        if (this.debug > 2) {
+          console.log(`iframeEthereumExists = ${iframeEthereumExists}`);
+          console.log(`iframeWeb3Exists =  ${iframeWeb3Exists}`);
+        }
         if (!iframeEthereumExists || !iframeWeb3Exists) {
           console.error('Ethereum or web3 missed');
         } else {

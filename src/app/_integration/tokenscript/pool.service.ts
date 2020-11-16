@@ -15,11 +15,13 @@ import {
 } from '../types';
 import { TokenService } from './base/token.service';
 import { TokenProps } from './base/types';
+import {ethers} from 'ethers';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PoolService {
+  private timerID: any;
   constructor(private token: TokenService) {}
   /**
    * @description Negotiate token it will connect with the wallet and push tokens every N seconds
@@ -28,17 +30,41 @@ export class PoolService {
     this.token.init();
     const files = [
       'assets/tokens/LiquidityPoolShare.xml',
-      // 'assets/tokens/BOOKY.xml',
       'assets/tokens/DividendPoolShare.xml',
       'assets/tokens/MiningPoolShare.xml',
       'assets/tokens/CoFi.xml',
       'assets/tokens/DividendPoolShare.xml',
       'assets/tokens/USDT.xml',
       'assets/tokens/HBTC.xml',
+      // 'assets/tokens/BOOKY.xml',
     ];
     for (const path of files) {
       this.token.negotiateTokenByPath(path);
     }
+
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    provider.on('block', block => {
+      if (this.timerID) {
+        clearTimeout(this.timerID);
+      }
+      this.timerID = setTimeout(() => {
+        this.timerID = null;
+        this.token.updateSomeProps(
+            {
+              LiquidityPoolShare: [
+                'kInfoK',
+                'kInfoTheta',
+                'referenceExchangeRateEthAmount',
+                'navPerShare'
+              ],
+              MiningPoolShare: ['cofiMiningRate'],
+              booky: ['ownerBalance'],
+              // !!! I cant see this property in the token file
+              // DividendPoolShare: ['ethTotalClaimed']
+            }
+        );
+      }, 50);
+    } );
 
     return this.token.negotiateToken().pipe(
       map((x) => {

@@ -17,7 +17,7 @@ import {
   NEST3PriceOracleMock,
   CoFiXController
 } from './abi';
-import { tokenName } from '@angular/compiler';
+// import { tokenName } from '@angular/compiler';
 
 const matchAll = require('string.prototype.matchall');
 
@@ -79,7 +79,7 @@ export function compareStringToProps(
       // tslint:disable-next-line:no-unused-expression
       debug &&
         console.log(`wrong pattern : ${single}, skipped, str = "${str}"`);
-      return;
+      return 0;
     }
     // tslint:disable-next-line:no-unused-expression
     debug && console.log('matchProp');
@@ -135,24 +135,22 @@ export function compareStringToProps(
       }
       str = str.replace(item[0], result ? '1' : '0');
     }
-    // tslint:disable-next-line:no-unused-expression
-    debug && console.log(`compare string result after : ${single} = ${str}`);
+    if (debug) { console.log(`compare string result after : ${single} = ${str}`); }
   });
 
   let counter = 0;
   while (
     (matchAllResults = Array.from(
-      (match = matchAll('((([!|&]?)([^)(]+)))', 'g'))
+      // (match = matchAll('((([!|&]?)([^)(]+)))', 'g'))
+      // (match = matchAll(str, new RegExp('\(([!|&]?)([^)(]+)\)', 'g')))
+      (match = matchAll(str, new RegExp('\\(([!|&]?)([01]+)\\)', 'g')))
     )).length
   ) {
-    // tslint:disable-next-line:no-unused-expression
-    debug && console.log('matchAll');
-    // tslint:disable-next-line:no-unused-expression
-    debug && console.log(matchAllResults);
+    if (debug) { console.log('matchAll finish', matchAllResults); }
     matchAllResults.forEach((item) => {
       const inner = item[0];
-      const compare = item[2];
-      const bits = item[3];
+      const compare = item[1];
+      const bits = item[2];
       switch (compare) {
         case '':
           switch (inner) {
@@ -206,18 +204,18 @@ export function compareStringToProps(
       // let innerMatch
     });
     // tslint:disable-next-line:no-unused-expression
-    debug && console.log(`second pass cycle ${counter} finish res = ${str}`);
+    if (debug) { console.log(`second pass cycle ${counter} finish res = ${str}`); }
     counter++;
     if (counter > 5) {
       // tslint:disable-next-line:no-unused-expression
-      debug && console.log(`its loop, check string please: ${str}`);
+      if (debug) { console.log(`its loop, check string please: ${str}`); }
       str = '-1';
       break;
     }
   }
 
   // tslint:disable-next-line:no-unused-expression
-  debug && console.log(`finish res = ${str}`);
+  if (debug) { console.log(`finish res = ${str}`); }
 
   return parseInt(str, 10);
 }
@@ -678,8 +676,7 @@ export class TokenCard {
     );
 
     if (!distinctAttributeNode) {
-      this.debug &&
-        console.log('Cant find distinct attribute, lets use ownerAddress');
+      if (this.debug) {console.log('Cant find distinct attribute, lets use ownerAddress'); }
       return {
         distinctName: 'ownerAddress',
         items: [this.ethersData.userAddress],
@@ -705,7 +702,7 @@ export class TokenCard {
           }
         });
       } else {
-        this.debug && console.log('Empty token list');
+        if (this.debug) { console.log('Empty token list'); }
       }
 
       return {
@@ -745,9 +742,9 @@ export class TokenCard {
 
       let attributeNode;
 
-      // tslint:disable-next-line:no-conditional-assignment
       while (
         attributeXmlNodes &&
+        // tslint:disable-next-line:no-conditional-assignment
         (attributeNode = attributeXmlNodes.iterateNext())
       ) {
         if (attributeNode.getAttribute('distinct')) {
@@ -756,19 +753,14 @@ export class TokenCard {
 
         const name = attributeNode.getAttribute('name');
 
-        this.debug > 2 &&
-          console.log(
-            `get prop = ${name}; current props = ${JSON.stringify(this.props)}`
-          );
+        if (this.debug > 2) {console.log(`get prop = ${name}; current props = ${JSON.stringify(this.props)}`); }
 
         const [error, res] = await to(this.getAttributeValue(name));
-        if (error) {
-          this.debug && console.error(`getAttributeValue error for ${name}`);
-          this.debug && console.log(error);
+        if (error && this.debug) {
+          console.error(`getAttributeValue error for ${name}`, error);
         }
 
-        this.debug > 2 && console.log(`property "${name}" has value :`);
-        this.debug > 2 && console.log(res);
+        if (this.debug > 2) { console.log(`property "${name}" has value :`, res); }
 
         if (res) {
           basicProps[name] = res;
@@ -776,8 +768,7 @@ export class TokenCard {
       }
     } catch (e) {
       const message = `getProps() error. ${e}`;
-      this.debug && console.log(e);
-      this.debug && console.log(message);
+      if (this.debug) { console.log(e, message); }
       throw new Error(message);
     }
     this.props = basicProps;
@@ -801,10 +792,10 @@ export class TokenCard {
     switch (dataNodeName) {
       case 'ts:token-id':
         res = this.props.tokenId;
-        this.debug > 1 && console.log('its ts:token-id, just use tokenID ');
+        if (this.debug > 1) {console.log('its ts:token-id, just use tokenID '); }
         break;
       case 'ts:data':
-        this.debug > 1 && console.log(`its ts:data for attr: ${name}`);
+        if (this.debug > 1) {console.log(`its ts:data for attr: ${name}`); }
         const attributeDataNodes = this.xmlDoc.evaluate(
           'ts:address',
           originsInnerNode,
@@ -814,10 +805,9 @@ export class TokenCard {
         );
         let addressNode;
         res = [];
-
-        // tslint:disable-next-line:no-conditional-assignment
         while (
           attributeDataNodes &&
+          // tslint:disable-next-line:no-conditional-assignment
           (addressNode = attributeDataNodes.iterateNext())
         ) {
           if (addressNode) {
@@ -833,11 +823,11 @@ export class TokenCard {
             }
           }
         }
-        this.debug > 1 && console.log(JSON.stringify(res));
+        if (this.debug > 1) {console.log(JSON.stringify(res)); }
         break;
 
       case 'ts:attribute':
-        this.debug > 1 && console.log(`its ts:attribute with name : ${name}`);
+        if (this.debug > 1) { console.log(`its ts:attribute with name : ${name}`); }
         const ref = originsInnerNode.getAttribute('ref');
         const key = this.props[ref];
         if (typeof key === 'string') {
@@ -859,12 +849,11 @@ export class TokenCard {
             res = valNode.innerHTML;
           }
         }
-        this.debug > 1 && console.log(JSON.stringify(res));
+        if (this.debug > 1) {console.log(JSON.stringify(res)); }
         break;
 
       case 'ethereum:call':
-        this.debug > 1 && console.log(`its ethereum call start for ${name}`);
-        this.debug > 2 && console.log(originsInnerNode);
+        if (this.debug > 1) {console.log(`its ethereum call start for ${name}`, originsInnerNode); }
         const { params, ethCallAttributtes } = getEthereumCallParams({
           userAddress: this.ethersData.userAddress,
           ethereumNode: originsInnerNode,
@@ -888,26 +877,25 @@ export class TokenCard {
             const [attrError, contractAddressFromAttribute] = await to(
               this.getAttributeValue(contractName)
             );
-            if (attrError) {
-              this.debug && console.log('getAttributeValue error');
+            if (attrError && this.debug) {
+              console.log('getAttributeValue error');
             }
 
             contract = { contractAddress: contractAddressFromAttribute };
           }
         }
 
-        this.debug > 2 && console.log('getEthereumCallParams params');
-        this.debug > 2 && console.log(params);
-        this.debug > 2 && console.log('getEthereumCallParams contract');
-        this.debug > 2 && console.log(contract);
-        this.debug > 2 && console.log('ethCallAttributtes');
-        this.debug > 2 && console.log(ethCallAttributtes);
-
+        if (this.debug > 2) {
+          console.log('getEthereumCallParams params', params);
+          console.log('getEthereumCallParams contract', contract);
+          console.log('ethCallAttributtes', ethCallAttributtes);
+        }
         if (!contract.contractAddress) {
-          this.debug &&
+          if (this.debug) {
             console.log(
-              `ethContract and contractAddress required for {Address=${this.ethersData.userAddress}, chainID = ${this.ethersData.chainID}, tokenName = ${this.tokenName}. Check logs for details`
+                `ethContract and contractAddress required for {Address=${this.ethersData.userAddress}, chainID = ${this.ethersData.chainID}, tokenName = ${this.tokenName}. Check logs for details`
             );
+          }
 
           res = null;
           break;
@@ -935,15 +923,12 @@ export class TokenCard {
 
         this.jsons[ethCallAttributtes.contract] = abi;
 
-        this.debug > 2 &&
-          console.log(
-            `ethFunction = ${ethCallAttributtes.function}; name = ${name}; params = `
-          );
-        this.debug > 2 && console.log(params);
-        this.debug > 2 && console.log(contract);
-        this.debug > 2 && console.log(ethCallAttributtes);
-        this.debug > 2 && console.log('abi', abi);
-
+        if (this.debug > 2) {
+          console.log(`ethFunction = ${ethCallAttributtes.function}; name = ${name}; params = `, params);
+          console.log(contract);
+          console.log(ethCallAttributtes);
+          console.log('abi', abi);
+        }
         const ethersContract = new ethers.Contract(
           contract.contractAddress,
           abi,
@@ -956,20 +941,19 @@ export class TokenCard {
         if (error) {
           console.error(`error while try to get attribute "${name}" value`);
         } else {
-          this.debug > 1 && console.log(`correct output for "${name}":`, output);
+          if (this.debug > 1) {console.log(`correct output for "${name}":`, output); }
           if (ethCallAttributtes.select && output && output.length ) {
             res = output[ethCallAttributtes.select];
           } else {
             res = output;
           }
-          this.debug > 1 && console.log(`use next value for "${name}":`, res);
+          if (this.debug > 1) { console.log(`use next value for "${name}":`, res); }
         }
 
         break;
       // case "ethereum:call":
       default:
-        this.debug &&
-          console.log(`skipped, type "${dataNodeName}" not described. `);
+        if (this.debug) { console.log(`skipped, type "${dataNodeName}" not described. `); }
     }
 
     return res;
@@ -990,8 +974,7 @@ export class TokenCard {
   }
 
   returnCardFromIframe(props, listener$, iframe, iframeId): void {
-    this.debug > 2 && console.log('props, listener, iframe');
-    this.debug > 2 && console.log(props);
+    if (this.debug > 2) { console.log('props = ', props); }
 
     const propsForRender = {};
     for (const [name, value] of Object.entries(props)) {
@@ -1024,8 +1007,7 @@ export class TokenCard {
       ? iframe.contentDocument
       : iframe.contentWindow.document;
     const main = iframeDoc.querySelector('body .main');
-    this.debug > 2 && console.log('main iframe div');
-    this.debug > 2 && console.log(main);
+    if (this.debug > 2) {console.log('main iframe div = ', main); }
     props.card = main.innerHTML;
     listener$.next(props as TokenProps);
   }
@@ -1081,11 +1063,11 @@ export class TokenCard {
         );
 
         if (!contractAddress) {
-          this.debug &&
+          if (this.debug) {
             console.log(
-              `Contract address required. chainID = ${this.ethersData.chainID}, lets try to use prop[contract] value.`
+                `Contract address required. chainID = ${this.ethersData.chainID}, lets try to use prop[contract] value.`
             );
-          // throw new Error('Contract address required. chainID = '+this.ethersData.chainID);
+          }
           contractAddress = props[ethContract];
         }
 
@@ -1120,11 +1102,10 @@ export class TokenCard {
         for (const i in params) {
           paramsArray.push(params[i]);
         }
-        this.debug > 2 && console.log('eventType');
-        this.debug > 2 && console.log(eventType);
-
-        this.debug > 2 && console.log('params');
-        this.debug > 2 && console.log(params);
+        if (this.debug > 2) {
+          console.log('eventType', eventType);
+          console.log('params', params);
+        }
 
         const [error, abi] = await to(
           getJSONAbi(
@@ -1151,8 +1132,7 @@ export class TokenCard {
 
         const filter = contract.filters[eventType].apply(null, paramsArray);
 
-        this.debug > 2 && console.log('filter');
-        this.debug > 2 && console.log(filter);
+        if (this.debug > 2) {console.log('filter', filter); }
 
         if (returnHistory) {
           const [contractError, filterResult] = await to(
@@ -1165,16 +1145,14 @@ export class TokenCard {
             );
           }
 
-          this.debug > 1 &&
-            console.log(
-              `filterResult for ${eventType}, where name=${cardName} and type=${cardType};`
-            );
-          this.debug > 1 && console.log(filterResult);
+          if (this.debug > 1) {
+            console.log(`filterResult for ${eventType}, where name=${cardName} and type=${cardType};`, filterResult);
+          }
 
           if (filterResult && filterResult.length) {
             filterResult.forEach((res) => {
               if (res && res.args) {
-                this.debug > 2 && console.log('event return: ', res);
+                if (this.debug > 2) { console.log('event return: ', res); }
                 const activityProps = filterResultConverter(res.args, props);
                 activityProps.blockNumber = res.blockNumber;
                 res.getTransaction().then((transaction) => {
@@ -1183,10 +1161,11 @@ export class TokenCard {
                     .getBlock(res.blockNumber)
                     .then((block) => {
                       activityProps.timeStamp = block.timestamp;
-                      this.debug > 2 &&
+                      if (this.debug > 2) {
                         console.log(
-                          `render props: ${JSON.stringify(activityProps)}`
+                            `render props: ${JSON.stringify(activityProps)}`
                         );
+                      }
                       this.render({
                         props: activityProps,
                         cardName,
@@ -1203,10 +1182,10 @@ export class TokenCard {
 
         if (listenNewEvents) {
           contract.on(filter, (...args) => {
-            this.debug > 2 &&
-            console.log(
-                `Listen Result for ${eventType}, where name=${cardName} and type=${cardType}; args = `, args);
-
+            if (this.debug > 2) {
+              console.log(
+                  `Listen Result for ${eventType}, where name=${cardName} and type=${cardType}; args = `, args);
+            }
             if (args.length) {
               const eventblockData = args[args.length - 1];
               const activityProps = Object.assign(props, eventblockData.args);
@@ -1215,10 +1194,11 @@ export class TokenCard {
                   .getBlock(eventblockData.blockNumber)
                   .then((block) => {
                     activityProps.timeStamp = block.timestamp;
-                    this.debug > 2 &&
-                    console.log(
-                        `render props: ${JSON.stringify(activityProps)}`
-                    );
+                    if (this.debug > 2) {
+                      console.log(
+                          `render props: ${JSON.stringify(activityProps)}`
+                      );
+                    }
                     this.render({
                       props: activityProps,
                       cardName,
