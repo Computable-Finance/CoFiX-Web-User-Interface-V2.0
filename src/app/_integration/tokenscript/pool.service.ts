@@ -58,7 +58,7 @@ export class PoolService {
                 'navPerShare'
               ],
               MiningPoolShare: ['cofiMiningRate'],
-              booky: ['ownerBalance'],
+              // booky: ['ownerBalance'],
               // !!! I cant see this property in the token file
               // DividendPoolShare: ['ethTotalClaimed']
             }
