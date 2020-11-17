@@ -15,7 +15,7 @@ import {
 } from '../types';
 import { TokenService } from './base/token.service';
 import { TokenProps } from './base/types';
-import {ethers} from 'ethers';
+import { ethers } from 'ethers';
 
 @Injectable({
   providedIn: 'root',
@@ -43,28 +43,27 @@ export class PoolService {
     }
 
     const provider = new ethers.providers.Web3Provider(window.ethereum);
-    provider.on('block', block => {
+    provider.on('block', (block) => {
       if (this.timerID) {
         clearTimeout(this.timerID);
       }
       this.timerID = setTimeout(() => {
         this.timerID = null;
-        this.token.updateSomeProps(
-            {
-              LiquidityPoolShare: [
-                'kInfoK',
-                'kInfoTheta',
-                'referenceExchangeRateEthAmount',
-                'navPerShare'
-              ],
-              MiningPoolShare: ['cofiMiningRate'],
-              // booky: ['ownerBalance'],
-              // !!! I cant see this property in the token file
-              // DividendPoolShare: ['ethTotalClaimed']
-            }
-        );
+        this.token.updateSomeProps({
+          LiquidityPoolShare: [
+            'kInfoK',
+            'kInfoTheta',
+            'referenceExchangeRateEthAmount',
+            'referenceExchangeRateErc20Amount',
+            'navPerShare',
+          ],
+          MiningPoolShare: ['cofiMiningRate'],
+          // booky: ['ownerBalance'],
+          // !!! I cant see this property in the token file
+          // DividendPoolShare: ['ethTotalClaimed']
+        });
       }, 50);
-    } );
+    });
 
     return this.token.negotiateToken().pipe(
       map((x) => {
