@@ -149,6 +149,7 @@ export class CofiXService {
               );
             }
           });
+          this.updateMarketDetails();
         }
 
         if (val.MiningPoolShare) {
