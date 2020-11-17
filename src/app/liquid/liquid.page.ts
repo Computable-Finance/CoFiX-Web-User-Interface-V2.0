@@ -14,16 +14,15 @@ import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
 import { ShareStateQuery } from '../common/state/share.query';
 import { ShareStateService } from '../common/state/share.service';
 import { ShareState } from '../common/state/share.store';
+import { CoinContent } from '../common/types/CoinContent';
 import { Utils } from '../common/utils';
 import { CofiXService } from '../service/cofix.service';
-import { CoinContent } from '../common/types/CoinContent';
+import { BalancesQuery } from '../state/balance/balance.query';
+import { MarketDetailsQuery } from '../state/market/market.query';
 import { AddLiquidPage } from './add/add-liquid.page';
 import { TokenMiningPage } from './mining/mining.page';
 import { RedeemLiquidPage } from './redeem/redeem-liquid.page';
 import { WarningDetailPage } from './warning/warning-detail/warning-detail.page';
-import { MarketDetailsQuery } from '../state/market/market.query';
-import { BalancesQuery } from '../state/balance/balance.query';
-import { ConnectPage } from '../common/components/connect-modal/connect.page';
 
 @Component({
   selector: 'app-liquid',

@@ -1,10 +1,13 @@
 <div class="card-title">
-    {{cardTitle | translate}} 
-    <img class="alert-icon title-alert" *ngIf="alertTitle"
-        src="./assets/images/question.png" 
-        tooltip  event="hover" tipsContent="{{alertContent}}" 
-        tipsTitle="{{alertTitle}}"/>
-    <div *ngIf="cardSubTitle" class="sub-title">
-        {{cardSubTitle | translate}}
-    </div>
+  {{cardTitle | translate}}
+  <img
+    class="alert-icon title-alert"
+    *ngIf="alertTitle"
+    src="./assets/images/question.png"
+    tooltip
+    event="hover"
+    tipsContent="{{alertContent}}"
+    tipsTitle="{{alertTitle}}"
+  />
+  <div *ngIf="cardSubTitle" class="sub-title">{{cardSubTitle | translate}}</div>
 </div>

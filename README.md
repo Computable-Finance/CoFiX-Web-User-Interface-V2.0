@@ -35,6 +35,10 @@ CoFix 相关合约地址常量：src/app/common/constants.ts 。
 1. `npm i`，安装依赖
 1. `ionic serve`，执行。在浏览器中访问 http://localhost:8100
 
+运行测试：
+
+`ng test`
+
 部署打包：
 
 `ng build --prod --aot`

@@ -1,23 +1,18 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-
-export interface BannerContent {
-  title: string;
-  descriptions: string[];
-  more: { text: string; url: string };
-}
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-select-arrow',
   templateUrl: './select-arrow.page.html',
   styleUrls: ['./select-arrow.page.scss'],
 })
-export class SelectArrowPage implements OnInit {
+export class SelectArrowPage {
   @Input() isDown: boolean;
-  @Output() onArrowChange = new EventEmitter<any>();
+  @Output() arrowChanged = new EventEmitter<any>();
+
   constructor() {}
-  ngOnInit() {}
-  select() {
+
+  changeArrow() {
     this.isDown = !this.isDown;
-    this.onArrowChange.emit({ isDown: this.isDown });
+    this.arrowChanged.emit({ isDown: this.isDown });
   }
 }

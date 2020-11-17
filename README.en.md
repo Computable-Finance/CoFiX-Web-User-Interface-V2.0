@@ -35,6 +35,10 @@ Basic Steps
 1. `npm i`, install dependencies
 1. `ionic serve`, run it locally. Visit http://localhost:8100 in your browser.
 
+Run test:
+
+`ng test`
+
 Build for deployment:
 
 `ng build --prod --aot`

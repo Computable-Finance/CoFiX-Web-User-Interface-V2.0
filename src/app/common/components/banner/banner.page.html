@@ -6,18 +6,22 @@
           <h2 class="title">{{bannerConent.title | translate}}</h2>
         </ion-col>
         <ion-col size="1" class="ion-text-right">
-          <app-select-arrow [isDown]="isShowDetail" (onArrowChange)="showDetailClick($event)"></app-select-arrow>
+          <app-select-arrow
+            [isDown]="isShowDetail"
+            (arrowChanged)="showDetailClick($event)"
+          ></app-select-arrow>
         </ion-col>
       </ion-row>
     </ion-grid>
-    
+
     <div *ngIf="isShowDetail" class="detail-content">
       <ng-container *ngFor="let desc of bannerConent.descriptions;let i=index">
         <div [innerHTML]="desc | translate | marked" class="desc"></div>
       </ng-container>
       <div class="more">
         {{'still_complicated' | translate}}
-        <a (click)="goto(bannerConent.more.url)">{{bannerConent.more.text | translate}}
+        <a (click)="goto(bannerConent.more.url)"
+          >{{bannerConent.more.text | translate}}
         </a>
       </div>
     </div>

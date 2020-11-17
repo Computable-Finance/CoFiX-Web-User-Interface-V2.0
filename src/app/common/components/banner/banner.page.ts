@@ -13,14 +13,18 @@ export interface BannerContent {
 })
 export class BannerPage implements OnInit {
   @Input() bannerConent: BannerContent;
-  isShowDetail: boolean = false;
+
+  isShowDetail = false;
+
   constructor() {}
+
   ngOnInit() {}
-  goto(link) {
+
+  goto(link: string) {
     window.open(link);
   }
+
   showDetailClick(event) {
-    console.log(event);
     this.isShowDetail = event.isDown;
   }
 }
