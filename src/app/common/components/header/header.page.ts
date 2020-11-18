@@ -6,11 +6,11 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { ShareStateService } from '../../state/share.service';
 import { EventBusService } from 'src/app/service/eventbus.service';
 import { Router } from '@angular/router';
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { SettingsService } from 'src/app/state/setting/settings.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.page.html',
@@ -40,16 +40,16 @@ export class HeaderPage implements OnInit, OnDestroy {
   ];
   headerItems: any;
   constructor(
-    private shareStateService: ShareStateService,
+    private settingsService: SettingsService,
     private eventbusService: EventBusService,
     private router: Router
   ) {
     this.eventbusService.on('accountsChanged', (account) => {
-      this.shareStateService.reset();
+      this.settingsService.reset();
       location.reload();
     });
     this.eventbusService.on('chainChanged', (chainId) => {
-      this.shareStateService.reset();
+      this.settingsService.reset();
       location.reload();
     });
   }
@@ -90,7 +90,7 @@ export class HeaderPage implements OnInit, OnDestroy {
   }
 
   selectTab(tabId) {
-    this.shareStateService.updateActiveTab(tabId);
+    this.settingsService.updateActiveTab(tabId);
     this.router.navigateByUrl(tabId);
   }
   onConnected() {

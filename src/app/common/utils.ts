@@ -3,19 +3,19 @@ import { PopoverController, ToastController } from '@ionic/angular';
 import { PermissionsService } from 'src/app/state/permission/permission.service';
 
 import { CofiXService } from '../service/cofix.service';
+import { SettingsService } from '../state/setting/settings.service';
 import { TxService } from '../state/tx/tx.service';
 import { ConnectPage } from './components/connect-modal/connect.page';
 import { TxConfirmPage } from './components/transaction/tx-confirm/tx-confirm.page';
 import { TxStatusPage } from './components/transaction/tx-status/tx-status.page';
 import { BalanceTruncatePipe } from './pipes/balance.pipe';
-import { ShareStateService } from './state/share.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Utils {
   constructor(
-    private shareStateService: ShareStateService,
+    private settingsService: SettingsService,
     private balanceTruncatePipe: BalanceTruncatePipe,
     private cofixService: CofiXService,
     public toastController: ToastController,
@@ -40,10 +40,6 @@ export class Utils {
   async getPairAttended() {
     const usdt = this.cofixService.getCurrentContractAddressList().USDT;
     const hbtc = this.cofixService.getCurrentContractAddressList().HBTC;
-    this.shareStateService.updatePairAttended({
-      USDT: await this.cofixService.pairAttended(usdt),
-      HBTC: await this.cofixService.pairAttended(hbtc),
-    });
   }
   async show(msg: string, position: any) {
     const toast = await this.toastController.create({

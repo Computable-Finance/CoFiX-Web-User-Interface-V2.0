@@ -4,12 +4,11 @@ import { fromEvent } from 'rxjs/internal/observable/fromEvent';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 import { BannerContent } from '../common/components/banner/banner.page';
 import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
-import { ShareStateService } from '../common/state/share.service';
-import { ShareState } from '../common/state/share.store';
 import { Utils } from '../common/utils';
 import { CofiXService } from '../service/cofix.service';
 import { BalancesQuery } from '../state/balance/balance.query';
 import { MarketDetailsQuery } from '../state/market/market.query';
+import { SettingsService } from '../state/setting/settings.service';
 import { TxService } from '../state/tx/tx.service';
 
 @Component({
@@ -21,7 +20,7 @@ export class CofiPage implements OnInit, OnDestroy {
   constructor(
     public cofixService: CofiXService,
     private balanceTruncatePipe: BalanceTruncatePipe,
-    private shareStateService: ShareStateService,
+    private settingsService: SettingsService,
     private txService: TxService,
     private utils: Utils,
     private balancesQuery: BalancesQuery,
@@ -45,7 +44,6 @@ export class CofiPage implements OnInit, OnDestroy {
   earnedRate: any;
   todoValue: string;
   hadValue: string;
-  shareState: ShareState;
   canReceive = false;
   isLoading = { sq: false, qc: false };
   balance = '';
@@ -129,7 +127,7 @@ export class CofiPage implements OnInit, OnDestroy {
   }
 
   gotoLiquid() {
-    this.shareStateService.updateActiveTab('liquid');
+    this.settingsService.updateActiveTab('liquid');
   }
 
   async getCoFiTokenAndRewards() {

@@ -13,8 +13,6 @@ import { Subscription } from 'rxjs';
 import { fromEvent } from 'rxjs/internal/observable/fromEvent';
 import { debounceTime } from 'rxjs/operators';
 import { CoinInputPage } from 'src/app/common/components/coin-input/coin-input.page';
-import { ShareStateQuery } from 'src/app/common/state/share.query';
-import { ShareStateService } from 'src/app/common/state/share.service';
 import { Utils } from 'src/app/common/utils';
 import { CofiXService } from 'src/app/service/cofix.service';
 import { TxService } from 'src/app/state/tx/tx.service';
@@ -23,6 +21,8 @@ import { WarningDetailPage } from '../warning/warning-detail/warning-detail.page
 import { MarketDetailsQuery } from 'src/app/state/market/market.query';
 import { BalancesQuery } from 'src/app/state/balance/balance.query';
 import { BalanceTruncatePipe } from 'src/app/common/pipes/balance.pipe';
+import { SettingsService } from 'src/app/state/setting/settings.service';
+import { SettingsQuery } from 'src/app/state/setting/settings.query';
 
 const BNJS = require('bignumber.js');
 @Component({
@@ -76,10 +76,10 @@ export class AddLiquidPage implements OnInit, OnDestroy {
 
   constructor(
     public cofixService: CofiXService,
-    public shareStateQuery: ShareStateQuery,
+    public settingsQuery: SettingsQuery,
     private utils: Utils,
     private modalController: ModalController,
-    private shareStateService: ShareStateService,
+    private settingsService: SettingsService,
     private txService: TxService,
     private balancesQuery: BalancesQuery,
     private marketDetailsQuery: MarketDetailsQuery,
@@ -125,7 +125,7 @@ export class AddLiquidPage implements OnInit, OnDestroy {
   }
 
   async showWarning() {
-    const knownRiskForAdd = this.shareStateQuery.getValue().knownRiskForAdd;
+    const knownRiskForAdd = this.settingsQuery.knownRiskForAdd();
     if (!knownRiskForAdd) {
       const modal = await this.modalController.create({
         component: WarningDetailPage,
@@ -138,7 +138,7 @@ export class AddLiquidPage implements OnInit, OnDestroy {
       await modal.present();
       modal.onDidDismiss().then((data: any) => {
         if (data.data.knownRisk) {
-          this.shareStateService.updateKnownRiskForAdd(data.data.knownRisk);
+          this.settingsService.updateKnownRiskForAdd(data.data.knownRisk);
         }
       });
     }

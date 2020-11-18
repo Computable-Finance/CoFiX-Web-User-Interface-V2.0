@@ -15,4 +15,16 @@ export class SettingsQuery extends Query<SettingsModel> {
   lang$() {
     return this.select('lang');
   }
+
+  activeTab() {
+    return this.store.getValue().activeTab;
+  }
+
+  knownRisk() {
+    return this.store.getValue().knownRisk;
+  }
+
+  knownRiskForAdd() {
+    return this.store.getValue().knownRiskForAdd;
+  }
 }

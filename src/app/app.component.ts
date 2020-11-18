@@ -4,10 +4,10 @@ import { Platform } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 
 import { DB_VERSION } from './common/constants';
-import { ShareStateQuery } from './common/state/share.query';
 import { CofiXService } from './service/cofix.service';
 import { MetadataQuery } from './state/metadata/metadata.query';
 import { MetadataService } from './state/metadata/metadata.service';
+import { SettingsQuery } from './state/setting/settings.query';
 
 type State = { lang: string };
 
@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
   constructor(
     private platform: Platform,
     private translate: TranslateService,
-    public shareStateQuery: ShareStateQuery,
+    public settingsQuery: SettingsQuery,
     private cofixService: CofiXService,
     private router: Router,
     private metadataQuery: MetadataQuery,
@@ -54,7 +54,7 @@ export class AppComponent implements OnInit {
   }
 
   initTranslate() {
-    this.translate.setDefaultLang(this.shareStateQuery.getValue().lang);
+    this.translate.setDefaultLang(this.settingsQuery.lang());
   }
 
   async initConnectIfEnabled() {
@@ -74,6 +74,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.router.navigateByUrl(this.shareStateQuery.getValue().activeTab);
+    this.router.navigateByUrl(this.settingsQuery.activeTab());
   }
 }

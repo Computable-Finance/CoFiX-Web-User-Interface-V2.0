@@ -1,13 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Store, StoreConfig } from '@datorama/akita';
+import { environment } from 'src/environments/environment';
 
 export interface SettingsModel {
   lang: string;
+  activeTab: string;
+  knownRisk: boolean;
+  knownRiskForAdd: boolean;
 }
 
-export function createInitialState(): SettingsModel {
+export function createInitialState(activeTab): SettingsModel {
   return {
-    lang: 'en',
+    lang: environment.lang,
+    activeTab,
+    knownRisk: false,
+    knownRiskForAdd: false,
   };
 }
 
@@ -15,6 +22,6 @@ export function createInitialState(): SettingsModel {
 @StoreConfig({ name: 'settings' })
 export class SettingsStore extends Store<SettingsModel> {
   constructor() {
-    super(createInitialState());
+    super(createInitialState('swap'));
   }
 }

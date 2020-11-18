@@ -9,15 +9,14 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BalanceTruncatePipe } from './common/pipes/balance.pipe';
-import { ShareStateQuery } from './common/state/share.query';
-import { ShareStateService } from './common/state/share.service';
 import { Utils } from './common/utils';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SettingsService } from './state/setting/settings.service';
+import { SettingsQuery } from './state/setting/settings.query';
 
 @NgModule({
   declarations: [AppComponent],
@@ -42,8 +41,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     StatusBar,
     SplashScreen,
     BalanceTruncatePipe,
-    ShareStateService,
-    ShareStateQuery,
+    SettingsService,
+    SettingsQuery,
     Utils,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],

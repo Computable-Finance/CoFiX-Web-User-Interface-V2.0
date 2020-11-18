@@ -10,10 +10,10 @@ import {
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { BalanceTruncatePipe } from 'src/app/common/pipes/balance.pipe';
-import { ShareStateService } from 'src/app/common/state/share.service';
 import { Utils } from 'src/app/common/utils';
 import { CofiXService } from 'src/app/service/cofix.service';
 import { BalancesQuery } from 'src/app/state/balance/balance.query';
+import { SettingsService } from 'src/app/state/setting/settings.service';
 import { TxService } from 'src/app/state/tx/tx.service';
 
 import { ProfitPage } from '../profit/profit.page';
@@ -28,7 +28,7 @@ export class TokenMiningPage implements OnInit, OnDestroy {
   constructor(
     private cofixService: CofiXService,
     private balanceTruncatePipe: BalanceTruncatePipe,
-    private shareStateService: ShareStateService,
+    private settingsService: SettingsService,
     private utils: Utils,
     private txService: TxService,
     private balancesQuery: BalancesQuery
@@ -103,7 +103,7 @@ export class TokenMiningPage implements OnInit, OnDestroy {
   }
 
   gotoLiquid() {
-    this.shareStateService.updateActiveTab('liquid');
+    this.settingsService.updateActiveTab('liquid');
   }
 
   async getCoFiTokenAndRewards() {

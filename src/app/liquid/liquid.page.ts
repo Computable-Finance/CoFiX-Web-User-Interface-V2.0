@@ -11,14 +11,13 @@ import { debounceTime } from 'rxjs/operators';
 
 import { BannerContent } from '../common/components/banner/banner.page';
 import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
-import { ShareStateQuery } from '../common/state/share.query';
-import { ShareStateService } from '../common/state/share.service';
-import { ShareState } from '../common/state/share.store';
 import { CoinContent } from '../common/types/CoinContent';
 import { Utils } from '../common/utils';
 import { CofiXService } from '../service/cofix.service';
 import { BalancesQuery } from '../state/balance/balance.query';
 import { MarketDetailsQuery } from '../state/market/market.query';
+import { SettingsQuery } from '../state/setting/settings.query';
+import { SettingsService } from '../state/setting/settings.service';
 import { AddLiquidPage } from './add/add-liquid.page';
 import { TokenMiningPage } from './mining/mining.page';
 import { RedeemLiquidPage } from './redeem/redeem-liquid.page';
@@ -33,10 +32,10 @@ export class LiquidPage implements OnInit, OnDestroy {
   constructor(
     public cofixService: CofiXService,
     private balanceTruncatePipe: BalanceTruncatePipe,
-    public shareStateQuery: ShareStateQuery,
+    public settingsQuery: SettingsQuery,
     private utils: Utils,
     private modalController: ModalController,
-    private shareStateService: ShareStateService,
+    private settingsService: SettingsService,
     private rd: Renderer2,
     private balancesQuery: BalancesQuery,
     private marketDetailsQuery: MarketDetailsQuery,
@@ -115,7 +114,6 @@ export class LiquidPage implements OnInit, OnDestroy {
 
   ETHAmountForRemoveLiquidity = { USDT: '', HBTC: '' };
   tokenAmountForRemoveLiquidity = { USDT: '', HBTC: '' };
-  shareState: ShareState;
   showAddModel = false;
   showLiquidInfo = false;
   isRotate = { USDT: false, HBTC: false };
@@ -196,7 +194,7 @@ export class LiquidPage implements OnInit, OnDestroy {
   }
 
   async showWarning() {
-    const knownRisk = this.shareStateQuery.getValue().knownRisk;
+    const knownRisk = this.settingsQuery.knownRisk();
     console.log(knownRisk);
     if (!knownRisk) {
       const modal = await this.modalController.create({
@@ -210,7 +208,7 @@ export class LiquidPage implements OnInit, OnDestroy {
       await modal.present();
       modal.onDidDismiss().then((data: any) => {
         if (data.data.knownRisk) {
-          this.shareStateService.updateKnownRisk(data.data.knownRisk);
+          this.settingsService.updateKnownRisk(data.data.knownRisk);
         }
       });
     }

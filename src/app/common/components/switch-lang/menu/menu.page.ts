@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { PopoverController } from '@ionic/angular';
-import { ShareStateQuery } from 'src/app/common/state/share.query';
-import { ShareStateService } from 'src/app/common/state/share.service';
 import { FOOTER_ITEMS, LANG_ITEMS } from 'src/app/common/constants';
 import { Router } from '@angular/router';
+import { SettingsService } from 'src/app/state/setting/settings.service';
+import { SettingsQuery } from 'src/app/state/setting/settings.query';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.page.html',
@@ -16,8 +16,8 @@ export class MenuPage implements OnInit {
   langItems: any;
   constructor(
     private translate: TranslateService,
-    public shareStateQuery: ShareStateQuery,
-    private shareStateService: ShareStateService,
+    public settingsQuery: SettingsQuery,
+    private settingsService: SettingsService,
     private popoverController: PopoverController,
     private router: Router
   ) {}
@@ -29,7 +29,7 @@ export class MenuPage implements OnInit {
 
   changeLang(lang) {
     this.translate.use(lang);
-    this.shareStateService.updateLang(lang);
+    this.settingsService.updateLang(lang);
 
     if (this.style === 'pop') {
       this.popoverController?.dismiss();
@@ -41,6 +41,6 @@ export class MenuPage implements OnInit {
     window.open(link);
   }
   isSelect(lang) {
-    return this.shareStateQuery.getValue().lang === lang;
+    return this.settingsQuery.lang() === lang;
   }
 }

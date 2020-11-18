@@ -15,7 +15,6 @@ import {
   ETHER_DECIMALS,
   getContractAddressListByNetwork,
 } from '../common/constants';
-import { ShareStateService } from '../common/state/share.service';
 import { ethersOf, unitsOf } from '../common/uitils/bignumber-utils';
 import { BalancesQuery } from '../state/balance/balance.query';
 import { BalancesService } from '../state/balance/balance.service';
@@ -34,6 +33,7 @@ import {
   getOracleContract,
 } from './confix.abi';
 import { EventBusService } from './eventbus.service';
+import { SettingsService } from '../state/setting/settings.service';
 
 declare let window: any;
 
@@ -60,7 +60,7 @@ export class CofiXService {
   private integrationSubscription: Subscription;
 
   constructor(
-    private shareStateService: ShareStateService,
+    private settingsService: SettingsService,
     private eventbusService: EventBusService,
     private tokenInfoService: TokenInfoService,
     private tokenInfoQuery: TokensInfoQuery,
@@ -701,7 +701,7 @@ export class CofiXService {
 
   private setCurrentAccount(accounts) {
     if (accounts.length === 0) {
-      this.shareStateService.reset();
+      this.settingsService.reset();
       this.reset();
       this.eventbusService.emit({ name: 'disconnected_from_metamask' });
     } else if (accounts[0] !== this.currentAccount) {
