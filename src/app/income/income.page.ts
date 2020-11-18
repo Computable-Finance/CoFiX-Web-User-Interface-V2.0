@@ -2,8 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { debounceTime } from 'rxjs/operators';
-
-import { BannerContent } from '../common/components/banner/banner.page';
+import { TipPannelContent } from '../common/components/tip-pannel/tip-pannel';
 import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
 import { Utils } from '../common/utils';
 import { CofiXService } from '../service/cofix.service';
@@ -17,7 +16,7 @@ const BNJS = require('bignumber.js');
   styleUrls: ['./income.page.scss'],
 })
 export class IncomePage implements OnInit, OnDestroy {
-  public incomeContent: BannerContent = {
+  public incomeContent: TipPannelContent = {
     title: 'help_tips',
     descriptions: ['income_desc1', 'income_desc2', 'income_desc3'],
     more: {

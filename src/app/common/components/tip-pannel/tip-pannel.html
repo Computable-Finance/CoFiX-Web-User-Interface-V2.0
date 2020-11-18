@@ -1,27 +1,29 @@
-<div class="banner-content">
+<div class="tippannel-content">
   <div class="centent">
     <ion-grid class="ion-no-padding title-content">
       <ion-row class="ion-align-items-center ion-align-self-center">
         <ion-col size="11">
-          <h2 class="title">{{bannerConent.title | translate}}</h2>
+          <h2 class="title">{{tipPannelContent.title | translate}}</h2>
         </ion-col>
         <ion-col size="1" class="ion-text-right">
-          <app-select-arrow
+          <app-arrow-button
             [isDown]="isShowDetail"
             (arrowChanged)="showDetailClick($event)"
-          ></app-select-arrow>
+          ></app-arrow-button>
         </ion-col>
       </ion-row>
     </ion-grid>
 
     <div *ngIf="isShowDetail" class="detail-content">
-      <ng-container *ngFor="let desc of bannerConent.descriptions;let i=index">
+      <ng-container
+        *ngFor="let desc of tipPannelContent.descriptions;let i=index"
+      >
         <div [innerHTML]="desc | translate | marked" class="desc"></div>
       </ng-container>
       <div class="more">
         {{'still_complicated' | translate}}
-        <a (click)="goto(bannerConent.more.url)"
-          >{{bannerConent.more.text | translate}}
+        <a (click)="goto(tipPannelContent.more.url)"
+          >{{tipPannelContent.more.text | translate}}
         </a>
       </div>
     </div>

@@ -2,24 +2,24 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslatePipe } from '@ngx-translate/core';
 import { MockPipe } from 'ng-mocks';
 
-import { BannerPage } from './banner.page';
+import { TipPannel } from './tip-pannel';
 
 describe('TipPannel', () => {
-  let component: BannerPage;
+  let component: TipPannel;
   let element: HTMLElement;
-  let fixture: ComponentFixture<BannerPage>;
+  let fixture: ComponentFixture<TipPannel>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [],
       providers: [],
-      declarations: [BannerPage, MockPipe(TranslatePipe)],
+      declarations: [TipPannel, MockPipe(TranslatePipe)],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(BannerPage);
+    fixture = TestBed.createComponent(TipPannel);
     component = fixture.componentInstance;
     element = fixture.nativeElement;
-    component.bannerConent = {
+    component.tipPannelContent = {
       title: '',
       descriptions: [],
       more: { text: '', url: '' },

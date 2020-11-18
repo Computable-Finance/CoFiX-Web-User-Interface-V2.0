@@ -1,16 +1,16 @@
 @media only screen and (max-width: 510px) {
-  .banner {
+  .tippannel {
     width: 95% !important;
     padding-bottom: 15px;
   }
 }
 
 @media only screen and (max-width: 470px) {
-  .banner-content {
+  .tippannel-content {
     width: 90% !important;
   }
 }
-.banner-content {
+.tippannel-content {
   width: 510px;
   margin: 0 auto;
   z-index: 9;
@@ -18,7 +18,7 @@
   border-radius: 16px;
   background-color: var(--lightblue);
 }
-.banner-content .centent {
+.tippannel-content .centent {
   padding: 0px 24px;
 }
 .centent .title {

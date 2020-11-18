@@ -143,6 +143,9 @@
       </div>
     </ion-card>
   </div>
-  <app-banner [bannerConent]="cofixContent" class="desc_line"></app-banner>
+  <app-tip-pannel
+    [tipPannelContent]="cofixContent"
+    class="desc_line"
+  ></app-tip-pannel>
 </ion-content>
 <app-footer (onRefresh)="refreshPage()"></app-footer>

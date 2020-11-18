@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-select-arrow',
-  templateUrl: './select-arrow.page.html',
-  styleUrls: ['./select-arrow.page.scss'],
+  selector: 'app-arrow-button',
+  templateUrl: './arrow-button.html',
+  styleUrls: ['./arrow-button.scss'],
 })
-export class SelectArrowPage {
+export class ArrowButton {
   @Input() isDown: boolean;
   @Output() arrowChanged = new EventEmitter<any>();
 

@@ -8,8 +8,7 @@ import {
 import { ModalController, PopoverController } from '@ionic/angular';
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-
-import { BannerContent } from '../common/components/banner/banner.page';
+import { TipPannelContent } from '../common/components/tip-pannel/tip-pannel';
 import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
 import { CoinContent } from '../common/types/CoinContent';
 import { Utils } from '../common/utils';
@@ -50,7 +49,7 @@ export class LiquidPage implements OnInit, OnDestroy {
   @ViewChild(TokenMiningPage, { static: false })
   tokenDepositView: TokenMiningPage;
 
-  public liquidContent: BannerContent = {
+  public liquidContent: TipPannelContent = {
     title: 'liquid_title',
     descriptions: ['liquid_desc1', 'liquid_desc2', 'liquid_desc3'],
     more: {
@@ -59,7 +58,7 @@ export class LiquidPage implements OnInit, OnDestroy {
     },
   };
 
-  withdrawContent: BannerContent = {
+  withdrawContent: TipPannelContent = {
     title: 'help_tips',
     descriptions: [
       'withdraw_help_desc1',
@@ -72,7 +71,7 @@ export class LiquidPage implements OnInit, OnDestroy {
     },
   };
 
-  lpwithdrawContent: BannerContent = {
+  lpwithdrawContent: TipPannelContent = {
     title: 'help_tips',
     descriptions: [
       'liquidpool_withdraw_help_desc1',
@@ -85,7 +84,7 @@ export class LiquidPage implements OnInit, OnDestroy {
     },
   };
 
-  liquidContent_origin: BannerContent;
+  liquidContent_origin: TipPannelContent;
 
   fromCoin: CoinContent = {
     id: 'ETH',

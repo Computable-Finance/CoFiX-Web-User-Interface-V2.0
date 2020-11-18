@@ -198,7 +198,10 @@
           </div>
         </div>
       </ion-card>
-      <app-banner [bannerConent]="incomeContent" class="desc_line"></app-banner>
+      <app-tip-pannel
+        [tipPannelContent]="incomeContent"
+        class="desc_line"
+      ></app-tip-pannel>
     </ng-container>
     <ng-container *ngIf="isShowModal">
       <ion-card class="swap-card">

@@ -7,7 +7,6 @@ import { TranslateModule } from '@ngx-translate/core';
 import { FooterPage } from './footer/footer.page';
 import { HeaderPage } from './header/header.page';
 import { PipeModule } from '../pipes/pipe.module';
-import { BannerPage } from './banner/banner.page';
 import { CoinInputPage } from './coin-input/coin-input.page';
 import { CoinSelectPage } from './coin-input/select/coin-select.page';
 import { ConnectWalletPage } from './connect-wallet/connect-wallet.page';
@@ -15,7 +14,6 @@ import { LiquidSelectPage } from './liquid-input/select/liquid-select.page';
 import { LiquidInputPage } from './liquid-input/liquid-input.page';
 import { SwitchLangPage } from './switch-lang/switch-lang.page';
 import { WarningDetailPage } from 'src/app/liquid/warning/warning-detail/warning-detail.page';
-import { SelectArrowPage } from './select-arrow/select-arrow.page';
 import { CardTitlePage } from './card-title/card-title.page';
 import { TokenInfoPage } from './token-info/token-info.page';
 import { IncomeProfitPage } from 'src/app/income/profit/profit.page';
@@ -27,6 +25,8 @@ import { TxListPage } from './transaction/tx-List/tx-list.page';
 import { TxConfirmPage } from './transaction/tx-confirm/tx-confirm.page';
 import { TxStatusPage } from './transaction/tx-status/tx-status.page';
 import { ConnectPage } from './connect-modal/connect.page';
+import { TipPannel } from './tip-pannel/tip-pannel';
+import { ArrowButton } from './arrow-button/arrow-button';
 
 @NgModule({
   imports: [
@@ -41,7 +41,7 @@ import { ConnectPage } from './connect-modal/connect.page';
   declarations: [
     FooterPage,
     HeaderPage,
-    BannerPage,
+    TipPannel,
     CoinInputPage,
     CoinSelectPage,
     ConnectWalletPage,
@@ -50,7 +50,7 @@ import { ConnectPage } from './connect-modal/connect.page';
     ProfitPage,
     SwitchLangPage,
     WarningDetailPage,
-    SelectArrowPage,
+    ArrowButton,
     CardTitlePage,
     TokenInfoPage,
     IncomeProfitPage,
@@ -63,14 +63,14 @@ import { ConnectPage } from './connect-modal/connect.page';
   exports: [
     FooterPage,
     HeaderPage,
-    BannerPage,
+    TipPannel,
     CoinInputPage,
     ConnectWalletPage,
     LiquidInputPage,
     ProfitPage,
     SwitchLangPage,
     WarningDetailPage,
-    SelectArrowPage,
+    ArrowButton,
     CardTitlePage,
     TokenInfoPage,
     IncomeProfitPage,

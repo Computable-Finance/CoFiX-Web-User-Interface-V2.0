@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { BannerContent } from '../common/components/banner/banner.page';
 import { CofiXService } from '../service/cofix.service';
 import { Utils } from 'src/app/common/utils';
 import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
@@ -10,6 +9,7 @@ import { CoinContent } from '../common/types/CoinContent';
 import { BalancesQuery } from '../state/balance/balance.query';
 import { MarketDetailsQuery } from '../state/market/market.query';
 import { Subscription } from 'rxjs';
+import { TipPannelContent } from '../common/components/tip-pannel/tip-pannel';
 const BNJS = require('bignumber.js');
 @Component({
   selector: 'app-swap',
@@ -19,7 +19,7 @@ const BNJS = require('bignumber.js');
 export class SwapPage implements OnInit, OnDestroy {
   @ViewChild(CoinInputPage, { static: false }) fromCoinInputView: CoinInputPage;
   @ViewChild(CoinInputPage, { static: false }) toCoinInputView: CoinInputPage;
-  public swapContent: BannerContent = {
+  public swapContent: TipPannelContent = {
     title: 'swap_title',
     descriptions: ['swap_desc1', 'swap_desc2', 'swap_desc3'],
     more: {

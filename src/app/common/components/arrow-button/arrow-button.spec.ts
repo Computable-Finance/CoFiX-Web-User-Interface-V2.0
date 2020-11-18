@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { SelectArrowPage } from './select-arrow.page';
+import { ArrowButton } from './arrow-button';
 
 describe('ArrowButton', () => {
-  let component: SelectArrowPage;
+  let component: ArrowButton;
   let element: HTMLElement;
-  let fixture: ComponentFixture<SelectArrowPage>;
+  let fixture: ComponentFixture<ArrowButton>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [],
       providers: [],
-      declarations: [SelectArrowPage],
+      declarations: [ArrowButton],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SelectArrowPage);
+    fixture = TestBed.createComponent(ArrowButton);
     component = fixture.componentInstance;
     element = fixture.nativeElement;
   });

@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { fromEvent } from 'rxjs/internal/observable/fromEvent';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
-import { BannerContent } from '../common/components/banner/banner.page';
+import { TipPannelContent } from '../common/components/tip-pannel/tip-pannel';
 import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
 import { Utils } from '../common/utils';
 import { CofiXService } from '../service/cofix.service';
@@ -27,7 +27,7 @@ export class CofiPage implements OnInit, OnDestroy {
     private marketDetailsQuery: MarketDetailsQuery
   ) {}
 
-  public cofixContent: BannerContent = {
+  public cofixContent: TipPannelContent = {
     title: 'help_tips',
     descriptions: ['cofix_desc1', 'cofix_desc2', 'cofix_desc3'],
     more: {

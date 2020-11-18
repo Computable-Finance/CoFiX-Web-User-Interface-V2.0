@@ -73,10 +73,10 @@
                 {{toCoin.id}}
               </ion-col>
               <ion-col size="1">
-                <app-select-arrow
+                <app-arrow-button
                   [isDown]="isShowDetail"
                   (arrowChanged)="selectArrowChange($event)"
-                ></app-select-arrow>
+                ></app-arrow-button>
               </ion-col>
             </ng-container>
             <ion-col size="8" *ngIf="showSkeleton(changePrice)" skeleton>
@@ -239,6 +239,6 @@
     </ion-card>
   </div>
 
-  <app-banner [bannerConent]="swapContent"></app-banner>
+  <app-tip-pannel [tipPannelContent]="swapContent"></app-tip-pannel>
 </ion-content>
 <app-footer (onRefresh)="refreshPage()"></app-footer>
