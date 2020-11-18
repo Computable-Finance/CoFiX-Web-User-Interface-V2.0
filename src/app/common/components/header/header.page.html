@@ -3,7 +3,6 @@
     <img src="./assets/images/logo.png" class="logo logo_w" />
     <img src="./assets/images/logo.ico" class="logo logo_s" />
   </div>
-
   <div class="tabs">
     <div
       *ngFor="let item of headerItems"
@@ -14,10 +13,7 @@
     </div>
   </div>
   <div class="tools">
-    <app-connect-wallet
-      (onConnected)="onConnected()"
-      class="header-Wallet"
-    ></app-connect-wallet>
+    <app-connect-wallet class="header-Wallet"></app-connect-wallet>
     <app-switch-lang></app-switch-lang>
   </div>
 </ion-header>

@@ -5,14 +5,16 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { ModalController, PopoverController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+
 import { TipPannelContent } from '../common/components/tip-pannel/tip-pannel';
 import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
 import { CoinContent } from '../common/types/CoinContent';
 import { Utils } from '../common/utils';
 import { CofiXService } from '../service/cofix.service';
+import { EventBusService } from '../service/eventbus.service';
 import { BalancesQuery } from '../state/balance/balance.query';
 import { MarketDetailsQuery } from '../state/market/market.query';
 import { SettingsQuery } from '../state/setting/settings.query';
@@ -38,7 +40,7 @@ export class LiquidPage implements OnInit, OnDestroy {
     private rd: Renderer2,
     private balancesQuery: BalancesQuery,
     private marketDetailsQuery: MarketDetailsQuery,
-    private popoverController: PopoverController
+    private eventbusService: EventBusService
   ) {
     this.liquidContent_origin = this.liquidContent;
   }
@@ -134,6 +136,7 @@ export class LiquidPage implements OnInit, OnDestroy {
   private cofiBalanceSubscription: Subscription;
   private hadValueSubscription: Subscription;
   private todoValueSubscription: Subscription;
+  private eventbusSubscription: Subscription;
 
   ngOnInit() {
     this.changeBtnTitle();
@@ -142,6 +145,12 @@ export class LiquidPage implements OnInit, OnDestroy {
       .subscribe((event) => {
         this.changeBtnTitle();
       });
+    this.eventbusSubscription = this.eventbusService.on(
+      'wallet_connected',
+      () => {
+        this.refreshPage();
+      }
+    );
   }
 
   ionViewWillEnter() {
@@ -166,7 +175,8 @@ export class LiquidPage implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.resizeSubscription.unsubscribe();
+    this.resizeSubscription?.unsubscribe();
+    this.eventbusSubscription?.unsubscribe();
     this.unsubscribeAll();
   }
 

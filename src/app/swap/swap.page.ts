@@ -10,6 +10,7 @@ import { BalancesQuery } from '../state/balance/balance.query';
 import { MarketDetailsQuery } from '../state/market/market.query';
 import { Subscription } from 'rxjs';
 import { TipPannelContent } from '../common/components/tip-pannel/tip-pannel';
+import { EventBusService } from '../service/eventbus.service';
 const BNJS = require('bignumber.js');
 @Component({
   selector: 'app-swap',
@@ -63,6 +64,8 @@ export class SwapPage implements OnInit, OnDestroy {
   changePriceOfFromTokenSubscription: Subscription;
   changePriceOfToTokenSubscription: Subscription;
 
+  private eventbusSubscription: Subscription;
+
   private balanceHandler = async (balance) => {
     this.fromCoin.balance = await this.balanceTruncatePipe.transform(balance);
     this.getERC20BalanceOfPair();
@@ -76,11 +79,13 @@ export class SwapPage implements OnInit, OnDestroy {
     private txService: TxService,
     private balancesQuery: BalancesQuery,
     private marketDetailsQuery: MarketDetailsQuery,
-    private balanceTruncatePipe: BalanceTruncatePipe
+    private balanceTruncatePipe: BalanceTruncatePipe,
+    private eventbusService: EventBusService
   ) {}
 
   ngOnDestroy(): void {
     this.unsubscribeAll();
+    this.eventbusSubscription?.unsubscribe();
   }
 
   private unsubscribeAll() {
@@ -90,13 +95,12 @@ export class SwapPage implements OnInit, OnDestroy {
   }
 
   async ngOnInit() {
-    /*if (this.cofixService.getCurrentAccount() === undefined) {
-      setTimeout(() => {
+    this.eventbusSubscription = this.eventbusService.on(
+      'wallet_connected',
+      () => {
         this.refreshPage();
-      }, 3000);
-    } else {
-      this.refreshPage();
-    }*/
+      }
+    );
   }
   ionViewWillEnter() {
     setTimeout(() => {

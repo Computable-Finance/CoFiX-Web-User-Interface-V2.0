@@ -6,6 +6,7 @@ import { TipPannelContent } from '../common/components/tip-pannel/tip-pannel';
 import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
 import { Utils } from '../common/utils';
 import { CofiXService } from '../service/cofix.service';
+import { EventBusService } from '../service/eventbus.service';
 import { BalancesQuery } from '../state/balance/balance.query';
 import { MarketDetailsQuery } from '../state/market/market.query';
 import { SettingsService } from '../state/setting/settings.service';
@@ -24,7 +25,8 @@ export class CofiPage implements OnInit, OnDestroy {
     private txService: TxService,
     private utils: Utils,
     private balancesQuery: BalancesQuery,
-    private marketDetailsQuery: MarketDetailsQuery
+    private marketDetailsQuery: MarketDetailsQuery,
+    private eventbusService: EventBusService
   ) {}
 
   public cofixContent: TipPannelContent = {
@@ -54,18 +56,26 @@ export class CofiPage implements OnInit, OnDestroy {
   waitingPopover: any;
   isApproved = false;
   resizeSubscription: Subscription;
-  claimTitle: string = 'claimcofi_text';
+  claimTitle = 'claimcofi_text';
   private earnedRateSubscription: Subscription;
   private cofiBalanceSubscription: Subscription;
   private hadValueSubscription: Subscription;
   private todoValueSubscription: Subscription;
+  private eventbusSubscription: Subscription;
 
   ngOnDestroy(): void {
     this.unsubscribeAll();
     this.resizeSubscription?.unsubscribe();
+    this.eventbusSubscription?.unsubscribe();
   }
 
   ngOnInit() {
+    this.eventbusSubscription = this.eventbusService.on(
+      'wallet_connected',
+      () => {
+        this.refreshPage();
+      }
+    );
     this.setBtnTitle();
     this.resizeSubscription = fromEvent(window, 'resize')
       .pipe(debounceTime(100))

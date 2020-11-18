@@ -1,16 +1,10 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-} from '@angular/core';
-import { EventBusService } from 'src/app/service/eventbus.service';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { EventBusService } from 'src/app/service/eventbus.service';
 import { SettingsService } from 'src/app/state/setting/settings.service';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.page.html',
@@ -18,7 +12,6 @@ import { SettingsService } from 'src/app/state/setting/settings.service';
 })
 export class HeaderPage implements OnInit, OnDestroy {
   @Input() activeId: string;
-  @Output() onRefresh = new EventEmitter<any>();
   resizeSubscription: Subscription;
   public tabtems = [
     {
@@ -39,19 +32,25 @@ export class HeaderPage implements OnInit, OnDestroy {
     },
   ];
   headerItems: any;
+
+  private eventSubscriptions: Subscription[] = [];
   constructor(
     private settingsService: SettingsService,
     private eventbusService: EventBusService,
     private router: Router
   ) {
-    this.eventbusService.on('accountsChanged', (account) => {
-      this.settingsService.reset();
-      location.reload();
-    });
-    this.eventbusService.on('chainChanged', (chainId) => {
-      this.settingsService.reset();
-      location.reload();
-    });
+    this.eventSubscriptions.push(
+      this.eventbusService.on('accountsChanged', (account) => {
+        this.settingsService.reset();
+        location.reload();
+      })
+    );
+    this.eventSubscriptions.push(
+      this.eventbusService.on('chainChanged', (chainId) => {
+        this.settingsService.reset();
+        location.reload();
+      })
+    );
   }
   ngOnInit() {
     this.changeTabs();
@@ -93,11 +92,11 @@ export class HeaderPage implements OnInit, OnDestroy {
     this.settingsService.updateActiveTab(tabId);
     this.router.navigateByUrl(tabId);
   }
-  onConnected() {
-    this.onRefresh.emit();
-  }
 
   ngOnDestroy() {
     this.resizeSubscription.unsubscribe();
+    this.eventSubscriptions.forEach((subscription) =>
+      subscription.unsubscribe()
+    );
   }
 }

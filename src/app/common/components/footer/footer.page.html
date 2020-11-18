@@ -20,25 +20,14 @@
         </ion-row>
       </ion-grid>
       <div class="menu-divider"></div>
-      <!--<div class="links-item" *ngFor="let item of footerItems">
-        <a (click)="goto(item.link)"><span>{{item.id | translate}}</span></a>
-      </div>
-      <div class="copy-right">
-        © {{currentYear}} {{'copy_right' | translate}}
-      </div> -->
       <app-menu></app-menu>
     </div>
     <div class="tools">
       <ion-grid
         ><ion-row>
           <ion-col class="ion-text-right tools-col" size="12">
-            <app-connect-wallet
-              class="connect-wallet"
-              (onConnected)="onConnected()"
-            ></app-connect-wallet>
-
+            <app-connect-wallet class="connect-wallet"></app-connect-wallet>
             <div class="setting" (click)="showTools()">
-              <!--<ion-icon name="settings" class="setting-icon"></ion-icon>-->
               <ion-icon
                 name="ellipsis-horizontal"
                 class="setting-icon"

@@ -1,14 +1,6 @@
-<app-header
-  [activeId]="'income'"
-  (onRefresh)="initPage()"
-  class="web-header"
-></app-header>
+<app-header [activeId]="'income'" class="web-header"></app-header>
 <ion-content [fullscreen]="true">
-  <app-header
-    [activeId]="'income'"
-    (onRefresh)="initPage()"
-    class="mobile-header"
-  ></app-header>
+  <app-header [activeId]="'income'" class="mobile-header"></app-header>
   <div class="main-content">
     <ng-container *ngIf="!isShowModal">
       <ion-card class="swap-card">
@@ -239,4 +231,4 @@
     </ng-container>
   </div>
 </ion-content>
-<app-footer (onRefresh)="initPage()"></app-footer>
+<app-footer></app-footer>

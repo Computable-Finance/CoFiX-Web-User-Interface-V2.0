@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { FOOTER_ITEMS } from '../../constants';
 
@@ -8,7 +8,6 @@ import { FOOTER_ITEMS } from '../../constants';
   styleUrls: ['./footer.page.scss'],
 })
 export class FooterPage implements OnInit {
-  @Output() onRefresh = new EventEmitter<any>();
   public footerItems;
   currentYear: number;
   isShowTools = false;
@@ -26,9 +25,5 @@ export class FooterPage implements OnInit {
 
   showTools() {
     this.isShowTools = !this.isShowTools;
-  }
-
-  onConnected() {
-    this.onRefresh.emit();
   }
 }

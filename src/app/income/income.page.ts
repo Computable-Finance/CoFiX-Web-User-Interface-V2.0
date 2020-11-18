@@ -6,6 +6,7 @@ import { TipPannelContent } from '../common/components/tip-pannel/tip-pannel';
 import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
 import { Utils } from '../common/utils';
 import { CofiXService } from '../service/cofix.service';
+import { EventBusService } from '../service/eventbus.service';
 import { BalancesQuery } from '../state/balance/balance.query';
 import { TxService } from '../state/tx/tx.service';
 
@@ -54,13 +55,15 @@ export class IncomePage implements OnInit, OnDestroy {
   private dividendSubscription: Subscription;
   private cofiBalanceSubscription: Subscription;
   private cofiStakingRewardsSubscription: Subscription;
+  private eventbusSubscription: Subscription;
 
   constructor(
     public cofixService: CofiXService,
     private balanceTruncatePipe: BalanceTruncatePipe,
     private utils: Utils,
     private txService: TxService,
-    private balancesQuery: BalancesQuery
+    private balancesQuery: BalancesQuery,
+    private eventbusService: EventBusService
   ) {}
 
   async ngOnInit() {
@@ -69,6 +72,12 @@ export class IncomePage implements OnInit, OnDestroy {
       .subscribe((event) => {
         this.changeButtonTitle();
       });
+    this.eventbusSubscription = this.eventbusService.on(
+      'wallet_connected',
+      () => {
+        this.initPage();
+      }
+    );
   }
   ionViewWillEnter() {
     setTimeout(() => {
@@ -95,6 +104,7 @@ export class IncomePage implements OnInit, OnDestroy {
     this.dividendSubscription?.unsubscribe();
     this.cofiBalanceSubscription?.unsubscribe();
     this.cofiStakingRewardsSubscription?.unsubscribe();
+    this.eventbusSubscription?.unsubscribe();
   }
 
   changeButtonTitle() {

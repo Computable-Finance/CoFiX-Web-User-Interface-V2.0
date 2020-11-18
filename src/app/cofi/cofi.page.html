@@ -1,14 +1,6 @@
-<app-header
-  [activeId]="'cofi'"
-  (onRefresh)="refreshPage()"
-  class="web-header"
-></app-header>
+<app-header [activeId]="'cofi'" class="web-header"></app-header>
 <ion-content [fullscreen]="true">
-  <app-header
-    [activeId]="'cofi'"
-    (onRefresh)="refreshPage()"
-    class="mobile-header"
-  ></app-header>
+  <app-header [activeId]="'cofi'" class="mobile-header"></app-header>
   <div class="main-content">
     <app-liquid-input
       class="liquid-input"
@@ -42,22 +34,6 @@
             <ion-col size="7" *ngIf="showSkeleton(earnedRate)" skeleton>
             </ion-col>
           </ion-row>
-          <!-- <ion-row
-            class="ion-align-items-center ion-align-self-center conversionPrice"
-          >
-            <ion-col class="label" size="8"
-              >{{'cofi_already' | translate}}</ion-col
-            >
-            <ion-col
-              class="ion-text-right number"
-              size="4"
-              *ngIf="!showSkeleton(earnedRate)"
-              >**
-            </ion-col>
-            <ion-col size="4" *ngIf="showSkeleton(earnedRate)" skeleton>
-            </ion-col>
-          </ion-row> -->
-
           <ion-row
             class="ion-align-items-center ion-align-self-center conversionPrice"
           >
@@ -148,4 +124,4 @@
     class="desc_line"
   ></app-tip-pannel>
 </ion-content>
-<app-footer (onRefresh)="refreshPage()"></app-footer>
+<app-footer></app-footer>

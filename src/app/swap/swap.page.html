@@ -1,14 +1,6 @@
-<app-header
-  [activeId]="'swap'"
-  (onRefresh)="refreshPage()"
-  class="web-header"
-></app-header>
+<app-header [activeId]="'swap'" class="web-header"></app-header>
 <ion-content>
-  <app-header
-    [activeId]="'swap'"
-    (onRefresh)="refreshPage()"
-    class="mobile-header"
-  ></app-header>
+  <app-header [activeId]="'swap'" class="mobile-header"></app-header>
   <div class="main-content">
     <ion-card class="swap-card">
       <div class="card-content">
@@ -151,29 +143,6 @@
             <ion-col size="8" *ngIf="showSkeleton(changePrice)" skeleton>
             </ion-col>
           </ion-row>
-          <!-- <ion-row
-          class="ion-align-items-center ion-align-self-center conversionPrice"
-        >
-          <ion-col class="label" size="6"
-            >{{'Minimum Received'|translate}}
-            <img
-              class="alert-icon"
-              src="./assets/images/question.png"
-              tooltip
-              event="hover"
-              tipsContent="swap_tooltips_minreceived_desc"
-              tipsTitle="swap_tooltips_minreceived_title"
-          /></ion-col>
-          <ion-col
-            class="ion-text-right number"
-            size="6"
-            *ngIf="!showSkeleton(changePrice)"
-            >{{minimum | truncate:'--'}} {{toCoin.id}}
-          </ion-col>
-
-          <ion-col size="6" *ngIf="showSkeleton(changePrice)" skeleton>
-          </ion-col>
-        </ion-row> -->
           <ion-row
             class="ion-align-items-center ion-align-self-center conversionPrice"
           >
@@ -241,4 +210,4 @@
 
   <app-tip-pannel [tipPannelContent]="swapContent"></app-tip-pannel>
 </ion-content>
-<app-footer (onRefresh)="refreshPage()"></app-footer>
+<app-footer></app-footer>

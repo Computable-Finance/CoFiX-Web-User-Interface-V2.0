@@ -1,7 +1,8 @@
-import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { CofiXService } from 'src/app/service/cofix.service';
+import { EventBusService } from 'src/app/service/eventbus.service';
 import { TxQuery } from 'src/app/state/tx/tx.query';
 
 import { Utils } from '../../utils';
@@ -13,17 +14,17 @@ import { TxListPage } from '../transaction/tx-List/tx-list.page';
   styleUrls: ['./connect-wallet.page.scss'],
 })
 export class ConnectWalletPage implements OnDestroy {
-  @Output() onConnected = new EventEmitter<any>();
   isConnectLoading = false;
+  pendingCount = 0;
+  txLastPendingSubscription: Subscription;
+
   constructor(
     public cofixService: CofiXService,
     private utils: Utils,
     private txQuery: TxQuery,
-    private popoverController: PopoverController
+    private popoverController: PopoverController,
+    private eventbusService: EventBusService
   ) {}
-
-  pendingCount = 0;
-  txLastPendingSubscription: Subscription;
 
   subscribe() {
     if (this.cofixService.getCurrentAccount()) {
@@ -46,7 +47,7 @@ export class ConnectWalletPage implements OnDestroy {
       .then(() => {
         this.utils.getPairAttended();
         this.isConnectLoading = false;
-        this.onConnected.emit();
+        this.eventbusService.emit({ name: 'wallet_connected' });
       })
       .catch((err) => {
         this.isConnectLoading = false;

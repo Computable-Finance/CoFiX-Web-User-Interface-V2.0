@@ -1,14 +1,6 @@
-<app-header
-  [activeId]="'liquid'"
-  (onRefresh)="refreshPage()"
-  class="web-header"
-></app-header>
+<app-header [activeId]="'liquid'" class="web-header"></app-header>
 <ion-content [fullscreen]="true">
-  <app-header
-    [activeId]="'liquid'"
-    (onRefresh)="refreshPage()"
-    class="mobile-header"
-  ></app-header>
+  <app-header [activeId]="'liquid'" class="mobile-header"></app-header>
   <div class="main-content">
     <app-liquid-input
       class="liquid-input"
@@ -258,4 +250,4 @@
     <app-tip-pannel [tipPannelContent]="liquidContent"></app-tip-pannel>
   </div>
 </ion-content>
-<app-footer (onRefresh)="refreshPage()"></app-footer>
+<app-footer></app-footer>
