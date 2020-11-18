@@ -19,9 +19,9 @@
         ></app-card-title>
         <app-coin-input
           #fromCoinInputView
-          (onMaxClick)="setFromCoinMax($event)"
-          (onChangeCoin)="changeFromCoin($event)"
-          (onInputChange)="fromCoinInput($event)"
+          (clickMax)="setFromCoinMax($event)"
+          (changeCoin)="changeFromCoin($event)"
+          (changeValue)="fromCoinInput($event)"
           [amount]="fromCoin.amount"
           [maxAmount]="fromCoin.balance"
           [coin]="fromCoin.id"
@@ -34,9 +34,9 @@
         <div class="divider-swap"></div>
         <app-coin-input
           #toCoinInputView
-          (onMaxClick)="setToCoinMax($event)"
-          (onChangeCoin)="changeToCoin($event)"
-          (onInputChange)="toCoinInput($event)"
+          (clickMax)="setToCoinMax($event)"
+          (changeCoin)="changeToCoin($event)"
+          (changeValue)="toCoinInput($event)"
           [amount]="toCoin.amount"
           [coin]="toCoin.id"
           [isInsufficientError]="isInsufficientError"

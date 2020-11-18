@@ -269,8 +269,6 @@ export class SwapPage implements OnInit, OnDestroy {
     await this.getIsApproved();
     this.changeOracleCost();
     await this.getERC20BalanceOfPair();
-    this.toCoinInputView.resetSubscription();
-    this.fromCoinInputView.resetSubscription();
     this.getEPAndEC();
   }
 
@@ -291,8 +289,6 @@ export class SwapPage implements OnInit, OnDestroy {
     this.changeOracleCost();
     await this.getERC20BalanceOfPair();
 
-    this.toCoinInputView.resetSubscription();
-    this.fromCoinInputView.resetSubscription();
     this.getEPAndEC();
   }
 

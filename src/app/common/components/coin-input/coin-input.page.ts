@@ -23,15 +23,15 @@ export class CoinInputPage implements OnInit, OnDestroy {
   subscription: Subscription;
   debounceTime = 250;
 
-  @Output() onMaxClick = new EventEmitter<any>();
-  @Output() onChangeCoin = new EventEmitter<any>();
-  @Output() onInputChange = new EventEmitter<any>();
-  @Input() amount: any;
+  @Output() clickMax = new EventEmitter<any>();
+  @Output() changeCoin = new EventEmitter<any>();
+  @Output() changeValue = new EventEmitter<any>();
+  @Input() amount: string;
   @Input() coin: string;
   @Input() isDropDown = true;
   @Input() showSelect = true;
   @Input() placeHolder = '0.0';
-  @Input() maxAmount: any;
+  @Input() maxAmount: string;
   @Input() isShowError = false;
   @Input() maxLiquid: string;
   @Input() isInsufficientError = false;
@@ -47,7 +47,7 @@ export class CoinInputPage implements OnInit, OnDestroy {
       .pipe(
         debounceTime(this.debounceTime),
         switchMap((event) => {
-          this.onInputChange.emit({ amount: this.amount, coin: this.coin });
+          this.changeValue.emit({ amount: this.amount, coin: this.coin });
           return EMPTY;
         })
       )
@@ -67,7 +67,7 @@ export class CoinInputPage implements OnInit, OnDestroy {
       modal.onDidDismiss().then((selectCoin) => {
         if (selectCoin.data !== null && selectCoin.data !== undefined) {
           this.coin = selectCoin.data;
-          this.onChangeCoin.emit({ coin: this.coin });
+          this.changeCoin.emit({ coin: this.coin });
         }
       });
     } else {
@@ -75,34 +75,18 @@ export class CoinInputPage implements OnInit, OnDestroy {
     }
   }
 
-  txtChanged(event) {
-    this.onInputChange.emit({ amount: this.amount, coin: this.coin });
-  }
-
   setMax() {
-    this.onMaxClick.emit({ coin: this.coin });
+    this.clickMax.emit({ coin: this.coin });
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
+
   overLiquid() {
     return new BNJS(this.amount).gt(new BNJS(this.maxLiquid));
   }
 
-  resetSubscription() {
-    // this.subscription?.unsubscribe();
-    // this.subscription = this.modelChanged
-    //   .pipe(
-    //     debounceTime(this.debounceTime),
-    //     distinctUntilChanged(),
-    //     switchMap((event) => {
-    //       this.onInputChange.emit({ amount: this.amount, coin: this.coin });
-    //       return EMPTY;
-    //     })
-    //   )
-    //   .subscribe();
-  }
   showSkeleton(value) {
     return value === undefined || value === '';
   }

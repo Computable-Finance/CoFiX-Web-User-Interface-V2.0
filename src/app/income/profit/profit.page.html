@@ -1,8 +1,8 @@
 <app-coin-input
   #coinInputView
-  (onMaxClick)="setCoinMax()"
+  (clickMax)="setCoinMax()"
   [amount]="balance"
-  (onInputChange)="coinInput($event)"
+  (changeValue)="coinInput($event)"
   [isDropDown]="showSelect"
   [coin]="profitCoin"
   [isShowError]="showError"

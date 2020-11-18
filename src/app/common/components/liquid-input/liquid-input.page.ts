@@ -8,7 +8,7 @@ import { LiquidSelectPage } from './select/liquid-select.page';
   styleUrls: ['./liquid-input.page.scss'],
 })
 export class LiquidInputPage implements OnInit {
-  @Output() onChangeCoin = new EventEmitter<any>();
+  @Output() changeCoin = new EventEmitter<any>();
   @Input() coin: string = 'USDT';
   @Input() isDropDown: boolean = true;
   constructor(private modalController: ModalController) {}
@@ -25,7 +25,7 @@ export class LiquidInputPage implements OnInit {
     modal.onDidDismiss().then((selectCoin) => {
       if (selectCoin.data !== null && selectCoin.data !== undefined) {
         this.coin = selectCoin.data;
-        this.onChangeCoin.emit({ coin: this.coin });
+        this.changeCoin.emit({ coin: this.coin });
       }
     });*/
     if (this.coin === 'USDT') {
@@ -33,6 +33,6 @@ export class LiquidInputPage implements OnInit {
     } else {
       this.coin = 'USDT';
     }
-    this.onChangeCoin.emit({ coin: this.coin });
+    this.changeCoin.emit({ coin: this.coin });
   }
 }

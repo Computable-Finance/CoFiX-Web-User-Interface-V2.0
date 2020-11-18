@@ -12,8 +12,8 @@
 
     <app-coin-input
       #toCoinInputView
-      (onMaxClick)="setToCoinMax($event)"
-      (onInputChange)="ToCoinInput($event)"
+      (clickMax)="setToCoinMax($event)"
+      (changeValue)="ToCoinInput($event)"
       [showSelect]="showInputSelect"
       [coin]="'XTokens'"
       [amount]="toCoin.amount"

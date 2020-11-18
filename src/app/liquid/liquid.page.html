@@ -12,7 +12,7 @@
   <div class="main-content">
     <app-liquid-input
       class="liquid-input"
-      (onChangeCoin)="changeCoin($event)"
+      (changeCoin)="changeCoin($event)"
       [coin]="toCoin.id"
       *ngIf="canShow()"
     ></app-liquid-input>

@@ -85,9 +85,7 @@ export class IncomeProfitPage implements OnInit, OnDestroy {
       this.buttonTitle = 'qc';
     }
   }
-  resetInputSubscription() {
-    this.coinInputView.resetSubscription();
-  }
+
   resetTransactionError() {
     this.transcationError = { isError: false, msg: '' };
   }

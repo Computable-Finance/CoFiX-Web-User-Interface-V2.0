@@ -66,9 +66,6 @@ export class ProfitPage implements OnInit {
 
   ngOnInit() {}
 
-  resetInputSubscription() {
-    this.coinInputView.resetSubscription();
-  }
   resetTransactionError() {
     this.transcationError = { isError: false, msg: '' };
   }

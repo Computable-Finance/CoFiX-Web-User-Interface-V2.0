@@ -12,9 +12,9 @@
 
     <app-coin-input
       #fromCoinInputView
-      (onMaxClick)="setFromCoinMax($event)"
+      (clickMax)="setFromCoinMax($event)"
       [amount]="fromCoin.amount"
-      (onInputChange)="fromCoinInput($event)"
+      (changeValue)="fromCoinInput($event)"
       [isDropDown]="isDropDown"
       [coin]="fromCoin.id"
       [maxAmount]="fromCoin.balance"
@@ -26,9 +26,9 @@
     <div class="divider-swap"></div>
     <app-coin-input
       #toCoinInputView
-      (onMaxClick)="setToCoinMax($event)"
+      (clickMax)="setToCoinMax($event)"
       [amount]="toCoin.amount"
-      (onInputChange)="toCoinInput($event)"
+      (changeValue)="toCoinInput($event)"
       [isDropDown]="isDropDown"
       [coin]="toCoin.id"
       [maxAmount]="toCoin.balance"
@@ -53,7 +53,9 @@
           >{{'expected' | translate}}<img
             class="alert-icon"
             src="./assets/images/question.png"
-            tooltip  event="hover" tipsContent="pool_tooltips_addliquid_estimate" 
+            tooltip
+            event="hover"
+            tipsContent="pool_tooltips_addliquid_estimate"
             tipsFooter="pool_tooltips_addliquid_estimate_footer"
         /></ion-col>
         <ion-col class="ion-text-right number" size="4"
@@ -68,7 +70,9 @@
           >{{'incoin_cofi' | translate}}<img
             class="alert-icon"
             src="./assets/images/question.png"
-            tooltip  event="hover" tipsContent="pool_tooltips_addliquid_deposittoggle" 
+            tooltip
+            event="hover"
+            tipsContent="pool_tooltips_addliquid_deposittoggle"
         /></ion-col>
         <ion-col class="ion-text-right" size="2">
           <ion-toggle [(ngModel)]="isStake"></ion-toggle>
@@ -91,8 +95,7 @@
       *ngIf="canApprove()"
     >
       <div class="ion-button-label">
-        <div *ngIf="!isLoading.sq">
-          {{'sq_text' | translate}}</div>
+        <div *ngIf="!isLoading.sq">{{'sq_text' | translate}}</div>
         <div class="loading" *ngIf="isLoading.sq"></div>
       </div>
     </ion-button>

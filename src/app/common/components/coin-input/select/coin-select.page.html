@@ -3,14 +3,13 @@
     <ion-col class="ion-text-center" size="12">
       {{'select_token' | translate}}
     </ion-col>
-    <ion-col size="2" (click)="close()" >
-      <div class="img-div"><img src="assets/images/close.png" class="close-img" /></div>
-      </ion-col>
+    <ion-col size="2" (click)="close()">
+      <div class="img-div">
+        <img src="assets/images/close.png" class="close-img" />
+      </div>
+    </ion-col>
   </ion-row>
-  <ng-container
-    *ngFor="let coin of coinList;let i=index"
-    (click)="selectCoin(coin)"
-  >
+  <ng-container *ngFor="let coin of coinList;let i=index">
     <ion-row
       (click)="selectCoin(coin)"
       class="ion-align-items-center ion-align-self-center conversionPrice {{i==0?'first-row':''}}"
