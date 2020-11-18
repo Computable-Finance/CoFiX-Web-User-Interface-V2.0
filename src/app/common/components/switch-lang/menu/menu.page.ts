@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./menu.page.scss'],
 })
 export class MenuPage implements OnInit {
-  @Input() style: string = 'component';
+  @Input() style = 'component';
   menuItems: any;
   langItems: any;
   constructor(
@@ -34,8 +34,6 @@ export class MenuPage implements OnInit {
     if (this.style === 'pop') {
       this.popoverController?.dismiss();
     }
-    const tabId = this.router.url.split('/')[2];
-    this.router.navigateByUrl(`${lang}/${tabId}`);
   }
   goto(link) {
     window.open(link);
