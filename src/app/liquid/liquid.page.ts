@@ -76,7 +76,7 @@ export class LiquidPage implements OnInit, OnDestroy {
     descriptions: [
       'liquidpool_withdraw_help_desc1',
       'liquidpool_withdraw_help_desc2',
-      'liquidpool_withdraw_help_desc2',
+      'liquidpool_withdraw_help_desc3',
     ],
     more: {
       text: 'read_more',
