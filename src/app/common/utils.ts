@@ -5,7 +5,7 @@ import { PermissionsService } from 'src/app/state/permission/permission.service'
 import { CofiXService } from '../service/cofix.service';
 import { SettingsService } from '../state/setting/settings.service';
 import { TxService } from '../state/tx/tx.service';
-import { ConnectPage } from './components/connect-modal/connect.page';
+import { ConnectModal } from './components/connect-modal/connect-modal';
 import { TxConfirmPage } from './components/transaction/tx-confirm/tx-confirm.page';
 import { TxStatusPage } from './components/transaction/tx-status/tx-status.page';
 import { BalanceTruncatePipe } from './pipes/balance.pipe';
@@ -131,7 +131,7 @@ export class Utils {
   }
   async showConnectModal() {
     return await this.popoverController.create({
-      component: ConnectPage,
+      component: ConnectModal,
       cssClass: 'connect-class',
       keyboardClose: false,
       showBackdrop: true,

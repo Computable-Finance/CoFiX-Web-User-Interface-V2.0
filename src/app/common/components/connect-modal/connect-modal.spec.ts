@@ -9,12 +9,12 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { MockPipe, MockProvider } from 'ng-mocks';
 import { CofiXService } from 'src/app/service/cofix.service';
 
-import { ConnectPage } from './connect.page';
+import { ConnectModal } from './connect-modal';
 
 describe('ConnectModal', () => {
-  let component: ConnectPage;
+  let component: ConnectModal;
   let element: HTMLElement;
-  let fixture: ComponentFixture<ConnectPage>;
+  let fixture: ComponentFixture<ConnectModal>;
   let connected;
   let resultOfDismissed;
 
@@ -32,10 +32,10 @@ describe('ConnectModal', () => {
           },
         }),
       ],
-      declarations: [ConnectPage, MockPipe(TranslatePipe)],
+      declarations: [ConnectModal, MockPipe(TranslatePipe)],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ConnectPage);
+    fixture = TestBed.createComponent(ConnectModal);
     component = fixture.componentInstance;
     element = fixture.nativeElement;
   });

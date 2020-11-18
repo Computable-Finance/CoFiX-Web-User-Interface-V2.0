@@ -23,7 +23,7 @@ import { MenuPage } from './switch-lang/menu/menu.page';
 import { TxListPage } from './transaction/tx-List/tx-list.page';
 import { TxConfirmPage } from './transaction/tx-confirm/tx-confirm.page';
 import { TxStatusPage } from './transaction/tx-status/tx-status.page';
-import { ConnectPage } from './connect-modal/connect.page';
+import { ConnectModal } from './connect-modal/connect-modal';
 import { TipPannel } from './tip-pannel/tip-pannel';
 import { ArrowButton } from './arrow-button/arrow-button';
 
@@ -56,7 +56,7 @@ import { ArrowButton } from './arrow-button/arrow-button';
     TxListPage,
     TxConfirmPage,
     TxStatusPage,
-    ConnectPage,
+    ConnectModal,
   ],
   exports: [
     FooterPage,
@@ -76,7 +76,7 @@ import { ArrowButton } from './arrow-button/arrow-button';
     TxListPage,
     TxConfirmPage,
     TxStatusPage,
-    ConnectPage,
+    ConnectModal,
   ],
 })
 export class CommonComponentsModule {}
