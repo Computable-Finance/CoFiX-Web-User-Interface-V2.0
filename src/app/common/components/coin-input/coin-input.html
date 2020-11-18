@@ -2,16 +2,15 @@
   <p>{{ label| translate}}</p>
   <div class="input-group">
     <div
-      class="input-group-prepend"
+      class="input-group-prepend {{isSelectCoin?'pointer':''}}"
       (click)="showCoinSelect($event)"
-      *ngIf="showSelect"
     >
       <span class="input-group-text"
         ><img
           src="./assets/images/icon/{{coin}}.png"
           class="coin_icon"
         />&nbsp;<span class="coin-title">{{coin}}</span> &nbsp;<img
-          *ngIf="isDropDown"
+          *ngIf="isSelectCoin"
           src="./assets/images/select.png"
           class="sel"
         />&nbsp;</span
@@ -20,7 +19,6 @@
     <input
       type="number"
       class="input"
-      style="--width:{{'calc(100% - '+ (showSelect?150:70) + 'px)'}}"
       placeholder="{{placeHolder}}"
       [(ngModel)]="amount"
       oninput="value=value.replace(/^\D*(\d*(?:\.\d{0,8})?).*$/g, '$1')"

@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { Subscription, fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import { CoinInputPage } from 'src/app/common/components/coin-input/coin-input.page';
+import { CoinInput } from 'src/app/common/components/coin-input/coin-input';
 
 const BNJS = require('bignumber.js');
 @Component({
@@ -19,7 +19,7 @@ const BNJS = require('bignumber.js');
   styleUrls: ['./profit.page.scss'],
 })
 export class IncomeProfitPage implements OnInit, OnDestroy {
-  @ViewChild(CoinInputPage, { static: false }) coinInputView: CoinInputPage;
+  @ViewChild(CoinInput, { static: false }) coinInputView: CoinInput;
   @Input() todoLabel: string;
   @Input() hadLabel: string;
   @Input() shareInDividendPool: string;
@@ -63,7 +63,7 @@ export class IncomeProfitPage implements OnInit, OnDestroy {
     this._hadValue = value;
   }
   @Input() isDeposit: boolean;
-  showSelect = false;
+  isSelectCoin = false;
   showError = false;
   shoWErrorLabel = '';
   buttonTitle = 'qc';

@@ -1,21 +1,21 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { TOKENS } from 'src/app/common/constants';
 
 @Component({
-  selector: 'app-liquid-select',
-  templateUrl: './liquid-select.page.html',
-  styleUrls: ['./liquid-select.page.scss'],
+  selector: 'app-coin-selector',
+  templateUrl: './coin-selector.html',
+  styleUrls: ['./coin-selector.scss'],
 })
-export class LiquidSelectPage implements OnInit {
+export class CoinSelector {
   coinList = TOKENS;
-  @Input() selectedCoin;
+
   constructor(private modalController: ModalController) {}
-  ngOnInit() {}
 
   selectCoin(coin) {
     this.modalController.dismiss(coin);
   }
+
   close() {
     this.modalController.dismiss();
   }

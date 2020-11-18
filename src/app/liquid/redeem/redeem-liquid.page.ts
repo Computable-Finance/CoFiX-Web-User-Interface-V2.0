@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import { CoinInputPage } from 'src/app/common/components/coin-input/coin-input.page';
+import { CoinInput } from 'src/app/common/components/coin-input/coin-input';
 import { BalanceTruncatePipe } from 'src/app/common/pipes/balance.pipe';
 import { CoinContent } from 'src/app/common/types/CoinContent';
 import { Utils } from 'src/app/common/utils';
@@ -27,7 +27,7 @@ const BNJS = require('bignumber.js');
 export class RedeemLiquidPage implements OnInit, OnDestroy {
   @Input() coin: string;
   @Output() onClose = new EventEmitter<any>();
-  @ViewChild(CoinInputPage, { static: false }) toCoinInputView: CoinInputPage;
+  @ViewChild(CoinInput, { static: false }) toCoinInputView: CoinInput;
   fromCoin: CoinContent = {
     id: 'ETH',
     address: '',
@@ -42,7 +42,7 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
     isApproved: false,
     balance: '',
   };
-  showInputSelect = true;
+  isSelectCoin = false;
   xtValue = 'XT-1';
   isETHChecked = false;
   isTokenChecked = false;

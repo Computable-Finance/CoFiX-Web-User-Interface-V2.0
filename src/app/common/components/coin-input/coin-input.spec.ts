@@ -9,40 +9,38 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { MockPipe, MockProvider } from 'ng-mocks';
 
 import { BalanceTruncatePipe } from '../../pipes/balance.pipe';
-import { CoinInputPage } from './coin-input.page';
+import { CoinInput } from './coin-input';
 
 describe('CoinInput', () => {
-  let component: CoinInputPage;
+  let component: CoinInput;
   let element: HTMLElement;
-  let fixture: ComponentFixture<CoinInputPage>;
+  let fixture: ComponentFixture<CoinInput>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [],
       providers: [MockProvider(ModalController)],
       declarations: [
-        CoinInputPage,
+        CoinInput,
         MockPipe(TranslatePipe),
         MockPipe(BalanceTruncatePipe),
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CoinInputPage);
+    fixture = TestBed.createComponent(CoinInput);
     component = fixture.componentInstance;
     element = fixture.nativeElement;
   });
 
-  it('should select a coin when showSelect === true', () => {
-    component.showSelect = true;
+  it('should select a coin when isSelectCoin === true', () => {
+    component.isSelectCoin = true;
     fixture.detectChanges();
-    expect(element.querySelector('.input-group-prepend')).not.toBeNull();
     expect(element.querySelector('.sel')).not.toBeNull();
   });
 
-  it('should not select a coin when showSelect === false', () => {
-    component.showSelect = false;
+  it('should not select a coin when isSelectCoin === false', () => {
+    component.isSelectCoin = false;
     fixture.detectChanges();
-    expect(element.querySelector('.input-group-prepend')).toBeNull();
     expect(element.querySelector('.sel')).toBeNull();
   });
 

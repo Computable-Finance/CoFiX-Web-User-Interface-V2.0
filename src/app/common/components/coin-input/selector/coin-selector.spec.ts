@@ -4,12 +4,12 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { MockPipe, MockProvider } from 'ng-mocks';
 import { TOKENS } from 'src/app/common/constants';
 
-import { CoinSelectPage } from './coin-select.page';
+import { CoinSelector } from './coin-selector';
 
 describe('CoinSelector', () => {
-  let component: CoinSelectPage;
+  let component: CoinSelector;
   let element: HTMLElement;
-  let fixture: ComponentFixture<CoinSelectPage>;
+  let fixture: ComponentFixture<CoinSelector>;
   let coinSelected: string;
 
   beforeEach(() => {
@@ -20,10 +20,10 @@ describe('CoinSelector', () => {
           dismiss: (coin) => (coinSelected = coin),
         }),
       ],
-      declarations: [CoinSelectPage, MockPipe(TranslatePipe)],
+      declarations: [CoinSelector, MockPipe(TranslatePipe)],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CoinSelectPage);
+    fixture = TestBed.createComponent(CoinSelector);
     component = fixture.componentInstance;
     element = fixture.nativeElement;
   });

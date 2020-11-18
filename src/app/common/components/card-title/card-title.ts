@@ -2,8 +2,8 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-card-title',
-  templateUrl: './card-title.page.html',
-  styleUrls: ['./card-title.page.scss'],
+  templateUrl: './card-title.html',
+  styleUrls: ['./card-title.scss'],
 })
 export class CardTitlePage {
   @Input() cardTitle: string;

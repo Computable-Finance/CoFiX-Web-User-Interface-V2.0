@@ -6,7 +6,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { CoinInputPage } from 'src/app/common/components/coin-input/coin-input.page';
+import { CoinInput } from 'src/app/common/components/coin-input/coin-input';
 
 const BNJS = require('bignumber.js');
 @Component({
@@ -15,7 +15,7 @@ const BNJS = require('bignumber.js');
   styleUrls: ['./profit.page.scss'],
 })
 export class ProfitPage implements OnInit {
-  @ViewChild(CoinInputPage, { static: false }) coinInputView: CoinInputPage;
+  @ViewChild(CoinInput, { static: false }) coinInputView: CoinInput;
   @Input() todoLabel: string;
   @Input() hadLabel: string;
   @Input() isApproved: boolean = false;
@@ -58,7 +58,7 @@ export class ProfitPage implements OnInit {
   }
 
   @Input() isDeposit = true;
-  showSelect = false;
+  isSelectCoin = false;
   showError = false;
   shoWErrorLabel = '';
 

@@ -7,14 +7,13 @@ import { TranslateModule } from '@ngx-translate/core';
 import { FooterPage } from './footer/footer.page';
 import { HeaderPage } from './header/header.page';
 import { PipeModule } from '../pipes/pipe.module';
-import { CoinInputPage } from './coin-input/coin-input.page';
-import { CoinSelectPage } from './coin-input/select/coin-select.page';
+import { CoinInput } from './coin-input/coin-input';
+import { CoinSelector } from './coin-input/selector/coin-selector';
 import { ConnectWalletPage } from './connect-wallet/connect-wallet.page';
-import { LiquidSelectPage } from './liquid-input/select/liquid-select.page';
 import { LiquidInputPage } from './liquid-input/liquid-input.page';
 import { SwitchLangPage } from './switch-lang/switch-lang.page';
 import { WarningDetailPage } from 'src/app/liquid/warning/warning-detail/warning-detail.page';
-import { CardTitlePage } from './card-title/card-title.page';
+import { CardTitlePage } from './card-title/card-title';
 import { TokenInfoPage } from './token-info/token-info.page';
 import { IncomeProfitPage } from 'src/app/income/profit/profit.page';
 import { ProfitPage } from 'src/app/liquid/profit/profit.page';
@@ -42,10 +41,9 @@ import { ArrowButton } from './arrow-button/arrow-button';
     FooterPage,
     HeaderPage,
     TipPannel,
-    CoinInputPage,
-    CoinSelectPage,
+    CoinInput,
+    CoinSelector,
     ConnectWalletPage,
-    LiquidSelectPage,
     LiquidInputPage,
     ProfitPage,
     SwitchLangPage,
@@ -64,7 +62,7 @@ import { ArrowButton } from './arrow-button/arrow-button';
     FooterPage,
     HeaderPage,
     TipPannel,
-    CoinInputPage,
+    CoinInput,
     ConnectWalletPage,
     LiquidInputPage,
     ProfitPage,

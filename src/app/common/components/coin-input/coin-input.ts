@@ -10,15 +10,15 @@ import { ModalController } from '@ionic/angular';
 import { EMPTY, Subject, Subscription } from 'rxjs';
 import { debounceTime, switchMap } from 'rxjs/operators';
 
-import { CoinSelectPage } from './select/coin-select.page';
+import { CoinSelector } from './selector/coin-selector';
 
 const BNJS = require('bignumber.js');
 @Component({
   selector: 'app-coin-input',
-  templateUrl: './coin-input.page.html',
-  styleUrls: ['./coin-input.page.scss'],
+  templateUrl: './coin-input.html',
+  styleUrls: ['./coin-input.scss'],
 })
-export class CoinInputPage implements OnInit, OnDestroy {
+export class CoinInput implements OnInit, OnDestroy {
   modelChanged: Subject<string> = new Subject<string>();
   subscription: Subscription;
   debounceTime = 250;
@@ -28,8 +28,7 @@ export class CoinInputPage implements OnInit, OnDestroy {
   @Output() changeValue = new EventEmitter<any>();
   @Input() amount: string;
   @Input() coin: string;
-  @Input() isDropDown = true;
-  @Input() showSelect = true;
+  @Input() isSelectCoin = true;
   @Input() placeHolder = '0.0';
   @Input() maxAmount: string;
   @Input() isShowError = false;
@@ -55,9 +54,9 @@ export class CoinInputPage implements OnInit, OnDestroy {
   }
 
   async showCoinSelect(event: any) {
-    if (this.isDropDown) {
+    if (this.isSelectCoin) {
       const modal = await this.modalController.create({
-        component: CoinSelectPage,
+        component: CoinSelector,
         componentProps: { selectedCoin: this.coin },
         cssClass: 'popover-coinselect',
         animated: false,

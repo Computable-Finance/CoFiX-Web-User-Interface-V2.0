@@ -102,7 +102,6 @@ export class LiquidPage implements OnInit, OnDestroy {
     balance: '',
   };
 
-  isDropDown: false;
   xtValue = 'XT-1';
   isChecked = true;
   expectedXToken: string;

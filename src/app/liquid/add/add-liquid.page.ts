@@ -12,7 +12,7 @@ import { BigNumber } from 'ethers';
 import { Subscription } from 'rxjs';
 import { fromEvent } from 'rxjs/internal/observable/fromEvent';
 import { debounceTime } from 'rxjs/operators';
-import { CoinInputPage } from 'src/app/common/components/coin-input/coin-input.page';
+import { CoinInput } from 'src/app/common/components/coin-input/coin-input';
 import { Utils } from 'src/app/common/utils';
 import { CofiXService } from 'src/app/service/cofix.service';
 import { TxService } from 'src/app/state/tx/tx.service';
@@ -34,8 +34,8 @@ export class AddLiquidPage implements OnInit, OnDestroy {
   @Input() coin: string;
   @Input() pairAttended = false;
   @Output() onClose = new EventEmitter<any>();
-  @ViewChild(CoinInputPage, { static: false }) fromCoinInputView: CoinInputPage;
-  @ViewChild(CoinInputPage, { static: false }) toCoinInputView: CoinInputPage;
+  @ViewChild(CoinInput, { static: false }) fromCoinInputView: CoinInput;
+  @ViewChild(CoinInput, { static: false }) toCoinInputView: CoinInput;
   fromCoin: CoinContent = {
     id: 'ETH',
     address: '',
@@ -50,7 +50,7 @@ export class AddLiquidPage implements OnInit, OnDestroy {
     isApproved: false,
     balance: '',
   };
-  isDropDown: false;
+  isSelectCoin = false;
   xtValue = 'XT-1';
   isStake = false;
   expectedXToken: string;

@@ -14,11 +14,10 @@
       #toCoinInputView
       (clickMax)="setToCoinMax($event)"
       (changeValue)="ToCoinInput($event)"
-      [showSelect]="showInputSelect"
       [coin]="'XTokens'"
       [amount]="toCoin.amount"
       [maxAmount]="toCoin.balance"
-      [isDropDown]="false"
+      [isSelectCoin]="isSelectCoin"
       [isShowError]="showError"
       [label]="'enter_amount'"
       class="coin-input"

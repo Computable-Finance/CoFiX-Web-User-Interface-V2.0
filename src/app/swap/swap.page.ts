@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { CofiXService } from '../service/cofix.service';
 import { Utils } from 'src/app/common/utils';
 import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
-import { CoinInputPage } from '../common/components/coin-input/coin-input.page';
+import { CoinInput } from '../common/components/coin-input/coin-input';
 import { BigNumber } from 'ethers';
 import { TxService } from '../state/tx/tx.service';
 import { CoinContent } from '../common/types/CoinContent';
@@ -17,8 +17,8 @@ const BNJS = require('bignumber.js');
   styleUrls: ['./swap.page.scss'],
 })
 export class SwapPage implements OnInit, OnDestroy {
-  @ViewChild(CoinInputPage, { static: false }) fromCoinInputView: CoinInputPage;
-  @ViewChild(CoinInputPage, { static: false }) toCoinInputView: CoinInputPage;
+  @ViewChild(CoinInput, { static: false }) fromCoinInputView: CoinInput;
+  @ViewChild(CoinInput, { static: false }) toCoinInputView: CoinInput;
   public swapContent: TipPannelContent = {
     title: 'swap_title',
     descriptions: ['swap_desc1', 'swap_desc2', 'swap_desc3'],
