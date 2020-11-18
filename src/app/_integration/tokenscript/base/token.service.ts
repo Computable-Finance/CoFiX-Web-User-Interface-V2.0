@@ -4,13 +4,18 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import Web3 from 'web3';
 import { Token } from '../../types';
 import {
-  compareStringToProps, extendPropsWithContracts, getEthersData,
-  getXMLItem, getXMLItemText, parseXMLFromText,
-  to, TokenCard
+  compareStringToProps,
+  extendPropsWithContracts,
+  getEthersData,
+  getXMLItem,
+  getXMLItemText,
+  parseXMLFromText,
+  to,
+  TokenCard,
 } from './lib';
 import { EthersData } from './types';
-import {filter} from 'rxjs/operators';
-import {ethers} from 'ethers';
+import { filter } from 'rxjs/operators';
+import { ethers } from 'ethers';
 
 declare global {
   interface Window {
@@ -26,9 +31,7 @@ declare global {
 @Injectable({
   providedIn: 'root',
 })
-
 export class TokenService {
-
   private tokenGenerator$: BehaviorSubject<any>;
   private tokens = {};
   private lastBlock = 0;
@@ -37,7 +40,7 @@ export class TokenService {
   // debug = 1 - show only common step notifies and errors
   // debug = 2 - show object's data values
   // debug = 3 - verbose logs
-  private debug = 1; // environment.debug;
+  private debug = 0; // environment.debug;
   private inited = false;
   private lang: string;
   private config = {
@@ -49,7 +52,7 @@ export class TokenService {
     // "<ts:card name="main" type="token">" or "<ts:card exclude="expired" name="enter" type="action">"
     card_name: 'main',
     card_type: 'action',
-    contractJsonPath: ''
+    contractJsonPath: '',
   };
   private ethersData: EthersData;
   private web3: any;
@@ -62,10 +65,12 @@ export class TokenService {
 
     const provider = new ethers.providers.Web3Provider(window.ethereum);
 
-    return this.tokenGenerator$.asObservable().pipe(filter((item) => Object.keys(item).length > 0 ) );
+    return this.tokenGenerator$
+      .asObservable()
+      .pipe(filter((item) => Object.keys(item).length > 0));
   }
 
-  public updateSomeProps(propsToUpdate): void{
+  public updateSomeProps(propsToUpdate): void {
     if (!this.tokens) {
       return;
     }
@@ -73,7 +78,7 @@ export class TokenService {
     const renderStart = new Date().getTime();
     const tokenNames = Object.keys(propsToUpdate);
     const thisService = this;
-    tokenNames.forEach(tokenName => {
+    tokenNames.forEach((tokenName) => {
       if (!this.tokens || !this.tokens.hasOwnProperty(tokenName)) {
         return;
       }
@@ -81,48 +86,62 @@ export class TokenService {
       if (!instanceProps || !instanceProps.length) {
         return;
       }
-      instanceProps.forEach(propName => {
+      instanceProps.forEach((propName) => {
         const instances = this.tokens[tokenName].instances;
         const instanceIDs = Object.keys(instances);
         if (!instanceIDs || !instanceIDs.length) {
           return;
         }
-        instanceIDs.forEach(instanceID => {
+        instanceIDs.forEach((instanceID) => {
           const instance = instances[instanceID];
-          instance.getAttributeValue(propName).then(((inst, prop) => {
-            return newPropValue => {
-              if (newPropValue) {
-                const prevVal = inst.props[prop];
-                const elapsed = new Date().getTime() - renderStart;
-                if (this.debug > 0) { console.log('Rendered in ' + elapsed + 'ms'); }
-                if ( JSON.stringify(prevVal) !== JSON.stringify(newPropValue) ) {
-                  if (this.debug > 1) {
-                    console.log(`lets change ${prop}. prev inst.props = ${JSON.stringify(inst.props)}`);
+          instance.getAttributeValue(propName).then(
+            ((inst, prop) => {
+              return (newPropValue) => {
+                if (newPropValue) {
+                  const prevVal = inst.props[prop];
+                  const elapsed = new Date().getTime() - renderStart;
+                  if (this.debug > 0) {
+                    console.log('Rendered in ' + elapsed + 'ms');
                   }
-                  inst.props[prop] = newPropValue;
-                  if (this.debug > 1) {
-                    console.log(`cur inst.props = ${JSON.stringify(inst.props)}`);
+                  if (
+                    JSON.stringify(prevVal) !== JSON.stringify(newPropValue)
+                  ) {
+                    if (this.debug > 1) {
+                      console.log(
+                        `lets change ${prop}. prev inst.props = ${JSON.stringify(
+                          inst.props
+                        )}`
+                      );
+                    }
+                    inst.props[prop] = newPropValue;
+                    if (this.debug > 1) {
+                      console.log(
+                        `cur inst.props = ${JSON.stringify(inst.props)}`
+                      );
+                    }
+                    if (this.debug) {
+                      console.log(
+                        `new prop "${prop}" received. update prop fired`
+                      );
+                    }
+                    thisService.returnTokens();
                   }
-                  if (this.debug) {
-                    console.log(`new prop "${prop}" received. update prop fired`);
-                  }
-                  thisService.returnTokens();
                 }
-              }
-            };
-          })(instance, propName));
+              };
+            })(instance, propName)
+          );
         });
       });
     });
   }
 
-  private updateAllProps(): void{
+  private updateAllProps(): void {
     if (!this.tokens) {
       return;
     }
 
     const provider = new ethers.providers.Web3Provider(window.ethereum);
-    provider.getBlockNumber().then(async blockNumber => {
+    provider.getBlockNumber().then(async (blockNumber) => {
       if (blockNumber > this.lastBlock) {
         const renderStart = new Date().getTime();
         this.lastBlock = blockNumber;
@@ -131,22 +150,28 @@ export class TokenService {
         if (tokenNames && tokenNames.length) {
           let i = 0;
           for (; i < tokenNames.length; i++) {
-            const instances = this.tokens[ tokenNames[i] ].instances;
+            const instances = this.tokens[tokenNames[i]].instances;
             const instanceIDs = Object.keys(instances);
             let j = 0;
             for (; j < instanceIDs.length; j++) {
-              if (this.debug > 2 ) { console.log(`${tokenNames[i]} - ${instanceIDs[j]}`); }
+              if (this.debug > 2) {
+                console.log(`${tokenNames[i]} - ${instanceIDs[j]}`);
+              }
               const instance = instances[instanceIDs[j]];
-              instance.getProps().then( ( inst => {
-                return newProps => {
-                  if (newProps) {
-                    inst.props = newProps;
-                    const elapsed = new Date().getTime() - renderStart;
-                    if (this.debug > 0 ) { console.log('Rendered in ' + elapsed + 'ms'); }
-                    thisService.returnTokens();
-                  }
-                };
-              })(this.tokens[ tokenNames[i] ].instances[instanceIDs[j]]) );
+              instance.getProps().then(
+                ((inst) => {
+                  return (newProps) => {
+                    if (newProps) {
+                      inst.props = newProps;
+                      const elapsed = new Date().getTime() - renderStart;
+                      if (this.debug > 0) {
+                        console.log('Rendered in ' + elapsed + 'ms');
+                      }
+                      thisService.returnTokens();
+                    }
+                  };
+                })(this.tokens[tokenNames[i]].instances[instanceIDs[j]])
+              );
             }
           }
         }
@@ -156,7 +181,7 @@ export class TokenService {
 
   public negotiateTokenByContent(xmlContent: string): void {
     const newToken = parseXMLFromText(xmlContent);
-    Object.keys(newToken).forEach(tokenName => {
+    Object.keys(newToken).forEach((tokenName) => {
       this.tokens[tokenName] = newToken[tokenName];
       this.tokens[tokenName].filter = '';
       this.renderTokenInstances(tokenName).then(() => this.returnTokens());
@@ -171,9 +196,15 @@ export class TokenService {
       if (!this.ethersData || !Object.keys(this.ethersData).length) {
         this.ethersData = await getEthersData();
       }
-      if (this.debug > 0) { console.log(`negotiate fired for  ${tokenName}`); }
+      if (this.debug > 0) {
+        console.log(`negotiate fired for  ${tokenName}`);
+      }
 
-      const commonInitProps = extendPropsWithContracts(this.tokens[tokenName].xmlDoc, {}, this.ethersData);
+      const commonInitProps = extendPropsWithContracts(
+        this.tokens[tokenName].xmlDoc,
+        {},
+        this.ethersData
+      );
       commonInitProps.ownerAddress = this.ethersData.userAddress;
 
       const initialTokenInstance = new TokenCard({
@@ -184,16 +215,17 @@ export class TokenService {
         ethersData: this.ethersData,
         filter: this.tokens[tokenName].filter,
         debug: this.debug,
-        props: commonInitProps
+        props: commonInitProps,
       });
       const distinctProps = await initialTokenInstance.getDistinctItems();
 
       if (distinctProps && distinctProps.items && distinctProps.items.length) {
-
         let i = 0;
         for (; i < distinctProps.items.length; i++) {
           const distinctItem = distinctProps.items[i];
-          if (this.debug > 2) { console.log(`lets add instance : ${distinctItem}`); }
+          if (this.debug > 2) {
+            console.log(`lets add instance : ${distinctItem}`);
+          }
 
           const initProps = Object.assign({}, commonInitProps);
           initProps[distinctProps.distinctName] = distinctItem;
@@ -206,43 +238,52 @@ export class TokenService {
             ethersData: this.ethersData,
             filter: this.tokens[tokenName],
             debug: this.debug,
-            props: initProps
+            props: initProps,
           });
 
-          const [propsError, props] = await to(tokenInstance.getProps() );
+          const [propsError, props] = await to(tokenInstance.getProps());
           if (propsError) {
             console.log('getProps error received', propsError);
           }
           this.tokens[tokenName].props = props;
 
-          const compareRes = compareStringToProps(this.tokens[tokenName].filter, props);
+          const compareRes = compareStringToProps(
+            this.tokens[tokenName].filter,
+            props
+          );
           if (!compareRes) {
-            if (this.debug > 0) { console.log('compare failed'); }
+            if (this.debug > 0) {
+              console.log('compare failed');
+            }
             continue;
           }
 
-          this.tokens[tokenName].instances[`${distinctProps.distinctName}=${distinctItem}`] = tokenInstance;
+          this.tokens[tokenName].instances[
+            `${distinctProps.distinctName}=${distinctItem}`
+          ] = tokenInstance;
         }
       }
       this.tokens[tokenName].working = false;
-      if (this.debug > 2) { console.log('Token Service tokens:', this.tokens); }
+      if (this.debug > 2) {
+        console.log('Token Service tokens:', this.tokens);
+      }
       this.returnTokens();
-
     } catch (e) {
       const message = `negotiate error = ${e}`;
-      if (this.debug) { console.log(message, e); }
+      if (this.debug) {
+        console.log(message, e);
+      }
       this.tokens[tokenName].working = false;
       throw new Error(message);
     }
   }
 
   public negotiateTokenByPath(XMLPath: string): void {
-    this.http.get(XMLPath, {responseType: 'text'})
-      .subscribe(
-        data => {
-          this.negotiateTokenByContent(data);
-        },
-        error => console.log(`XML file load failed for ${XMLPath}`, error)
+    this.http.get(XMLPath, { responseType: 'text' }).subscribe(
+      (data) => {
+        this.negotiateTokenByContent(data);
+      },
+      (error) => console.log(`XML file load failed for ${XMLPath}`, error)
     );
   }
 
@@ -250,33 +291,43 @@ export class TokenService {
    * Render tokens output in format {TokenName: [tokenInstance1,...]}
    */
   private returnTokens(justReturn = 0): any {
-    if (this.debug > 2 ) { console.log('this.tokens', this.tokens); }
+    if (this.debug > 2) {
+      console.log('this.tokens', this.tokens);
+    }
     const output = {};
-    Object.keys(this.tokens).forEach(key => {
+    Object.keys(this.tokens).forEach((key) => {
       const instances = this.tokens[key].instances;
       const returnInstances = {};
       Object.keys(instances).forEach(
-        instanceId => returnInstances[instanceId] = instances[instanceId].props);
+        (instanceId) =>
+          (returnInstances[instanceId] = instances[instanceId].props)
+      );
       output[key] = returnInstances;
     });
     if (justReturn) {
       return output;
     }
-    if (this.debug > 0 ) { console.log('this.tokenGenerator$.next fired with data:->>', output); }
+    if (this.debug > 0) {
+      console.log('this.tokenGenerator$.next fired with data:->>', output);
+    }
     this.tokenGenerator$.next(output);
   }
 
-  public init(): void{
+  public init(): void {
     if (this.inited) {
       return;
     }
     try {
       if (window.location.protocol === 'file:') {
-        throw new Error('Please load this App from HTTP/HTTPS server(local web server should work good), because of browser security reason you can\'t connect remote server from local file script.');
+        throw new Error(
+          "Please load this App from HTTP/HTTPS server(local web server should work good), because of browser security reason you can't connect remote server from local file script."
+        );
       }
 
       if (!window.ethereum) {
-        throw new Error('Ethereum Wallet doesnt work at this page, please enable it and reload page.');
+        throw new Error(
+          'Ethereum Wallet doesnt work at this page, please enable it and reload page.'
+        );
       }
 
       if (!Web3 && !window.ethers) {
@@ -293,7 +344,7 @@ export class TokenService {
 
       this.inited = true;
 
-      if (window.ethereum){
+      if (window.ethereum) {
         window.ethereum.on('accountsChanged', this.reInit);
         window.ethereum.on('chainChanged', this.reInit);
         window.ethereum.on('connect', this.reInit);
@@ -310,8 +361,10 @@ export class TokenService {
     }
   }
 
-  private async reInit(): Promise<any>{
-    if (this.debug) { console.log('network data changed. start reinit token instances...'); }
+  private async reInit(): Promise<any> {
+    if (this.debug) {
+      console.log('network data changed. start reinit token instances...');
+    }
     this.ethersData = await getEthersData();
     if (this.tokens) {
       Object.keys(this.tokens).forEach((tokenName) => {
@@ -327,9 +380,17 @@ export class TokenService {
   }
 
   public renderCards({
-        listener$, tokenName, tokenInstance, cardName,
-        cardType, cardView, returnHistory, listenNewEvents, transactionNonce, returnType
-      }): any {
+    listener$,
+    tokenName,
+    tokenInstance,
+    cardName,
+    cardType,
+    cardView,
+    returnHistory,
+    listenNewEvents,
+    transactionNonce,
+    returnType,
+  }): any {
     const token = this.tokens[tokenName];
     if (!token) {
       console.log(`cant see token name = ${tokenName}`);
@@ -343,8 +404,8 @@ export class TokenService {
     const iframeId = `${cardName}_${cardType}_${cardView}`;
 
     if (listenNewEvents) {
-      listener$.subscribe(x => {
-        instance.getProps().then(newProps => {
+      listener$.subscribe((x) => {
+        instance.getProps().then((newProps) => {
           this.tokens[tokenName].instances[tokenInstance].props = newProps;
           this.returnTokens();
         });
@@ -365,17 +426,25 @@ export class TokenService {
         selector += `[@type="${cardType}"]`;
       }
 
-      const cardNode = getXMLItem(instance.xmlDoc, selector );
+      const cardNode = getXMLItem(instance.xmlDoc, selector);
       if (!cardNode) {
-        if (this.debug) { console.log(`cant see card for >>>${selector}<<<`); }
+        if (this.debug) {
+          console.log(`cant see card for >>>${selector}<<<`);
+        }
       } else {
         cardHtml = getXMLItemText(
           instance.xmlDoc,
           `ts:${cardView}[@xml:lang="${this.lang}"][1]`,
           cardNode,
-          `ts:${cardView}[@xml:lang="${instance.fallbackLang}"][1]`, instance.debug );
+          `ts:${cardView}[@xml:lang="${instance.fallbackLang}"][1]`,
+          instance.debug
+        );
 
-        if (instance.debug > 2) { console.log(`renderCardView started for name=${cardName} type = ${cardType}; itemType=${cardView}`); }
+        if (instance.debug > 2) {
+          console.log(
+            `renderCardView started for name=${cardName} type = ${cardType}; itemType=${cardView}`
+          );
+        }
       }
 
       iframe = document.createElement('iframe');
@@ -384,11 +453,17 @@ export class TokenService {
       iframe.style = 'display: none;';
       const body = document.querySelector('body');
       iframe.onload = () => {
+        if (this.debug > 2) {
+          console.log('iframe.onload fired;');
+        }
+        iframe.contentWindow.onerror = (e) => {
+          console.log('iframe error');
+          console.log(e);
+        };
 
-        if (this.debug > 2) { console.log('iframe.onload fired;'); }
-        iframe.contentWindow.onerror = e => {console.log('iframe error'); console.log(e); };
-
-        iframeDoc = iframe.contentDocument ? iframe.contentDocument : iframe.contentWindow.document;
+        iframeDoc = iframe.contentDocument
+          ? iframe.contentDocument
+          : iframe.contentWindow.document;
 
         /* Inject helper JS code */
         let code = instance.iframeHelper.toString();
@@ -428,8 +503,8 @@ export class TokenService {
         }
 
         // insert all scripts from card-view
-        if (scripts.length){
-          scripts.forEach(item => {
+        if (scripts.length) {
+          scripts.forEach((item) => {
             instance.insertScript(iframeDoc, item.innerText);
             item.remove();
           });
@@ -444,13 +519,27 @@ export class TokenService {
         div.setAttribute('id', 'render');
         mainDiv.appendChild(div);
 
-        instance.getCardItems({cardName, cardType, cardView, returnHistory, listenNewEvents, listener$, transactionNonce });
+        instance.getCardItems({
+          cardName,
+          cardType,
+          cardView,
+          returnHistory,
+          listenNewEvents,
+          listener$,
+          transactionNonce,
+        });
       };
       body.appendChild(iframe);
     } else {
-      instance.getCardItems({cardName, cardType, cardView, returnHistory, listenNewEvents, listener$, transactionNonce});
+      instance.getCardItems({
+        cardName,
+        cardType,
+        cardView,
+        returnHistory,
+        listenNewEvents,
+        listener$,
+        transactionNonce,
+      });
     }
   }
 }
-
-
