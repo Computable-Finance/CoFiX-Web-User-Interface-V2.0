@@ -39,18 +39,27 @@ export class ConnectWalletPage implements OnDestroy {
     }
   }
 
-  async connect() {
+  connect() {
     this.isConnectLoading = true;
-    await this.cofixService.connectWallet().catch((err) => {
-      this.isConnectLoading = false;
-    });
-    this.utils.getPairAttended();
-    this.isConnectLoading = false;
-    this.onConnected.emit();
+    this.cofixService
+      .connectWallet()
+      .then(() => {
+        this.utils.getPairAttended();
+        this.isConnectLoading = false;
+        this.onConnected.emit();
+      })
+      .catch((err) => {
+        this.isConnectLoading = false;
+      });
   }
 
   showPending() {
-    this.subscribe();
+    if (
+      !this.txLastPendingSubscription ||
+      this.txLastPendingSubscription.closed
+    ) {
+      this.subscribe();
+    }
     return this.pendingCount > 0;
   }
 
