@@ -90,7 +90,6 @@
   "wallet_warn": "Insufficient wallet balance",
   "market_warn": "Insufficient asset in liquidity pool",
   "swap_title": "What is Cofix Swap?",
-
   "swap_desc1": "CoFiX Dapp is the most efficient Token Swap on Ethereum.",
   "swap_desc2": "Traders always get market prices at the smallest spread.",
   "swap_desc3": "Trade in CoFiX to earn CoFi. CoFi represents the governance and dividend rights in the CoFiX protocol.",
@@ -238,6 +237,7 @@
   "pool_tooltips_miningpool_deposittokens": "XToken you own in your wallet right now. Deposit these to mine more CoFi Tokens.",
   "pool_tooltips_addliquid_deposittoggle": "When you deposit XToken in the Mining Pool, you begin earning CoFi Tokens in proportion to your share of the Liquidity Pool.",
   "pool_tooltips_addliquid_estimate": "XToken' value are related to your total assets deposited and represent your share of the liquidity pool.",
+  "pool_tooltips_addliquid_estimate_footer": "XToken = {{ethAmount}} ETH",
   "pool_tooltips_redeemliquid_withdraw": "Redeem your XToken as one of either Assets below from your deposited pair. You can only withdraw as one or the other in one transaction.",
   "pool_tooltips_redeemliquid_xtokens": "XToken currently deposited. They are mining CoFi tokens for you. Withdraw if you’d like to redeem your liquidity. ",
   "claim_tooltips_unclaimed": "Deposit your CoFi Tokens to the Dividend Pool to earn ETH, or withdraw to your wallet.",
