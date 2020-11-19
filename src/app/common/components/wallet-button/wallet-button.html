@@ -14,7 +14,6 @@
   <span>{{'lj_text' |translate}}</span>
   <div class="loading-connect" *ngIf="isConnectLoading"></div>
 </div>
-
 <div class="tx-pending" *ngIf="showPending()" (click)="showTXList($event)">
   <div class="pending"></div>
   {{pendingCount}} {{'pending' | translate}}
