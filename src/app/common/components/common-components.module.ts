@@ -25,7 +25,7 @@ import { TxStatusPage } from './transaction/tx-status/tx-status.page';
 import { ConnectModal } from './connect-modal/connect-modal';
 import { TipPannel } from './tip-pannel/tip-pannel';
 import { ArrowButton } from './arrow-button/arrow-button';
-import { WalletButton } from './connect-button/connect-button';
+import { WalletButton } from './wallet-button/wallet-button';
 
 @NgModule({
   imports: [

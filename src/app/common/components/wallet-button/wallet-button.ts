@@ -9,9 +9,9 @@ import { Utils } from '../../utils';
 import { TxListPage } from '../transaction/tx-List/tx-list.page';
 
 @Component({
-  selector: 'app-connect-button',
-  templateUrl: './connect-button.html',
-  styleUrls: ['./connect-button.scss'],
+  selector: 'app-wallet-button',
+  templateUrl: './wallet-button.html',
+  styleUrls: ['./wallet-button.scss'],
 })
 export class WalletButton implements OnDestroy {
   isConnectLoading = false;
