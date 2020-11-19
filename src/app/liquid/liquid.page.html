@@ -242,6 +242,7 @@
       #tokenDepositView
       *ngIf="showMiningModel"
       [profit]="miningProfit"
+      [coin]="selectCoin"
       [miningSpeed]="earnedRate[toCoin.id]"
       (onClose)="closeMiningToken($event)"
     ></app-token-mining>

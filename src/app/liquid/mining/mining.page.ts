@@ -38,9 +38,9 @@ export class TokenMiningPage implements OnInit, OnDestroy {
   @Input() profit: any = { title: '', subtitle: '', isDeposit: false };
   @Output() onClose = new EventEmitter<any>();
   @Input() miningSpeed: any;
+  @Input() coin = 'USDT';
 
   showInputSelect = false;
-  coin = 'USDT';
   coinAddress: string;
   todoValue: string;
   hadValue: string;
