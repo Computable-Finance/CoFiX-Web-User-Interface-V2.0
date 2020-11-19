@@ -1,25 +1,20 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-taken-info',
   templateUrl: './token-info.page.html',
   styleUrls: ['./token-info.page.scss'],
 })
-export class TokenInfoPage implements OnInit {
+export class TokenInfoPage {
   @Input() infoTitle: string;
   @Input() token: string;
-  @Input() tokenBalance: any;
+  @Input() tokenBalance: string;
   @Input() alertTitle: string;
   @Input() alertContent: string;
   @Input() showZeroInfo = false;
   @Input() questionImgName = 'question';
   constructor() {}
-  ngOnInit() {}
   showSkeleton() {
-    return (
-      this.tokenBalance === undefined ||
-      this.tokenBalance === '' ||
-      this.tokenBalance === null
-    );
+    return !this.tokenBalance;
   }
 }

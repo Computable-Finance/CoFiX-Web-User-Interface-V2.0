@@ -34,7 +34,7 @@ export class IncomePage implements OnInit, OnDestroy {
   shareInDividendPool: string;
   totalETHFromSwapFees: string;
   totalETHInDividendPool: string;
-  ethTotalClaimed: string;
+  //ethTotalClaimed: string;
   earnedETH: string;
   canReceive = false;
   isLoading = false;
@@ -157,11 +157,10 @@ export class IncomePage implements OnInit, OnDestroy {
     this.totalETHInDividendPool = await this.balanceTruncatePipe.transform(
       await this.cofixService.totalETHInDividendPool()
     );
-    this.ethTotalClaimed = await this.balanceTruncatePipe.transform(
+    /*this.ethTotalClaimed = await this.balanceTruncatePipe.transform(
       this.cofixService.getETHTotalClaimed()
-    );
+    );*/
 
-    console.log(this.ethTotalClaimed);
     this.cofiStakingRewardsSubscription = this.balancesQuery
       .currentERC20Balance$(
         this.cofixService.getCurrentAccount(),
@@ -180,9 +179,9 @@ export class IncomePage implements OnInit, OnDestroy {
         this.totalETHInDividendPool = await this.balanceTruncatePipe.transform(
           await this.cofixService.totalETHInDividendPool()
         );
-        this.ethTotalClaimed = await this.balanceTruncatePipe.transform(
+        /* this.ethTotalClaimed = await this.balanceTruncatePipe.transform(
           this.cofixService.getETHTotalClaimed()
-        );
+        );*/
       });
 
     this.getEarnedETHAndSubscribe();
