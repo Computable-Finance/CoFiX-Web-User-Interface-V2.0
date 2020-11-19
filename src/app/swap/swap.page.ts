@@ -108,7 +108,7 @@ export class SwapPage implements OnInit, OnDestroy {
     }, 3000);
   }
   refreshPage() {
-    this.initCoinContent();
+    this.getCoinContent();
     this.getIsApproved();
     this.getERC20BalanceOfPair();
   }
@@ -242,6 +242,8 @@ export class SwapPage implements OnInit, OnDestroy {
   resetAmount() {
     this.fromCoin.amount = '';
     this.toCoin.amount = '';
+  }
+  initValues() {
     this.fromCoin.isApproved = false;
     this.toCoin.isApproved = false;
     this.expectedCofi = '';
@@ -251,7 +253,7 @@ export class SwapPage implements OnInit, OnDestroy {
   }
 
   changeCoin() {
-    this.resetAmount();
+    this.initValues();
     const tempCoin = this.fromCoin;
     this.fromCoin = this.toCoin;
     this.toCoin = tempCoin;
@@ -269,7 +271,7 @@ export class SwapPage implements OnInit, OnDestroy {
     }
 
     this.resetSwapError();
-    this.initCoinContent();
+    this.getCoinContent();
     await this.getIsApproved();
     this.changeOracleCost();
     await this.getERC20BalanceOfPair();
@@ -286,13 +288,11 @@ export class SwapPage implements OnInit, OnDestroy {
     } else {
       this.toCoin.id = event.coin;
     }
-
     this.resetSwapError();
-    this.initCoinContent();
+    this.getCoinContent();
     await this.getIsApproved();
     this.changeOracleCost();
     await this.getERC20BalanceOfPair();
-
     this.getEPAndEC();
   }
 
@@ -304,7 +304,7 @@ export class SwapPage implements OnInit, OnDestroy {
     }
   }
 
-  async initCoinContent() {
+  async getCoinContent() {
     this.unsubscribeAll();
     this.showError = false;
     this.isInsufficientError = false;
@@ -357,6 +357,7 @@ export class SwapPage implements OnInit, OnDestroy {
           .subscribe(this.balanceHandler);
       }
 
+      this.changeShowError();
       this.expectedCofi = '';
     }
   }
@@ -370,6 +371,10 @@ export class SwapPage implements OnInit, OnDestroy {
     this.fromCoin.id = event.coin;
     this.fromCoin.amount = event.amount;
     this.getEPAndEC();
+    this.changeShowError();
+  }
+
+  changeShowError() {
     if (this.fromCoin.id === 'ETH') {
       this.showError =
         Number(this.fromCoin.amount) !== 0 &&
@@ -378,34 +383,6 @@ export class SwapPage implements OnInit, OnDestroy {
       this.showError =
         Number(this.fromCoin.amount) !== 0 &&
         new BNJS(this.fromCoin.amount).gt(new BNJS(this.fromCoin.balance));
-    }
-  }
-
-  async toCoinInput(event) {
-    this.resetSwapError();
-    this.toCoin.amount = event.amount;
-    this.fromCoin.amount = '';
-    this.expectedCofi = '';
-    const executionPriceAndExpectedCofi = await this.cofixService.executionPriceAndExpectedCofi(
-      this.toCoin.address,
-      this.fromCoin.address,
-      this.toCoin.amount || '0'
-    );
-    if (executionPriceAndExpectedCofi) {
-      this.fromCoin.amount = await this.balancePipe.transform(
-        executionPriceAndExpectedCofi.excutionPrice
-      );
-      if (executionPriceAndExpectedCofi.expectedCofi.length < 2) {
-        this.expectedCofi = (
-          await executionPriceAndExpectedCofi.expectedCofi[0]
-        ).toString();
-      } else {
-        this.expectedCofi = (
-          await executionPriceAndExpectedCofi.expectedCofi[0]
-        )
-          .plus(await executionPriceAndExpectedCofi.expectedCofi[1])
-          .toString();
-      }
     }
   }
 
@@ -443,7 +420,8 @@ export class SwapPage implements OnInit, OnDestroy {
   private afterTxSucceeded(status, txHash) {
     this.isLoading.dh = false;
     this.resetAmount();
-    this.initCoinContent();
+    this.initValues();
+    this.getCoinContent();
     this.getIsApproved();
     this.utils.changeTxStatus(status, txHash);
   }

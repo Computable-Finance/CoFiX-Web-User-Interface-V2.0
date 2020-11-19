@@ -28,7 +28,6 @@
           #toCoinInputView
           (clickMax)="setToCoinMax($event)"
           (changeCoin)="changeToCoin($event)"
-          (changeValue)="toCoinInput($event)"
           [amount]="toCoin.amount"
           [coin]="toCoin.id"
           [isInsufficientError]="isInsufficientError"
@@ -61,7 +60,9 @@
             <ng-container *ngIf="!showSkeleton(changePrice)">
               <ion-col class="ion-text-right number" size="7"
                 >1 <span class="tk1">{{fromCoin.id}}</span> =
-                <span class="changePrice">{{changePrice | truncate:'--'}}</span>
+                <span class="change-price"
+                  >{{changePrice | truncate:'--'}}</span
+                >
                 {{toCoin.id}}
               </ion-col>
               <ion-col size="1">
@@ -89,7 +90,7 @@
                     </ion-col>
                     <ion-col class="number ion-text-right" size="7">
                       1 <span class="tk1">{{fromCoin.id}}</span> =
-                      <span class="changePrice"
+                      <span class="change-price"
                         >{{nestPrice | truncate:'--':8}}</span
                       >
                       {{toCoin.id}}
