@@ -1512,7 +1512,12 @@ export class CofiXService {
   }
 
   async earnedETH() {
-    return this.getCurrentBalances().dividend;
+    const dividend = this.getCurrentBalances()?.dividend;
+    if (!dividend) {
+      await this.updateDividend();
+      return this.getCurrentBalances().dividend;
+    }
+    return dividend;
   }
 
   private updateMarketDetails() {

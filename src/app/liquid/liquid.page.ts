@@ -114,6 +114,7 @@ export class LiquidPage implements OnInit, OnDestroy {
 
   ETHAmountForRemoveLiquidity = { USDT: '', HBTC: '' };
   tokenAmountForRemoveLiquidity = { USDT: '', HBTC: '' };
+  nAVPerShareForBurn = { USDT: '', HBTC: '' };
   showAddModel = false;
   showLiquidInfo = false;
   isRotate = { USDT: false, HBTC: false };
@@ -328,7 +329,8 @@ export class LiquidPage implements OnInit, OnDestroy {
             this.todoValue[this.toCoin.id] || '0'
           );
           this.ETHAmountForRemoveLiquidity[this.toCoin.id] = resultETH.result;
-
+          this.nAVPerShareForBurn[this.toCoin.id] =
+            resultETH.nAVPerShareForBurn;
           const resultToken = await this.cofixService.getTokenAmountForRemoveLiquidity(
             this.coinAddress,
             pairAddress,
