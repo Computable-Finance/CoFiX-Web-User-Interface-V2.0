@@ -1,17 +1,17 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-liquid-input',
   templateUrl: './liquid-input.page.html',
   styleUrls: ['./liquid-input.page.scss'],
 })
-export class LiquidInputPage implements OnInit {
+export class LiquidInputPage {
   @Output() changeCoin = new EventEmitter<any>();
-  @Input() coin: string = 'USDT';
-  constructor(private modalController: ModalController) {}
-  ngOnInit() {}
-  async selectAddType(event: any) {
+  @Input() coin = 'USDT';
+
+  constructor() {}
+
+  switch() {
     if (this.coin === 'USDT') {
       this.coin = 'HBTC';
     } else {
