@@ -9,7 +9,6 @@ import { HeaderPage } from './header/header.page';
 import { PipeModule } from '../pipes/pipe.module';
 import { CoinInput } from './coin-input/coin-input';
 import { CoinSelector } from './coin-input/selector/coin-selector';
-import { ConnectWalletPage } from './connect-wallet/connect-wallet.page';
 import { LiquidInputPage } from './liquid-input/liquid-input.page';
 import { SwitchLangPage } from './switch-lang/switch-lang.page';
 import { WarningDetailPage } from 'src/app/liquid/warning/warning-detail/warning-detail.page';
@@ -26,6 +25,7 @@ import { TxStatusPage } from './transaction/tx-status/tx-status.page';
 import { ConnectModal } from './connect-modal/connect-modal';
 import { TipPannel } from './tip-pannel/tip-pannel';
 import { ArrowButton } from './arrow-button/arrow-button';
+import { WalletButton } from './connect-button/connect-button';
 
 @NgModule({
   imports: [
@@ -43,7 +43,7 @@ import { ArrowButton } from './arrow-button/arrow-button';
     TipPannel,
     CoinInput,
     CoinSelector,
-    ConnectWalletPage,
+    WalletButton,
     LiquidInputPage,
     ProfitPage,
     SwitchLangPage,
@@ -63,7 +63,7 @@ import { ArrowButton } from './arrow-button/arrow-button';
     HeaderPage,
     TipPannel,
     CoinInput,
-    ConnectWalletPage,
+    WalletButton,
     LiquidInputPage,
     ProfitPage,
     SwitchLangPage,

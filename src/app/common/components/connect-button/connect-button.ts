@@ -9,11 +9,11 @@ import { Utils } from '../../utils';
 import { TxListPage } from '../transaction/tx-List/tx-list.page';
 
 @Component({
-  selector: 'app-connect-wallet',
-  templateUrl: './connect-wallet.page.html',
-  styleUrls: ['./connect-wallet.page.scss'],
+  selector: 'app-connect-button',
+  templateUrl: './connect-button.html',
+  styleUrls: ['./connect-button.scss'],
 })
-export class ConnectWalletPage implements OnDestroy {
+export class WalletButton implements OnDestroy {
   isConnectLoading = false;
   pendingCount = 0;
   txLastPendingSubscription: Subscription;
