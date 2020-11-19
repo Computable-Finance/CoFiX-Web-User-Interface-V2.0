@@ -1,34 +1,5 @@
-.get-text {
-  margin-top: 20px;
-}
-.operation-div {
-  margin-top: 40px;
-  margin-bottom: 15px;
-}
-:host(.button-block) .button-native {
-  font-size: 16px;
-}
-.changePrice {
+.change-price {
   display: inline-block;
-}
-.connect-div {
-  margin: 20px auto;
-}
-
-.swap-img {
-  text-align: center;
-}
-.swap-img img {
-  width: 35px;
-  cursor: pointer;
-  position: relative;
-  top: -27px;
-}
-.swap-img ion-icon {
-  width: 45px;
-  position: relative;
-  top: -30px;
-  height: 45px;
 }
 
 .show-detail {
@@ -94,18 +65,8 @@
   }
 }
 
-.margin-left {
-  margin-left: 1px;
-}
 .swap-card {
   margin-top: 26px;
-}
-ion-icon {
-  width: 24px;
-  height: 24px;
-}
-.trascation-doing {
-  display: none;
 }
 
 .dot-col {

@@ -1,34 +1,9 @@
-ion-menu-button {
-  color: var(--ion-color-primary);
-}
 :host ::ng-deep app-tip-pannel.desc_line {
   .centent .desc {
     line-height: 25px !important;
   }
 }
-@media only screen and (max-width: 510px) {
-  .content_text_fir {
-    width: 95% !important;
-    padding-bottom: 15px;
-  }
-}
-.content_text_fir .center {
-  width: 88%;
-  margin: 0 auto;
-}
-.center .text1 {
-  width: 100%;
-  height: 27px;
-  font-size: 14px;
-  font-family: 'Source Sans Pro', sans-serif;
-  font-weight: bold;
-  color: var(--white);
-  line-height: 32px;
-}
 
-.connect-card {
-  width: 89%;
-}
 .conversionPrice .title {
   font-size: 15px;
   font-weight: 600;

@@ -114,26 +114,11 @@ ion-button {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-.popover-liquidselect .popover-content {
-  list-style: none;
-  padding: 0;
-  width: 260px;
-  max-height: 300px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  box-shadow: 0px 0px 18px 0px #444444;
-  border-radius: 8px;
-  position: absolute;
-  /*top: 120px !important;*/
-}
+
 .popover-coinselect .modal-wrapper {
   height: 326px;
 }
-.popover-liquidselect .modal-wrapper {
-  height: 260px;
-}
-.popover-coinselect .modal-wrapper,
-.popover-liquidselect .modal-wrapper {
+.popover-coinselect .modal-wrapper {
   width: 344px;
   border-radius: 16px;
   box-shadow: 0 11px 19px 0 rgba(0, 0, 0, 0.08);
@@ -233,48 +218,7 @@ ion-button {
 .full-btn {
   width: 100%;
 }
-.op {
-  position: relative;
-  display: inline-block;
-  width: 18px;
-  height: 18px;
-  border: 2px solid #434343;
-  cursor: pointer;
-  margin-left: 15px;
-  border-radius: 50%;
-}
-.op img {
-  right: -5px;
-  bottom: 1px;
-  display: block;
-  width: 18px;
-  position: absolute;
-  max-width: unset !important;
-}
-.explain-liquid-alert {
-  --background: var(--white);
-  --max-width: 370px;
-}
-.explain-liquid-alert h2 {
-  font-size: 15px !important;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.67;
-  letter-spacing: normal;
-  --ion-text-color: var(--mine);
-  text-align: left;
-}
-.explain-liquid-alert .alert-message {
-  font-size: 15px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.67;
-  letter-spacing: normal;
-  color: var(--mine);
-  text-align: justify;
-}
+
 .alert-icon {
   margin-left: 10px;
   width: 18px;
@@ -384,39 +328,15 @@ ion-button {
   }
 }
 
-.popover-sidermenu .popover-content {
-  list-style: none;
-  padding: 0;
-  overflow-y: hidden;
-  overflow-x: auto;
-  background: #081428;
-  border-radius: 8px;
-  color: #fff;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-
 .popover-ios .popover-arrow::after {
   display: none;
 }
 
-.connect-card {
-  width: 510px;
-  margin: 32px auto;
-  background: unset;
-}
 .error_warn {
   font-size: 16px;
   width: 100%;
   text-align: center;
   margin-top: 15px;
-}
-.wallet_warn {
-  color: #ff3478 !important;
-}
-
-.claim-title {
-  margin-top: 16px;
 }
 
 .close-icon {
@@ -606,4 +526,16 @@ ion-toggle {
 .skeleton-earnedeth {
   width: 60%;
   height: 40px;
+}
+
+:host ::ng-deep app-coin-input.coin-input {
+  .input-group > .input {
+    border-left: none;
+  }
+}
+.count {
+  display: block;
+  clear: both;
+  margin: 0 auto;
+  margin-top: 15px;
 }

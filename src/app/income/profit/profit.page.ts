@@ -16,7 +16,6 @@ const BNJS = require('bignumber.js');
 @Component({
   selector: 'app-income-profit',
   templateUrl: './profit.page.html',
-  styleUrls: ['./profit.page.scss'],
 })
 export class IncomeProfitPage implements OnInit, OnDestroy {
   @ViewChild(CoinInput, { static: false }) coinInputView: CoinInput;

@@ -1,80 +1,14 @@
 .header {
   border-bottom: 1px solid var(--mercury);
 }
-.expectBox {
-  text-align: left;
-  width: 100%;
-  margin: 0 auto;
-  font-size: 14px;
-  color: var(--white);
-  position: relative;
-  display: inline-flex;
-  justify-content: space-between;
-}
-.expectBox p,
-.choose-btn p {
-  font-size: 13px;
-  color: #7d7d7d;
-  margin-top: 0;
-}
-.choose-btn {
-  display: inline-flex;
-  justify-content: space-between;
-  width: 100%;
-  margin: 0 auto;
-}
-.cofi-explain {
-  margin-bottom: 0;
-}
 
-.expect-balance {
-  color: white;
-} /*
-.pairAttended-card {
-  top: -260px;
-  position: relative;
-  z-index: 2;
-}*/
 .operation-btn {
   margin: 32px 0;
   width: 100%;
 }
-.ETH_icon {
-  position: absolute;
-  left: 15px;
-  z-index: 1;
-  top: -10px;
-}
-.token_icon {
-  width: 30px;
-  position: absolute;
-  left: 37px;
-  top: -10px;
-}
-.mtoken_banner {
-  height: 60px;
-  line-height: 40px;
-  color: white;
-}
-.balance {
-  font-size: 18px;
-}
-.pull_img {
-  cursor: pointer;
-  margin-left: 5px;
-}
-.rotate {
-  transform: rotate(180deg);
-}
+
 .operation-btn {
   --border-width: 1px;
-}
-.small-btn {
-  width: 45%;
-  margin-bottom: 0;
-}
-.conversionPrice .p2 {
-  font-size: 14px;
 }
 
 .swap-card {

@@ -1,116 +1,15 @@
-.liquid-div {
-  width: 510px;
-  height: 40px;
-  font-size: 18px;
-  margin-top: 20px !important;
-  font-family: 'Source Sans Pro', sans-serif;
-  margin: 0 auto;
-}
-@media only screen and (max-width: 820px) {
-  .liquid-div {
-    width: unset !important;
-  }
-  .connect-wallet {
-    width: 100%;
-  }
-}
-
 @media only screen and (max-width: 510px) {
-  .token_icon_col {
-    display: none !important;
-  }
-  .mtoken_banner ion-col {
-    padding-left: 0px !important;
-    font-size: 15px !important;
-  }
-
   ion-toggle {
     --handle-width: 35.99px !important;
     --handle-height: 13.99px !important;
     --handle-border-radius: 14px 4px 4px 14px;
   }
-  .balance {
-    font-size: 15px !important;
-  }
-}
-.token_icon_col {
-  display: block;
-}
-
-.cofi-explain {
-  margin-bottom: 0;
-}
-.expect-balance {
-  color: white;
-}
-.ETH_icon {
-  position: absolute;
-  left: -5px;
-  z-index: 1;
-  top: -13px;
-}
-.token_icon {
-  width: 40px;
-  position: absolute;
-  left: 27px;
-  top: -13px;
-}
-.mtoken_banner ion-col {
-  font-size: 17px;
-  color: black;
-}
-.mtoken_banner {
-  height: 64px;
-  line-height: 40px;
-  padding-left: 0;
-  padding-right: 0;
-}
-.balance {
-  font-size: 17px;
-  color: var(--dove);
-}
-.pull_img {
-  margin-left: 5px;
-  width: 24px;
-  position: relative;
-  top: 8px;
-}
-.earned-rate {
-  cursor: pointer;
-}
-.rotate {
-  transform: rotate(180deg);
 }
 
 .button-div {
   margin: 30px auto 8px auto;
 }
-.small-btn {
-  width: 45%;
-  margin-bottom: 0;
-}
-.conversionPrice .p2 {
-  font-size: 14px;
-}
-.liquid-info {
-  margin-top: 25px !important;
-  border-radius: 8px !important;
-}
-.motoken {
-  margin-top: 0;
-}
 
-.no-mining {
-  .conversionPrice .number {
-    color: var(--dove);
-  }
-}
-:host ::ng-deep app-taken-info.no-mining {
-  .conversionPrice .number {
-    opacity: 0.3;
-    color: var(--black);
-  }
-}
 .button-outline {
   margin-bottom: 30px;
 }
