@@ -54,7 +54,8 @@ export class AppComponent implements OnInit {
   }
 
   initTranslate() {
-    this.translate.setDefaultLang(this.settingsQuery.lang());
+    this.translate.use(this.settingsQuery.lang());
+    this.translate.setDefaultLang('en');
   }
 
   async initConnectIfEnabled() {
