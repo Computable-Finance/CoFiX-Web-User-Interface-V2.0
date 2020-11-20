@@ -37,3 +37,4 @@ reports
 *.css
 *.map
 /**/.sass-cache
+/reports
