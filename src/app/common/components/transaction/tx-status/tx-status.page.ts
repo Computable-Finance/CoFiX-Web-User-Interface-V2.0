@@ -9,9 +9,11 @@ import { PopoverController } from '@ionic/angular';
 export class TxStatusPage implements OnInit {
   @Input() txHash: string;
   @Input() network: number;
-  title: string = 'tx_rejected';
-  desc: string = 'tx_rejected_desc';
+  title = 'tx_rejected';
+  desc = 'tx_rejected_desc';
+
   constructor(private popoverController: PopoverController) {}
+
   ngOnInit() {
     if (this.txHash) {
       this.title = 'tx_submitted';
@@ -33,6 +35,6 @@ export class TxStatusPage implements OnInit {
         url = 'https://etherscan.io';
         break;
     }
-    window.open(url + `/tx/${this.txHash}`);
+    window.open(`${url}/tx/${this.txHash}`);
   }
 }

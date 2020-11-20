@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 
 @Component({
@@ -6,9 +6,8 @@ import { PopoverController } from '@ionic/angular';
   templateUrl: './tx-confirm.page.html',
   styleUrls: ['./tx-confirm.page.scss'],
 })
-export class TxConfirmPage implements OnInit {
+export class TxConfirmPage {
   constructor(private popoverController: PopoverController) {}
-  ngOnInit() {}
 
   close() {
     this.popoverController.dismiss();

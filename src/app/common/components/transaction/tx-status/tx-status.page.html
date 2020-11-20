@@ -1,27 +1,42 @@
 <ion-grid>
   <ion-row class="title ion-align-items-center ion-align-self-center">
     <ion-col offset="10" size="2" (click)="close()">
-      <div class="img-div"><img src="assets/images/close.png" class="close-img" /></div>
+      <div class="img-div">
+        <img src="assets/images/close.png" class="close-img" />
+      </div>
     </ion-col>
   </ion-row>
-  
   <ion-row class="account-info ion-align-items-center ion-align-self-center">
-
     <ion-col size="12" class="ion-text-center">
-      <img src="./assets/images/tx-fail.png" class="tx-statusimg" *ngIf="!txHash"/>
-      <img src="./assets/images/tx-correct.png" class="tx-statusimg" *ngIf="txHash" />
+      <img
+        src="./assets/images/tx-fail.png"
+        class="tx-statusimg"
+        *ngIf="!txHash"
+      />
+      <img
+        src="./assets/images/tx-correct.png"
+        class="tx-statusimg"
+        *ngIf="txHash"
+      />
     </ion-col>
     <ion-col class="ion-text-center tx-title" size="12">
       {{title | translate}}
     </ion-col>
-    <ion-col size="12" class="ion-text-center tx-desc"  *ngIf="!txHash">
+    <ion-col size="12" class="ion-text-center tx-desc" *ngIf="!txHash">
       {{desc | translate}}
     </ion-col>
-    <ion-col size="12" class="ion-text-center tx-link" *ngIf="txHash" (click)="goto()">
+    <ion-col
+      size="12"
+      class="ion-text-center tx-link"
+      *ngIf="txHash"
+      (click)="goto()"
+    >
       {{desc | translate}}
     </ion-col>
     <ion-col>
-      <ion-button class="operation-btn close-btn" (click)="close()" >{{'btn_close' | translate}}</ion-button>
+      <ion-button class="operation-btn close-btn" (click)="close()"
+        >{{'btn_close' | translate}}</ion-button
+      >
     </ion-col>
   </ion-row>
 </ion-grid>
