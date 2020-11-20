@@ -100,6 +100,7 @@
             "karmaConfig": "karma.conf.js",
             "styles": [],
             "scripts": [],
+            "codeCoverage": true,
             "assets": [
               {
                 "glob": "favicon.ico",
