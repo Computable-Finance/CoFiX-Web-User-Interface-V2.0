@@ -35,22 +35,4 @@ describe('TxStatusModal', () => {
     expect(component.title).toEqual('tx_rejected');
     expect(component.desc).toEqual('tx_rejected_desc');
   });
-
-  it('should go to etherscan.io if main net is used', () => {
-    component.txHash = 'xxx';
-    component.network = 1;
-    spyOn(window, 'open');
-    component.goto();
-    expect(window.open).toHaveBeenCalledWith('https://etherscan.io/tx/xxx');
-  });
-
-  it('should go to ropsten.etherscan.io if ropsten net is used', () => {
-    component.txHash = 'xxx';
-    component.network = 3;
-    spyOn(window, 'open');
-    component.goto();
-    expect(window.open).toHaveBeenCalledWith(
-      'https://ropsten.etherscan.io/tx/xxx'
-    );
-  });
 });

@@ -19,7 +19,6 @@
       {{cofixService.getCurrentAccount() | walletaddress}}
     </ion-col>
   </ion-row>
-
   <div class="menu-divider"></div>
   <ion-row>
     <ion-col class="ion-text-center tx-title">
@@ -29,7 +28,6 @@
   <ng-container *ngIf="txList.length === 0">
     {{'no_transactions'| translate}}
   </ng-container>
-
   <ng-container *ngFor="let tx of txList.reverse();let i=index">
     <ion-row
       class="ion-align-items-center ion-align-self-center tx"

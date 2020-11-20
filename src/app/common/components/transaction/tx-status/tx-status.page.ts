@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
+import { txLink } from 'src/app/common/uitils/common-funcs';
 
 @Component({
   selector: 'app-tx-status',
@@ -26,15 +27,6 @@ export class TxStatusPage implements OnInit {
   }
 
   goto() {
-    let url = '';
-    switch (this.network) {
-      case 3:
-        url = 'https://ropsten.etherscan.io';
-        break;
-      case 1:
-        url = 'https://etherscan.io';
-        break;
-    }
-    window.open(`${url}/tx/${this.txHash}`);
+    window.open(txLink(this.network, this.txHash));
   }
 }

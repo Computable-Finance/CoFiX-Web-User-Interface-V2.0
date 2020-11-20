@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { txLink } from 'src/app/common/uitils/common-funcs';
 import { CofiXService } from 'src/app/service/cofix.service';
 import { TxQuery } from 'src/app/state/tx/tx.query';
 
@@ -41,19 +42,10 @@ export class TxListPage implements OnInit, OnDestroy {
   }
 
   goto(txHash, network) {
-    let url = '';
-    switch (network) {
-      case 3:
-        url = 'https://ropsten.etherscan.io';
-        break;
-      case 1:
-        url = 'https://etherscan.io';
-        break;
-    }
-    window.open(`${url}/tx/${txHash}`);
+    window.open(txLink(network, txHash));
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     this.txListSubscription?.unsubscribe();
   }
 }

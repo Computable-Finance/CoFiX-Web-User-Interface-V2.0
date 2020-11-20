@@ -3,7 +3,6 @@ import { PopoverController, ToastController } from '@ionic/angular';
 import { PermissionsService } from 'src/app/state/permission/permission.service';
 
 import { CofiXService } from '../service/cofix.service';
-import { SettingsService } from '../state/setting/settings.service';
 import { TxService } from '../state/tx/tx.service';
 import { ConnectModal } from './components/connect-modal/connect-modal';
 import { TxConfirmPage } from './components/transaction/tx-confirm/tx-confirm.page';
@@ -15,7 +14,6 @@ import { BalanceTruncatePipe } from './pipes/balance.pipe';
 })
 export class Utils {
   constructor(
-    private settingsService: SettingsService,
     private balanceTruncatePipe: BalanceTruncatePipe,
     private cofixService: CofiXService,
     public toastController: ToastController,
