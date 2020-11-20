@@ -1,7 +1,7 @@
 on: [push, pull_request]
 
 jobs:
-  build_and_test:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -20,8 +20,41 @@ jobs:
           name: www-prod
           path: www/
 
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: |
+          echo -n "Node version: "
+          node -v
+          echo -n "Npm version: "
+          npm -v
+      - run: npm ci
+      - run: npm run test -- --browsers ChromeHeadless --configuration=ci
+      - uses: actions/upload-artifact@v2
+        if: success() || failure()
+        with:
+          name: test-reports
+          path: reports/
+      - name: Publish Test Report
+        if: success() || failure()
+        uses: mikepenz/action-junit-report@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          report_paths: reports/junit/*.xml
+      - uses: VeryGoodOpenSource/very_good_coverage@v1.1.1
+        if: success() || failure()
+        with:
+          path: reports/coverage/lcov.info
+          min_coverage: 0
+
   deploy:
-    needs: build_and_test
+    needs:
+      - build
+      - test
     runs-on: ubuntu-latest
     # Only push to stage, hotfix, or main will trigger deployment
     if: github.event_name == 'push' && (
@@ -58,13 +91,12 @@ jobs:
         run: |
           cd cofix-interface-deploy/
           # Avoid TF_WORKSPACE does not exists that cause hang waiting for user input avaliable workspaces
-          TF_WORKSPACE=default terraform init -upgrade
+          TF_WORKSPACE=default terraform init -upgrade -input=false
           if [ -f "${TF_WORKSPACE}.workspace.tfvars" ]; then
             echo "Use tfvars: ${TF_WORKSPACE}.workspace.tfvars"
-            terraform plan -var-file "${TF_WORKSPACE}.workspace.tfvars"
-            terraform apply -auto-approve -var-file "${TF_WORKSPACE}.workspace.tfvars"
+            terraform plan -var-file "${TF_WORKSPACE}.workspace.tfvars" -input=false -out=tfplan
           else
             echo "Use default config"
-            terraform plan
-            terraform apply -auto-approve
+            terraform plan -input=false -out=tfplan
           fi
+          terraform apply -input=false -auto-approve tfplan

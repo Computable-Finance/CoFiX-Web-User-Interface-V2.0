@@ -86,7 +86,7 @@ describe('CoinInput', () => {
         isInsufficientError: true,
         amount: '3',
         maxLiquid: '2',
-        expected: 3,
+        expected: 100,
       },
     ].forEach((item) => {
       Object.keys(item).forEach((key) => {
