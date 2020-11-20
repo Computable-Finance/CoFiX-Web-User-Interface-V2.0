@@ -4,11 +4,11 @@ import { PopoverController } from '@ionic/angular';
 import { MenuPage } from './menu/menu.page';
 
 @Component({
-  selector: 'app-switch-lang',
-  templateUrl: './switch-lang.page.html',
-  styleUrls: ['./switch-lang.page.scss'],
+  selector: 'app-lang-button',
+  templateUrl: './lang-button.html',
+  styleUrls: ['./lang-button.scss'],
 })
-export class SwitchLangPage {
+export class LangButton {
   constructor(private popoverController: PopoverController) {}
 
   async showLang(ev) {
