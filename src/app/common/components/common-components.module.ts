@@ -4,12 +4,11 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 import { TranslateModule } from '@ngx-translate/core';
-import { FooterPage } from './footer/footer.page';
-import { HeaderPage } from './header/header.page';
+import { FooterCompoment } from './footer/footer-component';
+import { HeaderCompoment } from './header/header-component';
 import { PipeModule } from '../pipes/pipe.module';
 import { CoinInput } from './coin-input/coin-input';
 import { CoinSelector } from './coin-input/selector/coin-selector';
-import { LiquidInputPage } from './liquid-input/liquid-input.page';
 import { SwitchLangPage } from './switch-lang/switch-lang.page';
 import { WarningDetailPage } from 'src/app/liquid/warning/warning-detail/warning-detail.page';
 import { CardTitlePage } from './card-title/card-title';
@@ -26,6 +25,7 @@ import { ConnectModal } from './connect-modal/connect-modal';
 import { TipPannel } from './tip-pannel/tip-pannel';
 import { ArrowButton } from './arrow-button/arrow-button';
 import { WalletButton } from './wallet-button/wallet-button';
+import { PairSwitch } from './pair-switch/pair-switch';
 
 @NgModule({
   imports: [
@@ -38,13 +38,13 @@ import { WalletButton } from './wallet-button/wallet-button';
     TooltipModule,
   ],
   declarations: [
-    FooterPage,
-    HeaderPage,
+    FooterCompoment,
+    HeaderCompoment,
     TipPannel,
     CoinInput,
     CoinSelector,
     WalletButton,
-    LiquidInputPage,
+    PairSwitch,
     ProfitPage,
     SwitchLangPage,
     WarningDetailPage,
@@ -59,12 +59,12 @@ import { WalletButton } from './wallet-button/wallet-button';
     ConnectModal,
   ],
   exports: [
-    FooterPage,
-    HeaderPage,
+    FooterCompoment,
+    HeaderCompoment,
     TipPannel,
     CoinInput,
     WalletButton,
-    LiquidInputPage,
+    PairSwitch,
     ProfitPage,
     SwitchLangPage,
     WarningDetailPage,

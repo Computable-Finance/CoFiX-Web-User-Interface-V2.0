@@ -2,10 +2,10 @@
 <ion-content [fullscreen]="true">
   <app-header [activeId]="'cofi'" class="mobile-header"></app-header>
   <div class="main-content">
-    <app-liquid-input
+    <app-pair-switch
       class="liquid-input"
       (changeCoin)="changeCoin($event)"
-    ></app-liquid-input>
+    ></app-pair-switch>
     <ion-card class="swap-card">
       <div class="card-content">
         <app-card-title

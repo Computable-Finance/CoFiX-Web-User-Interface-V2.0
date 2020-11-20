@@ -4,10 +4,10 @@ import { FOOTER_ITEMS } from '../../constants';
 
 @Component({
   selector: 'app-footer',
-  templateUrl: './footer.page.html',
-  styleUrls: ['./footer.page.scss'],
+  templateUrl: './footer-component.html',
+  styleUrls: ['./footer-component.scss'],
 })
-export class FooterPage implements OnInit {
+export class FooterCompoment implements OnInit {
   public footerItems;
   currentYear: number;
   isShowTools = false;

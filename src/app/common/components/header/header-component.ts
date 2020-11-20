@@ -7,10 +7,10 @@ import { SettingsService } from 'src/app/state/setting/settings.service';
 
 @Component({
   selector: 'app-header',
-  templateUrl: './header.page.html',
-  styleUrls: ['./header.page.scss'],
+  templateUrl: './header-component.html',
+  styleUrls: ['./header-component.scss'],
 })
-export class HeaderPage implements OnInit, OnDestroy {
+export class HeaderCompoment implements OnInit, OnDestroy {
   @Input() activeId: string;
   resizeSubscription: Subscription;
   public tabtems = [

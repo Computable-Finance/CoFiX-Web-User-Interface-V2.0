@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LiquidInputPage } from './liquid-input.page';
+import { PairSwitch } from './pair-switch';
 
 describe('PairSwitch', () => {
-  let component: LiquidInputPage;
+  let component: PairSwitch;
   let element: HTMLElement;
-  let fixture: ComponentFixture<LiquidInputPage>;
+  let fixture: ComponentFixture<PairSwitch>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [],
       providers: [],
-      declarations: [LiquidInputPage],
+      declarations: [PairSwitch],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(LiquidInputPage);
+    fixture = TestBed.createComponent(PairSwitch);
     component = fixture.componentInstance;
     element = fixture.nativeElement;
   });

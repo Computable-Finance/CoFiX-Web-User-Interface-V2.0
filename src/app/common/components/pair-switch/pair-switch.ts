@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-liquid-input',
-  templateUrl: './liquid-input.page.html',
-  styleUrls: ['./liquid-input.page.scss'],
+  selector: 'app-pair-switch',
+  templateUrl: './pair-switch.html',
+  styleUrls: ['./pair-switch.scss'],
 })
-export class LiquidInputPage {
+export class PairSwitch {
   @Output() changeCoin = new EventEmitter<any>();
   @Input() coin = 'USDT';
 

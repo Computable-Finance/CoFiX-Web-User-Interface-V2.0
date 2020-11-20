@@ -2,12 +2,12 @@
 <ion-content [fullscreen]="true">
   <app-header [activeId]="'liquid'" class="mobile-header"></app-header>
   <div class="main-content">
-    <app-liquid-input
+    <app-pair-switch
       class="liquid-input"
       (changeCoin)="changeCoin($event)"
       [coin]="toCoin.id"
       *ngIf="canShow()"
-    ></app-liquid-input>
+    ></app-pair-switch>
     <ion-card class="swap-card" *ngIf="canShow()">
       <div class="card-content">
         <app-card-title
