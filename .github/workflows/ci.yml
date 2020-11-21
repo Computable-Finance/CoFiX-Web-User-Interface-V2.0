@@ -39,12 +39,12 @@ jobs:
         with:
           name: test-reports
           path: reports/
-      - name: Publish Test Report
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v1.5
         if: success() || failure()
-        uses: mikepenz/action-junit-report@v1
         with:
-          report_paths: reports/junit/*.xml
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          files: reports/junit/*.xml
       - name: Report coverage
         if: success() || failure()
         uses: mszlgr/lcov-reporter-action@v0.2.23

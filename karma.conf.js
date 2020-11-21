@@ -14,6 +14,7 @@ module.exports = function (config) {
       require('karma-coverage-istanbul-reporter'),
       require('karma-mocha-reporter'),
       require('karma-junit-reporter'),
+      require('karma-htmlfile-reporter'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
     client: {
@@ -24,7 +25,7 @@ module.exports = function (config) {
       reports: ['html', 'lcovonly', 'text-summary', 'json-summary'],
       fixWebpackSourcePaths: true
     },
-    reporters: ['mocha', 'kjhtml', 'junit'],
+    reporters: ['mocha', 'kjhtml', 'junit', 'html'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
@@ -33,6 +34,9 @@ module.exports = function (config) {
     singleRun: false,
     junitReporter: {
       outputDir: path.join(reportsDir, 'junit')
+    },
+    htmlReporter: {
+      outputFile: path.join(reportsDir, 'karma_html/index.html')
     }
   });
 };
