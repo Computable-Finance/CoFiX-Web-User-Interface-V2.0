@@ -1,3 +1,4 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ArrowButton } from './arrow-button';
 
@@ -11,6 +12,7 @@ describe('ArrowButton', () => {
       imports: [],
       providers: [],
       declarations: [ArrowButton],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ArrowButton);

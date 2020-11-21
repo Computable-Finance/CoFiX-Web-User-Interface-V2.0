@@ -1,3 +1,4 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {
   ComponentFixture,
   fakeAsync,
@@ -40,6 +41,7 @@ describe('MenuPage', () => {
         }),
       ],
       declarations: [MenuPage, MockPipe(TranslatePipe)],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
 
     fixture = TestBed.createComponent(MenuPage);

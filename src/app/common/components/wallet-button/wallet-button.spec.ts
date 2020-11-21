@@ -1,3 +1,4 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {
   ComponentFixture,
   fakeAsync,
@@ -56,6 +57,7 @@ describe('WalletButton', () => {
         MockPipe(TranslatePipe),
         MockPipe(WalletAddressPipe),
       ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
 
     fixture = TestBed.createComponent(WalletButton);

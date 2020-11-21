@@ -1,3 +1,4 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ModalController } from '@ionic/angular';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -21,6 +22,7 @@ describe('CoinSelector', () => {
         }),
       ],
       declarations: [CoinSelector, MockPipe(TranslatePipe)],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CoinSelector);

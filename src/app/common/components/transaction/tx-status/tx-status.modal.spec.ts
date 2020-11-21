@@ -1,3 +1,4 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PopoverController } from '@ionic/angular';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -15,6 +16,7 @@ describe('TxStatusModal', () => {
       imports: [],
       providers: [MockProvider(PopoverController)],
       declarations: [TxStatusPage, MockPipe(TranslatePipe)],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TxStatusPage);

@@ -1,3 +1,4 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PairSwitch } from './pair-switch';
@@ -12,6 +13,7 @@ describe('PairSwitch', () => {
       imports: [],
       providers: [],
       declarations: [PairSwitch],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PairSwitch);
