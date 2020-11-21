@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PopoverController } from '@ionic/angular';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { MockPipe, MockProvider } from 'ng-mocks';
-import { from, Observable } from 'rxjs';
+import { from } from 'rxjs';
 import { WalletAddressPipe } from 'src/app/common/pipes/wallet-address.pipe';
 import { CofiXService } from 'src/app/service/cofix.service';
 import { TxQuery } from 'src/app/state/tx/tx.query';
@@ -26,7 +26,9 @@ describe('TxHistoryModal', () => {
           tx$: () => from(txDetails),
         }),
         MockProvider(CofiXService),
-        MockProvider(TranslateService),
+        MockProvider(TranslateService, {
+          get: () => from('test'),
+        }),
       ],
       declarations: [
         TxListPage,
@@ -47,35 +49,35 @@ describe('TxHistoryModal', () => {
         {
           txHash: 'string',
           account: 'string',
-          activity: 'string',
+          activity: '[]',
           network: 'string',
           status: 'success',
         },
         {
           txHash: 'string',
           account: 'string',
-          activity: 'string',
+          activity: '[]',
           network: 'string',
           status: 'success',
         },
         {
           txHash: 'string',
           account: 'string',
-          activity: 'string',
+          activity: '[]',
           network: 'string',
           status: 'success',
         },
         {
           txHash: 'string',
           account: 'string',
-          activity: 'string',
+          activity: '[]',
           network: 'string',
           status: 'success',
         },
         {
           txHash: 'string',
           account: 'string',
-          activity: 'string',
+          activity: '[]',
           network: 'string',
           status: 'success',
         },
@@ -94,7 +96,7 @@ describe('TxHistoryModal', () => {
         {
           txHash: 'string',
           account: 'string',
-          activity: 'string',
+          activity: '[]',
           network: 'string',
           status: 'pending',
         },
@@ -110,7 +112,7 @@ describe('TxHistoryModal', () => {
         {
           txHash: 'string',
           account: 'string',
-          activity: 'string',
+          activity: '[]',
           network: 'string',
           status: 'success',
         },
@@ -129,7 +131,7 @@ describe('TxHistoryModal', () => {
         {
           txHash: 'string',
           account: 'string',
-          activity: 'string',
+          activity: '[]',
           network: 'string',
           status: 'error',
         },
