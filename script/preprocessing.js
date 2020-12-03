@@ -31,22 +31,21 @@ if (process.argv[2] === 'e2e') {
 }
 
 apiAccessToken = process.env.API_KEY;
-e2ePk = process.env.E2E_PK;
+e2ePk = e2e ? process.env.E2E_PK : '';
 
 const output = ` \
 export const environment = { \
   production: ${production}, \
   lang: 'en', \
-  infura: { \
-    network: '${network}', \
-    apiAccessToken: '${apiAccessToken}', \
-  }, \
   network: ${chainId}, \
   e2e: { \
     on: ${e2e}, \
     wallet: '${e2ePk}', \
   }, \
 }; \
+
+export const infuraNetwork = '${network}';
+export const InfuraApiAccessToken = '${apiAccessToken}';
 `
 fs.mkdirSync(environmentFilesDirectory, { recursive: true })
 fs.writeFileSync(path.join(environmentFilesDirectory, baseFileName), output);

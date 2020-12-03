@@ -7,7 +7,11 @@ import { PermissionsQuery } from 'src/app/state/permission/permission.query';
 import { PermissionsService } from 'src/app/state/permission/permission.service';
 import { TokensInfoQuery } from 'src/app/state/token/token.query';
 import { TokenInfoService } from 'src/app/state/token/token.service';
-import { environment } from 'src/environments/environment';
+import {
+  environment,
+  infuraNetwork,
+  InfuraApiAccessToken,
+} from 'src/environments/environment';
 
 import { IntegrationService } from '../_integration/integration.service';
 import {
@@ -302,8 +306,8 @@ export class CofiXService {
   // with this provider, pages can get all public information, such as changePrice
   private defaultProvider() {
     return new ethers.providers.InfuraProvider(
-      environment.infura.network,
-      environment.infura.apiAccessToken
+      infuraNetwork,
+      InfuraApiAccessToken
     );
   }
 
