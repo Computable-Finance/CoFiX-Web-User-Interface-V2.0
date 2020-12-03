@@ -1,0 +1,15 @@
+@media only screen and (max-width: 510px) {
+  ion-toggle {
+    --handle-width: 35.99px !important;
+    --handle-height: 13.99px !important;
+    --handle-border-radius: 14px 4px 4px 14px;
+  }
+}
+
+.button-div {
+  margin: 30px auto 8px auto;
+}
+
+.button-outline {
+  margin-bottom: 30px;
+}

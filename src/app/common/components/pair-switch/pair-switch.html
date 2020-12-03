@@ -1,0 +1,36 @@
+<ion-grid class="select-box">
+  <ion-row class="select-row">
+    <ion-col
+      id="pair-switch"
+      size="12"
+      class="ion-text-center"
+      (click)="switch()"
+    >
+      <ion-button class="select-liquid-button" fill="outline">
+        <ion-grid>
+          <ion-row class="ion-align-items-center ion-align-self-center">
+            <ion-col size="2">
+              <img src="./assets/images/left-expand.png" class="sel" />
+            </ion-col>
+            <ion-col class="ion-text-center" size="8">
+              <div class="input-group-prepend">
+                <span class="input-group-text"
+                  ><img
+                    src="./assets/images/icon/ETH.png"
+                    class="coin_icon left_icon"
+                  /><img
+                    src="./assets/images/icon/{{coin}}.png"
+                    class="coin_icon"
+                  />&nbsp;<span>ETH/{{coin}}</span>
+                </span>
+              </div>
+            </ion-col>
+            <ion-col size="2" class="ion-text-right">
+              <img src="./assets/images/right-expand.png" class="sel" />
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>

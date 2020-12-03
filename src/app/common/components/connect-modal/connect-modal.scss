@@ -1,0 +1,56 @@
+.title {
+  height: 39px;
+  font-size: 24px;
+  margin: 10px 0px 10px 0px;
+}
+.title ion-col {
+  font-size: 17px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.71;
+  letter-spacing: normal;
+  color: var(--black);
+}
+.connect-img {
+  width: 80px;
+  height: 80px;
+}
+
+.close-img {
+  width: 24px;
+  height: 24px;
+  position: unset;
+}
+.img-div:hover {
+  background-color: var(--porcelain);
+  border-radius: 50%;
+}
+.img-div {
+  width: 32px;
+  height: 32px;
+  padding: 3px;
+}
+.tx-title {
+  font-size: 24px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: var(--black);
+}
+.tx-desc {
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: var(--mine);
+}
+.connect-btn {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}

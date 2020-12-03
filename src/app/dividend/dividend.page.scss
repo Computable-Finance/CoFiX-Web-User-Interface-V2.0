@@ -1,0 +1,30 @@
+:host ::ng-deep app-tip-pannel.desc_line {
+  .centent .desc {
+    line-height: 25px !important;
+  }
+}
+
+.conversionPrice .title {
+  font-size: 15px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.67;
+  letter-spacing: normal;
+  color: var(--dove);
+}
+.button-div {
+  margin: 30px auto 8px auto;
+}
+
+.close-img {
+  left: 20px;
+}
+
+.swap-card {
+  margin-top: 26px;
+}
+.button-outline,
+.claim-btn {
+  margin-bottom: 30px;
+}

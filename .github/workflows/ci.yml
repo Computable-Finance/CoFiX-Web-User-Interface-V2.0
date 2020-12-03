@@ -1,0 +1,105 @@
+# on: [push, pull_request]
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+#       - uses: actions/setup-node@v1
+#         with:
+#           node-version: 12
+#       - run: |
+#           echo -n "Node version: "
+#           node -v
+#           echo -n "Npm version: "
+#           npm -v
+#       - run: npm ci
+#       - run: npm run build -- --prod
+#         env:
+#           API_KEY: ${{ secrets.API_KEY }}
+#       - uses: actions/upload-artifact@v2
+#         with:
+#           name: www-prod
+#           path: www/
+
+#   test:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+#       - uses: actions/setup-node@v1
+#         with:
+#           node-version: 12
+#       - run: |
+#           echo -n "Node version: "
+#           node -v
+#           echo -n "Npm version: "
+#           npm -v
+#       - run: npm ci
+#       - run: npm run test -- --browsers ChromeHeadless --configuration=ci
+#       - uses: actions/upload-artifact@v2
+#         if: success() || failure()
+#         with:
+#           name: test-reports
+#           path: reports/
+#       - name: Publish Test Results
+#         uses: EnricoMi/publish-unit-test-result-action@v1.5
+#         if: success() || failure()
+#         with:
+#           github_token: ${{ secrets.GITHUB_TOKEN }}
+#           files: reports/junit/*.xml
+#       - name: Report coverage
+#         if: success() || failure()
+#         uses: mszlgr/lcov-reporter-action@v0.2.23
+#         with:
+#           github-token: ${{ secrets.GITHUB_TOKEN }}
+#           lcov-file: reports/coverage/lcov.info
+
+#   deploy:
+#     needs:
+#       - build
+#       - test
+#     runs-on: ubuntu-latest
+#     # Only push to stage, hotfix, or main will trigger deployment
+#     if: github.event_name == 'push' && (
+#       github.ref == 'refs/heads/main' ||
+#       github.ref == 'refs/heads/stage' ||
+#       github.ref == 'refs/heads/hotfix'
+#       )
+#     steps:
+#       - name: get terraform scripts
+#         uses: actions/checkout@v2
+#         with:
+#           repository: Computable-Finance/cofix-interface-deploy
+#           path: 'cofix-interface-deploy'
+#           ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
+#       - name: Setup TF_WORKSPACE
+#         run: |
+#           BRANCH_NAME="${GITHUB_REF#refs/*/}"
+#           TF_WORKSPACE="${BRANCH_NAME%-release}"
+#           echo "BRANCH_NAME=${BRANCH_NAME}" >> $GITHUB_ENV
+#           echo "TF_WORKSPACE=${TF_WORKSPACE}" >> $GITHUB_ENV
+#       - name: setup terraform
+#         uses: hashicorp/setup-terraform@v1
+#       - uses: actions/download-artifact@v2
+#         with:
+#           name: www-prod
+#           path: cofix-interface-deploy/www/
+#       - name: terraform apply
+#         env:
+#           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#           TF_WORKSPACE: ${{ env.TF_WORKSPACE }}
+#           TF_VAR_bucket: cofix-interface-${{ env.TF_WORKSPACE }}
+#           TF_VAR_domain: '[]'
+#         run: |
+#           cd cofix-interface-deploy/
+#           # Avoid TF_WORKSPACE does not exists that cause hang waiting for user input avaliable workspaces
+#           TF_WORKSPACE=default terraform init -upgrade -input=false
+#           if [ -f "${TF_WORKSPACE}.workspace.tfvars" ]; then
+#             echo "Use tfvars: ${TF_WORKSPACE}.workspace.tfvars"
+#             terraform plan -var-file "${TF_WORKSPACE}.workspace.tfvars" -input=false -out=tfplan
+#           else
+#             echo "Use default config"
+#             terraform plan -input=false -out=tfplan
+#           fi
+#           terraform apply -input=false -auto-approve tfplan

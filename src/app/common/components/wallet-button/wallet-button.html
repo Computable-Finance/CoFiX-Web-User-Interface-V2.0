@@ -1,0 +1,20 @@
+<div
+  class="wallet_show"
+  *ngIf="cofixService.getCurrentAccount() && !showPending()"
+  (click)="showTXList($event)"
+>
+  <img src="./assets/images/account.png" />
+  <span> {{cofixService.getCurrentAccount() | walletaddress}} </span>
+</div>
+<div
+  class="wallet_show"
+  *ngIf="!cofixService.getCurrentAccount()"
+  (click)="connect()"
+>
+  <span>{{'lj_text' |translate}}</span>
+  <div class="loading-connect" *ngIf="isConnectLoading"></div>
+</div>
+<div class="tx-pending" *ngIf="showPending()" (click)="showTXList($event)">
+  <div class="pending"></div>
+  {{pendingCount}} {{'pending' | translate}}
+</div>

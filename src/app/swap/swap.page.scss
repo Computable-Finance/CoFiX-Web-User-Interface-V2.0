@@ -1,0 +1,74 @@
+.change-price {
+  display: inline-block;
+}
+
+.show-detail {
+  background-color: var(--porcelain);
+  border-bottom: 1px solid var(--white);
+}
+
+.price-detail {
+  color: var(--mine);
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--mercury);
+}
+.price-detail .label {
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.price-detail ion-row {
+  min-height: 33px;
+  line-height: 33px;
+}
+.price-detail .number {
+  font-size: 17px;
+  color: var(--black);
+}
+.price-detail .exlpain {
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #9b9b9b;
+}
+.price-detail .link a {
+  font-size: 17px;
+  color: var(--mine);
+  font-weight: 400;
+  cursor: pointer;
+  line-height: 25px;
+  border-bottom: 1px solid;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  background-color: #4a4a4a;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+.dot-line {
+  width: 1px;
+  height: 30px;
+  background-color: #4a4a4a;
+  position: relative;
+  top: 0px;
+  right: -5px;
+}
+@media only screen and (max-width: 470px) {
+  .dot-line {
+    height: 52px;
+  }
+}
+
+.swap-card {
+  margin-top: 26px;
+}
+
+.dot-col {
+  max-width: 20px !important;
+}

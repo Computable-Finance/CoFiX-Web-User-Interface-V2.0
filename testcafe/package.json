@@ -1,0 +1,15 @@
+{
+  "name": "cofix-e2e",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "testcafe"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "testcafe": "^1.9.4",
+    "testcafe-angular-selectors": "^0.4.1"
+  }
+}

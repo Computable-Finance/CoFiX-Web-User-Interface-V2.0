@@ -1,0 +1,41 @@
+<ion-footer>
+  <div class="foot-box">
+    <div>© {{currentYear}} {{'copy_right' | translate}}</div>
+    <div class="links">
+      <a *ngFor="let item of footerItems" (click)="goto(item.link)"
+        ><span>{{item.id | translate}}</span></a
+      >
+    </div>
+  </div>
+  <div class="foot-box-mobile">
+    <div class="links-mobile" *ngIf="isShowTools">
+      <ion-grid>
+        <ion-row class="title ion-align-items-center ion-align-self-center">
+          <ion-col class="ion-text-center" size="12">
+            {{'menu' | translate}}
+            <div class="img-div" (click)="showTools()">
+              <img src="assets/images/close.png" class="close-img" />
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <div class="menu-divider"></div>
+      <app-menu (langChange)="showTools()"></app-menu>
+    </div>
+    <div class="tools">
+      <ion-grid
+        ><ion-row>
+          <ion-col class="ion-text-right tools-col" size="12">
+            <app-wallet-button class="connect-wallet"></app-wallet-button>
+            <div class="setting" (click)="showTools()">
+              <ion-icon
+                name="ellipsis-horizontal"
+                class="setting-icon"
+              ></ion-icon>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+</ion-footer>

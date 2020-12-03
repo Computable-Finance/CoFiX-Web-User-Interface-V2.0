@@ -1,0 +1,156 @@
+ion-footer {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  background: var(--concrete);
+  font-size: 17px;
+  font-weight: normal;
+}
+.foot-box {
+  margin: 0 95px;
+  display: flex;
+  justify-content: space-between;
+}
+.foot-box div,
+.foot-box-mobile div {
+  color: var(--silver);
+}
+.foot-box a {
+  color: var(--mine);
+  cursor: pointer;
+  height: 64px;
+}
+
+.links {
+  float: right;
+  width: 400px;
+}
+.links a {
+  display: inline-block;
+  margin: 0px 10px;
+}
+.links span {
+  border-bottom: 1px solid;
+}
+@media only screen and (max-width: 820px) {
+  ion-footer {
+    display: unset;
+  }
+  .foot-box-mobile {
+    display: block !important;
+    background: var(--white);
+  }
+  .foot-box {
+    display: none;
+  }
+  .copy-right {
+    height: 29px;
+  }
+}
+:host ::ng-deep app-wallet-button.connect-wallet {
+  @media only screen and (max-width: 820px) {
+    .wallet_show {
+      display: inline-flex;
+      position: unset;
+    }
+  }
+}
+
+:host ::ng-deep app-lang-button.switch-lang {
+  @media only screen and (max-width: 820px) {
+    .switch-lang {
+      display: block;
+      position: unset;
+      color: black;
+      line-height: 23px;
+    }
+  }
+}
+.connect-wallet {
+  height: 44px;
+}
+@media only screen and (max-width: 750px) {
+  .foot-box {
+    width: 500px;
+  }
+}
+.foot-box-mobile {
+  display: none;
+}
+.links-mobile {
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  border-top: solid 1px var(--mercury);
+  border-bottom: solid 1px var(--mercury);
+  background-color: var(--white);
+}
+.links-item a {
+  color: var(--mine);
+}
+.links-item {
+  height: 32px;
+  line-height: 32px;
+  cursor: pointer;
+}
+.links-item:hover {
+  color: red;
+}
+.tools {
+  background: white;
+  height: 64px;
+}
+.setting {
+  height: 44px;
+  width: 44px;
+  border-radius: 8px;
+  border: solid 1px var(--silver);
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
+  margin: 0 10px;
+}
+.setting-icon {
+  width: 24px;
+  height: 24px;
+  padding-bottom: 10px;
+  color: var(--black);
+}
+.tools-col {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.title {
+  height: 41px;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+.title ion-col {
+  font-size: 24px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.71;
+  letter-spacing: normal;
+  text-align: center;
+  color: var(--black);
+}
+.close-img {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  right: -30px;
+  top: 5px;
+  cursor: pointer;
+}
+.img-div:hover {
+  background-color: var(--porcelain);
+  border-radius: 50%;
+}
+.img-div {
+  width: 32px;
+  height: 32px;
+  position: relative;
+  right: -285px;
+  top: -43px;
+}

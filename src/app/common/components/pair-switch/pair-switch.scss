@@ -1,0 +1,42 @@
+.select-box {
+}
+
+.sel {
+  width: 24px;
+}
+
+.input-group-text {
+  display: inline-flex;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: center;
+  white-space: nowrap;
+}
+.input-group-text span {
+  font-size: 20px;
+  color: black;
+  margin: 0 15px 0 5px;
+}
+.coin_icon {
+  width: 24px;
+  height: 24px;
+}
+.left_icon {
+  position: relative;
+  left: 8px;
+}
+.select-liquid-button {
+  height: 50px;
+  width: 320px;
+  --box-shadow: 0;
+  --border-radius: 25px;
+  --border-color: var(--silver);
+}
+.select-row {
+  margin: 10px 0;
+}
+.button-outline {
+  margin-bottom: 0;
+}

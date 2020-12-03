@@ -1,0 +1,50 @@
+.coin_icon {
+  width: 40px;
+  height: 40px;
+}
+
+.title {
+  margin-top: 26px;
+  height: 41px;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+.title ion-col {
+  font-size: 24px;
+}
+.close-img {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  right: -4px;
+  top: 4px;
+  cursor: pointer;
+}
+.conversionPrice {
+  height: 64px;
+  font-size: 24px;
+  color: black;
+  cursor: pointer;
+}
+.img-div:hover {
+  background-color: var(--porcelain);
+  border-radius: 50%;
+}
+.img-div {
+  width: 32px;
+  height: 32px;
+  position: relative;
+  right: -285px;
+  top: -43px;
+}
+.conversionPrice:hover,
+.conversionPrice:active {
+  background-color: var(--porcelain);
+  cursor: pointer;
+}
+.token-logo {
+  margin-left: 16px;
+}
+.first-row {
+  border-top: 1px solid var(--mercury);
+}

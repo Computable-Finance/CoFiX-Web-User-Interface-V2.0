@@ -1,0 +1,55 @@
+<div class="input-div">
+  <p>{{ label| translate}}</p>
+  <div class="input-group">
+    <div
+      class="input-group-prepend {{isSelectCoin?'pointer':''}}"
+      (click)="showCoinSelect($event)"
+    >
+      <span class="input-group-text"
+        ><img
+          src="./assets/images/icon/{{coin}}.png"
+          class="coin_icon"
+        />&nbsp;<span class="coin-title">{{coin}}</span> &nbsp;<img
+          *ngIf="isSelectCoin"
+          src="./assets/images/select.png"
+          class="sel"
+        />&nbsp;</span
+      >
+    </div>
+    <input
+      type="number"
+      class="input"
+      placeholder="{{placeHolder}}"
+      [(ngModel)]="amount"
+      oninput="value=value.replace(/^\D*(\d*(?:\.\d{0,8})?).*$/g, '$1')"
+      (ngModelChange)="modelChanged.next($event)"
+      [disabled]="disabled"
+    />
+  </div>
+  <ion-grid class="ion-no-padding info-box">
+    <ion-row class="ion-align-items-center ion-align-self-center">
+      <ion-col class="balance-info" size="10">
+        <div *ngIf="isShowBlance && !isShowError">
+          <div [appSkeleton]="!maxAmount" [skCss]="'skeleton-input'">
+            <span>{{'your_balance' | translate}}</span>：<span id="balance"
+              >{{maxAmount | truncate:'--'}}
+            </span>
+            {{coin}}
+          </div>
+        </div>
+        <div *ngIf="isShowError" class="error">
+          <span>{{'your_balance' | translate}}</span>：<span id="balance"
+            >{{maxAmount | truncate:'--'}}</span
+          >
+          {{coin}}
+        </div>
+        <div *ngIf="overLiquid()" class="error">
+          <span>{{'token_balance_of_pair' | translate}} {{maxLiquid}}</span>
+        </div>
+      </ion-col>
+      <ion-col class="ion-text-right max" size="2">
+        <span id="max-btn" (click)="setMax()" *ngIf="isShowMax">MAX</span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>

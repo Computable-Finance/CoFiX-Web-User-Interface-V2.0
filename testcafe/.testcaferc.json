@@ -1,0 +1,26 @@
+{
+  "browsers": "chrome:headless",
+  "src": [
+    "src/connected/preflight-check.e2e-spec.ts",
+    "src/not_connected/swap.e2e-spec.ts",
+    "src/not_connected/pool.e2e-spec.ts",
+    "src/not_connected/cofi.e2e-spec.ts",
+    "src/not_connected/dividend.e2e-spec.ts",
+    "src/connected/swap.e2e-spec.ts",
+    "src/connected/add-liquditity.e2e-spec.ts",
+    "src/connected/redeem-liquditity.e2e-spec.ts",
+    "src/connected/ming.e2e-spec.ts",
+    "src/connected/cofi.e2e-spec.ts",
+    "src/connected/dividend.e2e-spec.ts",
+    "src/connected/postflight-check.e2e-spec.ts"
+  ],
+  "quarantineMode": false,
+  "stopOnFirstFail": true,
+  "skipJsErrors": true,
+  "skipUncaughtErrors": true,
+  "concurrency": 1,
+  "selectorTimeout": 3000,
+  "assertionTimeout": 300000,
+  "pageLoadTimeout": 1000,
+  "disablePageCaching": true
+}
