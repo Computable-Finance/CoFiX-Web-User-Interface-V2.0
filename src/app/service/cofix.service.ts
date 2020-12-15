@@ -430,7 +430,7 @@ export class CofiXService {
           innerAmount,
           this.provider
         );
-        excutionPrice1 = result.excutionPrice;
+        excutionPrice1 = new BNJS(result.excutionPrice);
         innerAmount = result.amountOutMin;
       }
     }
