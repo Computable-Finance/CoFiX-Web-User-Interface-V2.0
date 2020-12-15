@@ -1,11 +1,16 @@
-import { BigNumberish, ethers } from 'ethers';
+import { BigNumber, BigNumberish, ethers } from 'ethers';
 
 import { ETHER_DECIMALS } from '../constants';
 
 const BNJS = require('bignumber.js');
 
 export function parseUnits(amount: string, unit: number) {
-  return ethers.utils.parseUnits(amount, unit);
+  const bnAmount = new BNJS(amount);
+  try {
+    return ethers.utils.parseUnits(bnAmount.toFixed(unit), unit);
+  } catch (e) {
+    return BigNumber.from(bnAmount.times(Math.pow(10, unit)).toFixed(0));
+  }
 }
 
 export function parseEthers(amount: string) {

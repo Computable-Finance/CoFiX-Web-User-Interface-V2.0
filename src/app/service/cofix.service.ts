@@ -9,8 +9,8 @@ import { TokensInfoQuery } from 'src/app/state/token/token.query';
 import { TokenInfoService } from 'src/app/state/token/token.service';
 import {
   environment,
-  infuraNetwork,
   InfuraApiAccessToken,
+  infuraNetwork,
 } from 'src/environments/environment';
 
 import { IntegrationService } from '../_integration/integration.service';
@@ -38,6 +38,10 @@ import {
   getOracleContract,
 } from './confix.abi';
 import { EventBusService } from './eventbus.service';
+import {
+  executionPriceAndMinimumAmountOutByERC202ETHThroughUniswap,
+  executionPriceAndMinimumAmountOutByETH2ERC20ThroughUniswap,
+} from './uni-utils';
 
 declare let window: any;
 
@@ -405,23 +409,57 @@ export class CofiXService {
     let innerAmount = amount;
 
     if (fromToken !== undefined) {
-      const result = await this.executionPriceAndExpectedCofiByERC202ETH(
-        fromToken,
-        innerAmount
-      );
-      excutionPrice1 = result.excutionPrice;
-      expectedCofi.push(result.expectedCofi);
-      innerAmount = excutionPrice1.times(amount).toString();
+      if (
+        fromToken === this.contractAddressList.USDT ||
+        fromToken === this.contractAddressList.HBTC
+      ) {
+        const result = await this.executionPriceAndExpectedCofiByERC202ETH(
+          fromToken,
+          innerAmount
+        );
+        excutionPrice1 = result.excutionPrice;
+        expectedCofi.push(result.expectedCofi);
+        innerAmount = excutionPrice1.times(amount).toString();
+      } else {
+        const result = await executionPriceAndMinimumAmountOutByERC202ETHThroughUniswap(
+          {
+            network: this.currentNetwork,
+            address: fromToken,
+            decimals: Number(await this.getERC20Decimals(fromToken)),
+          },
+          innerAmount,
+          this.provider
+        );
+        excutionPrice1 = result.excutionPrice;
+        innerAmount = result.amountOutMin;
+      }
     }
 
     if (toToken !== undefined) {
-      const result = await this.executionPriceAndExpectedCofiByETH2ERC20(
-        toToken,
-        innerAmount
-      );
-      excutionPrice2 = result.excutionPrice;
-      expectedCofi.push(result.expectedCofi);
-      innerAmount = excutionPrice2.times(innerAmount).toString();
+      if (
+        toToken === this.contractAddressList.USDT ||
+        toToken === this.contractAddressList.HBTC
+      ) {
+        const result = await this.executionPriceAndExpectedCofiByETH2ERC20(
+          toToken,
+          innerAmount
+        );
+        excutionPrice2 = result.excutionPrice;
+        expectedCofi.push(result.expectedCofi);
+        innerAmount = excutionPrice2.times(innerAmount).toString();
+      } else {
+        const result = await executionPriceAndMinimumAmountOutByETH2ERC20ThroughUniswap(
+          {
+            network: this.currentNetwork,
+            address: toToken,
+            decimals: Number(await this.getERC20Decimals(toToken)),
+          },
+          innerAmount,
+          this.provider
+        );
+        excutionPrice2 = result.excutionPrice;
+        innerAmount = result.amountOutMin;
+      }
     }
 
     const excutionPriceForOne = excutionPrice1.times(excutionPrice2).toString();
