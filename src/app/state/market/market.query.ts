@@ -13,7 +13,9 @@ export class MarketDetailsQuery extends Query<MarketDetailsModel> {
       if (!keyOfKey) {
         return state[address][key];
       } else {
-        return state[address][key][keyOfKey];
+        if (state[address] !== undefined) {
+          return state[address][key][keyOfKey];
+        }
       }
     });
   }

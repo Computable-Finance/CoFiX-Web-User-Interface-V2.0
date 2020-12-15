@@ -14,12 +14,13 @@ export function getContractAddressListByNetwork(network: number): any {
       CoFiXVaultForTrader: '0xE6183d3094a9e360B123Ec1330afAE76A74d1cbF',
       HBTC: '0x0316EB71485b0Ab14103307bf65a021042c6d380',
       USDT: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
+      NEST: '0x04abEdA201850aC0124161F037Efd70c74ddC74C',
     };
   } else if (network === 3) {
     return {
       USDT: '0x200506568C2980B4943B5EaA8713A5740eb2c98A',
       HBTC: '0xA674f71ce49CE7F298aea2F23D918d114965eb40',
-      // NEST:'0xD287Bc43eCD3D892204aA3792165fe8728636E29',
+      NEST: '0xD287Bc43eCD3D892204aA3792165fe8728636E29',
       WETH9: '0x59b8881812Ac484Ab78b8fc7c10b2543e079a6C3',
       CoFiToken: '0x72Fd35b1dB364db812A8E726891685A25a9135D3',
       // 对应 NestPriceOracle，接手时规范，未改
@@ -55,7 +56,7 @@ export const DB_VERSION = '202011021648';
 export const BLOCKNUMS_IN_A_DAY = 6171.4;
 export const ETHER_DECIMALS = 18;
 
-export const TOKENS = ['ETH', 'USDT', 'HBTC'];
+export const TOKENS = ['ETH', 'USDT', 'HBTC', 'NEST'];
 
 export const FOOTER_ITEMS = [
   {

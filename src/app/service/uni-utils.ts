@@ -9,7 +9,7 @@ import {
   WETH,
 } from '@uniswap/sdk';
 
-import { parseUnits } from '../common/uitils/bignumber-utils';
+import { ethersOf, parseUnits } from '../common/uitils/bignumber-utils';
 
 export type TokenInfo = {
   network: number;
@@ -33,14 +33,13 @@ async function executionPriceAndMinimumAmountOut(
   const route = new Route([pair], tokenIn);
   const trade = new Trade(
     route,
-    new TokenAmount(
-      tokenIn,
-      parseUnits(amountIn, fromToken.decimals).toString()
-    ),
+    new TokenAmount(tokenIn, parseUnits(amountIn, tokenIn.decimals).toString()),
     TradeType.EXACT_INPUT
   );
   const slippageTolerance = new Percent('50', '10000');
-  const amountOutMin = trade.minimumAmountOut(slippageTolerance).raw.toString();
+  const amountOutMin = ethersOf(
+    trade.minimumAmountOut(slippageTolerance).raw.toString()
+  );
   return {
     excutionPrice: trade.executionPrice.toSignificant(8),
     amountOutMin,

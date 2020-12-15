@@ -55,7 +55,7 @@ export class SwapPage implements OnInit, OnDestroy {
   canChangeCoin = false;
   isLoading = { sq: false, dh: false };
   showError = false;
-  ERC20BalanceOfPair = { USDT: '', HBTC: '', ETH: '' };
+  ERC20BalanceOfPair = { USDT: '', HBTC: '', ETH: '', NEST: '' };
   showBalance = true;
   isShowToMax = false;
   isShowFromMax = false;
@@ -210,17 +210,22 @@ export class SwapPage implements OnInit, OnDestroy {
       this.minimum = new BNJS(executionPriceAndExpectedCofi.excutionPrice)
         .times(0.99)
         .toString();
-
-      if (executionPriceAndExpectedCofi.expectedCofi.length < 2) {
-        this.expectedCofi = (
-          await executionPriceAndExpectedCofi.expectedCofi[0]
-        ).toString();
-      } else {
-        this.expectedCofi = (
-          await executionPriceAndExpectedCofi.expectedCofi[0]
-        )
-          .plus(await executionPriceAndExpectedCofi.expectedCofi[1])
-          .toString();
+      switch (executionPriceAndExpectedCofi.expectedCofi.length) {
+        case 1:
+          this.expectedCofi = (
+            await executionPriceAndExpectedCofi.expectedCofi[0]
+          ).toString();
+          break;
+        case 2:
+          this.expectedCofi = (
+            await executionPriceAndExpectedCofi.expectedCofi[0]
+          )
+            .plus(await executionPriceAndExpectedCofi.expectedCofi[1])
+            .toString();
+          break;
+        default:
+          this.expectedCofi = '0';
+          break;
       }
 
       this.changePrice = executionPriceAndExpectedCofi.excutionPriceForOne;
@@ -321,10 +326,13 @@ export class SwapPage implements OnInit, OnDestroy {
       this.toCoin.address = this.cofixService.getCurrentContractAddressList()[
         this.toCoin.id
       ];
-      this.changePrice = await this.cofixService.changePrice(
-        this.fromCoin.address,
-        this.toCoin.address
-      );
+      this.changePrice = (
+        await this.cofixService.executionPriceAndExpectedCofi(
+          this.fromCoin.address,
+          this.toCoin.address,
+          '1'
+        )
+      ).excutionPriceForOne;
       if (this.fromCoin.id !== 'ETH') {
         this.changePriceOfFromTokenSubscription = this.marketDetailsQuery
           .marketDetails$(
