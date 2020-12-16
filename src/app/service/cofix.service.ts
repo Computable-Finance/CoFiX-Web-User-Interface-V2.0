@@ -409,10 +409,7 @@ export class CofiXService {
     let innerAmount = amount;
 
     if (fromToken !== undefined) {
-      if (
-        fromToken === this.contractAddressList.USDT ||
-        fromToken === this.contractAddressList.HBTC
-      ) {
+      if (this.isCoFixToken(fromToken)) {
         const result = await this.executionPriceAndExpectedCofiByERC202ETH(
           fromToken,
           innerAmount
@@ -436,10 +433,7 @@ export class CofiXService {
     }
 
     if (toToken !== undefined) {
-      if (
-        toToken === this.contractAddressList.USDT ||
-        toToken === this.contractAddressList.HBTC
-      ) {
+      if (this.isCoFixToken(toToken)) {
         const result = await this.executionPriceAndExpectedCofiByETH2ERC20(
           toToken,
           innerAmount
@@ -544,6 +538,10 @@ export class CofiXService {
     fee: BigNumber,
     eth2ERC20: boolean = true
   ) {
+    if (!this.isCoFixToken(token)) {
+      return;
+    }
+
     const pairAddress = await this.getPairAddressByToken(token);
     const balanceOfPair = await this.getERC20BalanceOfPair(token, token);
     const tokens = this.parseEthers(
@@ -1578,6 +1576,10 @@ export class CofiXService {
 
   private updateMarketDetails() {
     Object.keys(this.marketDetailsQuery.getValue()).forEach(async (address) => {
+      if (!this.isCoFixToken(address)) {
+        return;
+      }
+
       await this.updateKInfo(address);
       await this.updateCheckedPriceNow(address);
       await this.updateNAVPerShare(address);
@@ -1783,5 +1785,12 @@ export class CofiXService {
     if (tokenScriptContent['DividendPoolShare']?.ethTotalClaimed) {
       return ethersOf(tokenScriptContent['DividendPoolShare'].ethTotalClaimed);
     }
+  }
+
+  private isCoFixToken(token: string): boolean {
+    return (
+      token === this.contractAddressList.USDT ||
+      token === this.contractAddressList.HBTC
+    );
   }
 }
