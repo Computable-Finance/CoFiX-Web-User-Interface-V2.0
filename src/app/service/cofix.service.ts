@@ -1787,7 +1787,7 @@ export class CofiXService {
     }
   }
 
-  private isCoFixToken(token: string): boolean {
+  isCoFixToken(token: string): boolean {
     return (
       token === this.contractAddressList.USDT ||
       token === this.contractAddressList.HBTC

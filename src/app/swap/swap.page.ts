@@ -190,7 +190,7 @@ export class SwapPage implements OnInit, OnDestroy {
       fromAddress = this.toCoin.address;
     }
 
-    if (this.fromCoin.id) {
+    if (this.fromCoin.id && this.cofixService.isCoFixToken(fromAddress)) {
       this.ERC20BalanceOfPair[
         this.toCoin.id
       ] = await this.cofixService.getERC20BalanceOfPair(fromAddress, toAddress);
@@ -198,6 +198,12 @@ export class SwapPage implements OnInit, OnDestroy {
   }
 
   async getEPAndEC() {
+    if (!this.fromCoin.amount) {
+      this.toCoin.amount = undefined;
+      this.expectedCofi = undefined;
+      return;
+    }
+
     const executionPriceAndExpectedCofi = await this.cofixService.executionPriceAndExpectedCofi(
       this.fromCoin.address,
       this.toCoin.address,
