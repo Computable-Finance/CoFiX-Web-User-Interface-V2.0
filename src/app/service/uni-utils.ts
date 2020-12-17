@@ -8,6 +8,7 @@ import {
   TradeType,
   WETH,
 } from '@uniswap/sdk';
+import { getContractAddressListByNetwork } from '../common/constants';
 
 import { ethersOf, parseUnits } from '../common/uitils/bignumber-utils';
 
@@ -21,14 +22,26 @@ function token(tokenInfo: TokenInfo) {
   return new Token(tokenInfo.network, tokenInfo.address, tokenInfo.decimals);
 }
 
+function wethToken(network: number) {
+  if (network === 1) {
+    return WETH[network];
+  } else {
+    return new Token(
+      network,
+      getContractAddressListByNetwork(network).WETH9,
+      18
+    );
+  }
+}
+
 async function executionPriceAndMinimumAmountOut(
   fromToken: TokenInfo,
   toToken: TokenInfo,
   amountIn: string,
   provider
 ) {
-  const tokenIn = fromToken ? token(fromToken) : WETH[toToken.network];
-  const tokenOut = toToken ? token(toToken) : WETH[fromToken.network];
+  const tokenIn = fromToken ? token(fromToken) : wethToken(toToken.network);
+  const tokenOut = toToken ? token(toToken) : wethToken(fromToken.network);
   const pair = await Fetcher.fetchPairData(tokenIn, tokenOut, provider);
   const route = new Route([pair], tokenIn);
   const trade = new Trade(
