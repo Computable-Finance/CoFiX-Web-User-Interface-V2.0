@@ -63,7 +63,7 @@ export class SwapPage implements OnInit, OnDestroy {
   isShowDetail = false;
   minimum: any;
   waitingPopover: any;
-
+  noOracleFee = false;
   changePriceOfFromTokenSubscription: Subscription;
   changePriceOfToTokenSubscription: Subscription;
   private eventbusSubscription: Subscription;
@@ -315,7 +315,12 @@ export class SwapPage implements OnInit, OnDestroy {
   }
 
   changeOracleCost() {
-    if (this.fromCoin.id !== 'ETH' && this.toCoin.id !== 'ETH') {
+    if (
+      this.fromCoin.id !== 'ETH' &&
+      this.toCoin.id !== 'ETH' &&
+      this.cofixService.isCoFixToken(this.fromCoin.address) &&
+      this.cofixService.isCoFixToken(this.toCoin.address)
+    ) {
       this.oracleCost = '0.02';
     } else {
       this.oracleCost = '0.01';
@@ -360,6 +365,13 @@ export class SwapPage implements OnInit, OnDestroy {
       }
 
       this.priceSpread = new BNJS(this.changePrice).minus(0);
+
+      this.noOracleFee =
+        !(
+          this.cofixService.isCoFixToken(this.fromCoin.address) ||
+          this.cofixService.isCoFixToken(this.toCoin.address)
+        ) &&
+        (this.fromCoin.id === 'ETH' || this.toCoin.id === 'ETH');
     }
 
     if (this.cofixService.getCurrentAccount()) {

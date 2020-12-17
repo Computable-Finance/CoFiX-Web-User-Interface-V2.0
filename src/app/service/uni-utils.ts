@@ -36,13 +36,13 @@ async function executionPriceAndMinimumAmountOut(
     new TokenAmount(tokenIn, parseUnits(amountIn, tokenIn.decimals).toString()),
     TradeType.EXACT_INPUT
   );
-  const slippageTolerance = new Percent('50', '10000');
-  const amountOutMin = ethersOf(
-    trade.minimumAmountOut(slippageTolerance).raw.toString()
-  );
+  // const slippageTolerance = new Percent('50', '10000');
+  // const amountOutMin = ethersOf(
+  //   trade.minimumAmountOut(slippageTolerance).raw.toString()
+  // );
   return {
     excutionPrice: trade.executionPrice.toSignificant(8),
-    amountOutMin,
+    amountOut: ethersOf(trade.outputAmount.raw.toString()),
   };
 }
 
