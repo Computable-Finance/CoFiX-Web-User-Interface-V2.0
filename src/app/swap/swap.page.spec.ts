@@ -29,6 +29,9 @@ describe('SwapPage', () => {
           getCurrentAccount: () => {
             return currentAccount;
           },
+          isCoFixToken: (token) => {
+            return true;
+          },
         }),
         MockProvider(BalanceTruncatePipe),
         MockProvider(EventBusService),
