@@ -97,6 +97,9 @@ export const COFIXROUTER_ABI = [
   'function addLiquidity(address,uint,uint,uint,address,uint) external payable returns (uint)',
   'function removeLiquidityGetToken(address,uint,uint,address,uint) external payable returns (uint)',
   'function removeLiquidityGetETH(address,uint,uint,address,uint) external payable returns (uint)',
+  'function hybridSwapExactETHForTokens(uint, uint, address[], uint8[], address, uint) external payable returns (uint[])',
+  'function hybridSwapExactTokensForETH(uint, uint, address[], uint8[], address, uint) external payable returns (uint[])',
+  'function hybridSwapExactTokensForTokens(uint, uint, address[], uint8[], address, uint) external payable returns (uint[])',
 ];
 
 export function getCofixRouter(address: string, provider) {

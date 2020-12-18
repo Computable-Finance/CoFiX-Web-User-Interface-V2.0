@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 import { TipPannelContent } from '../common/components/tip-pannel/tip-pannel';
 import { EventBusService } from '../service/eventbus.service';
 import { isValidNumberForTx } from '../common/uitils/bignumber-utils';
+import { DEX_TYPE_COFIX, DEX_TYPE_UNISWAP } from '../common/constants';
 const BNJS = require('bignumber.js');
 
 @Component({
@@ -67,6 +68,7 @@ export class SwapPage implements OnInit, OnDestroy {
   changePriceOfFromTokenSubscription: Subscription;
   changePriceOfToTokenSubscription: Subscription;
   private eventbusSubscription: Subscription;
+  DEX_TYPE = [];
 
   private balanceHandler = async (balance) => {
     this.fromCoin.balance = await this.balancePipe.transform(balance);
@@ -234,7 +236,7 @@ export class SwapPage implements OnInit, OnDestroy {
           break;
       }
 
-      this.changePrice = executionPriceAndExpectedCofi.excutionPriceForOne;
+      this.changePrice = executionPriceAndExpectedCofi.excutionPrice;
       this.nestPrice = await this.cofixService.nestPrice(
         this.fromCoin.address,
         this.toCoin.address
@@ -323,7 +325,14 @@ export class SwapPage implements OnInit, OnDestroy {
     ) {
       this.oracleCost = '0.02';
     } else {
-      this.oracleCost = '0.01';
+      if (
+        !this.cofixService.isCoFixToken(this.fromCoin.address) &&
+        !this.cofixService.isCoFixToken(this.toCoin.address)
+      ) {
+        this.oracleCost = '0';
+      } else {
+        this.oracleCost = '0.01';
+      }
     }
   }
 
@@ -343,7 +352,7 @@ export class SwapPage implements OnInit, OnDestroy {
           this.toCoin.address,
           '1'
         )
-      ).excutionPriceForOne;
+      ).excutionPrice;
       if (this.fromCoin.id !== 'ETH') {
         this.changePriceOfFromTokenSubscription = this.marketDetailsQuery
           .marketDetails$(
@@ -481,6 +490,11 @@ export class SwapPage implements OnInit, OnDestroy {
     this.waitingPopover = await this.utils.createTXConfirmModal();
     await this.waitingPopover.present();
     if (this.fromCoin.id === 'ETH') {
+      if (this.cofixService.isCoFixToken(this.toCoin.address)) {
+        this.DEX_TYPE = [DEX_TYPE_COFIX];
+      } else {
+        this.DEX_TYPE = [DEX_TYPE_UNISWAP];
+      }
       this.resolveSwapPromise(
         this.cofixService.swapExactETHForTokens(
           await this.cofixService.getPairAddressByToken(this.toCoin.address),
@@ -488,11 +502,17 @@ export class SwapPage implements OnInit, OnDestroy {
           this.fromCoin.amount,
           this.toCoin.amount,
           this.changePrice,
-          this.oracleCost
+          this.oracleCost,
+          this.DEX_TYPE
         )
       );
     } else {
       if (this.toCoin.id === 'ETH') {
+        if (this.cofixService.isCoFixToken(this.fromCoin.address)) {
+          this.DEX_TYPE = [DEX_TYPE_COFIX];
+        } else {
+          this.DEX_TYPE = [DEX_TYPE_UNISWAP];
+        }
         this.resolveSwapPromise(
           this.cofixService.swapExactTokensForETH(
             await this.cofixService.getPairAddressByToken(
@@ -502,10 +522,24 @@ export class SwapPage implements OnInit, OnDestroy {
             this.fromCoin.amount,
             this.toCoin.amount,
             this.changePrice,
-            this.oracleCost
+            this.oracleCost,
+            this.DEX_TYPE
           )
         );
       } else {
+        let dexTypeIn, dexTypeOut;
+        if (this.cofixService.isCoFixToken(this.fromCoin.address)) {
+          dexTypeIn = DEX_TYPE_COFIX;
+        } else {
+          dexTypeIn = DEX_TYPE_UNISWAP;
+        }
+        if (this.cofixService.isCoFixToken(this.toCoin.address)) {
+          dexTypeOut = DEX_TYPE_COFIX;
+        } else {
+          dexTypeOut = DEX_TYPE_UNISWAP;
+        }
+
+        this.DEX_TYPE = [dexTypeIn, dexTypeOut];
         this.resolveSwapPromise(
           this.cofixService.swapExactTokensForTokens(
             await this.cofixService.getPairAddressByToken(
@@ -517,7 +551,8 @@ export class SwapPage implements OnInit, OnDestroy {
             this.fromCoin.amount,
             this.toCoin.amount,
             this.changePrice,
-            this.oracleCost
+            this.oracleCost,
+            this.DEX_TYPE
           )
         );
       }
@@ -568,9 +603,11 @@ export class SwapPage implements OnInit, OnDestroy {
       }
       return (
         result &&
-        new BNJS(this.toCoin.amount).lt(
-          new BNJS(this.ERC20BalanceOfPair[this.toCoin.id])
-        )
+        (this.cofixService.isCoFixToken(this.toCoin.address)
+          ? new BNJS(this.toCoin.amount).lt(
+              new BNJS(this.ERC20BalanceOfPair[this.toCoin.id])
+            )
+          : true)
       );
     }
   }

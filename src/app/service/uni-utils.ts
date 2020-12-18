@@ -59,7 +59,7 @@ async function executionPriceAndMinimumAmountOut(
   };
 }
 
-export async function executionPriceAndMinimumAmountOutByERC202ETHThroughUniswap(
+export async function executionPriceAndAmountOutByERC202ETHThroughUniswap(
   fromToken: TokenInfo,
   amountIn: string,
   provider
@@ -72,7 +72,7 @@ export async function executionPriceAndMinimumAmountOutByERC202ETHThroughUniswap
   );
 }
 
-export async function executionPriceAndMinimumAmountOutByETH2ERC20ThroughUniswap(
+export async function executionPriceAndAmountOutByETH2ERC20ThroughUniswap(
   toToken: TokenInfo,
   amountIn: string,
   provider

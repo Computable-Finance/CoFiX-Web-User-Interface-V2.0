@@ -39,8 +39,8 @@ import {
 } from './confix.abi';
 import { EventBusService } from './eventbus.service';
 import {
-  executionPriceAndMinimumAmountOutByERC202ETHThroughUniswap,
-  executionPriceAndMinimumAmountOutByETH2ERC20ThroughUniswap,
+  executionPriceAndAmountOutByERC202ETHThroughUniswap,
+  executionPriceAndAmountOutByETH2ERC20ThroughUniswap,
 } from './uni-utils';
 
 declare let window: any;
@@ -418,7 +418,7 @@ export class CofiXService {
         expectedCofi.push(result.expectedCofi);
         innerAmount = excutionPrice1.times(amount).toString();
       } else {
-        const result = await executionPriceAndMinimumAmountOutByERC202ETHThroughUniswap(
+        const result = await executionPriceAndAmountOutByERC202ETHThroughUniswap(
           {
             network: this.currentNetwork,
             address: fromToken,
@@ -442,7 +442,7 @@ export class CofiXService {
         expectedCofi.push(result.expectedCofi);
         innerAmount = excutionPrice2.times(innerAmount).toString();
       } else {
-        const result = await executionPriceAndMinimumAmountOutByETH2ERC20ThroughUniswap(
+        const result = await executionPriceAndAmountOutByETH2ERC20ThroughUniswap(
           {
             network: this.currentNetwork,
             address: toToken,
@@ -456,12 +456,12 @@ export class CofiXService {
       }
     }
 
-    const excutionPriceForOne = excutionPrice1.times(excutionPrice2).toString();
-    const excutionPrice = innerAmount;
+    const excutionPrice = excutionPrice1.times(excutionPrice2).toString();
+    const amountOut = innerAmount;
 
     return {
-      excutionPriceForOne,
       excutionPrice,
+      amountOut,
       expectedCofi,
     };
   }
@@ -872,7 +872,8 @@ export class CofiXService {
     amountIn: string,
     amountOutMin: string,
     swapPrice: string,
-    fee: string
+    fee: string,
+    DEX_TYPE: number[]
   ) {
     const ethBalanceOfAccount = new BNJS(await this.getETHBalance());
     const bnValue = new BNJS(amountIn).plus(fee);
@@ -880,31 +881,32 @@ export class CofiXService {
       throw new Error('Insufficient ETH balance.');
     }
 
-    const erc20Contract = getERC20Contract(token, this.provider);
     const erc20Decimals = await this.getERC20Decimals(token);
-    const erc20BalanceOfPair = new BNJS(
-      unitsOf(await erc20Contract.balanceOf(pair), erc20Decimals)
-    );
-    if (new BNJS(amountOutMin).gt(erc20BalanceOfPair)) {
-      throw new Error('Insufficient tokens for swapping.');
+    if (this.isCoFixToken(token)) {
+      const erc20Contract = getERC20Contract(token, this.provider);
+      const erc20BalanceOfPair = new BNJS(
+        unitsOf(await erc20Contract.balanceOf(pair), erc20Decimals)
+      );
+      if (new BNJS(amountOutMin).gt(erc20BalanceOfPair)) {
+        throw new Error('Insufficient tokens for swapping.');
+      }
     }
 
     const cofixRouter = getCofixRouter(
       this.contractAddressList.CofixRouter,
       this.provider
     );
-
     return this.executeContractMethodWithEstimatedGas(
       cofixRouter,
-      'swapExactETHForTokens',
+      'hybridSwapExactETHForTokens',
       [
-        token,
         this.parseEthers(amountIn),
         this.parseUnits(
           new BNJS(amountIn).times(swapPrice).times(0.99).toString(),
           erc20Decimals
         ),
-        this.currentAccount,
+        [this.contractAddressList.WETH9, token],
+        DEX_TYPE,
         this.currentAccount,
         deadline(),
         {
@@ -921,7 +923,8 @@ export class CofiXService {
     amountIn: string,
     amountOutMin: string,
     swapPrice: string,
-    fee: string
+    fee: string,
+    DEX_TYPE: number[]
   ) {
     const erc20Decimals = await this.getERC20Decimals(token);
     const erc20BalanceOfAccount = await this.getERC20Balance(token);
@@ -930,29 +933,30 @@ export class CofiXService {
       throw new Error('Insufficient token balance.');
     }
 
-    const wethContract = getERC20Contract(
-      this.contractAddressList.WETH9,
-      this.provider
-    );
-    const wethBalanceOfPair = ethersOf(await wethContract.balanceOf(pair));
-    if (new BNJS(amountOutMin).gt(wethBalanceOfPair)) {
-      throw new Error('Insufficient eth for swapping.');
+    if (this.isCoFixToken(token)) {
+      const wethContract = getERC20Contract(
+        this.contractAddressList.WETH9,
+        this.provider
+      );
+      const wethBalanceOfPair = ethersOf(await wethContract.balanceOf(pair));
+      if (new BNJS(amountOutMin).gt(wethBalanceOfPair)) {
+        throw new Error('Insufficient eth for swapping.');
+      }
     }
-
     const cofixRouter = getCofixRouter(
       this.contractAddressList.CofixRouter,
       this.provider
     );
     return this.executeContractMethodWithEstimatedGas(
       cofixRouter,
-      'swapExactTokensForETH',
+      'hybridSwapExactTokensForETH',
       [
-        token,
         this.parseUnits(amountIn, erc20Decimals),
         this.parseEthers(
           new BNJS(amountIn).times(swapPrice).times(0.99).toString()
         ),
-        this.currentAccount,
+        [token, this.contractAddressList.WETH9],
+        DEX_TYPE,
         this.currentAccount,
         deadline(),
         {
@@ -972,7 +976,8 @@ export class CofiXService {
     amountIn: string,
     amountOutMin: string,
     swapPrice: string,
-    fee: string
+    fee: string,
+    DEX_TYPE: number[]
   ) {
     if (
       !(await this.hasEnoughTokenBalance(
@@ -983,27 +988,28 @@ export class CofiXService {
     ) {
       throw new Error('Insufficient token balance.');
     }
-
-    if (!(await this.hasEnoughTokenBalance(pairOut, tokenOut, amountOutMin))) {
-      throw new Error('Insufficient token for swapping.');
-    }
-
-    const kinfo = await this.getKInfo(tokenIn);
-    const price = await this.checkPriceNow(tokenIn);
-    const wethAmount = new BNJS(amountIn).div(
-      new BNJS(price.changePrice)
-        .times(new BNJS(1).plus(kinfo.k))
-        .times(new BNJS(1).minus(kinfo.theta))
-    );
-
-    if (
-      !(await this.hasEnoughTokenBalance(
-        pairIn,
-        this.contractAddressList.WETH9,
-        wethAmount.toString()
-      ))
-    ) {
-      throw new Error('Insufficient weth for swapping.');
+    if (this.isCoFixToken(tokenIn) && this.isCoFixToken(tokenOut)) {
+      if (
+        !(await this.hasEnoughTokenBalance(pairOut, tokenOut, amountOutMin))
+      ) {
+        throw new Error('Insufficient token for swapping.');
+      }
+      const kinfo = await this.getKInfo(tokenIn);
+      const price = await this.checkPriceNow(tokenIn);
+      const wethAmount = new BNJS(amountIn).div(
+        new BNJS(price.changePrice)
+          .times(new BNJS(1).plus(kinfo.k))
+          .times(new BNJS(1).minus(kinfo.theta))
+      );
+      if (
+        !(await this.hasEnoughTokenBalance(
+          pairIn,
+          this.contractAddressList.WETH9,
+          wethAmount.toString()
+        ))
+      ) {
+        throw new Error('Insufficient weth for swapping.');
+      }
     }
 
     const cofixRouter = getCofixRouter(
@@ -1012,10 +1018,8 @@ export class CofiXService {
     );
     return this.executeContractMethodWithEstimatedGas(
       cofixRouter,
-      'swapExactTokensForTokens',
+      'hybridSwapExactTokensForTokens',
       [
-        tokenIn,
-        tokenOut,
         this.parseUnits(amountIn, await this.getERC20Decimals(tokenIn)),
         this.parseUnits(
           new BNJS(amountIn)
@@ -1025,7 +1029,8 @@ export class CofiXService {
             .toString(),
           await this.getERC20Decimals(tokenOut)
         ),
-        this.currentAccount,
+        [tokenIn, this.contractAddressList.WETH9, tokenOut],
+        DEX_TYPE,
         this.currentAccount,
         deadline(),
         {

@@ -85,3 +85,6 @@ export const LANG_ITEMS = [
   { id: 'en', label: 'English', img: 'lang_en.png' },
   { id: 'zh', label: '中文', img: 'lang_ch.png' },
 ];
+
+export const DEX_TYPE_COFIX = 0;
+export const DEX_TYPE_UNISWAP = 1;
