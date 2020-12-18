@@ -28,7 +28,7 @@ export function getContractAddressListByNetwork(network: number): any {
       CofiXController: '0x36f99d8500CB288c924B50cf4A081F4C3E6d48DD',
       CofixFactory: '0x8E636BDB79752BFa2C41285535852bbBDd50b2ca',
       // CoFiXKTable:'0xe609B978635c7Bb8D22Ffc4Ec7f7a16615a3b1cA',
-      CofixRouter: '0xbeE8674291328D09831cAf96eFceaCDf53066B86',
+      CofixRouter: '0xeFe1cfeC4c99c06c0277996b85Ae0b11D27449C4',
       CoFiXVaultForLP: '0x2494853258c33A99581Abddc7b85b11D1D1885DF',
       CoFiStakingRewards: '0x2a603D9e8b3152B6e235c7eFA41dFc073764d96a',
       CoFiXVaultForTrader: '0xe901e7f88a377D01028aE947cFA3192b3c5f7587',
