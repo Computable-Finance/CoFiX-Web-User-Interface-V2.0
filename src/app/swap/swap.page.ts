@@ -213,7 +213,7 @@ export class SwapPage implements OnInit, OnDestroy {
     );
     if (executionPriceAndExpectedCofi) {
       this.toCoin.amount = await this.balancePipe.transform(
-        executionPriceAndExpectedCofi.excutionPrice
+        executionPriceAndExpectedCofi.amountOut
       );
       this.minimum = new BNJS(executionPriceAndExpectedCofi.excutionPrice)
         .times(0.99)
