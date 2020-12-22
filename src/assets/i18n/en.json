@@ -218,5 +218,6 @@
   "claimcofi_text_short": "Claim CoFi",
   "btn_connect": "Connect to Wallet",
   "connect_title": "Connect to to CoFiX",
-  "connect_desc": "Click the button below to connect to CoFiX dapp"
+  "connect_desc": "Click the button below to connect to CoFiX dapp",
+  "more_details_short": "Learn More"
 }
