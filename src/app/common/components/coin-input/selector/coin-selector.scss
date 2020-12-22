@@ -4,10 +4,9 @@
 }
 
 .title {
-  margin-top: 26px;
+  margin-top: 18px;
   height: 41px;
   font-size: 24px;
-  margin-bottom: 20px;
 }
 .title ion-col {
   font-size: 24px;
@@ -47,4 +46,13 @@
 }
 .first-row {
   border-top: 1px solid var(--mercury);
+}
+.searchbar {
+  --box-shadow: 0;
+  --background: rgba(142, 142, 147, 0.12);
+  --border-radius: 10px;
+}
+.token-list {
+  height: 100%;
+  overflow: auto;
 }

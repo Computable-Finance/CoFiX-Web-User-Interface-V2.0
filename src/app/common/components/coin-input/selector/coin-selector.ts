@@ -9,6 +9,7 @@ import { TOKENS } from 'src/app/common/constants';
 })
 export class CoinSelector {
   coinList = TOKENS;
+  token: string;
 
   constructor(private modalController: ModalController) {}
 
@@ -18,5 +19,15 @@ export class CoinSelector {
 
   close() {
     this.modalController.dismiss();
+  }
+
+  searchToken(event) {
+    if (!this.token.toUpperCase()) {
+      this.coinList = TOKENS;
+    } else {
+      this.coinList = TOKENS.filter(
+        (el) => el.indexOf(this.token.toUpperCase()) > -1
+      );
+    }
   }
 }

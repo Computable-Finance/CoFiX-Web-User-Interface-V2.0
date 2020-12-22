@@ -219,5 +219,6 @@
   "btn_connect": "Connect to Wallet",
   "connect_title": "Connect to to CoFiX",
   "connect_desc": "Click the button below to connect to CoFiX dapp",
-  "more_details_short": "Learn More"
+  "more_details_short": "Learn More",
+  "search_placeholder": "Search name"
 }

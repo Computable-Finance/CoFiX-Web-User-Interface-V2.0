@@ -115,12 +115,17 @@ ion-button {
 }
 
 .popover-coinselect .modal-wrapper {
-  height: 366px;
 }
 .popover-coinselect .modal-wrapper {
   width: 344px;
   border-radius: 16px;
+  height: 70%;
   box-shadow: 0 11px 19px 0 rgba(0, 0, 0, 0.08);
+  .ion-page {
+    position: relative;
+    contain: content;
+    height: 100%;
+  }
 }
 
 .operation-btn {
@@ -357,7 +362,8 @@ ion-toggle {
   color: #ff3b30;
 }
 
-.select-content {
+.select-content,
+.select-header {
   width: 100%;
   background: white;
 }
@@ -537,4 +543,10 @@ ion-toggle {
   clear: both;
   margin: 0 auto;
   margin-top: 15px;
+}
+
+.searchbar-input {
+  padding-left: 9px !important;
+  text-align: left !important;
+  height: 44px !important;
 }
