@@ -56,7 +56,7 @@ export class SwapPage implements OnInit, OnDestroy {
   canChangeCoin = false;
   isLoading = { sq: false, dh: false };
   showError = false;
-  ERC20BalanceOfPair = { USDT: '', HBTC: '', ETH: '', NEST: '' };
+  ERC20BalanceOfPair = { USDT: '', HBTC: '', ETH: '' };
   showBalance = true;
   isShowToMax = false;
   isShowFromMax = false;

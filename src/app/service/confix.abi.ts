@@ -5,6 +5,7 @@ export const ERC20_ABI = [
   'function allowance(address, address) view returns (uint256)',
   'function decimals() external pure returns (uint8)',
   'function approve(address _spender, uint256 _value) returns (bool success)',
+  'function symbol() public view returns (string)',
 ];
 
 export function getERC20Contract(address: string, provider) {

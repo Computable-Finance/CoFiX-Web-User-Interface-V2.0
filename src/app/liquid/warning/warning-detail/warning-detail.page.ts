@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { AlertController, ModalController } from '@ionic/angular';
-import { TranslateService } from '@ngx-translate/core';
+import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { Subscription, fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
@@ -16,7 +15,6 @@ export class WarningDetailPage implements OnInit {
   moreDetailTitle: string = 'more_details';
 
   ngOnInit() {
-    console.log('123');
     this.resizeSubscription = fromEvent(window, 'resize')
       .pipe(debounceTime(100))
       .subscribe((event) => {
@@ -37,6 +35,7 @@ export class WarningDetailPage implements OnInit {
     this.resizeSubscription.unsubscribe();
     this.modalController.dismiss({ knownRisk: true });
   }
+
   learnMore() {
     window.open(
       'https://github.com/Computable-Finance/CoFiX-hedger/blob/master/README.md'

@@ -7,7 +7,7 @@
     >
       <span class="input-group-text"
         ><img
-          src="./assets/images/icon/{{coin}}.png"
+          src="./assets/images/icon/{{coin?.indexOf('Unknown') > -1?'UNKNOWN':coin}}.png"
           class="coin_icon"
         />&nbsp;<span class="coin-title">{{coin}}</span> &nbsp;<img
           *ngIf="isSelectCoin"

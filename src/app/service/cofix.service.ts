@@ -18,6 +18,7 @@ import {
   BLOCKNUMS_IN_A_DAY,
   ETHER_DECIMALS,
   getContractAddressListByNetwork,
+  TOKENS,
 } from '../common/constants';
 import { ethersOf, unitsOf } from '../common/uitils/bignumber-utils';
 import { BalancesQuery } from '../state/balance/balance.query';
@@ -1797,5 +1798,40 @@ export class CofiXService {
       token === this.contractAddressList.USDT ||
       token === this.contractAddressList.HBTC
     );
+  }
+
+  // 参数token 为该token对应的地址
+  async loadToken(token: string) {
+    try {
+      const contract = getERC20Contract(token, this.provider);
+      const existToken = this.getExistToken(token);
+
+      if (!existToken) {
+        let newToken = await contract.symbol();
+        if (!newToken) {
+          newToken = `Unknown Token${this.getUnknownTokenIndex()}`;
+        }
+        TOKENS.push(newToken);
+        this.contractAddressList[newToken] = token;
+        return newToken;
+      } else {
+        return existToken;
+      }
+    } catch (e) {
+      console.error(e);
+      return undefined;
+    }
+  }
+
+  getUnknownTokenIndex() {
+    return TOKENS.filter((el) => el.indexOf('Unknown') > -1).length + 1;
+  }
+
+  getExistToken(address: string) {
+    let result;
+    Object.keys(this.contractAddressList).forEach((key) => {
+      result = this.contractAddressList[key] === address ? key : undefined;
+    });
+    return result;
   }
 }

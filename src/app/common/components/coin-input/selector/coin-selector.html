@@ -16,7 +16,7 @@
         clearIcon="undefined"
         class="searchbar"
         placeholder="{{'search_placeholder' | translate}}"
-        [(ngModel)]="token"
+        [(ngModel)]="queryToken"
         (ionChange)="searchToken($event)"
       ></ion-searchbar>
     </ion-col>
@@ -31,7 +31,10 @@
         class="ion-align-items-center ion-align-self-center conversionPrice {{i==0?'first-row':''}}"
       >
         <ion-col size="2" class="token-logo">
-          <img src="./assets/images/icon/{{coin}}.png" class="coin_icon" />
+          <img
+            src="./assets/images/icon/{{coin.indexOf('Unknown') > -1?'UNKNOWN':coin}}.png"
+            class="coin_icon"
+          />
         </ion-col>
         <ion-col size="9"> {{coin}} </ion-col>
       </ion-row>

@@ -115,8 +115,6 @@ ion-button {
 }
 
 .popover-coinselect .modal-wrapper {
-}
-.popover-coinselect .modal-wrapper {
   width: 344px;
   border-radius: 16px;
   height: 70%;
@@ -547,6 +545,7 @@ ion-toggle {
 
 .searchbar-input {
   padding-left: 9px !important;
+  padding-right: 9px !important;
   text-align: left !important;
   height: 44px !important;
 }

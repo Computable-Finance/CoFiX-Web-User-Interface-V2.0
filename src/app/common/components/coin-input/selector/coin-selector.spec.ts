@@ -4,6 +4,7 @@ import { ModalController } from '@ionic/angular';
 import { TranslatePipe } from '@ngx-translate/core';
 import { MockPipe, MockProvider } from 'ng-mocks';
 import { TOKENS } from 'src/app/common/constants';
+import { CofiXService } from 'src/app/service/cofix.service';
 
 import { CoinSelector } from './coin-selector';
 
@@ -20,6 +21,7 @@ describe('CoinSelector', () => {
         MockProvider(ModalController, {
           dismiss: (coin) => (coinSelected = coin),
         }),
+        MockProvider(CofiXService),
       ],
       declarations: [CoinSelector, MockPipe(TranslatePipe)],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -45,5 +47,15 @@ describe('CoinSelector', () => {
   it('should select no coin when closed directly', () => {
     component.close();
     expect(coinSelected).toBeUndefined();
+  });
+
+  it('should show two tokens when queryToken equals h  ', () => {
+    component.queryToken = 'h';
+    component.searchToken(undefined);
+    fixture.detectChanges();
+    expect(element.querySelectorAll('.coin_icon').length).toEqual(2);
+    expect(element.querySelectorAll('.coin_icon').length).toEqual(
+      component.coinList.length
+    );
   });
 });

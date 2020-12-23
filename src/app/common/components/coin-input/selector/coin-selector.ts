@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { TOKENS } from 'src/app/common/constants';
+import { CofiXService } from 'src/app/service/cofix.service';
 
 @Component({
   selector: 'app-coin-selector',
@@ -9,9 +10,12 @@ import { TOKENS } from 'src/app/common/constants';
 })
 export class CoinSelector {
   coinList = TOKENS;
-  token: string;
+  queryToken: string;
 
-  constructor(private modalController: ModalController) {}
+  constructor(
+    private modalController: ModalController,
+    private cofixService: CofiXService
+  ) {}
 
   selectCoin(coin) {
     this.modalController.dismiss(coin);
@@ -21,13 +25,26 @@ export class CoinSelector {
     this.modalController.dismiss();
   }
 
-  searchToken(event) {
-    if (!this.token.toUpperCase()) {
+  async searchToken(event) {
+    if (!this.queryToken.toUpperCase()) {
       this.coinList = TOKENS;
     } else {
-      this.coinList = TOKENS.filter(
-        (el) => el.indexOf(this.token.toUpperCase()) > -1
-      );
+      if (this.isValidAddress(this.queryToken)) {
+        const newToken = await this.cofixService.loadToken(this.queryToken);
+        if (newToken) {
+          this.coinList = [newToken];
+        } else {
+          this.coinList = [];
+        }
+      } else {
+        this.coinList = TOKENS.filter(
+          (el) => el.indexOf(this.queryToken.toUpperCase()) > -1
+        );
+      }
     }
+  }
+
+  isValidAddress(address: string) {
+    return address.indexOf('0x') > -1 && address.length === 42;
   }
 }
