@@ -1,6 +1,5 @@
 import {
   Fetcher,
-  Percent,
   Route,
   Token,
   TokenAmount,
@@ -8,8 +7,8 @@ import {
   TradeType,
   WETH,
 } from '@uniswap/sdk';
-import { getContractAddressListByNetwork } from '../common/constants';
 
+import { getContractAddressListByNetwork } from '../common/constants';
 import { ethersOf, parseUnits } from '../common/uitils/bignumber-utils';
 
 export type TokenInfo = {

@@ -9,6 +9,7 @@ import {
 import { ModalController } from '@ionic/angular';
 import { EMPTY, Subject, Subscription } from 'rxjs';
 import { debounceTime, switchMap } from 'rxjs/operators';
+import { tokenLogo } from '../../TokenList';
 
 import { CoinSelector } from './selector/coin-selector';
 
@@ -83,5 +84,12 @@ export class CoinInput implements OnInit, OnDestroy {
 
   overLiquid() {
     return new BNJS(this.amount).gt(new BNJS(this.maxLiquid));
+  }
+
+  tokenLogo(tokenName: string) {
+    if (tokenName === 'ETH') {
+      return './assets/images/icon/ETH.png';
+    }
+    return tokenLogo(tokenName);
   }
 }

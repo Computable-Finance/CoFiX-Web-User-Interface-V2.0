@@ -56,3 +56,17 @@
   height: 100%;
   overflow: auto;
 }
+
+.scroll-note {
+  font-size: 13px;
+  padding-left: 20px;
+}
+
+ion-searchbar {
+  ::ng-deep {
+    .searchbar-clear-icon,
+    .searchbar-search-icon {
+      display: none !important;
+    }
+  }
+}

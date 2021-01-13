@@ -1,18 +1,21 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { CofiXService } from '../service/cofix.service';
-import { Utils } from 'src/app/common/utils';
-import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
-import { CoinInput } from '../common/components/coin-input/coin-input';
 import { BigNumber } from 'ethers';
-import { TxService } from '../state/tx/tx.service';
+import { Subscription } from 'rxjs';
+import { Utils } from 'src/app/common/utils';
+
+import { CoinInput } from '../common/components/coin-input/coin-input';
+import { TipPannelContent } from '../common/components/tip-pannel/tip-pannel';
+import { DEX_TYPE_COFIX, DEX_TYPE_UNISWAP } from '../common/constants';
+import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
+import { tokenList } from '../common/TokenList';
 import { CoinContent } from '../common/types/CoinContent';
+import { isValidNumberForTx } from '../common/uitils/bignumber-utils';
+import { CofiXService } from '../service/cofix.service';
+import { EventBusService } from '../service/eventbus.service';
 import { BalancesQuery } from '../state/balance/balance.query';
 import { MarketDetailsQuery } from '../state/market/market.query';
-import { Subscription } from 'rxjs';
-import { TipPannelContent } from '../common/components/tip-pannel/tip-pannel';
-import { EventBusService } from '../service/eventbus.service';
-import { isValidNumberForTx } from '../common/uitils/bignumber-utils';
-import { DEX_TYPE_COFIX, DEX_TYPE_UNISWAP } from '../common/constants';
+import { TxService } from '../state/tx/tx.service';
+
 const BNJS = require('bignumber.js');
 
 @Component({
@@ -340,12 +343,12 @@ export class SwapPage implements OnInit, OnDestroy {
     this.unsubscribeAll();
     this.showError = false;
     if (this.cofixService.getCurrentProvider) {
-      this.fromCoin.address = this.cofixService.getCurrentContractAddressList()[
-        this.fromCoin.id
-      ];
-      this.toCoin.address = this.cofixService.getCurrentContractAddressList()[
-        this.toCoin.id
-      ];
+      this.fromCoin.address = tokenList(
+        this.cofixService.getCurrentNetwork()
+      ).find((token) => token.symbol === this.fromCoin.id)?.address;
+      this.toCoin.address = tokenList(
+        this.cofixService.getCurrentNetwork()
+      ).find((token) => token.symbol === this.toCoin.id)?.address;
       this.changePrice = (
         await this.cofixService.executionPriceAndExpectedCofi(
           this.fromCoin.address,

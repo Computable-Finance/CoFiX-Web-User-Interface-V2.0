@@ -20,6 +20,7 @@ import {
   getContractAddressListByNetwork,
   TOKENS,
 } from '../common/constants';
+import { addToken, tokenList } from '../common/TokenList';
 import { ethersOf, unitsOf } from '../common/uitils/bignumber-utils';
 import { BalancesQuery } from '../state/balance/balance.query';
 import { BalancesService } from '../state/balance/balance.service';
@@ -909,6 +910,7 @@ export class CofiXService {
         [this.contractAddressList.WETH9, token],
         DEX_TYPE,
         this.currentAccount,
+        this.currentAccount,
         deadline(),
         {
           value: this.parseEthers(bnValue.toString()),
@@ -958,6 +960,7 @@ export class CofiXService {
         ),
         [token, this.contractAddressList.WETH9],
         DEX_TYPE,
+        this.currentAccount,
         this.currentAccount,
         deadline(),
         {
@@ -1032,6 +1035,7 @@ export class CofiXService {
         ),
         [tokenIn, this.contractAddressList.WETH9, tokenOut],
         DEX_TYPE,
+        this.currentAccount,
         this.currentAccount,
         deadline(),
         {
@@ -1317,6 +1321,14 @@ export class CofiXService {
   // --------- TokenInfo Methods ------------ //
 
   async getERC20Decimals(tokenAddress: string) {
+    const targetToken = tokenList(this.currentNetwork).find(
+      (token) => token.address === tokenAddress
+    );
+
+    if (targetToken) {
+      return targetToken.decimals.toString();
+    }
+
     const decimals = this.tokenInfoQuery.getDecimals(tokenAddress);
     if (!decimals) {
       const contract = getERC20Contract(tokenAddress, this.provider);
@@ -1811,9 +1823,12 @@ export class CofiXService {
         if (!newToken) {
           newToken = `Unknown Token${this.getUnknownTokenIndex()}`;
         }
-        TOKENS.push(newToken);
-        this.contractAddressList[newToken] = token;
-        return newToken;
+        return addToken(
+          this.currentNetwork,
+          token,
+          newToken,
+          await contract.decimals()
+        );
       } else {
         return existToken;
       }
@@ -1824,14 +1839,16 @@ export class CofiXService {
   }
 
   getUnknownTokenIndex() {
-    return TOKENS.filter((el) => el.indexOf('Unknown') > -1).length + 1;
+    return (
+      tokenList(this.currentNetwork).filter(
+        (token) => token.symbol.indexOf('Unknown') > -1
+      ).length + 1
+    );
   }
 
   getExistToken(address: string) {
-    let result;
-    Object.keys(this.contractAddressList).forEach((key) => {
-      result = this.contractAddressList[key] === address ? key : undefined;
-    });
-    return result;
+    return tokenList(this.currentNetwork).find(
+      (token) => token.address === address
+    );
   }
 }

@@ -220,5 +220,7 @@
   "connect_title": "Connect to to CoFiX",
   "connect_desc": "Click the button below to connect to CoFiX dapp",
   "more_details_short": "Learn More",
-  "search_placeholder": "Search name or paste address"
+  "search_placeholder": "Search name or paste address",
+  "loading_tokens": "Loading more tokens...",
+  "scroll_note": "Note: There are {{tokenCount}} tokens, scroll down to load more tokens."
 }

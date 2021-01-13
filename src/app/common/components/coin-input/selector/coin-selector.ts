@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { ModalController } from '@ionic/angular';
-import { TOKENS } from 'src/app/common/constants';
+import { Component, ViewChild } from '@angular/core';
+import { IonInfiniteScroll, ModalController } from '@ionic/angular';
+import { getTokenListByQuery } from 'src/app/common/TokenList';
 import { CofiXService } from 'src/app/service/cofix.service';
 
 @Component({
@@ -9,16 +9,52 @@ import { CofiXService } from 'src/app/service/cofix.service';
   styleUrls: ['./coin-selector.scss'],
 })
 export class CoinSelector {
-  coinList = TOKENS;
+  @ViewChild('infiniteScroll') infiniteScroll: IonInfiniteScroll;
+  coinList = [];
   queryToken: string;
-
+  tokenCount: number;
+  q = { max: 7, offset: 0 };
+  pageindex: number = 1;
   constructor(
     private modalController: ModalController,
     private cofixService: CofiXService
-  ) {}
+  ) {
+    this.getTokenList();
+  }
+
+  loadData(event) {
+    event.target.complete();
+    if (Number(this.q.max) * this.pageindex <= this.tokenCount) {
+      this.pageindex += 1;
+      this.q.offset = (this.pageindex - 1) * Number(this.q.max);
+      this.getTokenList();
+    } else {
+      event.target.complete();
+    }
+  }
+
+  getTokenList() {
+    const tokenList = getTokenListByQuery(
+      this.cofixService.getCurrentNetwork(),
+      this.q.offset,
+      this.q.max,
+      this.queryToken
+    );
+    this.tokenCount = tokenList.total;
+    if (this.pageindex > 1) {
+      this.coinList = this.coinList.concat(tokenList.dataList);
+    } else {
+      this.coinList = tokenList.dataList;
+    }
+  }
+
+  init() {
+    this.pageindex = 1;
+    this.q.offset = 0;
+  }
 
   selectCoin(coin) {
-    this.modalController.dismiss(coin);
+    this.modalController.dismiss(coin.symbol);
   }
 
   close() {
@@ -26,8 +62,9 @@ export class CoinSelector {
   }
 
   async searchToken(event) {
+    this.init();
     if (!this.queryToken.toUpperCase()) {
-      this.coinList = TOKENS;
+      this.getTokenList();
     } else {
       if (this.isValidAddress(this.queryToken)) {
         const newToken = await this.cofixService.loadToken(this.queryToken);
@@ -37,9 +74,7 @@ export class CoinSelector {
           this.coinList = [];
         }
       } else {
-        this.coinList = TOKENS.filter(
-          (el) => el.indexOf(this.queryToken.toUpperCase()) > -1
-        );
+        this.getTokenList();
       }
     }
   }

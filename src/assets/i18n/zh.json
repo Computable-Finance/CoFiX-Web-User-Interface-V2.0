@@ -220,5 +220,7 @@
   "connect_title": "连接至 CoFiX",
   "connect_desc": "单击下面的按钮连接到 CoFiX dapp",
   "more_details_short": "了解更多",
-  "search_placeholder": "查询名称或地址"
+  "search_placeholder": "查询名称或地址",
+  "loading_tokens": "正在加载更多Token...",
+  "scroll_note": "注：有{{tokenCount}}个Token，向下滑动可加载更多Token。"
 }

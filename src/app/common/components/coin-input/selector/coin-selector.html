@@ -12,32 +12,45 @@
   <ion-row class="ion-align-items-center ion-align-self-center">
     <ion-col class="ion-text-center" size="12">
       <ion-searchbar
-        search-icon="undefined"
-        clearIcon="undefined"
         class="searchbar"
         placeholder="{{'search_placeholder' | translate}}"
         [(ngModel)]="queryToken"
         (ionChange)="searchToken($event)"
       ></ion-searchbar>
     </ion-col>
+    <ion-col class="scroll-note" size="12">
+      {{'scroll_note' | translate: {tokenCount:tokenCount} }}
+    </ion-col>
   </ion-row>
 </ion-grid>
 <div class="token-list">
-  <ion-grid class="select-content">
-    <ng-container *ngFor="let coin of coinList;let i=index">
-      <ion-row
-        id="{{coin}}"
-        (click)="selectCoin(coin)"
-        class="ion-align-items-center ion-align-self-center conversionPrice {{i==0?'first-row':''}}"
+  <ion-content>
+    <ion-grid class="select-content">
+      <ng-container *ngFor="let coin of coinList;let i=index">
+        <ion-row
+          id="{{coin.symbol}}"
+          (click)="selectCoin(coin)"
+          class="ion-align-items-center ion-align-self-center conversionPrice {{i==0?'first-row':''}}"
+        >
+          <ion-col size="2" class="token-logo">
+            <img src="{{coin.logoURI}}" class="coin_icon" />
+          </ion-col>
+          <ion-col size="9"> {{coin.symbol}} </ion-col>
+        </ion-row>
+      </ng-container>
+    </ion-grid>
+
+    <ion-infinite-scroll
+      #infiniteScroll
+      immediate-check="false"
+      threshold="-5%"
+      (ionInfinite)="loadData($event)"
+    >
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="Loading more tokens..."
       >
-        <ion-col size="2" class="token-logo">
-          <img
-            src="./assets/images/icon/{{coin.indexOf('Unknown') > -1?'UNKNOWN':coin}}.png"
-            class="coin_icon"
-          />
-        </ion-col>
-        <ion-col size="9"> {{coin}} </ion-col>
-      </ion-row>
-    </ng-container>
-  </ion-grid>
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-content>
 </div>
