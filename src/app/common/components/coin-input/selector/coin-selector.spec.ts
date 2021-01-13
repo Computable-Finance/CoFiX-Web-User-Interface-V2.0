@@ -4,6 +4,7 @@ import { ModalController } from '@ionic/angular';
 import { TranslatePipe } from '@ngx-translate/core';
 import { MockPipe, MockProvider } from 'ng-mocks';
 import { TOKENS } from 'src/app/common/constants';
+import { MarkedPipe } from 'src/app/common/pipes/marked.pipe';
 import { CofiXService } from 'src/app/service/cofix.service';
 
 import { CoinSelector } from './coin-selector';
@@ -23,7 +24,11 @@ describe('CoinSelector', () => {
         }),
         MockProvider(CofiXService),
       ],
-      declarations: [CoinSelector, MockPipe(TranslatePipe)],
+      declarations: [
+        CoinSelector,
+        MockPipe(TranslatePipe),
+        MockPipe(MarkedPipe),
+      ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
 

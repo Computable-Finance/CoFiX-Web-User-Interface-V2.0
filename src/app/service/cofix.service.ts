@@ -375,7 +375,11 @@ export class CofiXService {
   // 获得预言机单价，不考虑冲击成本，k 和 theta
   // 参数含义同上
   async nestPrice(fromToken: string, toToken: string) {
-    if (!this.provider) {
+    if (
+      !this.provider ||
+      (fromToken && !this.isCoFixToken(fromToken)) ||
+      (toToken && !this.isCoFixToken(toToken))
+    ) {
       return;
     }
 
