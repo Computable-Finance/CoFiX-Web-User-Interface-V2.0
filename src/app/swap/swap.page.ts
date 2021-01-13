@@ -98,6 +98,7 @@ export class SwapPage implements OnInit, OnDestroy {
     this.fromCoin.subscription?.unsubscribe();
     this.changePriceOfFromTokenSubscription?.unsubscribe();
     this.changePriceOfToTokenSubscription?.unsubscribe();
+    this.cofixService.getCurrentProvider().off('block');
   }
 
   async ngOnInit() {
@@ -286,7 +287,9 @@ export class SwapPage implements OnInit, OnDestroy {
     if (event.coin === 'ETH' && this.fromCoin.id === event.coin) {
       return false;
     }
+
     this.unsubscribeAll();
+
     if (event.coin === this.toCoin.id) {
       this.changeCoin();
     } else {
@@ -342,6 +345,7 @@ export class SwapPage implements OnInit, OnDestroy {
   async getCoinContent() {
     this.unsubscribeAll();
     this.showError = false;
+
     if (this.cofixService.getCurrentProvider) {
       this.fromCoin.address = tokenList(
         this.cofixService.getCurrentNetwork()
@@ -356,24 +360,44 @@ export class SwapPage implements OnInit, OnDestroy {
           '1'
         )
       ).excutionPrice;
-      if (this.fromCoin.id !== 'ETH') {
-        this.changePriceOfFromTokenSubscription = this.marketDetailsQuery
-          .marketDetails$(
-            this.fromCoin.address,
-            'checkedPriceNow',
-            'changePrice'
-          )
-          .subscribe(async (price) => {
-            this.getEPAndEC();
-          });
-      }
 
-      if (this.toCoin.id !== 'ETH') {
-        this.changePriceOfToTokenSubscription = this.marketDetailsQuery
-          .marketDetails$(this.toCoin.address, 'checkedPriceNow', 'changePrice')
-          .subscribe(async (price) => {
-            this.getEPAndEC();
-          });
+      if (
+        !this.cofixService.isCoFixToken(this.fromCoin.address) ||
+        !this.cofixService.isCoFixToken(this.toCoin.address)
+      ) {
+        this.cofixService.getCurrentProvider().on('block', async (blockNum) => {
+          this.getEPAndEC();
+        });
+      } else {
+        if (
+          this.fromCoin.id !== 'ETH' &&
+          this.cofixService.isCoFixToken(this.fromCoin.address)
+        ) {
+          this.changePriceOfFromTokenSubscription = this.marketDetailsQuery
+            .marketDetails$(
+              this.fromCoin.address,
+              'checkedPriceNow',
+              'changePrice'
+            )
+            .subscribe(async (price) => {
+              this.getEPAndEC();
+            });
+        }
+
+        if (
+          this.toCoin.id !== 'ETH' &&
+          this.cofixService.isCoFixToken(this.toCoin.address)
+        ) {
+          this.changePriceOfToTokenSubscription = this.marketDetailsQuery
+            .marketDetails$(
+              this.toCoin.address,
+              'checkedPriceNow',
+              'changePrice'
+            )
+            .subscribe(async (price) => {
+              this.getEPAndEC();
+            });
+        }
       }
 
       this.priceSpread = new BNJS(this.changePrice).minus(0);
