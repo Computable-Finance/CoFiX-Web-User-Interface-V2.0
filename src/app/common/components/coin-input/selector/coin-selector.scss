@@ -20,7 +20,7 @@
   cursor: pointer;
 }
 .conversionPrice {
-  height: 64px;
+  height: 74px;
   font-size: 24px;
   color: black;
   cursor: pointer;
@@ -69,4 +69,7 @@ ion-searchbar {
       display: none !important;
     }
   }
+}
+.address {
+  font-size: 17px;
 }

@@ -41,8 +41,9 @@
             {{coin.symbol}}</ion-col
           >
           <ion-col size="9" *ngIf="coin.symbol!=='ETH'">
-            {{coin.symbol}} - {{coin.address}}</ion-col
-          >
+            {{coin.symbol}} <br />
+            <span class="address">{{coin.address | walletaddress:9}}</span>
+          </ion-col>
         </ion-row>
       </ng-container>
     </ion-grid>
