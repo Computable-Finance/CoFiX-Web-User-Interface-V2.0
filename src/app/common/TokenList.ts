@@ -54,7 +54,7 @@ const tokens = [
     symbol: 'USDT',
     decimals: 6,
     logoURI:
-      'https://assets.coingecko.com/coins/images/325/thumb/Tether-logo.png?1598003707',
+      'https://assets.coingecko.com/coins/images/325/small/Tether-logo.png?1598003707',
   },
   {
     chainId: 3,
@@ -63,7 +63,7 @@ const tokens = [
     symbol: 'HBTC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12407/thumb/Unknown-5.png?1599624896',
+      'https://assets.coingecko.com/coins/images/12407/small/Unknown-5.png?1599624896',
   },
   {
     chainId: 3,
@@ -72,7 +72,7 @@ const tokens = [
     symbol: 'NEST',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11284/thumb/52954052.png?1589868539',
+      'https://assets.coingecko.com/coins/images/11284/small/52954052.png?1589868539',
   },
   // the following is copyed from token list of coingecko
   // https://tokens.coingecko.com/uniswap/all.json
@@ -83,7 +83,7 @@ const tokens = [
     symbol: 'GAME',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/193/thumb/XlQmXoU.png?1595304945',
+      'https://assets.coingecko.com/coins/images/193/small/XlQmXoU.png?1595304945',
   },
   {
     chainId: 1,
@@ -92,7 +92,7 @@ const tokens = [
     symbol: 'SWM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/197/thumb/swarm.jpg?1547033949',
+      'https://assets.coingecko.com/coins/images/197/small/swarm.jpg?1547033949',
   },
   {
     chainId: 1,
@@ -101,7 +101,7 @@ const tokens = [
     symbol: 'REP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/309/thumb/REP.png?1596339859',
+      'https://assets.coingecko.com/coins/images/309/small/REP.png?1596339859',
   },
   {
     chainId: 1,
@@ -110,7 +110,7 @@ const tokens = [
     symbol: 'USDT',
     decimals: 6,
     logoURI:
-      'https://assets.coingecko.com/coins/images/325/thumb/Tether-logo.png?1598003707',
+      'https://assets.coingecko.com/coins/images/325/small/Tether-logo.png?1598003707',
   },
   {
     chainId: 1,
@@ -119,7 +119,7 @@ const tokens = [
     symbol: 'DGD',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/397/thumb/dgd.png?1547034124',
+      'https://assets.coingecko.com/coins/images/397/small/dgd.png?1547034124',
   },
   {
     chainId: 1,
@@ -128,7 +128,7 @@ const tokens = [
     symbol: 'SNGLS',
     decimals: 0,
     logoURI:
-      'https://assets.coingecko.com/coins/images/521/thumb/singulardtv.png?1547034199',
+      'https://assets.coingecko.com/coins/images/521/small/singulardtv.png?1547034199',
   },
   {
     chainId: 1,
@@ -137,7 +137,7 @@ const tokens = [
     symbol: 'VRS',
     decimals: 6,
     logoURI:
-      'https://assets.coingecko.com/coins/images/539/thumb/vrs_logo.png?1583913100',
+      'https://assets.coingecko.com/coins/images/539/small/vrs_logo.png?1583913100',
   },
   {
     chainId: 1,
@@ -146,7 +146,7 @@ const tokens = [
     symbol: 'GLM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/542/thumb/Golem_Submark_Positive_RGB.png?1606392013',
+      'https://assets.coingecko.com/coins/images/542/small/Golem_Submark_Positive_RGB.png?1606392013',
   },
   {
     chainId: 1,
@@ -155,7 +155,7 @@ const tokens = [
     symbol: 'COVAL',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/588/thumb/coval-logo.png?1599493950',
+      'https://assets.coingecko.com/coins/images/588/small/coval-logo.png?1599493950',
   },
   {
     chainId: 1,
@@ -164,7 +164,7 @@ const tokens = [
     symbol: 'TIME',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/604/thumb/TIMEsymbol200x200.png?1572093177',
+      'https://assets.coingecko.com/coins/images/604/small/TIMEsymbol200x200.png?1572093177',
   },
   {
     chainId: 1,
@@ -173,7 +173,7 @@ const tokens = [
     symbol: 'MLN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/605/thumb/melon.png?1547034295',
+      'https://assets.coingecko.com/coins/images/605/small/melon.png?1547034295',
   },
   {
     chainId: 1,
@@ -182,7 +182,7 @@ const tokens = [
     symbol: 'TRST',
     decimals: 6,
     logoURI:
-      'https://assets.coingecko.com/coins/images/645/thumb/wetrust.png?1547034370',
+      'https://assets.coingecko.com/coins/images/645/small/wetrust.png?1547034370',
   },
   {
     chainId: 1,
@@ -191,7 +191,7 @@ const tokens = [
     symbol: 'RLC',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/646/thumb/pL1VuXm.png?1604543202',
+      'https://assets.coingecko.com/coins/images/646/small/pL1VuXm.png?1604543202',
   },
   {
     chainId: 1,
@@ -200,7 +200,7 @@ const tokens = [
     symbol: 'WINGS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/648/thumb/wings.png?1548760631',
+      'https://assets.coingecko.com/coins/images/648/small/wings.png?1548760631',
   },
   {
     chainId: 1,
@@ -209,7 +209,7 @@ const tokens = [
     symbol: 'GNO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/662/thumb/logo_square_simple_300px.png?1609402668',
+      'https://assets.coingecko.com/coins/images/662/small/logo_square_simple_300px.png?1609402668',
   },
   {
     chainId: 1,
@@ -218,7 +218,7 @@ const tokens = [
     symbol: 'TKN',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/675/thumb/Monolith.png?1566296607',
+      'https://assets.coingecko.com/coins/images/675/small/Monolith.png?1566296607',
   },
   {
     chainId: 1,
@@ -227,7 +227,7 @@ const tokens = [
     symbol: 'BAT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/677/thumb/basic-attention-token.png?1547034427',
+      'https://assets.coingecko.com/coins/images/677/small/basic-attention-token.png?1547034427',
   },
   {
     chainId: 1,
@@ -236,7 +236,7 @@ const tokens = [
     symbol: 'ANT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/681/thumb/JelZ58cv_400x400.png?1601449653',
+      'https://assets.coingecko.com/coins/images/681/small/JelZ58cv_400x400.png?1601449653',
   },
   {
     chainId: 1,
@@ -245,7 +245,7 @@ const tokens = [
     symbol: 'GUP',
     decimals: 3,
     logoURI:
-      'https://assets.coingecko.com/coins/images/683/thumb/matchpool.png?1547034437',
+      'https://assets.coingecko.com/coins/images/683/small/matchpool.png?1547034437',
   },
   {
     chainId: 1,
@@ -254,7 +254,7 @@ const tokens = [
     symbol: 'MNE',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/702/thumb/mne.png?1587615060',
+      'https://assets.coingecko.com/coins/images/702/small/mne.png?1587615060',
   },
   {
     chainId: 1,
@@ -263,7 +263,7 @@ const tokens = [
     symbol: 'BNT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/736/thumb/bancor.png?1547034477',
+      'https://assets.coingecko.com/coins/images/736/small/bancor.png?1547034477',
   },
   {
     chainId: 1,
@@ -272,7 +272,7 @@ const tokens = [
     symbol: 'PTOY',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/746/thumb/patientory.png?1548330777',
+      'https://assets.coingecko.com/coins/images/746/small/patientory.png?1548330777',
   },
   {
     chainId: 1,
@@ -281,7 +281,7 @@ const tokens = [
     symbol: 'NMR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/752/thumb/numeraire.png?1592538976',
+      'https://assets.coingecko.com/coins/images/752/small/numeraire.png?1592538976',
   },
   {
     chainId: 1,
@@ -290,7 +290,7 @@ const tokens = [
     symbol: 'PPT',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/753/thumb/populous.png?1548331905',
+      'https://assets.coingecko.com/coins/images/753/small/populous.png?1548331905',
   },
   {
     chainId: 1,
@@ -299,7 +299,7 @@ const tokens = [
     symbol: 'MYST',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/757/thumb/mysterium.png?1547034503',
+      'https://assets.coingecko.com/coins/images/757/small/mysterium.png?1547034503',
   },
   {
     chainId: 1,
@@ -308,7 +308,7 @@ const tokens = [
     symbol: 'FUN',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/761/thumb/funfair.png?1592404368',
+      'https://assets.coingecko.com/coins/images/761/small/funfair.png?1592404368',
   },
   {
     chainId: 1,
@@ -317,7 +317,7 @@ const tokens = [
     symbol: 'MTL',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/763/thumb/Metal.png?1592195010',
+      'https://assets.coingecko.com/coins/images/763/small/Metal.png?1592195010',
   },
   {
     chainId: 1,
@@ -326,7 +326,7 @@ const tokens = [
     symbol: 'PLBT',
     decimals: 6,
     logoURI:
-      'https://assets.coingecko.com/coins/images/766/thumb/polybius.png?1547034516',
+      'https://assets.coingecko.com/coins/images/766/small/polybius.png?1547034516',
   },
   {
     chainId: 1,
@@ -335,7 +335,7 @@ const tokens = [
     symbol: 'PAY',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/775/thumb/TenX-Icon-CircleBlack.png?1553766360',
+      'https://assets.coingecko.com/coins/images/775/small/TenX-Icon-CircleBlack.png?1553766360',
   },
   {
     chainId: 1,
@@ -344,7 +344,7 @@ const tokens = [
     symbol: 'OMG',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/776/thumb/OMG_Network.jpg?1591167168',
+      'https://assets.coingecko.com/coins/images/776/small/OMG_Network.jpg?1591167168',
   },
   {
     chainId: 1,
@@ -353,7 +353,7 @@ const tokens = [
     symbol: 'SNT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/779/thumb/status.png?1548610778',
+      'https://assets.coingecko.com/coins/images/779/small/status.png?1548610778',
   },
   {
     chainId: 1,
@@ -362,7 +362,7 @@ const tokens = [
     symbol: 'CVC',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/788/thumb/civic.png?1547034556',
+      'https://assets.coingecko.com/coins/images/788/small/civic.png?1547034556',
   },
   {
     chainId: 1,
@@ -371,7 +371,7 @@ const tokens = [
     symbol: 'VGX',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/794/thumb/Voyager-vgx.png?1575693595',
+      'https://assets.coingecko.com/coins/images/794/small/Voyager-vgx.png?1575693595',
   },
   {
     chainId: 1,
@@ -380,7 +380,7 @@ const tokens = [
     symbol: 'SAN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/797/thumb/santiment-network-token.png?1547034571',
+      'https://assets.coingecko.com/coins/images/797/small/santiment-network-token.png?1547034571',
   },
   {
     chainId: 1,
@@ -389,7 +389,7 @@ const tokens = [
     symbol: 'PLR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/809/thumb/PLR_Token.png?1595237935',
+      'https://assets.coingecko.com/coins/images/809/small/PLR_Token.png?1595237935',
   },
   {
     chainId: 1,
@@ -398,7 +398,7 @@ const tokens = [
     symbol: 'IXT',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/814/thumb/ixledger.png?1547034602',
+      'https://assets.coingecko.com/coins/images/814/small/ixledger.png?1547034602',
   },
   {
     chainId: 1,
@@ -407,7 +407,7 @@ const tokens = [
     symbol: 'MSP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/815/thumb/mothership.png?1547034603',
+      'https://assets.coingecko.com/coins/images/815/small/mothership.png?1547034603',
   },
   {
     chainId: 1,
@@ -416,7 +416,7 @@ const tokens = [
     symbol: 'ADX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/847/thumb/adex.png?1547034643',
+      'https://assets.coingecko.com/coins/images/847/small/adex.png?1547034643',
   },
   {
     chainId: 1,
@@ -425,7 +425,7 @@ const tokens = [
     symbol: 'IND',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/848/thumb/indorse_token.png?1547034644',
+      'https://assets.coingecko.com/coins/images/848/small/indorse_token.png?1547034644',
   },
   {
     chainId: 1,
@@ -434,7 +434,7 @@ const tokens = [
     symbol: 'DNT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/849/thumb/district0x.png?1547223762',
+      'https://assets.coingecko.com/coins/images/849/small/district0x.png?1547223762',
   },
   {
     chainId: 1,
@@ -443,7 +443,7 @@ const tokens = [
     symbol: 'DCN',
     decimals: 0,
     logoURI:
-      'https://assets.coingecko.com/coins/images/850/thumb/dentacoin.png?1547034647',
+      'https://assets.coingecko.com/coins/images/850/small/dentacoin.png?1547034647',
   },
   {
     chainId: 1,
@@ -452,7 +452,7 @@ const tokens = [
     symbol: 'ZRX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/863/thumb/0x.png?1547034672',
+      'https://assets.coingecko.com/coins/images/863/small/0x.png?1547034672',
   },
   {
     chainId: 1,
@@ -461,7 +461,7 @@ const tokens = [
     symbol: 'LINK',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/877/thumb/chainlink-new-logo.png?1547034700',
+      'https://assets.coingecko.com/coins/images/877/small/chainlink-new-logo.png?1547034700',
   },
   {
     chainId: 1,
@@ -470,7 +470,7 @@ const tokens = [
     symbol: 'MANA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/878/thumb/decentraland-mana.png?1550108745',
+      'https://assets.coingecko.com/coins/images/878/small/decentraland-mana.png?1550108745',
   },
   {
     chainId: 1,
@@ -479,7 +479,7 @@ const tokens = [
     symbol: 'HVN',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/899/thumb/Hiveterminal_token.jpg?1547034726',
+      'https://assets.coingecko.com/coins/images/899/small/Hiveterminal_token.jpg?1547034726',
   },
   {
     chainId: 1,
@@ -488,7 +488,7 @@ const tokens = [
     symbol: 'AVT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/901/thumb/aventus.png?1547034729',
+      'https://assets.coingecko.com/coins/images/901/small/aventus.png?1547034729',
   },
   {
     chainId: 1,
@@ -497,7 +497,7 @@ const tokens = [
     symbol: 'POE',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/910/thumb/poet.png?1548331583',
+      'https://assets.coingecko.com/coins/images/910/small/poet.png?1548331583',
   },
   {
     chainId: 1,
@@ -506,7 +506,7 @@ const tokens = [
     symbol: 'LRC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/913/thumb/LRC.png?1572852344',
+      'https://assets.coingecko.com/coins/images/913/small/LRC.png?1572852344',
   },
   {
     chainId: 1,
@@ -515,7 +515,7 @@ const tokens = [
     symbol: 'TNT',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/923/thumb/tierion.png?1547034767',
+      'https://assets.coingecko.com/coins/images/923/small/tierion.png?1547034767',
   },
   {
     chainId: 1,
@@ -524,7 +524,7 @@ const tokens = [
     symbol: 'KNC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/947/thumb/kyber-logo.png?1547034806',
+      'https://assets.coingecko.com/coins/images/947/small/kyber-logo.png?1547034806',
   },
   {
     chainId: 1,
@@ -533,7 +533,7 @@ const tokens = [
     symbol: 'STORJ',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/949/thumb/storj.png?1547034811',
+      'https://assets.coingecko.com/coins/images/949/small/storj.png?1547034811',
   },
   {
     chainId: 1,
@@ -542,7 +542,7 @@ const tokens = [
     symbol: 'DAY',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/951/thumb/Chronologic-network.png?1547034815',
+      'https://assets.coingecko.com/coins/images/951/small/Chronologic-network.png?1547034815',
   },
   {
     chainId: 1,
@@ -551,7 +551,7 @@ const tokens = [
     symbol: 'SALT',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/962/thumb/salt.png?1548608746',
+      'https://assets.coingecko.com/coins/images/962/small/salt.png?1548608746',
   },
   {
     chainId: 1,
@@ -560,7 +560,7 @@ const tokens = [
     symbol: 'ORME',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/964/thumb/ORMEUS_logo.png?1606557243',
+      'https://assets.coingecko.com/coins/images/964/small/ORMEUS_logo.png?1606557243',
   },
   {
     chainId: 1,
@@ -569,7 +569,7 @@ const tokens = [
     symbol: 'KICK',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/981/thumb/kick.png?1568643013',
+      'https://assets.coingecko.com/coins/images/981/small/kick.png?1568643013',
   },
   {
     chainId: 1,
@@ -578,7 +578,7 @@ const tokens = [
     symbol: 'INXT',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/986/thumb/round.png?1602484873',
+      'https://assets.coingecko.com/coins/images/986/small/round.png?1602484873',
   },
   {
     chainId: 1,
@@ -587,7 +587,7 @@ const tokens = [
     symbol: 'HBT',
     decimals: 15,
     logoURI:
-      'https://assets.coingecko.com/coins/images/994/thumb/hubii-network.png?1547744064',
+      'https://assets.coingecko.com/coins/images/994/small/hubii-network.png?1547744064',
   },
   {
     chainId: 1,
@@ -596,7 +596,7 @@ const tokens = [
     symbol: 'EVX',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/997/thumb/everex.png?1548125695',
+      'https://assets.coingecko.com/coins/images/997/small/everex.png?1548125695',
   },
   {
     chainId: 1,
@@ -605,7 +605,7 @@ const tokens = [
     symbol: 'PPP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/999/thumb/paypie.png?1548330825',
+      'https://assets.coingecko.com/coins/images/999/small/paypie.png?1548330825',
   },
   {
     chainId: 1,
@@ -614,7 +614,7 @@ const tokens = [
     symbol: 'ALIS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1003/thumb/alis.png?1547034909',
+      'https://assets.coingecko.com/coins/images/1003/small/alis.png?1547034909',
   },
   {
     chainId: 1,
@@ -623,7 +623,7 @@ const tokens = [
     symbol: 'HGT',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1005/thumb/hellogold.png?1547743862',
+      'https://assets.coingecko.com/coins/images/1005/small/hellogold.png?1547743862',
   },
   {
     chainId: 1,
@@ -632,7 +632,7 @@ const tokens = [
     symbol: 'CND',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1006/thumb/cindicator.png?1547034913',
+      'https://assets.coingecko.com/coins/images/1006/small/cindicator.png?1547034913',
   },
   {
     chainId: 1,
@@ -641,7 +641,7 @@ const tokens = [
     symbol: 'ENG',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1007/thumb/enigma-logo.png?1547034914',
+      'https://assets.coingecko.com/coins/images/1007/small/enigma-logo.png?1547034914',
   },
   {
     chainId: 1,
@@ -650,7 +650,7 @@ const tokens = [
     symbol: 'EDO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1018/thumb/mark-color-onBright.png?1557386214',
+      'https://assets.coingecko.com/coins/images/1018/small/mark-color-onBright.png?1557386214',
   },
   {
     chainId: 1,
@@ -659,7 +659,7 @@ const tokens = [
     symbol: 'AST',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1019/thumb/AST.png?1547034939',
+      'https://assets.coingecko.com/coins/images/1019/small/AST.png?1547034939',
   },
   {
     chainId: 1,
@@ -668,7 +668,7 @@ const tokens = [
     symbol: 'CAG',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1021/thumb/change.png?1547034946',
+      'https://assets.coingecko.com/coins/images/1021/small/change.png?1547034946',
   },
   {
     chainId: 1,
@@ -677,7 +677,7 @@ const tokens = [
     symbol: 'REQ',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1031/thumb/Request_icon.png?1550832088',
+      'https://assets.coingecko.com/coins/images/1031/small/Request_icon.png?1550832088',
   },
   {
     chainId: 1,
@@ -686,7 +686,7 @@ const tokens = [
     symbol: 'BLUE',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1036/thumb/blue-protocol.jpg?1547034969',
+      'https://assets.coingecko.com/coins/images/1036/small/blue-protocol.jpg?1547034969',
   },
   {
     chainId: 1,
@@ -695,7 +695,7 @@ const tokens = [
     symbol: 'MOD',
     decimals: 0,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1040/thumb/modum.png?1548085261',
+      'https://assets.coingecko.com/coins/images/1040/small/modum.png?1548085261',
   },
   {
     chainId: 1,
@@ -704,7 +704,7 @@ const tokens = [
     symbol: 'AMB',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1041/thumb/_nSEjidJ_400x400.jpg?1593158410',
+      'https://assets.coingecko.com/coins/images/1041/small/_nSEjidJ_400x400.jpg?1593158410',
   },
   {
     chainId: 1,
@@ -713,7 +713,7 @@ const tokens = [
     symbol: 'EXRN',
     decimals: 0,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1049/thumb/exrnchain.png?1547395257',
+      'https://assets.coingecko.com/coins/images/1049/small/exrnchain.png?1547395257',
   },
   {
     chainId: 1,
@@ -722,7 +722,7 @@ const tokens = [
     symbol: 'RCN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1057/thumb/ripio-credit-network.png?1548608361',
+      'https://assets.coingecko.com/coins/images/1057/small/ripio-credit-network.png?1548608361',
   },
   {
     chainId: 1,
@@ -731,7 +731,7 @@ const tokens = [
     symbol: 'DOV',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1072/thumb/dovu.png?1547035027',
+      'https://assets.coingecko.com/coins/images/1072/small/dovu.png?1547035027',
   },
   {
     chainId: 1,
@@ -740,7 +740,7 @@ const tokens = [
     symbol: 'QUO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1084/thumb/Quoxent_Logo_Final_-_NO_TEXT.png?1581412910',
+      'https://assets.coingecko.com/coins/images/1084/small/Quoxent_Logo_Final_-_NO_TEXT.png?1581412910',
   },
   {
     chainId: 1,
@@ -749,7 +749,7 @@ const tokens = [
     symbol: 'GIM',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1100/thumb/Gimli-Token.png?1547035075',
+      'https://assets.coingecko.com/coins/images/1100/small/Gimli-Token.png?1547035075',
   },
   {
     chainId: 1,
@@ -758,7 +758,7 @@ const tokens = [
     symbol: 'ENJ',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1102/thumb/enjin-coin-logo.png?1547035078',
+      'https://assets.coingecko.com/coins/images/1102/small/enjin-coin-logo.png?1547035078',
   },
   {
     chainId: 1,
@@ -767,7 +767,7 @@ const tokens = [
     symbol: 'POWR',
     decimals: 6,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1104/thumb/power-ledger.png?1547035082',
+      'https://assets.coingecko.com/coins/images/1104/small/power-ledger.png?1547035082',
   },
   {
     chainId: 1,
@@ -776,7 +776,7 @@ const tokens = [
     symbol: 'GRID',
     decimals: 12,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1106/thumb/grid.png?1547743150',
+      'https://assets.coingecko.com/coins/images/1106/small/grid.png?1547743150',
   },
   {
     chainId: 1,
@@ -785,7 +785,7 @@ const tokens = [
     symbol: 'ATL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1108/thumb/atlant.png?1547035089',
+      'https://assets.coingecko.com/coins/images/1108/small/atlant.png?1547035089',
   },
   {
     chainId: 1,
@@ -794,7 +794,7 @@ const tokens = [
     symbol: 'DATA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1115/thumb/streamr.png?1547035101',
+      'https://assets.coingecko.com/coins/images/1115/small/streamr.png?1547035101',
   },
   {
     chainId: 1,
@@ -803,7 +803,7 @@ const tokens = [
     symbol: 'NIOX',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1122/thumb/NewLogo.png?1597298450',
+      'https://assets.coingecko.com/coins/images/1122/small/NewLogo.png?1597298450',
   },
   {
     chainId: 1,
@@ -812,7 +812,7 @@ const tokens = [
     symbol: 'ARNX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1124/thumb/ARNX-token-logo-256x256.png?1602652111',
+      'https://assets.coingecko.com/coins/images/1124/small/ARNX-token-logo-256x256.png?1602652111',
   },
   {
     chainId: 1,
@@ -821,7 +821,7 @@ const tokens = [
     symbol: 'RDN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1132/thumb/raiden-logo.jpg?1547035131',
+      'https://assets.coingecko.com/coins/images/1132/small/raiden-logo.jpg?1547035131',
   },
   {
     chainId: 1,
@@ -830,7 +830,7 @@ const tokens = [
     symbol: 'ERC20',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1141/thumb/erc20.png?1547035146',
+      'https://assets.coingecko.com/coins/images/1141/small/erc20.png?1547035146',
   },
   {
     chainId: 1,
@@ -839,7 +839,7 @@ const tokens = [
     symbol: 'DENT',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1152/thumb/gLCEA2G.png?1604543239',
+      'https://assets.coingecko.com/coins/images/1152/small/gLCEA2G.png?1604543239',
   },
   {
     chainId: 1,
@@ -848,7 +848,7 @@ const tokens = [
     symbol: 'SNC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1166/thumb/suncontract.png?1548611174',
+      'https://assets.coingecko.com/coins/images/1166/small/suncontract.png?1548611174',
   },
   {
     chainId: 1,
@@ -857,7 +857,7 @@ const tokens = [
     symbol: 'UFR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1170/thumb/upfiring.png?1548759693',
+      'https://assets.coingecko.com/coins/images/1170/small/upfiring.png?1548759693',
   },
   {
     chainId: 1,
@@ -866,7 +866,7 @@ const tokens = [
     symbol: 'GVT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1173/thumb/Genesis-vision.png?1558045005',
+      'https://assets.coingecko.com/coins/images/1173/small/Genesis-vision.png?1558045005',
   },
   {
     chainId: 1,
@@ -875,7 +875,7 @@ const tokens = [
     symbol: 'DNA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1215/thumb/encrypgen.png?1547393601',
+      'https://assets.coingecko.com/coins/images/1215/small/encrypgen.png?1547393601',
   },
   {
     chainId: 1,
@@ -884,7 +884,7 @@ const tokens = [
     symbol: 'QSP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1219/thumb/0_E0kZjb4dG4hUnoDD_.png?1604815917',
+      'https://assets.coingecko.com/coins/images/1219/small/0_E0kZjb4dG4hUnoDD_.png?1604815917',
   },
   {
     chainId: 1,
@@ -893,7 +893,7 @@ const tokens = [
     symbol: 'PBL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1224/thumb/publica.png?1548607428',
+      'https://assets.coingecko.com/coins/images/1224/small/publica.png?1548607428',
   },
   {
     chainId: 1,
@@ -902,7 +902,7 @@ const tokens = [
     symbol: 'SPANK',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1226/thumb/spankchain.png?1548610811',
+      'https://assets.coingecko.com/coins/images/1226/small/spankchain.png?1548610811',
   },
   {
     chainId: 1,
@@ -911,7 +911,7 @@ const tokens = [
     symbol: 'CDT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1231/thumb/Blox_Staking_Logo_2.png?1609117544',
+      'https://assets.coingecko.com/coins/images/1231/small/Blox_Staking_Logo_2.png?1609117544',
   },
   {
     chainId: 1,
@@ -920,7 +920,7 @@ const tokens = [
     symbol: 'DICE',
     decimals: 16,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1232/thumb/etheroll.png?1548125481',
+      'https://assets.coingecko.com/coins/images/1232/small/etheroll.png?1548125481',
   },
   {
     chainId: 1,
@@ -929,7 +929,7 @@ const tokens = [
     symbol: 'MYB',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1240/thumb/mybit.png?1547035264',
+      'https://assets.coingecko.com/coins/images/1240/small/mybit.png?1547035264',
   },
   {
     chainId: 1,
@@ -938,7 +938,7 @@ const tokens = [
     symbol: 'PLU',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1241/thumb/pluton.png?1548331624',
+      'https://assets.coingecko.com/coins/images/1241/small/pluton.png?1548331624',
   },
   {
     chainId: 1,
@@ -947,7 +947,7 @@ const tokens = [
     symbol: 'FLIXX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1261/thumb/flixxo.png?1547483809',
+      'https://assets.coingecko.com/coins/images/1261/small/flixxo.png?1547483809',
   },
   {
     chainId: 1,
@@ -956,7 +956,7 @@ const tokens = [
     symbol: 'ONG',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1286/thumb/So_Mee_logo_icons_11.png?1581305902',
+      'https://assets.coingecko.com/coins/images/1286/small/So_Mee_logo_icons_11.png?1581305902',
   },
   {
     chainId: 1,
@@ -965,7 +965,7 @@ const tokens = [
     symbol: 'DRGN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1289/thumb/dragonchain.png?1547957761',
+      'https://assets.coingecko.com/coins/images/1289/small/dragonchain.png?1547957761',
   },
   {
     chainId: 1,
@@ -974,7 +974,7 @@ const tokens = [
     symbol: 'PRE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1299/thumb/presearch.png?1548331942',
+      'https://assets.coingecko.com/coins/images/1299/small/presearch.png?1548331942',
   },
   {
     chainId: 1,
@@ -983,7 +983,7 @@ const tokens = [
     symbol: 'SNOV',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1330/thumb/logo2.png?1547035355',
+      'https://assets.coingecko.com/coins/images/1330/small/logo2.png?1547035355',
   },
   {
     chainId: 1,
@@ -992,7 +992,7 @@ const tokens = [
     symbol: 'UQC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1341/thumb/uquid-coin.png?1548759712',
+      'https://assets.coingecko.com/coins/images/1341/small/uquid-coin.png?1548759712',
   },
   {
     chainId: 1,
@@ -1001,7 +1001,7 @@ const tokens = [
     symbol: 'MDS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1343/thumb/medishares.png?1547978625',
+      'https://assets.coingecko.com/coins/images/1343/small/medishares.png?1547978625',
   },
   {
     chainId: 1,
@@ -1010,7 +1010,7 @@ const tokens = [
     symbol: 'MKR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1364/thumb/Mark_Maker.png?1585191826',
+      'https://assets.coingecko.com/coins/images/1364/small/Mark_Maker.png?1585191826',
   },
   {
     chainId: 1,
@@ -1019,7 +1019,7 @@ const tokens = [
     symbol: 'LEND',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1365/thumb/ethlend.png?1547394586',
+      'https://assets.coingecko.com/coins/images/1365/small/ethlend.png?1547394586',
   },
   {
     chainId: 1,
@@ -1028,7 +1028,7 @@ const tokens = [
     symbol: 'OST',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1367/thumb/ost.jpg?1547035393',
+      'https://assets.coingecko.com/coins/images/1367/small/ost.jpg?1547035393',
   },
   {
     chainId: 1,
@@ -1037,7 +1037,7 @@ const tokens = [
     symbol: 'STMX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1369/thumb/StormX.png?1603113002',
+      'https://assets.coingecko.com/coins/images/1369/small/StormX.png?1603113002',
   },
   {
     chainId: 1,
@@ -1046,7 +1046,7 @@ const tokens = [
     symbol: 'ELF',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1371/thumb/aelf-logo.png?1547035397',
+      'https://assets.coingecko.com/coins/images/1371/small/aelf-logo.png?1547035397',
   },
   {
     chainId: 1,
@@ -1055,7 +1055,7 @@ const tokens = [
     symbol: 'BRD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1440/thumb/bread.png?1547563238',
+      'https://assets.coingecko.com/coins/images/1440/small/bread.png?1547563238',
   },
   {
     chainId: 1,
@@ -1064,7 +1064,7 @@ const tokens = [
     symbol: 'SAI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1442/thumb/dai.png?1547035520',
+      'https://assets.coingecko.com/coins/images/1442/small/dai.png?1547035520',
   },
   {
     chainId: 1,
@@ -1073,7 +1073,7 @@ const tokens = [
     symbol: 'STAR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1449/thumb/starbase.png?1548610771',
+      'https://assets.coingecko.com/coins/images/1449/small/starbase.png?1548610771',
   },
   {
     chainId: 1,
@@ -1082,7 +1082,7 @@ const tokens = [
     symbol: 'MTX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1495/thumb/matryx.png?1547978542',
+      'https://assets.coingecko.com/coins/images/1495/small/matryx.png?1547978542',
   },
   {
     chainId: 1,
@@ -1091,7 +1091,7 @@ const tokens = [
     symbol: 'GRG',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1532/thumb/Symbol-RigoblockRGB.png?1547035682',
+      'https://assets.coingecko.com/coins/images/1532/small/Symbol-RigoblockRGB.png?1547035682',
   },
   {
     chainId: 1,
@@ -1100,7 +1100,7 @@ const tokens = [
     symbol: 'LNC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1540/thumb/blocklancer.png?1547351104',
+      'https://assets.coingecko.com/coins/images/1540/small/blocklancer.png?1547351104',
   },
   {
     chainId: 1,
@@ -1109,7 +1109,7 @@ const tokens = [
     symbol: 'NUG',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1543/thumb/nuggets.png?1548329505',
+      'https://assets.coingecko.com/coins/images/1543/small/nuggets.png?1548329505',
   },
   {
     chainId: 1,
@@ -1118,7 +1118,7 @@ const tokens = [
     symbol: 'TTT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1580/thumb/tapcoin.png?1547035760',
+      'https://assets.coingecko.com/coins/images/1580/small/tapcoin.png?1547035760',
   },
   {
     chainId: 1,
@@ -1127,7 +1127,7 @@ const tokens = [
     symbol: 'CAT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1585/thumb/bitclave.png?1547035768',
+      'https://assets.coingecko.com/coins/images/1585/small/bitclave.png?1547035768',
   },
   {
     chainId: 1,
@@ -1136,7 +1136,7 @@ const tokens = [
     symbol: 'SNTR',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1599/thumb/silent-notary.png?1548609544',
+      'https://assets.coingecko.com/coins/images/1599/small/silent-notary.png?1548609544',
   },
   {
     chainId: 1,
@@ -1145,7 +1145,7 @@ const tokens = [
     symbol: 'KSC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1630/thumb/ksc.png?1547035850',
+      'https://assets.coingecko.com/coins/images/1630/small/ksc.png?1547035850',
   },
   {
     chainId: 1,
@@ -1154,7 +1154,7 @@ const tokens = [
     symbol: 'BDG',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1653/thumb/bitdegree.jpg?1547035900',
+      'https://assets.coingecko.com/coins/images/1653/small/bitdegree.jpg?1547035900',
   },
   {
     chainId: 1,
@@ -1163,7 +1163,7 @@ const tokens = [
     symbol: 'SOLVE',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1768/thumb/Solve.Token_logo_200_200_wiyhout_BG.png?1575869846',
+      'https://assets.coingecko.com/coins/images/1768/small/Solve.Token_logo_200_200_wiyhout_BG.png?1575869846',
   },
   {
     chainId: 1,
@@ -1172,7 +1172,7 @@ const tokens = [
     symbol: 'RLX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1799/thumb/relex.jpg?1547036103',
+      'https://assets.coingecko.com/coins/images/1799/small/relex.jpg?1547036103',
   },
   {
     chainId: 1,
@@ -1181,7 +1181,7 @@ const tokens = [
     symbol: 'CHP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1808/thumb/coinpoker.jpg?1547036113',
+      'https://assets.coingecko.com/coins/images/1808/small/coinpoker.jpg?1547036113',
   },
   {
     chainId: 1,
@@ -1190,7 +1190,7 @@ const tokens = [
     symbol: 'UTK',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1824/thumb/300x300_logo.png?1570520533',
+      'https://assets.coingecko.com/coins/images/1824/small/300x300_logo.png?1570520533',
   },
   {
     chainId: 1,
@@ -1199,7 +1199,7 @@ const tokens = [
     symbol: 'MFG',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1842/thumb/mfg-logo.png?1608131645',
+      'https://assets.coingecko.com/coins/images/1842/small/mfg-logo.png?1608131645',
   },
   {
     chainId: 1,
@@ -1208,7 +1208,7 @@ const tokens = [
     symbol: 'STM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1866/thumb/96708streamity200.png?1595304516',
+      'https://assets.coingecko.com/coins/images/1866/small/96708streamity200.png?1595304516',
   },
   {
     chainId: 1,
@@ -1217,7 +1217,7 @@ const tokens = [
     symbol: 'SRN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1872/thumb/sirin-labs-token.png?1548609584',
+      'https://assets.coingecko.com/coins/images/1872/small/sirin-labs-token.png?1548609584',
   },
   {
     chainId: 1,
@@ -1226,7 +1226,7 @@ const tokens = [
     symbol: 'TRAC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1877/thumb/origintrail.jpg?1605694415',
+      'https://assets.coingecko.com/coins/images/1877/small/origintrail.jpg?1605694415',
   },
   {
     chainId: 1,
@@ -1235,7 +1235,7 @@ const tokens = [
     symbol: 'TEL',
     decimals: 2,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1899/thumb/tel.png?1547036203',
+      'https://assets.coingecko.com/coins/images/1899/small/tel.png?1547036203',
   },
   {
     chainId: 1,
@@ -1244,7 +1244,7 @@ const tokens = [
     symbol: 'TIG',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1903/thumb/tigereum.png?1548758748',
+      'https://assets.coingecko.com/coins/images/1903/small/tigereum.png?1548758748',
   },
   {
     chainId: 1,
@@ -1253,7 +1253,7 @@ const tokens = [
     symbol: 'X8X',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1912/thumb/x8x.png?1547036213',
+      'https://assets.coingecko.com/coins/images/1912/small/x8x.png?1547036213',
   },
   {
     chainId: 1,
@@ -1262,7 +1262,7 @@ const tokens = [
     symbol: 'LION',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1917/thumb/coinlion.png?1547036216',
+      'https://assets.coingecko.com/coins/images/1917/small/coinlion.png?1547036216',
   },
   {
     chainId: 1,
@@ -1271,7 +1271,7 @@ const tokens = [
     symbol: 'GET',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1927/thumb/GET_Protocol.png?1552893230',
+      'https://assets.coingecko.com/coins/images/1927/small/GET_Protocol.png?1552893230',
   },
   {
     chainId: 1,
@@ -1280,7 +1280,7 @@ const tokens = [
     symbol: 'FTX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1928/thumb/token-500x500.png?1547036223',
+      'https://assets.coingecko.com/coins/images/1928/small/token-500x500.png?1547036223',
   },
   {
     chainId: 1,
@@ -1289,7 +1289,7 @@ const tokens = [
     symbol: 'MNTP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1944/thumb/goldmint.png?1547743002',
+      'https://assets.coingecko.com/coins/images/1944/small/goldmint.png?1547743002',
   },
   {
     chainId: 1,
@@ -1298,7 +1298,7 @@ const tokens = [
     symbol: 'COV',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/1950/thumb/covesting.png?1547036237',
+      'https://assets.coingecko.com/coins/images/1950/small/covesting.png?1547036237',
   },
   {
     chainId: 1,
@@ -1307,7 +1307,7 @@ const tokens = [
     symbol: 'BCDT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2014/thumb/evidenz-512.png?1594871754',
+      'https://assets.coingecko.com/coins/images/2014/small/evidenz-512.png?1594871754',
   },
   {
     chainId: 1,
@@ -1316,7 +1316,7 @@ const tokens = [
     symbol: 'JNT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2016/thumb/Capture.PNG?1547036293',
+      'https://assets.coingecko.com/coins/images/2016/small/Capture.PNG?1547036293',
   },
   {
     chainId: 1,
@@ -1325,7 +1325,7 @@ const tokens = [
     symbol: 'KEY',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2034/thumb/selfkey.png?1548608934',
+      'https://assets.coingecko.com/coins/images/2034/small/selfkey.png?1548608934',
   },
   {
     chainId: 1,
@@ -1334,7 +1334,7 @@ const tokens = [
     symbol: 'GZE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2035/thumb/gazecoin.png?1547742556',
+      'https://assets.coingecko.com/coins/images/2035/small/gazecoin.png?1547742556',
   },
   {
     chainId: 1,
@@ -1343,7 +1343,7 @@ const tokens = [
     symbol: 'VXV',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2063/thumb/vectorspace-ai-logo.jpeg?1547036362',
+      'https://assets.coingecko.com/coins/images/2063/small/vectorspace-ai-logo.jpeg?1547036362',
   },
   {
     chainId: 1,
@@ -1352,7 +1352,7 @@ const tokens = [
     symbol: 'XPAT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2070/thumb/Pangea-Arbitration-Token-Logo.png?1547036374',
+      'https://assets.coingecko.com/coins/images/2070/small/Pangea-Arbitration-Token-Logo.png?1547036374',
   },
   {
     chainId: 1,
@@ -1361,7 +1361,7 @@ const tokens = [
     symbol: 'RPL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2090/thumb/rocket.png?1563781948',
+      'https://assets.coingecko.com/coins/images/2090/small/rocket.png?1563781948',
   },
   {
     chainId: 1,
@@ -1370,7 +1370,7 @@ const tokens = [
     symbol: 'C20',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2097/thumb/c20.png?1547036413',
+      'https://assets.coingecko.com/coins/images/2097/small/c20.png?1547036413',
   },
   {
     chainId: 1,
@@ -1379,7 +1379,7 @@ const tokens = [
     symbol: 'CV',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2098/thumb/carvertical.png?1547738903',
+      'https://assets.coingecko.com/coins/images/2098/small/carvertical.png?1547738903',
   },
   {
     chainId: 1,
@@ -1388,7 +1388,7 @@ const tokens = [
     symbol: 'AMR',
     decimals: 16,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2100/thumb/ammbr.png?1547036418',
+      'https://assets.coingecko.com/coins/images/2100/small/ammbr.png?1547036418',
   },
   {
     chainId: 1,
@@ -1397,7 +1397,7 @@ const tokens = [
     symbol: 'SETH',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2101/thumb/sether.png?1548609212',
+      'https://assets.coingecko.com/coins/images/2101/small/sether.png?1548609212',
   },
   {
     chainId: 1,
@@ -1406,7 +1406,7 @@ const tokens = [
     symbol: 'RFR',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2102/thumb/refereum.png?1548608001',
+      'https://assets.coingecko.com/coins/images/2102/small/refereum.png?1548608001',
   },
   {
     chainId: 1,
@@ -1415,7 +1415,7 @@ const tokens = [
     symbol: 'ZMN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2103/thumb/zmn.png?1547036420',
+      'https://assets.coingecko.com/coins/images/2103/small/zmn.png?1547036420',
   },
   {
     chainId: 1,
@@ -1424,7 +1424,7 @@ const tokens = [
     symbol: 'ABYSS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2105/thumb/NrFmpxs.png?1600318377',
+      'https://assets.coingecko.com/coins/images/2105/small/NrFmpxs.png?1600318377',
   },
   {
     chainId: 1,
@@ -1433,7 +1433,7 @@ const tokens = [
     symbol: 'PKT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2116/thumb/playkey.png?1548331394',
+      'https://assets.coingecko.com/coins/images/2116/small/playkey.png?1548331394',
   },
   {
     chainId: 1,
@@ -1442,7 +1442,7 @@ const tokens = [
     symbol: 'CHSB',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2117/thumb/YJUrRy7r_400x400.png?1589794215',
+      'https://assets.coingecko.com/coins/images/2117/small/YJUrRy7r_400x400.png?1589794215',
   },
   {
     chainId: 1,
@@ -1451,7 +1451,7 @@ const tokens = [
     symbol: 'AGI',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2138/thumb/singularitynet.png?1548609559',
+      'https://assets.coingecko.com/coins/images/2138/small/singularitynet.png?1548609559',
   },
   {
     chainId: 1,
@@ -1460,7 +1460,7 @@ const tokens = [
     symbol: 'REM',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2152/thumb/semme.png?1561622861',
+      'https://assets.coingecko.com/coins/images/2152/small/semme.png?1561622861',
   },
   {
     chainId: 1,
@@ -1469,7 +1469,7 @@ const tokens = [
     symbol: 'TAU',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2155/thumb/Lamden_Logo_2020_-_White_w_Black_Borders.png?1597732013',
+      'https://assets.coingecko.com/coins/images/2155/small/Lamden_Logo_2020_-_White_w_Black_Borders.png?1597732013',
   },
   {
     chainId: 1,
@@ -1478,7 +1478,7 @@ const tokens = [
     symbol: 'AUC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2165/thumb/Auctus.png?1593479271',
+      'https://assets.coingecko.com/coins/images/2165/small/Auctus.png?1593479271',
   },
   {
     chainId: 1,
@@ -1487,7 +1487,7 @@ const tokens = [
     symbol: 'NPXS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2170/thumb/pundi-x.png?1548386366',
+      'https://assets.coingecko.com/coins/images/2170/small/pundi-x.png?1548386366',
   },
   {
     chainId: 1,
@@ -1496,7 +1496,7 @@ const tokens = [
     symbol: 'ZAP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2180/thumb/zap.png?1547036476',
+      'https://assets.coingecko.com/coins/images/2180/small/zap.png?1547036476',
   },
   {
     chainId: 1,
@@ -1505,7 +1505,7 @@ const tokens = [
     symbol: 'DGTX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2188/thumb/DGTX_coin_icon.png?1606869511',
+      'https://assets.coingecko.com/coins/images/2188/small/DGTX_coin_icon.png?1606869511',
   },
   {
     chainId: 1,
@@ -1514,7 +1514,7 @@ const tokens = [
     symbol: 'BKX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2199/thumb/cEG4Vgx.png?1547036488',
+      'https://assets.coingecko.com/coins/images/2199/small/cEG4Vgx.png?1547036488',
   },
   {
     chainId: 1,
@@ -1523,7 +1523,7 @@ const tokens = [
     symbol: 'CPAY',
     decimals: 0,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2216/thumb/cryptopay.png?1547036499',
+      'https://assets.coingecko.com/coins/images/2216/small/cryptopay.png?1547036499',
   },
   {
     chainId: 1,
@@ -1532,7 +1532,7 @@ const tokens = [
     symbol: 'WAND',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2219/thumb/wandx.png?1548760294',
+      'https://assets.coingecko.com/coins/images/2219/small/wandx.png?1548760294',
   },
   {
     chainId: 1,
@@ -1541,7 +1541,7 @@ const tokens = [
     symbol: 'PLAY',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2221/thumb/herocoin.png?1547744781',
+      'https://assets.coingecko.com/coins/images/2221/small/herocoin.png?1547744781',
   },
   {
     chainId: 1,
@@ -1550,7 +1550,7 @@ const tokens = [
     symbol: 'DTH',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2231/thumb/dether.png?1547036510',
+      'https://assets.coingecko.com/coins/images/2231/small/dether.png?1547036510',
   },
   {
     chainId: 1,
@@ -1559,7 +1559,7 @@ const tokens = [
     symbol: 'TEN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2286/thumb/logo_%281%29.png?1604543144',
+      'https://assets.coingecko.com/coins/images/2286/small/logo_%281%29.png?1604543144',
   },
   {
     chainId: 1,
@@ -1568,7 +1568,7 @@ const tokens = [
     symbol: 'PMA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2307/thumb/pumapay.png?1548607436',
+      'https://assets.coingecko.com/coins/images/2307/small/pumapay.png?1548607436',
   },
   {
     chainId: 1,
@@ -1577,7 +1577,7 @@ const tokens = [
     symbol: 'TONE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2325/thumb/tec.png?1547036538',
+      'https://assets.coingecko.com/coins/images/2325/small/tec.png?1547036538',
   },
   {
     chainId: 1,
@@ -1586,7 +1586,7 @@ const tokens = [
     symbol: 'SWFTC',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2346/thumb/QJB0PBHu_400x400.jpg?1565564254',
+      'https://assets.coingecko.com/coins/images/2346/small/QJB0PBHu_400x400.jpg?1565564254',
   },
   {
     chainId: 1,
@@ -1595,7 +1595,7 @@ const tokens = [
     symbol: 'LGO',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2353/thumb/2_JNnfVRPMBuA1hwnRubH72A.png?1595311622',
+      'https://assets.coingecko.com/coins/images/2353/small/2_JNnfVRPMBuA1hwnRubH72A.png?1595311622',
   },
   {
     chainId: 1,
@@ -1604,7 +1604,7 @@ const tokens = [
     symbol: 'QBX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2365/thumb/qbx-icon-dark.png?1554082393',
+      'https://assets.coingecko.com/coins/images/2365/small/qbx-icon-dark.png?1554082393',
   },
   {
     chainId: 1,
@@ -1613,7 +1613,7 @@ const tokens = [
     symbol: 'AMN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2369/thumb/amon.png?1547036554',
+      'https://assets.coingecko.com/coins/images/2369/small/amon.png?1547036554',
   },
   {
     chainId: 1,
@@ -1622,7 +1622,7 @@ const tokens = [
     symbol: 'MRPH',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2379/thumb/morpheus-network.png?1548085486',
+      'https://assets.coingecko.com/coins/images/2379/small/morpheus-network.png?1548085486',
   },
   {
     chainId: 1,
@@ -1631,7 +1631,7 @@ const tokens = [
     symbol: 'COIN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2394/thumb/coin.png?1606626874',
+      'https://assets.coingecko.com/coins/images/2394/small/coin.png?1606626874',
   },
   {
     chainId: 1,
@@ -1640,7 +1640,7 @@ const tokens = [
     symbol: 'AIDOC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2449/thumb/aidoc.png?1547036587',
+      'https://assets.coingecko.com/coins/images/2449/small/aidoc.png?1547036587',
   },
   {
     chainId: 1,
@@ -1649,7 +1649,7 @@ const tokens = [
     symbol: 'XBP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2458/thumb/BlitzPredict.jpg?1547701183',
+      'https://assets.coingecko.com/coins/images/2458/small/BlitzPredict.jpg?1547701183',
   },
   {
     chainId: 1,
@@ -1658,7 +1658,7 @@ const tokens = [
     symbol: 'VLD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2476/thumb/vld.png?1547036599',
+      'https://assets.coingecko.com/coins/images/2476/small/vld.png?1547036599',
   },
   {
     chainId: 1,
@@ -1667,7 +1667,7 @@ const tokens = [
     symbol: 'ESS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2483/thumb/Essentia-token.jpg?1547036604',
+      'https://assets.coingecko.com/coins/images/2483/small/Essentia-token.jpg?1547036604',
   },
   {
     chainId: 1,
@@ -1676,7 +1676,7 @@ const tokens = [
     symbol: 'JET',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2487/thumb/jetcoin.png?1547974820',
+      'https://assets.coingecko.com/coins/images/2487/small/jetcoin.png?1547974820',
   },
   {
     chainId: 1,
@@ -1685,7 +1685,7 @@ const tokens = [
     symbol: 'CMS',
     decimals: 6,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2500/thumb/comsa-_xem_.png?1547036614',
+      'https://assets.coingecko.com/coins/images/2500/small/comsa-_xem_.png?1547036614',
   },
   {
     chainId: 1,
@@ -1694,7 +1694,7 @@ const tokens = [
     symbol: 'QUN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2546/thumb/qunqun.png?1547036662',
+      'https://assets.coingecko.com/coins/images/2546/small/qunqun.png?1547036662',
   },
   {
     chainId: 1,
@@ -1703,7 +1703,7 @@ const tokens = [
     symbol: 'LEV',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2548/thumb/leverj.png?1547975721',
+      'https://assets.coingecko.com/coins/images/2548/small/leverj.png?1547975721',
   },
   {
     chainId: 1,
@@ -1712,7 +1712,7 @@ const tokens = [
     symbol: 'SXUT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2551/thumb/spectre-utility.png?1547036668',
+      'https://assets.coingecko.com/coins/images/2551/small/spectre-utility.png?1547036668',
   },
   {
     chainId: 1,
@@ -1721,7 +1721,7 @@ const tokens = [
     symbol: 'UGC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2557/thumb/ugchain.png?1548759478',
+      'https://assets.coingecko.com/coins/images/2557/small/ugchain.png?1548759478',
   },
   {
     chainId: 1,
@@ -1730,7 +1730,7 @@ const tokens = [
     symbol: 'OCN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2559/thumb/ocn.png?1547036683',
+      'https://assets.coingecko.com/coins/images/2559/small/ocn.png?1547036683',
   },
   {
     chainId: 1,
@@ -1739,7 +1739,7 @@ const tokens = [
     symbol: 'IDEX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2565/thumb/49046004.png?1557813562',
+      'https://assets.coingecko.com/coins/images/2565/small/49046004.png?1557813562',
   },
   {
     chainId: 1,
@@ -1748,7 +1748,7 @@ const tokens = [
     symbol: 'HOT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2570/thumb/Hydro-Protocol.png?1558069424',
+      'https://assets.coingecko.com/coins/images/2570/small/Hydro-Protocol.png?1558069424',
   },
   {
     chainId: 1,
@@ -1757,7 +1757,7 @@ const tokens = [
     symbol: 'AAC',
     decimals: 5,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2577/thumb/acute-angle-cloud.png?1547036708',
+      'https://assets.coingecko.com/coins/images/2577/small/acute-angle-cloud.png?1547036708',
   },
   {
     chainId: 1,
@@ -1766,7 +1766,7 @@ const tokens = [
     symbol: 'CXO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2580/thumb/cargox.png?1547738832',
+      'https://assets.coingecko.com/coins/images/2580/small/cargox.png?1547738832',
   },
   {
     chainId: 1,
@@ -1775,7 +1775,7 @@ const tokens = [
     symbol: 'CEEK',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2581/thumb/ceek-smart-vr-token-logo.png?1547036714',
+      'https://assets.coingecko.com/coins/images/2581/small/ceek-smart-vr-token-logo.png?1547036714',
   },
   {
     chainId: 1,
@@ -1784,7 +1784,7 @@ const tokens = [
     symbol: 'SPN',
     decimals: 6,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2596/thumb/Sapien_Token_450x450.png?1607560493',
+      'https://assets.coingecko.com/coins/images/2596/small/Sapien_Token_450x450.png?1607560493',
   },
   {
     chainId: 1,
@@ -1793,7 +1793,7 @@ const tokens = [
     symbol: 'DTA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2604/thumb/data.png?1547036749',
+      'https://assets.coingecko.com/coins/images/2604/small/data.png?1547036749',
   },
   {
     chainId: 1,
@@ -1802,7 +1802,7 @@ const tokens = [
     symbol: 'MOF',
     decimals: 16,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2607/thumb/molecular_future.png?1547036754',
+      'https://assets.coingecko.com/coins/images/2607/small/molecular_future.png?1547036754',
   },
   {
     chainId: 1,
@@ -1811,7 +1811,7 @@ const tokens = [
     symbol: 'VIEW',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2608/thumb/view-token.png?1547036756',
+      'https://assets.coingecko.com/coins/images/2608/small/view-token.png?1547036756',
   },
   {
     chainId: 1,
@@ -1820,7 +1820,7 @@ const tokens = [
     symbol: 'TBX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2644/thumb/tokenbox.png?1547036822',
+      'https://assets.coingecko.com/coins/images/2644/small/tokenbox.png?1547036822',
   },
   {
     chainId: 1,
@@ -1829,7 +1829,7 @@ const tokens = [
     symbol: 'BLT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2662/thumb/bloom.png?1547036854',
+      'https://assets.coingecko.com/coins/images/2662/small/bloom.png?1547036854',
   },
   {
     chainId: 1,
@@ -1838,7 +1838,7 @@ const tokens = [
     symbol: 'ELET',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2670/thumb/ELET.png?1558594342',
+      'https://assets.coingecko.com/coins/images/2670/small/ELET.png?1558594342',
   },
   {
     chainId: 1,
@@ -1847,7 +1847,7 @@ const tokens = [
     symbol: 'AMLT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2703/thumb/amlt.png?1563794756',
+      'https://assets.coingecko.com/coins/images/2703/small/amlt.png?1563794756',
   },
   {
     chainId: 1,
@@ -1856,7 +1856,7 @@ const tokens = [
     symbol: 'UBT',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2707/thumb/UnibrightLogo_colorful_500x500_preview.png?1547036916',
+      'https://assets.coingecko.com/coins/images/2707/small/UnibrightLogo_colorful_500x500_preview.png?1547036916',
   },
   {
     chainId: 1,
@@ -1865,7 +1865,7 @@ const tokens = [
     symbol: 'HLC',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2737/thumb/halalchain.png?1547036938',
+      'https://assets.coingecko.com/coins/images/2737/small/halalchain.png?1547036938',
   },
   {
     chainId: 1,
@@ -1874,7 +1874,7 @@ const tokens = [
     symbol: 'CPC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2760/thumb/cpchain.png?1547036953',
+      'https://assets.coingecko.com/coins/images/2760/small/cpchain.png?1547036953',
   },
   {
     chainId: 1,
@@ -1883,7 +1883,7 @@ const tokens = [
     symbol: 'PARETO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2783/thumb/pareto.png?1547036965',
+      'https://assets.coingecko.com/coins/images/2783/small/pareto.png?1547036965',
   },
   {
     chainId: 1,
@@ -1892,7 +1892,7 @@ const tokens = [
     symbol: 'POLY',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2784/thumb/inKkF01.png?1605007034',
+      'https://assets.coingecko.com/coins/images/2784/small/inKkF01.png?1605007034',
   },
   {
     chainId: 1,
@@ -1901,7 +1901,7 @@ const tokens = [
     symbol: 'BANCA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2795/thumb/banca.png?1547036972',
+      'https://assets.coingecko.com/coins/images/2795/small/banca.png?1547036972',
   },
   {
     chainId: 1,
@@ -1910,7 +1910,7 @@ const tokens = [
     symbol: 'KRL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2807/thumb/krl.png?1547036979',
+      'https://assets.coingecko.com/coins/images/2807/small/krl.png?1547036979',
   },
   {
     chainId: 1,
@@ -1919,7 +1919,7 @@ const tokens = [
     symbol: 'BITTO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2814/thumb/BITTO.jpg?1547036986',
+      'https://assets.coingecko.com/coins/images/2814/small/BITTO.jpg?1547036986',
   },
   {
     chainId: 1,
@@ -1928,7 +1928,7 @@ const tokens = [
     symbol: 'HT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2822/thumb/huobi-token-logo.png?1547036992',
+      'https://assets.coingecko.com/coins/images/2822/small/huobi-token-logo.png?1547036992',
   },
   {
     chainId: 1,
@@ -1937,7 +1937,7 @@ const tokens = [
     symbol: 'NCT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2843/thumb/polyswarm.png?1548331600',
+      'https://assets.coingecko.com/coins/images/2843/small/polyswarm.png?1548331600',
   },
   {
     chainId: 1,
@@ -1946,7 +1946,7 @@ const tokens = [
     symbol: 'BLZ',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2848/thumb/bluzelle.png?1547351698',
+      'https://assets.coingecko.com/coins/images/2848/small/bluzelle.png?1547351698',
   },
   {
     chainId: 1,
@@ -1955,7 +1955,7 @@ const tokens = [
     symbol: 'MTN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2850/thumb/medicalchain.png?1547037019',
+      'https://assets.coingecko.com/coins/images/2850/small/medicalchain.png?1547037019',
   },
   {
     chainId: 1,
@@ -1964,7 +1964,7 @@ const tokens = [
     symbol: 'MODEX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2851/thumb/LhWIeAg.png?1602566568',
+      'https://assets.coingecko.com/coins/images/2851/small/LhWIeAg.png?1602566568',
   },
   {
     chainId: 1,
@@ -1973,7 +1973,7 @@ const tokens = [
     symbol: 'PITCH',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2855/thumb/pitch_token.jpg?1547037026',
+      'https://assets.coingecko.com/coins/images/2855/small/pitch_token.jpg?1547037026',
   },
   {
     chainId: 1,
@@ -1982,7 +1982,7 @@ const tokens = [
     symbol: 'CRD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2859/thumb/cryptaldash.png?1547037030',
+      'https://assets.coingecko.com/coins/images/2859/small/cryptaldash.png?1547037030',
   },
   {
     chainId: 1,
@@ -1991,7 +1991,7 @@ const tokens = [
     symbol: 'ESZ',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2890/thumb/ethersportz.png?1547037061',
+      'https://assets.coingecko.com/coins/images/2890/small/ethersportz.png?1547037061',
   },
   {
     chainId: 1,
@@ -2000,7 +2000,7 @@ const tokens = [
     symbol: 'SS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2921/thumb/sharder-200px.png?1595305234',
+      'https://assets.coingecko.com/coins/images/2921/small/sharder-200px.png?1595305234',
   },
   {
     chainId: 1,
@@ -2009,7 +2009,7 @@ const tokens = [
     symbol: 'CMCT',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2967/thumb/crowd-machine.png?1547037212',
+      'https://assets.coingecko.com/coins/images/2967/small/crowd-machine.png?1547037212',
   },
   {
     chainId: 1,
@@ -2018,7 +2018,7 @@ const tokens = [
     symbol: 'LND',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2988/thumb/lnd.png?1518768584',
+      'https://assets.coingecko.com/coins/images/2988/small/lnd.png?1518768584',
   },
   {
     chainId: 1,
@@ -2027,7 +2027,7 @@ const tokens = [
     symbol: 'UDOO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3078/thumb/howdoo.png?1547744057',
+      'https://assets.coingecko.com/coins/images/3078/small/howdoo.png?1547744057',
   },
   {
     chainId: 1,
@@ -2036,7 +2036,7 @@ const tokens = [
     symbol: 'XCM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3125/thumb/xcm.png?1547037518',
+      'https://assets.coingecko.com/coins/images/3125/small/xcm.png?1547037518',
   },
   {
     chainId: 1,
@@ -2045,7 +2045,7 @@ const tokens = [
     symbol: 'C8',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3127/thumb/c8.png?1547037525',
+      'https://assets.coingecko.com/coins/images/3127/small/c8.png?1547037525',
   },
   {
     chainId: 1,
@@ -2054,7 +2054,7 @@ const tokens = [
     symbol: 'REN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3139/thumb/REN.png?1589985807',
+      'https://assets.coingecko.com/coins/images/3139/small/REN.png?1589985807',
   },
   {
     chainId: 1,
@@ -2063,7 +2063,7 @@ const tokens = [
     symbol: 'XNK',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3156/thumb/ink-protocol.png?1547974056',
+      'https://assets.coingecko.com/coins/images/3156/small/ink-protocol.png?1547974056',
   },
   {
     chainId: 1,
@@ -2072,7 +2072,7 @@ const tokens = [
     symbol: 'MITX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3164/thumb/mitx.png?1604888269',
+      'https://assets.coingecko.com/coins/images/3164/small/mitx.png?1604888269',
   },
   {
     chainId: 1,
@@ -2081,7 +2081,7 @@ const tokens = [
     symbol: 'OMX',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3167/thumb/omx.png?1547037607',
+      'https://assets.coingecko.com/coins/images/3167/small/omx.png?1547037607',
   },
   {
     chainId: 1,
@@ -2090,7 +2090,7 @@ const tokens = [
     symbol: 'CARD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3247/thumb/cardstack.png?1547037769',
+      'https://assets.coingecko.com/coins/images/3247/small/cardstack.png?1547037769',
   },
   {
     chainId: 1,
@@ -2099,7 +2099,7 @@ const tokens = [
     symbol: 'MET',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3249/thumb/metronome.png?1548084800',
+      'https://assets.coingecko.com/coins/images/3249/small/metronome.png?1548084800',
   },
   {
     chainId: 1,
@@ -2108,7 +2108,7 @@ const tokens = [
     symbol: 'CEL',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3263/thumb/CEL_logo.png?1609598753',
+      'https://assets.coingecko.com/coins/images/3263/small/CEL_logo.png?1609598753',
   },
   {
     chainId: 1,
@@ -2117,7 +2117,7 @@ const tokens = [
     symbol: 'NOIA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3269/thumb/Component_1.png?1608275724',
+      'https://assets.coingecko.com/coins/images/3269/small/Component_1.png?1608275724',
   },
   {
     chainId: 1,
@@ -2126,7 +2126,7 @@ const tokens = [
     symbol: 'ATMI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3290/thumb/atonomi.png?1547037861',
+      'https://assets.coingecko.com/coins/images/3290/small/atonomi.png?1547037861',
   },
   {
     chainId: 1,
@@ -2135,7 +2135,7 @@ const tokens = [
     symbol: 'EDN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3292/thumb/Eden.png?1574126935',
+      'https://assets.coingecko.com/coins/images/3292/small/Eden.png?1574126935',
   },
   {
     chainId: 1,
@@ -2144,7 +2144,7 @@ const tokens = [
     symbol: 'MFT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3293/thumb/Mainframe_MFT_icon.png?1605256332',
+      'https://assets.coingecko.com/coins/images/3293/small/Mainframe_MFT_icon.png?1605256332',
   },
   {
     chainId: 1,
@@ -2153,7 +2153,7 @@ const tokens = [
     symbol: 'OGN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3296/thumb/op.jpg?1547037878',
+      'https://assets.coingecko.com/coins/images/3296/small/op.jpg?1547037878',
   },
   {
     chainId: 1,
@@ -2162,7 +2162,7 @@ const tokens = [
     symbol: 'DML',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3297/thumb/decentralized-machine-learning.png?1547037880',
+      'https://assets.coingecko.com/coins/images/3297/small/decentralized-machine-learning.png?1547037880',
   },
   {
     chainId: 1,
@@ -2171,7 +2171,7 @@ const tokens = [
     symbol: 'NU',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3318/thumb/photo1198982838879365035.jpg?1547037916',
+      'https://assets.coingecko.com/coins/images/3318/small/photo1198982838879365035.jpg?1547037916',
   },
   {
     chainId: 1,
@@ -2180,7 +2180,7 @@ const tokens = [
     symbol: 'AKRO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3328/thumb/Akropolis.png?1547037929',
+      'https://assets.coingecko.com/coins/images/3328/small/Akropolis.png?1547037929',
   },
   {
     chainId: 1,
@@ -2189,7 +2189,7 @@ const tokens = [
     symbol: 'FOAM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3345/thumb/K51lJQc.png?1547037959',
+      'https://assets.coingecko.com/coins/images/3345/small/K51lJQc.png?1547037959',
   },
   {
     chainId: 1,
@@ -2198,7 +2198,7 @@ const tokens = [
     symbol: 'HOT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3348/thumb/Holologo_Profile.png?1547037966',
+      'https://assets.coingecko.com/coins/images/3348/small/Holologo_Profile.png?1547037966',
   },
   {
     chainId: 1,
@@ -2207,7 +2207,7 @@ const tokens = [
     symbol: 'NCC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3367/thumb/neurochain.png?1548085917',
+      'https://assets.coingecko.com/coins/images/3367/small/neurochain.png?1548085917',
   },
   {
     chainId: 1,
@@ -2216,7 +2216,7 @@ const tokens = [
     symbol: 'UPP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3369/thumb/Sentinel_Protocol.jpg?1547700074',
+      'https://assets.coingecko.com/coins/images/3369/small/Sentinel_Protocol.jpg?1547700074',
   },
   {
     chainId: 1,
@@ -2225,7 +2225,7 @@ const tokens = [
     symbol: 'QNT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3370/thumb/QNT.jpg?1547038004',
+      'https://assets.coingecko.com/coins/images/3370/small/QNT.jpg?1547038004',
   },
   {
     chainId: 1,
@@ -2234,7 +2234,7 @@ const tokens = [
     symbol: 'KEEP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3373/thumb/IuNzUb5b_400x400.jpg?1589526336',
+      'https://assets.coingecko.com/coins/images/3373/small/IuNzUb5b_400x400.jpg?1589526336',
   },
   {
     chainId: 1,
@@ -2243,7 +2243,7 @@ const tokens = [
     symbol: 'NKN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3375/thumb/nkn.png?1548329212',
+      'https://assets.coingecko.com/coins/images/3375/small/nkn.png?1548329212',
   },
   {
     chainId: 1,
@@ -2252,7 +2252,7 @@ const tokens = [
     symbol: 'LOOM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3387/thumb/1_K76UVoLq-FOL7l-_Fag-Qw_2x.png?1547038040',
+      'https://assets.coingecko.com/coins/images/3387/small/1_K76UVoLq-FOL7l-_Fag-Qw_2x.png?1547038040',
   },
   {
     chainId: 1,
@@ -2261,7 +2261,7 @@ const tokens = [
     symbol: 'SNX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3406/thumb/SNX.png?1598631139',
+      'https://assets.coingecko.com/coins/images/3406/small/SNX.png?1598631139',
   },
   {
     chainId: 1,
@@ -2270,7 +2270,7 @@ const tokens = [
     symbol: 'CENNZ',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3408/thumb/logo.PNG?1547038083',
+      'https://assets.coingecko.com/coins/images/3408/small/logo.PNG?1547038083',
   },
   {
     chainId: 1,
@@ -2279,7 +2279,7 @@ const tokens = [
     symbol: 'ELEC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3415/thumb/d45b1d82743c749d05697da200179874.jpg?1547038096',
+      'https://assets.coingecko.com/coins/images/3415/small/d45b1d82743c749d05697da200179874.jpg?1547038096',
   },
   {
     chainId: 1,
@@ -2288,7 +2288,7 @@ const tokens = [
     symbol: 'NANJ',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3424/thumb/FDGC.png?1547038112',
+      'https://assets.coingecko.com/coins/images/3424/small/FDGC.png?1547038112',
   },
   {
     chainId: 1,
@@ -2297,7 +2297,7 @@ const tokens = [
     symbol: 'UP',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3425/thumb/uptoken.png?1548759702',
+      'https://assets.coingecko.com/coins/images/3425/small/uptoken.png?1548759702',
   },
   {
     chainId: 1,
@@ -2306,7 +2306,7 @@ const tokens = [
     symbol: 'FOUR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3434/thumb/fourtoken-symbol-256-256.png?1585742434',
+      'https://assets.coingecko.com/coins/images/3434/small/fourtoken-symbol-256-256.png?1585742434',
   },
   {
     chainId: 1,
@@ -2315,7 +2315,7 @@ const tokens = [
     symbol: '1WO',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3443/thumb/unnamed.png?1547038151',
+      'https://assets.coingecko.com/coins/images/3443/small/unnamed.png?1547038151',
   },
   {
     chainId: 1,
@@ -2324,7 +2324,7 @@ const tokens = [
     symbol: 'TUSD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3449/thumb/TUSD.png?1559172762',
+      'https://assets.coingecko.com/coins/images/3449/small/TUSD.png?1559172762',
   },
   {
     chainId: 1,
@@ -2333,7 +2333,7 @@ const tokens = [
     symbol: 'BFT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3468/thumb/bnktothefuture.png?1547351865',
+      'https://assets.coingecko.com/coins/images/3468/small/bnktothefuture.png?1547351865',
   },
   {
     chainId: 1,
@@ -2342,7 +2342,7 @@ const tokens = [
     symbol: 'MVL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3476/thumb/mass-vehicle-ledger.png?1547978299',
+      'https://assets.coingecko.com/coins/images/3476/small/mass-vehicle-ledger.png?1547978299',
   },
   {
     chainId: 1,
@@ -2351,7 +2351,7 @@ const tokens = [
     symbol: 'GEN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3479/thumb/gen.png?1547038215',
+      'https://assets.coingecko.com/coins/images/3479/small/gen.png?1547038215',
   },
   {
     chainId: 1,
@@ -2360,7 +2360,7 @@ const tokens = [
     symbol: 'VRA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3481/thumb/3mefBCd.png?1547038219',
+      'https://assets.coingecko.com/coins/images/3481/small/3mefBCd.png?1547038219',
   },
   {
     chainId: 1,
@@ -2369,7 +2369,7 @@ const tokens = [
     symbol: 'LST',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3485/thumb/lst-icon.png?1606992361',
+      'https://assets.coingecko.com/coins/images/3485/small/lst-icon.png?1606992361',
   },
   {
     chainId: 1,
@@ -2378,7 +2378,7 @@ const tokens = [
     symbol: 'BTCP',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3545/thumb/DSiD9ZhWsAE_8cS.png?1547038353',
+      'https://assets.coingecko.com/coins/images/3545/small/DSiD9ZhWsAE_8cS.png?1547038353',
   },
   {
     chainId: 1,
@@ -2387,7 +2387,7 @@ const tokens = [
     symbol: 'NEC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3559/thumb/NecLogoLoad.png?1592795924',
+      'https://assets.coingecko.com/coins/images/3559/small/NecLogoLoad.png?1592795924',
   },
   {
     chainId: 1,
@@ -2396,7 +2396,7 @@ const tokens = [
     symbol: 'SHR',
     decimals: 2,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3609/thumb/74586729_2443914875881351_2785018663453851648_n.png?1574898410',
+      'https://assets.coingecko.com/coins/images/3609/small/74586729_2443914875881351_2785018663453851648_n.png?1574898410',
   },
   {
     chainId: 1,
@@ -2405,7 +2405,7 @@ const tokens = [
     symbol: 'SENT',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3625/thumb/download_%287%29.png?1547038545',
+      'https://assets.coingecko.com/coins/images/3625/small/download_%287%29.png?1547038545',
   },
   {
     chainId: 1,
@@ -2414,7 +2414,7 @@ const tokens = [
     symbol: 'CBT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3653/thumb/bb4WjF2.png?1547038622',
+      'https://assets.coingecko.com/coins/images/3653/small/bb4WjF2.png?1547038622',
   },
   {
     chainId: 1,
@@ -2423,7 +2423,7 @@ const tokens = [
     symbol: 'LBA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3673/thumb/libra-credit.png?1547975828',
+      'https://assets.coingecko.com/coins/images/3673/small/libra-credit.png?1547975828',
   },
   {
     chainId: 1,
@@ -2432,7 +2432,7 @@ const tokens = [
     symbol: 'HYDRO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3678/thumb/Hydro-Blu-512.png?1547038669',
+      'https://assets.coingecko.com/coins/images/3678/small/Hydro-Blu-512.png?1547038669',
   },
   {
     chainId: 1,
@@ -2441,7 +2441,7 @@ const tokens = [
     symbol: 'EDR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3683/thumb/0b805574-ef0d-41dc-b518-8d6148bf4716.png?1547038680',
+      'https://assets.coingecko.com/coins/images/3683/small/0b805574-ef0d-41dc-b518-8d6148bf4716.png?1547038680',
   },
   {
     chainId: 1,
@@ -2450,7 +2450,7 @@ const tokens = [
     symbol: 'OCEAN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3687/thumb/ocean-protocol-logo.jpg?1547038686',
+      'https://assets.coingecko.com/coins/images/3687/small/ocean-protocol-logo.jpg?1547038686',
   },
   {
     chainId: 1,
@@ -2459,7 +2459,7 @@ const tokens = [
     symbol: 'NEXO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3695/thumb/nexo.png?1548086057',
+      'https://assets.coingecko.com/coins/images/3695/small/nexo.png?1548086057',
   },
   {
     chainId: 1,
@@ -2468,7 +2468,7 @@ const tokens = [
     symbol: 'TKP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3731/thumb/tokpie-200x200.png?1562207865',
+      'https://assets.coingecko.com/coins/images/3731/small/tokpie-200x200.png?1562207865',
   },
   {
     chainId: 1,
@@ -2477,7 +2477,7 @@ const tokens = [
     symbol: 'IHF',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3747/thumb/ihp.png?1547038807',
+      'https://assets.coingecko.com/coins/images/3747/small/ihp.png?1547038807',
   },
   {
     chainId: 1,
@@ -2486,7 +2486,7 @@ const tokens = [
     symbol: 'CRAD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3761/thumb/crad.png?1547038854',
+      'https://assets.coingecko.com/coins/images/3761/small/crad.png?1547038854',
   },
   {
     chainId: 1,
@@ -2495,7 +2495,7 @@ const tokens = [
     symbol: 'LQD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3801/thumb/liquidity-network.png?1547975994',
+      'https://assets.coingecko.com/coins/images/3801/small/liquidity-network.png?1547975994',
   },
   {
     chainId: 1,
@@ -2504,7 +2504,7 @@ const tokens = [
     symbol: 'SKM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3826/thumb/skrumble-network.png?1548609513',
+      'https://assets.coingecko.com/coins/images/3826/small/skrumble-network.png?1548609513',
   },
   {
     chainId: 1,
@@ -2513,7 +2513,7 @@ const tokens = [
     symbol: 'PNK',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3833/thumb/kleros.png?1547975322',
+      'https://assets.coingecko.com/coins/images/3833/small/kleros.png?1547975322',
   },
   {
     chainId: 1,
@@ -2522,7 +2522,7 @@ const tokens = [
     symbol: 'QKC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3849/thumb/quarkchain.png?1548387524',
+      'https://assets.coingecko.com/coins/images/3849/small/quarkchain.png?1548387524',
   },
   {
     chainId: 1,
@@ -2531,7 +2531,7 @@ const tokens = [
     symbol: 'BDP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3890/thumb/AxiFAoHc_400x400.jpg?1567461770',
+      'https://assets.coingecko.com/coins/images/3890/small/AxiFAoHc_400x400.jpg?1567461770',
   },
   {
     chainId: 1,
@@ -2540,7 +2540,7 @@ const tokens = [
     symbol: 'OXT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3916/thumb/download_%285%29.png?1576624060',
+      'https://assets.coingecko.com/coins/images/3916/small/download_%285%29.png?1576624060',
   },
   {
     chainId: 1,
@@ -2549,7 +2549,7 @@ const tokens = [
     symbol: 'METM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3929/thumb/metamorph.png?1548084814',
+      'https://assets.coingecko.com/coins/images/3929/small/metamorph.png?1548084814',
   },
   {
     chainId: 1,
@@ -2558,7 +2558,7 @@ const tokens = [
     symbol: 'ONE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3947/thumb/menlo-one.png?1547038971',
+      'https://assets.coingecko.com/coins/images/3947/small/menlo-one.png?1547038971',
   },
   {
     chainId: 1,
@@ -2567,7 +2567,7 @@ const tokens = [
     symbol: 'DOCK',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3978/thumb/2675.png?1547039034',
+      'https://assets.coingecko.com/coins/images/3978/small/2675.png?1547039034',
   },
   {
     chainId: 1,
@@ -2576,7 +2576,7 @@ const tokens = [
     symbol: 'CRE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3994/thumb/Carry.png?1592402610',
+      'https://assets.coingecko.com/coins/images/3994/small/Carry.png?1592402610',
   },
   {
     chainId: 1,
@@ -2585,7 +2585,7 @@ const tokens = [
     symbol: 'SHIP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3997/thumb/shipchain.png?1548609236',
+      'https://assets.coingecko.com/coins/images/3997/small/shipchain.png?1548609236',
   },
   {
     chainId: 1,
@@ -2594,7 +2594,7 @@ const tokens = [
     symbol: 'LCS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/3998/thumb/LocalCoinSwap.png?1547039086',
+      'https://assets.coingecko.com/coins/images/3998/small/LocalCoinSwap.png?1547039086',
   },
   {
     chainId: 1,
@@ -2603,7 +2603,7 @@ const tokens = [
     symbol: 'FTM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4001/thumb/Fantom.png?1558015016',
+      'https://assets.coingecko.com/coins/images/4001/small/Fantom.png?1558015016',
   },
   {
     chainId: 1,
@@ -2612,7 +2612,7 @@ const tokens = [
     symbol: 'MT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4109/thumb/2712.png?1547039296',
+      'https://assets.coingecko.com/coins/images/4109/small/2712.png?1547039296',
   },
   {
     chainId: 1,
@@ -2621,7 +2621,7 @@ const tokens = [
     symbol: 'SOUL',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4130/thumb/phantasma.png?1548331035',
+      'https://assets.coingecko.com/coins/images/4130/small/phantasma.png?1548331035',
   },
   {
     chainId: 1,
@@ -2630,7 +2630,7 @@ const tokens = [
     symbol: 'LMY',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4149/thumb/lmy.png?1547039390',
+      'https://assets.coingecko.com/coins/images/4149/small/lmy.png?1547039390',
   },
   {
     chainId: 1,
@@ -2639,7 +2639,7 @@ const tokens = [
     symbol: 'UBEX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4163/thumb/ubex.png?1547039421',
+      'https://assets.coingecko.com/coins/images/4163/small/ubex.png?1547039421',
   },
   {
     chainId: 1,
@@ -2648,7 +2648,7 @@ const tokens = [
     symbol: 'DGX',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4171/thumb/DGX_Token.png?1547039436',
+      'https://assets.coingecko.com/coins/images/4171/small/DGX_Token.png?1547039436',
   },
   {
     chainId: 1,
@@ -2657,7 +2657,7 @@ const tokens = [
     symbol: 'PNT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4175/thumb/pentanetwork.png?1548330852',
+      'https://assets.coingecko.com/coins/images/4175/small/pentanetwork.png?1548330852',
   },
   {
     chainId: 1,
@@ -2666,7 +2666,7 @@ const tokens = [
     symbol: 'KEY',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4182/thumb/bihu-key-token.png?1547039459',
+      'https://assets.coingecko.com/coins/images/4182/small/bihu-key-token.png?1547039459',
   },
   {
     chainId: 1,
@@ -2675,7 +2675,7 @@ const tokens = [
     symbol: 'COT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4205/thumb/logo_black.png?1547039508',
+      'https://assets.coingecko.com/coins/images/4205/small/logo_black.png?1547039508',
   },
   {
     chainId: 1,
@@ -2684,7 +2684,7 @@ const tokens = [
     symbol: 'ZEON',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4247/thumb/XZqXYc2j_400x400.jpg?1547039580',
+      'https://assets.coingecko.com/coins/images/4247/small/XZqXYc2j_400x400.jpg?1547039580',
   },
   {
     chainId: 1,
@@ -2693,7 +2693,7 @@ const tokens = [
     symbol: 'UCT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4277/thumb/Webp.net-resizeimage_%2829%29.jpg?1547039634',
+      'https://assets.coingecko.com/coins/images/4277/small/Webp.net-resizeimage_%2829%29.jpg?1547039634',
   },
   {
     chainId: 1,
@@ -2702,7 +2702,7 @@ const tokens = [
     symbol: 'ZIPT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4302/thumb/zippie.jpg?1547039665',
+      'https://assets.coingecko.com/coins/images/4302/small/zippie.jpg?1547039665',
   },
   {
     chainId: 1,
@@ -2711,7 +2711,7 @@ const tokens = [
     symbol: 'ARCONA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4312/thumb/9xfrZX3q_400x400.jpg?1551073749',
+      'https://assets.coingecko.com/coins/images/4312/small/9xfrZX3q_400x400.jpg?1551073749',
   },
   {
     chainId: 1,
@@ -2720,7 +2720,7 @@ const tokens = [
     symbol: 'USE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4318/thumb/logo_%281%29.png?1547039678',
+      'https://assets.coingecko.com/coins/images/4318/small/logo_%281%29.png?1547039678',
   },
   {
     chainId: 1,
@@ -2729,7 +2729,7 @@ const tokens = [
     symbol: 'ANKR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4324/thumb/U85xTl2.png?1608111978',
+      'https://assets.coingecko.com/coins/images/4324/small/U85xTl2.png?1608111978',
   },
   {
     chainId: 1,
@@ -2738,7 +2738,7 @@ const tokens = [
     symbol: 'JNB',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4349/thumb/image001.jpg?1547039703',
+      'https://assets.coingecko.com/coins/images/4349/small/image001.jpg?1547039703',
   },
   {
     chainId: 1,
@@ -2747,7 +2747,7 @@ const tokens = [
     symbol: 'CELR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4379/thumb/Celr.png?1554705437',
+      'https://assets.coingecko.com/coins/images/4379/small/Celr.png?1554705437',
   },
   {
     chainId: 1,
@@ -2756,7 +2756,7 @@ const tokens = [
     symbol: 'FACE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4383/thumb/faceter-logo.png?1547039727',
+      'https://assets.coingecko.com/coins/images/4383/small/faceter-logo.png?1547039727',
   },
   {
     chainId: 1,
@@ -2765,7 +2765,7 @@ const tokens = [
     symbol: 'RAISE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4411/thumb/Raise.png?1590671180',
+      'https://assets.coingecko.com/coins/images/4411/small/Raise.png?1590671180',
   },
   {
     chainId: 1,
@@ -2774,7 +2774,7 @@ const tokens = [
     symbol: '0XBTC',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4454/thumb/0xbtc.png?1561603765',
+      'https://assets.coingecko.com/coins/images/4454/small/0xbtc.png?1561603765',
   },
   {
     chainId: 1,
@@ -2783,7 +2783,7 @@ const tokens = [
     symbol: 'EQUAD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4462/thumb/equad.png?1547039783',
+      'https://assets.coingecko.com/coins/images/4462/small/equad.png?1547039783',
   },
   {
     chainId: 1,
@@ -2792,7 +2792,7 @@ const tokens = [
     symbol: 'OKB',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4463/thumb/okb_token.png?1548386209',
+      'https://assets.coingecko.com/coins/images/4463/small/okb_token.png?1548386209',
   },
   {
     chainId: 1,
@@ -2801,7 +2801,7 @@ const tokens = [
     symbol: 'RSCT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4469/thumb/rsct.png?1547039788',
+      'https://assets.coingecko.com/coins/images/4469/small/rsct.png?1547039788',
   },
   {
     chainId: 1,
@@ -2810,7 +2810,7 @@ const tokens = [
     symbol: 'UOS',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4480/thumb/Ultra.png?1563356418',
+      'https://assets.coingecko.com/coins/images/4480/small/Ultra.png?1563356418',
   },
   {
     chainId: 1,
@@ -2819,7 +2819,7 @@ const tokens = [
     symbol: 'DREP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4486/thumb/DREP-logo.jpg?1547039799',
+      'https://assets.coingecko.com/coins/images/4486/small/DREP-logo.jpg?1547039799',
   },
   {
     chainId: 1,
@@ -2828,7 +2828,7 @@ const tokens = [
     symbol: 'TOL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4487/thumb/tolar.png?1548759060',
+      'https://assets.coingecko.com/coins/images/4487/small/tolar.png?1548759060',
   },
   {
     chainId: 1,
@@ -2837,7 +2837,7 @@ const tokens = [
     symbol: 'AERGO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4490/thumb/Aergo.png?1558084282',
+      'https://assets.coingecko.com/coins/images/4490/small/Aergo.png?1558084282',
   },
   {
     chainId: 1,
@@ -2846,7 +2846,7 @@ const tokens = [
     symbol: 'XYO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4519/thumb/XYO_Network-logo.png?1547039819',
+      'https://assets.coingecko.com/coins/images/4519/small/XYO_Network-logo.png?1547039819',
   },
   {
     chainId: 1,
@@ -2855,7 +2855,7 @@ const tokens = [
     symbol: 'ZIP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4524/thumb/zip_token_logo.png?1547039822',
+      'https://assets.coingecko.com/coins/images/4524/small/zip_token_logo.png?1547039822',
   },
   {
     chainId: 1,
@@ -2864,7 +2864,7 @@ const tokens = [
     symbol: 'ZXC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4552/thumb/0xcert.png?1547039841',
+      'https://assets.coingecko.com/coins/images/4552/small/0xcert.png?1547039841',
   },
   {
     chainId: 1,
@@ -2873,7 +2873,7 @@ const tokens = [
     symbol: 'MT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4558/thumb/mm07ThTv_400x400.jpg?1566389078',
+      'https://assets.coingecko.com/coins/images/4558/small/mm07ThTv_400x400.jpg?1566389078',
   },
   {
     chainId: 1,
@@ -2882,7 +2882,7 @@ const tokens = [
     symbol: 'WOM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4559/thumb/wom_logo_small.png?1572098941',
+      'https://assets.coingecko.com/coins/images/4559/small/wom_logo_small.png?1572098941',
   },
   {
     chainId: 1,
@@ -2891,7 +2891,7 @@ const tokens = [
     symbol: 'BLOC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4572/thumb/Xd1i27EM_400x400.jpg?1547039854',
+      'https://assets.coingecko.com/coins/images/4572/small/Xd1i27EM_400x400.jpg?1547039854',
   },
   {
     chainId: 1,
@@ -2900,7 +2900,7 @@ const tokens = [
     symbol: 'DIP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4586/thumb/dip.png?1547039863',
+      'https://assets.coingecko.com/coins/images/4586/small/dip.png?1547039863',
   },
   {
     chainId: 1,
@@ -2909,7 +2909,7 @@ const tokens = [
     symbol: 'MXC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4604/thumb/MXC-app-icon10242x.png?1597628240',
+      'https://assets.coingecko.com/coins/images/4604/small/MXC-app-icon10242x.png?1597628240',
   },
   {
     chainId: 1,
@@ -2918,7 +2918,7 @@ const tokens = [
     symbol: 'ZCC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4610/thumb/29597798_1994933117411549_6379526843613393871_n.png?1606409572',
+      'https://assets.coingecko.com/coins/images/4610/small/29597798_1994933117411549_6379526843613393871_n.png?1606409572',
   },
   {
     chainId: 1,
@@ -2927,7 +2927,7 @@ const tokens = [
     symbol: 'TRXC',
     decimals: 0,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4626/thumb/trxc.png?1547039893',
+      'https://assets.coingecko.com/coins/images/4626/small/trxc.png?1547039893',
   },
   {
     chainId: 1,
@@ -2936,7 +2936,7 @@ const tokens = [
     symbol: 'ORBS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4630/thumb/Orbs.jpg?1547039896',
+      'https://assets.coingecko.com/coins/images/4630/small/Orbs.jpg?1547039896',
   },
   {
     chainId: 1,
@@ -2945,7 +2945,7 @@ const tokens = [
     symbol: 'BFC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4639/thumb/bifrost_32.png?1608520677',
+      'https://assets.coingecko.com/coins/images/4639/small/bifrost_32.png?1608520677',
   },
   {
     chainId: 1,
@@ -2954,7 +2954,7 @@ const tokens = [
     symbol: 'XMX',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4643/thumb/xmx.png?1574682262',
+      'https://assets.coingecko.com/coins/images/4643/small/xmx.png?1574682262',
   },
   {
     chainId: 1,
@@ -2963,7 +2963,7 @@ const tokens = [
     symbol: 'VGT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4652/thumb/Vault12.jpg?1547039918',
+      'https://assets.coingecko.com/coins/images/4652/small/Vault12.jpg?1547039918',
   },
   {
     chainId: 1,
@@ -2972,7 +2972,7 @@ const tokens = [
     symbol: 'DUO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4653/thumb/Duo_Network.png?1556593318',
+      'https://assets.coingecko.com/coins/images/4653/small/Duo_Network.png?1556593318',
   },
   {
     chainId: 1,
@@ -2981,7 +2981,7 @@ const tokens = [
     symbol: 'PERL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4682/thumb/PerlinX-Icon-1500px.png?1598633609',
+      'https://assets.coingecko.com/coins/images/4682/small/PerlinX-Icon-1500px.png?1598633609',
   },
   {
     chainId: 1,
@@ -2990,7 +2990,7 @@ const tokens = [
     symbol: 'DX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4700/thumb/VdZwy0Pv_400x400.png?1603089728',
+      'https://assets.coingecko.com/coins/images/4700/small/VdZwy0Pv_400x400.png?1603089728',
   },
   {
     chainId: 1,
@@ -2999,7 +2999,7 @@ const tokens = [
     symbol: 'AMPL',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4708/thumb/Ampleforth.png?1561684250',
+      'https://assets.coingecko.com/coins/images/4708/small/Ampleforth.png?1561684250',
   },
   {
     chainId: 1,
@@ -3008,7 +3008,7 @@ const tokens = [
     symbol: 'MATIC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4713/thumb/Matic.png?1553498071',
+      'https://assets.coingecko.com/coins/images/4713/small/Matic.png?1553498071',
   },
   {
     chainId: 1,
@@ -3017,7 +3017,7 @@ const tokens = [
     symbol: 'ACED',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4761/thumb/aced.png?1547040086',
+      'https://assets.coingecko.com/coins/images/4761/small/aced.png?1547040086',
   },
   {
     chainId: 1,
@@ -3026,7 +3026,7 @@ const tokens = [
     symbol: 'KAT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4784/thumb/kambria.png?1547040127',
+      'https://assets.coingecko.com/coins/images/4784/small/kambria.png?1547040127',
   },
   {
     chainId: 1,
@@ -3035,7 +3035,7 @@ const tokens = [
     symbol: 'COCOS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4932/thumb/_QPpjoUi_400x400.jpg?1566430520',
+      'https://assets.coingecko.com/coins/images/4932/small/_QPpjoUi_400x400.jpg?1566430520',
   },
   {
     chainId: 1,
@@ -3044,7 +3044,7 @@ const tokens = [
     symbol: 'ZCN',
     decimals: 10,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4934/thumb/0_Black-svg.png?1600757954',
+      'https://assets.coingecko.com/coins/images/4934/small/0_Black-svg.png?1600757954',
   },
   {
     chainId: 1,
@@ -3053,7 +3053,7 @@ const tokens = [
     symbol: 'TCH',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/4956/thumb/tigercash-logo.png?1547040378',
+      'https://assets.coingecko.com/coins/images/4956/small/tigercash-logo.png?1547040378',
   },
   {
     chainId: 1,
@@ -3062,7 +3062,7 @@ const tokens = [
     symbol: 'CHR',
     decimals: 6,
     logoURI:
-      'https://assets.coingecko.com/coins/images/5000/thumb/Chromia.png?1559038018',
+      'https://assets.coingecko.com/coins/images/5000/small/Chromia.png?1559038018',
   },
   {
     chainId: 1,
@@ -3071,7 +3071,7 @@ const tokens = [
     symbol: 'BTMX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/5003/thumb/BTMX.jpg?1547040429',
+      'https://assets.coingecko.com/coins/images/5003/small/BTMX.jpg?1547040429',
   },
   {
     chainId: 1,
@@ -3080,7 +3080,7 @@ const tokens = [
     symbol: 'BKBT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/5004/thumb/beekan.png?1547040430',
+      'https://assets.coingecko.com/coins/images/5004/small/beekan.png?1547040430',
   },
   {
     chainId: 1,
@@ -3089,7 +3089,7 @@ const tokens = [
     symbol: 'SUSD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/5013/thumb/sUSD.png?1562212426',
+      'https://assets.coingecko.com/coins/images/5013/small/sUSD.png?1562212426',
   },
   {
     chainId: 1,
@@ -3098,7 +3098,7 @@ const tokens = [
     symbol: 'BTSG',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/5041/thumb/logo_-_2021-01-10T210801.390.png?1610284134',
+      'https://assets.coingecko.com/coins/images/5041/small/logo_-_2021-01-10T210801.390.png?1610284134',
   },
   {
     chainId: 1,
@@ -3107,7 +3107,7 @@ const tokens = [
     symbol: 'ARIA20',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/5054/thumb/Aria_Logo_256.png?1610097866',
+      'https://assets.coingecko.com/coins/images/5054/small/Aria_Logo_256.png?1610097866',
   },
   {
     chainId: 1,
@@ -3116,7 +3116,7 @@ const tokens = [
     symbol: 'ACR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/5100/thumb/acreage-coin.jpg?1547040494',
+      'https://assets.coingecko.com/coins/images/5100/small/acreage-coin.jpg?1547040494',
   },
   {
     chainId: 1,
@@ -3125,7 +3125,7 @@ const tokens = [
     symbol: 'MBN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/5117/thumb/membrana_logo.png?1565238625',
+      'https://assets.coingecko.com/coins/images/5117/small/membrana_logo.png?1565238625',
   },
   {
     chainId: 1,
@@ -3134,7 +3134,7 @@ const tokens = [
     symbol: 'LUD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/5118/thumb/Ludos_Protocol.jpg?1557216263',
+      'https://assets.coingecko.com/coins/images/5118/small/Ludos_Protocol.jpg?1557216263',
   },
   {
     chainId: 1,
@@ -3143,7 +3143,7 @@ const tokens = [
     symbol: 'NTK',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/5162/thumb/NTK.png?1606878538',
+      'https://assets.coingecko.com/coins/images/5162/small/NTK.png?1606878538',
   },
   {
     chainId: 1,
@@ -3152,7 +3152,7 @@ const tokens = [
     symbol: 'EURS',
     decimals: 2,
     logoURI:
-      'https://assets.coingecko.com/coins/images/5164/thumb/EURS_300x300.png?1550571779',
+      'https://assets.coingecko.com/coins/images/5164/small/EURS_300x300.png?1550571779',
   },
   {
     chainId: 1,
@@ -3161,7 +3161,7 @@ const tokens = [
     symbol: 'ENTRP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/5197/thumb/hut.png?1575869079',
+      'https://assets.coingecko.com/coins/images/5197/small/hut.png?1575869079',
   },
   {
     chainId: 1,
@@ -3170,7 +3170,7 @@ const tokens = [
     symbol: 'BMX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/5236/thumb/bitmart-token.png?1548835017',
+      'https://assets.coingecko.com/coins/images/5236/small/bitmart-token.png?1548835017',
   },
   {
     chainId: 1,
@@ -3179,7 +3179,7 @@ const tokens = [
     symbol: 'SKYM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/5266/thumb/soar_earth.png?1547040769',
+      'https://assets.coingecko.com/coins/images/5266/small/soar_earth.png?1547040769',
   },
   {
     chainId: 1,
@@ -3188,7 +3188,7 @@ const tokens = [
     symbol: 'BC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/5298/thumb/block-chain-com.png?1547350894',
+      'https://assets.coingecko.com/coins/images/5298/small/block-chain-com.png?1547350894',
   },
   {
     chainId: 1,
@@ -3197,7 +3197,7 @@ const tokens = [
     symbol: 'GNY',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/5300/thumb/icon_gny.jpg?1601926183',
+      'https://assets.coingecko.com/coins/images/5300/small/icon_gny.jpg?1601926183',
   },
   {
     chainId: 1,
@@ -3206,7 +3206,7 @@ const tokens = [
     symbol: 'REL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/5387/thumb/release.jpg?1547041000',
+      'https://assets.coingecko.com/coins/images/5387/small/release.jpg?1547041000',
   },
   {
     chainId: 1,
@@ -3215,7 +3215,7 @@ const tokens = [
     symbol: 'QCH',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/5392/thumb/qchi.png?1548607478',
+      'https://assets.coingecko.com/coins/images/5392/small/qchi.png?1548607478',
   },
   {
     chainId: 1,
@@ -3224,7 +3224,7 @@ const tokens = [
     symbol: 'PKG',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/5422/thumb/pkg-token.png?1548331357',
+      'https://assets.coingecko.com/coins/images/5422/small/pkg-token.png?1548331357',
   },
   {
     chainId: 1,
@@ -3233,7 +3233,7 @@ const tokens = [
     symbol: 'FGP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/5454/thumb/fingerprint.png?1561602642',
+      'https://assets.coingecko.com/coins/images/5454/small/fingerprint.png?1561602642',
   },
   {
     chainId: 1,
@@ -3242,7 +3242,7 @@ const tokens = [
     symbol: 'CYFM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/5476/thumb/cyberfm.png?1547041216',
+      'https://assets.coingecko.com/coins/images/5476/small/cyberfm.png?1547041216',
   },
   {
     chainId: 1,
@@ -3251,7 +3251,7 @@ const tokens = [
     symbol: 'MFTU',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/5519/thumb/Mainstream_for_the_underground.png?1534426154',
+      'https://assets.coingecko.com/coins/images/5519/small/Mainstream_for_the_underground.png?1534426154',
   },
   {
     chainId: 1,
@@ -3260,7 +3260,7 @@ const tokens = [
     symbol: 'HAND',
     decimals: 0,
     logoURI:
-      'https://assets.coingecko.com/coins/images/5554/thumb/showhand.png?1548609179',
+      'https://assets.coingecko.com/coins/images/5554/small/showhand.png?1548609179',
   },
   {
     chainId: 1,
@@ -3269,7 +3269,7 @@ const tokens = [
     symbol: 'FREE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/5585/thumb/free-coin.png?1548126559',
+      'https://assets.coingecko.com/coins/images/5585/small/free-coin.png?1548126559',
   },
   {
     chainId: 1,
@@ -3278,7 +3278,7 @@ const tokens = [
     symbol: 'FET',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/5681/thumb/Fetch.jpg?1572098136',
+      'https://assets.coingecko.com/coins/images/5681/small/Fetch.jpg?1572098136',
   },
   {
     chainId: 1,
@@ -3287,7 +3287,7 @@ const tokens = [
     symbol: 'BZKY',
     decimals: 16,
     logoURI:
-      'https://assets.coingecko.com/coins/images/5766/thumb/bizkey.png?1547041634',
+      'https://assets.coingecko.com/coins/images/5766/small/bizkey.png?1547041634',
   },
   {
     chainId: 1,
@@ -3296,7 +3296,7 @@ const tokens = [
     symbol: 'EXRT',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/5954/thumb/EXRT.jpg?1547041893',
+      'https://assets.coingecko.com/coins/images/5954/small/EXRT.jpg?1547041893',
   },
   {
     chainId: 1,
@@ -3305,7 +3305,7 @@ const tokens = [
     symbol: 'HTB',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/5990/thumb/hotbit-token.png?1547041932',
+      'https://assets.coingecko.com/coins/images/5990/small/hotbit-token.png?1547041932',
   },
   {
     chainId: 1,
@@ -3314,7 +3314,7 @@ const tokens = [
     symbol: 'GUSD',
     decimals: 2,
     logoURI:
-      'https://assets.coingecko.com/coins/images/5992/thumb/gemini-dollar-gusd.png?1536745278',
+      'https://assets.coingecko.com/coins/images/5992/small/gemini-dollar-gusd.png?1536745278',
   },
   {
     chainId: 1,
@@ -3323,7 +3323,7 @@ const tokens = [
     symbol: 'BOXX',
     decimals: 15,
     logoURI:
-      'https://assets.coingecko.com/coins/images/5995/thumb/boxx-token.png?1547041938',
+      'https://assets.coingecko.com/coins/images/5995/small/boxx-token.png?1547041938',
   },
   {
     chainId: 1,
@@ -3332,7 +3332,7 @@ const tokens = [
     symbol: 'PAX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/6013/thumb/paxos_standard.png?1548386291',
+      'https://assets.coingecko.com/coins/images/6013/small/paxos_standard.png?1548386291',
   },
   {
     chainId: 1,
@@ -3341,7 +3341,7 @@ const tokens = [
     symbol: 'AOG',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/6050/thumb/logo_%286%29.png?1547042007',
+      'https://assets.coingecko.com/coins/images/6050/small/logo_%286%29.png?1547042007',
   },
   {
     chainId: 1,
@@ -3350,7 +3350,7 @@ const tokens = [
     symbol: 'DFS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/6062/thumb/fantasy_sports.png?1567508873',
+      'https://assets.coingecko.com/coins/images/6062/small/fantasy_sports.png?1567508873',
   },
   {
     chainId: 1,
@@ -3359,7 +3359,7 @@ const tokens = [
     symbol: 'LTO',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/6068/thumb/LTO_Network.png?1567443682',
+      'https://assets.coingecko.com/coins/images/6068/small/LTO_Network.png?1567443682',
   },
   {
     chainId: 1,
@@ -3368,7 +3368,7 @@ const tokens = [
     symbol: '2KEY',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/6090/thumb/2key.png?1591591830',
+      'https://assets.coingecko.com/coins/images/6090/small/2key.png?1591591830',
   },
   {
     chainId: 1,
@@ -3377,7 +3377,7 @@ const tokens = [
     symbol: 'VIDT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/6115/thumb/V-ID_blockchain_-logo.png?1547042127',
+      'https://assets.coingecko.com/coins/images/6115/small/V-ID_blockchain_-logo.png?1547042127',
   },
   {
     chainId: 1,
@@ -3386,7 +3386,7 @@ const tokens = [
     symbol: 'THRN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/6300/thumb/_VaSXQpe_400x400.jpg?1547042348',
+      'https://assets.coingecko.com/coins/images/6300/small/_VaSXQpe_400x400.jpg?1547042348',
   },
   {
     chainId: 1,
@@ -3395,7 +3395,7 @@ const tokens = [
     symbol: 'USDC',
     decimals: 6,
     logoURI:
-      'https://assets.coingecko.com/coins/images/6319/thumb/USD_Coin_icon.png?1547042389',
+      'https://assets.coingecko.com/coins/images/6319/small/USD_Coin_icon.png?1547042389',
   },
   {
     chainId: 1,
@@ -3404,7 +3404,7 @@ const tokens = [
     symbol: 'CVL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/6374/thumb/civil.png?1547042477',
+      'https://assets.coingecko.com/coins/images/6374/small/civil.png?1547042477',
   },
   {
     chainId: 1,
@@ -3413,7 +3413,7 @@ const tokens = [
     symbol: 'IZI',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/6405/thumb/logo-icon-200x200.png?1547617296',
+      'https://assets.coingecko.com/coins/images/6405/small/logo-icon-200x200.png?1547617296',
   },
   {
     chainId: 1,
@@ -3422,7 +3422,7 @@ const tokens = [
     symbol: 'SYLO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/6430/thumb/SYLO.svg?1589527756',
+      'https://assets.coingecko.com/coins/images/6430/small/SYLO.svg?1589527756',
   },
   {
     chainId: 1,
@@ -3431,7 +3431,7 @@ const tokens = [
     symbol: 'BIO',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/6457/thumb/200x200logo.png?1547042660',
+      'https://assets.coingecko.com/coins/images/6457/small/200x200logo.png?1547042660',
   },
   {
     chainId: 1,
@@ -3440,7 +3440,7 @@ const tokens = [
     symbol: 'BOX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/6511/thumb/box-token.png?1547563043',
+      'https://assets.coingecko.com/coins/images/6511/small/box-token.png?1547563043',
   },
   {
     chainId: 1,
@@ -3449,7 +3449,7 @@ const tokens = [
     symbol: 'LIT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/6580/thumb/Lition_ico.png?1547042787',
+      'https://assets.coingecko.com/coins/images/6580/small/Lition_ico.png?1547042787',
   },
   {
     chainId: 1,
@@ -3458,7 +3458,7 @@ const tokens = [
     symbol: 'SPC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/6659/thumb/Spacechain.jpg?1547042861',
+      'https://assets.coingecko.com/coins/images/6659/small/Spacechain.jpg?1547042861',
   },
   {
     chainId: 1,
@@ -3467,7 +3467,7 @@ const tokens = [
     symbol: 'DSLA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/6694/thumb/dsla_logo-squared_200x200.png?1569571063',
+      'https://assets.coingecko.com/coins/images/6694/small/dsla_logo-squared_200x200.png?1569571063',
   },
   {
     chainId: 1,
@@ -3476,7 +3476,7 @@ const tokens = [
     symbol: 'SOUL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/6723/thumb/cryptosoul.png?1547042952',
+      'https://assets.coingecko.com/coins/images/6723/small/cryptosoul.png?1547042952',
   },
   {
     chainId: 1,
@@ -3485,7 +3485,7 @@ const tokens = [
     symbol: 'PROPS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/6735/thumb/photo-2017-10-10-03-32-02.png?1595168186',
+      'https://assets.coingecko.com/coins/images/6735/small/photo-2017-10-10-03-32-02.png?1595168186',
   },
   {
     chainId: 1,
@@ -3494,7 +3494,7 @@ const tokens = [
     symbol: 'PROB',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/6765/thumb/ProBit-Exchange-logo.png?1547043029',
+      'https://assets.coingecko.com/coins/images/6765/small/ProBit-Exchange-logo.png?1547043029',
   },
   {
     chainId: 1,
@@ -3503,7 +3503,7 @@ const tokens = [
     symbol: 'INX',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/6826/thumb/gDALsvq.png?1555895815',
+      'https://assets.coingecko.com/coins/images/6826/small/gDALsvq.png?1555895815',
   },
   {
     chainId: 1,
@@ -3512,7 +3512,7 @@ const tokens = [
     symbol: 'ZEST',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/6837/thumb/33_%281%29.jpg?1594437564',
+      'https://assets.coingecko.com/coins/images/6837/small/33_%281%29.jpg?1594437564',
   },
   {
     chainId: 1,
@@ -3521,7 +3521,7 @@ const tokens = [
     symbol: 'XRT',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7024/thumb/Robonomics-Network-logo.png?1547043451',
+      'https://assets.coingecko.com/coins/images/7024/small/Robonomics-Network-logo.png?1547043451',
   },
   {
     chainId: 1,
@@ -3530,7 +3530,7 @@ const tokens = [
     symbol: 'MYTV',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7026/thumb/MYTV-200x200.png?1585697417',
+      'https://assets.coingecko.com/coins/images/7026/small/MYTV-200x200.png?1585697417',
   },
   {
     chainId: 1,
@@ -3539,7 +3539,7 @@ const tokens = [
     symbol: 'BTB',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7039/thumb/BitBall_png_.png?1588640849',
+      'https://assets.coingecko.com/coins/images/7039/small/BitBall_png_.png?1588640849',
   },
   {
     chainId: 1,
@@ -3548,7 +3548,7 @@ const tokens = [
     symbol: 'AGVC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7056/thumb/G4TML4cb_400x400.jpg?1547043511',
+      'https://assets.coingecko.com/coins/images/7056/small/G4TML4cb_400x400.jpg?1547043511',
   },
   {
     chainId: 1,
@@ -3557,7 +3557,7 @@ const tokens = [
     symbol: 'SBTC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7089/thumb/image-62DF_5C05991C.jpg?1547043573',
+      'https://assets.coingecko.com/coins/images/7089/small/image-62DF_5C05991C.jpg?1547043573',
   },
   {
     chainId: 1,
@@ -3566,7 +3566,7 @@ const tokens = [
     symbol: 'FAT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7109/thumb/SV2Xb94q_400x400.jpg?1547043605',
+      'https://assets.coingecko.com/coins/images/7109/small/SV2Xb94q_400x400.jpg?1547043605',
   },
   {
     chainId: 1,
@@ -3575,7 +3575,7 @@ const tokens = [
     symbol: 'CBC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7114/thumb/eqIkj-ZZ_400x400.jpg?1549521587',
+      'https://assets.coingecko.com/coins/images/7114/small/eqIkj-ZZ_400x400.jpg?1549521587',
   },
   {
     chainId: 1,
@@ -3584,7 +3584,7 @@ const tokens = [
     symbol: 'LPT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7137/thumb/livepeer.png?1547976208',
+      'https://assets.coingecko.com/coins/images/7137/small/livepeer.png?1547976208',
   },
   {
     chainId: 1,
@@ -3593,7 +3593,7 @@ const tokens = [
     symbol: 'HEDG',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7196/thumb/to3Vj4EZ_400x400.jpg?1547043758',
+      'https://assets.coingecko.com/coins/images/7196/small/to3Vj4EZ_400x400.jpg?1547043758',
   },
   {
     chainId: 1,
@@ -3602,7 +3602,7 @@ const tokens = [
     symbol: 'VALOR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7231/thumb/smart_valor.png?1555925772',
+      'https://assets.coingecko.com/coins/images/7231/small/smart_valor.png?1555925772',
   },
   {
     chainId: 1,
@@ -3611,7 +3611,7 @@ const tokens = [
     symbol: 'OPCT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7237/thumb/Opacity.jpg?1551843524',
+      'https://assets.coingecko.com/coins/images/7237/small/Opacity.jpg?1551843524',
   },
   {
     chainId: 1,
@@ -3620,7 +3620,7 @@ const tokens = [
     symbol: 'XRPC',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7259/thumb/xrpc.png?1572011410',
+      'https://assets.coingecko.com/coins/images/7259/small/xrpc.png?1572011410',
   },
   {
     chainId: 1,
@@ -3629,7 +3629,7 @@ const tokens = [
     symbol: 'EMONT',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7272/thumb/colorfull_with_word_250x250.png?1580111776',
+      'https://assets.coingecko.com/coins/images/7272/small/colorfull_with_word_250x250.png?1580111776',
   },
   {
     chainId: 1,
@@ -3638,7 +3638,7 @@ const tokens = [
     symbol: 'BTRS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7273/thumb/normal_5b87c9dd5583d.png?1547043898',
+      'https://assets.coingecko.com/coins/images/7273/small/normal_5b87c9dd5583d.png?1547043898',
   },
   {
     chainId: 1,
@@ -3647,7 +3647,7 @@ const tokens = [
     symbol: 'VEY',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7282/thumb/dkDh4z0a_400x400.jpg?1547043914',
+      'https://assets.coingecko.com/coins/images/7282/small/dkDh4z0a_400x400.jpg?1547043914',
   },
   {
     chainId: 1,
@@ -3656,7 +3656,7 @@ const tokens = [
     symbol: 'CRO',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7310/thumb/cypto.png?1547043960',
+      'https://assets.coingecko.com/coins/images/7310/small/cypto.png?1547043960',
   },
   {
     chainId: 1,
@@ -3665,7 +3665,7 @@ const tokens = [
     symbol: 'BST',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7335/thumb/bitsten.png?1589629209',
+      'https://assets.coingecko.com/coins/images/7335/small/bitsten.png?1589629209',
   },
   {
     chainId: 1,
@@ -3674,7 +3674,7 @@ const tokens = [
     symbol: 'SNTVT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7383/thumb/2x9veCp.png?1598409975',
+      'https://assets.coingecko.com/coins/images/7383/small/2x9veCp.png?1598409975',
   },
   {
     chainId: 1,
@@ -3683,7 +3683,7 @@ const tokens = [
     symbol: 'GEX',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7391/thumb/globex.png?1592450726',
+      'https://assets.coingecko.com/coins/images/7391/small/globex.png?1592450726',
   },
   {
     chainId: 1,
@@ -3692,7 +3692,7 @@ const tokens = [
     symbol: 'S4F',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7405/thumb/logo_%284%29.png?1547085640',
+      'https://assets.coingecko.com/coins/images/7405/small/logo_%284%29.png?1547085640',
   },
   {
     chainId: 1,
@@ -3701,7 +3701,7 @@ const tokens = [
     symbol: 'FLC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7446/thumb/logo_%2889%29.png?1597459811',
+      'https://assets.coingecko.com/coins/images/7446/small/logo_%2889%29.png?1597459811',
   },
   {
     chainId: 1,
@@ -3710,7 +3710,7 @@ const tokens = [
     symbol: 'AFCASH',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7449/thumb/afcash.jpg?1592393180',
+      'https://assets.coingecko.com/coins/images/7449/small/afcash.jpg?1592393180',
   },
   {
     chainId: 1,
@@ -3719,7 +3719,7 @@ const tokens = [
     symbol: 'DONUT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7538/thumb/Donut.png?1548234345',
+      'https://assets.coingecko.com/coins/images/7538/small/Donut.png?1548234345',
   },
   {
     chainId: 1,
@@ -3728,7 +3728,7 @@ const tokens = [
     symbol: 'PAR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7590/thumb/Parachute_Logo.png?1560918207',
+      'https://assets.coingecko.com/coins/images/7590/small/Parachute_Logo.png?1560918207',
   },
   {
     chainId: 1,
@@ -3737,7 +3737,7 @@ const tokens = [
     symbol: 'USDS',
     decimals: 6,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7596/thumb/logo.png?1604543121',
+      'https://assets.coingecko.com/coins/images/7596/small/logo.png?1604543121',
   },
   {
     chainId: 1,
@@ -3746,7 +3746,7 @@ const tokens = [
     symbol: 'WBTC',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7598/thumb/wrapped_bitcoin_wbtc.png?1548822744',
+      'https://assets.coingecko.com/coins/images/7598/small/wrapped_bitcoin_wbtc.png?1548822744',
   },
   {
     chainId: 1,
@@ -3755,7 +3755,7 @@ const tokens = [
     symbol: 'STASH',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7674/thumb/bitstash.png?1555301765',
+      'https://assets.coingecko.com/coins/images/7674/small/bitstash.png?1555301765',
   },
   {
     chainId: 1,
@@ -3764,7 +3764,7 @@ const tokens = [
     symbol: 'IGG',
     decimals: 6,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7697/thumb/N7aEdYrY_400x400.png?1561587437',
+      'https://assets.coingecko.com/coins/images/7697/small/N7aEdYrY_400x400.png?1561587437',
   },
   {
     chainId: 1,
@@ -3773,7 +3773,7 @@ const tokens = [
     symbol: 'ODEX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7712/thumb/WzsJ6pIr_400x400.jpg?1549940214',
+      'https://assets.coingecko.com/coins/images/7712/small/WzsJ6pIr_400x400.jpg?1549940214',
   },
   {
     chainId: 1,
@@ -3782,7 +3782,7 @@ const tokens = [
     symbol: 'BOMB',
     decimals: 0,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7713/thumb/Bomb-token.png?1549944422',
+      'https://assets.coingecko.com/coins/images/7713/small/Bomb-token.png?1549944422',
   },
   {
     chainId: 1,
@@ -3791,7 +3791,7 @@ const tokens = [
     symbol: 'EVED',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7721/thumb/Variations-09.png?1549979992',
+      'https://assets.coingecko.com/coins/images/7721/small/Variations-09.png?1549979992',
   },
   {
     chainId: 1,
@@ -3800,7 +3800,7 @@ const tokens = [
     symbol: 'HXRO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7805/thumb/hxro-squarelogo-1585089594129.png?1586221980',
+      'https://assets.coingecko.com/coins/images/7805/small/hxro-squarelogo-1585089594129.png?1586221980',
   },
   {
     chainId: 1,
@@ -3809,7 +3809,7 @@ const tokens = [
     symbol: 'ICNQ',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7830/thumb/2_Iconic_Holding_icon.png?1593396172',
+      'https://assets.coingecko.com/coins/images/7830/small/2_Iconic_Holding_icon.png?1593396172',
   },
   {
     chainId: 1,
@@ -3818,7 +3818,7 @@ const tokens = [
     symbol: 'REV',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7855/thumb/Db7wCd0.jpg?1551171100',
+      'https://assets.coingecko.com/coins/images/7855/small/Db7wCd0.jpg?1551171100',
   },
   {
     chainId: 1,
@@ -3827,7 +3827,7 @@ const tokens = [
     symbol: 'VSF',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7862/thumb/verisafe_logo.png?1563852491',
+      'https://assets.coingecko.com/coins/images/7862/small/verisafe_logo.png?1563852491',
   },
   {
     chainId: 1,
@@ -3836,7 +3836,7 @@ const tokens = [
     symbol: 'LIQUID',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7910/thumb/netkoin-liquid-logo-600x400.png?1551755315',
+      'https://assets.coingecko.com/coins/images/7910/small/netkoin-liquid-logo-600x400.png?1551755315',
   },
   {
     chainId: 1,
@@ -3845,7 +3845,7 @@ const tokens = [
     symbol: 'KAI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7942/thumb/KardiaChain.png?1591631223',
+      'https://assets.coingecko.com/coins/images/7942/small/KardiaChain.png?1591631223',
   },
   {
     chainId: 1,
@@ -3854,7 +3854,7 @@ const tokens = [
     symbol: 'SPRKL',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7949/thumb/SparkleLoyalty_Icon.png?1597653289',
+      'https://assets.coingecko.com/coins/images/7949/small/SparkleLoyalty_Icon.png?1597653289',
   },
   {
     chainId: 1,
@@ -3863,7 +3863,7 @@ const tokens = [
     symbol: 'A',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7968/thumb/alpha-token.jpg?1552883009',
+      'https://assets.coingecko.com/coins/images/7968/small/alpha-token.jpg?1552883009',
   },
   {
     chainId: 1,
@@ -3872,7 +3872,7 @@ const tokens = [
     symbol: 'HUNT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7989/thumb/HUNT.png?1571024256',
+      'https://assets.coingecko.com/coins/images/7989/small/HUNT.png?1571024256',
   },
   {
     chainId: 1,
@@ -3881,7 +3881,7 @@ const tokens = [
     symbol: 'DOS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/7991/thumb/DOS.png?1552900889',
+      'https://assets.coingecko.com/coins/images/7991/small/DOS.png?1552900889',
   },
   {
     chainId: 1,
@@ -3890,7 +3890,7 @@ const tokens = [
     symbol: 'XDB',
     decimals: 7,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8089/thumb/digitalbits-logo.jpg?1554454902',
+      'https://assets.coingecko.com/coins/images/8089/small/digitalbits-logo.jpg?1554454902',
   },
   {
     chainId: 1,
@@ -3899,7 +3899,7 @@ const tokens = [
     symbol: 'WPP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8103/thumb/WzdD53fh_400x400.jpg?1554860792',
+      'https://assets.coingecko.com/coins/images/8103/small/WzdD53fh_400x400.jpg?1554860792',
   },
   {
     chainId: 1,
@@ -3908,7 +3908,7 @@ const tokens = [
     symbol: 'BIKI',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8119/thumb/BiKi_icon.png?1581935375',
+      'https://assets.coingecko.com/coins/images/8119/small/BiKi_icon.png?1581935375',
   },
   {
     chainId: 1,
@@ -3917,7 +3917,7 @@ const tokens = [
     symbol: 'FOR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8242/thumb/for.png?1606195375',
+      'https://assets.coingecko.com/coins/images/8242/small/for.png?1606195375',
   },
   {
     chainId: 1,
@@ -3926,7 +3926,7 @@ const tokens = [
     symbol: 'FRM',
     decimals: 6,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8251/thumb/frm.png?1563777564',
+      'https://assets.coingecko.com/coins/images/8251/small/frm.png?1563777564',
   },
   {
     chainId: 1,
@@ -3935,7 +3935,7 @@ const tokens = [
     symbol: 'TKT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8260/thumb/twinkle.png?1557123321',
+      'https://assets.coingecko.com/coins/images/8260/small/twinkle.png?1557123321',
   },
   {
     chainId: 1,
@@ -3944,7 +3944,7 @@ const tokens = [
     symbol: 'DIO',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8271/thumb/DIO-white.bg2_.jpg?1557190407',
+      'https://assets.coingecko.com/coins/images/8271/small/DIO-white.bg2_.jpg?1557190407',
   },
   {
     chainId: 1,
@@ -3953,7 +3953,7 @@ const tokens = [
     symbol: '1UP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8273/thumb/Uptrennd_Logo.png?1579334846',
+      'https://assets.coingecko.com/coins/images/8273/small/Uptrennd_Logo.png?1579334846',
   },
   {
     chainId: 1,
@@ -3962,7 +3962,7 @@ const tokens = [
     symbol: 'USDQ',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8300/thumb/favicon-256x256.png?1557315995',
+      'https://assets.coingecko.com/coins/images/8300/small/favicon-256x256.png?1557315995',
   },
   {
     chainId: 1,
@@ -3971,7 +3971,7 @@ const tokens = [
     symbol: 'CUTE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8328/thumb/bnLvIEl1_400x400.jpg?1557533240',
+      'https://assets.coingecko.com/coins/images/8328/small/bnLvIEl1_400x400.jpg?1557533240',
   },
   {
     chainId: 1,
@@ -3980,7 +3980,7 @@ const tokens = [
     symbol: 'AT',
     decimals: 5,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8339/thumb/artfinity.png?1557604049',
+      'https://assets.coingecko.com/coins/images/8339/small/artfinity.png?1557604049',
   },
   {
     chainId: 1,
@@ -3989,7 +3989,7 @@ const tokens = [
     symbol: 'RSR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8365/thumb/Reserve_Rights.png?1557737411',
+      'https://assets.coingecko.com/coins/images/8365/small/Reserve_Rights.png?1557737411',
   },
   {
     chainId: 1,
@@ -3998,7 +3998,7 @@ const tokens = [
     symbol: 'SRK',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8371/thumb/U8-03TzL_400x400.jpg?1557811463',
+      'https://assets.coingecko.com/coins/images/8371/small/U8-03TzL_400x400.jpg?1557811463',
   },
   {
     chainId: 1,
@@ -4007,7 +4007,7 @@ const tokens = [
     symbol: 'BTU',
     decimals: 3,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8378/thumb/61B3F6DFA9584DDAA760E74B12D6FAD3.png?1557823748',
+      'https://assets.coingecko.com/coins/images/8378/small/61B3F6DFA9584DDAA760E74B12D6FAD3.png?1557823748',
   },
   {
     chainId: 1,
@@ -4016,7 +4016,7 @@ const tokens = [
     symbol: 'ULT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8383/thumb/final_logo_photoshop.png?1557890272',
+      'https://assets.coingecko.com/coins/images/8383/small/final_logo_photoshop.png?1557890272',
   },
   {
     chainId: 1,
@@ -4025,7 +4025,7 @@ const tokens = [
     symbol: 'TVT',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8388/thumb/g8hXw4QX_400x400.jpg?1557973343',
+      'https://assets.coingecko.com/coins/images/8388/small/g8hXw4QX_400x400.jpg?1557973343',
   },
   {
     chainId: 1,
@@ -4034,7 +4034,7 @@ const tokens = [
     symbol: 'BPTN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8412/thumb/7f346702db390a289f5770f008563173.png?1558077057',
+      'https://assets.coingecko.com/coins/images/8412/small/7f346702db390a289f5770f008563173.png?1558077057',
   },
   {
     chainId: 1,
@@ -4043,7 +4043,7 @@ const tokens = [
     symbol: 'LEO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8418/thumb/leo-token.png?1558326215',
+      'https://assets.coingecko.com/coins/images/8418/small/leo-token.png?1558326215',
   },
   {
     chainId: 1,
@@ -4052,7 +4052,7 @@ const tokens = [
     symbol: 'IUT',
     decimals: 0,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8420/thumb/300x300.png?1592800024',
+      'https://assets.coingecko.com/coins/images/8420/small/300x300.png?1592800024',
   },
   {
     chainId: 1,
@@ -4061,7 +4061,7 @@ const tokens = [
     symbol: 'XCHF',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8465/thumb/WhuiuJBc_400x400.jpg?1558699947',
+      'https://assets.coingecko.com/coins/images/8465/small/WhuiuJBc_400x400.jpg?1558699947',
   },
   {
     chainId: 1,
@@ -4070,7 +4070,7 @@ const tokens = [
     symbol: '1MT',
     decimals: 7,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8495/thumb/1MTp.png?1586964391',
+      'https://assets.coingecko.com/coins/images/8495/small/1MTp.png?1586964391',
   },
   {
     chainId: 1,
@@ -4079,7 +4079,7 @@ const tokens = [
     symbol: 'ARPA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8506/thumb/9u0a23XY_400x400.jpg?1559027357',
+      'https://assets.coingecko.com/coins/images/8506/small/9u0a23XY_400x400.jpg?1559027357',
   },
   {
     chainId: 1,
@@ -4088,7 +4088,7 @@ const tokens = [
     symbol: 'ECP',
     decimals: 6,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8507/thumb/lhwmJl7R_400x400.png?1574931781',
+      'https://assets.coingecko.com/coins/images/8507/small/lhwmJl7R_400x400.png?1574931781',
   },
   {
     chainId: 1,
@@ -4097,7 +4097,7 @@ const tokens = [
     symbol: 'CNTM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8528/thumb/200_200_CNTM-LOGO-07.png?1600751947',
+      'https://assets.coingecko.com/coins/images/8528/small/200_200_CNTM-LOGO-07.png?1600751947',
   },
   {
     chainId: 1,
@@ -4106,7 +4106,7 @@ const tokens = [
     symbol: 'MX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8545/thumb/TII1YIdv_400x400.png?1559180170',
+      'https://assets.coingecko.com/coins/images/8545/small/TII1YIdv_400x400.png?1559180170',
   },
   {
     chainId: 1,
@@ -4115,7 +4115,7 @@ const tokens = [
     symbol: 'QDAO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8599/thumb/QDAO_logo_white_black.png?1562131656',
+      'https://assets.coingecko.com/coins/images/8599/small/QDAO_logo_white_black.png?1562131656',
   },
   {
     chainId: 1,
@@ -4124,7 +4124,7 @@ const tokens = [
     symbol: 'ESH',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8608/thumb/Cco9sLN.png?1603676332',
+      'https://assets.coingecko.com/coins/images/8608/small/Cco9sLN.png?1603676332',
   },
   {
     chainId: 1,
@@ -4133,7 +4133,7 @@ const tokens = [
     symbol: 'AER',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8626/thumb/aerlogo.png.jpeg?1559773242',
+      'https://assets.coingecko.com/coins/images/8626/small/aerlogo.png.jpeg?1559773242',
   },
   {
     chainId: 1,
@@ -4142,7 +4142,7 @@ const tokens = [
     symbol: 'ETY',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8682/thumb/ethereumcloud_mid_1554103232943.png?1570230515',
+      'https://assets.coingecko.com/coins/images/8682/small/ethereumcloud_mid_1554103232943.png?1570230515',
   },
   {
     chainId: 1,
@@ -4151,7 +4151,7 @@ const tokens = [
     symbol: 'STPT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8713/thumb/STP.png?1560262664',
+      'https://assets.coingecko.com/coins/images/8713/small/STP.png?1560262664',
   },
   {
     chainId: 1,
@@ -4160,7 +4160,7 @@ const tokens = [
     symbol: 'BEST',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8738/thumb/BEST_250px.png?1570103109',
+      'https://assets.coingecko.com/coins/images/8738/small/BEST_250px.png?1570103109',
   },
   {
     chainId: 1,
@@ -4169,7 +4169,7 @@ const tokens = [
     symbol: 'XNS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8744/thumb/200x200_icon_darkbg.png?1560826732',
+      'https://assets.coingecko.com/coins/images/8744/small/200x200_icon_darkbg.png?1560826732',
   },
   {
     chainId: 1,
@@ -4178,7 +4178,7 @@ const tokens = [
     symbol: 'ROOBEE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8791/thumb/Group_11.png?1580344629',
+      'https://assets.coingecko.com/coins/images/8791/small/Group_11.png?1580344629',
   },
   {
     chainId: 1,
@@ -4187,7 +4187,7 @@ const tokens = [
     symbol: 'WCK',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8797/thumb/WCK.png?1561705836',
+      'https://assets.coingecko.com/coins/images/8797/small/WCK.png?1561705836',
   },
   {
     chainId: 1,
@@ -4196,7 +4196,7 @@ const tokens = [
     symbol: 'SLV',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8822/thumb/Silverway.png?1561629364',
+      'https://assets.coingecko.com/coins/images/8822/small/Silverway.png?1561629364',
   },
   {
     chainId: 1,
@@ -4205,7 +4205,7 @@ const tokens = [
     symbol: 'USDK',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8824/thumb/usdk.png?1563418517',
+      'https://assets.coingecko.com/coins/images/8824/small/usdk.png?1563418517',
   },
   {
     chainId: 1,
@@ -4214,7 +4214,7 @@ const tokens = [
     symbol: 'PROM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8825/thumb/G2LY-Dg_.png?1591698270',
+      'https://assets.coingecko.com/coins/images/8825/small/G2LY-Dg_.png?1591698270',
   },
   {
     chainId: 1,
@@ -4223,7 +4223,7 @@ const tokens = [
     symbol: 'EOST',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8829/thumb/EOS_TRUST.png?1561955075',
+      'https://assets.coingecko.com/coins/images/8829/small/EOS_TRUST.png?1561955075',
   },
   {
     chainId: 1,
@@ -4232,7 +4232,7 @@ const tokens = [
     symbol: 'SBTC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8838/thumb/XOZPLK3.png?1605006973',
+      'https://assets.coingecko.com/coins/images/8838/small/XOZPLK3.png?1605006973',
   },
   {
     chainId: 1,
@@ -4241,7 +4241,7 @@ const tokens = [
     symbol: 'TFB',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8842/thumb/5rd7a55q_400x400.png?1562902557',
+      'https://assets.coingecko.com/coins/images/8842/small/5rd7a55q_400x400.png?1562902557',
   },
   {
     chainId: 1,
@@ -4250,7 +4250,7 @@ const tokens = [
     symbol: 'SETH',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8843/thumb/9ZAujYk.png?1605006952',
+      'https://assets.coingecko.com/coins/images/8843/small/9ZAujYk.png?1605006952',
   },
   {
     chainId: 1,
@@ -4259,7 +4259,7 @@ const tokens = [
     symbol: 'IETH',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8846/thumb/iETH.png?1562212479',
+      'https://assets.coingecko.com/coins/images/8846/small/iETH.png?1562212479',
   },
   {
     chainId: 1,
@@ -4268,7 +4268,7 @@ const tokens = [
     symbol: 'BURN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8851/thumb/blockburn.JPG?1582774870',
+      'https://assets.coingecko.com/coins/images/8851/small/blockburn.JPG?1582774870',
   },
   {
     chainId: 1,
@@ -4277,7 +4277,7 @@ const tokens = [
     symbol: 'LAR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8892/thumb/pB4iXZbU_400x400.jpg?1562579001',
+      'https://assets.coingecko.com/coins/images/8892/small/pB4iXZbU_400x400.jpg?1562579001',
   },
   {
     chainId: 1,
@@ -4286,7 +4286,7 @@ const tokens = [
     symbol: 'POND',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8903/thumb/Marlin.png?1608584519',
+      'https://assets.coingecko.com/coins/images/8903/small/Marlin.png?1608584519',
   },
   {
     chainId: 1,
@@ -4295,7 +4295,7 @@ const tokens = [
     symbol: 'ECO',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8923/thumb/logo_eco_low.png?1562902804',
+      'https://assets.coingecko.com/coins/images/8923/small/logo_eco_low.png?1562902804',
   },
   {
     chainId: 1,
@@ -4304,7 +4304,7 @@ const tokens = [
     symbol: 'BPLC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8931/thumb/EJIpComQ_400x400.png?1584653141',
+      'https://assets.coingecko.com/coins/images/8931/small/EJIpComQ_400x400.png?1584653141',
   },
   {
     chainId: 1,
@@ -4313,7 +4313,7 @@ const tokens = [
     symbol: 'DYT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8936/thumb/image1.png?1578033515',
+      'https://assets.coingecko.com/coins/images/8936/small/image1.png?1578033515',
   },
   {
     chainId: 1,
@@ -4322,7 +4322,7 @@ const tokens = [
     symbol: 'FUZE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8941/thumb/logo-fuze-fix-big.png?1563117524',
+      'https://assets.coingecko.com/coins/images/8941/small/logo-fuze-fix-big.png?1563117524',
   },
   {
     chainId: 1,
@@ -4331,7 +4331,7 @@ const tokens = [
     symbol: 'DYNMT',
     decimals: 2,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8951/thumb/dynamite_logo.jpg?1598851224',
+      'https://assets.coingecko.com/coins/images/8951/small/dynamite_logo.jpg?1598851224',
   },
   {
     chainId: 1,
@@ -4340,7 +4340,7 @@ const tokens = [
     symbol: 'GIV',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/8996/thumb/giv.png?1596069222',
+      'https://assets.coingecko.com/coins/images/8996/small/giv.png?1596069222',
   },
   {
     chainId: 1,
@@ -4349,7 +4349,7 @@ const tokens = [
     symbol: 'HTN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9002/thumb/htn%28200x200%29.png?1600757668',
+      'https://assets.coingecko.com/coins/images/9002/small/htn%28200x200%29.png?1600757668',
   },
   {
     chainId: 1,
@@ -4358,7 +4358,7 @@ const tokens = [
     symbol: 'ETHMNY',
     decimals: 2,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9025/thumb/20200605_131214.png?1597297671',
+      'https://assets.coingecko.com/coins/images/9025/small/20200605_131214.png?1597297671',
   },
   {
     chainId: 1,
@@ -4367,7 +4367,7 @@ const tokens = [
     symbol: 'FTT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9026/thumb/F.png?1609051564',
+      'https://assets.coingecko.com/coins/images/9026/small/F.png?1609051564',
   },
   {
     chainId: 1,
@@ -4376,7 +4376,7 @@ const tokens = [
     symbol: 'VSN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9029/thumb/photo_2020-08-14_20-34-55.jpg?1606133699',
+      'https://assets.coingecko.com/coins/images/9029/small/photo_2020-08-14_20-34-55.jpg?1606133699',
   },
   {
     chainId: 1,
@@ -4385,7 +4385,7 @@ const tokens = [
     symbol: 'Z502',
     decimals: 0,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9040/thumb/502.jpg?1563872035',
+      'https://assets.coingecko.com/coins/images/9040/small/502.jpg?1563872035',
   },
   {
     chainId: 1,
@@ -4394,7 +4394,7 @@ const tokens = [
     symbol: 'PIGX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9069/thumb/IMG_5547.PNG?1604239318',
+      'https://assets.coingecko.com/coins/images/9069/small/IMG_5547.PNG?1604239318',
   },
   {
     chainId: 1,
@@ -4403,7 +4403,7 @@ const tokens = [
     symbol: 'SPAZ',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9081/thumb/8HfLK99.png?1586746202',
+      'https://assets.coingecko.com/coins/images/9081/small/8HfLK99.png?1586746202',
   },
   {
     chainId: 1,
@@ -4412,7 +4412,7 @@ const tokens = [
     symbol: 'HOLE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9087/thumb/SdAKFUu.png?1564086285',
+      'https://assets.coingecko.com/coins/images/9087/small/SdAKFUu.png?1564086285',
   },
   {
     chainId: 1,
@@ -4421,7 +4421,7 @@ const tokens = [
     symbol: '808TA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9120/thumb/eKmFtFle_400x400.png?1564473061',
+      'https://assets.coingecko.com/coins/images/9120/small/eKmFtFle_400x400.png?1564473061',
   },
   {
     chainId: 1,
@@ -4430,7 +4430,7 @@ const tokens = [
     symbol: 'BBC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9130/thumb/symbol_Blue_Baikal.png?1586736403',
+      'https://assets.coingecko.com/coins/images/9130/small/symbol_Blue_Baikal.png?1586736403',
   },
   {
     chainId: 1,
@@ -4439,7 +4439,7 @@ const tokens = [
     symbol: 'EXM',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9154/thumb/exmo_token.png?1579588209',
+      'https://assets.coingecko.com/coins/images/9154/small/exmo_token.png?1579588209',
   },
   {
     chainId: 1,
@@ -4448,7 +4448,7 @@ const tokens = [
     symbol: 'XDT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9189/thumb/xdt.PNG?1565000033',
+      'https://assets.coingecko.com/coins/images/9189/small/xdt.PNG?1565000033',
   },
   {
     chainId: 1,
@@ -4457,7 +4457,7 @@ const tokens = [
     symbol: 'AIRX',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9201/thumb/Aircoins.png?1591615033',
+      'https://assets.coingecko.com/coins/images/9201/small/Aircoins.png?1591615033',
   },
   {
     chainId: 1,
@@ -4466,7 +4466,7 @@ const tokens = [
     symbol: 'BSOV',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9205/thumb/bsov.png?1578020375',
+      'https://assets.coingecko.com/coins/images/9205/small/bsov.png?1578020375',
   },
   {
     chainId: 1,
@@ -4475,7 +4475,7 @@ const tokens = [
     symbol: 'SHUF',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9222/thumb/shuf.png?1568038008',
+      'https://assets.coingecko.com/coins/images/9222/small/shuf.png?1568038008',
   },
   {
     chainId: 1,
@@ -4484,7 +4484,7 @@ const tokens = [
     symbol: 'YO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9231/thumb/ybx_logo.gif?1565306320',
+      'https://assets.coingecko.com/coins/images/9231/small/ybx_logo.gif?1565306320',
   },
   {
     chainId: 1,
@@ -4493,7 +4493,7 @@ const tokens = [
     symbol: 'BSC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9238/thumb/image.png?1604295837',
+      'https://assets.coingecko.com/coins/images/9238/small/image.png?1604295837',
   },
   {
     chainId: 1,
@@ -4502,7 +4502,7 @@ const tokens = [
     symbol: 'CDAI',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9281/thumb/cDAI.png?1576467585',
+      'https://assets.coingecko.com/coins/images/9281/small/cDAI.png?1576467585',
   },
   {
     chainId: 1,
@@ -4511,7 +4511,7 @@ const tokens = [
     symbol: 'TSHP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9351/thumb/12ships.png?1566485390',
+      'https://assets.coingecko.com/coins/images/9351/small/12ships.png?1566485390',
   },
   {
     chainId: 1,
@@ -4520,7 +4520,7 @@ const tokens = [
     symbol: 'SXP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9368/thumb/swipe.png?1566792311',
+      'https://assets.coingecko.com/coins/images/9368/small/swipe.png?1566792311',
   },
   {
     chainId: 1,
@@ -4529,7 +4529,7 @@ const tokens = [
     symbol: 'USDX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9375/thumb/logo_USDx_256x256.png?1568695741',
+      'https://assets.coingecko.com/coins/images/9375/small/logo_USDx_256x256.png?1568695741',
   },
   {
     chainId: 1,
@@ -4538,7 +4538,7 @@ const tokens = [
     symbol: 'ILK',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9377/thumb/qlyyGGYI_400x400.jpg?1566774060',
+      'https://assets.coingecko.com/coins/images/9377/small/qlyyGGYI_400x400.jpg?1566774060',
   },
   {
     chainId: 1,
@@ -4547,7 +4547,7 @@ const tokens = [
     symbol: 'TCS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9413/thumb/logo256.png?1567029646',
+      'https://assets.coingecko.com/coins/images/9413/small/logo256.png?1567029646',
   },
   {
     chainId: 1,
@@ -4556,7 +4556,7 @@ const tokens = [
     symbol: 'DVP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9424/thumb/4520.png?1568598223',
+      'https://assets.coingecko.com/coins/images/9424/small/4520.png?1568598223',
   },
   {
     chainId: 1,
@@ -4565,7 +4565,7 @@ const tokens = [
     symbol: 'IDRT',
     decimals: 2,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9441/thumb/57421944_1371636006308255_3647136573922738176_n.jpg?1567462531',
+      'https://assets.coingecko.com/coins/images/9441/small/57421944_1371636006308255_3647136573922738176_n.jpg?1567462531',
   },
   {
     chainId: 1,
@@ -4574,7 +4574,7 @@ const tokens = [
     symbol: 'CUSDC',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9442/thumb/Compound_USDC.png?1567581577',
+      'https://assets.coingecko.com/coins/images/9442/small/Compound_USDC.png?1567581577',
   },
   {
     chainId: 1,
@@ -4583,7 +4583,7 @@ const tokens = [
     symbol: 'RING',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9443/thumb/iHFgzyCK_400x400.png?1567463393',
+      'https://assets.coingecko.com/coins/images/9443/small/iHFgzyCK_400x400.png?1567463393',
   },
   {
     chainId: 1,
@@ -4592,7 +4592,7 @@ const tokens = [
     symbol: 'INFT',
     decimals: 6,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9461/thumb/5TOvk2A.png?1604885818',
+      'https://assets.coingecko.com/coins/images/9461/small/5TOvk2A.png?1604885818',
   },
   {
     chainId: 1,
@@ -4601,7 +4601,7 @@ const tokens = [
     symbol: 'THKD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9465/thumb/THKD.png?1567642964',
+      'https://assets.coingecko.com/coins/images/9465/small/THKD.png?1567642964',
   },
   {
     chainId: 1,
@@ -4610,7 +4610,7 @@ const tokens = [
     symbol: 'EXE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9466/thumb/8x8_symbol_512x.png?1574320199',
+      'https://assets.coingecko.com/coins/images/9466/small/8x8_symbol_512x.png?1574320199',
   },
   {
     chainId: 1,
@@ -4619,7 +4619,7 @@ const tokens = [
     symbol: 'SHIT',
     decimals: 6,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9472/thumb/ShitCoin_200x200.png?1567723695',
+      'https://assets.coingecko.com/coins/images/9472/small/ShitCoin_200x200.png?1567723695',
   },
   {
     chainId: 1,
@@ -4628,7 +4628,7 @@ const tokens = [
     symbol: 'DEFL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9477/thumb/20190906_172749.png?1567982012',
+      'https://assets.coingecko.com/coins/images/9477/small/20190906_172749.png?1567982012',
   },
   {
     chainId: 1,
@@ -4637,7 +4637,7 @@ const tokens = [
     symbol: 'PAXG',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9519/thumb/paxg.PNG?1568542565',
+      'https://assets.coingecko.com/coins/images/9519/small/paxg.PNG?1568542565',
   },
   {
     chainId: 1,
@@ -4646,7 +4646,7 @@ const tokens = [
     symbol: 'EBASE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9541/thumb/Eurbase_Logo.png?1590024287',
+      'https://assets.coingecko.com/coins/images/9541/small/Eurbase_Logo.png?1590024287',
   },
   {
     chainId: 1,
@@ -4655,7 +4655,7 @@ const tokens = [
     symbol: 'PAN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9543/thumb/pan-logo.png?1568674599',
+      'https://assets.coingecko.com/coins/images/9543/small/pan-logo.png?1568674599',
   },
   {
     chainId: 1,
@@ -4664,7 +4664,7 @@ const tokens = [
     symbol: 'BAND',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9545/thumb/band-protocol.png?1568730326',
+      'https://assets.coingecko.com/coins/images/9545/small/band-protocol.png?1568730326',
   },
   {
     chainId: 1,
@@ -4673,7 +4673,7 @@ const tokens = [
     symbol: 'HUSD',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9567/thumb/HUSD.jpg?1568889385',
+      'https://assets.coingecko.com/coins/images/9567/small/HUSD.jpg?1568889385',
   },
   {
     chainId: 1,
@@ -4682,7 +4682,7 @@ const tokens = [
     symbol: 'BUSD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9576/thumb/BUSD.png?1568947766',
+      'https://assets.coingecko.com/coins/images/9576/small/BUSD.png?1568947766',
   },
   {
     chainId: 1,
@@ -4691,7 +4691,7 @@ const tokens = [
     symbol: 'BAZT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9581/thumb/baz.png?1576038883',
+      'https://assets.coingecko.com/coins/images/9581/small/baz.png?1576038883',
   },
   {
     chainId: 1,
@@ -4700,7 +4700,7 @@ const tokens = [
     symbol: 'DMME',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9598/thumb/iyrIZf3N_400x400.png?1569383452',
+      'https://assets.coingecko.com/coins/images/9598/small/iyrIZf3N_400x400.png?1569383452',
   },
   {
     chainId: 1,
@@ -4709,7 +4709,7 @@ const tokens = [
     symbol: 'BFX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9616/thumb/CBc5dTJ.png?1569853341',
+      'https://assets.coingecko.com/coins/images/9616/small/CBc5dTJ.png?1569853341',
   },
   {
     chainId: 1,
@@ -4718,7 +4718,7 @@ const tokens = [
     symbol: 'PEAK',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9626/thumb/PEAKDEFI_Logo_250x250.png?1603094772',
+      'https://assets.coingecko.com/coins/images/9626/small/PEAKDEFI_Logo_250x250.png?1603094772',
   },
   {
     chainId: 1,
@@ -4727,7 +4727,7 @@ const tokens = [
     symbol: 'PAN',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9639/thumb/icon-coin-pan-color_250px.png?1570103344',
+      'https://assets.coingecko.com/coins/images/9639/small/icon-coin-pan-color_250px.png?1570103344',
   },
   {
     chainId: 1,
@@ -4736,7 +4736,7 @@ const tokens = [
     symbol: 'TRB',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9644/thumb/Blk_icon_current.png?1584980686',
+      'https://assets.coingecko.com/coins/images/9644/small/Blk_icon_current.png?1584980686',
   },
   {
     chainId: 1,
@@ -4745,7 +4745,7 @@ const tokens = [
     symbol: 'PGS',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9646/thumb/pgs.PNG?1570179224',
+      'https://assets.coingecko.com/coins/images/9646/small/pgs.PNG?1570179224',
   },
   {
     chainId: 1,
@@ -4754,7 +4754,7 @@ const tokens = [
     symbol: 'VNDC',
     decimals: 0,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9670/thumb/vndc-gold-coin.png?1571032826',
+      'https://assets.coingecko.com/coins/images/9670/small/vndc-gold-coin.png?1571032826',
   },
   {
     chainId: 1,
@@ -4763,7 +4763,7 @@ const tokens = [
     symbol: 'BPOP',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9701/thumb/bpop.PNG?1570916211',
+      'https://assets.coingecko.com/coins/images/9701/small/bpop.PNG?1570916211',
   },
   {
     chainId: 1,
@@ -4772,7 +4772,7 @@ const tokens = [
     symbol: 'DF',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9709/thumb/xlGxxIjI_400x400.jpg?1571006794',
+      'https://assets.coingecko.com/coins/images/9709/small/xlGxxIjI_400x400.jpg?1571006794',
   },
   {
     chainId: 1,
@@ -4781,7 +4781,7 @@ const tokens = [
     symbol: 'ZUM',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9721/thumb/zum256x256.png?1571264005',
+      'https://assets.coingecko.com/coins/images/9721/small/zum256x256.png?1571264005',
   },
   {
     chainId: 1,
@@ -4790,7 +4790,7 @@ const tokens = [
     symbol: 'MBC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9770/thumb/logo_%2824%29.png?1571610155',
+      'https://assets.coingecko.com/coins/images/9770/small/logo_%2824%29.png?1571610155',
   },
   {
     chainId: 1,
@@ -4799,7 +4799,7 @@ const tokens = [
     symbol: 'NII',
     decimals: 15,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9786/thumb/nahmii-sm_icon-full-color.png?1608513773',
+      'https://assets.coingecko.com/coins/images/9786/small/nahmii-sm_icon-full-color.png?1608513773',
   },
   {
     chainId: 1,
@@ -4808,7 +4808,7 @@ const tokens = [
     symbol: 'CLL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9790/thumb/CLL_drop_Shaddow_200x_200.png?1571874444',
+      'https://assets.coingecko.com/coins/images/9790/small/CLL_drop_Shaddow_200x_200.png?1571874444',
   },
   {
     chainId: 1,
@@ -4817,7 +4817,7 @@ const tokens = [
     symbol: 'CHT',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9803/thumb/nav_light.png?1571919368',
+      'https://assets.coingecko.com/coins/images/9803/small/nav_light.png?1571919368',
   },
   {
     chainId: 1,
@@ -4826,7 +4826,7 @@ const tokens = [
     symbol: 'TRUSD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9811/thumb/TrustUSDlogo.png?1589631273',
+      'https://assets.coingecko.com/coins/images/9811/small/TrustUSDlogo.png?1589631273',
   },
   {
     chainId: 1,
@@ -4835,7 +4835,7 @@ const tokens = [
     symbol: 'SUTER',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9830/thumb/p-NFlBlw_400x400.jpg?1572472860',
+      'https://assets.coingecko.com/coins/images/9830/small/p-NFlBlw_400x400.jpg?1572472860',
   },
   {
     chainId: 1,
@@ -4844,7 +4844,7 @@ const tokens = [
     symbol: 'DZAR',
     decimals: 6,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9841/thumb/logo200_%281%29.png?1572577311',
+      'https://assets.coingecko.com/coins/images/9841/small/logo200_%281%29.png?1572577311',
   },
   {
     chainId: 1,
@@ -4853,7 +4853,7 @@ const tokens = [
     symbol: 'MGX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9865/thumb/MGX_Logo.png?1603614181',
+      'https://assets.coingecko.com/coins/images/9865/small/MGX_Logo.png?1603614181',
   },
   {
     chainId: 1,
@@ -4862,7 +4862,7 @@ const tokens = [
     symbol: 'XFOC',
     decimals: 7,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9885/thumb/logo_%2811%29.png?1572942311',
+      'https://assets.coingecko.com/coins/images/9885/small/logo_%2811%29.png?1572942311',
   },
   {
     chainId: 1,
@@ -4871,7 +4871,7 @@ const tokens = [
     symbol: 'GOLD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9905/thumb/PO04AL0y_400x400.jpg?1573437136',
+      'https://assets.coingecko.com/coins/images/9905/small/PO04AL0y_400x400.jpg?1573437136',
   },
   {
     chainId: 1,
@@ -4880,7 +4880,7 @@ const tokens = [
     symbol: 'AFDLT',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9908/thumb/GOLDEN_TOKEN_4.png?1575868746',
+      'https://assets.coingecko.com/coins/images/9908/small/GOLDEN_TOKEN_4.png?1575868746',
   },
   {
     chainId: 1,
@@ -4889,7 +4889,7 @@ const tokens = [
     symbol: 'VNXLU',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9945/thumb/vnx.PNG?1573639467',
+      'https://assets.coingecko.com/coins/images/9945/small/vnx.PNG?1573639467',
   },
   {
     chainId: 1,
@@ -4898,7 +4898,7 @@ const tokens = [
     symbol: 'DAI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9956/thumb/dai-multi-collateral-mcd.png?1574218774',
+      'https://assets.coingecko.com/coins/images/9956/small/dai-multi-collateral-mcd.png?1574218774',
   },
   {
     chainId: 1,
@@ -4907,7 +4907,7 @@ const tokens = [
     symbol: 'TMT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9963/thumb/tmt.png?1585317430',
+      'https://assets.coingecko.com/coins/images/9963/small/tmt.png?1585317430',
   },
   {
     chainId: 1,
@@ -4916,7 +4916,7 @@ const tokens = [
     symbol: 'CBIX7',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9978/thumb/CBIX7.png?1574320790',
+      'https://assets.coingecko.com/coins/images/9978/small/CBIX7.png?1574320790',
   },
   {
     chainId: 1,
@@ -4925,7 +4925,7 @@ const tokens = [
     symbol: 'LCX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9985/thumb/zRPSu_0o_400x400.jpg?1574327008',
+      'https://assets.coingecko.com/coins/images/9985/small/zRPSu_0o_400x400.jpg?1574327008',
   },
   {
     chainId: 1,
@@ -4934,7 +4934,7 @@ const tokens = [
     symbol: 'FOX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9988/thumb/FOX.png?1574330622',
+      'https://assets.coingecko.com/coins/images/9988/small/FOX.png?1574330622',
   },
   {
     chainId: 1,
@@ -4943,7 +4943,7 @@ const tokens = [
     symbol: 'BULL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9992/thumb/683JEXMN_400x400.png?1574418750',
+      'https://assets.coingecko.com/coins/images/9992/small/683JEXMN_400x400.png?1574418750',
   },
   {
     chainId: 1,
@@ -4952,7 +4952,7 @@ const tokens = [
     symbol: 'CHESS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/9998/thumb/Webp.net-resizeimage.png?1595321722',
+      'https://assets.coingecko.com/coins/images/9998/small/Webp.net-resizeimage.png?1595321722',
   },
   {
     chainId: 1,
@@ -4961,7 +4961,7 @@ const tokens = [
     symbol: 'HTX',
     decimals: 2,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10000/thumb/qv4yQIm.png?1574655042',
+      'https://assets.coingecko.com/coins/images/10000/small/qv4yQIm.png?1574655042',
   },
   {
     chainId: 1,
@@ -4970,7 +4970,7 @@ const tokens = [
     symbol: 'RES',
     decimals: 5,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10026/thumb/logo_%281%29.png?1588935633',
+      'https://assets.coingecko.com/coins/images/10026/small/logo_%281%29.png?1588935633',
   },
   {
     chainId: 1,
@@ -4979,7 +4979,7 @@ const tokens = [
     symbol: 'XIO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10029/thumb/tvXNjFX1_400x400.png?1574896146',
+      'https://assets.coingecko.com/coins/images/10029/small/tvXNjFX1_400x400.png?1574896146',
   },
   {
     chainId: 1,
@@ -4988,7 +4988,7 @@ const tokens = [
     symbol: 'AFROX',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10047/thumb/AfroDex_LOGO.png?1575243022',
+      'https://assets.coingecko.com/coins/images/10047/small/AfroDex_LOGO.png?1575243022',
   },
   {
     chainId: 1,
@@ -4997,7 +4997,7 @@ const tokens = [
     symbol: 'BTCWH',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10067/thumb/BTCWH_Logo-1.png?1575426261',
+      'https://assets.coingecko.com/coins/images/10067/small/BTCWH_Logo-1.png?1575426261',
   },
   {
     chainId: 1,
@@ -5006,7 +5006,7 @@ const tokens = [
     symbol: 'HEX',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10103/thumb/HEX-logo.png?1575942673',
+      'https://assets.coingecko.com/coins/images/10103/small/HEX-logo.png?1575942673',
   },
   {
     chainId: 1,
@@ -5015,7 +5015,7 @@ const tokens = [
     symbol: 'XQC',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10112/thumb/FZFHac2z_400x400.jpg?1575964560',
+      'https://assets.coingecko.com/coins/images/10112/small/FZFHac2z_400x400.jpg?1575964560',
   },
   {
     chainId: 1,
@@ -5024,7 +5024,7 @@ const tokens = [
     symbol: 'USDN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10117/thumb/78GWcZu.png?1600845716',
+      'https://assets.coingecko.com/coins/images/10117/small/78GWcZu.png?1600845716',
   },
   {
     chainId: 1,
@@ -5033,7 +5033,7 @@ const tokens = [
     symbol: 'TRYB',
     decimals: 6,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10119/thumb/v1bIhvRr_400x400.png?1576359242',
+      'https://assets.coingecko.com/coins/images/10119/small/v1bIhvRr_400x400.png?1576359242',
   },
   {
     chainId: 1,
@@ -5042,7 +5042,7 @@ const tokens = [
     symbol: 'APIX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10124/thumb/5sSKmtlA_400x400.png?1576126911',
+      'https://assets.coingecko.com/coins/images/10124/small/5sSKmtlA_400x400.png?1576126911',
   },
   {
     chainId: 1,
@@ -5051,7 +5051,7 @@ const tokens = [
     symbol: 'UPT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10136/thumb/yS35aK0t_400x400_%281%29.jpg?1576191179',
+      'https://assets.coingecko.com/coins/images/10136/small/yS35aK0t_400x400_%281%29.jpg?1576191179',
   },
   {
     chainId: 1,
@@ -5060,7 +5060,7 @@ const tokens = [
     symbol: 'TAUD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10146/thumb/TAUD.png?1576466892',
+      'https://assets.coingecko.com/coins/images/10146/small/TAUD.png?1576466892',
   },
   {
     chainId: 1,
@@ -5069,7 +5069,7 @@ const tokens = [
     symbol: 'CHAI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10147/thumb/CHAI.png?1576467289',
+      'https://assets.coingecko.com/coins/images/10147/small/CHAI.png?1576467289',
   },
   {
     chainId: 1,
@@ -5078,7 +5078,7 @@ const tokens = [
     symbol: 'CSAI',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10148/thumb/cSAI.png?1576467788',
+      'https://assets.coingecko.com/coins/images/10148/small/cSAI.png?1576467788',
   },
   {
     chainId: 1,
@@ -5087,7 +5087,7 @@ const tokens = [
     symbol: 'BEPRO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10251/thumb/bet-protocol.png?1576678652',
+      'https://assets.coingecko.com/coins/images/10251/small/bet-protocol.png?1576678652',
   },
   {
     chainId: 1,
@@ -5096,7 +5096,7 @@ const tokens = [
     symbol: 'USDA',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10280/thumb/71706577_106238760785222_2649249116525166592_n.png?1576972115',
+      'https://assets.coingecko.com/coins/images/10280/small/71706577_106238760785222_2649249116525166592_n.png?1576972115',
   },
   {
     chainId: 1,
@@ -5105,7 +5105,7 @@ const tokens = [
     symbol: 'XTP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10291/thumb/0_3SJYkk_400x400.jpg?1577229220',
+      'https://assets.coingecko.com/coins/images/10291/small/0_3SJYkk_400x400.jpg?1577229220',
   },
   {
     chainId: 1,
@@ -5114,7 +5114,7 @@ const tokens = [
     symbol: 'EGR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10293/thumb/egoras.png?1594434887',
+      'https://assets.coingecko.com/coins/images/10293/small/egoras.png?1594434887',
   },
   {
     chainId: 1,
@@ -5123,7 +5123,7 @@ const tokens = [
     symbol: 'CUR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10314/thumb/is8-HSAQ99o3KejDDwfnqnzW_tOHbqsEPHQlYL_UEVDeVfKhbMe871CfCrEo_BYAeC1MtEFUGcd1aZ2YtJopCQKr5tEbz9dyLmBw7nJGuOgWE4fGa4Bsui2bt8yMSZQt6meB2hAbZ1VPUf6J5pgVPslRkH3C7pSsapnpZslVi0eD7U8wb7CucXp6xuI3T0rsBQaBbHtftdoUrz8d0WiYLcwpflI6A1dVOlCXUIk9llfTuTJE.jpg?1577834182',
+      'https://assets.coingecko.com/coins/images/10314/small/is8-HSAQ99o3KejDDwfnqnzW_tOHbqsEPHQlYL_UEVDeVfKhbMe871CfCrEo_BYAeC1MtEFUGcd1aZ2YtJopCQKr5tEbz9dyLmBw7nJGuOgWE4fGa4Bsui2bt8yMSZQt6meB2hAbZ1VPUf6J5pgVPslRkH3C7pSsapnpZslVi0eD7U8wb7CucXp6xuI3T0rsBQaBbHtftdoUrz8d0WiYLcwpflI6A1dVOlCXUIk9llfTuTJE.jpg?1577834182',
   },
   {
     chainId: 1,
@@ -5132,7 +5132,7 @@ const tokens = [
     symbol: 'FUSE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10347/thumb/vUXKHEe.png?1601523640',
+      'https://assets.coingecko.com/coins/images/10347/small/vUXKHEe.png?1601523640',
   },
   {
     chainId: 1,
@@ -5141,7 +5141,7 @@ const tokens = [
     symbol: 'JUP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10351/thumb/D6rKYJOz_400x400.png?1578435066',
+      'https://assets.coingecko.com/coins/images/10351/small/D6rKYJOz_400x400.png?1578435066',
   },
   {
     chainId: 1,
@@ -5150,7 +5150,7 @@ const tokens = [
     symbol: 'SURE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10354/thumb/logo200.png?1578435990',
+      'https://assets.coingecko.com/coins/images/10354/small/logo200.png?1578435990',
   },
   {
     chainId: 1,
@@ -5159,7 +5159,7 @@ const tokens = [
     symbol: 'VYA',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10358/thumb/logo_%2879%29.png?1592193166',
+      'https://assets.coingecko.com/coins/images/10358/small/logo_%2879%29.png?1592193166',
   },
   {
     chainId: 1,
@@ -5168,7 +5168,7 @@ const tokens = [
     symbol: 'SLP',
     decimals: 0,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10366/thumb/SLP.png?1578640057',
+      'https://assets.coingecko.com/coins/images/10366/small/SLP.png?1578640057',
   },
   {
     chainId: 1,
@@ -5177,7 +5177,7 @@ const tokens = [
     symbol: 'GOM2',
     decimals: 0,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10374/thumb/lvAhDIqmH0fh6U3NIiYLmKETR3uUBcySAv-K28eW6CCFm-ODhCdId71Ug5c4TCoEtxsre30Efe08muctK0MlK-JPdAbxilzZ7dHyiBNOCvcc_9AmJIo09TRLaiAafgqcFKsxpNOON2D28oTLnVTaqwxWL8zKSzjbI6ChKTCJKOiM2mq7VhQRZYe93StR30mf2O7DnkqmGEbZ5_i.jpg?1578675305',
+      'https://assets.coingecko.com/coins/images/10374/small/lvAhDIqmH0fh6U3NIiYLmKETR3uUBcySAv-K28eW6CCFm-ODhCdId71Ug5c4TCoEtxsre30Efe08muctK0MlK-JPdAbxilzZ7dHyiBNOCvcc_9AmJIo09TRLaiAafgqcFKsxpNOON2D28oTLnVTaqwxWL8zKSzjbI6ChKTCJKOiM2mq7VhQRZYe93StR30mf2O7DnkqmGEbZ5_i.jpg?1578675305',
   },
   {
     chainId: 1,
@@ -5186,7 +5186,7 @@ const tokens = [
     symbol: 'JRT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10390/thumb/cfeii0y.png?1578868949',
+      'https://assets.coingecko.com/coins/images/10390/small/cfeii0y.png?1578868949',
   },
   {
     chainId: 1,
@@ -5195,7 +5195,7 @@ const tokens = [
     symbol: 'CPR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10392/thumb/cipher-logo.png?1578891757',
+      'https://assets.coingecko.com/coins/images/10392/small/cipher-logo.png?1578891757',
   },
   {
     chainId: 1,
@@ -5204,7 +5204,7 @@ const tokens = [
     symbol: 'BSC',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10393/thumb/Benscoin_Logo_200x200_%28CoinGecko%29.png?1594432611',
+      'https://assets.coingecko.com/coins/images/10393/small/Benscoin_Logo_200x200_%28CoinGecko%29.png?1594432611',
   },
   {
     chainId: 1,
@@ -5213,7 +5213,7 @@ const tokens = [
     symbol: 'TRUST',
     decimals: 6,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10402/thumb/trust.PNG?1578951769',
+      'https://assets.coingecko.com/coins/images/10402/small/trust.PNG?1578951769',
   },
   {
     chainId: 1,
@@ -5222,7 +5222,7 @@ const tokens = [
     symbol: 'PYRO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10413/thumb/ldWtWr6.png?1579127581',
+      'https://assets.coingecko.com/coins/images/10413/small/ldWtWr6.png?1579127581',
   },
   {
     chainId: 1,
@@ -5231,7 +5231,7 @@ const tokens = [
     symbol: 'TWEE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10419/thumb/tweebaalogo200.png?1588125478',
+      'https://assets.coingecko.com/coins/images/10419/small/tweebaalogo200.png?1588125478',
   },
   {
     chainId: 1,
@@ -5240,7 +5240,7 @@ const tokens = [
     symbol: 'HUE',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10420/thumb/untitled.png?1579141360',
+      'https://assets.coingecko.com/coins/images/10420/small/untitled.png?1579141360',
   },
   {
     chainId: 1,
@@ -5249,7 +5249,7 @@ const tokens = [
     symbol: 'STT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10422/thumb/scatter.png?1580876890',
+      'https://assets.coingecko.com/coins/images/10422/small/scatter.png?1580876890',
   },
   {
     chainId: 1,
@@ -5258,7 +5258,7 @@ const tokens = [
     symbol: 'TMV',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10424/thumb/MiSBHza.png?1603596390',
+      'https://assets.coingecko.com/coins/images/10424/small/MiSBHza.png?1603596390',
   },
   {
     chainId: 1,
@@ -5267,7 +5267,7 @@ const tokens = [
     symbol: 'SGR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10429/thumb/sgr.png?1600827772',
+      'https://assets.coingecko.com/coins/images/10429/small/sgr.png?1600827772',
   },
   {
     chainId: 1,
@@ -5276,7 +5276,7 @@ const tokens = [
     symbol: 'IFX24',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10444/thumb/lpFSaoD.png?1579475634',
+      'https://assets.coingecko.com/coins/images/10444/small/lpFSaoD.png?1579475634',
   },
   {
     chainId: 1,
@@ -5285,7 +5285,7 @@ const tokens = [
     symbol: 'SXRP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10455/thumb/sXRP.png?1579575399',
+      'https://assets.coingecko.com/coins/images/10455/small/sXRP.png?1579575399',
   },
   {
     chainId: 1,
@@ -5294,7 +5294,7 @@ const tokens = [
     symbol: 'XAUT',
     decimals: 6,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10481/thumb/tether-gold.png?1579946148',
+      'https://assets.coingecko.com/coins/images/10481/small/tether-gold.png?1579946148',
   },
   {
     chainId: 1,
@@ -5303,7 +5303,7 @@ const tokens = [
     symbol: 'BIGO',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10564/thumb/Bigocoin_1200px.jpg?1597463586',
+      'https://assets.coingecko.com/coins/images/10564/small/Bigocoin_1200px.jpg?1597463586',
   },
   {
     chainId: 1,
@@ -5312,7 +5312,7 @@ const tokens = [
     symbol: 'USDB',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10619/thumb/busd.png?1581026228',
+      'https://assets.coingecko.com/coins/images/10619/small/busd.png?1581026228',
   },
   {
     chainId: 1,
@@ -5321,7 +5321,7 @@ const tokens = [
     symbol: 'SKULL',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10641/thumb/skull.png?1581339740',
+      'https://assets.coingecko.com/coins/images/10641/small/skull.png?1581339740',
   },
   {
     chainId: 1,
@@ -5330,7 +5330,7 @@ const tokens = [
     symbol: 'FORCER',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10642/thumb/logo.png?1581339963',
+      'https://assets.coingecko.com/coins/images/10642/small/logo.png?1581339963',
   },
   {
     chainId: 1,
@@ -5339,7 +5339,7 @@ const tokens = [
     symbol: 'CETH',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10643/thumb/ceth2.JPG?1581389598',
+      'https://assets.coingecko.com/coins/images/10643/small/ceth2.JPG?1581389598',
   },
   {
     chainId: 1,
@@ -5348,7 +5348,7 @@ const tokens = [
     symbol: 'CZRX',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10644/thumb/czrx1.JPG?1581390510',
+      'https://assets.coingecko.com/coins/images/10644/small/czrx1.JPG?1581390510',
   },
   {
     chainId: 1,
@@ -5357,7 +5357,7 @@ const tokens = [
     symbol: 'CBAT',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10645/thumb/cBAT1.JPG?1581390910',
+      'https://assets.coingecko.com/coins/images/10645/small/cBAT1.JPG?1581390910',
   },
   {
     chainId: 1,
@@ -5366,7 +5366,7 @@ const tokens = [
     symbol: 'PIXBY',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10681/thumb/logo.png?1595493823',
+      'https://assets.coingecko.com/coins/images/10681/small/logo.png?1595493823',
   },
   {
     chainId: 1,
@@ -5375,7 +5375,7 @@ const tokens = [
     symbol: 'CUBE',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10687/thumb/Steam_Logo200x200_02.png?1581976974',
+      'https://assets.coingecko.com/coins/images/10687/small/Steam_Logo200x200_02.png?1581976974',
   },
   {
     chainId: 1,
@@ -5384,7 +5384,7 @@ const tokens = [
     symbol: 'EER',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10695/thumb/0x6f371ca338bbddd0baf719e1d5d0797cce20774f.png?1582153688',
+      'https://assets.coingecko.com/coins/images/10695/small/0x6f371ca338bbddd0baf719e1d5d0797cce20774f.png?1582153688',
   },
   {
     chainId: 1,
@@ -5393,7 +5393,7 @@ const tokens = [
     symbol: 'IMBTC',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10702/thumb/imbtc.png?1585124381',
+      'https://assets.coingecko.com/coins/images/10702/small/imbtc.png?1585124381',
   },
   {
     chainId: 1,
@@ -5402,7 +5402,7 @@ const tokens = [
     symbol: 'PGOLD',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10703/thumb/PGold-Logo-200x200-1.png?1582496992',
+      'https://assets.coingecko.com/coins/images/10703/small/PGold-Logo-200x200-1.png?1582496992',
   },
   {
     chainId: 1,
@@ -5411,7 +5411,7 @@ const tokens = [
     symbol: 'SOCKS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10717/thumb/qFrcoiM.png?1582525244',
+      'https://assets.coingecko.com/coins/images/10717/small/qFrcoiM.png?1582525244',
   },
   {
     chainId: 1,
@@ -5420,7 +5420,7 @@ const tokens = [
     symbol: 'PMGT',
     decimals: 5,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10730/thumb/pmgt_logo_256x256.png?1582668331',
+      'https://assets.coingecko.com/coins/images/10730/small/pmgt_logo_256x256.png?1582668331',
   },
   {
     chainId: 1,
@@ -5429,7 +5429,7 @@ const tokens = [
     symbol: 'ASAC',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10738/thumb/NiGQ7aKr_400x400.jpg?1582778597',
+      'https://assets.coingecko.com/coins/images/10738/small/NiGQ7aKr_400x400.jpg?1582778597',
   },
   {
     chainId: 1,
@@ -5438,7 +5438,7 @@ const tokens = [
     symbol: 'NLINK',
     decimals: 3,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10741/thumb/o1bMQL2.png?1582779928',
+      'https://assets.coingecko.com/coins/images/10741/small/o1bMQL2.png?1582779928',
   },
   {
     chainId: 1,
@@ -5447,7 +5447,7 @@ const tokens = [
     symbol: 'WHALE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10743/thumb/whalecoin200.png?1582835568',
+      'https://assets.coingecko.com/coins/images/10743/small/whalecoin200.png?1582835568',
   },
   {
     chainId: 1,
@@ -5456,7 +5456,7 @@ const tokens = [
     symbol: 'BDAI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10747/thumb/0_hNrqXMnppv8yZaOi.png?1582838339',
+      'https://assets.coingecko.com/coins/images/10747/small/0_hNrqXMnppv8yZaOi.png?1582838339',
   },
   {
     chainId: 1,
@@ -5465,7 +5465,7 @@ const tokens = [
     symbol: 'FCBTC',
     decimals: 6,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10750/thumb/FCBTC.png?1583053684',
+      'https://assets.coingecko.com/coins/images/10750/small/FCBTC.png?1583053684',
   },
   {
     chainId: 1,
@@ -5474,7 +5474,7 @@ const tokens = [
     symbol: 'ANJ',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10765/thumb/ANJ.png?1588956187',
+      'https://assets.coingecko.com/coins/images/10765/small/ANJ.png?1588956187',
   },
   {
     chainId: 1,
@@ -5483,7 +5483,7 @@ const tokens = [
     symbol: 'RAKU',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10768/thumb/Rakun_Icon_Red_200x200.png?1583310899',
+      'https://assets.coingecko.com/coins/images/10768/small/Rakun_Icon_Red_200x200.png?1583310899',
   },
   {
     chainId: 1,
@@ -5492,7 +5492,7 @@ const tokens = [
     symbol: 'COMP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10775/thumb/COMP.png?1592625425',
+      'https://assets.coingecko.com/coins/images/10775/small/COMP.png?1592625425',
   },
   {
     chainId: 1,
@@ -5501,7 +5501,7 @@ const tokens = [
     symbol: 'GST2',
     decimals: 2,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10779/thumb/gas.png?1583466756',
+      'https://assets.coingecko.com/coins/images/10779/small/gas.png?1583466756',
   },
   {
     chainId: 1,
@@ -5510,7 +5510,7 @@ const tokens = [
     symbol: 'HDAO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10780/thumb/B7-ppPfE_400x400.png?1583467291',
+      'https://assets.coingecko.com/coins/images/10780/small/B7-ppPfE_400x400.png?1583467291',
   },
   {
     chainId: 1,
@@ -5519,7 +5519,7 @@ const tokens = [
     symbol: 'SURF',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10783/thumb/200x200-logo-blu-grey-bkg-4-e1583512409629.png?1583539501',
+      'https://assets.coingecko.com/coins/images/10783/small/200x200-logo-blu-grey-bkg-4-e1583512409629.png?1583539501',
   },
   {
     chainId: 1,
@@ -5528,7 +5528,7 @@ const tokens = [
     symbol: 'KIWI',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10799/thumb/kiwi_256.png?1583736957',
+      'https://assets.coingecko.com/coins/images/10799/small/kiwi_256.png?1583736957',
   },
   {
     chainId: 1,
@@ -5537,7 +5537,7 @@ const tokens = [
     symbol: 'PBTC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10805/thumb/J51iIea.png?1583891599',
+      'https://assets.coingecko.com/coins/images/10805/small/J51iIea.png?1583891599',
   },
   {
     chainId: 1,
@@ -5546,7 +5546,7 @@ const tokens = [
     symbol: 'TWOB',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10806/thumb/_6b6b6b.png?1587105970',
+      'https://assets.coingecko.com/coins/images/10806/small/_6b6b6b.png?1587105970',
   },
   {
     chainId: 1,
@@ -5555,7 +5555,7 @@ const tokens = [
     symbol: 'BTSE',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10807/thumb/BTSE_logo_Square.jpeg?1583965964',
+      'https://assets.coingecko.com/coins/images/10807/small/BTSE_logo_Square.jpeg?1583965964',
   },
   {
     chainId: 1,
@@ -5564,7 +5564,7 @@ const tokens = [
     symbol: 'KDAG',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10809/thumb/3xcLUorv_400x400.jpg?1591000563',
+      'https://assets.coingecko.com/coins/images/10809/small/3xcLUorv_400x400.jpg?1591000563',
   },
   {
     chainId: 1,
@@ -5573,7 +5573,7 @@ const tokens = [
     symbol: 'VGTN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10815/thumb/vgtn.png?1585123177',
+      'https://assets.coingecko.com/coins/images/10815/small/vgtn.png?1585123177',
   },
   {
     chainId: 1,
@@ -5582,7 +5582,7 @@ const tokens = [
     symbol: 'CWBTC',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10823/thumb/cwbtc.png?1584331700',
+      'https://assets.coingecko.com/coins/images/10823/small/cwbtc.png?1584331700',
   },
   {
     chainId: 1,
@@ -5591,7 +5591,7 @@ const tokens = [
     symbol: 'ADAI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10843/thumb/aDAI.png?1584698791',
+      'https://assets.coingecko.com/coins/images/10843/small/aDAI.png?1584698791',
   },
   {
     chainId: 1,
@@ -5600,7 +5600,7 @@ const tokens = [
     symbol: 'BEE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10853/thumb/Xg9uPrki_400x400.jpg?1585523253',
+      'https://assets.coingecko.com/coins/images/10853/small/Xg9uPrki_400x400.jpg?1585523253',
   },
   {
     chainId: 1,
@@ -5609,7 +5609,7 @@ const tokens = [
     symbol: 'WRLD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10859/thumb/WRLD.png?1585119261',
+      'https://assets.coingecko.com/coins/images/10859/small/WRLD.png?1585119261',
   },
   {
     chainId: 1,
@@ -5618,7 +5618,7 @@ const tokens = [
     symbol: 'SEED',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10860/thumb/Seed.png?1585204998',
+      'https://assets.coingecko.com/coins/images/10860/small/Seed.png?1585204998',
   },
   {
     chainId: 1,
@@ -5627,7 +5627,7 @@ const tokens = [
     symbol: 'ANK',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10872/thumb/ANK.png?1585456588',
+      'https://assets.coingecko.com/coins/images/10872/small/ANK.png?1585456588',
   },
   {
     chainId: 1,
@@ -5636,7 +5636,7 @@ const tokens = [
     symbol: 'CRTS',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10874/thumb/TOKENCRTS2.png?1591357545',
+      'https://assets.coingecko.com/coins/images/10874/small/TOKENCRTS2.png?1591357545',
   },
   {
     chainId: 1,
@@ -5645,7 +5645,7 @@ const tokens = [
     symbol: 'ISLA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10884/thumb/isla.PNG?1585522028',
+      'https://assets.coingecko.com/coins/images/10884/small/isla.PNG?1585522028',
   },
   {
     chainId: 1,
@@ -5654,7 +5654,7 @@ const tokens = [
     symbol: 'EL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10887/thumb/CeyRVXPY_400x400.jpg?1585559128',
+      'https://assets.coingecko.com/coins/images/10887/small/CeyRVXPY_400x400.jpg?1585559128',
   },
   {
     chainId: 1,
@@ -5663,7 +5663,7 @@ const tokens = [
     symbol: 'SMDX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10899/thumb/IcgJHkM.png?1585698101',
+      'https://assets.coingecko.com/coins/images/10899/small/IcgJHkM.png?1585698101',
   },
   {
     chainId: 1,
@@ -5672,7 +5672,7 @@ const tokens = [
     symbol: 'LINKETHRSI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10927/thumb/linketh_rsi_ratio.png?1585894605',
+      'https://assets.coingecko.com/coins/images/10927/small/linketh_rsi_ratio.png?1585894605',
   },
   {
     chainId: 1,
@@ -5681,7 +5681,7 @@ const tokens = [
     symbol: 'CVD',
     decimals: 0,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10940/thumb/bg-2.png?1586140534',
+      'https://assets.coingecko.com/coins/images/10940/small/bg-2.png?1586140534',
   },
   {
     chainId: 1,
@@ -5690,7 +5690,7 @@ const tokens = [
     symbol: 'XPR',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10941/thumb/Proton-Icon.png?1588283737',
+      'https://assets.coingecko.com/coins/images/10941/small/Proton-Icon.png?1588283737',
   },
   {
     chainId: 1,
@@ -5699,7 +5699,7 @@ const tokens = [
     symbol: 'ERC223',
     decimals: 10,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10946/thumb/20200328_235557.png?1586222500',
+      'https://assets.coingecko.com/coins/images/10946/small/20200328_235557.png?1586222500',
   },
   {
     chainId: 1,
@@ -5708,7 +5708,7 @@ const tokens = [
     symbol: 'UMA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10951/thumb/UMA.png?1586307916',
+      'https://assets.coingecko.com/coins/images/10951/small/UMA.png?1586307916',
   },
   {
     chainId: 1,
@@ -5717,7 +5717,7 @@ const tokens = [
     symbol: 'RSV',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10952/thumb/Reserve.png?1586372277',
+      'https://assets.coingecko.com/coins/images/10952/small/Reserve.png?1586372277',
   },
   {
     chainId: 1,
@@ -5726,7 +5726,7 @@ const tokens = [
     symbol: 'BTC++',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10959/thumb/BTC__.png?1586499443',
+      'https://assets.coingecko.com/coins/images/10959/small/BTC__.png?1586499443',
   },
   {
     chainId: 1,
@@ -5735,7 +5735,7 @@ const tokens = [
     symbol: 'BRAP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10962/thumb/photo_2019-09-12_01-04-13-400x400.jpg?1586506435',
+      'https://assets.coingecko.com/coins/images/10962/small/photo_2019-09-12_01-04-13-400x400.jpg?1586506435',
   },
   {
     chainId: 1,
@@ -5744,7 +5744,7 @@ const tokens = [
     symbol: 'ALEX',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10972/thumb/ALEX.png?1586742545',
+      'https://assets.coingecko.com/coins/images/10972/small/ALEX.png?1586742545',
   },
   {
     chainId: 1,
@@ -5753,7 +5753,7 @@ const tokens = [
     symbol: 'VI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10978/thumb/VI_Icon_%281%29.jpg?1594358218',
+      'https://assets.coingecko.com/coins/images/10978/small/VI_Icon_%281%29.jpg?1594358218',
   },
   {
     chainId: 1,
@@ -5762,7 +5762,7 @@ const tokens = [
     symbol: 'ISIKC',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10992/thumb/logo_%2866%29.png?1586940186',
+      'https://assets.coingecko.com/coins/images/10992/small/logo_%2866%29.png?1586940186',
   },
   {
     chainId: 1,
@@ -5771,7 +5771,7 @@ const tokens = [
     symbol: 'JT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/10994/thumb/Af5MFcVY_400x400.jpg?1586998222',
+      'https://assets.coingecko.com/coins/images/10994/small/Af5MFcVY_400x400.jpg?1586998222',
   },
   {
     chainId: 1,
@@ -5780,7 +5780,7 @@ const tokens = [
     symbol: 'ULLU',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11003/thumb/HHo1IBgw_400x400.jpg?1587087634',
+      'https://assets.coingecko.com/coins/images/11003/small/HHo1IBgw_400x400.jpg?1587087634',
   },
   {
     chainId: 1,
@@ -5789,7 +5789,7 @@ const tokens = [
     symbol: 'BKY',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11013/thumb/bluekeymarket.PNG?1587113081',
+      'https://assets.coingecko.com/coins/images/11013/small/bluekeymarket.PNG?1587113081',
   },
   {
     chainId: 1,
@@ -5798,7 +5798,7 @@ const tokens = [
     symbol: 'GL',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11015/thumb/greenlight.PNG?1587114464',
+      'https://assets.coingecko.com/coins/images/11015/small/greenlight.PNG?1587114464',
   },
   {
     chainId: 1,
@@ -5807,7 +5807,7 @@ const tokens = [
     symbol: 'GRT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11022/thumb/golden_ratio_token.png?1592811112',
+      'https://assets.coingecko.com/coins/images/11022/small/golden_ratio_token.png?1592811112',
   },
   {
     chainId: 1,
@@ -5816,7 +5816,7 @@ const tokens = [
     symbol: 'UNITS',
     decimals: 5,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11025/thumb/Imperial.png?1587285955',
+      'https://assets.coingecko.com/coins/images/11025/small/Imperial.png?1587285955',
   },
   {
     chainId: 1,
@@ -5825,7 +5825,7 @@ const tokens = [
     symbol: 'FRNK',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11027/thumb/Frinkcoin.png?1587290596',
+      'https://assets.coingecko.com/coins/images/11027/small/Frinkcoin.png?1587290596',
   },
   {
     chainId: 1,
@@ -5834,7 +5834,7 @@ const tokens = [
     symbol: '0XMR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11035/thumb/0xmnr.PNG?1587357680',
+      'https://assets.coingecko.com/coins/images/11035/small/0xmnr.PNG?1587357680',
   },
   {
     chainId: 1,
@@ -5843,7 +5843,7 @@ const tokens = [
     symbol: 'CTSI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11038/thumb/cartesi.png?1592288021',
+      'https://assets.coingecko.com/coins/images/11038/small/cartesi.png?1592288021',
   },
   {
     chainId: 1,
@@ -5852,7 +5852,7 @@ const tokens = [
     symbol: 'MNT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11039/thumb/mnt_200_by_200.png?1595310635',
+      'https://assets.coingecko.com/coins/images/11039/small/mnt_200_by_200.png?1595310635',
   },
   {
     chainId: 1,
@@ -5861,7 +5861,7 @@ const tokens = [
     symbol: 'TARM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11040/thumb/o5FoEVG.png?1587515392',
+      'https://assets.coingecko.com/coins/images/11040/small/o5FoEVG.png?1587515392',
   },
   {
     chainId: 1,
@@ -5870,7 +5870,7 @@ const tokens = [
     symbol: 'CRYPL',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11046/thumb/crypl.png?1587526012',
+      'https://assets.coingecko.com/coins/images/11046/small/crypl.png?1587526012',
   },
   {
     chainId: 1,
@@ -5879,7 +5879,7 @@ const tokens = [
     symbol: 'DAP',
     decimals: 10,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11059/thumb/b4e2de_467f4949d9a240ffbe68bc0808dfbe5a_mv2.jpg?1597823810',
+      'https://assets.coingecko.com/coins/images/11059/small/b4e2de_467f4949d9a240ffbe68bc0808dfbe5a_mv2.jpg?1597823810',
   },
   {
     chainId: 1,
@@ -5888,7 +5888,7 @@ const tokens = [
     symbol: 'STAKE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11061/thumb/xdai.png?1587714165',
+      'https://assets.coingecko.com/coins/images/11061/small/xdai.png?1587714165',
   },
   {
     chainId: 1,
@@ -5897,7 +5897,7 @@ const tokens = [
     symbol: 'MLR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11072/thumb/gg1NiOsG_400x400.jpg?1587958538',
+      'https://assets.coingecko.com/coins/images/11072/small/gg1NiOsG_400x400.jpg?1587958538',
   },
   {
     chainId: 1,
@@ -5906,7 +5906,7 @@ const tokens = [
     symbol: 'AAB',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11073/thumb/GluwoJk__400x400.jpg?1587969347',
+      'https://assets.coingecko.com/coins/images/11073/small/GluwoJk__400x400.jpg?1587969347',
   },
   {
     chainId: 1,
@@ -5915,7 +5915,7 @@ const tokens = [
     symbol: 'EDI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11074/thumb/e6YLf6kD_400x400.jpg?1587970897',
+      'https://assets.coingecko.com/coins/images/11074/small/e6YLf6kD_400x400.jpg?1587970897',
   },
   {
     chainId: 1,
@@ -5924,7 +5924,7 @@ const tokens = [
     symbol: 'LIT',
     decimals: 2,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11079/thumb/Picture_20200206_154444187.png?1588000262',
+      'https://assets.coingecko.com/coins/images/11079/small/Picture_20200206_154444187.png?1588000262',
   },
   {
     chainId: 1,
@@ -5933,7 +5933,7 @@ const tokens = [
     symbol: 'XOR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11093/thumb/sora_logo_cg_white.png?1588284194',
+      'https://assets.coingecko.com/coins/images/11093/small/sora_logo_cg_white.png?1588284194',
   },
   {
     chainId: 1,
@@ -5942,7 +5942,7 @@ const tokens = [
     symbol: 'RTK',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11102/thumb/rtk-logo.png?1595212217',
+      'https://assets.coingecko.com/coins/images/11102/small/rtk-logo.png?1595212217',
   },
   {
     chainId: 1,
@@ -5951,7 +5951,7 @@ const tokens = [
     symbol: 'XEN',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11105/thumb/DyNZKe79_400x400.jpg?1588568617',
+      'https://assets.coingecko.com/coins/images/11105/small/DyNZKe79_400x400.jpg?1588568617',
   },
   {
     chainId: 1,
@@ -5960,7 +5960,7 @@ const tokens = [
     symbol: 'GEO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11130/thumb/geodb.png?1588941704',
+      'https://assets.coingecko.com/coins/images/11130/small/geodb.png?1588941704',
   },
   {
     chainId: 1,
@@ -5969,7 +5969,7 @@ const tokens = [
     symbol: 'BUIDL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11131/thumb/buidllogo.png?1599577041',
+      'https://assets.coingecko.com/coins/images/11131/small/buidllogo.png?1599577041',
   },
   {
     chainId: 1,
@@ -5978,7 +5978,7 @@ const tokens = [
     symbol: 'YFR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11132/thumb/6Won2ZF.png?1588903985',
+      'https://assets.coingecko.com/coins/images/11132/small/6Won2ZF.png?1588903985',
   },
   {
     chainId: 1,
@@ -5987,7 +5987,7 @@ const tokens = [
     symbol: 'TRZ',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11133/thumb/trz-logo-1.png?1588904852',
+      'https://assets.coingecko.com/coins/images/11133/small/trz-logo-1.png?1588904852',
   },
   {
     chainId: 1,
@@ -5996,7 +5996,7 @@ const tokens = [
     symbol: 'DXD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11148/thumb/dxdao.png?1607999331',
+      'https://assets.coingecko.com/coins/images/11148/small/dxdao.png?1607999331',
   },
   {
     chainId: 1,
@@ -6005,7 +6005,7 @@ const tokens = [
     symbol: 'OWL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11149/thumb/gnosis-owl_32.png?1589057849',
+      'https://assets.coingecko.com/coins/images/11149/small/gnosis-owl_32.png?1589057849',
   },
   {
     chainId: 1,
@@ -6014,7 +6014,7 @@ const tokens = [
     symbol: 'YOUC',
     decimals: 10,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11152/thumb/round-400x400.png?1589162715',
+      'https://assets.coingecko.com/coins/images/11152/small/round-400x400.png?1589162715',
   },
   {
     chainId: 1,
@@ -6023,7 +6023,7 @@ const tokens = [
     symbol: 'DUST',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11162/thumb/DUST.png?1589280496',
+      'https://assets.coingecko.com/coins/images/11162/small/DUST.png?1589280496',
   },
   {
     chainId: 1,
@@ -6032,7 +6032,7 @@ const tokens = [
     symbol: 'ANTS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11179/thumb/ants200.png?1589510693',
+      'https://assets.coingecko.com/coins/images/11179/small/ants200.png?1589510693',
   },
   {
     chainId: 1,
@@ -6041,7 +6041,7 @@ const tokens = [
     symbol: 'TBTC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11224/thumb/tBTC.png?1589620754',
+      'https://assets.coingecko.com/coins/images/11224/small/tBTC.png?1589620754',
   },
   {
     chainId: 1,
@@ -6050,7 +6050,7 @@ const tokens = [
     symbol: 'HXY',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11225/thumb/hexmoneygradientsmall.png?1595305947',
+      'https://assets.coingecko.com/coins/images/11225/small/hexmoneygradientsmall.png?1595305947',
   },
   {
     chainId: 1,
@@ -6059,7 +6059,7 @@ const tokens = [
     symbol: '69C',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11260/thumb/6ix9ineChain.png?1589789641',
+      'https://assets.coingecko.com/coins/images/11260/small/6ix9ineChain.png?1589789641',
   },
   {
     chainId: 1,
@@ -6068,7 +6068,7 @@ const tokens = [
     symbol: 'NEST',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11284/thumb/52954052.png?1589868539',
+      'https://assets.coingecko.com/coins/images/11284/small/52954052.png?1589868539',
   },
   {
     chainId: 1,
@@ -6077,7 +6077,7 @@ const tokens = [
     symbol: 'MCX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11329/thumb/MachiX.png?1589926940',
+      'https://assets.coingecko.com/coins/images/11329/small/MachiX.png?1589926940',
   },
   {
     chainId: 1,
@@ -6086,7 +6086,7 @@ const tokens = [
     symbol: 'MATH',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11335/thumb/2020-05-19-token-200.png?1589940590',
+      'https://assets.coingecko.com/coins/images/11335/small/2020-05-19-token-200.png?1589940590',
   },
   {
     chainId: 1,
@@ -6095,7 +6095,7 @@ const tokens = [
     symbol: 'RENBTC',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11370/thumb/renBTC.png?1589985711',
+      'https://assets.coingecko.com/coins/images/11370/small/renBTC.png?1589985711',
   },
   {
     chainId: 1,
@@ -6104,7 +6104,7 @@ const tokens = [
     symbol: 'VETH',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11375/thumb/HQ6nQhH.png?1605492813',
+      'https://assets.coingecko.com/coins/images/11375/small/HQ6nQhH.png?1605492813',
   },
   {
     chainId: 1,
@@ -6113,7 +6113,7 @@ const tokens = [
     symbol: 'LYXE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11423/thumb/1_QAHTciwVhD7SqVmfRW70Pw.png?1590110612',
+      'https://assets.coingecko.com/coins/images/11423/small/1_QAHTciwVhD7SqVmfRW70Pw.png?1590110612',
   },
   {
     chainId: 1,
@@ -6122,7 +6122,7 @@ const tokens = [
     symbol: 'KASH',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11467/thumb/kash.png?1590242267',
+      'https://assets.coingecko.com/coins/images/11467/small/kash.png?1590242267',
   },
   {
     chainId: 1,
@@ -6131,7 +6131,7 @@ const tokens = [
     symbol: 'MPS',
     decimals: 0,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11471/thumb/MPS.png?1590319120',
+      'https://assets.coingecko.com/coins/images/11471/small/MPS.png?1590319120',
   },
   {
     chainId: 1,
@@ -6140,7 +6140,7 @@ const tokens = [
     symbol: 'STA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11472/thumb/Statera.png?1590415353',
+      'https://assets.coingecko.com/coins/images/11472/small/Statera.png?1590415353',
   },
   {
     chainId: 1,
@@ -6149,7 +6149,7 @@ const tokens = [
     symbol: 'CTG',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11474/thumb/crystal_200.png?1590450209',
+      'https://assets.coingecko.com/coins/images/11474/small/crystal_200.png?1590450209',
   },
   {
     chainId: 1,
@@ -6158,7 +6158,7 @@ const tokens = [
     symbol: 'SNGJ',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11475/thumb/SNGJ_logo_200x200.png?1590450436',
+      'https://assets.coingecko.com/coins/images/11475/small/SNGJ_logo_200x200.png?1590450436',
   },
   {
     chainId: 1,
@@ -6167,7 +6167,7 @@ const tokens = [
     symbol: 'FNX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11488/thumb/finnexus_gecko.png?1591260971',
+      'https://assets.coingecko.com/coins/images/11488/small/finnexus_gecko.png?1591260971',
   },
   {
     chainId: 1,
@@ -6176,7 +6176,7 @@ const tokens = [
     symbol: 'BNC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11511/thumb/bnoincoin_cryptocoin-1.png?1590489689',
+      'https://assets.coingecko.com/coins/images/11511/small/bnoincoin_cryptocoin-1.png?1590489689',
   },
   {
     chainId: 1,
@@ -6185,7 +6185,7 @@ const tokens = [
     symbol: 'MINDS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11517/thumb/Minds.png?1590580465',
+      'https://assets.coingecko.com/coins/images/11517/small/Minds.png?1590580465',
   },
   {
     chainId: 1,
@@ -6194,7 +6194,7 @@ const tokens = [
     symbol: 'HY',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11518/thumb/icon_%282%29.png?1590618414',
+      'https://assets.coingecko.com/coins/images/11518/small/icon_%282%29.png?1590618414',
   },
   {
     chainId: 1,
@@ -6203,7 +6203,7 @@ const tokens = [
     symbol: 'FC007',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11519/thumb/5VZiP7x.png?1590618834',
+      'https://assets.coingecko.com/coins/images/11519/small/5VZiP7x.png?1590618834',
   },
   {
     chainId: 1,
@@ -6212,7 +6212,7 @@ const tokens = [
     symbol: 'FAME',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11521/thumb/FAME.png?1590622461',
+      'https://assets.coingecko.com/coins/images/11521/small/FAME.png?1590622461',
   },
   {
     chainId: 1,
@@ -6221,7 +6221,7 @@ const tokens = [
     symbol: 'ICK',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11522/thumb/ICK.png?1590622642',
+      'https://assets.coingecko.com/coins/images/11522/small/ICK.png?1590622642',
   },
   {
     chainId: 1,
@@ -6230,7 +6230,7 @@ const tokens = [
     symbol: 'PHNX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11523/thumb/PhoenixDAO.png?1590680344',
+      'https://assets.coingecko.com/coins/images/11523/small/PhoenixDAO.png?1590680344',
   },
   {
     chainId: 1,
@@ -6239,7 +6239,7 @@ const tokens = [
     symbol: 'BI',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11527/thumb/200x200logo.png?1595311441',
+      'https://assets.coingecko.com/coins/images/11527/small/200x200logo.png?1595311441',
   },
   {
     chainId: 1,
@@ -6248,7 +6248,7 @@ const tokens = [
     symbol: 'KERMAN',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11536/thumb/Kerman.png?1590776066',
+      'https://assets.coingecko.com/coins/images/11536/small/Kerman.png?1590776066',
   },
   {
     chainId: 1,
@@ -6257,7 +6257,7 @@ const tokens = [
     symbol: 'CURA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11540/thumb/61919000.png?1590983686',
+      'https://assets.coingecko.com/coins/images/11540/small/61919000.png?1590983686',
   },
   {
     chainId: 1,
@@ -6266,7 +6266,7 @@ const tokens = [
     symbol: 'PLAAS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11541/thumb/Logo_%289%29.png?1590984188',
+      'https://assets.coingecko.com/coins/images/11541/small/Logo_%289%29.png?1590984188',
   },
   {
     chainId: 1,
@@ -6275,7 +6275,7 @@ const tokens = [
     symbol: 'CBET',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11543/thumb/TvJUqCso_400x400.jpg?1591066399',
+      'https://assets.coingecko.com/coins/images/11543/small/TvJUqCso_400x400.jpg?1591066399',
   },
   {
     chainId: 1,
@@ -6284,7 +6284,7 @@ const tokens = [
     symbol: 'PAMP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11546/thumb/pMqJaqDK_400x400.jpg?1595199126',
+      'https://assets.coingecko.com/coins/images/11546/small/pMqJaqDK_400x400.jpg?1595199126',
   },
   {
     chainId: 1,
@@ -6293,7 +6293,7 @@ const tokens = [
     symbol: 'H3X',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11554/thumb/Ps3O6GY.png?1591058696',
+      'https://assets.coingecko.com/coins/images/11554/small/Ps3O6GY.png?1591058696',
   },
   {
     chainId: 1,
@@ -6302,7 +6302,7 @@ const tokens = [
     symbol: 'DAWN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11555/thumb/dawn_protocol.png?1591060256',
+      'https://assets.coingecko.com/coins/images/11555/small/dawn_protocol.png?1591060256',
   },
   {
     chainId: 1,
@@ -6311,7 +6311,7 @@ const tokens = [
     symbol: 'ZPAE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11557/thumb/ZPAE_.png?1591078880',
+      'https://assets.coingecko.com/coins/images/11557/small/ZPAE_.png?1591078880',
   },
   {
     chainId: 1,
@@ -6320,7 +6320,7 @@ const tokens = [
     symbol: 'SXAU',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11559/thumb/sXAU.png?1591090407',
+      'https://assets.coingecko.com/coins/images/11559/small/sXAU.png?1591090407',
   },
   {
     chainId: 1,
@@ -6329,7 +6329,7 @@ const tokens = [
     symbol: 'DEV',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11560/thumb/Dev.png?1591102698',
+      'https://assets.coingecko.com/coins/images/11560/small/Dev.png?1591102698',
   },
   {
     chainId: 1,
@@ -6338,7 +6338,7 @@ const tokens = [
     symbol: 'TLN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11562/thumb/Trustlines.png?1591152088',
+      'https://assets.coingecko.com/coins/images/11562/small/Trustlines.png?1591152088',
   },
   {
     chainId: 1,
@@ -6347,7 +6347,7 @@ const tokens = [
     symbol: 'RENBCH',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11563/thumb/renBCH.png?1591185978',
+      'https://assets.coingecko.com/coins/images/11563/small/renBCH.png?1591185978',
   },
   {
     chainId: 1,
@@ -6356,7 +6356,7 @@ const tokens = [
     symbol: 'RENZEC',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11564/thumb/renZEC.png?1591186101',
+      'https://assets.coingecko.com/coins/images/11564/small/renZEC.png?1591186101',
   },
   {
     chainId: 1,
@@ -6365,7 +6365,7 @@ const tokens = [
     symbol: 'YSR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11575/thumb/256_256.png?1600495476',
+      'https://assets.coingecko.com/coins/images/11575/small/256_256.png?1600495476',
   },
   {
     chainId: 1,
@@ -6374,7 +6374,7 @@ const tokens = [
     symbol: 'MUSD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11576/thumb/mStable_USD.png?1595591803',
+      'https://assets.coingecko.com/coins/images/11576/small/mStable_USD.png?1595591803',
   },
   {
     chainId: 1,
@@ -6383,7 +6383,7 @@ const tokens = [
     symbol: 'FNT',
     decimals: 6,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11579/thumb/falcon_ava_black.png?1591317863',
+      'https://assets.coingecko.com/coins/images/11579/small/falcon_ava_black.png?1591317863',
   },
   {
     chainId: 1,
@@ -6392,7 +6392,7 @@ const tokens = [
     symbol: 'CHI',
     decimals: 0,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11583/thumb/chi.png?1591331659',
+      'https://assets.coingecko.com/coins/images/11583/small/chi.png?1591331659',
   },
   {
     chainId: 1,
@@ -6401,7 +6401,7 @@ const tokens = [
     symbol: 'REL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11586/thumb/Relevant.png?1591390081',
+      'https://assets.coingecko.com/coins/images/11586/small/Relevant.png?1591390081',
   },
   {
     chainId: 1,
@@ -6410,7 +6410,7 @@ const tokens = [
     symbol: 'FMA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11587/thumb/Flama.png?1591498092',
+      'https://assets.coingecko.com/coins/images/11587/small/Flama.png?1591498092',
   },
   {
     chainId: 1,
@@ -6419,7 +6419,7 @@ const tokens = [
     symbol: 'ETHBN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11596/thumb/dogdata.png?1591667966',
+      'https://assets.coingecko.com/coins/images/11596/small/dogdata.png?1591667966',
   },
   {
     chainId: 1,
@@ -6428,7 +6428,7 @@ const tokens = [
     symbol: 'XANK',
     decimals: 16,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11599/thumb/9zAYweVj_400x400.png?1591671435',
+      'https://assets.coingecko.com/coins/images/11599/small/9zAYweVj_400x400.png?1591671435',
   },
   {
     chainId: 1,
@@ -6437,7 +6437,7 @@ const tokens = [
     symbol: 'CGT',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11601/thumb/cache-gold-icon-200x200.png?1591755874',
+      'https://assets.coingecko.com/coins/images/11601/small/cache-gold-icon-200x200.png?1591755874',
   },
   {
     chainId: 1,
@@ -6446,7 +6446,7 @@ const tokens = [
     symbol: 'DEXT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11603/thumb/dext.png?1605790188',
+      'https://assets.coingecko.com/coins/images/11603/small/dext.png?1605790188',
   },
   {
     chainId: 1,
@@ -6455,7 +6455,7 @@ const tokens = [
     symbol: 'POWER',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11618/thumb/unipower.png?1591943398',
+      'https://assets.coingecko.com/coins/images/11618/small/unipower.png?1591943398',
   },
   {
     chainId: 1,
@@ -6464,7 +6464,7 @@ const tokens = [
     symbol: 'CUSDT',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11621/thumb/cUSDT.png?1592113270',
+      'https://assets.coingecko.com/coins/images/11621/small/cUSDT.png?1592113270',
   },
   {
     chainId: 1,
@@ -6473,7 +6473,7 @@ const tokens = [
     symbol: 'SXMR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11625/thumb/sXMR.png?1592124269',
+      'https://assets.coingecko.com/coins/images/11625/small/sXMR.png?1592124269',
   },
   {
     chainId: 1,
@@ -6482,7 +6482,7 @@ const tokens = [
     symbol: 'RNDR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11636/thumb/uTDd98ZN_400x400.jpg?1592200150',
+      'https://assets.coingecko.com/coins/images/11636/small/uTDd98ZN_400x400.jpg?1592200150',
   },
   {
     chainId: 1,
@@ -6491,7 +6491,7 @@ const tokens = [
     symbol: 'UNIUSD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11637/thumb/Unidollar.png?1592272468',
+      'https://assets.coingecko.com/coins/images/11637/small/Unidollar.png?1592272468',
   },
   {
     chainId: 1,
@@ -6500,7 +6500,7 @@ const tokens = [
     symbol: 'VLT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11638/thumb/vlt-200.png?1592272725',
+      'https://assets.coingecko.com/coins/images/11638/small/vlt-200.png?1592272725',
   },
   {
     chainId: 1,
@@ -6509,7 +6509,7 @@ const tokens = [
     symbol: 'VRTN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11641/thumb/5016134.png?1592274804',
+      'https://assets.coingecko.com/coins/images/11641/small/5016134.png?1592274804',
   },
   {
     chainId: 1,
@@ -6518,7 +6518,7 @@ const tokens = [
     symbol: 'RVX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11644/thumb/200px_logo_RX_3d-01.png?1602130114',
+      'https://assets.coingecko.com/coins/images/11644/small/200px_logo_RX_3d-01.png?1602130114',
   },
   {
     chainId: 1,
@@ -6527,7 +6527,7 @@ const tokens = [
     symbol: 'USD++',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11658/thumb/USD__.png?1592389079',
+      'https://assets.coingecko.com/coins/images/11658/small/USD__.png?1592389079',
   },
   {
     chainId: 1,
@@ -6536,7 +6536,7 @@ const tokens = [
     symbol: 'PNT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11659/thumb/pNetwork.png?1592411134',
+      'https://assets.coingecko.com/coins/images/11659/small/pNetwork.png?1592411134',
   },
   {
     chainId: 1,
@@ -6545,7 +6545,7 @@ const tokens = [
     symbol: 'FCN',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11661/thumb/LOGO200_%286%29.png?1592432680',
+      'https://assets.coingecko.com/coins/images/11661/small/LOGO200_%286%29.png?1592432680',
   },
   {
     chainId: 1,
@@ -6554,7 +6554,7 @@ const tokens = [
     symbol: 'ALEPH',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11676/thumb/Monochram-aleph.png?1608483725',
+      'https://assets.coingecko.com/coins/images/11676/small/Monochram-aleph.png?1608483725',
   },
   {
     chainId: 1,
@@ -6563,7 +6563,7 @@ const tokens = [
     symbol: 'DMG',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11677/thumb/dmm.png?1592674690',
+      'https://assets.coingecko.com/coins/images/11677/small/dmm.png?1592674690',
   },
   {
     chainId: 1,
@@ -6572,7 +6572,7 @@ const tokens = [
     symbol: 'HDI',
     decimals: 2,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11679/thumb/Untitled-design-4-removebg-preview.png?1592789518',
+      'https://assets.coingecko.com/coins/images/11679/small/Untitled-design-4-removebg-preview.png?1592789518',
   },
   {
     chainId: 1,
@@ -6581,7 +6581,7 @@ const tokens = [
     symbol: '3CS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11685/thumb/crypto-cricket-club-logo-e1592305032921.png?1592793917',
+      'https://assets.coingecko.com/coins/images/11685/small/crypto-cricket-club-logo-e1592305032921.png?1592793917',
   },
   {
     chainId: 1,
@@ -6590,7 +6590,7 @@ const tokens = [
     symbol: 'LOCK',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11687/thumb/LOCK_cropped.png?1599614902',
+      'https://assets.coingecko.com/coins/images/11687/small/LOCK_cropped.png?1599614902',
   },
   {
     chainId: 1,
@@ -6599,7 +6599,7 @@ const tokens = [
     symbol: 'STONK',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11690/thumb/Iu1YBsl.png?1592798197',
+      'https://assets.coingecko.com/coins/images/11690/small/Iu1YBsl.png?1592798197',
   },
   {
     chainId: 1,
@@ -6608,7 +6608,7 @@ const tokens = [
     symbol: 'BD',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11691/thumb/Burn_Drop_Logo_200x200.png?1592798838',
+      'https://assets.coingecko.com/coins/images/11691/small/Burn_Drop_Logo_200x200.png?1592798838',
   },
   {
     chainId: 1,
@@ -6617,7 +6617,7 @@ const tokens = [
     symbol: 'CID',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11692/thumb/yWrCHzW.png?1592799534',
+      'https://assets.coingecko.com/coins/images/11692/small/yWrCHzW.png?1592799534',
   },
   {
     chainId: 1,
@@ -6626,7 +6626,7 @@ const tokens = [
     symbol: 'DAM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11695/thumb/qxsFH8W.png?1592880463',
+      'https://assets.coingecko.com/coins/images/11695/small/qxsFH8W.png?1592880463',
   },
   {
     chainId: 1,
@@ -6635,7 +6635,7 @@ const tokens = [
     symbol: 'RAIN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11699/thumb/v4Bpj2k.png?1592963188',
+      'https://assets.coingecko.com/coins/images/11699/small/v4Bpj2k.png?1592963188',
   },
   {
     chainId: 1,
@@ -6644,7 +6644,7 @@ const tokens = [
     symbol: 'ARTE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11720/thumb/Arte.png?1607332372',
+      'https://assets.coingecko.com/coins/images/11720/small/Arte.png?1607332372',
   },
   {
     chainId: 1,
@@ -6653,7 +6653,7 @@ const tokens = [
     symbol: 'ESWA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11721/thumb/Easyswap.png?1593080991',
+      'https://assets.coingecko.com/coins/images/11721/small/Easyswap.png?1593080991',
   },
   {
     chainId: 1,
@@ -6662,7 +6662,7 @@ const tokens = [
     symbol: 'UBOMB',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11722/thumb/aLjLmGNT_400x400.png?1596603288',
+      'https://assets.coingecko.com/coins/images/11722/small/aLjLmGNT_400x400.png?1596603288',
   },
   {
     chainId: 1,
@@ -6671,7 +6671,7 @@ const tokens = [
     symbol: 'ASUSD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11723/thumb/aSUSD.png?1593082612',
+      'https://assets.coingecko.com/coins/images/11723/small/aSUSD.png?1593082612',
   },
   {
     chainId: 1,
@@ -6680,7 +6680,7 @@ const tokens = [
     symbol: 'ALINK',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11729/thumb/aLINK.png?1593084323',
+      'https://assets.coingecko.com/coins/images/11729/small/aLINK.png?1593084323',
   },
   {
     chainId: 1,
@@ -6689,7 +6689,7 @@ const tokens = [
     symbol: 'ASNX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11733/thumb/aSNX.png?1593085047',
+      'https://assets.coingecko.com/coins/images/11733/small/aSNX.png?1593085047',
   },
   {
     chainId: 1,
@@ -6698,7 +6698,7 @@ const tokens = [
     symbol: 'ABUSD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11736/thumb/aBUSD.png?1593085489',
+      'https://assets.coingecko.com/coins/images/11736/small/aBUSD.png?1593085489',
   },
   {
     chainId: 1,
@@ -6707,7 +6707,7 @@ const tokens = [
     symbol: 'ETH3L',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11740/thumb/token-eth3l.png?1593140154',
+      'https://assets.coingecko.com/coins/images/11740/small/token-eth3l.png?1593140154',
   },
   {
     chainId: 1,
@@ -6716,7 +6716,7 @@ const tokens = [
     symbol: 'VGTG',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11742/thumb/vgtg_gold_209x209.png?1593142842',
+      'https://assets.coingecko.com/coins/images/11742/small/vgtg_gold_209x209.png?1593142842',
   },
   {
     chainId: 1,
@@ -6725,7 +6725,7 @@ const tokens = [
     symbol: 'UFC',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11750/thumb/maiOmI3b_400x400.png?1593417703',
+      'https://assets.coingecko.com/coins/images/11750/small/maiOmI3b_400x400.png?1593417703',
   },
   {
     chainId: 1,
@@ -6734,7 +6734,7 @@ const tokens = [
     symbol: 'T1C',
     decimals: 16,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11752/thumb/t1c.png?1594683555',
+      'https://assets.coingecko.com/coins/images/11752/small/t1c.png?1594683555',
   },
   {
     chainId: 1,
@@ -6743,7 +6743,7 @@ const tokens = [
     symbol: 'FLUX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11756/thumb/fluxres.png?1593748917',
+      'https://assets.coingecko.com/coins/images/11756/small/fluxres.png?1593748917',
   },
   {
     chainId: 1,
@@ -6752,7 +6752,7 @@ const tokens = [
     symbol: 'DESH',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11772/thumb/Logo_Blanc_%28DESH%29_V3_200x200_rond.png?1597752785',
+      'https://assets.coingecko.com/coins/images/11772/small/Logo_Blanc_%28DESH%29_V3_200x200_rond.png?1597752785',
   },
   {
     chainId: 1,
@@ -6761,7 +6761,7 @@ const tokens = [
     symbol: 'ASKO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11773/thumb/Asko_Logo_%28200x200%29.png?1604706371',
+      'https://assets.coingecko.com/coins/images/11773/small/Asko_Logo_%28200x200%29.png?1604706371',
   },
   {
     chainId: 1,
@@ -6770,7 +6770,7 @@ const tokens = [
     symbol: 'CAP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11775/thumb/CAP.png?1594083244',
+      'https://assets.coingecko.com/coins/images/11775/small/CAP.png?1594083244',
   },
   {
     chainId: 1,
@@ -6779,7 +6779,7 @@ const tokens = [
     symbol: 'UNC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11782/thumb/200x200_%289%29.png?1593999474',
+      'https://assets.coingecko.com/coins/images/11782/small/200x200_%289%29.png?1593999474',
   },
   {
     chainId: 1,
@@ -6788,7 +6788,7 @@ const tokens = [
     symbol: 'ECA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11785/thumb/eca.png?1594001400',
+      'https://assets.coingecko.com/coins/images/11785/small/eca.png?1594001400',
   },
   {
     chainId: 1,
@@ -6797,7 +6797,7 @@ const tokens = [
     symbol: 'JREX',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11792/thumb/jura_logo.png?1594172306',
+      'https://assets.coingecko.com/coins/images/11792/small/jura_logo.png?1594172306',
   },
   {
     chainId: 1,
@@ -6806,7 +6806,7 @@ const tokens = [
     symbol: 'SWAP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11795/thumb/Trustswap.png?1594311216',
+      'https://assets.coingecko.com/coins/images/11795/small/Trustswap.png?1594311216',
   },
   {
     chainId: 1,
@@ -6815,7 +6815,7 @@ const tokens = [
     symbol: 'MCB',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11796/thumb/mcb.png?1594355515',
+      'https://assets.coingecko.com/coins/images/11796/small/mcb.png?1594355515',
   },
   {
     chainId: 1,
@@ -6824,7 +6824,7 @@ const tokens = [
     symbol: 'WHALE',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11797/thumb/WHALE.png?1595004706',
+      'https://assets.coingecko.com/coins/images/11797/small/WHALE.png?1595004706',
   },
   {
     chainId: 1,
@@ -6833,7 +6833,7 @@ const tokens = [
     symbol: 'OMC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11798/thumb/Vooo8SX.png?1594359387',
+      'https://assets.coingecko.com/coins/images/11798/small/Vooo8SX.png?1594359387',
   },
   {
     chainId: 1,
@@ -6842,7 +6842,7 @@ const tokens = [
     symbol: 'DGMT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11807/thumb/0053e154-964b-485a-9827-d3ef7015a9b9.png?1594375316',
+      'https://assets.coingecko.com/coins/images/11807/small/0053e154-964b-485a-9827-d3ef7015a9b9.png?1594375316',
   },
   {
     chainId: 1,
@@ -6851,7 +6851,7 @@ const tokens = [
     symbol: 'BZRX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11811/thumb/bzrx.png?1594563172',
+      'https://assets.coingecko.com/coins/images/11811/small/bzrx.png?1594563172',
   },
   {
     chainId: 1,
@@ -6860,7 +6860,7 @@ const tokens = [
     symbol: 'KGW',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11815/thumb/f_HFXjBE_400x400.jpg?1594597195',
+      'https://assets.coingecko.com/coins/images/11815/small/f_HFXjBE_400x400.jpg?1594597195',
   },
   {
     chainId: 1,
@@ -6869,7 +6869,7 @@ const tokens = [
     symbol: 'DEC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11816/thumb/Decentr.png?1594637985',
+      'https://assets.coingecko.com/coins/images/11816/small/Decentr.png?1594637985',
   },
   {
     chainId: 1,
@@ -6878,7 +6878,7 @@ const tokens = [
     symbol: 'GTF',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11817/thumb/gtf.png?1594679456',
+      'https://assets.coingecko.com/coins/images/11817/small/gtf.png?1594679456',
   },
   {
     chainId: 1,
@@ -6887,7 +6887,7 @@ const tokens = [
     symbol: 'SGT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11823/thumb/SGT-icon.png?1594681863',
+      'https://assets.coingecko.com/coins/images/11823/small/SGT-icon.png?1594681863',
   },
   {
     chainId: 1,
@@ -6896,7 +6896,7 @@ const tokens = [
     symbol: 'MDTL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11827/thumb/PicsArt_05-15-08.59.17-1-e1590371242800.png?1594710840',
+      'https://assets.coingecko.com/coins/images/11827/small/PicsArt_05-15-08.59.17-1-e1590371242800.png?1594710840',
   },
   {
     chainId: 1,
@@ -6905,7 +6905,7 @@ const tokens = [
     symbol: 'TAT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11828/thumb/54098571.png?1594714629',
+      'https://assets.coingecko.com/coins/images/11828/small/54098571.png?1594714629',
   },
   {
     chainId: 1,
@@ -6914,7 +6914,7 @@ const tokens = [
     symbol: 'SDEFI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11832/thumb/sDEFI.png?1594787588',
+      'https://assets.coingecko.com/coins/images/11832/small/sDEFI.png?1594787588',
   },
   {
     chainId: 1,
@@ -6923,7 +6923,7 @@ const tokens = [
     symbol: 'KTH',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11837/thumb/katerium.png?1594896508',
+      'https://assets.coingecko.com/coins/images/11837/small/katerium.png?1594896508',
   },
   {
     chainId: 1,
@@ -6932,7 +6932,7 @@ const tokens = [
     symbol: 'ORN',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11841/thumb/orion_logo.png?1594943318',
+      'https://assets.coingecko.com/coins/images/11841/small/orion_logo.png?1594943318',
   },
   {
     chainId: 1,
@@ -6941,7 +6941,7 @@ const tokens = [
     symbol: 'RARI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11845/thumb/Rari.png?1594946953',
+      'https://assets.coingecko.com/coins/images/11845/small/Rari.png?1594946953',
   },
   {
     chainId: 1,
@@ -6950,7 +6950,7 @@ const tokens = [
     symbol: 'MTA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11846/thumb/mStable.png?1594950533',
+      'https://assets.coingecko.com/coins/images/11846/small/mStable.png?1594950533',
   },
   {
     chainId: 1,
@@ -6959,7 +6959,7 @@ const tokens = [
     symbol: 'YFI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11849/thumb/yfi-192x192.png?1598325330',
+      'https://assets.coingecko.com/coins/images/11849/small/yfi-192x192.png?1598325330',
   },
   {
     chainId: 1,
@@ -6968,7 +6968,7 @@ const tokens = [
     symbol: 'INTX',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11854/thumb/INTX.png?1595167044',
+      'https://assets.coingecko.com/coins/images/11854/small/INTX.png?1595167044',
   },
   {
     chainId: 1,
@@ -6977,7 +6977,7 @@ const tokens = [
     symbol: 'YCURVE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11858/thumb/yCrv.png?1595203628',
+      'https://assets.coingecko.com/coins/images/11858/small/yCrv.png?1595203628',
   },
   {
     chainId: 1,
@@ -6986,7 +6986,7 @@ const tokens = [
     symbol: 'CRDT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11859/thumb/image_%281%29.png?1600937373',
+      'https://assets.coingecko.com/coins/images/11859/small/image_%281%29.png?1600937373',
   },
   {
     chainId: 1,
@@ -6995,7 +6995,7 @@ const tokens = [
     symbol: 'BONE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11860/thumb/Bone200x200.png?1595231768',
+      'https://assets.coingecko.com/coins/images/11860/small/Bone200x200.png?1595231768',
   },
   {
     chainId: 1,
@@ -7004,7 +7004,7 @@ const tokens = [
     symbol: 'COL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11862/thumb/Unit.png?1595580755',
+      'https://assets.coingecko.com/coins/images/11862/small/Unit.png?1595580755',
   },
   {
     chainId: 1,
@@ -7013,7 +7013,7 @@ const tokens = [
     symbol: 'CLOUT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11870/thumb/communityIcon_nys28lije4b51.png?1595505057',
+      'https://assets.coingecko.com/coins/images/11870/small/communityIcon_nys28lije4b51.png?1595505057',
   },
   {
     chainId: 1,
@@ -7022,7 +7022,7 @@ const tokens = [
     symbol: 'DKA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11875/thumb/bVD0g0dlmrEOPIkt943KZIBZ086eCshyY0jIQFti4zxYdOlFltU8tKa6uJlcA14HvNjX4bc7dxdMvlpoW5NFMND85oG4aiiCbFRhI6eowDfKEBY3BoSVY0IrBbA9SFGIxh_IYrkNC5uNdG-roZ0_TlGO3098now6Tbzga0p4IDqVk6lnaX3TuRC7pgnAYWZM15RD-uEIHr3O_3OoIIWP-.jpg?1595563347',
+      'https://assets.coingecko.com/coins/images/11875/small/bVD0g0dlmrEOPIkt943KZIBZ086eCshyY0jIQFti4zxYdOlFltU8tKa6uJlcA14HvNjX4bc7dxdMvlpoW5NFMND85oG4aiiCbFRhI6eowDfKEBY3BoSVY0IrBbA9SFGIxh_IYrkNC5uNdG-roZ0_TlGO3098now6Tbzga0p4IDqVk6lnaX3TuRC7pgnAYWZM15RD-uEIHr3O_3OoIIWP-.jpg?1595563347',
   },
   {
     chainId: 1,
@@ -7031,7 +7031,7 @@ const tokens = [
     symbol: 'VIBS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11880/thumb/vibslogo200.png?1595739621',
+      'https://assets.coingecko.com/coins/images/11880/small/vibslogo200.png?1595739621',
   },
   {
     chainId: 1,
@@ -7040,7 +7040,7 @@ const tokens = [
     symbol: 'KARMA',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11884/thumb/Karma.png?1597042574',
+      'https://assets.coingecko.com/coins/images/11884/small/Karma.png?1597042574',
   },
   {
     chainId: 1,
@@ -7049,7 +7049,7 @@ const tokens = [
     symbol: 'RWS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11885/thumb/rws_logo.png?1595745253',
+      'https://assets.coingecko.com/coins/images/11885/small/rws_logo.png?1595745253',
   },
   {
     chainId: 1,
@@ -7058,7 +7058,7 @@ const tokens = [
     symbol: 'FIRE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11888/thumb/tYmI5eG.png?1597282794',
+      'https://assets.coingecko.com/coins/images/11888/small/tYmI5eG.png?1597282794',
   },
   {
     chainId: 1,
@@ -7067,7 +7067,7 @@ const tokens = [
     symbol: 'ZOM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11889/thumb/ZOM-200x200.png?1595803982',
+      'https://assets.coingecko.com/coins/images/11889/small/ZOM-200x200.png?1595803982',
   },
   {
     chainId: 1,
@@ -7076,7 +7076,7 @@ const tokens = [
     symbol: 'WNXM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11890/thumb/wrapped-nexus-mutual.jpg?1595811559',
+      'https://assets.coingecko.com/coins/images/11890/small/wrapped-nexus-mutual.jpg?1595811559',
   },
   {
     chainId: 1,
@@ -7085,7 +7085,7 @@ const tokens = [
     symbol: 'KTON',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11895/thumb/logo.png?1595856452',
+      'https://assets.coingecko.com/coins/images/11895/small/logo.png?1595856452',
   },
   {
     chainId: 1,
@@ -7094,7 +7094,7 @@ const tokens = [
     symbol: 'DMST',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11896/thumb/h0snSnDE_400x400.jpg?1595892384',
+      'https://assets.coingecko.com/coins/images/11896/small/h0snSnDE_400x400.jpg?1595892384',
   },
   {
     chainId: 1,
@@ -7103,7 +7103,7 @@ const tokens = [
     symbol: 'DSD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11898/thumb/iLgw2f82_400x400.png?1596078737',
+      'https://assets.coingecko.com/coins/images/11898/small/iLgw2f82_400x400.png?1596078737',
   },
   {
     chainId: 1,
@@ -7112,7 +7112,7 @@ const tokens = [
     symbol: 'SCURVE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11899/thumb/Curvefi_sCrv_32.png?1595931870',
+      'https://assets.coingecko.com/coins/images/11899/small/Curvefi_sCrv_32.png?1595931870',
   },
   {
     chainId: 1,
@@ -7121,7 +7121,7 @@ const tokens = [
     symbol: 'YFII',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11902/thumb/YFII-logo.78631676.png?1598677348',
+      'https://assets.coingecko.com/coins/images/11902/small/YFII-logo.78631676.png?1598677348',
   },
   {
     chainId: 1,
@@ -7130,7 +7130,7 @@ const tokens = [
     symbol: 'CUB',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11906/thumb/logo-200x200.png?1596074026',
+      'https://assets.coingecko.com/coins/images/11906/small/logo-200x200.png?1596074026',
   },
   {
     chainId: 1,
@@ -7139,7 +7139,7 @@ const tokens = [
     symbol: 'LIMEX',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11907/thumb/nw1FE_f4_400x400.png?1596074376',
+      'https://assets.coingecko.com/coins/images/11907/small/nw1FE_f4_400x400.png?1596074376',
   },
   {
     chainId: 1,
@@ -7148,7 +7148,7 @@ const tokens = [
     symbol: 'SST',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11908/thumb/1_4OdZX6cWBKd9pRGoOCG5Bg.jpeg?1596075333',
+      'https://assets.coingecko.com/coins/images/11908/small/1_4OdZX6cWBKd9pRGoOCG5Bg.jpeg?1596075333',
   },
   {
     chainId: 1,
@@ -7157,7 +7157,7 @@ const tokens = [
     symbol: 'FTT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11920/thumb/sW08mMhz_400x400.jpg?1596078313',
+      'https://assets.coingecko.com/coins/images/11920/small/sW08mMhz_400x400.jpg?1596078313',
   },
   {
     chainId: 1,
@@ -7166,7 +7166,7 @@ const tokens = [
     symbol: 'LID',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11921/thumb/logo-200.png?1596100933',
+      'https://assets.coingecko.com/coins/images/11921/small/logo-200.png?1596100933',
   },
   {
     chainId: 1,
@@ -7175,7 +7175,7 @@ const tokens = [
     symbol: 'UTO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11922/thumb/logo200.png?1596101623',
+      'https://assets.coingecko.com/coins/images/11922/small/logo200.png?1596101623',
   },
   {
     chainId: 1,
@@ -7184,7 +7184,7 @@ const tokens = [
     symbol: 'TRUST',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11923/thumb/trustwhite.png?1596704613',
+      'https://assets.coingecko.com/coins/images/11923/small/trustwhite.png?1596704613',
   },
   {
     chainId: 1,
@@ -7193,7 +7193,7 @@ const tokens = [
     symbol: 'TEND',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11924/thumb/aaaaa.jpg?1596645622',
+      'https://assets.coingecko.com/coins/images/11924/small/aaaaa.jpg?1596645622',
   },
   {
     chainId: 1,
@@ -7202,7 +7202,7 @@ const tokens = [
     symbol: 'XAMP',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11925/thumb/antiample.png?1596168983',
+      'https://assets.coingecko.com/coins/images/11925/small/antiample.png?1596168983',
   },
   {
     chainId: 1,
@@ -7211,7 +7211,7 @@ const tokens = [
     symbol: 'BNS',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11926/thumb/HS7eNJdt_400x400.jpg?1596170654',
+      'https://assets.coingecko.com/coins/images/11926/small/HS7eNJdt_400x400.jpg?1596170654',
   },
   {
     chainId: 1,
@@ -7220,7 +7220,7 @@ const tokens = [
     symbol: 'CBR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11927/thumb/ezDztuH.png?1596179588',
+      'https://assets.coingecko.com/coins/images/11927/small/ezDztuH.png?1596179588',
   },
   {
     chainId: 1,
@@ -7229,7 +7229,7 @@ const tokens = [
     symbol: 'LIBERTAS',
     decimals: 2,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11928/thumb/logo200x200_%281%29.png?1596409240',
+      'https://assets.coingecko.com/coins/images/11928/small/logo200x200_%281%29.png?1596409240',
   },
   {
     chainId: 1,
@@ -7238,7 +7238,7 @@ const tokens = [
     symbol: 'SHIB',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11939/thumb/SHIBLOGO.png?1600752116',
+      'https://assets.coingecko.com/coins/images/11939/small/SHIBLOGO.png?1600752116',
   },
   {
     chainId: 1,
@@ -7247,7 +7247,7 @@ const tokens = [
     symbol: 'YFFI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11940/thumb/yffi-finance.jpg?1596289302',
+      'https://assets.coingecko.com/coins/images/11940/small/yffi-finance.jpg?1596289302',
   },
   {
     chainId: 1,
@@ -7256,7 +7256,7 @@ const tokens = [
     symbol: 'TRND',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11941/thumb/trnd-ico-200.png?1605147194',
+      'https://assets.coingecko.com/coins/images/11941/small/trnd-ico-200.png?1605147194',
   },
   {
     chainId: 1,
@@ -7265,7 +7265,7 @@ const tokens = [
     symbol: 'BONK',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11942/thumb/2Updated_2x.png?1598511690',
+      'https://assets.coingecko.com/coins/images/11942/small/2Updated_2x.png?1598511690',
   },
   {
     chainId: 1,
@@ -7274,7 +7274,7 @@ const tokens = [
     symbol: 'JAMM',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11943/thumb/jamm.png?1602491065',
+      'https://assets.coingecko.com/coins/images/11943/small/jamm.png?1602491065',
   },
   {
     chainId: 1,
@@ -7283,7 +7283,7 @@ const tokens = [
     symbol: 'GOLDX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11947/thumb/logo_DF_200x200_%281%29.png?1596409058',
+      'https://assets.coingecko.com/coins/images/11947/small/logo_DF_200x200_%281%29.png?1596409058',
   },
   {
     chainId: 1,
@@ -7292,7 +7292,7 @@ const tokens = [
     symbol: 'MSV',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11950/thumb/vRZShfV.jpg?1596418526',
+      'https://assets.coingecko.com/coins/images/11950/small/vRZShfV.jpg?1596418526',
   },
   {
     chainId: 1,
@@ -7301,7 +7301,7 @@ const tokens = [
     symbol: 'GEEQ',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11953/thumb/GeeqLogoPNGTransparent-1.png?1596421769',
+      'https://assets.coingecko.com/coins/images/11953/small/GeeqLogoPNGTransparent-1.png?1596421769',
   },
   {
     chainId: 1,
@@ -7310,7 +7310,7 @@ const tokens = [
     symbol: 'PUX',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11954/thumb/puxlogoforcoingecko.png?1609516934',
+      'https://assets.coingecko.com/coins/images/11954/small/puxlogoforcoingecko.png?1609516934',
   },
   {
     chainId: 1,
@@ -7319,7 +7319,7 @@ const tokens = [
     symbol: 'DIA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11955/thumb/DIA-icon-colour_%281%29.png?1596423488',
+      'https://assets.coingecko.com/coins/images/11955/small/DIA-icon-colour_%281%29.png?1596423488',
   },
   {
     chainId: 1,
@@ -7328,7 +7328,7 @@ const tokens = [
     symbol: 'PIE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11956/thumb/98j5E_EG_400x400.png?1596644614',
+      'https://assets.coingecko.com/coins/images/11956/small/98j5E_EG_400x400.png?1596644614',
   },
   {
     chainId: 1,
@@ -7337,7 +7337,7 @@ const tokens = [
     symbol: 'SBTCCURVE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11958/thumb/Curvefi_sbtcCrv_32.png?1596436054',
+      'https://assets.coingecko.com/coins/images/11958/small/Curvefi_sbtcCrv_32.png?1596436054',
   },
   {
     chainId: 1,
@@ -7346,7 +7346,7 @@ const tokens = [
     symbol: 'WRC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11962/thumb/cwSeVyY.png?1605338879',
+      'https://assets.coingecko.com/coins/images/11962/small/cwSeVyY.png?1605338879',
   },
   {
     chainId: 1,
@@ -7355,7 +7355,7 @@ const tokens = [
     symbol: 'FSXA',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11966/thumb/logo-200x200_%281%29.png?1596460801',
+      'https://assets.coingecko.com/coins/images/11966/small/logo-200x200_%281%29.png?1596460801',
   },
   {
     chainId: 1,
@@ -7364,7 +7364,7 @@ const tokens = [
     symbol: 'UETL',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11967/thumb/UETL-LOGO-2020v2.png?1596461432',
+      'https://assets.coingecko.com/coins/images/11967/small/UETL-LOGO-2020v2.png?1596461432',
   },
   {
     chainId: 1,
@@ -7373,7 +7373,7 @@ const tokens = [
     symbol: 'SUKU',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11969/thumb/UmfW5S6f_400x400.jpg?1596602238',
+      'https://assets.coingecko.com/coins/images/11969/small/UmfW5S6f_400x400.jpg?1596602238',
   },
   {
     chainId: 1,
@@ -7382,7 +7382,7 @@ const tokens = [
     symbol: 'SRM',
     decimals: 6,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11970/thumb/serum-logo.png?1597121577',
+      'https://assets.coingecko.com/coins/images/11970/small/serum-logo.png?1597121577',
   },
   {
     chainId: 1,
@@ -7391,7 +7391,7 @@ const tokens = [
     symbol: 'PRQ',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11973/thumb/DsNgK0O.png?1596590280',
+      'https://assets.coingecko.com/coins/images/11973/small/DsNgK0O.png?1596590280',
   },
   {
     chainId: 1,
@@ -7400,7 +7400,7 @@ const tokens = [
     symbol: 'CREAM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11976/thumb/Cream.png?1596593418',
+      'https://assets.coingecko.com/coins/images/11976/small/Cream.png?1596593418',
   },
   {
     chainId: 1,
@@ -7409,7 +7409,7 @@ const tokens = [
     symbol: 'XFT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11977/thumb/offshift_logo.png?1596597308',
+      'https://assets.coingecko.com/coins/images/11977/small/offshift_logo.png?1596597308',
   },
   {
     chainId: 1,
@@ -7418,7 +7418,7 @@ const tokens = [
     symbol: 'YFT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11981/thumb/photo_2020-08-04_03-25-28.jpg?1596622873',
+      'https://assets.coingecko.com/coins/images/11981/small/photo_2020-08-04_03-25-28.jpg?1596622873',
   },
   {
     chainId: 1,
@@ -7427,7 +7427,7 @@ const tokens = [
     symbol: 'TRADE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11982/thumb/unitrade.PNG?1597009487',
+      'https://assets.coingecko.com/coins/images/11982/small/unitrade.PNG?1597009487',
   },
   {
     chainId: 1,
@@ -7436,7 +7436,7 @@ const tokens = [
     symbol: 'BOT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/11984/thumb/photo_2020-10-19_09.17.57.jpeg?1603070366',
+      'https://assets.coingecko.com/coins/images/11984/small/photo_2020-10-19_09.17.57.jpeg?1603070366',
   },
   {
     chainId: 1,
@@ -7445,7 +7445,7 @@ const tokens = [
     symbol: 'FLL',
     decimals: 3,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12075/thumb/FLL_logo_200.png?1596751266',
+      'https://assets.coingecko.com/coins/images/12075/small/FLL_logo_200.png?1596751266',
   },
   {
     chainId: 1,
@@ -7454,7 +7454,7 @@ const tokens = [
     symbol: 'ETHV',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12076/thumb/logo_%2888%29.png?1596751504',
+      'https://assets.coingecko.com/coins/images/12076/small/logo_%2888%29.png?1596751504',
   },
   {
     chainId: 1,
@@ -7463,7 +7463,7 @@ const tokens = [
     symbol: 'UCM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12079/thumb/UKm2qXh.png?1605346168',
+      'https://assets.coingecko.com/coins/images/12079/small/UKm2qXh.png?1605346168',
   },
   {
     chainId: 1,
@@ -7472,7 +7472,7 @@ const tokens = [
     symbol: 'YFL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12081/thumb/YFLink.png?1596987945',
+      'https://assets.coingecko.com/coins/images/12081/small/YFLink.png?1596987945',
   },
   {
     chainId: 1,
@@ -7481,7 +7481,7 @@ const tokens = [
     symbol: 'PERX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12091/thumb/2AyoUJyQ_400x400.jpg?1597273390',
+      'https://assets.coingecko.com/coins/images/12091/small/2AyoUJyQ_400x400.jpg?1597273390',
   },
   {
     chainId: 1,
@@ -7490,7 +7490,7 @@ const tokens = [
     symbol: 'STRONG',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12092/thumb/STRONG-Token-256x256.png?1597823573',
+      'https://assets.coingecko.com/coins/images/12092/small/STRONG-Token-256x256.png?1597823573',
   },
   {
     chainId: 1,
@@ -7499,7 +7499,7 @@ const tokens = [
     symbol: 'LBURST',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12093/thumb/oKczM17b_400x400.jpg?1597273304',
+      'https://assets.coingecko.com/coins/images/12093/small/oKczM17b_400x400.jpg?1597273304',
   },
   {
     chainId: 1,
@@ -7508,7 +7508,7 @@ const tokens = [
     symbol: 'SBTC',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12094/thumb/soft_bitcoin_logo.jpg?1597043537',
+      'https://assets.coingecko.com/coins/images/12094/small/soft_bitcoin_logo.jpg?1597043537',
   },
   {
     chainId: 1,
@@ -7517,7 +7517,7 @@ const tokens = [
     symbol: 'BREE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12096/thumb/cbdao_logo.jpg?1597059848',
+      'https://assets.coingecko.com/coins/images/12096/small/cbdao_logo.jpg?1597059848',
   },
   {
     chainId: 1,
@@ -7526,7 +7526,7 @@ const tokens = [
     symbol: 'PARTY',
     decimals: 6,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12097/thumb/MoneyPartyIcon.png?1597103516',
+      'https://assets.coingecko.com/coins/images/12097/small/MoneyPartyIcon.png?1597103516',
   },
   {
     chainId: 1,
@@ -7535,7 +7535,7 @@ const tokens = [
     symbol: 'ALD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12098/thumb/20200810_135504.jpg?1597112432',
+      'https://assets.coingecko.com/coins/images/12098/small/20200810_135504.jpg?1597112432',
   },
   {
     chainId: 1,
@@ -7544,7 +7544,7 @@ const tokens = [
     symbol: 'WAIF',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12100/thumb/Small-Waifu_token.png?1597120029',
+      'https://assets.coingecko.com/coins/images/12100/small/Small-Waifu_token.png?1597120029',
   },
   {
     chainId: 1,
@@ -7553,7 +7553,7 @@ const tokens = [
     symbol: 'SBX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12104/thumb/HOTavatar.png?1599272463',
+      'https://assets.coingecko.com/coins/images/12104/small/HOTavatar.png?1599272463',
   },
   {
     chainId: 1,
@@ -7562,7 +7562,7 @@ const tokens = [
     symbol: 'FRENS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12105/thumb/7doj_8eF_400x400.jpg?1597273085',
+      'https://assets.coingecko.com/coins/images/12105/small/7doj_8eF_400x400.jpg?1597273085',
   },
   {
     chainId: 1,
@@ -7571,7 +7571,7 @@ const tokens = [
     symbol: 'TACO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12108/thumb/photo_2020-08-12_05-50-46.jpg?1597217863',
+      'https://assets.coingecko.com/coins/images/12108/small/photo_2020-08-12_05-50-46.jpg?1597217863',
   },
   {
     chainId: 1,
@@ -7580,7 +7580,7 @@ const tokens = [
     symbol: 'ATIS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12112/thumb/atis_token_logo.png?1600097654',
+      'https://assets.coingecko.com/coins/images/12112/small/atis_token_logo.png?1600097654',
   },
   {
     chainId: 1,
@@ -7589,7 +7589,7 @@ const tokens = [
     symbol: 'EQMT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12114/thumb/RYy8zR9jCnDE5Wqnnh-06q2UBuEq2NhsAaoeZhGLCy3q2zDcOOTTnaB8Tadw9-CO8IUQ34HwIPPFf4wG-7saZk1awoHQIaH9ZdHyKKeQth0GDewgEGbtgpNDxV2fxMbJB8CFpGljfF6LiLadmJsMmT0Gm0sZqzygRtxOAyTCMu5pVopFo5tz4I1R1NA-HDyjCBkXnxR6ovo0dbH.jpg?1597275175',
+      'https://assets.coingecko.com/coins/images/12114/small/RYy8zR9jCnDE5Wqnnh-06q2UBuEq2NhsAaoeZhGLCy3q2zDcOOTTnaB8Tadw9-CO8IUQ34HwIPPFf4wG-7saZk1awoHQIaH9ZdHyKKeQth0GDewgEGbtgpNDxV2fxMbJB8CFpGljfF6LiLadmJsMmT0Gm0sZqzygRtxOAyTCMu5pVopFo5tz4I1R1NA-HDyjCBkXnxR6ovo0dbH.jpg?1597275175',
   },
   {
     chainId: 1,
@@ -7598,7 +7598,7 @@ const tokens = [
     symbol: 'BASED',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12115/thumb/Based.png?1597261198',
+      'https://assets.coingecko.com/coins/images/12115/small/Based.png?1597261198',
   },
   {
     chainId: 1,
@@ -7607,7 +7607,7 @@ const tokens = [
     symbol: 'MXX',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12119/thumb/MXXlogo.png?1597306184',
+      'https://assets.coingecko.com/coins/images/12119/small/MXXlogo.png?1597306184',
   },
   {
     chainId: 1,
@@ -7616,7 +7616,7 @@ const tokens = [
     symbol: 'SVB',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12120/thumb/U6Uf6r70_400x400.jpg?1597298729',
+      'https://assets.coingecko.com/coins/images/12120/small/U6Uf6r70_400x400.jpg?1597298729',
   },
   {
     chainId: 1,
@@ -7625,7 +7625,7 @@ const tokens = [
     symbol: 'RMPL',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12122/thumb/rmpl_logo.jpg?1597298400',
+      'https://assets.coingecko.com/coins/images/12122/small/rmpl_logo.jpg?1597298400',
   },
   {
     chainId: 1,
@@ -7634,7 +7634,7 @@ const tokens = [
     symbol: 'ZZZ',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12123/thumb/zzz_finance_logo.jpg?1597306287',
+      'https://assets.coingecko.com/coins/images/12123/small/zzz_finance_logo.jpg?1597306287',
   },
   {
     chainId: 1,
@@ -7643,7 +7643,7 @@ const tokens = [
     symbol: 'CRV',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12124/thumb/Curve.png?1597369484',
+      'https://assets.coingecko.com/coins/images/12124/small/Curve.png?1597369484',
   },
   {
     chainId: 1,
@@ -7652,7 +7652,7 @@ const tokens = [
     symbol: 'CHERRY',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12125/thumb/clubcherry-2-scaled-uai-516x516.jpg?1597463169',
+      'https://assets.coingecko.com/coins/images/12125/small/clubcherry-2-scaled-uai-516x516.jpg?1597463169',
   },
   {
     chainId: 1,
@@ -7661,7 +7661,7 @@ const tokens = [
     symbol: 'SWAGG',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12126/thumb/swagg_logo.png?1597376071',
+      'https://assets.coingecko.com/coins/images/12126/small/swagg_logo.png?1597376071',
   },
   {
     chainId: 1,
@@ -7670,7 +7670,7 @@ const tokens = [
     symbol: 'GEAR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12127/thumb/bitgear_logo.png?1597377982',
+      'https://assets.coingecko.com/coins/images/12127/small/bitgear_logo.png?1597377982',
   },
   {
     chainId: 1,
@@ -7679,7 +7679,7 @@ const tokens = [
     symbol: 'MYX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12128/thumb/oKkmWEt.png?1597395102',
+      'https://assets.coingecko.com/coins/images/12128/small/oKkmWEt.png?1597395102',
   },
   {
     chainId: 1,
@@ -7688,7 +7688,7 @@ const tokens = [
     symbol: 'SAND',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12129/thumb/sandbox_logo.jpg?1597397942',
+      'https://assets.coingecko.com/coins/images/12129/small/sandbox_logo.jpg?1597397942',
   },
   {
     chainId: 1,
@@ -7697,7 +7697,7 @@ const tokens = [
     symbol: 'SCHA',
     decimals: 0,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12135/thumb/schain.png?1597462731',
+      'https://assets.coingecko.com/coins/images/12135/small/schain.png?1597462731',
   },
   {
     chainId: 1,
@@ -7706,7 +7706,7 @@ const tokens = [
     symbol: 'MEME',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12140/thumb/meme.jpg?1597476037',
+      'https://assets.coingecko.com/coins/images/12140/small/meme.jpg?1597476037',
   },
   {
     chainId: 1,
@@ -7715,7 +7715,7 @@ const tokens = [
     symbol: 'KEN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12141/thumb/Keysians_logo.jpg?1597542966',
+      'https://assets.coingecko.com/coins/images/12141/small/Keysians_logo.jpg?1597542966',
   },
   {
     chainId: 1,
@@ -7724,7 +7724,7 @@ const tokens = [
     symbol: 'BART',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12142/thumb/200x200-transparent.png?1606958206',
+      'https://assets.coingecko.com/coins/images/12142/small/200x200-transparent.png?1606958206',
   },
   {
     chainId: 1,
@@ -7733,7 +7733,7 @@ const tokens = [
     symbol: 'FERA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12143/thumb/IMG_20200908_085545_557.jpg?1599563732',
+      'https://assets.coingecko.com/coins/images/12143/small/IMG_20200908_085545_557.jpg?1599563732',
   },
   {
     chainId: 1,
@@ -7742,7 +7742,7 @@ const tokens = [
     symbol: 'TOB',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12144/thumb/tokens_of_babel_logo.jpg?1597566356',
+      'https://assets.coingecko.com/coins/images/12144/small/tokens_of_babel_logo.jpg?1597566356',
   },
   {
     chainId: 1,
@@ -7751,7 +7751,7 @@ const tokens = [
     symbol: 'COM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12145/thumb/community_token_logo.png?1597631449',
+      'https://assets.coingecko.com/coins/images/12145/small/community_token_logo.png?1597631449',
   },
   {
     chainId: 1,
@@ -7760,7 +7760,7 @@ const tokens = [
     symbol: 'DDIM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12146/thumb/token_DDIM-01.png?1606982032',
+      'https://assets.coingecko.com/coins/images/12146/small/token_DDIM-01.png?1606982032',
   },
   {
     chainId: 1,
@@ -7769,7 +7769,7 @@ const tokens = [
     symbol: 'FLOW',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12147/thumb/FLOW_LOGO_BLACK_BG_200_200.png?1599722242',
+      'https://assets.coingecko.com/coins/images/12147/small/FLOW_LOGO_BLACK_BG_200_200.png?1599722242',
   },
   {
     chainId: 1,
@@ -7778,7 +7778,7 @@ const tokens = [
     symbol: 'MXT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12148/thumb/MXT_LOGO_200_200.png?1597578983',
+      'https://assets.coingecko.com/coins/images/12148/small/MXT_LOGO_200_200.png?1597578983',
   },
   {
     chainId: 1,
@@ -7787,7 +7787,7 @@ const tokens = [
     symbol: 'SHRIMP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12150/thumb/shrimp_logo.jpg?1597653144',
+      'https://assets.coingecko.com/coins/images/12150/small/shrimp_logo.jpg?1597653144',
   },
   {
     chainId: 1,
@@ -7796,7 +7796,7 @@ const tokens = [
     symbol: 'OM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12151/thumb/OM_3D_whtbg.png?1598332353',
+      'https://assets.coingecko.com/coins/images/12151/small/OM_3D_whtbg.png?1598332353',
   },
   {
     chainId: 1,
@@ -7805,7 +7805,7 @@ const tokens = [
     symbol: 'REB2',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12153/thumb/reb.png?1608516711',
+      'https://assets.coingecko.com/coins/images/12153/small/reb.png?1608516711',
   },
   {
     chainId: 1,
@@ -7814,7 +7814,7 @@ const tokens = [
     symbol: 'MOST',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12162/thumb/most_protocol_logo.png?1597728245',
+      'https://assets.coingecko.com/coins/images/12162/small/most_protocol_logo.png?1597728245',
   },
   {
     chainId: 1,
@@ -7823,7 +7823,7 @@ const tokens = [
     symbol: 'HAKKA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12163/thumb/Hakka-icon.png?1597746776',
+      'https://assets.coingecko.com/coins/images/12163/small/Hakka-icon.png?1597746776',
   },
   {
     chainId: 1,
@@ -7832,7 +7832,7 @@ const tokens = [
     symbol: 'LAYER',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12164/thumb/Unilayer.jpg?1597779313',
+      'https://assets.coingecko.com/coins/images/12164/small/Unilayer.jpg?1597779313',
   },
   {
     chainId: 1,
@@ -7841,7 +7841,7 @@ const tokens = [
     symbol: 'CHOP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12169/thumb/Porkchop.png?1597803275',
+      'https://assets.coingecko.com/coins/images/12169/small/Porkchop.png?1597803275',
   },
   {
     chainId: 1,
@@ -7850,7 +7850,7 @@ const tokens = [
     symbol: 'PASTA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12170/thumb/pasta_logo.png?1597803191',
+      'https://assets.coingecko.com/coins/images/12170/small/pasta_logo.png?1597803191',
   },
   {
     chainId: 1,
@@ -7859,7 +7859,7 @@ const tokens = [
     symbol: 'UNICRAP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12172/thumb/GfCR6sqZMaJmDBJ80CQBSSxzm2fe1Y0Cd87I9ZgwUU32Zr70LZDGA7ue_2aisyeXuEhweh4fQaRYg1KRbQzuZVrnDJota1LsNLgcjWj23eYTAdo8bI79hg6oxwVC-FPi58jxlqKO6e-5G-ICeqzUbW-LPQjSeG0esscG9a5y_9R64p4rMTHCqudAO01tLmBrYfIUn9bEyK-pgicSGY0.jpg?1597804376',
+      'https://assets.coingecko.com/coins/images/12172/small/GfCR6sqZMaJmDBJ80CQBSSxzm2fe1Y0Cd87I9ZgwUU32Zr70LZDGA7ue_2aisyeXuEhweh4fQaRYg1KRbQzuZVrnDJota1LsNLgcjWj23eYTAdo8bI79hg6oxwVC-FPi58jxlqKO6e-5G-ICeqzUbW-LPQjSeG0esscG9a5y_9R64p4rMTHCqudAO01tLmBrYfIUn9bEyK-pgicSGY0.jpg?1597804376',
   },
   {
     chainId: 1,
@@ -7868,7 +7868,7 @@ const tokens = [
     symbol: 'IMS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12173/thumb/wqtIArTS_400x400.jpg?1597804992',
+      'https://assets.coingecko.com/coins/images/12173/small/wqtIArTS_400x400.jpg?1597804992',
   },
   {
     chainId: 1,
@@ -7877,7 +7877,7 @@ const tokens = [
     symbol: 'NFT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12174/thumb/nftprotocol_32.png?1597818115',
+      'https://assets.coingecko.com/coins/images/12174/small/nftprotocol_32.png?1597818115',
   },
   {
     chainId: 1,
@@ -7886,7 +7886,7 @@ const tokens = [
     symbol: 'EMTRG',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12175/thumb/Dark-blue-icon-transparent-vector-white-icon200x200.png?1597819237',
+      'https://assets.coingecko.com/coins/images/12175/small/Dark-blue-icon-transparent-vector-white-icon200x200.png?1597819237',
   },
   {
     chainId: 1,
@@ -7895,7 +7895,7 @@ const tokens = [
     symbol: 'EMTR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12176/thumb/Meter-Logo-Vertical-Gray-Light-Blue-rgb-200x200px.png?1597819702',
+      'https://assets.coingecko.com/coins/images/12176/small/Meter-Logo-Vertical-Gray-Light-Blue-rgb-200x200px.png?1597819702',
   },
   {
     chainId: 1,
@@ -7904,7 +7904,7 @@ const tokens = [
     symbol: 'CAT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12177/thumb/cat.png?1598137093',
+      'https://assets.coingecko.com/coins/images/12177/small/cat.png?1598137093',
   },
   {
     chainId: 1,
@@ -7913,7 +7913,7 @@ const tokens = [
     symbol: 'YAMV2',
     decimals: 24,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12179/thumb/YAM-v2.png?1597892396',
+      'https://assets.coingecko.com/coins/images/12179/small/YAM-v2.png?1597892396',
   },
   {
     chainId: 1,
@@ -7922,7 +7922,7 @@ const tokens = [
     symbol: 'AGA',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12180/thumb/aga-logo.png?1597937396',
+      'https://assets.coingecko.com/coins/images/12180/small/aga-logo.png?1597937396',
   },
   {
     chainId: 1,
@@ -7931,7 +7931,7 @@ const tokens = [
     symbol: 'LGCY',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12181/thumb/LGCY_network.jpg?1597926587',
+      'https://assets.coingecko.com/coins/images/12181/small/LGCY_network.jpg?1597926587',
   },
   {
     chainId: 1,
@@ -7940,7 +7940,7 @@ const tokens = [
     symbol: 'XIOT',
     decimals: 3,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12182/thumb/xiot_logo_512x512.png?1601775223',
+      'https://assets.coingecko.com/coins/images/12182/small/xiot_logo_512x512.png?1601775223',
   },
   {
     chainId: 1,
@@ -7949,7 +7949,7 @@ const tokens = [
     symbol: 'MORK',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12183/thumb/mork-logo.png?1597941710',
+      'https://assets.coingecko.com/coins/images/12183/small/mork-logo.png?1597941710',
   },
   {
     chainId: 1,
@@ -7958,7 +7958,7 @@ const tokens = [
     symbol: 'UPI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12186/thumb/pawtocol.jpg?1597962008',
+      'https://assets.coingecko.com/coins/images/12186/small/pawtocol.jpg?1597962008',
   },
   {
     chainId: 1,
@@ -7967,7 +7967,7 @@ const tokens = [
     symbol: 'DFIO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12191/thumb/defi_omega_logo.png?1597978243',
+      'https://assets.coingecko.com/coins/images/12191/small/defi_omega_logo.png?1597978243',
   },
   {
     chainId: 1,
@@ -7976,7 +7976,7 @@ const tokens = [
     symbol: 'SLINK',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12192/thumb/LogoSLINK.png?1597983753',
+      'https://assets.coingecko.com/coins/images/12192/small/LogoSLINK.png?1597983753',
   },
   {
     chainId: 1,
@@ -7985,7 +7985,7 @@ const tokens = [
     symbol: 'GRAP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12193/thumb/0WBMFrtk_400x400.jpg?1597984167',
+      'https://assets.coingecko.com/coins/images/12193/small/0WBMFrtk_400x400.jpg?1597984167',
   },
   {
     chainId: 1,
@@ -7994,7 +7994,7 @@ const tokens = [
     symbol: 'YMPL',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12194/thumb/xm0vpJqS_400x400.jpg?1597984439',
+      'https://assets.coingecko.com/coins/images/12194/small/xm0vpJqS_400x400.jpg?1597984439',
   },
   {
     chainId: 1,
@@ -8003,7 +8003,7 @@ const tokens = [
     symbol: 'DDTG',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12195/thumb/davecoin.png?1597991174',
+      'https://assets.coingecko.com/coins/images/12195/small/davecoin.png?1597991174',
   },
   {
     chainId: 1,
@@ -8012,7 +8012,7 @@ const tokens = [
     symbol: 'FIRST',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12196/thumb/cc2016f6-0c74-4a95-b89b-b1684c7b9426.png?1597991823',
+      'https://assets.coingecko.com/coins/images/12196/small/cc2016f6-0c74-4a95-b89b-b1684c7b9426.png?1597991823',
   },
   {
     chainId: 1,
@@ -8021,7 +8021,7 @@ const tokens = [
     symbol: 'GRAPH',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12197/thumb/unigraph_logo.png?1597992376',
+      'https://assets.coingecko.com/coins/images/12197/small/unigraph_logo.png?1597992376',
   },
   {
     chainId: 1,
@@ -8030,7 +8030,7 @@ const tokens = [
     symbol: 'AXIS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12199/thumb/YeLWZ3V.jpg?1597998424',
+      'https://assets.coingecko.com/coins/images/12199/small/YeLWZ3V.jpg?1597998424',
   },
   {
     chainId: 1,
@@ -8039,7 +8039,7 @@ const tokens = [
     symbol: 'OPT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12200/thumb/9idIjfrY_400x400.jpg?1598020161',
+      'https://assets.coingecko.com/coins/images/12200/small/9idIjfrY_400x400.jpg?1598020161',
   },
   {
     chainId: 1,
@@ -8048,7 +8048,7 @@ const tokens = [
     symbol: 'ORBI',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12201/thumb/orbicular_logo.png?1598005710',
+      'https://assets.coingecko.com/coins/images/12201/small/orbicular_logo.png?1598005710',
   },
   {
     chainId: 1,
@@ -8057,7 +8057,7 @@ const tokens = [
     symbol: 'FYZ',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12202/thumb/fyooz.png?1598017956',
+      'https://assets.coingecko.com/coins/images/12202/small/fyooz.png?1598017956',
   },
   {
     chainId: 1,
@@ -8066,7 +8066,7 @@ const tokens = [
     symbol: 'XTK',
     decimals: 6,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12204/thumb/xtake.jpg?1598080058',
+      'https://assets.coingecko.com/coins/images/12204/small/xtake.jpg?1598080058',
   },
   {
     chainId: 1,
@@ -8075,7 +8075,7 @@ const tokens = [
     symbol: 'COOM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12205/thumb/coom.jpg?1598081856',
+      'https://assets.coingecko.com/coins/images/12205/small/coom.jpg?1598081856',
   },
   {
     chainId: 1,
@@ -8084,7 +8084,7 @@ const tokens = [
     symbol: 'YBREE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12207/thumb/ybdao_logo.jpg?1598094230',
+      'https://assets.coingecko.com/coins/images/12207/small/ybdao_logo.jpg?1598094230',
   },
   {
     chainId: 1,
@@ -8093,7 +8093,7 @@ const tokens = [
     symbol: 'DGVC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12208/thumb/degen_vc_logo.png?1598186601',
+      'https://assets.coingecko.com/coins/images/12208/small/degen_vc_logo.png?1598186601',
   },
   {
     chainId: 1,
@@ -8102,7 +8102,7 @@ const tokens = [
     symbol: 'YVAULT-LP-YCURVE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12210/thumb/yUSD.png?1600166557',
+      'https://assets.coingecko.com/coins/images/12210/small/yUSD.png?1600166557',
   },
   {
     chainId: 1,
@@ -8111,7 +8111,7 @@ const tokens = [
     symbol: 'LIB',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12211/thumb/19nmRSeR_400x400.jpg?1598234697',
+      'https://assets.coingecko.com/coins/images/12211/small/19nmRSeR_400x400.jpg?1598234697',
   },
   {
     chainId: 1,
@@ -8120,7 +8120,7 @@ const tokens = [
     symbol: 'CREDIT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12212/thumb/_credit.png?1598235420',
+      'https://assets.coingecko.com/coins/images/12212/small/_credit.png?1598235420',
   },
   {
     chainId: 1,
@@ -8129,7 +8129,7 @@ const tokens = [
     symbol: 'VIDYA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12219/thumb/VIDYA_TOKEN.png?1598240425',
+      'https://assets.coingecko.com/coins/images/12219/small/VIDYA_TOKEN.png?1598240425',
   },
   {
     chainId: 1,
@@ -8138,7 +8138,7 @@ const tokens = [
     symbol: 'STOP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12220/thumb/stop.png?1598241582',
+      'https://assets.coingecko.com/coins/images/12220/small/stop.png?1598241582',
   },
   {
     chainId: 1,
@@ -8147,7 +8147,7 @@ const tokens = [
     symbol: 'DEXG',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12223/thumb/dextoken-logo-v2_200.png?1598408669',
+      'https://assets.coingecko.com/coins/images/12223/small/dextoken-logo-v2_200.png?1598408669',
   },
   {
     chainId: 1,
@@ -8156,7 +8156,7 @@ const tokens = [
     symbol: 'LIEN',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12224/thumb/Lien.png?1598262819',
+      'https://assets.coingecko.com/coins/images/12224/small/Lien.png?1598262819',
   },
   {
     chainId: 1,
@@ -8165,7 +8165,7 @@ const tokens = [
     symbol: 'ZOMBIE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12227/thumb/logo2_%285%29.png?1598307645',
+      'https://assets.coingecko.com/coins/images/12227/small/logo2_%285%29.png?1598307645',
   },
   {
     chainId: 1,
@@ -8174,7 +8174,7 @@ const tokens = [
     symbol: 'COW',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12228/thumb/cowboy.png?1598309446',
+      'https://assets.coingecko.com/coins/images/12228/small/cowboy.png?1598309446',
   },
   {
     chainId: 1,
@@ -8183,7 +8183,7 @@ const tokens = [
     symbol: 'TMPL',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12229/thumb/tmpl.jpg?1598311641',
+      'https://assets.coingecko.com/coins/images/12229/small/tmpl.jpg?1598311641',
   },
   {
     chainId: 1,
@@ -8192,7 +8192,7 @@ const tokens = [
     symbol: 'ALG',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12231/thumb/logo-2.png?1605256312',
+      'https://assets.coingecko.com/coins/images/12231/small/logo-2.png?1605256312',
   },
   {
     chainId: 1,
@@ -8201,7 +8201,7 @@ const tokens = [
     symbol: 'SPA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12232/thumb/sperax_logo.jpg?1598342904',
+      'https://assets.coingecko.com/coins/images/12232/small/sperax_logo.jpg?1598342904',
   },
   {
     chainId: 1,
@@ -8210,7 +8210,7 @@ const tokens = [
     symbol: 'COIL',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12234/thumb/Coil_-_Logo_open_%28256x256%29_tp.png?1598519979',
+      'https://assets.coingecko.com/coins/images/12234/small/Coil_-_Logo_open_%28256x256%29_tp.png?1598519979',
   },
   {
     chainId: 1,
@@ -8219,7 +8219,7 @@ const tokens = [
     symbol: 'DETS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12235/thumb/logo_dark.png?1598425651',
+      'https://assets.coingecko.com/coins/images/12235/small/logo_dark.png?1598425651',
   },
   {
     chainId: 1,
@@ -8228,7 +8228,7 @@ const tokens = [
     symbol: 'GRO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12239/thumb/growthdefi_logo.png?1598438196',
+      'https://assets.coingecko.com/coins/images/12239/small/growthdefi_logo.png?1598438196',
   },
   {
     chainId: 1,
@@ -8237,7 +8237,7 @@ const tokens = [
     symbol: 'STEEL',
     decimals: 0,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12246/thumb/HOSlogo.png?1598496572',
+      'https://assets.coingecko.com/coins/images/12246/small/HOSlogo.png?1598496572',
   },
   {
     chainId: 1,
@@ -8246,7 +8246,7 @@ const tokens = [
     symbol: 'BLZN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12248/thumb/A8JOuPSJ_400x400.jpg?1598511402',
+      'https://assets.coingecko.com/coins/images/12248/small/A8JOuPSJ_400x400.jpg?1598511402',
   },
   {
     chainId: 1,
@@ -8255,7 +8255,7 @@ const tokens = [
     symbol: 'SALE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12250/thumb/logoicon_200-200.png?1598513464',
+      'https://assets.coingecko.com/coins/images/12250/small/logoicon_200-200.png?1598513464',
   },
   {
     chainId: 1,
@@ -8264,7 +8264,7 @@ const tokens = [
     symbol: 'BOA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12251/thumb/5f4336749313bc77f88e3927_the-ouroboros-or-uroborus-english-school-p-500.jpeg?1598515550',
+      'https://assets.coingecko.com/coins/images/12251/small/5f4336749313bc77f88e3927_the-ouroboros-or-uroborus-english-school-p-500.jpeg?1598515550',
   },
   {
     chainId: 1,
@@ -8273,7 +8273,7 @@ const tokens = [
     symbol: 'FSW',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12256/thumb/falconswap.png?1598534184',
+      'https://assets.coingecko.com/coins/images/12256/small/falconswap.png?1598534184',
   },
   {
     chainId: 1,
@@ -8282,7 +8282,7 @@ const tokens = [
     symbol: 'CHAIN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12257/thumb/chain-logo-centered-500x500.png?1599617244',
+      'https://assets.coingecko.com/coins/images/12257/small/chain-logo-centered-500x500.png?1599617244',
   },
   {
     chainId: 1,
@@ -8291,7 +8291,7 @@ const tokens = [
     symbol: 'UNIFI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12258/thumb/Unifi.png?1598548933',
+      'https://assets.coingecko.com/coins/images/12258/small/Unifi.png?1598548933',
   },
   {
     chainId: 1,
@@ -8300,7 +8300,7 @@ const tokens = [
     symbol: 'USD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12259/thumb/Uniswap_State_Dollar.png?1598550804',
+      'https://assets.coingecko.com/coins/images/12259/small/Uniswap_State_Dollar.png?1598550804',
   },
   {
     chainId: 1,
@@ -8309,7 +8309,7 @@ const tokens = [
     symbol: 'ANC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12261/thumb/bbs-panda200.png?1598579736',
+      'https://assets.coingecko.com/coins/images/12261/small/bbs-panda200.png?1598579736',
   },
   {
     chainId: 1,
@@ -8318,7 +8318,7 @@ const tokens = [
     symbol: 'RCKT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12262/thumb/IAY0DFX4_400x400.jpg?1598584324',
+      'https://assets.coingecko.com/coins/images/12262/small/IAY0DFX4_400x400.jpg?1598584324',
   },
   {
     chainId: 1,
@@ -8327,7 +8327,7 @@ const tokens = [
     symbol: 'SWFL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12263/thumb/swapfolio-token-logo-icon-symbol-256-256.png?1598593097',
+      'https://assets.coingecko.com/coins/images/12263/small/swapfolio-token-logo-icon-symbol-256-256.png?1598593097',
   },
   {
     chainId: 1,
@@ -8336,7 +8336,7 @@ const tokens = [
     symbol: 'DOTX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12265/thumb/logo200x200.jpg?1598599911',
+      'https://assets.coingecko.com/coins/images/12265/small/logo200x200.jpg?1598599911',
   },
   {
     chainId: 1,
@@ -8345,7 +8345,7 @@ const tokens = [
     symbol: 'CVP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12266/thumb/Powerpool.jpg?1598621373',
+      'https://assets.coingecko.com/coins/images/12266/small/Powerpool.jpg?1598621373',
   },
   {
     chainId: 1,
@@ -8354,7 +8354,7 @@ const tokens = [
     symbol: 'SUSHI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12271/thumb/512x512_Logo_no_chop.png?1606986688',
+      'https://assets.coingecko.com/coins/images/12271/small/512x512_Logo_no_chop.png?1606986688',
   },
   {
     chainId: 1,
@@ -8363,7 +8363,7 @@ const tokens = [
     symbol: 'NEWTON',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12273/thumb/newton.jpg?1598689904',
+      'https://assets.coingecko.com/coins/images/12273/small/newton.jpg?1598689904',
   },
   {
     chainId: 1,
@@ -8372,7 +8372,7 @@ const tokens = [
     symbol: 'VESTA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12276/thumb/t693cWC.png?1598736747',
+      'https://assets.coingecko.com/coins/images/12276/small/t693cWC.png?1598736747',
   },
   {
     chainId: 1,
@@ -8381,7 +8381,7 @@ const tokens = [
     symbol: 'YFIS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12277/thumb/Logo_YFIS_.png?1598737945',
+      'https://assets.coingecko.com/coins/images/12277/small/Logo_YFIS_.png?1598737945',
   },
   {
     chainId: 1,
@@ -8390,7 +8390,7 @@ const tokens = [
     symbol: 'TIME',
     decimals: 6,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12280/thumb/2WTMX74.png?1598739901',
+      'https://assets.coingecko.com/coins/images/12280/small/2WTMX74.png?1598739901',
   },
   {
     chainId: 1,
@@ -8399,7 +8399,7 @@ const tokens = [
     symbol: 'MOBI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12281/thumb/nTcbsIgu_400x400.jpg?1598741341',
+      'https://assets.coingecko.com/coins/images/12281/small/nTcbsIgu_400x400.jpg?1598741341',
   },
   {
     chainId: 1,
@@ -8408,7 +8408,7 @@ const tokens = [
     symbol: 'HOUSE',
     decimals: 0,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12287/thumb/icon_%284%29.png?1598825274',
+      'https://assets.coingecko.com/coins/images/12287/small/icon_%284%29.png?1598825274',
   },
   {
     chainId: 1,
@@ -8417,7 +8417,7 @@ const tokens = [
     symbol: 'FACT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12288/thumb/PfFTv2JB_200x200.jpg?1598826350',
+      'https://assets.coingecko.com/coins/images/12288/small/PfFTv2JB_200x200.jpg?1598826350',
   },
   {
     chainId: 1,
@@ -8426,7 +8426,7 @@ const tokens = [
     symbol: 'BAST',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12289/thumb/bast_logo.png?1598865533',
+      'https://assets.coingecko.com/coins/images/12289/small/bast_logo.png?1598865533',
   },
   {
     chainId: 1,
@@ -8435,7 +8435,7 @@ const tokens = [
     symbol: 'DOGEFI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12290/thumb/DOGEFI-Logo.png?1598868716',
+      'https://assets.coingecko.com/coins/images/12290/small/DOGEFI-Logo.png?1598868716',
   },
   {
     chainId: 1,
@@ -8444,7 +8444,7 @@ const tokens = [
     symbol: 'DISTX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12291/thumb/DISTX-icon.png?1598885812',
+      'https://assets.coingecko.com/coins/images/12291/small/DISTX-icon.png?1598885812',
   },
   {
     chainId: 1,
@@ -8453,7 +8453,7 @@ const tokens = [
     symbol: 'YFIVE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12292/thumb/0gW17G6E_400x400.jpg?1598886392',
+      'https://assets.coingecko.com/coins/images/12292/small/0gW17G6E_400x400.jpg?1598886392',
   },
   {
     chainId: 1,
@@ -8462,7 +8462,7 @@ const tokens = [
     symbol: 'SOFI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12296/thumb/logo-transparent.png?1598931704',
+      'https://assets.coingecko.com/coins/images/12296/small/logo-transparent.png?1598931704',
   },
   {
     chainId: 1,
@@ -8471,7 +8471,7 @@ const tokens = [
     symbol: 'YUNO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12297/thumb/y.png?1598942444',
+      'https://assets.coingecko.com/coins/images/12297/small/y.png?1598942444',
   },
   {
     chainId: 1,
@@ -8480,7 +8480,7 @@ const tokens = [
     symbol: 'MINI',
     decimals: 19,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12298/thumb/IrTAVc_GqZ7iQucAa3fNYlh_Cqt3tY9wM_pmzOl5SifscRMpuzrp_dizMzGTiMr_NxDJPCKigBgz8THrzvO_DqT3JLzqZIYeytDBRw3qKI73dljS0BnFaaI2aLadpdCZah4RkhydddLIDDbQlGit77farlQRaq7qEgxdjVe0aqEeh4phE-DWAKi_KS_Yz-fFdDfjWgifVCKkZRBeNSWWQEplxxl.jpg?1598961320',
+      'https://assets.coingecko.com/coins/images/12298/small/IrTAVc_GqZ7iQucAa3fNYlh_Cqt3tY9wM_pmzOl5SifscRMpuzrp_dizMzGTiMr_NxDJPCKigBgz8THrzvO_DqT3JLzqZIYeytDBRw3qKI73dljS0BnFaaI2aLadpdCZah4RkhydddLIDDbQlGit77farlQRaq7qEgxdjVe0aqEeh4phE-DWAKi_KS_Yz-fFdDfjWgifVCKkZRBeNSWWQEplxxl.jpg?1598961320',
   },
   {
     chainId: 1,
@@ -8489,7 +8489,7 @@ const tokens = [
     symbol: 'PYLON',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12299/thumb/NewPylonLogo.png?1604457455',
+      'https://assets.coingecko.com/coins/images/12299/small/NewPylonLogo.png?1604457455',
   },
   {
     chainId: 1,
@@ -8498,7 +8498,7 @@ const tokens = [
     symbol: 'ADEL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12300/thumb/adel_on_white_10x.png?1598967061',
+      'https://assets.coingecko.com/coins/images/12300/small/adel_on_white_10x.png?1598967061',
   },
   {
     chainId: 1,
@@ -8507,7 +8507,7 @@ const tokens = [
     symbol: 'WTF',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12301/thumb/photo_2020-08-31_04-24-32.jpg?1598968170',
+      'https://assets.coingecko.com/coins/images/12301/small/photo_2020-08-31_04-24-32.jpg?1598968170',
   },
   {
     chainId: 1,
@@ -8516,7 +8516,7 @@ const tokens = [
     symbol: 'KIMCHI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12302/thumb/VBa2Z60o_400x400.png?1598982471',
+      'https://assets.coingecko.com/coins/images/12302/small/VBa2Z60o_400x400.png?1598982471',
   },
   {
     chainId: 1,
@@ -8525,7 +8525,7 @@ const tokens = [
     symbol: 'DFT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12303/thumb/defiat.jpg?1598985049',
+      'https://assets.coingecko.com/coins/images/12303/small/defiat.jpg?1598985049',
   },
   {
     chainId: 1,
@@ -8534,7 +8534,7 @@ const tokens = [
     symbol: 'FARM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12304/thumb/Harvest.png?1599007988',
+      'https://assets.coingecko.com/coins/images/12304/small/Harvest.png?1599007988',
   },
   {
     chainId: 1,
@@ -8543,7 +8543,7 @@ const tokens = [
     symbol: 'SHARE',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12306/thumb/logo_%281%29.png?1607658707',
+      'https://assets.coingecko.com/coins/images/12306/small/logo_%281%29.png?1607658707',
   },
   {
     chainId: 1,
@@ -8552,7 +8552,7 @@ const tokens = [
     symbol: 'RUG',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12307/thumb/rug_token_logo.png?1599029152',
+      'https://assets.coingecko.com/coins/images/12307/small/rug_token_logo.png?1599029152',
   },
   {
     chainId: 1,
@@ -8561,7 +8561,7 @@ const tokens = [
     symbol: 'YFFS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12309/thumb/KijHtdcg_400x400.jpg?1599041092',
+      'https://assets.coingecko.com/coins/images/12309/small/KijHtdcg_400x400.jpg?1599041092',
   },
   {
     chainId: 1,
@@ -8570,7 +8570,7 @@ const tokens = [
     symbol: 'NOODLE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12311/thumb/noodle.jpg?1599053738',
+      'https://assets.coingecko.com/coins/images/12311/small/noodle.jpg?1599053738',
   },
   {
     chainId: 1,
@@ -8579,7 +8579,7 @@ const tokens = [
     symbol: 'OCB',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12315/thumb/200x200-01.png?1599086761',
+      'https://assets.coingecko.com/coins/images/12315/small/200x200-01.png?1599086761',
   },
   {
     chainId: 1,
@@ -8588,7 +8588,7 @@ const tokens = [
     symbol: 'WING',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12318/thumb/6584.png?1599087626',
+      'https://assets.coingecko.com/coins/images/12318/small/6584.png?1599087626',
   },
   {
     chainId: 1,
@@ -8597,7 +8597,7 @@ const tokens = [
     symbol: 'SYFI',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12320/thumb/soft_yearn.png?1599094189',
+      'https://assets.coingecko.com/coins/images/12320/small/soft_yearn.png?1599094189',
   },
   {
     chainId: 1,
@@ -8606,7 +8606,7 @@ const tokens = [
     symbol: 'YUP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12322/thumb/yupx.png?1599094638',
+      'https://assets.coingecko.com/coins/images/12322/small/yupx.png?1599094638',
   },
   {
     chainId: 1,
@@ -8615,7 +8615,7 @@ const tokens = [
     symbol: 'YFBETA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12325/thumb/yfbeta_logo.jpg?1599096612',
+      'https://assets.coingecko.com/coins/images/12325/small/yfbeta_logo.jpg?1599096612',
   },
   {
     chainId: 1,
@@ -8624,7 +8624,7 @@ const tokens = [
     symbol: 'OBEE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12326/thumb/ObeeNetwork.png?1599099616',
+      'https://assets.coingecko.com/coins/images/12326/small/ObeeNetwork.png?1599099616',
   },
   {
     chainId: 1,
@@ -8633,7 +8633,7 @@ const tokens = [
     symbol: 'NYB',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12327/thumb/bull.jpg?1599102873',
+      'https://assets.coingecko.com/coins/images/12327/small/bull.jpg?1599102873',
   },
   {
     chainId: 1,
@@ -8642,7 +8642,7 @@ const tokens = [
     symbol: 'EXNT',
     decimals: 16,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12328/thumb/exnt_logo.png?1599102916',
+      'https://assets.coingecko.com/coins/images/12328/small/exnt_logo.png?1599102916',
   },
   {
     chainId: 1,
@@ -8651,7 +8651,7 @@ const tokens = [
     symbol: 'BOOST',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12329/thumb/boosted.jpg?1599105606',
+      'https://assets.coingecko.com/coins/images/12329/small/boosted.jpg?1599105606',
   },
   {
     chainId: 1,
@@ -8660,7 +8660,7 @@ const tokens = [
     symbol: 'UCO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12330/thumb/e353ZVj.png?1599112996',
+      'https://assets.coingecko.com/coins/images/12330/small/e353ZVj.png?1599112996',
   },
   {
     chainId: 1,
@@ -8669,7 +8669,7 @@ const tokens = [
     symbol: 'DUSD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12333/thumb/defidollar_logo.png?1599116360',
+      'https://assets.coingecko.com/coins/images/12333/small/defidollar_logo.png?1599116360',
   },
   {
     chainId: 1,
@@ -8678,7 +8678,7 @@ const tokens = [
     symbol: 'TON',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12334/thumb/ton.jpg?1599128436',
+      'https://assets.coingecko.com/coins/images/12334/small/ton.jpg?1599128436',
   },
   {
     chainId: 1,
@@ -8687,7 +8687,7 @@ const tokens = [
     symbol: 'BACON',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12336/thumb/bacon_swap_logo.png?1599133231',
+      'https://assets.coingecko.com/coins/images/12336/small/bacon_swap_logo.png?1599133231',
   },
   {
     chainId: 1,
@@ -8696,7 +8696,7 @@ const tokens = [
     symbol: 'OPM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12337/thumb/opm-200px.png?1599136480',
+      'https://assets.coingecko.com/coins/images/12337/small/opm-200px.png?1599136480',
   },
   {
     chainId: 1,
@@ -8705,7 +8705,7 @@ const tokens = [
     symbol: 'PDAI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12338/thumb/pdai-200px.png?1599136775',
+      'https://assets.coingecko.com/coins/images/12338/small/pdai-200px.png?1599136775',
   },
   {
     chainId: 1,
@@ -8714,7 +8714,7 @@ const tokens = [
     symbol: 'OIN',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12339/thumb/oin_finance_logo.jpg?1599137603',
+      'https://assets.coingecko.com/coins/images/12339/small/oin_finance_logo.jpg?1599137603',
   },
   {
     chainId: 1,
@@ -8723,7 +8723,7 @@ const tokens = [
     symbol: 'KIF',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12340/thumb/SnQPkABT_400x400.png?1599173267',
+      'https://assets.coingecko.com/coins/images/12340/small/SnQPkABT_400x400.png?1599173267',
   },
   {
     chainId: 1,
@@ -8732,7 +8732,7 @@ const tokens = [
     symbol: 'SHROOM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12341/thumb/icon_%285%29.png?1599173559',
+      'https://assets.coingecko.com/coins/images/12341/small/icon_%285%29.png?1599173559',
   },
   {
     chainId: 1,
@@ -8741,7 +8741,7 @@ const tokens = [
     symbol: 'BID',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12344/thumb/IMG_20200919_115022_477.png?1600739441',
+      'https://assets.coingecko.com/coins/images/12344/small/IMG_20200919_115022_477.png?1600739441',
   },
   {
     chainId: 1,
@@ -8750,7 +8750,7 @@ const tokens = [
     symbol: 'ASTRO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12345/thumb/AT-flat-purple_logo.png?1599190828',
+      'https://assets.coingecko.com/coins/images/12345/small/AT-flat-purple_logo.png?1599190828',
   },
   {
     chainId: 1,
@@ -8759,7 +8759,7 @@ const tokens = [
     symbol: 'YFIB',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12346/thumb/fkPIR2pc_400x400.jpg?1599192901',
+      'https://assets.coingecko.com/coins/images/12346/small/fkPIR2pc_400x400.jpg?1599192901',
   },
   {
     chainId: 1,
@@ -8768,7 +8768,7 @@ const tokens = [
     symbol: 'FRY',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12348/thumb/lNceCqHc_400x400.jpg?1599202157',
+      'https://assets.coingecko.com/coins/images/12348/small/lNceCqHc_400x400.jpg?1599202157',
   },
   {
     chainId: 1,
@@ -8777,7 +8777,7 @@ const tokens = [
     symbol: 'TRUMP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12350/thumb/flat-750x-075-f-pad-750x1000-f8f8f8.png?1599968841',
+      'https://assets.coingecko.com/coins/images/12350/small/flat-750x-075-f-pad-750x1000-f8f8f8.png?1599968841',
   },
   {
     chainId: 1,
@@ -8786,7 +8786,7 @@ const tokens = [
     symbol: 'GBP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12351/thumb/good_boy_points_logo.png?1599206547',
+      'https://assets.coingecko.com/coins/images/12351/small/good_boy_points_logo.png?1599206547',
   },
   {
     chainId: 1,
@@ -8795,7 +8795,7 @@ const tokens = [
     symbol: 'UNT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12352/thumb/logo-2.png?1599206919',
+      'https://assets.coingecko.com/coins/images/12352/small/logo-2.png?1599206919',
   },
   {
     chainId: 1,
@@ -8804,7 +8804,7 @@ const tokens = [
     symbol: 'YFA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12354/thumb/2020-08-31_19.04.20.png?1599260762',
+      'https://assets.coingecko.com/coins/images/12354/small/2020-08-31_19.04.20.png?1599260762',
   },
   {
     chainId: 1,
@@ -8813,7 +8813,7 @@ const tokens = [
     symbol: 'TST',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12355/thumb/RhEvWed.png?1599260984',
+      'https://assets.coingecko.com/coins/images/12355/small/RhEvWed.png?1599260984',
   },
   {
     chainId: 1,
@@ -8822,7 +8822,7 @@ const tokens = [
     symbol: 'TDEX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12356/thumb/slider-img.png?1599261139',
+      'https://assets.coingecko.com/coins/images/12356/small/slider-img.png?1599261139',
   },
   {
     chainId: 1,
@@ -8831,7 +8831,7 @@ const tokens = [
     symbol: 'FAM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12359/thumb/FAM200.png?1600333720',
+      'https://assets.coingecko.com/coins/images/12359/small/FAM200.png?1600333720',
   },
   {
     chainId: 1,
@@ -8840,7 +8840,7 @@ const tokens = [
     symbol: 'SWRV',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12361/thumb/swerve.png?1599278316',
+      'https://assets.coingecko.com/coins/images/12361/small/swerve.png?1599278316',
   },
   {
     chainId: 1,
@@ -8849,7 +8849,7 @@ const tokens = [
     symbol: 'FSP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12362/thumb/ZKvuJEUR_400x400.jpg?1599299420',
+      'https://assets.coingecko.com/coins/images/12362/small/ZKvuJEUR_400x400.jpg?1599299420',
   },
   {
     chainId: 1,
@@ -8858,7 +8858,7 @@ const tokens = [
     symbol: 'YFP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12363/thumb/yearn.jpg?1599309396',
+      'https://assets.coingecko.com/coins/images/12363/small/yearn.jpg?1599309396',
   },
   {
     chainId: 1,
@@ -8867,7 +8867,7 @@ const tokens = [
     symbol: 'AAPL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12367/thumb/oF1_9R1K_400x400.jpg?1599345463',
+      'https://assets.coingecko.com/coins/images/12367/small/oF1_9R1K_400x400.jpg?1599345463',
   },
   {
     chainId: 1,
@@ -8876,7 +8876,7 @@ const tokens = [
     symbol: 'BNSD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12368/thumb/bnsd.png?1599358388',
+      'https://assets.coingecko.com/coins/images/12368/small/bnsd.png?1599358388',
   },
   {
     chainId: 1,
@@ -8885,7 +8885,7 @@ const tokens = [
     symbol: 'YFUEL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12369/thumb/Untitled-3-1.png?1600765495',
+      'https://assets.coingecko.com/coins/images/12369/small/Untitled-3-1.png?1600765495',
   },
   {
     chainId: 1,
@@ -8894,7 +8894,7 @@ const tokens = [
     symbol: 'DFX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12370/thumb/dfx.jpg?1599360540',
+      'https://assets.coingecko.com/coins/images/12370/small/dfx.jpg?1599360540',
   },
   {
     chainId: 1,
@@ -8903,7 +8903,7 @@ const tokens = [
     symbol: 'REVV',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12373/thumb/Nxy8QwOU.png?1599385982',
+      'https://assets.coingecko.com/coins/images/12373/small/Nxy8QwOU.png?1599385982',
   },
   {
     chainId: 1,
@@ -8912,7 +8912,7 @@ const tokens = [
     symbol: 'FORS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12374/thumb/foresight_logo.jpg?1599389915',
+      'https://assets.coingecko.com/coins/images/12374/small/foresight_logo.jpg?1599389915',
   },
   {
     chainId: 1,
@@ -8921,7 +8921,7 @@ const tokens = [
     symbol: 'COIN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12375/thumb/coin_artist_logo.png?1599403918',
+      'https://assets.coingecko.com/coins/images/12375/small/coin_artist_logo.png?1599403918',
   },
   {
     chainId: 1,
@@ -8930,7 +8930,7 @@ const tokens = [
     symbol: 'ULU',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12376/thumb/ulu_finance_logo.ico?1599444401',
+      'https://assets.coingecko.com/coins/images/12376/small/ulu_finance_logo.ico?1599444401',
   },
   {
     chainId: 1,
@@ -8939,7 +8939,7 @@ const tokens = [
     symbol: 'USDX',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12377/thumb/rCdP56C.png?1599445426',
+      'https://assets.coingecko.com/coins/images/12377/small/rCdP56C.png?1599445426',
   },
   {
     chainId: 1,
@@ -8948,7 +8948,7 @@ const tokens = [
     symbol: 'JUL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12378/thumb/JUL256_256.png?1599445678',
+      'https://assets.coingecko.com/coins/images/12378/small/JUL256_256.png?1599445678',
   },
   {
     chainId: 1,
@@ -8957,7 +8957,7 @@ const tokens = [
     symbol: 'BUILD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12380/thumb/build.PNG?1599463828',
+      'https://assets.coingecko.com/coins/images/12380/small/build.PNG?1599463828',
   },
   {
     chainId: 1,
@@ -8966,7 +8966,7 @@ const tokens = [
     symbol: 'PERP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12381/thumb/perpetual_protocol_logo.jpg?1599469619',
+      'https://assets.coingecko.com/coins/images/12381/small/perpetual_protocol_logo.jpg?1599469619',
   },
   {
     chainId: 1,
@@ -8975,7 +8975,7 @@ const tokens = [
     symbol: 'MAFI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12383/thumb/MAFI.jpg?1599488498',
+      'https://assets.coingecko.com/coins/images/12383/small/MAFI.jpg?1599488498',
   },
   {
     chainId: 1,
@@ -8984,7 +8984,7 @@ const tokens = [
     symbol: 'LEAD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12384/thumb/lead.jpg?1599491466',
+      'https://assets.coingecko.com/coins/images/12384/small/lead.jpg?1599491466',
   },
   {
     chainId: 1,
@@ -8993,7 +8993,7 @@ const tokens = [
     symbol: 'YF-DAI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12385/thumb/LOGO_Coingechko.png?1600514429',
+      'https://assets.coingecko.com/coins/images/12385/small/LOGO_Coingechko.png?1600514429',
   },
   {
     chainId: 1,
@@ -9002,7 +9002,7 @@ const tokens = [
     symbol: 'PRDX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12388/thumb/main-logo.png?1599531749',
+      'https://assets.coingecko.com/coins/images/12388/small/main-logo.png?1599531749',
   },
   {
     chainId: 1,
@@ -9011,7 +9011,7 @@ const tokens = [
     symbol: 'YELD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12389/thumb/yeld_logo.png?1599537337',
+      'https://assets.coingecko.com/coins/images/12389/small/yeld_logo.png?1599537337',
   },
   {
     chainId: 1,
@@ -9020,7 +9020,7 @@ const tokens = [
     symbol: 'AGS',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12391/thumb/logo-3.png?1599540071',
+      'https://assets.coingecko.com/coins/images/12391/small/logo-3.png?1599540071',
   },
   {
     chainId: 1,
@@ -9029,7 +9029,7 @@ const tokens = [
     symbol: 'ALBT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12392/thumb/alliance_block_logo.jpg?1599546617',
+      'https://assets.coingecko.com/coins/images/12392/small/alliance_block_logo.jpg?1599546617',
   },
   {
     chainId: 1,
@@ -9038,7 +9038,7 @@ const tokens = [
     symbol: 'YFIKING',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12395/thumb/Kinglog_200px.png?1599550956',
+      'https://assets.coingecko.com/coins/images/12395/small/Kinglog_200px.png?1599550956',
   },
   {
     chainId: 1,
@@ -9047,7 +9047,7 @@ const tokens = [
     symbol: 'MAKI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12397/thumb/256x256_maki_logo.png?1599551429',
+      'https://assets.coingecko.com/coins/images/12397/small/256x256_maki_logo.png?1599551429',
   },
   {
     chainId: 1,
@@ -9056,7 +9056,7 @@ const tokens = [
     symbol: 'YFFII',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12398/thumb/4hWupcq.jpg?1599553239',
+      'https://assets.coingecko.com/coins/images/12398/small/4hWupcq.jpg?1599553239',
   },
   {
     chainId: 1,
@@ -9065,7 +9065,7 @@ const tokens = [
     symbol: 'DFK',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12405/thumb/dfklogo.png?1599603745',
+      'https://assets.coingecko.com/coins/images/12405/small/dfklogo.png?1599603745',
   },
   {
     chainId: 1,
@@ -9074,7 +9074,7 @@ const tokens = [
     symbol: 'HBTC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12407/thumb/Unknown-5.png?1599624896',
+      'https://assets.coingecko.com/coins/images/12407/small/Unknown-5.png?1599624896',
   },
   {
     chainId: 1,
@@ -9083,7 +9083,7 @@ const tokens = [
     symbol: 'CORN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12408/thumb/n425bUN.png?1599625062',
+      'https://assets.coingecko.com/coins/images/12408/small/n425bUN.png?1599625062',
   },
   {
     chainId: 1,
@@ -9092,7 +9092,7 @@ const tokens = [
     symbol: 'AMP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12409/thumb/amp-200x200.png?1599625397',
+      'https://assets.coingecko.com/coins/images/12409/small/amp-200x200.png?1599625397',
   },
   {
     chainId: 1,
@@ -9101,7 +9101,7 @@ const tokens = [
     symbol: 'ZDEX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12412/thumb/Untitled-design-4.png?1599647173',
+      'https://assets.coingecko.com/coins/images/12412/small/Untitled-design-4.png?1599647173',
   },
   {
     chainId: 1,
@@ -9110,7 +9110,7 @@ const tokens = [
     symbol: 'YKZ',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12413/thumb/UeUSmpx.png?1601970433',
+      'https://assets.coingecko.com/coins/images/12413/small/UeUSmpx.png?1601970433',
   },
   {
     chainId: 1,
@@ -9119,7 +9119,7 @@ const tokens = [
     symbol: 'YFILD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12414/thumb/ylend.png?1599684775',
+      'https://assets.coingecko.com/coins/images/12414/small/ylend.png?1599684775',
   },
   {
     chainId: 1,
@@ -9128,7 +9128,7 @@ const tokens = [
     symbol: 'NUTS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12415/thumb/transparent_logo200.png?1599690422',
+      'https://assets.coingecko.com/coins/images/12415/small/transparent_logo200.png?1599690422',
   },
   {
     chainId: 1,
@@ -9137,7 +9137,7 @@ const tokens = [
     symbol: 'ETHPY',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12417/thumb/Captura-de-Tela-2020-09-09-a-s-13-54-20.png?1599692074',
+      'https://assets.coingecko.com/coins/images/12417/small/Captura-de-Tela-2020-09-09-a-s-13-54-20.png?1599692074',
   },
   {
     chainId: 1,
@@ -9146,7 +9146,7 @@ const tokens = [
     symbol: 'REBASE',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12420/thumb/rebase_logo.jpg?1599719177',
+      'https://assets.coingecko.com/coins/images/12420/small/rebase_logo.jpg?1599719177',
   },
   {
     chainId: 1,
@@ -9155,7 +9155,7 @@ const tokens = [
     symbol: 'DRAY',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12421/thumb/draylogo_200x200.png?1599727930',
+      'https://assets.coingecko.com/coins/images/12421/small/draylogo_200x200.png?1599727930',
   },
   {
     chainId: 1,
@@ -9164,7 +9164,7 @@ const tokens = [
     symbol: 'YOK',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12425/thumb/YOKcoin_200x200.png?1599732314',
+      'https://assets.coingecko.com/coins/images/12425/small/YOKcoin_200x200.png?1599732314',
   },
   {
     chainId: 1,
@@ -9173,7 +9173,7 @@ const tokens = [
     symbol: 'SASHIMI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12427/thumb/SashimiSwap-200x200.png?1601347413',
+      'https://assets.coingecko.com/coins/images/12427/small/SashimiSwap-200x200.png?1601347413',
   },
   {
     chainId: 1,
@@ -9182,7 +9182,7 @@ const tokens = [
     symbol: 'SAKE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12428/thumb/sake.png?1599777402',
+      'https://assets.coingecko.com/coins/images/12428/small/sake.png?1599777402',
   },
   {
     chainId: 1,
@@ -9191,7 +9191,7 @@ const tokens = [
     symbol: 'LOCK',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12429/thumb/sherlock.jpg?1599780187',
+      'https://assets.coingecko.com/coins/images/12429/small/sherlock.jpg?1599780187',
   },
   {
     chainId: 1,
@@ -9200,7 +9200,7 @@ const tokens = [
     symbol: 'SOLARITE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12430/thumb/solarite_logo.jpg?1599785957',
+      'https://assets.coingecko.com/coins/images/12430/small/solarite_logo.jpg?1599785957',
   },
   {
     chainId: 1,
@@ -9209,7 +9209,7 @@ const tokens = [
     symbol: 'YFRB',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12431/thumb/yfrb.png?1599786507',
+      'https://assets.coingecko.com/coins/images/12431/small/yfrb.png?1599786507',
   },
   {
     chainId: 1,
@@ -9218,7 +9218,7 @@ const tokens = [
     symbol: 'TXL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12432/thumb/Tixl-Logo-200-transparent.png?1610248504',
+      'https://assets.coingecko.com/coins/images/12432/small/Tixl-Logo-200-transparent.png?1610248504',
   },
   {
     chainId: 1,
@@ -9227,7 +9227,7 @@ const tokens = [
     symbol: 'ON',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12433/thumb/oin.png?1599796457',
+      'https://assets.coingecko.com/coins/images/12433/small/oin.png?1599796457',
   },
   {
     chainId: 1,
@@ -9236,7 +9236,7 @@ const tokens = [
     symbol: 'NYAN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12434/thumb/Nyan_Logo_corrected1.png?1602429349',
+      'https://assets.coingecko.com/coins/images/12434/small/Nyan_Logo_corrected1.png?1602429349',
   },
   {
     chainId: 1,
@@ -9245,7 +9245,7 @@ const tokens = [
     symbol: 'PICKLE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12435/thumb/pickle_finance_logo.jpg?1599817746',
+      'https://assets.coingecko.com/coins/images/12435/small/pickle_finance_logo.jpg?1599817746',
   },
   {
     chainId: 1,
@@ -9254,7 +9254,7 @@ const tokens = [
     symbol: 'PLTC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12436/thumb/pLTC_logo.png?1599819176',
+      'https://assets.coingecko.com/coins/images/12436/small/pLTC_logo.png?1599819176',
   },
   {
     chainId: 1,
@@ -9263,7 +9263,7 @@ const tokens = [
     symbol: 'CREED',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12437/thumb/creed_finance_logo.jpg?1599840364',
+      'https://assets.coingecko.com/coins/images/12437/small/creed_finance_logo.jpg?1599840364',
   },
   {
     chainId: 1,
@@ -9272,7 +9272,7 @@ const tokens = [
     symbol: 'VYBE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12438/thumb/22k5gGG.jpg?1609924524',
+      'https://assets.coingecko.com/coins/images/12438/small/22k5gGG.jpg?1609924524',
   },
   {
     chainId: 1,
@@ -9281,7 +9281,7 @@ const tokens = [
     symbol: 'YFFC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12439/thumb/yffc.png?1599868672',
+      'https://assets.coingecko.com/coins/images/12439/small/yffc.png?1599868672',
   },
   {
     chainId: 1,
@@ -9290,7 +9290,7 @@ const tokens = [
     symbol: 'ESD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12440/thumb/esd_logo_circle.png?1603676421',
+      'https://assets.coingecko.com/coins/images/12440/small/esd_logo_circle.png?1603676421',
   },
   {
     chainId: 1,
@@ -9299,7 +9299,7 @@ const tokens = [
     symbol: 'MOON',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12441/thumb/moon.jpg?1599880968',
+      'https://assets.coingecko.com/coins/images/12441/small/moon.jpg?1599880968',
   },
   {
     chainId: 1,
@@ -9308,7 +9308,7 @@ const tokens = [
     symbol: 'JIAOZI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12442/thumb/JiaoziFarm.png?1599888576',
+      'https://assets.coingecko.com/coins/images/12442/small/JiaoziFarm.png?1599888576',
   },
   {
     chainId: 1,
@@ -9317,7 +9317,7 @@ const tokens = [
     symbol: 'GOF',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12445/thumb/_x-AmLBv_400x400.jpg?1599902833',
+      'https://assets.coingecko.com/coins/images/12445/small/_x-AmLBv_400x400.jpg?1599902833',
   },
   {
     chainId: 1,
@@ -9326,7 +9326,7 @@ const tokens = [
     symbol: 'XFI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12449/thumb/go.png?1599904281',
+      'https://assets.coingecko.com/coins/images/12449/small/go.png?1599904281',
   },
   {
     chainId: 1,
@@ -9335,7 +9335,7 @@ const tokens = [
     symbol: 'PHA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12451/thumb/phala.png?1600061318',
+      'https://assets.coingecko.com/coins/images/12451/small/phala.png?1600061318',
   },
   {
     chainId: 1,
@@ -9344,7 +9344,7 @@ const tokens = [
     symbol: 'YMEN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12452/thumb/logoymen.png?1603008881',
+      'https://assets.coingecko.com/coins/images/12452/small/logoymen.png?1603008881',
   },
   {
     chainId: 1,
@@ -9353,7 +9353,7 @@ const tokens = [
     symbol: 'HGET',
     decimals: 6,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12453/thumb/Hedget.png?1599944809',
+      'https://assets.coingecko.com/coins/images/12453/small/Hedget.png?1599944809',
   },
   {
     chainId: 1,
@@ -9362,7 +9362,7 @@ const tokens = [
     symbol: 'HEGIC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12454/thumb/Hegic.png?1599938210',
+      'https://assets.coingecko.com/coins/images/12454/small/Hegic.png?1599938210',
   },
   {
     chainId: 1,
@@ -9371,7 +9371,7 @@ const tokens = [
     symbol: 'CHADS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12455/thumb/Chad_VC.png?1599940044',
+      'https://assets.coingecko.com/coins/images/12455/small/Chad_VC.png?1599940044',
   },
   {
     chainId: 1,
@@ -9380,7 +9380,7 @@ const tokens = [
     symbol: 'BGTT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12456/thumb/baguette_logo.png?1599945036',
+      'https://assets.coingecko.com/coins/images/12456/small/baguette_logo.png?1599945036',
   },
   {
     chainId: 1,
@@ -9389,7 +9389,7 @@ const tokens = [
     symbol: 'GTH',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12458/thumb/Gather-Logo-Working-File.png?1599981686',
+      'https://assets.coingecko.com/coins/images/12458/small/Gather-Logo-Working-File.png?1599981686',
   },
   {
     chainId: 1,
@@ -9398,7 +9398,7 @@ const tokens = [
     symbol: 'YFKA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12459/thumb/5f5cfce7b7b794f5e1e4c6b5_logo200.jpg?1599982854',
+      'https://assets.coingecko.com/coins/images/12459/small/5f5cfce7b7b794f5e1e4c6b5_logo200.jpg?1599982854',
   },
   {
     chainId: 1,
@@ -9407,7 +9407,7 @@ const tokens = [
     symbol: 'ZYRO',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12460/thumb/ZgY3lJY19Nljpd5T3SMuNMhyW3eVVufukR5_BMUaOXnofn33hGUIc1PkOPyoCLi-UEtW5ZmotNVqva-qIj2dcRBTFOcas4fmGXrGqsFB22BIHoS7AHap8VsuAw3fu3RrR2Ckx4BWGu1kRF8VH7sot1fcQ4db0K91blRzz2i6drL9ivir9S9iraMl39xgHOATYYA5rWHOIXaS_0c.jpg?1599983652',
+      'https://assets.coingecko.com/coins/images/12460/small/ZgY3lJY19Nljpd5T3SMuNMhyW3eVVufukR5_BMUaOXnofn33hGUIc1PkOPyoCLi-UEtW5ZmotNVqva-qIj2dcRBTFOcas4fmGXrGqsFB22BIHoS7AHap8VsuAw3fu3RrR2Ckx4BWGu1kRF8VH7sot1fcQ4db0K91blRzz2i6drL9ivir9S9iraMl39xgHOATYYA5rWHOIXaS_0c.jpg?1599983652',
   },
   {
     chainId: 1,
@@ -9416,7 +9416,7 @@ const tokens = [
     symbol: 'XMM',
     decimals: 10,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12461/thumb/logo-transparent-200.png?1600007183',
+      'https://assets.coingecko.com/coins/images/12461/small/logo-transparent-200.png?1600007183',
   },
   {
     chainId: 1,
@@ -9425,7 +9425,7 @@ const tokens = [
     symbol: 'TRBT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12463/thumb/Tribute_Coin-04.png?1600034100',
+      'https://assets.coingecko.com/coins/images/12463/small/Tribute_Coin-04.png?1600034100',
   },
   {
     chainId: 1,
@@ -9434,7 +9434,7 @@ const tokens = [
     symbol: 'DPI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12465/thumb/defi_pulse_index_set.png?1600051053',
+      'https://assets.coingecko.com/coins/images/12465/small/defi_pulse_index_set.png?1600051053',
   },
   {
     chainId: 1,
@@ -9443,7 +9443,7 @@ const tokens = [
     symbol: 'BXIOT',
     decimals: 6,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12466/thumb/bxiot_logo_512x512.png?1601775151',
+      'https://assets.coingecko.com/coins/images/12466/small/bxiot_logo_512x512.png?1601775151',
   },
   {
     chainId: 1,
@@ -9452,7 +9452,7 @@ const tokens = [
     symbol: 'GHST',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12467/thumb/ghst_200.png?1600750321',
+      'https://assets.coingecko.com/coins/images/12467/small/ghst_200.png?1600750321',
   },
   {
     chainId: 1,
@@ -9461,7 +9461,7 @@ const tokens = [
     symbol: 'ZOM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12468/thumb/zoom_protocol_logo.jpeg?1600098680',
+      'https://assets.coingecko.com/coins/images/12468/small/zoom_protocol_logo.jpeg?1600098680',
   },
   {
     chainId: 1,
@@ -9470,7 +9470,7 @@ const tokens = [
     symbol: 'HALO',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12469/thumb/1_-6YxpHv34QNEAAIp-vKYxA.jpeg?1600116457',
+      'https://assets.coingecko.com/coins/images/12469/small/1_-6YxpHv34QNEAAIp-vKYxA.jpeg?1600116457',
   },
   {
     chainId: 1,
@@ -9479,7 +9479,7 @@ const tokens = [
     symbol: 'KATANA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12473/thumb/AyHMMbK.jpeg?1600124081',
+      'https://assets.coingecko.com/coins/images/12473/small/AyHMMbK.jpeg?1600124081',
   },
   {
     chainId: 1,
@@ -9488,7 +9488,7 @@ const tokens = [
     symbol: 'GEM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12474/thumb/gem.png?1600124318',
+      'https://assets.coingecko.com/coins/images/12474/small/gem.png?1600124318',
   },
   {
     chainId: 1,
@@ -9497,7 +9497,7 @@ const tokens = [
     symbol: 'YFARM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12475/thumb/yffs.jpg?1600136951',
+      'https://assets.coingecko.com/coins/images/12475/small/yffs.jpg?1600136951',
   },
   {
     chainId: 1,
@@ -9506,7 +9506,7 @@ const tokens = [
     symbol: 'BEL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12478/thumb/Bella.png?1602230054',
+      'https://assets.coingecko.com/coins/images/12478/small/Bella.png?1602230054',
   },
   {
     chainId: 1,
@@ -9515,7 +9515,7 @@ const tokens = [
     symbol: 'FRONT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12479/thumb/frontier_logo.png?1600145472',
+      'https://assets.coingecko.com/coins/images/12479/small/frontier_logo.png?1600145472',
   },
   {
     chainId: 1,
@@ -9524,7 +9524,7 @@ const tokens = [
     symbol: 'TEAM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12480/thumb/team_token_logo.jpg?1600158847',
+      'https://assets.coingecko.com/coins/images/12480/small/team_token_logo.jpg?1600158847',
   },
   {
     chainId: 1,
@@ -9533,7 +9533,7 @@ const tokens = [
     symbol: 'UNDB',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12481/thumb/logo_128.png?1601814643',
+      'https://assets.coingecko.com/coins/images/12481/small/logo_128.png?1601814643',
   },
   {
     chainId: 1,
@@ -9542,7 +9542,7 @@ const tokens = [
     symbol: 'FAME',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12491/thumb/tEXH2Dz0_400x400.jpg?1600209124',
+      'https://assets.coingecko.com/coins/images/12491/small/tEXH2Dz0_400x400.jpg?1600209124',
   },
   {
     chainId: 1,
@@ -9551,7 +9551,7 @@ const tokens = [
     symbol: 'GALA',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12493/thumb/GALA-COINGECKO.png?1600233435',
+      'https://assets.coingecko.com/coins/images/12493/small/GALA-COINGECKO.png?1600233435',
   },
   {
     chainId: 1,
@@ -9560,7 +9560,7 @@ const tokens = [
     symbol: 'YFMS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12496/thumb/yfmoonshot_logo.jpg?1600266768',
+      'https://assets.coingecko.com/coins/images/12496/small/yfmoonshot_logo.jpg?1600266768',
   },
   {
     chainId: 1,
@@ -9569,7 +9569,7 @@ const tokens = [
     symbol: 'PRINT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12497/thumb/moneyprinter_anm.png?1600499835',
+      'https://assets.coingecko.com/coins/images/12497/small/moneyprinter_anm.png?1600499835',
   },
   {
     chainId: 1,
@@ -9578,7 +9578,7 @@ const tokens = [
     symbol: 'WNRZ',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12498/thumb/winplay.png?1600279162',
+      'https://assets.coingecko.com/coins/images/12498/small/winplay.png?1600279162',
   },
   {
     chainId: 1,
@@ -9587,7 +9587,7 @@ const tokens = [
     symbol: 'XSTAR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12500/thumb/token_icon.png?1600296899',
+      'https://assets.coingecko.com/coins/images/12500/small/token_icon.png?1600296899',
   },
   {
     chainId: 1,
@@ -9596,7 +9596,7 @@ const tokens = [
     symbol: 'DEGO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12503/thumb/c185FKx.png?1600298167',
+      'https://assets.coingecko.com/coins/images/12503/small/c185FKx.png?1600298167',
   },
   {
     chainId: 1,
@@ -9605,7 +9605,7 @@ const tokens = [
     symbol: 'UNI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12504/thumb/uniswap-uni.png?1600306604',
+      'https://assets.coingecko.com/coins/images/12504/small/uniswap-uni.png?1600306604',
   },
   {
     chainId: 1,
@@ -9614,7 +9614,7 @@ const tokens = [
     symbol: 'PCT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12505/thumb/1*T5u1FDg9LLpvHifwr4WCwQ.png?1600310998',
+      'https://assets.coingecko.com/coins/images/12505/small/1*T5u1FDg9LLpvHifwr4WCwQ.png?1600310998',
   },
   {
     chainId: 1,
@@ -9623,7 +9623,7 @@ const tokens = [
     symbol: 'MYFI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12506/thumb/moonyfi_logo.jpg?1600316838',
+      'https://assets.coingecko.com/coins/images/12506/small/moonyfi_logo.jpg?1600316838',
   },
   {
     chainId: 1,
@@ -9632,7 +9632,7 @@ const tokens = [
     symbol: 'KASSIAHOTEL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12507/thumb/KassiaHotelLogo.png?1600318010',
+      'https://assets.coingecko.com/coins/images/12507/small/KassiaHotelLogo.png?1600318010',
   },
   {
     chainId: 1,
@@ -9641,7 +9641,7 @@ const tokens = [
     symbol: 'DHT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12508/thumb/dht.png?1600752201',
+      'https://assets.coingecko.com/coins/images/12508/small/dht.png?1600752201',
   },
   {
     chainId: 1,
@@ -9650,7 +9650,7 @@ const tokens = [
     symbol: 'LINA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12509/thumb/linear.jpg?1606884470',
+      'https://assets.coingecko.com/coins/images/12509/small/linear.jpg?1606884470',
   },
   {
     chainId: 1,
@@ -9659,7 +9659,7 @@ const tokens = [
     symbol: 'HTRE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12511/thumb/htre.jpg?1600373697',
+      'https://assets.coingecko.com/coins/images/12511/small/htre.jpg?1600373697',
   },
   {
     chainId: 1,
@@ -9668,7 +9668,7 @@ const tokens = [
     symbol: 'PAYT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12513/thumb/logo.png?1603801944',
+      'https://assets.coingecko.com/coins/images/12513/small/logo.png?1603801944',
   },
   {
     chainId: 1,
@@ -9677,7 +9677,7 @@ const tokens = [
     symbol: 'MKCY',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12522/thumb/e2eLPzTF_400x400.png?1600499534',
+      'https://assets.coingecko.com/coins/images/12522/small/e2eLPzTF_400x400.png?1600499534',
   },
   {
     chainId: 1,
@@ -9686,7 +9686,7 @@ const tokens = [
     symbol: 'CHART',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12523/thumb/chartex.png?1600499406',
+      'https://assets.coingecko.com/coins/images/12523/small/chartex.png?1600499406',
   },
   {
     chainId: 1,
@@ -9695,7 +9695,7 @@ const tokens = [
     symbol: 'MCI',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12524/thumb/mcicoin-logo.png?1600471686',
+      'https://assets.coingecko.com/coins/images/12524/small/mcicoin-logo.png?1600471686',
   },
   {
     chainId: 1,
@@ -9704,7 +9704,7 @@ const tokens = [
     symbol: 'VALUE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12525/thumb/value_logo_-_500x500.png?1601478115',
+      'https://assets.coingecko.com/coins/images/12525/small/value_logo_-_500x500.png?1601478115',
   },
   {
     chainId: 1,
@@ -9713,7 +9713,7 @@ const tokens = [
     symbol: 'HATCH',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12526/thumb/hatch-dao.jpg?1600480488',
+      'https://assets.coingecko.com/coins/images/12526/small/hatch-dao.jpg?1600480488',
   },
   {
     chainId: 1,
@@ -9722,7 +9722,7 @@ const tokens = [
     symbol: 'SAM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12529/thumb/UkWCWt1.png?1600495292',
+      'https://assets.coingecko.com/coins/images/12529/small/UkWCWt1.png?1600495292',
   },
   {
     chainId: 1,
@@ -9731,7 +9731,7 @@ const tokens = [
     symbol: 'YAM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12530/thumb/YAM-icon.png?1600495536',
+      'https://assets.coingecko.com/coins/images/12530/small/YAM-icon.png?1600495536',
   },
   {
     chainId: 1,
@@ -9740,7 +9740,7 @@ const tokens = [
     symbol: 'ACPT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12531/thumb/crypto-accept.png?1600497829',
+      'https://assets.coingecko.com/coins/images/12531/small/crypto-accept.png?1600497829',
   },
   {
     chainId: 1,
@@ -9749,7 +9749,7 @@ const tokens = [
     symbol: 'UNIFI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12533/thumb/unifi_defi_logo.jpg?1600531278',
+      'https://assets.coingecko.com/coins/images/12533/small/unifi_defi_logo.jpg?1600531278',
   },
   {
     chainId: 1,
@@ -9758,7 +9758,7 @@ const tokens = [
     symbol: 'YMAX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12535/thumb/Jec_HMyy_400x400.png?1600555787',
+      'https://assets.coingecko.com/coins/images/12535/small/Jec_HMyy_400x400.png?1600555787',
   },
   {
     chainId: 1,
@@ -9767,7 +9767,7 @@ const tokens = [
     symbol: 'RI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12536/thumb/Ri_logo_512x512.png?1601775196',
+      'https://assets.coingecko.com/coins/images/12536/small/Ri_logo_512x512.png?1601775196',
   },
   {
     chainId: 1,
@@ -9776,7 +9776,7 @@ const tokens = [
     symbol: 'BCTR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12537/thumb/BCTR.png?1600557934',
+      'https://assets.coingecko.com/coins/images/12537/small/BCTR.png?1600557934',
   },
   {
     chainId: 1,
@@ -9785,7 +9785,7 @@ const tokens = [
     symbol: 'DEUS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12539/thumb/deus_logo.jpg?1600572115',
+      'https://assets.coingecko.com/coins/images/12539/small/deus_logo.jpg?1600572115',
   },
   {
     chainId: 1,
@@ -9794,7 +9794,7 @@ const tokens = [
     symbol: 'GHD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12540/thumb/K-8uHktJ.png?1600644856',
+      'https://assets.coingecko.com/coins/images/12540/small/K-8uHktJ.png?1600644856',
   },
   {
     chainId: 1,
@@ -9803,7 +9803,7 @@ const tokens = [
     symbol: 'XSP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12541/thumb/256x256_%282%29.png?1600645409',
+      'https://assets.coingecko.com/coins/images/12541/small/256x256_%282%29.png?1600645409',
   },
   {
     chainId: 1,
@@ -9812,7 +9812,7 @@ const tokens = [
     symbol: 'FNSP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12542/thumb/finswap-orange-200x200-1.png?1600663987',
+      'https://assets.coingecko.com/coins/images/12542/small/finswap-orange-200x200-1.png?1600663987',
   },
   {
     chainId: 1,
@@ -9821,7 +9821,7 @@ const tokens = [
     symbol: 'VFI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12543/thumb/VFI200.png?1600664014',
+      'https://assets.coingecko.com/coins/images/12543/small/VFI200.png?1600664014',
   },
   {
     chainId: 1,
@@ -9830,7 +9830,7 @@ const tokens = [
     symbol: 'KSEED',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12545/thumb/kush.finance-512.png?1600844515',
+      'https://assets.coingecko.com/coins/images/12545/small/kush.finance-512.png?1600844515',
   },
   {
     chainId: 1,
@@ -9839,7 +9839,7 @@ const tokens = [
     symbol: 'SODA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12546/thumb/soda.acd4d701.png?1600671234',
+      'https://assets.coingecko.com/coins/images/12546/small/soda.acd4d701.png?1600671234',
   },
   {
     chainId: 1,
@@ -9848,7 +9848,7 @@ const tokens = [
     symbol: 'YTSLA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12547/thumb/YTSLA_%284%29.png?1600740522',
+      'https://assets.coingecko.com/coins/images/12547/small/YTSLA_%284%29.png?1600740522',
   },
   {
     chainId: 1,
@@ -9857,7 +9857,7 @@ const tokens = [
     symbol: 'POSH',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12548/thumb/alone.png?1600676559',
+      'https://assets.coingecko.com/coins/images/12548/small/alone.png?1600676559',
   },
   {
     chainId: 1,
@@ -9866,7 +9866,7 @@ const tokens = [
     symbol: 'CRU',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12549/thumb/sAB3KVzD_400x400.jpg?1600680411',
+      'https://assets.coingecko.com/coins/images/12549/small/sAB3KVzD_400x400.jpg?1600680411',
   },
   {
     chainId: 1,
@@ -9875,7 +9875,7 @@ const tokens = [
     symbol: 'DUCATO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12550/thumb/70691538.png?1600680832',
+      'https://assets.coingecko.com/coins/images/12550/small/70691538.png?1600680832',
   },
   {
     chainId: 1,
@@ -9884,7 +9884,7 @@ const tokens = [
     symbol: 'YFBT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12551/thumb/logo-200x200.png?1600681308',
+      'https://assets.coingecko.com/coins/images/12551/small/logo-200x200.png?1600681308',
   },
   {
     chainId: 1,
@@ -9893,7 +9893,7 @@ const tokens = [
     symbol: 'ONES',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12552/thumb/logo.png?1600682344',
+      'https://assets.coingecko.com/coins/images/12552/small/logo.png?1600682344',
   },
   {
     chainId: 1,
@@ -9902,7 +9902,7 @@ const tokens = [
     symbol: 'UTY',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12553/thumb/UTY_LOGO.png?1600734985',
+      'https://assets.coingecko.com/coins/images/12553/small/UTY_LOGO.png?1600734985',
   },
   {
     chainId: 1,
@@ -9911,7 +9911,7 @@ const tokens = [
     symbol: 'YFIX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12554/thumb/yfix-icon-200.png?1600739144',
+      'https://assets.coingecko.com/coins/images/12554/small/yfix-icon-200.png?1600739144',
   },
   {
     chainId: 1,
@@ -9920,7 +9920,7 @@ const tokens = [
     symbol: 'WENB',
     decimals: 6,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12557/thumb/moonOnFire.jpg?1600746273',
+      'https://assets.coingecko.com/coins/images/12557/small/moonOnFire.jpg?1600746273',
   },
   {
     chainId: 1,
@@ -9929,7 +9929,7 @@ const tokens = [
     symbol: 'KASSIAHOME',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12558/thumb/farmer.4e48cd5b.png?1600899057',
+      'https://assets.coingecko.com/coins/images/12558/small/farmer.4e48cd5b.png?1600899057',
   },
   {
     chainId: 1,
@@ -9938,7 +9938,7 @@ const tokens = [
     symbol: 'ROT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12560/thumb/rot_logo.png?1600762626',
+      'https://assets.coingecko.com/coins/images/12560/small/rot_logo.png?1600762626',
   },
   {
     chainId: 1,
@@ -9947,7 +9947,7 @@ const tokens = [
     symbol: 'AXI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12562/thumb/axioms_logo.png?1600772415',
+      'https://assets.coingecko.com/coins/images/12562/small/axioms_logo.png?1600772415',
   },
   {
     chainId: 1,
@@ -9956,7 +9956,7 @@ const tokens = [
     symbol: 'JUICE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12564/thumb/-TMHqn9S_400x400.jpg?1600899021',
+      'https://assets.coingecko.com/coins/images/12564/small/-TMHqn9S_400x400.jpg?1600899021',
   },
   {
     chainId: 1,
@@ -9965,7 +9965,7 @@ const tokens = [
     symbol: 'ROPE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12567/thumb/Rope_Icon.jpg?1604038203',
+      'https://assets.coingecko.com/coins/images/12567/small/Rope_Icon.jpg?1604038203',
   },
   {
     chainId: 1,
@@ -9974,7 +9974,7 @@ const tokens = [
     symbol: 'KFC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12569/thumb/download.png?1600840301',
+      'https://assets.coingecko.com/coins/images/12569/small/download.png?1600840301',
   },
   {
     chainId: 1,
@@ -9983,7 +9983,7 @@ const tokens = [
     symbol: 'MEXP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12571/thumb/mexp_logo.png?1600842788',
+      'https://assets.coingecko.com/coins/images/12571/small/mexp_logo.png?1600842788',
   },
   {
     chainId: 1,
@@ -9992,7 +9992,7 @@ const tokens = [
     symbol: 'YFT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12574/thumb/QskdLwuY_400x400.png?1600899144',
+      'https://assets.coingecko.com/coins/images/12574/small/QskdLwuY_400x400.png?1600899144',
   },
   {
     chainId: 1,
@@ -10001,7 +10001,7 @@ const tokens = [
     symbol: 'RPEPE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12575/thumb/rare_pepe_logo.png?1600856124',
+      'https://assets.coingecko.com/coins/images/12575/small/rare_pepe_logo.png?1600856124',
   },
   {
     chainId: 1,
@@ -10010,7 +10010,7 @@ const tokens = [
     symbol: 'TRIB',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12576/thumb/New_logo_circle.png?1604214723',
+      'https://assets.coingecko.com/coins/images/12576/small/New_logo_circle.png?1604214723',
   },
   {
     chainId: 1,
@@ -10019,7 +10019,7 @@ const tokens = [
     symbol: 'MANY',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12577/thumb/MANY_logo_NoBanksNearby.png?1601347315',
+      'https://assets.coingecko.com/coins/images/12577/small/MANY_logo_NoBanksNearby.png?1601347315',
   },
   {
     chainId: 1,
@@ -10028,7 +10028,7 @@ const tokens = [
     symbol: 'YFF',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12578/thumb/5ymP5emT_400x400.jpg?1600913790',
+      'https://assets.coingecko.com/coins/images/12578/small/5ymP5emT_400x400.jpg?1600913790',
   },
   {
     chainId: 1,
@@ -10037,7 +10037,7 @@ const tokens = [
     symbol: 'POT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12580/thumb/hotpot.f49fb832.png?1600916677',
+      'https://assets.coingecko.com/coins/images/12580/small/hotpot.f49fb832.png?1600916677',
   },
   {
     chainId: 1,
@@ -10046,7 +10046,7 @@ const tokens = [
     symbol: 'HIPPO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12581/thumb/chef.50555ea1.png?1600922357',
+      'https://assets.coingecko.com/coins/images/12581/small/chef.50555ea1.png?1600922357',
   },
   {
     chainId: 1,
@@ -10055,7 +10055,7 @@ const tokens = [
     symbol: 'BWF',
     decimals: 5,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12586/thumb/BWF.png?1600932145',
+      'https://assets.coingecko.com/coins/images/12586/small/BWF.png?1600932145',
   },
   {
     chainId: 1,
@@ -10064,7 +10064,7 @@ const tokens = [
     symbol: 'YFIIG',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12587/thumb/yfiigold_logo.png?1600937694',
+      'https://assets.coingecko.com/coins/images/12587/small/yfiigold_logo.png?1600937694',
   },
   {
     chainId: 1,
@@ -10073,7 +10073,7 @@ const tokens = [
     symbol: 'OUSD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12589/thumb/ousd-logo-200x200.png?1600943287',
+      'https://assets.coingecko.com/coins/images/12589/small/ousd-logo-200x200.png?1600943287',
   },
   {
     chainId: 1,
@@ -10082,7 +10082,7 @@ const tokens = [
     symbol: 'PTF',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12590/thumb/powertrade_logo.jpg?1600944549',
+      'https://assets.coingecko.com/coins/images/12590/small/powertrade_logo.jpg?1600944549',
   },
   {
     chainId: 1,
@@ -10091,7 +10091,7 @@ const tokens = [
     symbol: 'COMB',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12592/thumb/combine_finance_logo.jpg?1602417055',
+      'https://assets.coingecko.com/coins/images/12592/small/combine_finance_logo.jpg?1602417055',
   },
   {
     chainId: 1,
@@ -10100,7 +10100,7 @@ const tokens = [
     symbol: 'SWSH',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12593/thumb/SwapShip.png?1600975182',
+      'https://assets.coingecko.com/coins/images/12593/small/SwapShip.png?1600975182',
   },
   {
     chainId: 1,
@@ -10109,7 +10109,7 @@ const tokens = [
     symbol: 'OCTO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12594/thumb/octofi_logo.png?1600994674',
+      'https://assets.coingecko.com/coins/images/12594/small/octofi_logo.png?1600994674',
   },
   {
     chainId: 1,
@@ -10118,7 +10118,7 @@ const tokens = [
     symbol: 'JOON',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12595/thumb/logo.png?1600995905',
+      'https://assets.coingecko.com/coins/images/12595/small/logo.png?1600995905',
   },
   {
     chainId: 1,
@@ -10127,7 +10127,7 @@ const tokens = [
     symbol: 'BID',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12596/thumb/bidao.png?1600996485',
+      'https://assets.coingecko.com/coins/images/12596/small/bidao.png?1600996485',
   },
   {
     chainId: 1,
@@ -10136,7 +10136,7 @@ const tokens = [
     symbol: 'NTRUMP',
     decimals: 15,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12597/thumb/nX10wsB.png?1600997655',
+      'https://assets.coingecko.com/coins/images/12597/small/nX10wsB.png?1600997655',
   },
   {
     chainId: 1,
@@ -10145,7 +10145,7 @@ const tokens = [
     symbol: 'YTRUMP',
     decimals: 15,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12598/thumb/yes.png?1600997679',
+      'https://assets.coingecko.com/coins/images/12598/small/yes.png?1600997679',
   },
   {
     chainId: 1,
@@ -10154,7 +10154,7 @@ const tokens = [
     symbol: 'BMJ',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12601/thumb/200.png?1601001633',
+      'https://assets.coingecko.com/coins/images/12601/small/200.png?1601001633',
   },
   {
     chainId: 1,
@@ -10163,7 +10163,7 @@ const tokens = [
     symbol: 'DSS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12602/thumb/DSS.png?1601002204',
+      'https://assets.coingecko.com/coins/images/12602/small/DSS.png?1601002204',
   },
   {
     chainId: 1,
@@ -10172,7 +10172,7 @@ const tokens = [
     symbol: 'IYF',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12603/thumb/MenqcTv.png?1601006342',
+      'https://assets.coingecko.com/coins/images/12603/small/MenqcTv.png?1601006342',
   },
   {
     chainId: 1,
@@ -10181,7 +10181,7 @@ const tokens = [
     symbol: 'UNII',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12604/thumb/P3KzPgJ9_400x400.jpg?1601013005',
+      'https://assets.coingecko.com/coins/images/12604/small/P3KzPgJ9_400x400.jpg?1601013005',
   },
   {
     chainId: 1,
@@ -10190,7 +10190,7 @@ const tokens = [
     symbol: 'SFG',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12605/thumb/Z7D8B4b.png?1605346184',
+      'https://assets.coingecko.com/coins/images/12605/small/Z7D8B4b.png?1605346184',
   },
   {
     chainId: 1,
@@ -10199,7 +10199,7 @@ const tokens = [
     symbol: 'TITAN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12606/thumb/nqGlQzdz_400x400.png?1601019805',
+      'https://assets.coingecko.com/coins/images/12606/small/nqGlQzdz_400x400.png?1601019805',
   },
   {
     chainId: 1,
@@ -10208,7 +10208,7 @@ const tokens = [
     symbol: 'SAFE2',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12608/thumb/safe2.jpg?1601259102',
+      'https://assets.coingecko.com/coins/images/12608/small/safe2.jpg?1601259102',
   },
   {
     chainId: 1,
@@ -10217,7 +10217,7 @@ const tokens = [
     symbol: 'FANTA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12612/thumb/LOGOFANTA.png?1601241841',
+      'https://assets.coingecko.com/coins/images/12612/small/LOGOFANTA.png?1601241841',
   },
   {
     chainId: 1,
@@ -10226,7 +10226,7 @@ const tokens = [
     symbol: 'XBTC',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12613/thumb/Y3ZxUNM.png?1601242661',
+      'https://assets.coingecko.com/coins/images/12613/small/Y3ZxUNM.png?1601242661',
   },
   {
     chainId: 1,
@@ -10235,7 +10235,7 @@ const tokens = [
     symbol: 'CACXT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12615/thumb/ACDX_Original_05.png?1601262530',
+      'https://assets.coingecko.com/coins/images/12615/small/ACDX_Original_05.png?1601262530',
   },
   {
     chainId: 1,
@@ -10244,7 +10244,7 @@ const tokens = [
     symbol: 'ZOMB',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12617/thumb/cryptopunks-zomb.png?1602398280',
+      'https://assets.coingecko.com/coins/images/12617/small/cryptopunks-zomb.png?1602398280',
   },
   {
     chainId: 1,
@@ -10253,7 +10253,7 @@ const tokens = [
     symbol: 'MPH',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12619/thumb/morpher_200_200.png?1601524084',
+      'https://assets.coingecko.com/coins/images/12619/small/morpher_200_200.png?1601524084',
   },
   {
     chainId: 1,
@@ -10262,7 +10262,7 @@ const tokens = [
     symbol: 'YAX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12620/thumb/Logo.png?1608310944',
+      'https://assets.coingecko.com/coins/images/12620/small/Logo.png?1608310944',
   },
   {
     chainId: 1,
@@ -10271,7 +10271,7 @@ const tokens = [
     symbol: 'CXN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12622/thumb/Webp.net-resizeimage.png?1601282522',
+      'https://assets.coingecko.com/coins/images/12622/small/Webp.net-resizeimage.png?1601282522',
   },
   {
     chainId: 1,
@@ -10280,7 +10280,7 @@ const tokens = [
     symbol: 'RFUEL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12623/thumb/RFUEL_SQR.png?1602481093',
+      'https://assets.coingecko.com/coins/images/12623/small/RFUEL_SQR.png?1602481093',
   },
   {
     chainId: 1,
@@ -10289,7 +10289,7 @@ const tokens = [
     symbol: 'ECELL',
     decimals: 2,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12624/thumb/98201030_131705818496610_9196703627136204800_n.jpg?1601283839',
+      'https://assets.coingecko.com/coins/images/12624/small/98201030_131705818496610_9196703627136204800_n.jpg?1601283839',
   },
   {
     chainId: 1,
@@ -10298,7 +10298,7 @@ const tokens = [
     symbol: 'WLEO',
     decimals: 3,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12626/thumb/4XfO3w3.png?1601286769',
+      'https://assets.coingecko.com/coins/images/12626/small/4XfO3w3.png?1601286769',
   },
   {
     chainId: 1,
@@ -10307,7 +10307,7 @@ const tokens = [
     symbol: 'LUA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12627/thumb/Screenshot_2020-09-28_at_6.24.59_PM.jpg?1601288721',
+      'https://assets.coingecko.com/coins/images/12627/small/Screenshot_2020-09-28_at_6.24.59_PM.jpg?1601288721',
   },
   {
     chainId: 1,
@@ -10316,7 +10316,7 @@ const tokens = [
     symbol: 'YFIII',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12628/thumb/zNTAjrF.png?1601294851',
+      'https://assets.coingecko.com/coins/images/12628/small/zNTAjrF.png?1601294851',
   },
   {
     chainId: 1,
@@ -10325,7 +10325,7 @@ const tokens = [
     symbol: 'RBC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12629/thumb/200x200.png?1607952509',
+      'https://assets.coingecko.com/coins/images/12629/small/200x200.png?1607952509',
   },
   {
     chainId: 1,
@@ -10334,7 +10334,7 @@ const tokens = [
     symbol: 'VAMP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12630/thumb/vampire.jpeg?1601335717',
+      'https://assets.coingecko.com/coins/images/12630/small/vampire.jpeg?1601335717',
   },
   {
     chainId: 1,
@@ -10343,7 +10343,7 @@ const tokens = [
     symbol: 'WAR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12633/thumb/121169136_333321361293975_7238588238572942050_n.png?1602551929',
+      'https://assets.coingecko.com/coins/images/12633/small/121169136_333321361293975_7238588238572942050_n.png?1602551929',
   },
   {
     chainId: 1,
@@ -10352,7 +10352,7 @@ const tokens = [
     symbol: 'DEXTF',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12634/thumb/DEXTFiconNEGATIVE-page-001.jpg?1601349042',
+      'https://assets.coingecko.com/coins/images/12634/small/DEXTFiconNEGATIVE-page-001.jpg?1601349042',
   },
   {
     chainId: 1,
@@ -10361,7 +10361,7 @@ const tokens = [
     symbol: 'CORE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12635/thumb/cvault.finance_logo.png?1601353499',
+      'https://assets.coingecko.com/coins/images/12635/small/cvault.finance_logo.png?1601353499',
   },
   {
     chainId: 1,
@@ -10370,7 +10370,7 @@ const tokens = [
     symbol: 'STBU',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12637/thumb/logo200x200.png?1601363179',
+      'https://assets.coingecko.com/coins/images/12637/small/logo200x200.png?1601363179',
   },
   {
     chainId: 1,
@@ -10379,7 +10379,7 @@ const tokens = [
     symbol: 'YNK',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12639/thumb/yoin_logo.png?1601368710',
+      'https://assets.coingecko.com/coins/images/12639/small/yoin_logo.png?1601368710',
   },
   {
     chainId: 1,
@@ -10388,7 +10388,7 @@ const tokens = [
     symbol: 'YFPI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12640/thumb/200.png?1601369185',
+      'https://assets.coingecko.com/coins/images/12640/small/200.png?1601369185',
   },
   {
     chainId: 1,
@@ -10397,7 +10397,7 @@ const tokens = [
     symbol: 'QHC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12642/thumb/logo.png?1601370470',
+      'https://assets.coingecko.com/coins/images/12642/small/logo.png?1601370470',
   },
   {
     chainId: 1,
@@ -10406,7 +10406,7 @@ const tokens = [
     symbol: 'YFE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12644/thumb/logo-round.png?1601373377',
+      'https://assets.coingecko.com/coins/images/12644/small/logo-round.png?1601373377',
   },
   {
     chainId: 1,
@@ -10415,7 +10415,7 @@ const tokens = [
     symbol: 'AAVE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12645/thumb/AAVE.png?1601374110',
+      'https://assets.coingecko.com/coins/images/12645/small/AAVE.png?1601374110',
   },
   {
     chainId: 1,
@@ -10424,7 +10424,7 @@ const tokens = [
     symbol: 'TOMOE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12646/thumb/tomoe_logo.png?1601377449',
+      'https://assets.coingecko.com/coins/images/12646/small/tomoe_logo.png?1601377449',
   },
   {
     chainId: 1,
@@ -10433,7 +10433,7 @@ const tokens = [
     symbol: 'AHF',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12647/thumb/KBakm0K.jpg?1601386376',
+      'https://assets.coingecko.com/coins/images/12647/small/KBakm0K.jpg?1601386376',
   },
   {
     chainId: 1,
@@ -10442,7 +10442,7 @@ const tokens = [
     symbol: 'POLS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12648/thumb/polkastarter.png?1609813702',
+      'https://assets.coingecko.com/coins/images/12648/small/polkastarter.png?1609813702',
   },
   {
     chainId: 1,
@@ -10451,7 +10451,7 @@ const tokens = [
     symbol: 'IPM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12649/thumb/logo200x200_%282%29.png?1601421807',
+      'https://assets.coingecko.com/coins/images/12649/small/logo200x200_%282%29.png?1601421807',
   },
   {
     chainId: 1,
@@ -10460,7 +10460,7 @@ const tokens = [
     symbol: 'YFIEC',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12650/thumb/pypIqcG.jpg?1601431822',
+      'https://assets.coingecko.com/coins/images/12650/small/pypIqcG.jpg?1601431822',
   },
   {
     chainId: 1,
@@ -10469,7 +10469,7 @@ const tokens = [
     symbol: 'DODO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12651/thumb/dodo_logo.png?1601433025',
+      'https://assets.coingecko.com/coins/images/12651/small/dodo_logo.png?1601433025',
   },
   {
     chainId: 1,
@@ -10478,7 +10478,7 @@ const tokens = [
     symbol: 'YFARMER',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12652/thumb/yfarmer.png?1601435163',
+      'https://assets.coingecko.com/coins/images/12652/small/yfarmer.png?1601435163',
   },
   {
     chainId: 1,
@@ -10487,7 +10487,7 @@ const tokens = [
     symbol: 'KOMP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12655/thumb/kompass_symbol.png?1601436438',
+      'https://assets.coingecko.com/coins/images/12655/small/kompass_symbol.png?1601436438',
   },
   {
     chainId: 1,
@@ -10496,7 +10496,7 @@ const tokens = [
     symbol: 'DHC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12656/thumb/DHC_Transparent_200x200.png?1601440150',
+      'https://assets.coingecko.com/coins/images/12656/small/DHC_Transparent_200x200.png?1601440150',
   },
   {
     chainId: 1,
@@ -10505,7 +10505,7 @@ const tokens = [
     symbol: 'COZOM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12659/thumb/unnamed_%281%29.png?1601446454',
+      'https://assets.coingecko.com/coins/images/12659/small/unnamed_%281%29.png?1601446454',
   },
   {
     chainId: 1,
@@ -10514,7 +10514,7 @@ const tokens = [
     symbol: 'FFYI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12663/thumb/FFYI.png?1601450423',
+      'https://assets.coingecko.com/coins/images/12663/small/FFYI.png?1601450423',
   },
   {
     chainId: 1,
@@ -10523,7 +10523,7 @@ const tokens = [
     symbol: 'METRIC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12664/thumb/metric_exchange_logo.png?1601453711',
+      'https://assets.coingecko.com/coins/images/12664/small/metric_exchange_logo.png?1601453711',
   },
   {
     chainId: 1,
@@ -10532,7 +10532,7 @@ const tokens = [
     symbol: 'APE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12665/thumb/apecoin_logo.jpg?1601459267',
+      'https://assets.coingecko.com/coins/images/12665/small/apecoin_logo.jpg?1601459267',
   },
   {
     chainId: 1,
@@ -10541,7 +10541,7 @@ const tokens = [
     symbol: 'XDNA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12667/thumb/Logo_coin_black.png?1601463830',
+      'https://assets.coingecko.com/coins/images/12667/small/Logo_coin_black.png?1601463830',
   },
   {
     chainId: 1,
@@ -10550,7 +10550,7 @@ const tokens = [
     symbol: 'PJM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12669/thumb/pajama200.png?1601501914',
+      'https://assets.coingecko.com/coins/images/12669/small/pajama200.png?1601501914',
   },
   {
     chainId: 1,
@@ -10559,7 +10559,7 @@ const tokens = [
     symbol: 'STEAK',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12672/thumb/MtZuJ_Gq6mqy4BaGacnKNMKmviA1xeDWg2wUiPMqZ-1MzfSiTiAbEzfclWWsU4FF3QxYJcrs5ia_DSWAvdwNYbROJEkm-UK9mZRBPK_z61JciH4XhqMEDpYParjxnkEDqIoobaGaW9bOzPPN_YYHYcv0A1LxjnzdPZF47ZigVuAoOa46YZNFJ_IkM-e-Cuf_-XCpbS2EtbMYvCEhbSuzrI.jpg?1601518956',
+      'https://assets.coingecko.com/coins/images/12672/small/MtZuJ_Gq6mqy4BaGacnKNMKmviA1xeDWg2wUiPMqZ-1MzfSiTiAbEzfclWWsU4FF3QxYJcrs5ia_DSWAvdwNYbROJEkm-UK9mZRBPK_z61JciH4XhqMEDpYParjxnkEDqIoobaGaW9bOzPPN_YYHYcv0A1LxjnzdPZF47ZigVuAoOa46YZNFJ_IkM-e-Cuf_-XCpbS2EtbMYvCEhbSuzrI.jpg?1601518956',
   },
   {
     chainId: 1,
@@ -10568,7 +10568,7 @@ const tokens = [
     symbol: 'YLAND',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12673/thumb/SXMzvraK_400x400.jpg?1601522909',
+      'https://assets.coingecko.com/coins/images/12673/small/SXMzvraK_400x400.jpg?1601522909',
   },
   {
     chainId: 1,
@@ -10577,7 +10577,7 @@ const tokens = [
     symbol: 'BLC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12674/thumb/transparent1.png?1601523923',
+      'https://assets.coingecko.com/coins/images/12674/small/transparent1.png?1601523923',
   },
   {
     chainId: 1,
@@ -10586,7 +10586,7 @@ const tokens = [
     symbol: 'RAC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12675/thumb/rac_logo_%281%29.jpg?1601526417',
+      'https://assets.coingecko.com/coins/images/12675/small/rac_logo_%281%29.jpg?1601526417',
   },
   {
     chainId: 1,
@@ -10595,7 +10595,7 @@ const tokens = [
     symbol: 'KCAL',
     decimals: 10,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12678/thumb/kcal-logo-coingecko.png?1602063865',
+      'https://assets.coingecko.com/coins/images/12678/small/kcal-logo-coingecko.png?1602063865',
   },
   {
     chainId: 1,
@@ -10604,7 +10604,7 @@ const tokens = [
     symbol: 'CRED',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12680/thumb/cred_logo.png?1601611472',
+      'https://assets.coingecko.com/coins/images/12680/small/cred_logo.png?1601611472',
   },
   {
     chainId: 1,
@@ -10613,7 +10613,7 @@ const tokens = [
     symbol: 'UST',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12681/thumb/UST.png?1601612407',
+      'https://assets.coingecko.com/coins/images/12681/small/UST.png?1601612407',
   },
   {
     chainId: 1,
@@ -10622,7 +10622,7 @@ const tokens = [
     symbol: 'YFMB',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12682/thumb/yuqS66I.png?1601619725',
+      'https://assets.coingecko.com/coins/images/12682/small/yuqS66I.png?1601619725',
   },
   {
     chainId: 1,
@@ -10631,7 +10631,7 @@ const tokens = [
     symbol: 'YF4',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12683/thumb/yearn4logo.png?1601621780',
+      'https://assets.coingecko.com/coins/images/12683/small/yearn4logo.png?1601621780',
   },
   {
     chainId: 1,
@@ -10640,7 +10640,7 @@ const tokens = [
     symbol: 'ORB',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12686/thumb/favicon_%281%29.png?1601630265',
+      'https://assets.coingecko.com/coins/images/12686/small/favicon_%281%29.png?1601630265',
   },
   {
     chainId: 1,
@@ -10649,7 +10649,7 @@ const tokens = [
     symbol: 'RAUX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12687/thumb/raux_logo.jpeg?1601633375',
+      'https://assets.coingecko.com/coins/images/12687/small/raux_logo.jpeg?1601633375',
   },
   {
     chainId: 1,
@@ -10658,7 +10658,7 @@ const tokens = [
     symbol: 'KIRO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12688/thumb/QmScxyKBwqbGJZmp38EwaoRpXbzPkq3tvuMjeuJE1YLZeG.png?1601672684',
+      'https://assets.coingecko.com/coins/images/12688/small/QmScxyKBwqbGJZmp38EwaoRpXbzPkq3tvuMjeuJE1YLZeG.png?1601672684',
   },
   {
     chainId: 1,
@@ -10667,7 +10667,7 @@ const tokens = [
     symbol: 'WANATHA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12690/thumb/CrZ8h9FV_400x400.png?1601678935',
+      'https://assets.coingecko.com/coins/images/12690/small/CrZ8h9FV_400x400.png?1601678935',
   },
   {
     chainId: 1,
@@ -10676,7 +10676,7 @@ const tokens = [
     symbol: 'YFIP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12691/thumb/YFI_LOGO_TRANSPERANT.png?1604466364',
+      'https://assets.coingecko.com/coins/images/12691/small/YFI_LOGO_TRANSPERANT.png?1604466364',
   },
   {
     chainId: 1,
@@ -10685,7 +10685,7 @@ const tokens = [
     symbol: 'ZAC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12692/thumb/zaclogo200.png?1601693830',
+      'https://assets.coingecko.com/coins/images/12692/small/zaclogo200.png?1601693830',
   },
   {
     chainId: 1,
@@ -10694,7 +10694,7 @@ const tokens = [
     symbol: 'DOUGH',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12693/thumb/DOUGH2v.png?1602655308',
+      'https://assets.coingecko.com/coins/images/12693/small/DOUGH2v.png?1602655308',
   },
   {
     chainId: 1,
@@ -10703,7 +10703,7 @@ const tokens = [
     symbol: 'MBBASED',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12694/thumb/mb-logo.png?1601715131',
+      'https://assets.coingecko.com/coins/images/12694/small/mb-logo.png?1601715131',
   },
   {
     chainId: 1,
@@ -10712,7 +10712,7 @@ const tokens = [
     symbol: 'SMOL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12695/thumb/blockfolio-gecko-smol-clean-up.png?1601867705',
+      'https://assets.coingecko.com/coins/images/12695/small/blockfolio-gecko-smol-clean-up.png?1601867705',
   },
   {
     chainId: 1,
@@ -10721,7 +10721,7 @@ const tokens = [
     symbol: 'BLV',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12697/thumb/BLV-200x200-1.png?1601825641',
+      'https://assets.coingecko.com/coins/images/12697/small/BLV-200x200-1.png?1601825641',
   },
   {
     chainId: 1,
@@ -10730,7 +10730,7 @@ const tokens = [
     symbol: 'CYTR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12698/thumb/Untitled-design-9-removebg-preview.png?1601855912',
+      'https://assets.coingecko.com/coins/images/12698/small/Untitled-design-9-removebg-preview.png?1601855912',
   },
   {
     chainId: 1,
@@ -10739,7 +10739,7 @@ const tokens = [
     symbol: 'ONIGIRI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12699/thumb/onigiri-coingecko.png?1601857724',
+      'https://assets.coingecko.com/coins/images/12699/small/onigiri-coingecko.png?1601857724',
   },
   {
     chainId: 1,
@@ -10748,7 +10748,7 @@ const tokens = [
     symbol: 'DEFI+S',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12701/thumb/DefiS.png?1601862595',
+      'https://assets.coingecko.com/coins/images/12701/small/DefiS.png?1601862595',
   },
   {
     chainId: 1,
@@ -10757,7 +10757,7 @@ const tokens = [
     symbol: 'YFOX',
     decimals: 6,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12702/thumb/Yfox.png?1601865990',
+      'https://assets.coingecko.com/coins/images/12702/small/Yfox.png?1601865990',
   },
   {
     chainId: 1,
@@ -10766,7 +10766,7 @@ const tokens = [
     symbol: 'YEA',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12705/thumb/logoeth.png?1601877470',
+      'https://assets.coingecko.com/coins/images/12705/small/logoeth.png?1601877470',
   },
   {
     chainId: 1,
@@ -10775,7 +10775,7 @@ const tokens = [
     symbol: 'ZUT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12706/thumb/logo.png?1605007113',
+      'https://assets.coingecko.com/coins/images/12706/small/logo.png?1605007113',
   },
   {
     chainId: 1,
@@ -10784,7 +10784,7 @@ const tokens = [
     symbol: 'YFOS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12707/thumb/wHQeaUF.jpg?1601888512',
+      'https://assets.coingecko.com/coins/images/12707/small/wHQeaUF.jpg?1601888512',
   },
   {
     chainId: 1,
@@ -10793,7 +10793,7 @@ const tokens = [
     symbol: 'YI12',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12708/thumb/yi12_logo.jpg?1601894672',
+      'https://assets.coingecko.com/coins/images/12708/small/yi12_logo.jpg?1601894672',
   },
   {
     chainId: 1,
@@ -10802,7 +10802,7 @@ const tokens = [
     symbol: 'PGT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12709/thumb/Polyent.png?1601897060',
+      'https://assets.coingecko.com/coins/images/12709/small/Polyent.png?1601897060',
   },
   {
     chainId: 1,
@@ -10811,7 +10811,7 @@ const tokens = [
     symbol: 'YFPRO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12712/thumb/STOV7niY_400x400.png?1602630888',
+      'https://assets.coingecko.com/coins/images/12712/small/STOV7niY_400x400.png?1602630888',
   },
   {
     chainId: 1,
@@ -10820,7 +10820,7 @@ const tokens = [
     symbol: 'DEXE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12713/thumb/logo_%2814%29.png?1601952779',
+      'https://assets.coingecko.com/coins/images/12713/small/logo_%2814%29.png?1601952779',
   },
   {
     chainId: 1,
@@ -10829,7 +10829,7 @@ const tokens = [
     symbol: 'DARK',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12716/thumb/DARK-black.jpg?1601968540',
+      'https://assets.coingecko.com/coins/images/12716/small/DARK-black.jpg?1601968540',
   },
   {
     chainId: 1,
@@ -10838,7 +10838,7 @@ const tokens = [
     symbol: 'LYNC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12717/thumb/coingecko_200x200.png?1604203317',
+      'https://assets.coingecko.com/coins/images/12717/small/coingecko_200x200.png?1604203317',
   },
   {
     chainId: 1,
@@ -10847,7 +10847,7 @@ const tokens = [
     symbol: 'OWL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12720/thumb/logo-transbg_200x200.png?1602024124',
+      'https://assets.coingecko.com/coins/images/12720/small/logo-transbg_200x200.png?1602024124',
   },
   {
     chainId: 1,
@@ -10856,7 +10856,7 @@ const tokens = [
     symbol: 'ENCORE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12721/thumb/72530481.png?1605256352',
+      'https://assets.coingecko.com/coins/images/12721/small/72530481.png?1605256352',
   },
   {
     chainId: 1,
@@ -10865,7 +10865,7 @@ const tokens = [
     symbol: 'YFSI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12723/thumb/Yfscience_logo.png?1602038268',
+      'https://assets.coingecko.com/coins/images/12723/small/Yfscience_logo.png?1602038268',
   },
   {
     chainId: 1,
@@ -10874,7 +10874,7 @@ const tokens = [
     symbol: 'TGBP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12724/thumb/TGBP.png?1602042166',
+      'https://assets.coingecko.com/coins/images/12724/small/TGBP.png?1602042166',
   },
   {
     chainId: 1,
@@ -10883,7 +10883,7 @@ const tokens = [
     symbol: 'TCAD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12725/thumb/TCAD.png?1602043400',
+      'https://assets.coingecko.com/coins/images/12725/small/TCAD.png?1602043400',
   },
   {
     chainId: 1,
@@ -10892,7 +10892,7 @@ const tokens = [
     symbol: 'FUD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12727/thumb/fud_finance_logo.png?1602055414',
+      'https://assets.coingecko.com/coins/images/12727/small/fud_finance_logo.png?1602055414',
   },
   {
     chainId: 1,
@@ -10901,7 +10901,7 @@ const tokens = [
     symbol: 'INDEX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12729/thumb/c7w3TmXs_400x400.png?1602630788',
+      'https://assets.coingecko.com/coins/images/12729/small/c7w3TmXs_400x400.png?1602630788',
   },
   {
     chainId: 1,
@@ -10910,7 +10910,7 @@ const tokens = [
     symbol: 'MTLX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12730/thumb/nrEqFTEW_400x400.jpg?1602063980',
+      'https://assets.coingecko.com/coins/images/12730/small/nrEqFTEW_400x400.jpg?1602063980',
   },
   {
     chainId: 1,
@@ -10919,7 +10919,7 @@ const tokens = [
     symbol: 'WOA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12732/thumb/WOA_logo.png?1602116474',
+      'https://assets.coingecko.com/coins/images/12732/small/WOA_logo.png?1602116474',
   },
   {
     chainId: 1,
@@ -10928,7 +10928,7 @@ const tokens = [
     symbol: 'YFED',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12736/thumb/yfed_logo.png?1602123697',
+      'https://assets.coingecko.com/coins/images/12736/small/yfed_logo.png?1602123697',
   },
   {
     chainId: 1,
@@ -10937,7 +10937,7 @@ const tokens = [
     symbol: 'ALPHA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12738/thumb/ec7316b1-8bd9-4a76-8a1e-2d5c0b287d2f.jpg?1602306985',
+      'https://assets.coingecko.com/coins/images/12738/small/ec7316b1-8bd9-4a76-8a1e-2d5c0b287d2f.jpg?1602306985',
   },
   {
     chainId: 1,
@@ -10946,7 +10946,7 @@ const tokens = [
     symbol: 'THIRM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12739/thumb/thrim_logo.png?1602129709',
+      'https://assets.coingecko.com/coins/images/12739/small/thrim_logo.png?1602129709',
   },
   {
     chainId: 1,
@@ -10955,7 +10955,7 @@ const tokens = [
     symbol: 'HATE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12740/thumb/BUQoiaJY_400x400.png?1602630549',
+      'https://assets.coingecko.com/coins/images/12740/small/BUQoiaJY_400x400.png?1602630549',
   },
   {
     chainId: 1,
@@ -10964,7 +10964,7 @@ const tokens = [
     symbol: 'EASY',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12742/thumb/skiXdJLe_400x400.png?1602630380',
+      'https://assets.coingecko.com/coins/images/12742/small/skiXdJLe_400x400.png?1602630380',
   },
   {
     chainId: 1,
@@ -10973,7 +10973,7 @@ const tokens = [
     symbol: 'CNTR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12743/thumb/logo_%2898%29.png?1602630445',
+      'https://assets.coingecko.com/coins/images/12743/small/logo_%2898%29.png?1602630445',
   },
   {
     chainId: 1,
@@ -10982,7 +10982,7 @@ const tokens = [
     symbol: 'YLAB',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12744/thumb/kKGUHNFn_400x400.jpg?1602193258',
+      'https://assets.coingecko.com/coins/images/12744/small/kKGUHNFn_400x400.jpg?1602193258',
   },
   {
     chainId: 1,
@@ -10991,7 +10991,7 @@ const tokens = [
     symbol: 'RFX',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12745/thumb/2MKGMRCT_400x400.png?1602194456',
+      'https://assets.coingecko.com/coins/images/12745/small/2MKGMRCT_400x400.png?1602194456',
   },
   {
     chainId: 1,
@@ -11000,7 +11000,7 @@ const tokens = [
     symbol: 'DCORE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12746/thumb/86jI-acy_400x400.png?1602208062',
+      'https://assets.coingecko.com/coins/images/12746/small/86jI-acy_400x400.png?1602208062',
   },
   {
     chainId: 1,
@@ -11009,7 +11009,7 @@ const tokens = [
     symbol: 'HOLY',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12747/thumb/veqfbl.png?1602211222',
+      'https://assets.coingecko.com/coins/images/12747/small/veqfbl.png?1602211222',
   },
   {
     chainId: 1,
@@ -11018,7 +11018,7 @@ const tokens = [
     symbol: 'RUGZ',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12749/thumb/rugz_logo.png?1602218634',
+      'https://assets.coingecko.com/coins/images/12749/small/rugz_logo.png?1602218634',
   },
   {
     chainId: 1,
@@ -11027,7 +11027,7 @@ const tokens = [
     symbol: 'PIPT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12750/thumb/powerpool.jpeg?1602233006',
+      'https://assets.coingecko.com/coins/images/12750/small/powerpool.jpeg?1602233006',
   },
   {
     chainId: 1,
@@ -11036,7 +11036,7 @@ const tokens = [
     symbol: 'SNOW',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12751/thumb/uQBJL3A.png?1602237225',
+      'https://assets.coingecko.com/coins/images/12751/small/uQBJL3A.png?1602237225',
   },
   {
     chainId: 1,
@@ -11045,7 +11045,7 @@ const tokens = [
     symbol: 'NMT',
     decimals: 19,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12752/thumb/nova_defi_logo.png?1602241365',
+      'https://assets.coingecko.com/coins/images/12752/small/nova_defi_logo.png?1602241365',
   },
   {
     chainId: 1,
@@ -11054,7 +11054,7 @@ const tokens = [
     symbol: 'STBZ',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12753/thumb/icon.png?1608771101',
+      'https://assets.coingecko.com/coins/images/12753/small/icon.png?1608771101',
   },
   {
     chainId: 1,
@@ -11063,7 +11063,7 @@ const tokens = [
     symbol: 'DRC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12758/thumb/dracula_protocol.png?1602316655',
+      'https://assets.coingecko.com/coins/images/12758/small/dracula_protocol.png?1602316655',
   },
   {
     chainId: 1,
@@ -11072,7 +11072,7 @@ const tokens = [
     symbol: 'DOKI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12759/thumb/doki_logo.png?1602338064',
+      'https://assets.coingecko.com/coins/images/12759/small/doki_logo.png?1602338064',
   },
   {
     chainId: 1,
@@ -11081,7 +11081,7 @@ const tokens = [
     symbol: 'LIMIT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12760/thumb/limit_swap_logo.png?1602347106',
+      'https://assets.coingecko.com/coins/images/12760/small/limit_swap_logo.png?1602347106',
   },
   {
     chainId: 1,
@@ -11090,7 +11090,7 @@ const tokens = [
     symbol: 'JGN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12761/thumb/juggernaut_logo.png?1602428976',
+      'https://assets.coingecko.com/coins/images/12761/small/juggernaut_logo.png?1602428976',
   },
   {
     chainId: 1,
@@ -11099,7 +11099,7 @@ const tokens = [
     symbol: 'SEAL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12762/thumb/seal.png?1602434721',
+      'https://assets.coingecko.com/coins/images/12762/small/seal.png?1602434721',
   },
   {
     chainId: 1,
@@ -11108,7 +11108,7 @@ const tokens = [
     symbol: 'DOGES',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12763/thumb/20200926-220107.png?1602455597',
+      'https://assets.coingecko.com/coins/images/12763/small/20200926-220107.png?1602455597',
   },
   {
     chainId: 1,
@@ -11117,7 +11117,7 @@ const tokens = [
     symbol: 'DANDY',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12764/thumb/487ogltc_400x400.jpg?1602463048',
+      'https://assets.coingecko.com/coins/images/12764/small/487ogltc_400x400.jpg?1602463048',
   },
   {
     chainId: 1,
@@ -11126,7 +11126,7 @@ const tokens = [
     symbol: 'SHAKE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12765/thumb/shake_logo.jpg?1602470135',
+      'https://assets.coingecko.com/coins/images/12765/small/shake_logo.jpg?1602470135',
   },
   {
     chainId: 1,
@@ -11135,7 +11135,7 @@ const tokens = [
     symbol: 'NFY',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12766/thumb/NFY_logo.png?1602686886',
+      'https://assets.coingecko.com/coins/images/12766/small/NFY_logo.png?1602686886',
   },
   {
     chainId: 1,
@@ -11144,7 +11144,7 @@ const tokens = [
     symbol: 'MILK2',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12771/thumb/PVXczB4M.png?1602482463',
+      'https://assets.coingecko.com/coins/images/12771/small/PVXczB4M.png?1602482463',
   },
   {
     chainId: 1,
@@ -11153,7 +11153,7 @@ const tokens = [
     symbol: 'CRAFT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12775/thumb/decraft_logo.jpg?1602486383',
+      'https://assets.coingecko.com/coins/images/12775/small/decraft_logo.jpg?1602486383',
   },
   {
     chainId: 1,
@@ -11162,7 +11162,7 @@ const tokens = [
     symbol: 'BRAIN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12778/thumb/brain_logo.jpg?1602493938',
+      'https://assets.coingecko.com/coins/images/12778/small/brain_logo.jpg?1602493938',
   },
   {
     chainId: 1,
@@ -11171,7 +11171,7 @@ const tokens = [
     symbol: 'AC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12779/thumb/ac_logo.png?1602500084',
+      'https://assets.coingecko.com/coins/images/12779/small/ac_logo.png?1602500084',
   },
   {
     chainId: 1,
@@ -11180,7 +11180,7 @@ const tokens = [
     symbol: 'FIN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12780/thumb/PdaW8Lb.png?1602500407',
+      'https://assets.coingecko.com/coins/images/12780/small/PdaW8Lb.png?1602500407',
   },
   {
     chainId: 1,
@@ -11189,7 +11189,7 @@ const tokens = [
     symbol: 'COFI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12781/thumb/dnPnSkfa_400x400.png?1602885321',
+      'https://assets.coingecko.com/coins/images/12781/small/dnPnSkfa_400x400.png?1602885321',
   },
   {
     chainId: 1,
@@ -11198,7 +11198,7 @@ const tokens = [
     symbol: 'DAOFI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12782/thumb/DAOFi.png?1602548740',
+      'https://assets.coingecko.com/coins/images/12782/small/DAOFi.png?1602548740',
   },
   {
     chainId: 1,
@@ -11207,7 +11207,7 @@ const tokens = [
     symbol: 'PSHP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12789/thumb/pshp_logo.png?1602566222',
+      'https://assets.coingecko.com/coins/images/12789/small/pshp_logo.png?1602566222',
   },
   {
     chainId: 1,
@@ -11216,7 +11216,7 @@ const tokens = [
     symbol: 'SSL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12790/thumb/1SSL_Ticker_Etherscan_256x256.png?1607928756',
+      'https://assets.coingecko.com/coins/images/12790/small/1SSL_Ticker_Etherscan_256x256.png?1607928756',
   },
   {
     chainId: 1,
@@ -11225,7 +11225,7 @@ const tokens = [
     symbol: 'YFDOT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12791/thumb/logo_%2815%29.png?1602580328',
+      'https://assets.coingecko.com/coins/images/12791/small/logo_%2815%29.png?1602580328',
   },
   {
     chainId: 1,
@@ -11234,7 +11234,7 @@ const tokens = [
     symbol: 'MOONS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12793/thumb/moontools-token-logo.png?1602588060',
+      'https://assets.coingecko.com/coins/images/12793/small/moontools-token-logo.png?1602588060',
   },
   {
     chainId: 1,
@@ -11243,7 +11243,7 @@ const tokens = [
     symbol: 'PLOT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12795/thumb/plotx.jpg?1602637180',
+      'https://assets.coingecko.com/coins/images/12795/small/plotx.jpg?1602637180',
   },
   {
     chainId: 1,
@@ -11252,7 +11252,7 @@ const tokens = [
     symbol: 'ZEFU',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12796/thumb/zenfuse.jpg?1602640333',
+      'https://assets.coingecko.com/coins/images/12796/small/zenfuse.jpg?1602640333',
   },
   {
     chainId: 1,
@@ -11261,7 +11261,7 @@ const tokens = [
     symbol: 'YGY',
     decimals: 6,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12798/thumb/ygycg.png?1602643175',
+      'https://assets.coingecko.com/coins/images/12798/small/ygycg.png?1602643175',
   },
   {
     chainId: 1,
@@ -11270,7 +11270,7 @@ const tokens = [
     symbol: 'DRC',
     decimals: 0,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12802/thumb/DRC-Digital-Reserve-Currency-Coingecko.png?1603355646',
+      'https://assets.coingecko.com/coins/images/12802/small/DRC-Digital-Reserve-Currency-Coingecko.png?1603355646',
   },
   {
     chainId: 1,
@@ -11279,7 +11279,7 @@ const tokens = [
     symbol: 'EYE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12804/thumb/beholder_logo.png?1602682616',
+      'https://assets.coingecko.com/coins/images/12804/small/beholder_logo.png?1602682616',
   },
   {
     chainId: 1,
@@ -11288,7 +11288,7 @@ const tokens = [
     symbol: 'SWAG',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12805/thumb/photo_2020-10-14_23.17.02.jpeg?1602688642',
+      'https://assets.coingecko.com/coins/images/12805/small/photo_2020-10-14_23.17.02.jpeg?1602688642',
   },
   {
     chainId: 1,
@@ -11297,7 +11297,7 @@ const tokens = [
     symbol: 'NOTRUMP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12806/thumb/noTrump.png?1602689764',
+      'https://assets.coingecko.com/coins/images/12806/small/noTrump.png?1602689764',
   },
   {
     chainId: 1,
@@ -11306,7 +11306,7 @@ const tokens = [
     symbol: 'YESTRUMP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12807/thumb/yesTrump.png?1602689766',
+      'https://assets.coingecko.com/coins/images/12807/small/yesTrump.png?1602689766',
   },
   {
     chainId: 1,
@@ -11315,7 +11315,7 @@ const tokens = [
     symbol: 'QCORE',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12809/thumb/logo_%281%29_%281%29.png?1602714432',
+      'https://assets.coingecko.com/coins/images/12809/small/logo_%281%29_%281%29.png?1602714432',
   },
   {
     chainId: 1,
@@ -11324,7 +11324,7 @@ const tokens = [
     symbol: 'BNZ',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12810/thumb/bnz_icon.png?1602716875',
+      'https://assets.coingecko.com/coins/images/12810/small/bnz_icon.png?1602716875',
   },
   {
     chainId: 1,
@@ -11333,7 +11333,7 @@ const tokens = [
     symbol: 'BOND',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12811/thumb/barnbridge.jpg?1602728853',
+      'https://assets.coingecko.com/coins/images/12811/small/barnbridge.jpg?1602728853',
   },
   {
     chainId: 1,
@@ -11342,7 +11342,7 @@ const tokens = [
     symbol: 'RTC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12812/thumb/rtc_logo.png?1602730411',
+      'https://assets.coingecko.com/coins/images/12812/small/rtc_logo.png?1602730411',
   },
   {
     chainId: 1,
@@ -11351,7 +11351,7 @@ const tokens = [
     symbol: 'UNISTAKE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12813/thumb/logo_%2816%29.png?1602731319',
+      'https://assets.coingecko.com/coins/images/12813/small/logo_%2816%29.png?1602731319',
   },
   {
     chainId: 1,
@@ -11360,7 +11360,7 @@ const tokens = [
     symbol: 'HAUT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12815/thumb/astt.png?1602884781',
+      'https://assets.coingecko.com/coins/images/12815/small/astt.png?1602884781',
   },
   {
     chainId: 1,
@@ -11369,7 +11369,7 @@ const tokens = [
     symbol: 'GEM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12818/thumb/gems_logo.jpg?1602743920',
+      'https://assets.coingecko.com/coins/images/12818/small/gems_logo.jpg?1602743920',
   },
   {
     chainId: 1,
@@ -11378,7 +11378,7 @@ const tokens = [
     symbol: 'UFT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12819/thumb/UniLend_Finance_logo_PNG.png?1602748658',
+      'https://assets.coingecko.com/coins/images/12819/small/UniLend_Finance_logo_PNG.png?1602748658',
   },
   {
     chainId: 1,
@@ -11387,7 +11387,7 @@ const tokens = [
     symbol: 'PPBLZ',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12823/thumb/200pepebball-BIG.png?1603330304',
+      'https://assets.coingecko.com/coins/images/12823/small/200pepebball-BIG.png?1603330304',
   },
   {
     chainId: 1,
@@ -11396,7 +11396,7 @@ const tokens = [
     symbol: 'YFDT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12824/thumb/yfdt_logo.png?1602814305',
+      'https://assets.coingecko.com/coins/images/12824/small/yfdt_logo.png?1602814305',
   },
   {
     chainId: 1,
@@ -11405,7 +11405,7 @@ const tokens = [
     symbol: 'DEA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12825/thumb/dea_logo.png?1602820454',
+      'https://assets.coingecko.com/coins/images/12825/small/dea_logo.png?1602820454',
   },
   {
     chainId: 1,
@@ -11414,7 +11414,7 @@ const tokens = [
     symbol: 'HEZ',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12826/thumb/hermez_logo.png?1602826556',
+      'https://assets.coingecko.com/coins/images/12826/small/hermez_logo.png?1602826556',
   },
   {
     chainId: 1,
@@ -11423,7 +11423,7 @@ const tokens = [
     symbol: 'ASWAP',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12827/thumb/logo_%283%29.png?1602831070',
+      'https://assets.coingecko.com/coins/images/12827/small/logo_%283%29.png?1602831070',
   },
   {
     chainId: 1,
@@ -11432,7 +11432,7 @@ const tokens = [
     symbol: 'JNTRE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12829/thumb/jntr_logo.jpg?1602835757',
+      'https://assets.coingecko.com/coins/images/12829/small/jntr_logo.jpg?1602835757',
   },
   {
     chainId: 1,
@@ -11441,7 +11441,7 @@ const tokens = [
     symbol: 'UTU',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12831/thumb/Aa5nmbkJ_400x400.png?1602884636',
+      'https://assets.coingecko.com/coins/images/12831/small/Aa5nmbkJ_400x400.png?1602884636',
   },
   {
     chainId: 1,
@@ -11450,7 +11450,7 @@ const tokens = [
     symbol: 'XSGD',
     decimals: 6,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12832/thumb/opiTgkh.png?1602856852',
+      'https://assets.coingecko.com/coins/images/12832/small/opiTgkh.png?1602856852',
   },
   {
     chainId: 1,
@@ -11459,7 +11459,7 @@ const tokens = [
     symbol: 'IFUND',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12833/thumb/unifund_logo.png?1602859047',
+      'https://assets.coingecko.com/coins/images/12833/small/unifund_logo.png?1602859047',
   },
   {
     chainId: 1,
@@ -11468,7 +11468,7 @@ const tokens = [
     symbol: 'YEFIM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12836/thumb/jOVGT0Y.png?1602886889',
+      'https://assets.coingecko.com/coins/images/12836/small/jOVGT0Y.png?1602886889',
   },
   {
     chainId: 1,
@@ -11477,7 +11477,7 @@ const tokens = [
     symbol: 'RAMP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12837/thumb/RampdefiExternal200.png?1602897632',
+      'https://assets.coingecko.com/coins/images/12837/small/RampdefiExternal200.png?1602897632',
   },
   {
     chainId: 1,
@@ -11486,7 +11486,7 @@ const tokens = [
     symbol: 'BETTER',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12838/thumb/BETTER_MONEY_MASK_ICON.png?1602899651',
+      'https://assets.coingecko.com/coins/images/12838/small/BETTER_MONEY_MASK_ICON.png?1602899651',
   },
   {
     chainId: 1,
@@ -11495,7 +11495,7 @@ const tokens = [
     symbol: 'DXY',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12839/thumb/dxy_finance.png?1602903489',
+      'https://assets.coingecko.com/coins/images/12839/small/dxy_finance.png?1602903489',
   },
   {
     chainId: 1,
@@ -11504,7 +11504,7 @@ const tokens = [
     symbol: 'CCOMP',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12840/thumb/1_z8UrVtod3bme4-J_pXAQQA_2x.png?1602936322',
+      'https://assets.coingecko.com/coins/images/12840/small/1_z8UrVtod3bme4-J_pXAQQA_2x.png?1602936322',
   },
   {
     chainId: 1,
@@ -11513,7 +11513,7 @@ const tokens = [
     symbol: 'SYN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12841/thumb/synlev_logo.jpg?1602945400',
+      'https://assets.coingecko.com/coins/images/12841/small/synlev_logo.jpg?1602945400',
   },
   {
     chainId: 1,
@@ -11522,7 +11522,7 @@ const tokens = [
     symbol: 'YFIP',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12842/thumb/yfipaprika.png?1602990259',
+      'https://assets.coingecko.com/coins/images/12842/small/yfipaprika.png?1602990259',
   },
   {
     chainId: 1,
@@ -11531,7 +11531,7 @@ const tokens = [
     symbol: 'RLY',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12843/thumb/rally.png?1603005291',
+      'https://assets.coingecko.com/coins/images/12843/small/rally.png?1603005291',
   },
   {
     chainId: 1,
@@ -11540,7 +11540,7 @@ const tokens = [
     symbol: 'NICE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12844/thumb/nice-200px.png?1603031077',
+      'https://assets.coingecko.com/coins/images/12844/small/nice-200px.png?1603031077',
   },
   {
     chainId: 1,
@@ -11549,7 +11549,7 @@ const tokens = [
     symbol: 'DXIOT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12850/thumb/dxiot.png?1603074874',
+      'https://assets.coingecko.com/coins/images/12850/small/dxiot.png?1603074874',
   },
   {
     chainId: 1,
@@ -11558,7 +11558,7 @@ const tokens = [
     symbol: 'BEER',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12852/thumb/256x256.png?1603976502',
+      'https://assets.coingecko.com/coins/images/12852/small/256x256.png?1603976502',
   },
   {
     chainId: 1,
@@ -11567,7 +11567,7 @@ const tokens = [
     symbol: 'YRISE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12853/thumb/logoyrise-200px.png?1603084410',
+      'https://assets.coingecko.com/coins/images/12853/small/logoyrise-200px.png?1603084410',
   },
   {
     chainId: 1,
@@ -11576,7 +11576,7 @@ const tokens = [
     symbol: 'COR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12856/thumb/photo_2020-10-27_11-13-23.jpg?1603768611',
+      'https://assets.coingecko.com/coins/images/12856/small/photo_2020-10-27_11-13-23.jpg?1603768611',
   },
   {
     chainId: 1,
@@ -11585,7 +11585,7 @@ const tokens = [
     symbol: 'GLF',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12857/thumb/U5VMHQ5q_400x400.jpg?1603090892',
+      'https://assets.coingecko.com/coins/images/12857/small/U5VMHQ5q_400x400.jpg?1603090892',
   },
   {
     chainId: 1,
@@ -11594,7 +11594,7 @@ const tokens = [
     symbol: 'ZEE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12861/thumb/zeroswap.jpg?1603111827',
+      'https://assets.coingecko.com/coins/images/12861/small/zeroswap.jpg?1603111827',
   },
   {
     chainId: 1,
@@ -11603,7 +11603,7 @@ const tokens = [
     symbol: 'BNF',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12862/thumb/bonfi_logo.png?1603114422',
+      'https://assets.coingecko.com/coins/images/12862/small/bonfi_logo.png?1603114422',
   },
   {
     chainId: 1,
@@ -11612,7 +11612,7 @@ const tokens = [
     symbol: 'PAYOU',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12863/thumb/PAYOU-LOGO.png?1603118094',
+      'https://assets.coingecko.com/coins/images/12863/small/PAYOU-LOGO.png?1603118094',
   },
   {
     chainId: 1,
@@ -11621,7 +11621,7 @@ const tokens = [
     symbol: 'SSJ',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12867/thumb/super_saiyan_jin_logo.jpg?1603168317',
+      'https://assets.coingecko.com/coins/images/12867/small/super_saiyan_jin_logo.jpg?1603168317',
   },
   {
     chainId: 1,
@@ -11630,7 +11630,7 @@ const tokens = [
     symbol: 'RARE',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12868/thumb/rare_logo.png?1603170092',
+      'https://assets.coingecko.com/coins/images/12868/small/rare_logo.png?1603170092',
   },
   {
     chainId: 1,
@@ -11639,7 +11639,7 @@ const tokens = [
     symbol: 'WG0',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12870/thumb/wg0_logo.png?1603176705',
+      'https://assets.coingecko.com/coins/images/12870/small/wg0_logo.png?1603176705',
   },
   {
     chainId: 1,
@@ -11648,7 +11648,7 @@ const tokens = [
     symbol: 'UNCX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12871/thumb/unicrypt_logo.png?1603178739',
+      'https://assets.coingecko.com/coins/images/12871/small/unicrypt_logo.png?1603178739',
   },
   {
     chainId: 1,
@@ -11657,7 +11657,7 @@ const tokens = [
     symbol: 'FWB',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12873/thumb/fwb_logo.png?1603182111',
+      'https://assets.coingecko.com/coins/images/12873/small/fwb_logo.png?1603182111',
   },
   {
     chainId: 1,
@@ -11666,7 +11666,7 @@ const tokens = [
     symbol: 'WVG0',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12875/thumb/wvg0.png?1603211534',
+      'https://assets.coingecko.com/coins/images/12875/small/wvg0.png?1603211534',
   },
   {
     chainId: 1,
@@ -11675,7 +11675,7 @@ const tokens = [
     symbol: 'RSPT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12877/thumb/rspt.png?1603248283',
+      'https://assets.coingecko.com/coins/images/12877/small/rspt.png?1603248283',
   },
   {
     chainId: 1,
@@ -11684,7 +11684,7 @@ const tokens = [
     symbol: 'SWG',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12879/thumb/swirge_logo.png?1603250039',
+      'https://assets.coingecko.com/coins/images/12879/small/swirge_logo.png?1603250039',
   },
   {
     chainId: 1,
@@ -11693,7 +11693,7 @@ const tokens = [
     symbol: 'VOX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12880/thumb/BSensIa.png?1603261093',
+      'https://assets.coingecko.com/coins/images/12880/small/BSensIa.png?1603261093',
   },
   {
     chainId: 1,
@@ -11702,7 +11702,7 @@ const tokens = [
     symbol: 'DGNN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12881/thumb/logo_256x256.png?1603254107',
+      'https://assets.coingecko.com/coins/images/12881/small/logo_256x256.png?1603254107',
   },
   {
     chainId: 1,
@@ -11711,7 +11711,7 @@ const tokens = [
     symbol: 'INJ',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12882/thumb/injective_logo.jpg?1603255762',
+      'https://assets.coingecko.com/coins/images/12882/small/injective_logo.jpg?1603255762',
   },
   {
     chainId: 1,
@@ -11720,7 +11720,7 @@ const tokens = [
     symbol: 'DFGL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12883/thumb/defi_gold.jpg?1603281766',
+      'https://assets.coingecko.com/coins/images/12883/small/defi_gold.jpg?1603281766',
   },
   {
     chainId: 1,
@@ -11729,7 +11729,7 @@ const tokens = [
     symbol: 'CLV',
     decimals: 6,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12888/thumb/clover_logo.png?1603274615',
+      'https://assets.coingecko.com/coins/images/12888/small/clover_logo.png?1603274615',
   },
   {
     chainId: 1,
@@ -11738,7 +11738,7 @@ const tokens = [
     symbol: 'MOONDAY',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12890/thumb/qJWRxsz.jpeg?1603327151',
+      'https://assets.coingecko.com/coins/images/12890/small/qJWRxsz.jpeg?1603327151',
   },
   {
     chainId: 1,
@@ -11747,7 +11747,7 @@ const tokens = [
     symbol: 'BOOB',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12894/thumb/boobank.PNG?1604043315',
+      'https://assets.coingecko.com/coins/images/12894/small/boobank.PNG?1604043315',
   },
   {
     chainId: 1,
@@ -11756,7 +11756,7 @@ const tokens = [
     symbol: 'CHONK',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12899/thumb/a2LHjXZ.jpeg?1603418225',
+      'https://assets.coingecko.com/coins/images/12899/small/a2LHjXZ.jpeg?1603418225',
   },
   {
     chainId: 1,
@@ -11765,7 +11765,7 @@ const tokens = [
     symbol: 'RGT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12900/thumb/rgt_logo.png?1603340632',
+      'https://assets.coingecko.com/coins/images/12900/small/rgt_logo.png?1603340632',
   },
   {
     chainId: 1,
@@ -11774,7 +11774,7 @@ const tokens = [
     symbol: 'YIELDX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12904/thumb/logo-200x200.png?1603353354',
+      'https://assets.coingecko.com/coins/images/12904/small/logo-200x200.png?1603353354',
   },
   {
     chainId: 1,
@@ -11783,7 +11783,7 @@ const tokens = [
     symbol: 'PRIA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12905/thumb/pria-200x.png?1603357286',
+      'https://assets.coingecko.com/coins/images/12905/small/pria-200x.png?1603357286',
   },
   {
     chainId: 1,
@@ -11792,7 +11792,7 @@ const tokens = [
     symbol: 'AXIAV3',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12906/thumb/axia_protocol.png?1603379184',
+      'https://assets.coingecko.com/coins/images/12906/small/axia_protocol.png?1603379184',
   },
   {
     chainId: 1,
@@ -11801,7 +11801,7 @@ const tokens = [
     symbol: 'YBAN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12907/thumb/H3ddt7A.png?1603418786',
+      'https://assets.coingecko.com/coins/images/12907/small/H3ddt7A.png?1603418786',
   },
   {
     chainId: 1,
@@ -11810,7 +11810,7 @@ const tokens = [
     symbol: 'DOGDEFI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12912/thumb/dogdefi_logo.jpg?1603425386',
+      'https://assets.coingecko.com/coins/images/12912/small/dogdefi_logo.jpg?1603425386',
   },
   {
     chainId: 1,
@@ -11819,7 +11819,7 @@ const tokens = [
     symbol: 'AUDIO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12913/thumb/AudiusCoinLogo_2x.png?1603425727',
+      'https://assets.coingecko.com/coins/images/12913/small/AudiusCoinLogo_2x.png?1603425727',
   },
   {
     chainId: 1,
@@ -11828,7 +11828,7 @@ const tokens = [
     symbol: 'QRX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12916/thumb/qrx_logo.png?1603550478',
+      'https://assets.coingecko.com/coins/images/12916/small/qrx_logo.png?1603550478',
   },
   {
     chainId: 1,
@@ -11837,7 +11837,7 @@ const tokens = [
     symbol: 'BOR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12917/thumb/bor_logo.png?1603607502',
+      'https://assets.coingecko.com/coins/images/12917/small/bor_logo.png?1603607502',
   },
   {
     chainId: 1,
@@ -11846,7 +11846,7 @@ const tokens = [
     symbol: 'WOO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12921/thumb/w2UiemF__400x400.jpg?1603670367',
+      'https://assets.coingecko.com/coins/images/12921/small/w2UiemF__400x400.jpg?1603670367',
   },
   {
     chainId: 1,
@@ -11855,7 +11855,7 @@ const tokens = [
     symbol: 'ORAI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12931/thumb/2000x2000_azfsy0.png?1603696770',
+      'https://assets.coingecko.com/coins/images/12931/small/2000x2000_azfsy0.png?1603696770',
   },
   {
     chainId: 1,
@@ -11864,7 +11864,7 @@ const tokens = [
     symbol: 'CANDY',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12934/thumb/Skull_Candy.png?1603719579',
+      'https://assets.coingecko.com/coins/images/12934/small/Skull_Candy.png?1603719579',
   },
   {
     chainId: 1,
@@ -11873,7 +11873,7 @@ const tokens = [
     symbol: 'BUGS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12935/thumb/Starbugs.png?1603720230',
+      'https://assets.coingecko.com/coins/images/12935/small/Starbugs.png?1603720230',
   },
   {
     chainId: 1,
@@ -11882,7 +11882,7 @@ const tokens = [
     symbol: 'COKE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12937/thumb/Cocaine_Cowboy.png?1603720411',
+      'https://assets.coingecko.com/coins/images/12937/small/Cocaine_Cowboy.png?1603720411',
   },
   {
     chainId: 1,
@@ -11891,7 +11891,7 @@ const tokens = [
     symbol: 'LMS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12938/thumb/6tZdBWW.png?1603723170',
+      'https://assets.coingecko.com/coins/images/12938/small/6tZdBWW.png?1603723170',
   },
   {
     chainId: 1,
@@ -11900,7 +11900,7 @@ const tokens = [
     symbol: 'OLCF',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12939/thumb/2_5237799779538307093.png?1603838173',
+      'https://assets.coingecko.com/coins/images/12939/small/2_5237799779538307093.png?1603838173',
   },
   {
     chainId: 1,
@@ -11909,7 +11909,7 @@ const tokens = [
     symbol: 'WIZ',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12942/thumb/T9L0NJT.png?1607391342',
+      'https://assets.coingecko.com/coins/images/12942/small/T9L0NJT.png?1607391342',
   },
   {
     chainId: 1,
@@ -11918,7 +11918,7 @@ const tokens = [
     symbol: 'PASS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12946/thumb/android-chrome-512x512.png?1604277448',
+      'https://assets.coingecko.com/coins/images/12946/small/android-chrome-512x512.png?1604277448',
   },
   {
     chainId: 1,
@@ -11927,7 +11927,7 @@ const tokens = [
     symbol: 'YFRM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12947/thumb/200X200.png?1603778631',
+      'https://assets.coingecko.com/coins/images/12947/small/200X200.png?1603778631',
   },
   {
     chainId: 1,
@@ -11936,7 +11936,7 @@ const tokens = [
     symbol: 'NSURE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12948/thumb/Nsure_token.png?1603778876',
+      'https://assets.coingecko.com/coins/images/12948/small/Nsure_token.png?1603778876',
   },
   {
     chainId: 1,
@@ -11945,7 +11945,7 @@ const tokens = [
     symbol: 'DEX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12949/thumb/AlphaDex.png?1603779030',
+      'https://assets.coingecko.com/coins/images/12949/small/AlphaDex.png?1603779030',
   },
   {
     chainId: 1,
@@ -11954,7 +11954,7 @@ const tokens = [
     symbol: 'L2',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12950/thumb/Gluon256x256.png?1604048379',
+      'https://assets.coingecko.com/coins/images/12950/small/Gluon256x256.png?1604048379',
   },
   {
     chainId: 1,
@@ -11963,7 +11963,7 @@ const tokens = [
     symbol: 'JULIEN',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12954/thumb/julien_logo.jpg?1603792446',
+      'https://assets.coingecko.com/coins/images/12954/small/julien_logo.jpg?1603792446',
   },
   {
     chainId: 1,
@@ -11972,7 +11972,7 @@ const tokens = [
     symbol: 'RFOX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12956/thumb/logo-200.png?1607620623',
+      'https://assets.coingecko.com/coins/images/12956/small/logo-200.png?1607620623',
   },
   {
     chainId: 1,
@@ -11981,7 +11981,7 @@ const tokens = [
     symbol: 'PFARM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12957/thumb/PFARM_logo.png?1603837555',
+      'https://assets.coingecko.com/coins/images/12957/small/PFARM_logo.png?1603837555',
   },
   {
     chainId: 1,
@@ -11990,7 +11990,7 @@ const tokens = [
     symbol: 'DFD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12959/thumb/DFD.jpg?1604415975',
+      'https://assets.coingecko.com/coins/images/12959/small/DFD.jpg?1604415975',
   },
   {
     chainId: 1,
@@ -11999,7 +11999,7 @@ const tokens = [
     symbol: 'YYFI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12960/thumb/20201027_093510.png?1603850588',
+      'https://assets.coingecko.com/coins/images/12960/small/20201027_093510.png?1603850588',
   },
   {
     chainId: 1,
@@ -12008,7 +12008,7 @@ const tokens = [
     symbol: 'SFI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12962/thumb/SocketFinance_logo_256_256.png?1603854169',
+      'https://assets.coingecko.com/coins/images/12962/small/SocketFinance_logo_256_256.png?1603854169',
   },
   {
     chainId: 1,
@@ -12017,7 +12017,7 @@ const tokens = [
     symbol: 'WLT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12963/thumb/200px.png?1603854513',
+      'https://assets.coingecko.com/coins/images/12963/small/200px.png?1603854513',
   },
   {
     chainId: 1,
@@ -12026,7 +12026,7 @@ const tokens = [
     symbol: 'KP3R',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12966/thumb/kp3r_logo.jpg?1607057458',
+      'https://assets.coingecko.com/coins/images/12966/small/kp3r_logo.jpg?1607057458',
   },
   {
     chainId: 1,
@@ -12035,7 +12035,7 @@ const tokens = [
     symbol: 'BLOODY',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12969/thumb/bloody-200px.png?1603940552',
+      'https://assets.coingecko.com/coins/images/12969/small/bloody-200px.png?1603940552',
   },
   {
     chainId: 1,
@@ -12044,7 +12044,7 @@ const tokens = [
     symbol: 'MEGA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12971/thumb/mcp_icon_200.png?1603943441',
+      'https://assets.coingecko.com/coins/images/12971/small/mcp_icon_200.png?1603943441',
   },
   {
     chainId: 1,
@@ -12053,7 +12053,7 @@ const tokens = [
     symbol: '3CRV',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12972/thumb/3pool_128.png?1603948039',
+      'https://assets.coingecko.com/coins/images/12972/small/3pool_128.png?1603948039',
   },
   {
     chainId: 1,
@@ -12062,7 +12062,7 @@ const tokens = [
     symbol: 'TENS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12973/thumb/72911917.jpg?1603955940',
+      'https://assets.coingecko.com/coins/images/12973/small/72911917.jpg?1603955940',
   },
   {
     chainId: 1,
@@ -12071,7 +12071,7 @@ const tokens = [
     symbol: 'HIZ',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12974/thumb/73051179.png?1603959145',
+      'https://assets.coingecko.com/coins/images/12974/small/73051179.png?1603959145',
   },
   {
     chainId: 1,
@@ -12080,7 +12080,7 @@ const tokens = [
     symbol: 'ERSDL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12975/thumb/unFederalReserve_LogoArtboard_1_copy_20-64.png?1610087806',
+      'https://assets.coingecko.com/coins/images/12975/small/unFederalReserve_LogoArtboard_1_copy_20-64.png?1610087806',
   },
   {
     chainId: 1,
@@ -12089,7 +12089,7 @@ const tokens = [
     symbol: 'SPORE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12976/thumb/SF3IR94C_400x400.jpg?1603983477',
+      'https://assets.coingecko.com/coins/images/12976/small/SF3IR94C_400x400.jpg?1603983477',
   },
   {
     chainId: 1,
@@ -12098,7 +12098,7 @@ const tokens = [
     symbol: 'OSINA',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12977/thumb/OSINA_Logo.png?1604019955',
+      'https://assets.coingecko.com/coins/images/12977/small/OSINA_Logo.png?1604019955',
   },
   {
     chainId: 1,
@@ -12107,7 +12107,7 @@ const tokens = [
     symbol: 'XFYI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12979/thumb/xcredit_finance_logo.jpg?1604040780',
+      'https://assets.coingecko.com/coins/images/12979/small/xcredit_finance_logo.jpg?1604040780',
   },
   {
     chainId: 1,
@@ -12116,7 +12116,7 @@ const tokens = [
     symbol: 'SURF',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12982/thumb/surf_200x200.png?1604050261',
+      'https://assets.coingecko.com/coins/images/12982/small/surf_200x200.png?1604050261',
   },
   {
     chainId: 1,
@@ -12125,7 +12125,7 @@ const tokens = [
     symbol: 'FMTA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12983/thumb/fundamenta.png?1604065939',
+      'https://assets.coingecko.com/coins/images/12983/small/fundamenta.png?1604065939',
   },
   {
     chainId: 1,
@@ -12134,7 +12134,7 @@ const tokens = [
     symbol: 'KPER',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12984/thumb/kper.png?1604066205',
+      'https://assets.coingecko.com/coins/images/12984/small/kper.png?1604066205',
   },
   {
     chainId: 1,
@@ -12143,7 +12143,7 @@ const tokens = [
     symbol: 'STFIRO',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12985/thumb/stFIRO_high_res.png?1606234476',
+      'https://assets.coingecko.com/coins/images/12985/small/stFIRO_high_res.png?1606234476',
   },
   {
     chainId: 1,
@@ -12152,7 +12152,7 @@ const tokens = [
     symbol: 'STACY',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12986/thumb/Stacy.png?1604384468',
+      'https://assets.coingecko.com/coins/images/12986/small/Stacy.png?1604384468',
   },
   {
     chainId: 1,
@@ -12161,7 +12161,7 @@ const tokens = [
     symbol: 'KORE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12987/thumb/kore_logo.png?1604082065',
+      'https://assets.coingecko.com/coins/images/12987/small/kore_logo.png?1604082065',
   },
   {
     chainId: 1,
@@ -12170,7 +12170,7 @@ const tokens = [
     symbol: 'PTERIA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12989/thumb/Pteria.png?1604105704',
+      'https://assets.coingecko.com/coins/images/12989/small/Pteria.png?1604105704',
   },
   {
     chainId: 1,
@@ -12179,7 +12179,7 @@ const tokens = [
     symbol: 'LST',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12990/thumb/lst_logo.png?1604148361',
+      'https://assets.coingecko.com/coins/images/12990/small/lst_logo.png?1604148361',
   },
   {
     chainId: 1,
@@ -12188,7 +12188,7 @@ const tokens = [
     symbol: 'SMPL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12991/thumb/smpl.jpg?1604208000',
+      'https://assets.coingecko.com/coins/images/12991/small/smpl.jpg?1604208000',
   },
   {
     chainId: 1,
@@ -12197,7 +12197,7 @@ const tokens = [
     symbol: 'ATRI',
     decimals: 0,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12992/thumb/atari.png?1604212345',
+      'https://assets.coingecko.com/coins/images/12992/small/atari.png?1604212345',
   },
   {
     chainId: 1,
@@ -12206,7 +12206,7 @@ const tokens = [
     symbol: 'YSEC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12993/thumb/ysec.png?1604212852',
+      'https://assets.coingecko.com/coins/images/12993/small/ysec.png?1604212852',
   },
   {
     chainId: 1,
@@ -12215,7 +12215,7 @@ const tokens = [
     symbol: 'ROCKS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12994/thumb/logo-256x256-1.png?1604759401',
+      'https://assets.coingecko.com/coins/images/12994/small/logo-256x256-1.png?1604759401',
   },
   {
     chainId: 1,
@@ -12224,7 +12224,7 @@ const tokens = [
     symbol: 'GYSR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12995/thumb/gey.png?1604235725',
+      'https://assets.coingecko.com/coins/images/12995/small/gey.png?1604235725',
   },
   {
     chainId: 1,
@@ -12233,7 +12233,7 @@ const tokens = [
     symbol: 'N0031',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/12997/thumb/nest_protocol_logo.png?1604246163',
+      'https://assets.coingecko.com/coins/images/12997/small/nest_protocol_logo.png?1604246163',
   },
   {
     chainId: 1,
@@ -12242,7 +12242,7 @@ const tokens = [
     symbol: 'ROOK',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13005/thumb/keeper_dao_logo.jpg?1604316506',
+      'https://assets.coingecko.com/coins/images/13005/small/keeper_dao_logo.jpg?1604316506',
   },
   {
     chainId: 1,
@@ -12251,7 +12251,7 @@ const tokens = [
     symbol: 'KP4R',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13006/thumb/kp4r.png?1604368813',
+      'https://assets.coingecko.com/coins/images/13006/small/kp4r.png?1604368813',
   },
   {
     chainId: 1,
@@ -12260,7 +12260,7 @@ const tokens = [
     symbol: 'FWT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13012/thumb/A-200px.png?1604381296',
+      'https://assets.coingecko.com/coins/images/13012/small/A-200px.png?1604381296',
   },
   {
     chainId: 1,
@@ -12269,7 +12269,7 @@ const tokens = [
     symbol: 'AUSCM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13015/thumb/auric-1-high-res_icon_300_PNG.png?1604384136',
+      'https://assets.coingecko.com/coins/images/13015/small/auric-1-high-res_icon_300_PNG.png?1604384136',
   },
   {
     chainId: 1,
@@ -12278,7 +12278,7 @@ const tokens = [
     symbol: 'DVI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13020/thumb/WGAhHOLv_400x400.png?1604396086',
+      'https://assets.coingecko.com/coins/images/13020/small/WGAhHOLv_400x400.png?1604396086',
   },
   {
     chainId: 1,
@@ -12287,7 +12287,7 @@ const tokens = [
     symbol: 'PPDEX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13022/thumb/output-onlinepngtools-1.png?1604720841',
+      'https://assets.coingecko.com/coins/images/13022/small/output-onlinepngtools-1.png?1604720841',
   },
   {
     chainId: 1,
@@ -12296,7 +12296,7 @@ const tokens = [
     symbol: 'GSWAP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13026/thumb/gameswap.jpg?1604456704',
+      'https://assets.coingecko.com/coins/images/13026/small/gameswap.jpg?1604456704',
   },
   {
     chainId: 1,
@@ -12305,7 +12305,7 @@ const tokens = [
     symbol: 'CHM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13028/thumb/cryptochrome_logo.png?1604461218',
+      'https://assets.coingecko.com/coins/images/13028/small/cryptochrome_logo.png?1604461218',
   },
   {
     chainId: 1,
@@ -12314,7 +12314,7 @@ const tokens = [
     symbol: 'AXS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13029/thumb/axie_infinity_logo.png?1604471082',
+      'https://assets.coingecko.com/coins/images/13029/small/axie_infinity_logo.png?1604471082',
   },
   {
     chainId: 1,
@@ -12323,7 +12323,7 @@ const tokens = [
     symbol: 'SERGS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13031/thumb/sergs_logo.png?1604476848',
+      'https://assets.coingecko.com/coins/images/13031/small/sergs_logo.png?1604476848',
   },
   {
     chainId: 1,
@@ -12332,7 +12332,7 @@ const tokens = [
     symbol: 'ETGF',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13032/thumb/etgf_logo.png?1604482450',
+      'https://assets.coingecko.com/coins/images/13032/small/etgf_logo.png?1604482450',
   },
   {
     chainId: 1,
@@ -12341,7 +12341,7 @@ const tokens = [
     symbol: 'DREAM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13033/thumb/dream_32.png?1604503082',
+      'https://assets.coingecko.com/coins/images/13033/small/dream_32.png?1604503082',
   },
   {
     chainId: 1,
@@ -12350,7 +12350,7 @@ const tokens = [
     symbol: 'YG',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13034/thumb/tyrQieZZ_400x400.png?1604539997',
+      'https://assets.coingecko.com/coins/images/13034/small/tyrQieZZ_400x400.png?1604539997',
   },
   {
     chainId: 1,
@@ -12359,7 +12359,7 @@ const tokens = [
     symbol: 'SMARTCREDIT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13036/thumb/smartcredit_logo_02_white_a-1.png?1604545479',
+      'https://assets.coingecko.com/coins/images/13036/small/smartcredit_logo_02_white_a-1.png?1604545479',
   },
   {
     chainId: 1,
@@ -12368,7 +12368,7 @@ const tokens = [
     symbol: 'YMF20',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13037/thumb/Brand_Identity.png?1605773986',
+      'https://assets.coingecko.com/coins/images/13037/small/Brand_Identity.png?1605773986',
   },
   {
     chainId: 1,
@@ -12377,7 +12377,7 @@ const tokens = [
     symbol: 'WCCX',
     decimals: 6,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13039/thumb/wccx_logo.png?1604566677',
+      'https://assets.coingecko.com/coins/images/13039/small/wccx_logo.png?1604566677',
   },
   {
     chainId: 1,
@@ -12386,7 +12386,7 @@ const tokens = [
     symbol: 'APY',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13041/thumb/1*AvkD-OLocausbxqUzezZ0A.png?1604577922',
+      'https://assets.coingecko.com/coins/images/13041/small/1*AvkD-OLocausbxqUzezZ0A.png?1604577922',
   },
   {
     chainId: 1,
@@ -12395,7 +12395,7 @@ const tokens = [
     symbol: 'JEM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13044/thumb/itchiro-defi.png?1605892179',
+      'https://assets.coingecko.com/coins/images/13044/small/itchiro-defi.png?1605892179',
   },
   {
     chainId: 1,
@@ -12404,7 +12404,7 @@ const tokens = [
     symbol: 'LTX',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13050/thumb/lattice-logo.png?1604641504',
+      'https://assets.coingecko.com/coins/images/13050/small/lattice-logo.png?1604641504',
   },
   {
     chainId: 1,
@@ -12413,7 +12413,7 @@ const tokens = [
     symbol: 'ETHV',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13051/thumb/Tok425m.jpeg?1604654743',
+      'https://assets.coingecko.com/coins/images/13051/small/Tok425m.jpeg?1604654743',
   },
   {
     chainId: 1,
@@ -12422,7 +12422,7 @@ const tokens = [
     symbol: 'SEEN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13052/thumb/seen_logo.png?1604678509',
+      'https://assets.coingecko.com/coins/images/13052/small/seen_logo.png?1604678509',
   },
   {
     chainId: 1,
@@ -12431,7 +12431,7 @@ const tokens = [
     symbol: 'COMB',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13053/thumb/7zYe50X.png?1604703767',
+      'https://assets.coingecko.com/coins/images/13053/small/7zYe50X.png?1604703767',
   },
   {
     chainId: 1,
@@ -12440,7 +12440,7 @@ const tokens = [
     symbol: 'WBIND',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13055/thumb/o1w2cBW.png?1604720921',
+      'https://assets.coingecko.com/coins/images/13055/small/o1w2cBW.png?1604720921',
   },
   {
     chainId: 1,
@@ -12449,7 +12449,7 @@ const tokens = [
     symbol: 'MTI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13061/thumb/mti.png?1605153678',
+      'https://assets.coingecko.com/coins/images/13061/small/mti.png?1605153678',
   },
   {
     chainId: 1,
@@ -12458,7 +12458,7 @@ const tokens = [
     symbol: 'TEAT',
     decimals: 0,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13062/thumb/teat_logo.png?1604845769',
+      'https://assets.coingecko.com/coins/images/13062/small/teat_logo.png?1604845769',
   },
   {
     chainId: 1,
@@ -12467,7 +12467,7 @@ const tokens = [
     symbol: 'YFIM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13063/thumb/yfim.jpg?1604848218',
+      'https://assets.coingecko.com/coins/images/13063/small/yfim.jpg?1604848218',
   },
   {
     chainId: 1,
@@ -12476,7 +12476,7 @@ const tokens = [
     symbol: 'YFB2',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13064/thumb/yfb2_logo.png?1604884273',
+      'https://assets.coingecko.com/coins/images/13064/small/yfb2_logo.png?1604884273',
   },
   {
     chainId: 1,
@@ -12485,7 +12485,7 @@ const tokens = [
     symbol: 'DEVE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13067/thumb/DVMZDhP.png?1606785893',
+      'https://assets.coingecko.com/coins/images/13067/small/DVMZDhP.png?1606785893',
   },
   {
     chainId: 1,
@@ -12494,7 +12494,7 @@ const tokens = [
     symbol: 'MVEDA',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13069/thumb/medicalveda_new_logo_final_%281%29.png?1604894690',
+      'https://assets.coingecko.com/coins/images/13069/small/medicalveda_new_logo_final_%281%29.png?1604894690',
   },
   {
     chainId: 1,
@@ -12503,7 +12503,7 @@ const tokens = [
     symbol: 'ALPA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13070/thumb/alpaca_logo.png?1604895862',
+      'https://assets.coingecko.com/coins/images/13070/small/alpaca_logo.png?1604895862',
   },
   {
     chainId: 1,
@@ -12512,7 +12512,7 @@ const tokens = [
     symbol: 'HYVE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13072/thumb/MKHXNbf.png?1604899269',
+      'https://assets.coingecko.com/coins/images/13072/small/MKHXNbf.png?1604899269',
   },
   {
     chainId: 1,
@@ -12521,7 +12521,7 @@ const tokens = [
     symbol: 'ZLOT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13073/thumb/z-LOT-logo-transparent.png?1604900416',
+      'https://assets.coingecko.com/coins/images/13073/small/z-LOT-logo-transparent.png?1604900416',
   },
   {
     chainId: 1,
@@ -12530,7 +12530,7 @@ const tokens = [
     symbol: 'ZHEGIC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13074/thumb/zhegic_logo.png?1604903561',
+      'https://assets.coingecko.com/coins/images/13074/small/zhegic_logo.png?1604903561',
   },
   {
     chainId: 1,
@@ -12539,7 +12539,7 @@ const tokens = [
     symbol: 'ECTO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13077/thumb/ECTO-LOGO.png?1604915817',
+      'https://assets.coingecko.com/coins/images/13077/small/ECTO-LOGO.png?1604915817',
   },
   {
     chainId: 1,
@@ -12548,7 +12548,7 @@ const tokens = [
     symbol: 'RAK',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13078/thumb/rake-logo-200x200.png?1604931839',
+      'https://assets.coingecko.com/coins/images/13078/small/rake-logo-200x200.png?1604931839',
   },
   {
     chainId: 1,
@@ -12557,7 +12557,7 @@ const tokens = [
     symbol: 'FRMX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13082/thumb/New_Project_%2862%29.png?1609811248',
+      'https://assets.coingecko.com/coins/images/13082/small/New_Project_%2862%29.png?1609811248',
   },
   {
     chainId: 1,
@@ -12566,7 +12566,7 @@ const tokens = [
     symbol: 'WHOLE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13084/thumb/wormhole.finance.png?1604984651',
+      'https://assets.coingecko.com/coins/images/13084/small/wormhole.finance.png?1604984651',
   },
   {
     chainId: 1,
@@ -12575,7 +12575,7 @@ const tokens = [
     symbol: 'STRN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13087/thumb/strain_logo.jpg?1604990516',
+      'https://assets.coingecko.com/coins/images/13087/small/strain_logo.jpg?1604990516',
   },
   {
     chainId: 1,
@@ -12584,7 +12584,7 @@ const tokens = [
     symbol: 'NOOB',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13088/thumb/noob_finance_logo.jpg?1604998432',
+      'https://assets.coingecko.com/coins/images/13088/small/noob_finance_logo.jpg?1604998432',
   },
   {
     chainId: 1,
@@ -12593,7 +12593,7 @@ const tokens = [
     symbol: 'AZUKI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13091/thumb/bdUBSCo.png?1605169403',
+      'https://assets.coingecko.com/coins/images/13091/small/bdUBSCo.png?1605169403',
   },
   {
     chainId: 1,
@@ -12602,7 +12602,7 @@ const tokens = [
     symbol: 'XFII',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13092/thumb/xfii_logo.png?1605065018',
+      'https://assets.coingecko.com/coins/images/13092/small/xfii_logo.png?1605065018',
   },
   {
     chainId: 1,
@@ -12611,7 +12611,7 @@ const tokens = [
     symbol: 'NYAN-2',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13093/thumb/v2-logo.png?1605067493',
+      'https://assets.coingecko.com/coins/images/13093/small/v2-logo.png?1605067493',
   },
   {
     chainId: 1,
@@ -12620,7 +12620,7 @@ const tokens = [
     symbol: 'DRK',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13094/thumb/drakoinlogo200.png?1605076487',
+      'https://assets.coingecko.com/coins/images/13094/small/drakoinlogo200.png?1605076487',
   },
   {
     chainId: 1,
@@ -12629,7 +12629,7 @@ const tokens = [
     symbol: 'PTE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13100/thumb/peetdefi_logo.png?1605148557',
+      'https://assets.coingecko.com/coins/images/13100/small/peetdefi_logo.png?1605148557',
   },
   {
     chainId: 1,
@@ -12638,7 +12638,7 @@ const tokens = [
     symbol: 'BAEPAY',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13101/thumb/baepay_logo.png?1605150696',
+      'https://assets.coingecko.com/coins/images/13101/small/baepay_logo.png?1605150696',
   },
   {
     chainId: 1,
@@ -12647,7 +12647,7 @@ const tokens = [
     symbol: 'UNCL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13102/thumb/uncl_logo.png?1605230945',
+      'https://assets.coingecko.com/coins/images/13102/small/uncl_logo.png?1605230945',
   },
   {
     chainId: 1,
@@ -12656,7 +12656,7 @@ const tokens = [
     symbol: 'LIQLO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13104/thumb/liqlo_logo.png?1605234382',
+      'https://assets.coingecko.com/coins/images/13104/small/liqlo_logo.png?1605234382',
   },
   {
     chainId: 1,
@@ -12665,7 +12665,7 @@ const tokens = [
     symbol: 'LIQ',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13107/thumb/liquid_defi_logo.jpg?1605247848',
+      'https://assets.coingecko.com/coins/images/13107/small/liquid_defi_logo.jpg?1605247848',
   },
   {
     chainId: 1,
@@ -12674,7 +12674,7 @@ const tokens = [
     symbol: 'STLP',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13108/thumb/tulip_logo.jpg?1605258713',
+      'https://assets.coingecko.com/coins/images/13108/small/tulip_logo.jpg?1605258713',
   },
   {
     chainId: 1,
@@ -12683,7 +12683,7 @@ const tokens = [
     symbol: 'AXN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13110/thumb/AXION_Logo.png?1609309261',
+      'https://assets.coingecko.com/coins/images/13110/small/AXION_Logo.png?1609309261',
   },
   {
     chainId: 1,
@@ -12692,7 +12692,7 @@ const tokens = [
     symbol: 'STONK',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13111/thumb/stonk_logo.png?1605278755',
+      'https://assets.coingecko.com/coins/images/13111/small/stonk_logo.png?1605278755',
   },
   {
     chainId: 1,
@@ -12701,7 +12701,7 @@ const tokens = [
     symbol: 'CFI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13112/thumb/cyberfi_logo.jpeg?1605283367',
+      'https://assets.coingecko.com/coins/images/13112/small/cyberfi_logo.jpeg?1605283367',
   },
   {
     chainId: 1,
@@ -12710,7 +12710,7 @@ const tokens = [
     symbol: 'ORO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13114/thumb/oro_logo.png?1605338447',
+      'https://assets.coingecko.com/coins/images/13114/small/oro_logo.png?1605338447',
   },
   {
     chainId: 1,
@@ -12719,7 +12719,7 @@ const tokens = [
     symbol: 'VOLTS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13115/thumb/volts_logo.png?1605367400',
+      'https://assets.coingecko.com/coins/images/13115/small/volts_logo.png?1605367400',
   },
   {
     chainId: 1,
@@ -12728,7 +12728,7 @@ const tokens = [
     symbol: 'KOIN',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13116/thumb/koinos_logo.jpg?1605406276',
+      'https://assets.coingecko.com/coins/images/13116/small/koinos_logo.jpg?1605406276',
   },
   {
     chainId: 1,
@@ -12737,7 +12737,7 @@ const tokens = [
     symbol: 'SFI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13117/thumb/sfi_red_250px.png?1606020144',
+      'https://assets.coingecko.com/coins/images/13117/small/sfi_red_250px.png?1606020144',
   },
   {
     chainId: 1,
@@ -12746,7 +12746,7 @@ const tokens = [
     symbol: 'ICHI',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13119/thumb/ichifarm.jpg?1605664946',
+      'https://assets.coingecko.com/coins/images/13119/small/ichifarm.jpg?1605664946',
   },
   {
     chainId: 1,
@@ -12755,7 +12755,7 @@ const tokens = [
     symbol: 'COC',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13121/thumb/cocktail_bar_logo.png?1605488103',
+      'https://assets.coingecko.com/coins/images/13121/small/cocktail_bar_logo.png?1605488103',
   },
   {
     chainId: 1,
@@ -12764,7 +12764,7 @@ const tokens = [
     symbol: 'DTUBE',
     decimals: 2,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13126/thumb/dtube_logo.png?1605500467',
+      'https://assets.coingecko.com/coins/images/13126/small/dtube_logo.png?1605500467',
   },
   {
     chainId: 1,
@@ -12773,7 +12773,7 @@ const tokens = [
     symbol: 'CORX',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13129/thumb/x_log.png?1605515405',
+      'https://assets.coingecko.com/coins/images/13129/small/x_log.png?1605515405',
   },
   {
     chainId: 1,
@@ -12782,7 +12782,7 @@ const tokens = [
     symbol: 'YTHO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13130/thumb/photo_2020-10-06_11-28-28_%282%29.jpg?1609205097',
+      'https://assets.coingecko.com/coins/images/13130/small/photo_2020-10-06_11-28-28_%282%29.jpg?1609205097',
   },
   {
     chainId: 1,
@@ -12791,7 +12791,7 @@ const tokens = [
     symbol: 'IBETH',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13131/thumb/7675.png?1605535879',
+      'https://assets.coingecko.com/coins/images/13131/small/7675.png?1605535879',
   },
   {
     chainId: 1,
@@ -12800,7 +12800,7 @@ const tokens = [
     symbol: 'SAV3',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13132/thumb/sav3_logo.png?1605536471',
+      'https://assets.coingecko.com/coins/images/13132/small/sav3_logo.png?1605536471',
   },
   {
     chainId: 1,
@@ -12809,7 +12809,7 @@ const tokens = [
     symbol: 'WIS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13133/thumb/n0MTVBrm_400x400.jpg?1605543934',
+      'https://assets.coingecko.com/coins/images/13133/small/n0MTVBrm_400x400.jpg?1605543934',
   },
   {
     chainId: 1,
@@ -12818,7 +12818,7 @@ const tokens = [
     symbol: 'TAD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13134/thumb/9DmF_cs3_400x400.jpg?1605574755',
+      'https://assets.coingecko.com/coins/images/13134/small/9DmF_cs3_400x400.jpg?1605574755',
   },
   {
     chainId: 1,
@@ -12827,7 +12827,7 @@ const tokens = [
     symbol: 'DIE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13136/thumb/gR-removebg-preview.png?1605580337',
+      'https://assets.coingecko.com/coins/images/13136/small/gR-removebg-preview.png?1605580337',
   },
   {
     chainId: 1,
@@ -12836,7 +12836,7 @@ const tokens = [
     symbol: 'MPH',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13137/thumb/yfU-_Tcj_400x400.png?1605581509',
+      'https://assets.coingecko.com/coins/images/13137/small/yfU-_Tcj_400x400.png?1605581509',
   },
   {
     chainId: 1,
@@ -12845,7 +12845,7 @@ const tokens = [
     symbol: 'KNV',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13138/thumb/5uoWII9M_400x400.png?1605592792',
+      'https://assets.coingecko.com/coins/images/13138/small/5uoWII9M_400x400.png?1605592792',
   },
   {
     chainId: 1,
@@ -12854,7 +12854,7 @@ const tokens = [
     symbol: 'GDAO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13140/thumb/GDAOlogo2-bird.png?1605591842',
+      'https://assets.coingecko.com/coins/images/13140/small/GDAOlogo2-bird.png?1605591842',
   },
   {
     chainId: 1,
@@ -12863,7 +12863,7 @@ const tokens = [
     symbol: 'YFI3',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13142/thumb/yfi3.png?1605596278',
+      'https://assets.coingecko.com/coins/images/13142/small/yfi3.png?1605596278',
   },
   {
     chainId: 1,
@@ -12872,7 +12872,7 @@ const tokens = [
     symbol: 'PRQBOOST',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13144/thumb/boost_logo.png?1605600652',
+      'https://assets.coingecko.com/coins/images/13144/small/boost_logo.png?1605600652',
   },
   {
     chainId: 1,
@@ -12881,7 +12881,7 @@ const tokens = [
     symbol: 'EXRD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13145/thumb/exrd_logo.png?1605662677',
+      'https://assets.coingecko.com/coins/images/13145/small/exrd_logo.png?1605662677',
   },
   {
     chainId: 1,
@@ -12890,7 +12890,7 @@ const tokens = [
     symbol: 'MVP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13150/thumb/mvp_token_logo.png?1605688252',
+      'https://assets.coingecko.com/coins/images/13150/small/mvp_token_logo.png?1605688252',
   },
   {
     chainId: 1,
@@ -12899,7 +12899,7 @@ const tokens = [
     symbol: 'ROOT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13151/thumb/rootkit_logo.png?1605712875',
+      'https://assets.coingecko.com/coins/images/13151/small/rootkit_logo.png?1605712875',
   },
   {
     chainId: 1,
@@ -12908,7 +12908,7 @@ const tokens = [
     symbol: 'YUI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13153/thumb/YUI.png?1605751023',
+      'https://assets.coingecko.com/coins/images/13153/small/YUI.png?1605751023',
   },
   {
     chainId: 1,
@@ -12917,7 +12917,7 @@ const tokens = [
     symbol: 'OBR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13154/thumb/nftobr.png?1605756268',
+      'https://assets.coingecko.com/coins/images/13154/small/nftobr.png?1605756268',
   },
   {
     chainId: 1,
@@ -12926,7 +12926,7 @@ const tokens = [
     symbol: 'MOL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13156/thumb/256.png?1605931524',
+      'https://assets.coingecko.com/coins/images/13156/small/256.png?1605931524',
   },
   {
     chainId: 1,
@@ -12935,7 +12935,7 @@ const tokens = [
     symbol: 'ENB',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13164/thumb/YhCEGdB.png?1605775799',
+      'https://assets.coingecko.com/coins/images/13164/small/YhCEGdB.png?1605775799',
   },
   {
     chainId: 1,
@@ -12944,7 +12944,7 @@ const tokens = [
     symbol: 'PRIME',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13165/thumb/PrimeDAO_200x200.png?1605800174',
+      'https://assets.coingecko.com/coins/images/13165/small/PrimeDAO_200x200.png?1605800174',
   },
   {
     chainId: 1,
@@ -12953,7 +12953,7 @@ const tokens = [
     symbol: 'UWL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13166/thumb/uniwhales.png?1605825507',
+      'https://assets.coingecko.com/coins/images/13166/small/uniwhales.png?1605825507',
   },
   {
     chainId: 1,
@@ -12962,7 +12962,7 @@ const tokens = [
     symbol: 'COVER',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13167/thumb/cover.png?1605839290',
+      'https://assets.coingecko.com/coins/images/13167/small/cover.png?1605839290',
   },
   {
     chainId: 1,
@@ -12971,7 +12971,7 @@ const tokens = [
     symbol: 'DEFO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13168/thumb/defhold_logo.png?1605849148',
+      'https://assets.coingecko.com/coins/images/13168/small/defhold_logo.png?1605849148',
   },
   {
     chainId: 1,
@@ -12980,7 +12980,7 @@ const tokens = [
     symbol: 'CLT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13171/thumb/clt_logo.png?1605855281',
+      'https://assets.coingecko.com/coins/images/13171/small/clt_logo.png?1605855281',
   },
   {
     chainId: 1,
@@ -12989,7 +12989,7 @@ const tokens = [
     symbol: 'SUP8EME',
     decimals: 6,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13174/thumb/sup8eme_logo.png?1605864500',
+      'https://assets.coingecko.com/coins/images/13174/small/sup8eme_logo.png?1605864500',
   },
   {
     chainId: 1,
@@ -12998,7 +12998,7 @@ const tokens = [
     symbol: 'QUSD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13176/thumb/qusd_logo.png?1605922605',
+      'https://assets.coingecko.com/coins/images/13176/small/qusd_logo.png?1605922605',
   },
   {
     chainId: 1,
@@ -13007,7 +13007,7 @@ const tokens = [
     symbol: 'KUN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13177/thumb/kun_logo.png?1605923919',
+      'https://assets.coingecko.com/coins/images/13177/small/kun_logo.png?1605923919',
   },
   {
     chainId: 1,
@@ -13016,7 +13016,7 @@ const tokens = [
     symbol: 'UNIDX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13178/thumb/unidex_logo.png?1605925219',
+      'https://assets.coingecko.com/coins/images/13178/small/unidex_logo.png?1605925219',
   },
   {
     chainId: 1,
@@ -13025,7 +13025,7 @@ const tokens = [
     symbol: 'HBURN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13179/thumb/hypeburn_logo_coingecko_200px.png?1605968369',
+      'https://assets.coingecko.com/coins/images/13179/small/hypeburn_logo_coingecko_200px.png?1605968369',
   },
   {
     chainId: 1,
@@ -13034,7 +13034,7 @@ const tokens = [
     symbol: 'TRU',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13180/thumb/trust-token.png?1606009370',
+      'https://assets.coingecko.com/coins/images/13180/small/trust-token.png?1606009370',
   },
   {
     chainId: 1,
@@ -13043,7 +13043,7 @@ const tokens = [
     symbol: 'FVT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13181/thumb/finance.png?1606015010',
+      'https://assets.coingecko.com/coins/images/13181/small/finance.png?1606015010',
   },
   {
     chainId: 1,
@@ -13052,7 +13052,7 @@ const tokens = [
     symbol: 'CP3R',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13182/thumb/compounder_logo.png?1606018434',
+      'https://assets.coingecko.com/coins/images/13182/small/compounder_logo.png?1606018434',
   },
   {
     chainId: 1,
@@ -13061,7 +13061,7 @@ const tokens = [
     symbol: 'DEPAY',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13183/thumb/favicon.png?1608102012',
+      'https://assets.coingecko.com/coins/images/13183/small/favicon.png?1608102012',
   },
   {
     chainId: 1,
@@ -13070,7 +13070,7 @@ const tokens = [
     symbol: 'WDP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13185/thumb/QhKzNey.png?1606084418',
+      'https://assets.coingecko.com/coins/images/13185/small/QhKzNey.png?1606084418',
   },
   {
     chainId: 1,
@@ -13079,7 +13079,7 @@ const tokens = [
     symbol: 'KIT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13187/thumb/dexkit_logo.png?1606093850',
+      'https://assets.coingecko.com/coins/images/13187/small/dexkit_logo.png?1606093850',
   },
   {
     chainId: 1,
@@ -13088,7 +13088,7 @@ const tokens = [
     symbol: 'ARCH',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13188/thumb/archer_logo.png?1606097487',
+      'https://assets.coingecko.com/coins/images/13188/small/archer_logo.png?1606097487',
   },
   {
     chainId: 1,
@@ -13097,7 +13097,7 @@ const tokens = [
     symbol: 'RFI',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13189/thumb/reflect_finance_logo.png?1606098213',
+      'https://assets.coingecko.com/coins/images/13189/small/reflect_finance_logo.png?1606098213',
   },
   {
     chainId: 1,
@@ -13106,7 +13106,7 @@ const tokens = [
     symbol: 'ETHY',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13191/thumb/rOIuPZM.png?1606101103',
+      'https://assets.coingecko.com/coins/images/13191/small/rOIuPZM.png?1606101103',
   },
   {
     chainId: 1,
@@ -13115,7 +13115,7 @@ const tokens = [
     symbol: 'EPAN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13192/thumb/ava3.png?1606102032',
+      'https://assets.coingecko.com/coins/images/13192/small/ava3.png?1606102032',
   },
   {
     chainId: 1,
@@ -13124,7 +13124,7 @@ const tokens = [
     symbol: 'HYPE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13193/thumb/hype_finance_logo.png?1606109896',
+      'https://assets.coingecko.com/coins/images/13193/small/hype_finance_logo.png?1606109896',
   },
   {
     chainId: 1,
@@ -13133,7 +13133,7 @@ const tokens = [
     symbol: 'UNOS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13194/thumb/slazzer-edit-image.png?1606115031',
+      'https://assets.coingecko.com/coins/images/13194/small/slazzer-edit-image.png?1606115031',
   },
   {
     chainId: 1,
@@ -13142,7 +13142,7 @@ const tokens = [
     symbol: 'KOMET',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13196/thumb/komet_finance_logo.png?1606120745',
+      'https://assets.coingecko.com/coins/images/13196/small/komet_finance_logo.png?1606120745',
   },
   {
     chainId: 1,
@@ -13151,7 +13151,7 @@ const tokens = [
     symbol: 'YFC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13199/thumb/yfc_logo.png?1606186020',
+      'https://assets.coingecko.com/coins/images/13199/small/yfc_logo.png?1606186020',
   },
   {
     chainId: 1,
@@ -13160,7 +13160,7 @@ const tokens = [
     symbol: 'DEBASE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13201/thumb/debase_logo.png?1606190818',
+      'https://assets.coingecko.com/coins/images/13201/small/debase_logo.png?1606190818',
   },
   {
     chainId: 1,
@@ -13169,7 +13169,7 @@ const tokens = [
     symbol: 'DSGN',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13204/thumb/design_logo.jpg?1606196569',
+      'https://assets.coingecko.com/coins/images/13204/small/design_logo.jpg?1606196569',
   },
   {
     chainId: 1,
@@ -13178,7 +13178,7 @@ const tokens = [
     symbol: 'PROPHET',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13209/thumb/prophet_finance.png?1606202225',
+      'https://assets.coingecko.com/coins/images/13209/small/prophet_finance.png?1606202225',
   },
   {
     chainId: 1,
@@ -13187,7 +13187,7 @@ const tokens = [
     symbol: 'MARK',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13212/thumb/benchmark_protocol.jpg?1606267583',
+      'https://assets.coingecko.com/coins/images/13212/small/benchmark_protocol.jpg?1606267583',
   },
   {
     chainId: 1,
@@ -13196,7 +13196,7 @@ const tokens = [
     symbol: '7ADD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13213/thumb/logo256_%281%29.png?1606276280',
+      'https://assets.coingecko.com/coins/images/13213/small/logo256_%281%29.png?1606276280',
   },
   {
     chainId: 1,
@@ -13205,7 +13205,7 @@ const tokens = [
     symbol: 'ENOL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13214/thumb/hV_w1e5G_400x400.png?1606292732',
+      'https://assets.coingecko.com/coins/images/13214/small/hV_w1e5G_400x400.png?1606292732',
   },
   {
     chainId: 1,
@@ -13214,7 +13214,7 @@ const tokens = [
     symbol: 'DEGOV',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13215/thumb/degov.png?1606277121',
+      'https://assets.coingecko.com/coins/images/13215/small/degov.png?1606277121',
   },
   {
     chainId: 1,
@@ -13223,7 +13223,7 @@ const tokens = [
     symbol: 'GR',
     decimals: 6,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13216/thumb/gr.png?1606278269',
+      'https://assets.coingecko.com/coins/images/13216/small/gr.png?1606278269',
   },
   {
     chainId: 1,
@@ -13232,7 +13232,7 @@ const tokens = [
     symbol: 'BUND',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13219/thumb/bundles_finance_logo.jpg?1606294826',
+      'https://assets.coingecko.com/coins/images/13219/small/bundles_finance_logo.jpg?1606294826',
   },
   {
     chainId: 1,
@@ -13241,7 +13241,7 @@ const tokens = [
     symbol: 'CORD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13221/thumb/cord_defi.png?1606299655',
+      'https://assets.coingecko.com/coins/images/13221/small/cord_defi.png?1606299655',
   },
   {
     chainId: 1,
@@ -13250,7 +13250,7 @@ const tokens = [
     symbol: 'BOND',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13222/thumb/bonded_finance_logo.png?1606318433',
+      'https://assets.coingecko.com/coins/images/13222/small/bonded_finance_logo.png?1606318433',
   },
   {
     chainId: 1,
@@ -13259,7 +13259,7 @@ const tokens = [
     symbol: 'VNLA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13223/thumb/vanilla_network_logo.jpeg?1606352291',
+      'https://assets.coingecko.com/coins/images/13223/small/vanilla_network_logo.jpeg?1606352291',
   },
   {
     chainId: 1,
@@ -13268,7 +13268,7 @@ const tokens = [
     symbol: 'YFD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13225/thumb/YFD.png?1606370364',
+      'https://assets.coingecko.com/coins/images/13225/small/YFD.png?1606370364',
   },
   {
     chainId: 1,
@@ -13277,7 +13277,7 @@ const tokens = [
     symbol: 'TME',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13229/thumb/photo_2020-11-13_02-42-40.jpg?1606446282',
+      'https://assets.coingecko.com/coins/images/13229/small/photo_2020-11-13_02-42-40.jpg?1606446282',
   },
   {
     chainId: 1,
@@ -13286,7 +13286,7 @@ const tokens = [
     symbol: 'MUSE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13230/thumb/muse_logo.png?1606460453',
+      'https://assets.coingecko.com/coins/images/13230/small/muse_logo.png?1606460453',
   },
   {
     chainId: 1,
@@ -13295,7 +13295,7 @@ const tokens = [
     symbol: 'SYNC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13231/thumb/sync_network.png?1606468585',
+      'https://assets.coingecko.com/coins/images/13231/small/sync_network.png?1606468585',
   },
   {
     chainId: 1,
@@ -13304,7 +13304,7 @@ const tokens = [
     symbol: 'KEX',
     decimals: 6,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13232/thumb/kira_logo.jpg?1606570162',
+      'https://assets.coingecko.com/coins/images/13232/small/kira_logo.jpg?1606570162',
   },
   {
     chainId: 1,
@@ -13313,7 +13313,7 @@ const tokens = [
     symbol: 'OPEN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13233/thumb/opendao_logo.png?1606575207',
+      'https://assets.coingecko.com/coins/images/13233/small/opendao_logo.png?1606575207',
   },
   {
     chainId: 1,
@@ -13322,7 +13322,7 @@ const tokens = [
     symbol: 'USDP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13234/thumb/USDP.png?1606579598',
+      'https://assets.coingecko.com/coins/images/13234/small/USDP.png?1606579598',
   },
   {
     chainId: 1,
@@ -13331,7 +13331,7 @@ const tokens = [
     symbol: 'CORN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13235/thumb/cornichon.png?1606629943',
+      'https://assets.coingecko.com/coins/images/13235/small/cornichon.png?1606629943',
   },
   {
     chainId: 1,
@@ -13340,7 +13340,7 @@ const tokens = [
     symbol: 'WFIL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13238/thumb/WFIL-Icon.png?1606630561',
+      'https://assets.coingecko.com/coins/images/13238/small/WFIL-Icon.png?1606630561',
   },
   {
     chainId: 1,
@@ -13349,7 +13349,7 @@ const tokens = [
     symbol: 'WZEC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13239/thumb/WZEC-icon.png?1606630700',
+      'https://assets.coingecko.com/coins/images/13239/small/WZEC-icon.png?1606630700',
   },
   {
     chainId: 1,
@@ -13358,7 +13358,7 @@ const tokens = [
     symbol: 'CLIQ',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13242/thumb/deficliq_logo.png?1606660146',
+      'https://assets.coingecko.com/coins/images/13242/small/deficliq_logo.png?1606660146',
   },
   {
     chainId: 1,
@@ -13367,7 +13367,7 @@ const tokens = [
     symbol: 'SKL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13245/thumb/SKALE_token_300x300.png?1606789574',
+      'https://assets.coingecko.com/coins/images/13245/small/SKALE_token_300x300.png?1606789574',
   },
   {
     chainId: 1,
@@ -13376,7 +13376,7 @@ const tokens = [
     symbol: 'BAC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13246/thumb/BAC.jpg?1606708629',
+      'https://assets.coingecko.com/coins/images/13246/small/BAC.jpg?1606708629',
   },
   {
     chainId: 1,
@@ -13385,7 +13385,7 @@ const tokens = [
     symbol: 'DSD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13249/thumb/DSD.jpg?1606713628',
+      'https://assets.coingecko.com/coins/images/13249/small/DSD.jpg?1606713628',
   },
   {
     chainId: 1,
@@ -13394,7 +13394,7 @@ const tokens = [
     symbol: 'ZIN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13250/thumb/coingecko_logo.png?1606716375',
+      'https://assets.coingecko.com/coins/images/13250/small/coingecko_logo.png?1606716375',
   },
   {
     chainId: 1,
@@ -13403,7 +13403,7 @@ const tokens = [
     symbol: 'BAS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13251/thumb/BAS.png?1606718334',
+      'https://assets.coingecko.com/coins/images/13251/small/BAS.png?1606718334',
   },
   {
     chainId: 1,
@@ -13412,7 +13412,7 @@ const tokens = [
     symbol: 'SWISS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13253/thumb/SWISS.png?1606724844',
+      'https://assets.coingecko.com/coins/images/13253/small/SWISS.png?1606724844',
   },
   {
     chainId: 1,
@@ -13421,7 +13421,7 @@ const tokens = [
     symbol: 'WCRES',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13254/thumb/cres_logo.png?1606728821',
+      'https://assets.coingecko.com/coins/images/13254/small/cres_logo.png?1606728821',
   },
   {
     chainId: 1,
@@ -13430,7 +13430,7 @@ const tokens = [
     symbol: 'ZORA',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13255/thumb/zora.png?1606747018',
+      'https://assets.coingecko.com/coins/images/13255/small/zora.png?1606747018',
   },
   {
     chainId: 1,
@@ -13439,7 +13439,7 @@ const tokens = [
     symbol: 'API3',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13256/thumb/api3.jpg?1606751424',
+      'https://assets.coingecko.com/coins/images/13256/small/api3.jpg?1606751424',
   },
   {
     chainId: 1,
@@ -13448,7 +13448,7 @@ const tokens = [
     symbol: 'BIRD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13260/thumb/bird.jpg?1606794789',
+      'https://assets.coingecko.com/coins/images/13260/small/bird.jpg?1606794789',
   },
   {
     chainId: 1,
@@ -13457,7 +13457,7 @@ const tokens = [
     symbol: 'UGAS-JAN21',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13261/thumb/uma_logo.jpg?1606799190',
+      'https://assets.coingecko.com/coins/images/13261/small/uma_logo.jpg?1606799190',
   },
   {
     chainId: 1,
@@ -13466,7 +13466,7 @@ const tokens = [
     symbol: 'CRBN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13262/thumb/CRBN_Icon_200.png?1606803750',
+      'https://assets.coingecko.com/coins/images/13262/small/CRBN_Icon_200.png?1606803750',
   },
   {
     chainId: 1,
@@ -13475,7 +13475,7 @@ const tokens = [
     symbol: 'STV',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13264/thumb/stvke_network.png?1606813287',
+      'https://assets.coingecko.com/coins/images/13264/small/stvke_network.png?1606813287',
   },
   {
     chainId: 1,
@@ -13484,7 +13484,7 @@ const tokens = [
     symbol: 'BASE',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13265/thumb/200x200green.png?1607650121',
+      'https://assets.coingecko.com/coins/images/13265/small/200x200green.png?1607650121',
   },
   {
     chainId: 1,
@@ -13493,7 +13493,7 @@ const tokens = [
     symbol: 'CTI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13266/thumb/CTI.png?1606817542',
+      'https://assets.coingecko.com/coins/images/13266/small/CTI.png?1606817542',
   },
   {
     chainId: 1,
@@ -13502,7 +13502,7 @@ const tokens = [
     symbol: 'DG',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13267/thumb/Copy_of_DG_Coin_logo.png?1606834850',
+      'https://assets.coingecko.com/coins/images/13267/small/Copy_of_DG_Coin_logo.png?1606834850',
   },
   {
     chainId: 1,
@@ -13511,7 +13511,7 @@ const tokens = [
     symbol: 'LOAD',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13270/thumb/load_network_logo.png?1606880512',
+      'https://assets.coingecko.com/coins/images/13270/small/load_network_logo.png?1606880512',
   },
   {
     chainId: 1,
@@ -13520,7 +13520,7 @@ const tokens = [
     symbol: 'JPYQ',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13271/thumb/1MMbEc4a.png?1606884873',
+      'https://assets.coingecko.com/coins/images/13271/small/1MMbEc4a.png?1606884873',
   },
   {
     chainId: 1,
@@ -13529,7 +13529,7 @@ const tokens = [
     symbol: 'MIXS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13275/thumb/stream.png?1606893790',
+      'https://assets.coingecko.com/coins/images/13275/small/stream.png?1606893790',
   },
   {
     chainId: 1,
@@ -13538,7 +13538,7 @@ const tokens = [
     symbol: 'BBRA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13280/thumb/bbra_logo.png?1606906062',
+      'https://assets.coingecko.com/coins/images/13280/small/bbra_logo.png?1606906062',
   },
   {
     chainId: 1,
@@ -13547,7 +13547,7 @@ const tokens = [
     symbol: 'TWA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13284/thumb/twa_logo.jpg?1606979012',
+      'https://assets.coingecko.com/coins/images/13284/small/twa_logo.jpg?1606979012',
   },
   {
     chainId: 1,
@@ -13556,7 +13556,7 @@ const tokens = [
     symbol: 'PSK',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13285/thumb/psk_logo.png?1606984935',
+      'https://assets.coingecko.com/coins/images/13285/small/psk_logo.png?1606984935',
   },
   {
     chainId: 1,
@@ -13565,7 +13565,7 @@ const tokens = [
     symbol: 'IDLE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13286/thumb/token-logo.png?1607004948',
+      'https://assets.coingecko.com/coins/images/13286/small/token-logo.png?1607004948',
   },
   {
     chainId: 1,
@@ -13574,7 +13574,7 @@ const tokens = [
     symbol: 'BADGER',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13287/thumb/badger_dao_logo.jpg?1607054976',
+      'https://assets.coingecko.com/coins/images/13287/small/badger_dao_logo.jpg?1607054976',
   },
   {
     chainId: 1,
@@ -13583,7 +13583,7 @@ const tokens = [
     symbol: 'VISION',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13288/thumb/apyvisionlogo200circle.png?1607059042',
+      'https://assets.coingecko.com/coins/images/13288/small/apyvisionlogo200circle.png?1607059042',
   },
   {
     chainId: 1,
@@ -13592,7 +13592,7 @@ const tokens = [
     symbol: 'MIR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13295/thumb/mirror_logo_transparent.png?1608535989',
+      'https://assets.coingecko.com/coins/images/13295/small/mirror_logo_transparent.png?1608535989',
   },
   {
     chainId: 1,
@@ -13601,7 +13601,7 @@ const tokens = [
     symbol: 'HYPEBET',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13296/thumb/Hype-Bet-Token-Logo.png?1607074281',
+      'https://assets.coingecko.com/coins/images/13296/small/Hype-Bet-Token-Logo.png?1607074281',
   },
   {
     chainId: 1,
@@ -13610,7 +13610,7 @@ const tokens = [
     symbol: 'ITS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13297/thumb/1_LOssD4ENHv72I5e9PAsndA_%281%29.png?1607223580',
+      'https://assets.coingecko.com/coins/images/13297/small/1_LOssD4ENHv72I5e9PAsndA_%281%29.png?1607223580',
   },
   {
     chainId: 1,
@@ -13619,7 +13619,7 @@ const tokens = [
     symbol: 'MONA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13298/thumb/monavale_logo.jpg?1607232721',
+      'https://assets.coingecko.com/coins/images/13298/small/monavale_logo.jpg?1607232721',
   },
   {
     chainId: 1,
@@ -13628,7 +13628,7 @@ const tokens = [
     symbol: 'VAL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13299/thumb/val-gold-256.png?1607242927',
+      'https://assets.coingecko.com/coins/images/13299/small/val-gold-256.png?1607242927',
   },
   {
     chainId: 1,
@@ -13637,7 +13637,7 @@ const tokens = [
     symbol: 'UCAP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13300/thumb/unicap256.png?1607308439',
+      'https://assets.coingecko.com/coins/images/13300/small/unicap256.png?1607308439',
   },
   {
     chainId: 1,
@@ -13646,7 +13646,7 @@ const tokens = [
     symbol: 'WDGLD',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13301/thumb/wrappeddgld_32.png?1607310693',
+      'https://assets.coingecko.com/coins/images/13301/small/wrappeddgld_32.png?1607310693',
   },
   {
     chainId: 1,
@@ -13655,7 +13655,7 @@ const tokens = [
     symbol: 'MM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13302/thumb/MM.jpg?1607315862',
+      'https://assets.coingecko.com/coins/images/13302/small/MM.jpg?1607315862',
   },
   {
     chainId: 1,
@@ -13664,7 +13664,7 @@ const tokens = [
     symbol: 'RLR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13306/thumb/relayer_logo.jpg?1607327132',
+      'https://assets.coingecko.com/coins/images/13306/small/relayer_logo.jpg?1607327132',
   },
   {
     chainId: 1,
@@ -13673,7 +13673,7 @@ const tokens = [
     symbol: 'YFID',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13309/thumb/Untitled-design-9-removebg-preview.png?1607328419',
+      'https://assets.coingecko.com/coins/images/13309/small/Untitled-design-9-removebg-preview.png?1607328419',
   },
   {
     chainId: 1,
@@ -13682,7 +13682,7 @@ const tokens = [
     symbol: 'WOZX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13310/thumb/rZ6Oe3dm_400x400.jpg?1607331889',
+      'https://assets.coingecko.com/coins/images/13310/small/rZ6Oe3dm_400x400.jpg?1607331889',
   },
   {
     chainId: 1,
@@ -13691,7 +13691,7 @@ const tokens = [
     symbol: 'GLOX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13312/thumb/glox_finance.png?1607395418',
+      'https://assets.coingecko.com/coins/images/13312/small/glox_finance.png?1607395418',
   },
   {
     chainId: 1,
@@ -13700,7 +13700,7 @@ const tokens = [
     symbol: 'LADZ',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13315/thumb/ladz_logo.jpg?1607408640',
+      'https://assets.coingecko.com/coins/images/13315/small/ladz_logo.jpg?1607408640',
   },
   {
     chainId: 1,
@@ -13709,7 +13709,7 @@ const tokens = [
     symbol: 'GVY',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13320/thumb/Groovy-finance-Logo-A.png?1607415508',
+      'https://assets.coingecko.com/coins/images/13320/small/Groovy-finance-Logo-A.png?1607415508',
   },
   {
     chainId: 1,
@@ -13718,7 +13718,7 @@ const tokens = [
     symbol: 'WAV3',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13321/thumb/wav3_logo.jpeg?1607426650',
+      'https://assets.coingecko.com/coins/images/13321/small/wav3_logo.jpeg?1607426650',
   },
   {
     chainId: 1,
@@ -13727,7 +13727,7 @@ const tokens = [
     symbol: 'BONDLY',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13322/thumb/logomark.png?1607474416',
+      'https://assets.coingecko.com/coins/images/13322/small/logomark.png?1607474416',
   },
   {
     chainId: 1,
@@ -13736,7 +13736,7 @@ const tokens = [
     symbol: 'ELYX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13326/thumb/KakaoTalk_20201208_102026847.png?1607483005',
+      'https://assets.coingecko.com/coins/images/13326/small/KakaoTalk_20201208_102026847.png?1607483005',
   },
   {
     chainId: 1,
@@ -13745,7 +13745,7 @@ const tokens = [
     symbol: 'XCUR',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13327/thumb/xcur_logo.jpg?1607920655',
+      'https://assets.coingecko.com/coins/images/13327/small/xcur_logo.jpg?1607920655',
   },
   {
     chainId: 1,
@@ -13754,7 +13754,7 @@ const tokens = [
     symbol: 'ETHYS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13328/thumb/eths_logo.png?1607494708',
+      'https://assets.coingecko.com/coins/images/13328/small/eths_logo.png?1607494708',
   },
   {
     chainId: 1,
@@ -13763,7 +13763,7 @@ const tokens = [
     symbol: 'TVK',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13330/thumb/CoinGLogo.png?1607507042',
+      'https://assets.coingecko.com/coins/images/13330/small/CoinGLogo.png?1607507042',
   },
   {
     chainId: 1,
@@ -13772,7 +13772,7 @@ const tokens = [
     symbol: 'GRAIN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13331/thumb/784594063499853904.png?1607531032',
+      'https://assets.coingecko.com/coins/images/13331/small/784594063499853904.png?1607531032',
   },
   {
     chainId: 1,
@@ -13781,7 +13781,7 @@ const tokens = [
     symbol: 'YETI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13332/thumb/yeti.png?1607563342',
+      'https://assets.coingecko.com/coins/images/13332/small/yeti.png?1607563342',
   },
   {
     chainId: 1,
@@ -13790,7 +13790,7 @@ const tokens = [
     symbol: 'YLD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13336/thumb/yieldcredit-logo-1024.png?1607653444',
+      'https://assets.coingecko.com/coins/images/13336/small/yieldcredit-logo-1024.png?1607653444',
   },
   {
     chainId: 1,
@@ -13799,7 +13799,7 @@ const tokens = [
     symbol: 'BFR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13337/thumb/bridge_finance_logo.png?1607574570',
+      'https://assets.coingecko.com/coins/images/13337/small/bridge_finance_logo.png?1607574570',
   },
   {
     chainId: 1,
@@ -13808,7 +13808,7 @@ const tokens = [
     symbol: 'STGZ',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13339/thumb/stgz_protocol_logo.jpg?1607580880',
+      'https://assets.coingecko.com/coins/images/13339/small/stgz_protocol_logo.jpg?1607580880',
   },
   {
     chainId: 1,
@@ -13817,7 +13817,7 @@ const tokens = [
     symbol: 'PPAY',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13340/thumb/Hi9sEGAD.png?1607586849',
+      'https://assets.coingecko.com/coins/images/13340/small/Hi9sEGAD.png?1607586849',
   },
   {
     chainId: 1,
@@ -13826,7 +13826,7 @@ const tokens = [
     symbol: 'EMOJI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13341/thumb/emojis_farm.png?1607588447',
+      'https://assets.coingecko.com/coins/images/13341/small/emojis_farm.png?1607588447',
   },
   {
     chainId: 1,
@@ -13835,7 +13835,7 @@ const tokens = [
     symbol: 'FR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13342/thumb/J6uNL2FS_400x400.jpg?1607589046',
+      'https://assets.coingecko.com/coins/images/13342/small/J6uNL2FS_400x400.jpg?1607589046',
   },
   {
     chainId: 1,
@@ -13844,7 +13844,7 @@ const tokens = [
     symbol: 'RBASE',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13343/thumb/rbase_logo.jpg?1607619337',
+      'https://assets.coingecko.com/coins/images/13343/small/rbase_logo.jpg?1607619337',
   },
   {
     chainId: 1,
@@ -13853,7 +13853,7 @@ const tokens = [
     symbol: 'MCH',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13344/thumb/memecash_logo.png?1607654879',
+      'https://assets.coingecko.com/coins/images/13344/small/memecash_logo.png?1607654879',
   },
   {
     chainId: 1,
@@ -13862,7 +13862,7 @@ const tokens = [
     symbol: 'HUB',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13345/thumb/Hub-Logo-Transparent-BG-200x200_%281%29.png?1607661813',
+      'https://assets.coingecko.com/coins/images/13345/small/Hub-Logo-Transparent-BG-200x200_%281%29.png?1607661813',
   },
   {
     chainId: 1,
@@ -13871,7 +13871,7 @@ const tokens = [
     symbol: 'KTLYO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13347/thumb/katalyo_logo_aqua_256.png?1607762430',
+      'https://assets.coingecko.com/coins/images/13347/small/katalyo_logo_aqua_256.png?1607762430',
   },
   {
     chainId: 1,
@@ -13880,7 +13880,7 @@ const tokens = [
     symbol: '1337',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13348/thumb/logo.png?1607791847',
+      'https://assets.coingecko.com/coins/images/13348/small/logo.png?1607791847',
   },
   {
     chainId: 1,
@@ -13889,7 +13889,7 @@ const tokens = [
     symbol: 'CAP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13351/thumb/Untitled-design-4-removebg-preview-2.png?1607811346',
+      'https://assets.coingecko.com/coins/images/13351/small/Untitled-design-4-removebg-preview-2.png?1607811346',
   },
   {
     chainId: 1,
@@ -13898,7 +13898,7 @@ const tokens = [
     symbol: 'OFT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13354/thumb/40FJ03N.png?1607812101',
+      'https://assets.coingecko.com/coins/images/13354/small/40FJ03N.png?1607812101',
   },
   {
     chainId: 1,
@@ -13907,7 +13907,7 @@ const tokens = [
     symbol: 'YPLT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13358/thumb/ypltblack-01.png?1607826916',
+      'https://assets.coingecko.com/coins/images/13358/small/ypltblack-01.png?1607826916',
   },
   {
     chainId: 1,
@@ -13916,7 +13916,7 @@ const tokens = [
     symbol: 'DUCK',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13359/thumb/unit_telegram.png?1607878022',
+      'https://assets.coingecko.com/coins/images/13359/small/unit_telegram.png?1607878022',
   },
   {
     chainId: 1,
@@ -13925,7 +13925,7 @@ const tokens = [
     symbol: 'XVIX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13364/thumb/xvix_logo.png?1607914655',
+      'https://assets.coingecko.com/coins/images/13364/small/xvix_logo.png?1607914655',
   },
   {
     chainId: 1,
@@ -13934,7 +13934,7 @@ const tokens = [
     symbol: 'YLD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13365/thumb/Icon_Blue.png?1607917500',
+      'https://assets.coingecko.com/coins/images/13365/small/Icon_Blue.png?1607917500',
   },
   {
     chainId: 1,
@@ -13943,7 +13943,7 @@ const tokens = [
     symbol: 'VLO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13366/thumb/velo_token_logo.png?1607918558',
+      'https://assets.coingecko.com/coins/images/13366/small/velo_token_logo.png?1607918558',
   },
   {
     chainId: 1,
@@ -13952,7 +13952,7 @@ const tokens = [
     symbol: 'BSE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13368/thumb/buy_sell_logo.png?1607927143',
+      'https://assets.coingecko.com/coins/images/13368/small/buy_sell_logo.png?1607927143',
   },
   {
     chainId: 1,
@@ -13961,7 +13961,7 @@ const tokens = [
     symbol: 'DEFLCT',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13369/thumb/deflect_logo.jpg?1609223085',
+      'https://assets.coingecko.com/coins/images/13369/small/deflect_logo.jpg?1609223085',
   },
   {
     chainId: 1,
@@ -13970,7 +13970,7 @@ const tokens = [
     symbol: 'JFIN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13370/thumb/JFin-Coin-Logo.png?1607984823',
+      'https://assets.coingecko.com/coins/images/13370/small/JFin-Coin-Logo.png?1607984823',
   },
   {
     chainId: 1,
@@ -13979,7 +13979,7 @@ const tokens = [
     symbol: '300',
     decimals: 7,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13371/thumb/spartan300-200x200.png?1607986424',
+      'https://assets.coingecko.com/coins/images/13371/small/spartan300-200x200.png?1607986424',
   },
   {
     chainId: 1,
@@ -13988,7 +13988,7 @@ const tokens = [
     symbol: 'RZN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13373/thumb/rizen_coin.jpg?1608003096',
+      'https://assets.coingecko.com/coins/images/13373/small/rizen_coin.jpg?1608003096',
   },
   {
     chainId: 1,
@@ -13997,7 +13997,7 @@ const tokens = [
     symbol: 'RHEGIC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13374/thumb/hegic_logo.jpg?1608006964',
+      'https://assets.coingecko.com/coins/images/13374/small/hegic_logo.jpg?1608006964',
   },
   {
     chainId: 1,
@@ -14006,7 +14006,7 @@ const tokens = [
     symbol: 'RENFIL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13375/thumb/renFIL.png?1608014942',
+      'https://assets.coingecko.com/coins/images/13375/small/renFIL.png?1608014942',
   },
   {
     chainId: 1,
@@ -14015,7 +14015,7 @@ const tokens = [
     symbol: 'PRDZ',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13376/thumb/Predictz_Transperant.png?1608021631',
+      'https://assets.coingecko.com/coins/images/13376/small/Predictz_Transperant.png?1608021631',
   },
   {
     chainId: 1,
@@ -14024,7 +14024,7 @@ const tokens = [
     symbol: 'POLIS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13377/thumb/polispay_logo.jpg?1608027141',
+      'https://assets.coingecko.com/coins/images/13377/small/polispay_logo.jpg?1608027141',
   },
   {
     chainId: 1,
@@ -14033,7 +14033,7 @@ const tokens = [
     symbol: 'SPDR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13378/thumb/spiderdao_logo.png?1608029180',
+      'https://assets.coingecko.com/coins/images/13378/small/spiderdao_logo.png?1608029180',
   },
   {
     chainId: 1,
@@ -14042,7 +14042,7 @@ const tokens = [
     symbol: 'TRI',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13379/thumb/trinity_logo.png?1608030983',
+      'https://assets.coingecko.com/coins/images/13379/small/trinity_logo.png?1608030983',
   },
   {
     chainId: 1,
@@ -14051,7 +14051,7 @@ const tokens = [
     symbol: 'VVT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13380/thumb/HkfxEtWh_400x400.jpg?1608031723',
+      'https://assets.coingecko.com/coins/images/13380/small/HkfxEtWh_400x400.jpg?1608031723',
   },
   {
     chainId: 1,
@@ -14060,7 +14060,7 @@ const tokens = [
     symbol: 'UNL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13381/thumb/unilock_logo.png?1608074688',
+      'https://assets.coingecko.com/coins/images/13381/small/unilock_logo.png?1608074688',
   },
   {
     chainId: 1,
@@ -14069,7 +14069,7 @@ const tokens = [
     symbol: 'HLAND',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13385/thumb/HLAND_LOGO.png?1608085636',
+      'https://assets.coingecko.com/coins/images/13385/small/HLAND_LOGO.png?1608085636',
   },
   {
     chainId: 1,
@@ -14078,7 +14078,7 @@ const tokens = [
     symbol: 'N3RDZ',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13389/thumb/logo.png?1608195840',
+      'https://assets.coingecko.com/coins/images/13389/small/logo.png?1608195840',
   },
   {
     chainId: 1,
@@ -14087,7 +14087,7 @@ const tokens = [
     symbol: 'BNFI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13390/thumb/photo_2020-12-16_15-23-59.jpg?1608108829',
+      'https://assets.coingecko.com/coins/images/13390/small/photo_2020-12-16_15-23-59.jpg?1608108829',
   },
   {
     chainId: 1,
@@ -14096,7 +14096,7 @@ const tokens = [
     symbol: 'R34P',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13393/thumb/r34p_logo.png?1608100330',
+      'https://assets.coingecko.com/coins/images/13393/small/r34p_logo.png?1608100330',
   },
   {
     chainId: 1,
@@ -14105,7 +14105,7 @@ const tokens = [
     symbol: 'RFR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13394/thumb/refract_logo.png?1608108926',
+      'https://assets.coingecko.com/coins/images/13394/small/refract_logo.png?1608108926',
   },
   {
     chainId: 1,
@@ -14114,7 +14114,7 @@ const tokens = [
     symbol: 'GRT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13397/thumb/Graph_Token.png?1608145566',
+      'https://assets.coingecko.com/coins/images/13397/small/Graph_Token.png?1608145566',
   },
   {
     chainId: 1,
@@ -14123,7 +14123,7 @@ const tokens = [
     symbol: 'SPICE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13398/thumb/scifi_logo.png?1608160393',
+      'https://assets.coingecko.com/coins/images/13398/small/scifi_logo.png?1608160393',
   },
   {
     chainId: 1,
@@ -14132,7 +14132,7 @@ const tokens = [
     symbol: 'NDR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13400/thumb/ndr.jpg?1608172954',
+      'https://assets.coingecko.com/coins/images/13400/small/ndr.jpg?1608172954',
   },
   {
     chainId: 1,
@@ -14141,7 +14141,7 @@ const tokens = [
     symbol: 'RFCTR',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13402/thumb/reflector-logo-coingecko.png?1608175370',
+      'https://assets.coingecko.com/coins/images/13402/small/reflector-logo-coingecko.png?1608175370',
   },
   {
     chainId: 1,
@@ -14150,7 +14150,7 @@ const tokens = [
     symbol: 'AETH',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13403/thumb/ankr.png?1608764406',
+      'https://assets.coingecko.com/coins/images/13403/small/ankr.png?1608764406',
   },
   {
     chainId: 1,
@@ -14159,7 +14159,7 @@ const tokens = [
     symbol: 'MAHA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13404/thumb/mahadao.jpg?1608373356',
+      'https://assets.coingecko.com/coins/images/13404/small/mahadao.jpg?1608373356',
   },
   {
     chainId: 1,
@@ -14168,7 +14168,7 @@ const tokens = [
     symbol: 'ABS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13405/thumb/absorber_protocol_logo.png?1608192726',
+      'https://assets.coingecko.com/coins/images/13405/small/absorber_protocol_logo.png?1608192726',
   },
   {
     chainId: 1,
@@ -14177,7 +14177,7 @@ const tokens = [
     symbol: 'XETH-G',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13406/thumb/xETH-logo-mobile-e1608208725285.png?1608251162',
+      'https://assets.coingecko.com/coins/images/13406/small/xETH-logo-mobile-e1608208725285.png?1608251162',
   },
   {
     chainId: 1,
@@ -14186,7 +14186,7 @@ const tokens = [
     symbol: 'UNN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13408/thumb/unn_finance.png?1608262290',
+      'https://assets.coingecko.com/coins/images/13408/small/unn_finance.png?1608262290',
   },
   {
     chainId: 1,
@@ -14195,7 +14195,7 @@ const tokens = [
     symbol: 'TCORE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13412/thumb/tcore.jpeg?1609238107',
+      'https://assets.coingecko.com/coins/images/13412/small/tcore.jpeg?1609238107',
   },
   {
     chainId: 1,
@@ -14204,7 +14204,7 @@ const tokens = [
     symbol: 'LOOT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13414/thumb/nftlootbox.png?1608280539',
+      'https://assets.coingecko.com/coins/images/13414/small/nftlootbox.png?1608280539',
   },
   {
     chainId: 1,
@@ -14213,7 +14213,7 @@ const tokens = [
     symbol: 'ANRX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13415/thumb/anrkey.jpg?1608311301',
+      'https://assets.coingecko.com/coins/images/13415/small/anrkey.jpg?1608311301',
   },
   {
     chainId: 1,
@@ -14222,7 +14222,7 @@ const tokens = [
     symbol: 'DFLY',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13416/thumb/dfly_logo.png?1608341835',
+      'https://assets.coingecko.com/coins/images/13416/small/dfly_logo.png?1608341835',
   },
   {
     chainId: 1,
@@ -14231,7 +14231,7 @@ const tokens = [
     symbol: 'STXEM',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13417/thumb/stakedXEM_high_res.png?1608389932',
+      'https://assets.coingecko.com/coins/images/13417/small/stakedXEM_high_res.png?1608389932',
   },
   {
     chainId: 1,
@@ -14240,7 +14240,7 @@ const tokens = [
     symbol: 'ECL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13418/thumb/eclipseum_logo.png?1608429994',
+      'https://assets.coingecko.com/coins/images/13418/small/eclipseum_logo.png?1608429994',
   },
   {
     chainId: 1,
@@ -14249,7 +14249,7 @@ const tokens = [
     symbol: 'BANANA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13419/thumb/bananacoin.png?1608446599',
+      'https://assets.coingecko.com/coins/images/13419/small/bananacoin.png?1608446599',
   },
   {
     chainId: 1,
@@ -14258,7 +14258,7 @@ const tokens = [
     symbol: 'BEAR',
     decimals: 4,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13421/thumb/arcane_bear_logo.png?1608476062',
+      'https://assets.coingecko.com/coins/images/13421/small/arcane_bear_logo.png?1608476062',
   },
   {
     chainId: 1,
@@ -14267,7 +14267,7 @@ const tokens = [
     symbol: 'FRAX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13422/thumb/frax_logo.png?1608476506',
+      'https://assets.coingecko.com/coins/images/13422/small/frax_logo.png?1608476506',
   },
   {
     chainId: 1,
@@ -14276,7 +14276,7 @@ const tokens = [
     symbol: 'FXS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13423/thumb/frax_share.png?1608478989',
+      'https://assets.coingecko.com/coins/images/13423/small/frax_share.png?1608478989',
   },
   {
     chainId: 1,
@@ -14285,7 +14285,7 @@ const tokens = [
     symbol: 'OPT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13424/thumb/KHP6ebV.jpeg?1608514202',
+      'https://assets.coingecko.com/coins/images/13424/small/KHP6ebV.jpeg?1608514202',
   },
   {
     chainId: 1,
@@ -14294,7 +14294,7 @@ const tokens = [
     symbol: 'SKEY',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13425/thumb/smart-key_sign-256.png?1608531133',
+      'https://assets.coingecko.com/coins/images/13425/small/smart-key_sign-256.png?1608531133',
   },
   {
     chainId: 1,
@@ -14303,7 +14303,7 @@ const tokens = [
     symbol: 'BDT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13426/thumb/Black-Dragon-Black.png?1608515220',
+      'https://assets.coingecko.com/coins/images/13426/small/Black-Dragon-Black.png?1608515220',
   },
   {
     chainId: 1,
@@ -14312,7 +14312,7 @@ const tokens = [
     symbol: 'UOP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13428/thumb/logo_%2830%29.png?1608518506',
+      'https://assets.coingecko.com/coins/images/13428/small/logo_%2830%29.png?1608518506',
   },
   {
     chainId: 1,
@@ -14321,7 +14321,7 @@ const tokens = [
     symbol: 'OVR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13429/thumb/ovr_logo.png?1608518911',
+      'https://assets.coingecko.com/coins/images/13429/small/ovr_logo.png?1608518911',
   },
   {
     chainId: 1,
@@ -14330,7 +14330,7 @@ const tokens = [
     symbol: 'CHAL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13432/thumb/chalice_logo.png?1608526094',
+      'https://assets.coingecko.com/coins/images/13432/small/chalice_logo.png?1608526094',
   },
   {
     chainId: 1,
@@ -14339,7 +14339,7 @@ const tokens = [
     symbol: 'AFI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13433/thumb/aries.png?1608528510',
+      'https://assets.coingecko.com/coins/images/13433/small/aries.png?1608528510',
   },
   {
     chainId: 1,
@@ -14348,7 +14348,7 @@ const tokens = [
     symbol: 'NEBO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13436/thumb/csp_dao.png?1608535699',
+      'https://assets.coingecko.com/coins/images/13436/small/csp_dao.png?1608535699',
   },
   {
     chainId: 1,
@@ -14357,7 +14357,7 @@ const tokens = [
     symbol: '2BASED',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13439/thumb/2based.jpg?1608564864',
+      'https://assets.coingecko.com/coins/images/13439/small/2based.jpg?1608564864',
   },
   {
     chainId: 1,
@@ -14366,7 +14366,7 @@ const tokens = [
     symbol: 'DUCK',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13440/thumb/DLP_DUCK.png?1608566269',
+      'https://assets.coingecko.com/coins/images/13440/small/DLP_DUCK.png?1608566269',
   },
   {
     chainId: 1,
@@ -14375,7 +14375,7 @@ const tokens = [
     symbol: 'TAR',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13441/thumb/tartarus_logo.png?1608603011',
+      'https://assets.coingecko.com/coins/images/13441/small/tartarus_logo.png?1608603011',
   },
   {
     chainId: 1,
@@ -14384,7 +14384,7 @@ const tokens = [
     symbol: 'STETH',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13442/thumb/steth_logo.png?1608607546',
+      'https://assets.coingecko.com/coins/images/13442/small/steth_logo.png?1608607546',
   },
   {
     chainId: 1,
@@ -14393,7 +14393,7 @@ const tokens = [
     symbol: 'BBL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13443/thumb/bubble_network_logo.png?1608612666',
+      'https://assets.coingecko.com/coins/images/13443/small/bubble_network_logo.png?1608612666',
   },
   {
     chainId: 1,
@@ -14402,7 +14402,7 @@ const tokens = [
     symbol: 'WCOINBASE-IOU',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13444/thumb/coinbase-black.png?1608629833',
+      'https://assets.coingecko.com/coins/images/13444/small/coinbase-black.png?1608629833',
   },
   {
     chainId: 1,
@@ -14411,7 +14411,7 @@ const tokens = [
     symbol: 'ONX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13445/thumb/onxlogo-1.png?1608629659',
+      'https://assets.coingecko.com/coins/images/13445/small/onxlogo-1.png?1608629659',
   },
   {
     chainId: 1,
@@ -14420,7 +14420,7 @@ const tokens = [
     symbol: 'KMPL',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13449/thumb/kappa_logo.png?1608681544',
+      'https://assets.coingecko.com/coins/images/13449/small/kappa_logo.png?1608681544',
   },
   {
     chainId: 1,
@@ -14429,7 +14429,7 @@ const tokens = [
     symbol: 'DDX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13453/thumb/ddx_logo.png?1608741641',
+      'https://assets.coingecko.com/coins/images/13453/small/ddx_logo.png?1608741641',
   },
   {
     chainId: 1,
@@ -14438,7 +14438,7 @@ const tokens = [
     symbol: 'LON',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13454/thumb/lon_logo.png?1608701720',
+      'https://assets.coingecko.com/coins/images/13454/small/lon_logo.png?1608701720',
   },
   {
     chainId: 1,
@@ -14447,7 +14447,7 @@ const tokens = [
     symbol: 'AQUA',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13455/thumb/aqua10-white-round.png?1608712198',
+      'https://assets.coingecko.com/coins/images/13455/small/aqua10-white-round.png?1608712198',
   },
   {
     chainId: 1,
@@ -14456,7 +14456,7 @@ const tokens = [
     symbol: 'RARE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13458/thumb/logo_cmc.png?1608823808',
+      'https://assets.coingecko.com/coins/images/13458/small/logo_cmc.png?1608823808',
   },
   {
     chainId: 1,
@@ -14465,7 +14465,7 @@ const tokens = [
     symbol: 'CEZ',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13461/thumb/2_hj7B4Z_400x400.jpg?1608764687',
+      'https://assets.coingecko.com/coins/images/13461/small/2_hj7B4Z_400x400.jpg?1608764687',
   },
   {
     chainId: 1,
@@ -14474,7 +14474,7 @@ const tokens = [
     symbol: 'TBB',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13462/thumb/L9km5LC5ZKpTey0UKcTMt9xbXw_Q0Nq8F119_QjJlqLHvuxLK6vb_VjxHtXYczia0DHXHSxhtCFUCVyMBBxJNw_-tkS3FTpoeEFs7EHuxrxs7b2hV_se2JzisurH7YQmRjXIq3wG6Va6zv90ug_uRGeuk-VoAfck7rBdnoUCGL-Xfmz7AySAn6SUVToUCtwObez36TEADBc7AR9.jpg?1608766426',
+      'https://assets.coingecko.com/coins/images/13462/small/L9km5LC5ZKpTey0UKcTMt9xbXw_Q0Nq8F119_QjJlqLHvuxLK6vb_VjxHtXYczia0DHXHSxhtCFUCVyMBBxJNw_-tkS3FTpoeEFs7EHuxrxs7b2hV_se2JzisurH7YQmRjXIq3wG6Va6zv90ug_uRGeuk-VoAfck7rBdnoUCGL-Xfmz7AySAn6SUVToUCtwObez36TEADBc7AR9.jpg?1608766426',
   },
   {
     chainId: 1,
@@ -14483,7 +14483,7 @@ const tokens = [
     symbol: 'ROCKS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13465/thumb/rocki_logo.png?1608786767',
+      'https://assets.coingecko.com/coins/images/13465/small/rocki_logo.png?1608786767',
   },
   {
     chainId: 1,
@@ -14492,7 +14492,7 @@ const tokens = [
     symbol: 'DRIP',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13468/thumb/drip-stretch-200.png?1608796810',
+      'https://assets.coingecko.com/coins/images/13468/small/drip-stretch-200.png?1608796810',
   },
   {
     chainId: 1,
@@ -14501,7 +14501,7 @@ const tokens = [
     symbol: '1INCH',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13469/thumb/1inch-token.png?1608803028',
+      'https://assets.coingecko.com/coins/images/13469/small/1inch-token.png?1608803028',
   },
   {
     chainId: 1,
@@ -14510,7 +14510,7 @@ const tokens = [
     symbol: 'YVS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13471/thumb/cu0LSzE.png?1608852718',
+      'https://assets.coingecko.com/coins/images/13471/small/cu0LSzE.png?1608852718',
   },
   {
     chainId: 1,
@@ -14519,7 +14519,7 @@ const tokens = [
     symbol: 'MIS',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13478/thumb/3uZAPv2CbXF5txM.png?1608947522',
+      'https://assets.coingecko.com/coins/images/13478/small/3uZAPv2CbXF5txM.png?1608947522',
   },
   {
     chainId: 1,
@@ -14528,7 +14528,7 @@ const tokens = [
     symbol: 'DYP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13480/thumb/dyp_logo.png?1608971751',
+      'https://assets.coingecko.com/coins/images/13480/small/dyp_logo.png?1608971751',
   },
   {
     chainId: 1,
@@ -14537,7 +14537,7 @@ const tokens = [
     symbol: 'FNK',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13483/thumb/fnk.png?1609039834',
+      'https://assets.coingecko.com/coins/images/13483/small/fnk.png?1609039834',
   },
   {
     chainId: 1,
@@ -14546,7 +14546,7 @@ const tokens = [
     symbol: 'WHITE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13484/thumb/whiteheart.png?1609076548',
+      'https://assets.coingecko.com/coins/images/13484/small/whiteheart.png?1609076548',
   },
   {
     chainId: 1,
@@ -14555,7 +14555,7 @@ const tokens = [
     symbol: 'VAULTZ',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13488/thumb/vaultz_logo.jpg?1609112163',
+      'https://assets.coingecko.com/coins/images/13488/small/vaultz_logo.jpg?1609112163',
   },
   {
     chainId: 1,
@@ -14564,7 +14564,7 @@ const tokens = [
     symbol: 'AURA',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13491/thumb/aura_protocol_logo.png?1609124742',
+      'https://assets.coingecko.com/coins/images/13491/small/aura_protocol_logo.png?1609124742',
   },
   {
     chainId: 1,
@@ -14573,7 +14573,7 @@ const tokens = [
     symbol: 'BPP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13492/thumb/Bitpower_%28200x200%29.png?1609134732',
+      'https://assets.coingecko.com/coins/images/13492/small/Bitpower_%28200x200%29.png?1609134732',
   },
   {
     chainId: 1,
@@ -14582,7 +14582,7 @@ const tokens = [
     symbol: 'FIRE',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13495/thumb/fire.jpg?1609165121',
+      'https://assets.coingecko.com/coins/images/13495/small/fire.jpg?1609165121',
   },
   {
     chainId: 1,
@@ -14591,7 +14591,7 @@ const tokens = [
     symbol: 'LBD',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13506/thumb/linkbased_logo.jpg?1609224548',
+      'https://assets.coingecko.com/coins/images/13506/small/linkbased_logo.jpg?1609224548',
   },
   {
     chainId: 1,
@@ -14600,7 +14600,7 @@ const tokens = [
     symbol: '3XT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13507/thumb/3XT.jpg?1609225380',
+      'https://assets.coingecko.com/coins/images/13507/small/3XT.jpg?1609225380',
   },
   {
     chainId: 1,
@@ -14609,7 +14609,7 @@ const tokens = [
     symbol: 'WAXE',
     decimals: 8,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13508/thumb/waxe_logo.png?1609232755',
+      'https://assets.coingecko.com/coins/images/13508/small/waxe_logo.png?1609232755',
   },
   {
     chainId: 1,
@@ -14618,7 +14618,7 @@ const tokens = [
     symbol: 'BAFI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13512/thumb/logo_-_2020-12-30T063720.124.png?1609281475',
+      'https://assets.coingecko.com/coins/images/13512/small/logo_-_2020-12-30T063720.124.png?1609281475',
   },
   {
     chainId: 1,
@@ -14627,7 +14627,7 @@ const tokens = [
     symbol: 'KEK',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13513/thumb/Cryptokek-Logo-256px.png?1609292074',
+      'https://assets.coingecko.com/coins/images/13513/small/Cryptokek-Logo-256px.png?1609292074',
   },
   {
     chainId: 1,
@@ -14636,7 +14636,7 @@ const tokens = [
     symbol: 'XED',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13518/thumb/xed.jpg?1609337806',
+      'https://assets.coingecko.com/coins/images/13518/small/xed.jpg?1609337806',
   },
   {
     chainId: 1,
@@ -14645,7 +14645,7 @@ const tokens = [
     symbol: 'DGCL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13519/thumb/DigiCol_Logo-01.png?1609372199',
+      'https://assets.coingecko.com/coins/images/13519/small/DigiCol_Logo-01.png?1609372199',
   },
   {
     chainId: 1,
@@ -14654,7 +14654,7 @@ const tokens = [
     symbol: 'RLR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13523/thumb/rlr_logo.jpg?1609385448',
+      'https://assets.coingecko.com/coins/images/13523/small/rlr_logo.jpg?1609385448',
   },
   {
     chainId: 1,
@@ -14663,7 +14663,7 @@ const tokens = [
     symbol: 'GFARM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13528/thumb/gains_farm_logo.png?1609401001',
+      'https://assets.coingecko.com/coins/images/13528/small/gains_farm_logo.png?1609401001',
   },
   {
     chainId: 1,
@@ -14672,7 +14672,7 @@ const tokens = [
     symbol: 'ONC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13529/thumb/onc_logo.png?1609406029',
+      'https://assets.coingecko.com/coins/images/13529/small/onc_logo.png?1609406029',
   },
   {
     chainId: 1,
@@ -14681,7 +14681,7 @@ const tokens = [
     symbol: 'BCS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13530/thumb/Basiscoin_Share.png?1609406623',
+      'https://assets.coingecko.com/coins/images/13530/small/Basiscoin_Share.png?1609406623',
   },
   {
     chainId: 1,
@@ -14690,7 +14690,7 @@ const tokens = [
     symbol: 'ONS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13531/thumb/bss.a1671c75.png?1609452258',
+      'https://assets.coingecko.com/coins/images/13531/small/bss.a1671c75.png?1609452258',
   },
   {
     chainId: 1,
@@ -14699,7 +14699,7 @@ const tokens = [
     symbol: 'FLASH',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13533/thumb/Flashstake.png?1609730156',
+      'https://assets.coingecko.com/coins/images/13533/small/Flashstake.png?1609730156',
   },
   {
     chainId: 1,
@@ -14708,7 +14708,7 @@ const tokens = [
     symbol: 'BCC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13535/thumb/yiu47vtN_400x400.jpg?1609541472',
+      'https://assets.coingecko.com/coins/images/13535/small/yiu47vtN_400x400.jpg?1609541472',
   },
   {
     chainId: 1,
@@ -14717,7 +14717,7 @@ const tokens = [
     symbol: 'SPI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13537/thumb/vd4KuYIE_400x400.png?1609578616',
+      'https://assets.coingecko.com/coins/images/13537/small/vd4KuYIE_400x400.png?1609578616',
   },
   {
     chainId: 1,
@@ -14726,7 +14726,7 @@ const tokens = [
     symbol: 'DFSOCIAL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13538/thumb/o91UuwtD_400x400.jpg?1609578301',
+      'https://assets.coingecko.com/coins/images/13538/small/o91UuwtD_400x400.jpg?1609578301',
   },
   {
     chainId: 1,
@@ -14735,7 +14735,7 @@ const tokens = [
     symbol: 'STRNG',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13540/thumb/strng.png?1609599778',
+      'https://assets.coingecko.com/coins/images/13540/small/strng.png?1609599778',
   },
   {
     chainId: 1,
@@ -14744,7 +14744,7 @@ const tokens = [
     symbol: 'VANA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13541/thumb/vana.jpg?1609602820',
+      'https://assets.coingecko.com/coins/images/13541/small/vana.jpg?1609602820',
   },
   {
     chainId: 1,
@@ -14753,7 +14753,7 @@ const tokens = [
     symbol: 'SAC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13542/thumb/sac.jpg?1609648101',
+      'https://assets.coingecko.com/coins/images/13542/small/sac.jpg?1609648101',
   },
   {
     chainId: 1,
@@ -14762,7 +14762,7 @@ const tokens = [
     symbol: 'SAS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13543/thumb/sac.jpg?1609648278',
+      'https://assets.coingecko.com/coins/images/13543/small/sac.jpg?1609648278',
   },
   {
     chainId: 1,
@@ -14771,7 +14771,7 @@ const tokens = [
     symbol: 'PIS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13544/thumb/Logo_Polkainsure___Final-200x200-01.png?1609686092',
+      'https://assets.coingecko.com/coins/images/13544/small/Logo_Polkainsure___Final-200x200-01.png?1609686092',
   },
   {
     chainId: 1,
@@ -14780,7 +14780,7 @@ const tokens = [
     symbol: 'TEN',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13545/thumb/iMqC3F_p_400x400.png?1609711856',
+      'https://assets.coingecko.com/coins/images/13545/small/iMqC3F_p_400x400.png?1609711856',
   },
   {
     chainId: 1,
@@ -14789,7 +14789,7 @@ const tokens = [
     symbol: 'BAO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13547/thumb/bao.PNG?1609713518',
+      'https://assets.coingecko.com/coins/images/13547/small/bao.PNG?1609713518',
   },
   {
     chainId: 1,
@@ -14798,7 +14798,7 @@ const tokens = [
     symbol: 'TRISM',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13549/thumb/76106366.png?1609715454',
+      'https://assets.coingecko.com/coins/images/13549/small/76106366.png?1609715454',
   },
   {
     chainId: 1,
@@ -14807,7 +14807,7 @@ const tokens = [
     symbol: 'WISE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13552/thumb/WISE-logo-1600x1280.png?1609727947',
+      'https://assets.coingecko.com/coins/images/13552/small/WISE-logo-1600x1280.png?1609727947',
   },
   {
     chainId: 1,
@@ -14816,7 +14816,7 @@ const tokens = [
     symbol: 'TSD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13555/thumb/2dc3a1b1-41fd-4d9c-ba1d-8114635efd09.jpg?1609754836',
+      'https://assets.coingecko.com/coins/images/13555/small/2dc3a1b1-41fd-4d9c-ba1d-8114635efd09.jpg?1609754836',
   },
   {
     chainId: 1,
@@ -14825,7 +14825,7 @@ const tokens = [
     symbol: 'NOAHARK',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13557/thumb/Gc6kz-5a.png?1609769750',
+      'https://assets.coingecko.com/coins/images/13557/small/Gc6kz-5a.png?1609769750',
   },
   {
     chainId: 1,
@@ -14834,7 +14834,7 @@ const tokens = [
     symbol: 'WCELO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13561/thumb/WCELO-Icon.jpg?1609819515',
+      'https://assets.coingecko.com/coins/images/13561/small/WCELO-Icon.jpg?1609819515',
   },
   {
     chainId: 1,
@@ -14843,7 +14843,7 @@ const tokens = [
     symbol: 'COVER',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13563/thumb/1_eWBbDaqpxXqt7WYPSP4qSw.jpeg?1609822578',
+      'https://assets.coingecko.com/coins/images/13563/small/1_eWBbDaqpxXqt7WYPSP4qSw.jpeg?1609822578',
   },
   {
     chainId: 1,
@@ -14852,7 +14852,7 @@ const tokens = [
     symbol: 'FAST',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13567/thumb/logo.png?1609834317',
+      'https://assets.coingecko.com/coins/images/13567/small/logo.png?1609834317',
   },
   {
     chainId: 1,
@@ -14861,7 +14861,7 @@ const tokens = [
     symbol: 'ZAI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13569/thumb/zai_logo.png?1609844802',
+      'https://assets.coingecko.com/coins/images/13569/small/zai_logo.png?1609844802',
   },
   {
     chainId: 1,
@@ -14870,7 +14870,7 @@ const tokens = [
     symbol: 'MCP',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13570/thumb/Ysv6EyvR_400x400.jpg?1609845061',
+      'https://assets.coingecko.com/coins/images/13570/small/Ysv6EyvR_400x400.jpg?1609845061',
   },
   {
     chainId: 1,
@@ -14879,7 +14879,7 @@ const tokens = [
     symbol: 'LDO',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13573/thumb/Lido_DAO.png?1609873644',
+      'https://assets.coingecko.com/coins/images/13573/small/Lido_DAO.png?1609873644',
   },
   {
     chainId: 1,
@@ -14888,7 +14888,7 @@ const tokens = [
     symbol: 'NFTX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13574/thumb/nftx.png?1609880030',
+      'https://assets.coingecko.com/coins/images/13574/small/nftx.png?1609880030',
   },
   {
     chainId: 1,
@@ -14897,7 +14897,7 @@ const tokens = [
     symbol: 'MSWAP',
     decimals: 0,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13576/thumb/logo_%281%29.png?1609888424',
+      'https://assets.coingecko.com/coins/images/13576/small/logo_%281%29.png?1609888424',
   },
   {
     chainId: 1,
@@ -14906,7 +14906,7 @@ const tokens = [
     symbol: 'KOBE',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13577/thumb/shabu_shabu_logo.jpg?1609901993',
+      'https://assets.coingecko.com/coins/images/13577/small/shabu_shabu_logo.jpg?1609901993',
   },
   {
     chainId: 1,
@@ -14915,7 +14915,7 @@ const tokens = [
     symbol: 'ZZZV2',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13584/thumb/zzz_finance.jpg?1609919864',
+      'https://assets.coingecko.com/coins/images/13584/small/zzz_finance.jpg?1609919864',
   },
   {
     chainId: 1,
@@ -14924,7 +14924,7 @@ const tokens = [
     symbol: 'ZKS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13585/thumb/hfmvDpha_400x400.jpg?1609922062',
+      'https://assets.coingecko.com/coins/images/13585/small/hfmvDpha_400x400.jpg?1609922062',
   },
   {
     chainId: 1,
@@ -14933,7 +14933,7 @@ const tokens = [
     symbol: 'GRPL',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13586/thumb/GRPL.png?1609927724',
+      'https://assets.coingecko.com/coins/images/13586/small/GRPL.png?1609927724',
   },
   {
     chainId: 1,
@@ -14942,7 +14942,7 @@ const tokens = [
     symbol: 'DNS',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13590/thumb/T_t9CFf6_400x400.png?1609981076',
+      'https://assets.coingecko.com/coins/images/13590/small/T_t9CFf6_400x400.png?1609981076',
   },
   {
     chainId: 1,
@@ -14951,7 +14951,7 @@ const tokens = [
     symbol: 'RFY',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13591/thumb/3QVx5Fp.png?1609983766',
+      'https://assets.coingecko.com/coins/images/13591/small/3QVx5Fp.png?1609983766',
   },
   {
     chainId: 1,
@@ -14960,7 +14960,7 @@ const tokens = [
     symbol: 'CNFI',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13592/thumb/Connect_Financial.png?1609993203',
+      'https://assets.coingecko.com/coins/images/13592/small/Connect_Financial.png?1609993203',
   },
   {
     chainId: 1,
@@ -14969,7 +14969,7 @@ const tokens = [
     symbol: 'DSWAP',
     decimals: 6,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13593/thumb/cjZjhY3w_400x400.png?1609998112',
+      'https://assets.coingecko.com/coins/images/13593/small/cjZjhY3w_400x400.png?1609998112',
   },
   {
     chainId: 1,
@@ -14978,7 +14978,7 @@ const tokens = [
     symbol: 'TNI',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13598/thumb/tni_logo.png?1610006256',
+      'https://assets.coingecko.com/coins/images/13598/small/tni_logo.png?1610006256',
   },
   {
     chainId: 1,
@@ -14987,7 +14987,7 @@ const tokens = [
     symbol: 'WSTA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13599/thumb/wsta_logo.png?1610011862',
+      'https://assets.coingecko.com/coins/images/13599/small/wsta_logo.png?1610011862',
   },
   {
     chainId: 1,
@@ -14996,7 +14996,7 @@ const tokens = [
     symbol: 'EC',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13601/thumb/eternal_cash_logo.png?1610095491',
+      'https://assets.coingecko.com/coins/images/13601/small/eternal_cash_logo.png?1610095491',
   },
   {
     chainId: 1,
@@ -15005,7 +15005,7 @@ const tokens = [
     symbol: 'ROYA',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13602/thumb/royale_logo.jpg?1610176118',
+      'https://assets.coingecko.com/coins/images/13602/small/royale_logo.jpg?1610176118',
   },
   {
     chainId: 1,
@@ -15014,7 +15014,7 @@ const tokens = [
     symbol: 'FSD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13603/thumb/fsd.jpg?1610251925',
+      'https://assets.coingecko.com/coins/images/13603/small/fsd.jpg?1610251925',
   },
   {
     chainId: 1,
@@ -15023,7 +15023,7 @@ const tokens = [
     symbol: 'ESG',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13604/thumb/esg.jpg?1610252594',
+      'https://assets.coingecko.com/coins/images/13604/small/esg.jpg?1610252594',
   },
   {
     chainId: 1,
@@ -15032,7 +15032,7 @@ const tokens = [
     symbol: 'VTD',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13608/thumb/vtd.jpg?1610273963',
+      'https://assets.coingecko.com/coins/images/13608/small/vtd.jpg?1610273963',
   },
   {
     chainId: 1,
@@ -15041,7 +15041,7 @@ const tokens = [
     symbol: 'DST',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13609/thumb/dst.jpg?1610274254',
+      'https://assets.coingecko.com/coins/images/13609/small/dst.jpg?1610274254',
   },
   {
     chainId: 1,
@@ -15050,7 +15050,7 @@ const tokens = [
     symbol: 'DSTR',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13610/thumb/DSTR.png?1610341247',
+      'https://assets.coingecko.com/coins/images/13610/small/DSTR.png?1610341247',
   },
   {
     chainId: 1,
@@ -15059,7 +15059,7 @@ const tokens = [
     symbol: 'YSKF',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13614/thumb/IMG-20201203-122807-053.png?1610287099',
+      'https://assets.coingecko.com/coins/images/13614/small/IMG-20201203-122807-053.png?1610287099',
   },
   {
     chainId: 1,
@@ -15068,7 +15068,7 @@ const tokens = [
     symbol: 'UMX',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13615/thumb/Z2eXJv5.png?1610324894',
+      'https://assets.coingecko.com/coins/images/13615/small/Z2eXJv5.png?1610324894',
   },
   {
     chainId: 1,
@@ -15077,7 +15077,7 @@ const tokens = [
     symbol: 'PRT',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13617/thumb/OKeO2FI.png?1610327038',
+      'https://assets.coingecko.com/coins/images/13617/small/OKeO2FI.png?1610327038',
   },
   {
     chainId: 1,
@@ -15086,7 +15086,7 @@ const tokens = [
     symbol: 'XDEF2',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13619/thumb/xdef.png?1610330383',
+      'https://assets.coingecko.com/coins/images/13619/small/xdef.png?1610330383',
   },
   {
     chainId: 1,
@@ -15095,7 +15095,7 @@ const tokens = [
     symbol: 'FCX',
     decimals: 9,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13620/thumb/FCX-Logo-W-e1609294744561.png?1610333962',
+      'https://assets.coingecko.com/coins/images/13620/small/FCX-Logo-W-e1609294744561.png?1610333962',
   },
   {
     chainId: 1,
@@ -15104,7 +15104,7 @@ const tokens = [
     symbol: 'DAIQ',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/13626/thumb/BicSg26r_400x400.png?1610418623',
+      'https://assets.coingecko.com/coins/images/13626/small/BicSg26r_400x400.png?1610418623',
   },
   {
     chainId: 1,
@@ -15113,6 +15113,6 @@ const tokens = [
     symbol: 'WETH',
     decimals: 18,
     logoURI:
-      'https://assets.coingecko.com/coins/images/2518/thumb/weth.png?1547036627',
+      'https://assets.coingecko.com/coins/images/2518/small/weth.png?1547036627',
   },
 ];
