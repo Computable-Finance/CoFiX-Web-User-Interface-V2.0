@@ -1807,8 +1807,8 @@ export class CofiXService {
 
   isCoFixToken(token: string): boolean {
     return (
-      token === this.contractAddressList.USDT ||
-      token === this.contractAddressList.HBTC
+      token?.toUpperCase() === this.contractAddressList.USDT.toUpperCase() ||
+      token?.toUpperCase() === this.contractAddressList.HBTC.toUpperCase()
     );
   }
 
