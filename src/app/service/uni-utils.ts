@@ -9,7 +9,7 @@ import {
 } from '@uniswap/sdk';
 
 import { getContractAddressListByNetwork } from '../common/constants';
-import { ethersOf, parseUnits } from '../common/uitils/bignumber-utils';
+import { parseUnits, unitsOf } from '../common/uitils/bignumber-utils';
 
 export type TokenInfo = {
   network: number;
@@ -54,7 +54,7 @@ async function executionPriceAndMinimumAmountOut(
   // );
   return {
     excutionPrice: trade.executionPrice.toSignificant(8),
-    amountOut: ethersOf(trade.outputAmount.raw.toString()),
+    amountOut: unitsOf(trade.outputAmount.raw.toString(), tokenOut.decimals),
   };
 }
 
