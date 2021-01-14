@@ -222,6 +222,6 @@
   "more_details_short": "了解更多",
   "search_placeholder": "查询名称或地址",
   "loading_tokens": "正在加载更多Token...",
-  "scroll_note": "注：有 {{tokenCount}} 个Token，向下滑动可加载更多 Token 。(出自：<a href='https://tokens.coingecko.com/uniswap/all.json' target='blank'>CoinGecko TokenList</a>。)",
+  "scroll_note": "注：有 {{tokenCount}} 个Token，向下滑动可加载更多 Token 。(Token列表由<a href='https://tokens.coingecko.com/uniswap/all.json' target='blank'>CoinGecko</a> 提供。请在交易之前自行验证token合约地址的正确性)",
   "remove": "删除"
 }
