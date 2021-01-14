@@ -10,7 +10,7 @@ let storage;
 if (environment.production) {
   enableProdMode();
   storage = persistState({
-    include: ['permissions', 'token-info', 'settings', 'metadata'],
+    include: ['permissions', 'token-info', 'settings', 'metadata', 'my-tokens'],
   });
 } else {
   // pls uncomment the following for debugging
@@ -18,7 +18,7 @@ if (environment.production) {
 
   // comment this if above codeline is uncommented
   storage = persistState({
-    include: ['permissions', 'token-info', 'settings', 'metadata'],
+    include: ['permissions', 'token-info', 'settings', 'metadata', 'my-tokens'],
   });
 }
 

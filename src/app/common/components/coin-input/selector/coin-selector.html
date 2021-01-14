@@ -42,7 +42,12 @@
           >
           <ion-col size="9" *ngIf="coin.symbol!=='ETH'">
             {{coin.symbol}} <br />
-            <span class="address">{{coin.address | walletaddress:9}}</span>
+            <span class="address"
+              >{{coin.address | walletaddress:9}}
+              <div *ngIf="coin.id!==undefined" (click)="remove(coin.id)">
+                remove
+              </div></span
+            >
           </ion-col>
         </ion-row>
       </ng-container>

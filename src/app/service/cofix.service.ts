@@ -18,14 +18,14 @@ import {
   BLOCKNUMS_IN_A_DAY,
   ETHER_DECIMALS,
   getContractAddressListByNetwork,
-  TOKENS,
 } from '../common/constants';
-import { addToken, tokenList } from '../common/TokenList';
+import { tokenList } from '../common/TokenList';
 import { ethersOf, unitsOf } from '../common/uitils/bignumber-utils';
 import { BalancesQuery } from '../state/balance/balance.query';
 import { BalancesService } from '../state/balance/balance.service';
 import { MarketDetailsQuery } from '../state/market/market.query';
 import { MarketDetailsService } from '../state/market/market.service';
+import { MyTokenService } from '../state/mytoken/myToken.service';
 import { SettingsService } from '../state/setting/settings.service';
 import {
   getCoFiStakingRewards,
@@ -81,6 +81,7 @@ export class CofiXService {
     private marketDetailsService: MarketDetailsService,
     private marketDetailsQuery: MarketDetailsQuery,
     private integrationService: IntegrationService,
+    private myTokenService: MyTokenService,
     private http: HttpClient
   ) {
     BNJS.config({ EXPONENTIAL_AT: 100, ROUNDING_MODE: BNJS.ROUND_DOWN });
@@ -1819,18 +1820,19 @@ export class CofiXService {
   // 参数token 为该token对应的地址
   async loadToken(token: string) {
     try {
-      const contract = getERC20Contract(token, this.provider);
       const existToken = this.getExistToken(token);
 
       if (!existToken) {
-        let newToken = await contract.symbol();
-        if (!newToken) {
-          newToken = `Unknown Token${this.getUnknownTokenIndex()}`;
+        const contract = getERC20Contract(token, this.provider);
+        let symbol = await contract.symbol();
+        if (!symbol) {
+          symbol = `Unknown Token${this.getUnknownTokenIndex()}`;
         }
-        return addToken(
+
+        return this.myTokenService.add(
           this.currentNetwork,
           token,
-          newToken,
+          symbol,
           await contract.decimals()
         );
       } else {

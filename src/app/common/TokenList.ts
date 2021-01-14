@@ -1,11 +1,11 @@
 export function getTokenListByQuery(chainId, offset, max, queryToken = null) {
-  const tokenList = tokens.filter(
+  const tokenQuery = tokens.filter(
     (token) =>
       token.chainId === chainId &&
       (queryToken ? token.symbol.indexOf(queryToken.toUpperCase()) > -1 : true)
   );
-  const total = tokenList.length;
-  const dataList = tokenList.slice(offset, offset + max);
+  const total = tokenQuery.length;
+  const dataList = tokenQuery.slice(offset, offset + max);
   return { total, dataList };
 }
 
@@ -17,20 +17,9 @@ export function tokenLogo(tokenName: string) {
   return tokens.find((token) => token.symbol === tokenName)?.logoURI;
 }
 
-export function addToken(chainId, address, symbol, decimals) {
-  const newToken = {
-    chainId,
-    address,
-    name: symbol,
-    symbol,
-    decimals,
-    logoURI: tokenLogo(symbol) || './assets/images/icon/UNKNOWN.png',
-  };
-  tokens.push(newToken);
-  return newToken;
-}
-
-const tokens = [
+// initialized in app.component
+// order: ETH, my tokens, internalTokens
+export let tokens: Array<any> = [
   {
     chainId: 3,
     address: undefined,
@@ -47,6 +36,9 @@ const tokens = [
     decimals: 18,
     logoURI: './assets/images/icon/ETH.png',
   },
+];
+
+export const internalTokens = [
   {
     chainId: 3,
     address: '0x200506568C2980B4943B5EaA8713A5740eb2c98A',

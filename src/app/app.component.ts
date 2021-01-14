@@ -4,9 +4,11 @@ import { Platform } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 
 import { DB_VERSION } from './common/constants';
+import { internalTokens, tokens } from './common/TokenList';
 import { CofiXService } from './service/cofix.service';
 import { MetadataQuery } from './state/metadata/metadata.query';
 import { MetadataService } from './state/metadata/metadata.service';
+import { MyTokenQuery } from './state/mytoken/myToken.query';
 import { SettingsQuery } from './state/setting/settings.query';
 
 type State = { lang: string };
@@ -40,6 +42,7 @@ export class AppComponent implements OnInit {
     private router: Router,
     private metadataQuery: MetadataQuery,
     private metadataService: MetadataService,
+    private myTokenQuery: MyTokenQuery,
     @Inject('persistStorage') private persistStorage
   ) {
     this.initializeApp();
@@ -50,12 +53,18 @@ export class AppComponent implements OnInit {
       this.initConnectIfEnabled();
       this.initTranslate();
       this.cleanOldStorageSchemas();
+      this.initTokenList();
     });
   }
 
   initTranslate() {
     this.translate.use(this.settingsQuery.lang());
     this.translate.setDefaultLang('en');
+  }
+
+  initTokenList() {
+    tokens.push(...this.myTokenQuery.getAll());
+    tokens.push(...internalTokens);
   }
 
   async initConnectIfEnabled() {

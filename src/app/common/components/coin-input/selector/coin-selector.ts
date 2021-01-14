@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonInfiniteScroll, ModalController } from '@ionic/angular';
 import { getTokenListByQuery } from 'src/app/common/TokenList';
 import { CofiXService } from 'src/app/service/cofix.service';
+import { MyTokenService } from 'src/app/state/mytoken/myToken.service';
 
 @Component({
   selector: 'app-coin-selector',
@@ -14,10 +15,11 @@ export class CoinSelector {
   queryToken: string;
   tokenCount: number;
   q = { max: 7, offset: 0 };
-  pageindex: number = 1;
+  pageindex = 1;
   constructor(
     private modalController: ModalController,
-    private cofixService: CofiXService
+    private cofixService: CofiXService,
+    private myTokenService: MyTokenService
   ) {
     this.getTokenList();
   }
@@ -59,6 +61,10 @@ export class CoinSelector {
 
   close() {
     this.modalController.dismiss();
+  }
+
+  remove(id) {
+    this.myTokenService.remove(id);
   }
 
   async searchToken(event) {
