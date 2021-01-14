@@ -9,6 +9,7 @@ import {
 import { ModalController } from '@ionic/angular';
 import { EMPTY, Subject, Subscription } from 'rxjs';
 import { debounceTime, switchMap } from 'rxjs/operators';
+import { COFIX_TOKENS } from '../../constants';
 import { tokenLogo } from '../../TokenList';
 
 import { CoinSelector } from './selector/coin-selector';
@@ -87,8 +88,8 @@ export class CoinInput implements OnInit, OnDestroy {
   }
 
   tokenLogo(tokenName: string) {
-    if (tokenName === 'ETH') {
-      return './assets/images/icon/ETH.png';
+    if (COFIX_TOKENS.indexOf(tokenName) > -1) {
+      return `./assets/images/icon/${tokenName}.png`;
     }
     return tokenLogo(tokenName);
   }

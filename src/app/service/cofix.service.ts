@@ -1433,7 +1433,7 @@ export class CofiXService {
     const contract = getERC20Contract(token, this.provider);
     return await contract
       .connect(this.getSigner())
-      .approve(spender, BigNumber.from('999999999999999999999999999999999999'));
+      .approve(spender, BigNumber.from('9999999999999999999999999999'));
   }
 
   // --------- Tracking Balances  ------------ //

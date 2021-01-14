@@ -58,6 +58,8 @@ export const ETHER_DECIMALS = 18;
 
 export const TOKENS = ['ETH', 'USDT', 'HBTC'];
 
+export const COFIX_TOKENS = ['CoFi', 'XTokens', 'ETH'];
+
 export const FOOTER_ITEMS = [
   {
     id: 'whitepaper',

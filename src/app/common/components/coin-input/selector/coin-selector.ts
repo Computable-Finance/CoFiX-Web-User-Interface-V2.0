@@ -1,5 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonInfiniteScroll, ModalController } from '@ionic/angular';
+import { init } from '@datorama/akita-ngdevtools';
+import { IonInfiniteScroll, ModalController, NavParams } from '@ionic/angular';
+import { async } from 'rxjs/internal/scheduler/async';
 import { getTokenListByQuery } from 'src/app/common/TokenList';
 import { CofiXService } from 'src/app/service/cofix.service';
 import { MyTokenService } from 'src/app/state/mytoken/myToken.service';
@@ -16,11 +18,14 @@ export class CoinSelector {
   tokenCount: number;
   q = { max: 7, offset: 0 };
   pageindex = 1;
+  selectedCoin: string;
   constructor(
     private modalController: ModalController,
     private cofixService: CofiXService,
-    private myTokenService: MyTokenService
+    private myTokenService: MyTokenService,
+    private params: NavParams
   ) {
+    this.selectedCoin = params.get('selectedCoin');
     this.getTokenList();
   }
 
@@ -55,16 +60,20 @@ export class CoinSelector {
     this.q.offset = 0;
   }
 
-  selectCoin(coin) {
-    this.modalController.dismiss(coin.symbol);
+  selectCoin(event, coin) {
+    if (event.srcElement.id === 'remove') {
+      if (this.selectedCoin === coin.symbol) {
+        return;
+      }
+      this.myTokenService.remove(coin.id);
+      this.getTokenList();
+    } else {
+      this.modalController.dismiss(coin.symbol);
+    }
   }
 
   close() {
     this.modalController.dismiss();
-  }
-
-  remove(id) {
-    this.myTokenService.remove(id);
   }
 
   async searchToken(event) {

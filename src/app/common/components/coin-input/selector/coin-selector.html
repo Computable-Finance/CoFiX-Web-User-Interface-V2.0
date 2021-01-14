@@ -31,23 +31,29 @@
       <ng-container *ngFor="let coin of coinList;let i=index">
         <ion-row
           id="{{coin.symbol}}"
-          (click)="selectCoin(coin)"
+          (click)="selectCoin($event,coin)"
           class="ion-align-items-center ion-align-self-center conversionPrice {{i==0?'first-row':''}}"
         >
           <ion-col size="2" class="token-logo">
             <img src="{{coin.logoURI}}" class="coin_icon" />
           </ion-col>
+
           <ion-col size="9" *ngIf="coin.symbol==='ETH'">
-            {{coin.symbol}}</ion-col
-          >
+            {{coin.symbol}}
+          </ion-col>
           <ion-col size="9" *ngIf="coin.symbol!=='ETH'">
             {{coin.symbol}} <br />
             <span class="address"
-              >{{coin.address | walletaddress:9}}
-              <div *ngIf="coin.id!==undefined" (click)="remove(coin.id)">
-                remove
-              </div></span
-            >
+              >{{coin.address | walletaddress:8}}
+              <div *ngIf="coin.id!==undefined">
+                <a
+                  id="remove"
+                  class="{{selectedCoin === coin.symbol?'unremove':'remove'}}"
+                >
+                  {{'remove' | translate}}
+                </a>
+              </div>
+            </span>
           </ion-col>
         </ion-row>
       </ng-container>
