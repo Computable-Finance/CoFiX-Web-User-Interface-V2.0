@@ -215,6 +215,18 @@ export class SwapPage implements OnInit, OnDestroy {
       this.toCoin.address,
       this.fromCoin.amount || '0'
     );
+
+    if (this.changePrice === '0') {
+      this.swapError = {
+        isError: true,
+        msg: 'Insufficient liquidity for this trade.',
+      };
+      this.resetAmount();
+      this.nestPrice = '0';
+      this.priceSpread = '0';
+      return;
+    }
+
     if (executionPriceAndExpectedCofi) {
       this.toCoin.amount = await this.balancePipe.transform(
         executionPriceAndExpectedCofi.amountOut
@@ -353,6 +365,7 @@ export class SwapPage implements OnInit, OnDestroy {
       this.toCoin.address = tokenList(
         this.cofixService.getCurrentNetwork()
       ).find((token) => token.symbol === this.toCoin.id)?.address;
+
       this.changePrice = (
         await this.cofixService.executionPriceAndExpectedCofi(
           this.fromCoin.address,
@@ -360,6 +373,17 @@ export class SwapPage implements OnInit, OnDestroy {
           '1'
         )
       ).excutionPrice;
+
+      if (this.changePrice === '0') {
+        this.swapError = {
+          isError: true,
+          msg: 'Insufficient liquidity for this trade.',
+        };
+        this.resetAmount();
+        this.nestPrice = '0';
+        this.priceSpread = '0';
+        return;
+      }
 
       if (
         !this.cofixService.isCoFixToken(this.fromCoin.address) ||
@@ -614,7 +638,7 @@ export class SwapPage implements OnInit, OnDestroy {
 
   canSwap() {
     let result = false;
-    if (!this.cofixService.getCurrentAccount()) {
+    if (!this.cofixService.getCurrentAccount() || this.changePrice === '0') {
       return false;
     } else {
       if (this.fromCoin.id === 'ETH') {

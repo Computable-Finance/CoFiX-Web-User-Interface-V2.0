@@ -439,7 +439,7 @@ export class CofiXService {
       }
     }
 
-    if (toToken !== undefined) {
+    if (toToken !== undefined && innerAmount !== '0') {
       if (this.isCoFixToken(toToken)) {
         const result = await this.executionPriceAndExpectedCofiByETH2ERC20(
           toToken,

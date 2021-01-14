@@ -41,21 +41,32 @@ async function executionPriceAndMinimumAmountOut(
 ) {
   const tokenIn = fromToken ? token(fromToken) : wethToken(toToken.network);
   const tokenOut = toToken ? token(toToken) : wethToken(fromToken.network);
-  const pair = await Fetcher.fetchPairData(tokenIn, tokenOut, provider);
-  const route = new Route([pair], tokenIn);
-  const trade = new Trade(
-    route,
-    new TokenAmount(tokenIn, parseUnits(amountIn, tokenIn.decimals).toString()),
-    TradeType.EXACT_INPUT
-  );
-  // const slippageTolerance = new Percent('50', '10000');
-  // const amountOutMin = ethersOf(
-  //   trade.minimumAmountOut(slippageTolerance).raw.toString()
-  // );
-  return {
-    excutionPrice: trade.executionPrice.toSignificant(8),
-    amountOut: unitsOf(trade.outputAmount.raw.toString(), tokenOut.decimals),
-  };
+  try {
+    const pair = await Fetcher.fetchPairData(tokenIn, tokenOut, provider);
+    const route = new Route([pair], tokenIn);
+    const trade = new Trade(
+      route,
+      new TokenAmount(
+        tokenIn,
+        parseUnits(amountIn, tokenIn.decimals).toString()
+      ),
+      TradeType.EXACT_INPUT
+    );
+    // const slippageTolerance = new Percent('50', '10000');
+    // const amountOutMin = ethersOf(
+    //   trade.minimumAmountOut(slippageTolerance).raw.toString()
+    // );
+    return {
+      excutionPrice: trade.executionPrice.toSignificant(8),
+      amountOut: unitsOf(trade.outputAmount.raw.toString(), tokenOut.decimals),
+    };
+  } catch (e) {
+    console.error('Insufficient liquidity for this trade.', e);
+    return {
+      excutionPrice: '0',
+      amountOut: '0',
+    };
+  }
 }
 
 export async function executionPriceAndAmountOutByERC202ETHThroughUniswap(
