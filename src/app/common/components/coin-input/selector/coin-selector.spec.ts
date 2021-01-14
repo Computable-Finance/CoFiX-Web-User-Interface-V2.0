@@ -1,6 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavParams } from '@ionic/angular';
 import { TranslatePipe } from '@ngx-translate/core';
 import { MockPipe, MockProvider } from 'ng-mocks';
 import { TOKENS } from 'src/app/common/constants';
@@ -23,6 +23,7 @@ describe('CoinSelector', () => {
           dismiss: (coin) => (coinSelected = coin),
         }),
         MockProvider(CofiXService),
+        MockProvider(NavParams),
       ],
       declarations: [
         CoinSelector,
