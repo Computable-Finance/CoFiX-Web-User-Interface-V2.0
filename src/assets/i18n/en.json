@@ -222,6 +222,6 @@
   "more_details_short": "Learn More",
   "search_placeholder": "Search name or paste address",
   "loading_tokens": "Loading more tokens...",
-  "scroll_note": "Note: There are {{tokenCount}} tokens, scroll down to load more tokens.<br>(From: <a href='https://tokens.coingecko.com/uniswap/all.json' target='blank'>CoinGecko TokenList</a>.)",
+  "scroll_note": "Note: There are {{tokenCount}} tokens, scroll down to load more tokens.<br>(Token list is provided by <a href='https://tokens.coingecko.com/uniswap/all.json' target='blank'>CoinGecko TokenList</a>.), please VERIFY the token contract address before trading",
   "remove": "Remove"
 }
