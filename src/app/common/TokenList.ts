@@ -66,6 +66,15 @@ export const internalTokens = [
     logoURI:
       'https://assets.coingecko.com/coins/images/11284/small/52954052.png?1589868539',
   },
+  {
+    chainId: 3,
+    address: '0x1fe16de955718cfab7a44605458ab023838c2793',
+    name: 'Compound',
+    symbol: 'COMP',
+    decimals: 18,
+    logoURI:
+      'https://assets.coingecko.com/coins/images/10775/small/COMP.png?1592625425',
+  },
   // the following is copyed from token list of coingecko
   // https://tokens.coingecko.com/uniswap/all.json
   {
