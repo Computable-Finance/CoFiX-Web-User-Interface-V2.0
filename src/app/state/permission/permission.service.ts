@@ -10,7 +10,7 @@ export class PermissionsService {
     account: string,
     token: string,
     spender: string,
-    allowance: string = '999999999999999999999999999999999999'
+    allowance: string = '9999999999999999999999999999'
   ) {
     const value = this.store.getValue();
     const permission = value[account];
