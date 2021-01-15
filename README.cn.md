@@ -16,7 +16,7 @@
 
 ### 合约地址常量
 
-CoFix 相关合约地址常量：src/app/common/constants.ts 。
+CoFiX 相关合约地址常量：src/app/common/constants.ts 。
 
 ### 运行环境
 
@@ -41,6 +41,23 @@ export E2E_PK=Your-PrivateKey
 - infura，当未连接钱包时，用于显示公开信息（如兑换率）的 infura 配置。
 - network，infura 用的网络 id
 - e2e，是否为 e2e 以及测试用的 wallet
+
+### 在测试网下运行 HyBird Swap 交易对
+
+\***\*以下内容仅针对 Ropsten 网络而言，主网不存在这样的问题\*\***
+
+目前 CoFiX 中在 Ropsten 测试网上使用的 WETH 是内部自行部署的合约，这导致当前交易对中存在任意一个外部 Token 时（非 USDT / HBTC），包括 ETH + 外部 Token 交易对，，系统可能会提示：缺乏足够的流动性。这是因为 WETH 与该 Token 之间缺乏 Uniswap （Hybrid Swap 的基础）上的流动性导致的。因此，当网络选择为 Ropsten 时，并不是随便添加的地址都能直接通过 CoFiX 完成交易。
+
+为了方便测试，目前的代码中预置了两个外部 Token：COMP 和 NEST，它们可以自由地与预置的其他 Token 进行兑换。
+
+如果想添加自己的 Token 在 Ropsten 下完成兑换，需要提前做一些准备：
+
+1. 得到 Token 地址，以下链接提供了 Ropsten 下 Uniswap 合约上交换过的 token 地址，可作为参考。
+   - https://ropsten.etherscan.io/address/0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D#tokentxns
+1. 获得 CoFiX 测试自行部署的 WETH ，调用其中的 `deposit。`
+   - https://ropsten.etherscan.io/address/0x59b8881812Ac484Ab78b8fc7c10b2543e079a6C3#writeContract
+1. 用 Uniswap 在测试网上建立 Token + WETH 的 Pair，WETH 的地址参见 `constants.ts` 中 `WETH9` 对应地址。
+   - 请注意：使用 `network === 3` 的分支中的值。
 
 ## 开发
 

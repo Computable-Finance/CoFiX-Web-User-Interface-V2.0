@@ -42,6 +42,23 @@ The template used to create environment file can be found in `script/preprocessi
 - network, infura network id
 - e2e, e2e flag and wallet used in e2e testing.
 
+### Running HyBird Swap Against Ropsten
+
+\***\* The following is only for Ropsten , not mainnet \*\***
+
+On Ropsten, WETH currently used in CoFiX is an internally deployed contract, which may result in a lack of sufficient liquidity when any external Token (other than USDT / HBTC) is present in the current pair, including ETH + external Token pairs. This is due to the lack of liquidity on Uniswap (the basis of Hybrid Swap) between WETH and that Token. Therefore, when the network is selected as Ropsten, not just any address added can be traded directly through CoFiX.
+
+For testing purposes, two external Tokens are pre-built in the current code: COMP and NEST, which can be freely exchanged with other pre-built Tokens.
+
+If you want to add new Token to complete the exchange under Ropsten, you need to do some preparation:
+
+1. Token Address, the following link provides the addresses of the tokens exchanged on the Uniswap contract under Ropsten, which can be used as a reference.
+   - https://ropsten.etherscan.io/address/0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D#tokentxns
+1. Get the WETH used in CoFiX: calling `deposit` method.
+   - https://ropsten.etherscan.io/address/0x59b8881812Ac484Ab78b8fc7c10b2543e079a6C3#writeContract
+1. Create a Token + WETH Pair on Ropsten using Uniswap, see `WETH9` in `constants.ts` for address.
+   - Note: Using the value in the branch of `network === 3`.
+
 ## Development
 
 ### Basic Steps
