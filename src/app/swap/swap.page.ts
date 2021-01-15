@@ -13,7 +13,6 @@ import { isValidNumberForTx } from '../common/uitils/bignumber-utils';
 import { CofiXService } from '../service/cofix.service';
 import { EventBusService } from '../service/eventbus.service';
 import { BalancesQuery } from '../state/balance/balance.query';
-import { MarketDetailsQuery } from '../state/market/market.query';
 import { TxService } from '../state/tx/tx.service';
 
 const BNJS = require('bignumber.js');
@@ -68,8 +67,6 @@ export class SwapPage implements OnInit, OnDestroy {
   minimum: any;
   waitingPopover: any;
   noOracleFee = false;
-  changePriceOfFromTokenSubscription: Subscription;
-  changePriceOfToTokenSubscription: Subscription;
   private eventbusSubscription: Subscription;
   DEX_TYPE = [];
 
@@ -85,7 +82,6 @@ export class SwapPage implements OnInit, OnDestroy {
     private utils: Utils,
     private txService: TxService,
     private balancesQuery: BalancesQuery,
-    private marketDetailsQuery: MarketDetailsQuery,
     private eventbusService: EventBusService
   ) {}
 
@@ -96,9 +92,6 @@ export class SwapPage implements OnInit, OnDestroy {
 
   private unsubscribeAll() {
     this.fromCoin.subscription?.unsubscribe();
-    this.changePriceOfFromTokenSubscription?.unsubscribe();
-    this.changePriceOfToTokenSubscription?.unsubscribe();
-    this.cofixService.getCurrentProvider().off('block');
   }
 
   async ngOnInit() {
@@ -113,6 +106,9 @@ export class SwapPage implements OnInit, OnDestroy {
   ionViewWillEnter() {
     setTimeout(() => {
       this.refreshPage();
+      this.cofixService.getCurrentProvider().on('block', async (blockNum) => {
+        this.getEPAndEC();
+      });
     }, 3000);
   }
 
@@ -384,47 +380,6 @@ export class SwapPage implements OnInit, OnDestroy {
         this.priceSpread = '0';
         return;
       }
-
-      if (
-        !this.cofixService.isCoFixToken(this.fromCoin.address) ||
-        !this.cofixService.isCoFixToken(this.toCoin.address)
-      ) {
-        this.cofixService.getCurrentProvider().on('block', async (blockNum) => {
-          this.getEPAndEC();
-        });
-      } else {
-        if (
-          this.fromCoin.id !== 'ETH' &&
-          this.cofixService.isCoFixToken(this.fromCoin.address)
-        ) {
-          this.changePriceOfFromTokenSubscription = this.marketDetailsQuery
-            .marketDetails$(
-              this.fromCoin.address,
-              'checkedPriceNow',
-              'changePrice'
-            )
-            .subscribe(async (price) => {
-              this.getEPAndEC();
-            });
-        }
-
-        if (
-          this.toCoin.id !== 'ETH' &&
-          this.cofixService.isCoFixToken(this.toCoin.address)
-        ) {
-          this.changePriceOfToTokenSubscription = this.marketDetailsQuery
-            .marketDetails$(
-              this.toCoin.address,
-              'checkedPriceNow',
-              'changePrice'
-            )
-            .subscribe(async (price) => {
-              this.getEPAndEC();
-            });
-        }
-      }
-
-      this.priceSpread = new BNJS(this.changePrice).minus(0);
 
       this.noOracleFee =
         !(
