@@ -75,6 +75,14 @@ export const internalTokens = [
     logoURI:
       'https://assets.coingecko.com/coins/images/10775/small/COMP.png?1592625425',
   },
+  {
+    chainId: 3,
+    address: '0xad6d458402f60fd3bd25163575031acdce07538d',
+    name: 'Dai',
+    symbol: 'DAI-For-Insufficient-Testing',
+    decimals: 18,
+    logoURI: './assets/images/icon/UNKNOWN.png',
+  },
   // the following is copyed from token list of coingecko
   // https://tokens.coingecko.com/uniswap/all.json
   {

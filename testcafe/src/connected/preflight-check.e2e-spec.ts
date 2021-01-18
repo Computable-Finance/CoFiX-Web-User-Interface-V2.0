@@ -3,6 +3,7 @@ import { waitForAngular } from 'testcafe-angular-selectors';
 
 import {
   approveAndCheck,
+  changeFromCoin,
   changeToCoin,
   closeConnectionModal,
   connectAndNavigate,
@@ -30,11 +31,25 @@ test('appove needed before swapping erc20 -> eth / erc20', async (t) => {
   // usdt -> hbtc
   await changeToCoin(t, '#HBTC');
   await t.expect(Selector('#approve-btn').exists).ok();
+
+  // usdt -> nest
+  await changeToCoin(t, '#NEST');
+  await t.expect(Selector('#approve-btn').exists).ok();
+
+  // nest -> usdt
+  await changeToCoin(t, '#USDT');
+  await t.expect(Selector('#approve-btn').exists).ok();
 });
 
 test('do appove', async (t) => {
   // usdt -> eth
   await changeToCoin(t, '#ETH');
+  await approveAndCheck(t);
+});
+
+test('do appove for hybrid swap', async (t) => {
+  // nest -> usdt
+  await changeFromCoin(t, '#NEST');
   await approveAndCheck(t);
 });
 

@@ -1,11 +1,11 @@
 {
   "browsers": "chrome:headless",
   "src": [
-    "src/connected/preflight-check.e2e-spec.ts",
     "src/not_connected/swap.e2e-spec.ts",
     "src/not_connected/pool.e2e-spec.ts",
     "src/not_connected/cofi.e2e-spec.ts",
     "src/not_connected/dividend.e2e-spec.ts",
+    "src/connected/preflight-check.e2e-spec.ts",
     "src/connected/swap.e2e-spec.ts",
     "src/connected/add-liquditity.e2e-spec.ts",
     "src/connected/redeem-liquditity.e2e-spec.ts",
