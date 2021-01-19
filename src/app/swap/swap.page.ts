@@ -66,7 +66,6 @@ export class SwapPage implements OnInit, OnDestroy {
   isShowDetail = false;
   minimum: any;
   waitingPopover: any;
-  noOracleFee = false;
   private eventbusSubscription: Subscription;
   DEX_TYPE = [];
 
@@ -380,13 +379,6 @@ export class SwapPage implements OnInit, OnDestroy {
         this.priceSpread = '0';
         return;
       }
-
-      this.noOracleFee =
-        !(
-          this.cofixService.isCoFixToken(this.fromCoin.address) ||
-          this.cofixService.isCoFixToken(this.toCoin.address)
-        ) &&
-        (this.fromCoin.id === 'ETH' || this.toCoin.id === 'ETH');
     }
 
     if (this.cofixService.getCurrentAccount()) {

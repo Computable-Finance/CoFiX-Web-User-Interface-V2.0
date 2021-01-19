@@ -47,7 +47,7 @@ test('oracle cost checking', async (t) => {
 
   // NEST -> COMP
   await changeToCoin(t, '#COMP');
-  await t.expect(oracleCost.innerText).eql('+0 ETH');
+  await t.expect(oracleCost.innerText).eql('0 ETH');
 });
 
 test('approve button checking', async (t) => {

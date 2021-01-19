@@ -135,7 +135,7 @@
             /></ion-col>
             <ion-col class="ion-text-right number" size="8">
               <div id="oracle-cost" [appSkeleton]="!changePrice">
-                {{noOracleFee? '' : '+'}}{{oracleCost}} ETH
+                {{oracleCost === '0'? '' : '+'}}{{oracleCost}} ETH
               </div>
             </ion-col>
           </ion-row>
