@@ -74,59 +74,35 @@ test('swap button checking', async (t) => {
 });
 
 test('change price checking: ETH -> ERC20', async (t) => {
-  const toCoinInput = Selector('#to-coin input');
-  const changePrice = Selector('#change-price');
-  await t.typeText('#from-coin input', '1');
-  await t.expect(changePrice.innerText).notEql('--');
-  await t.expect(toCoinInput.value).eql(await changePrice.innerText);
+  await inputAndCheck(t);
 });
 
 test('change price checking: ERC20 -> ETH', async (t) => {
-  const toCoinInput = Selector('#to-coin input');
-  const changePrice = Selector('#change-price');
   await changeFromCoin(t, '#USDT');
-  await t.typeText('#from-coin input', '1');
-  await t.expect(changePrice.innerText).notEql('--');
-  await t.expect(toCoinInput.value).eql(await changePrice.innerText);
+  await inputAndCheck(t);
 });
 
 test('change price checking: ERC20 -> ERC20', async (t) => {
-  const toCoinInput = Selector('#to-coin input');
-  const changePrice = Selector('#change-price');
   await changeFromCoin(t, '#USDT');
   await changeToCoin(t, '#HBTC');
-  await t.typeText('#from-coin input', '1');
-  await t.expect(changePrice.innerText).notEql('--');
-  await t.expect(toCoinInput.value).eql(await changePrice.innerText);
+  await inputAndCheck(t);
 });
 
 test('change price checking: ETH -> Non-CoFiX Token, Hybrid SWap', async (t) => {
-  const toCoinInput = Selector('#to-coin input');
-  const changePrice = Selector('#change-price');
   await changeToCoin(t, '#NEST');
-  await t.typeText('#from-coin input', '1');
-  await t.expect(changePrice.innerText).notEql('--');
-  await t.expect(toCoinInput.value).eql(await changePrice.innerText);
+  await inputAndCheck(t, 2);
 });
 
 test('change price checking: Non-CoFiX Token -> CoFiX Token, Hybrid SWap', async (t) => {
-  const toCoinInput = Selector('#to-coin input');
-  const changePrice = Selector('#change-price');
   await changeFromCoin(t, '#USDT');
   await changeToCoin(t, '#NEST');
-  await t.typeText('#from-coin input', '1');
-  await t.expect(changePrice.innerText).notEql('--');
-  await t.expect(toCoinInput.value).eql(await changePrice.innerText);
+  await inputAndCheck(t, 2);
 });
 
 test('change price checking: Non-CoFiX Token -> Non-CoFiX Token, Hybrid SWap', async (t) => {
-  const toCoinInput = Selector('#to-coin input');
-  const changePrice = Selector('#change-price');
   await changeFromCoin(t, '#NEST');
   await changeToCoin(t, '#COMP');
-  await t.typeText('#from-coin input', '1');
-  await t.expect(changePrice.innerText).notEql('--');
-  await t.expect(toCoinInput.value).eql(await changePrice.innerText);
+  await inputAndCheck(t, 2);
 });
 
 test('insufficient liquidity checking, Hybrid SWap', async (t) => {
@@ -137,3 +113,18 @@ test('insufficient liquidity checking, Hybrid SWap', async (t) => {
     .expect(errorLine.innerText)
     .contains('Insufficient liquidity for this trade.');
 });
+
+async function inputAndCheck(t: TestController, scale = -1) {
+  const toCoinInput = Selector('#to-coin input');
+  const changePrice = Selector('#change-price');
+  await t.typeText('#from-coin input', '1');
+  await t.expect(changePrice.innerText).notEql('--');
+  if (scale === -1) {
+    await t.expect(toCoinInput.value).eql(await changePrice.innerText);
+  } else {
+    await t.wait(1500);
+    await t
+      .expect(Number(await toCoinInput.value).toFixed(scale))
+      .eql(Number(await changePrice.innerText).toFixed(scale));
+  }
+}

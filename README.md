@@ -42,7 +42,7 @@ The template used to create environment file can be found in `script/preprocessi
 - network, infura network id
 - e2e, e2e flag and wallet used in e2e testing.
 
-### Running HyBird Swap Against Ropsten
+### Running HybridSwap Against Ropsten
 
 \***\* The following is only for Ropsten , not mainnet \*\***
 

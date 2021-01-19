@@ -39,7 +39,7 @@ test('swap eth -> non-cofix token, hybrid swap', async (t) => {
 test('swap non-cofix token -> eth, hybrid swap', async (t) => {
   await changeFromCoin(t, '#NEST');
   await changeToCoin(t, '#ETH');
-  await doSwapTesting(t, '1');
+  await doSwapTesting(t, '0.01');
 });
 
 test('swap cofix token -> non-cofix token, hybrid swap ', async (t) => {
@@ -63,7 +63,7 @@ async function doSwapTesting(t: TestController, value = '0.01') {
   const changePrice = Selector('#change-price');
   await t.expect(changePrice.innerText).notEql('--');
   await t.typeText('#from-coin input', value);
-  await t.wait(1000);
+  await t.wait(1500);
   await waitToClick(t, '#swap-btn');
   await expectOneSuccessTx(t);
 }

@@ -42,7 +42,7 @@ export E2E_PK=Your-PrivateKey
 - network，infura 用的网络 id
 - e2e，是否为 e2e 以及测试用的 wallet
 
-### 在测试网下运行 HyBird Swap 交易对
+### 在测试网下运行 HybridSwap 交易对
 
 \***\*以下内容仅针对 Ropsten 网络而言，主网不存在这样的问题\*\***
 
