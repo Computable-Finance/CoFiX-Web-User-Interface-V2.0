@@ -37,12 +37,14 @@ describe('CoinInput', () => {
   });
 
   it('should select a coin when isSelectCoin === true', () => {
+    component.coin = 'USDT';
     component.isSelectCoin = true;
     fixture.detectChanges();
     expect(element.querySelector('.sel')).not.toBeNull();
   });
 
   it('should not select a coin when isSelectCoin === false', () => {
+    component.coin = 'USDT';
     component.isSelectCoin = false;
     fixture.detectChanges();
     expect(element.querySelector('.sel')).toBeNull();
@@ -51,6 +53,7 @@ describe('CoinInput', () => {
   it('should show error message when one of [isShowError, isInsufficientError, overLiquid()] is false', () => {
     [
       {
+        coin: 'USDT',
         isShowError: true,
         isInsufficientError: false,
         amount: '1',
@@ -58,6 +61,7 @@ describe('CoinInput', () => {
         expected: 1,
       },
       {
+        coin: 'USDT',
         isShowError: false,
         isInsufficientError: false,
         amount: '3',
@@ -65,6 +69,7 @@ describe('CoinInput', () => {
         expected: 1,
       },
       {
+        coin: 'USDT',
         isShowError: true,
         isInsufficientError: false,
         amount: '3',
