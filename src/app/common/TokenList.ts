@@ -13,8 +13,17 @@ export function tokenList(chainId) {
   return tokens.filter((token) => token.chainId === chainId);
 }
 
-export function tokenLogo(tokenName: string) {
-  return tokens.find((token) => token.symbol === tokenName)?.logoURI;
+export function tokenLogo(t: string) {
+  return tokens.find((token) => token.symbol === t || token.address === t)
+    ?.logoURI;
+}
+
+export function tokenName(t: string) {
+  if (t.startsWith('0x')) {
+    return tokens.find((token) => token.address === t).symbol;
+  } else {
+    return t;
+  }
 }
 
 // initialized in app.component

@@ -11,7 +11,7 @@
             <span class="input-group-text"
               ><img src="{{tokenLogo(coin)}}" class="coin_icon" />&nbsp;<span
                 class="coin-title"
-                >{{coin}}</span
+                >{{tokenName(coin)}}</span
               >
               &nbsp;<img
                 *ngIf="isSelectCoin"
@@ -43,14 +43,14 @@
             <span>{{'your_balance' | translate}}</span>：<span id="balance"
               >{{maxAmount | truncate:'--'}}
             </span>
-            {{coin}}
+            {{tokenName(coin)}}
           </div>
         </div>
         <div *ngIf="isShowError" class="error">
           <span>{{'your_balance' | translate}}</span>：<span id="balance"
             >{{maxAmount | truncate:'--'}}</span
           >
-          {{coin}}
+          {{tokenName(coin)}}
         </div>
         <div *ngIf="overLiquid()" class="error">
           <span>{{'token_balance_of_pair' | translate}} {{maxLiquid}}</span>

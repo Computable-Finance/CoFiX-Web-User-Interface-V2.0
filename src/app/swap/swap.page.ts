@@ -7,7 +7,7 @@ import { CoinInput } from '../common/components/coin-input/coin-input';
 import { TipPannelContent } from '../common/components/tip-pannel/tip-pannel';
 import { DEX_TYPE_COFIX, DEX_TYPE_UNISWAP } from '../common/constants';
 import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
-import { tokenList } from '../common/TokenList';
+import { tokenName, tokens } from '../common/TokenList';
 import { CoinContent } from '../common/types/CoinContent';
 import { isValidNumberForTx } from '../common/uitils/bignumber-utils';
 import { CofiXService } from '../service/cofix.service';
@@ -354,12 +354,8 @@ export class SwapPage implements OnInit, OnDestroy {
     this.showError = false;
 
     if (this.cofixService.getCurrentProvider) {
-      this.fromCoin.address = tokenList(
-        this.cofixService.getCurrentNetwork()
-      ).find((token) => token.symbol === this.fromCoin.id)?.address;
-      this.toCoin.address = tokenList(
-        this.cofixService.getCurrentNetwork()
-      ).find((token) => token.symbol === this.toCoin.id)?.address;
+      this.fromCoin.address = this.getAddress(this.fromCoin.id);
+      this.toCoin.address = this.getAddress(this.toCoin.id);
 
       this.changePrice = (
         await this.cofixService.executionPriceAndExpectedCofi(
@@ -617,6 +613,22 @@ export class SwapPage implements OnInit, OnDestroy {
   showDetail(event) {
     if (event.srcElement.id) {
       this.isShowDetail = !this.isShowDetail;
+    }
+  }
+
+  tokenName(t) {
+    return tokenName(t);
+  }
+
+  private getAddress(tokenId: string) {
+    if (tokenId.startsWith('0x')) {
+      return tokenId;
+    } else {
+      return tokens.find(
+        (token) =>
+          token.symbol === tokenId &&
+          token.chainId === this.cofixService.getCurrentNetwork()
+      )?.address;
     }
   }
 }

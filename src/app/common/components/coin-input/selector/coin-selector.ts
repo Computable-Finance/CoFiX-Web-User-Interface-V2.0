@@ -1,8 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import { init } from '@datorama/akita-ngdevtools';
 import { IonInfiniteScroll, ModalController, NavParams } from '@ionic/angular';
-import { async } from 'rxjs/internal/scheduler/async';
-import { getTokenListByQuery } from 'src/app/common/TokenList';
+import { getTokenListByQuery, tokens } from 'src/app/common/TokenList';
 import { CofiXService } from 'src/app/service/cofix.service';
 import { MyTokenService } from 'src/app/state/mytoken/myToken.service';
 
@@ -19,6 +17,7 @@ export class CoinSelector {
   q = { max: 7, offset: 0 };
   pageindex = 1;
   selectedCoin: string;
+
   constructor(
     private modalController: ModalController,
     private cofixService: CofiXService,
@@ -68,7 +67,7 @@ export class CoinSelector {
       this.myTokenService.remove(coin.id);
       this.getTokenList();
     } else {
-      this.modalController.dismiss(coin.symbol);
+      this.modalController.dismiss(this.genInternalCoinId(coin));
     }
   }
 
@@ -91,6 +90,20 @@ export class CoinSelector {
       } else {
         this.getTokenList();
       }
+    }
+  }
+
+  genInternalCoinId(coin) {
+    const count = tokens.filter(
+      (token) =>
+        token.chainId === this.cofixService.getCurrentNetwork() &&
+        token.symbol === coin.symbol
+    ).length;
+
+    if (count > 1) {
+      return coin.address;
+    } else {
+      return coin.symbol;
     }
   }
 

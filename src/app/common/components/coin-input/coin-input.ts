@@ -10,7 +10,7 @@ import { ModalController } from '@ionic/angular';
 import { EMPTY, Subject, Subscription } from 'rxjs';
 import { debounceTime, switchMap } from 'rxjs/operators';
 import { COFIX_TOKENS } from '../../constants';
-import { tokenLogo } from '../../TokenList';
+import { tokenLogo, tokenName } from '../../TokenList';
 
 import { CoinSelector } from './selector/coin-selector';
 
@@ -87,10 +87,14 @@ export class CoinInput implements OnInit, OnDestroy {
     return new BNJS(this.amount).gt(new BNJS(this.maxLiquid));
   }
 
-  tokenLogo(tokenName: string) {
-    if (COFIX_TOKENS.indexOf(tokenName) > -1) {
-      return `./assets/images/icon/${tokenName}.png`;
+  tokenLogo(token: string) {
+    if (COFIX_TOKENS.indexOf(token) > -1) {
+      return `./assets/images/icon/${token}.png`;
     }
-    return tokenLogo(tokenName);
+    return tokenLogo(token);
+  }
+
+  tokenName(token: string) {
+    return tokenName(token);
   }
 }

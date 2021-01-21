@@ -58,11 +58,11 @@
             </ion-col>
             <ion-col class="ion-text-right number" size="7">
               <div [appSkeleton]="!changePrice">
-                1 <span class="tk1">{{fromCoin.id}}</span> =
+                1 <span class="tk1">{{tokenName(fromCoin.id)}}</span> =
                 <span id="change-price" class="change-price"
                   >{{changePrice | truncate:'--'}}</span
                 >
-                {{toCoin.id}}
+                {{tokenName(toCoin.id)}}
               </div>
             </ion-col>
             <ion-col size="1">
@@ -88,11 +88,11 @@
                       {{'swap_nestprice' | translate}}
                     </ion-col>
                     <ion-col class="number ion-text-right" size="7">
-                      1 <span class="tk1">{{fromCoin.id}}</span> =
+                      1 <span class="tk1">{{tokenName(fromCoin.id)}}</span> =
                       <span class="change-price"
                         >{{nestPrice | truncate:'--':8}}</span
                       >
-                      {{toCoin.id}}
+                      {{tokenName(toCoin.id)}}
                     </ion-col>
                   </ion-row>
                   <ion-row>
@@ -100,7 +100,7 @@
                       {{'swap_pricefee' | translate}}
                     </ion-col>
                     <ion-col class="number ion-text-right" size="7">
-                      {{priceSpread | truncate}} {{toCoin.id}}
+                      {{priceSpread | truncate}} {{tokenName(toCoin.id)}}
                     </ion-col>
                   </ion-row>
                 </ion-col>
