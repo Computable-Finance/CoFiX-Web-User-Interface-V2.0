@@ -49,12 +49,16 @@ describe('Market Details State Management', () => {
     let ethAmount;
     let erc20Amount;
     let changePrice;
+    let vola;
+    let bn;
 
     service.updateMarketDetails('testCoin', {
       checkedPriceNow: {
         ethAmount: '1',
         erc20Amount: '2',
         changePrice: '3',
+        vola: '4',
+        bn: '5',
       },
     });
 
@@ -73,19 +77,35 @@ describe('Market Details State Management', () => {
       .subscribe((res) => {
         changePrice = res;
       });
+    const subscription4 = query
+      .marketDetails$('testCoin', 'checkedPriceNow', 'vola')
+      .subscribe((res) => {
+        vola = res;
+      });
+    const subscription5 = query
+      .marketDetails$('testCoin', 'checkedPriceNow', 'bn')
+      .subscribe((res) => {
+        bn = res;
+      });
 
     expect(ethAmount).toEqual('1');
     expect(erc20Amount).toEqual('2');
     expect(changePrice).toEqual('3');
+    expect(vola).toEqual('4');
+    expect(bn).toEqual('5');
 
     const price = query.getCheckedPriceNow('testCoin');
     expect(price.ethAmount).toEqual('1');
     expect(price.erc20Amount).toEqual('2');
     expect(price.changePrice).toEqual('3');
+    expect(price.vola).toEqual('4');
+    expect(price.bn).toEqual('5');
 
     subscription1.unsubscribe();
     subscription2.unsubscribe();
     subscription3.unsubscribe();
+    subscription4.unsubscribe();
+    subscription5.unsubscribe();
   });
 
   it('should update navPerShare', () => {

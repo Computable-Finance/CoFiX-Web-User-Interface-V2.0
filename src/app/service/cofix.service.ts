@@ -140,7 +140,7 @@ export class CofiXService {
 
     this.registerWeb3EventHandler();
     this.trackingBlockchain();
-    this.initTokenScript();
+    // this.initTokenScript();
   }
 
   private initTokenScript() {
@@ -1612,6 +1612,7 @@ export class CofiXService {
 
   private async updateKInfo(address: string) {
     let kinfo;
+    let latestK = '';
 
     if (tokenScriptContent[address]?.LiquidityPoolShare?.kInfoK) {
       kinfo = [0, 0, 0];
@@ -1622,12 +1623,24 @@ export class CofiXService {
         this.contractAddressList.CofiXController,
         this.provider
       ).getKInfo(address);
+
+      const latestPrice = await this.checkPriceNow(address);
+      latestK = await getCoFiXControllerContract(
+        this.contractAddressList.CofiXController,
+        this.provider
+      ).calcK(latestPrice.vola, latestPrice.bn);
+
+      console.log(
+        `vola: ${latestPrice.vola}`,
+        `bn: ${latestPrice.bn}`,
+        `latestK: ${latestK}`
+      );
     }
 
     this.marketDetailsService.updateMarketDetails(address, {
       kinfo: {
-        kOriginal: kinfo[0],
-        k: new BNJS(kinfo[0]).div(1e8),
+        kOriginal: latestK,
+        k: new BNJS(latestK).div(1e8),
         theta: new BNJS(kinfo[2]).div(1e8),
       },
     });
@@ -1664,19 +1677,23 @@ export class CofiXService {
         this.provider
       );
 
-      price = await oracle.checkPriceNow(tokenAddress);
+      price = await oracle.latestPrice(tokenAddress);
     }
 
     const decimals = await this.getERC20Decimals(tokenAddress);
     const ethAmount = ethersOf(price[0]);
     const erc20Amount = unitsOf(price[1], decimals);
     const changePrice = new BNJS(erc20Amount).div(new BNJS(ethAmount));
+    const vola = price[3];
+    const bn = price[4];
 
     this.marketDetailsService.updateMarketDetails(tokenAddress, {
       checkedPriceNow: {
         ethAmount,
         erc20Amount,
         changePrice,
+        vola,
+        bn,
       },
     });
   }

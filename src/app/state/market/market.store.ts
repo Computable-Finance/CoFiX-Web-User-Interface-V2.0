@@ -7,6 +7,8 @@ export interface MarketDetails {
     ethAmount: string;
     erc20Amount: string;
     changePrice: string;
+    vola: string;
+    bn: string;
   };
   navPerShare: string;
   rewardRate: string;
