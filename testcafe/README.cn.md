@@ -56,18 +56,35 @@ npm test
 以下是测试结果的例子：
 
 ```
-$npm test
-
-> cofix-e2e@1.0.0 test /Users/foxgem/projects/cofix/CoFiX-Web-User-Interface/testcafe
-> testcafe
-
  Running tests in:
- - Chrome 86.0.4240.198 / macOS 10.14.6
+ - Chrome 88.0.4324.96 / macOS 10.14.6
+
+ Wallet Not Connected: Swap Page
+ ✓ oracle cost checking
+ ✓ approve button checking
+ ✓ swap button checking
+ ✓ change price checking: ETH -> ERC20
+ ✓ change price checking: ERC20 -> ETH
+ ✓ change price checking: ERC20 -> ERC20
+ ✓ change price checking: ETH -> Non-CoFiX Token, Hybrid SWap
+ ✓ change price checking: Non-CoFiX Token -> CoFiX Token, Hybrid SWap
+ ✓ change price checking: Non-CoFiX Token -> Non-CoFiX Token, Hybrid SWap
+ ✓ insufficient liquidity checking, Hybrid SWap
+
+ Wallet Not Connected: Pool Page
+ ✓ connect modal and button checking
+
+ Wallet Not Connected: CoFi Page
+ ✓ connect modal and button checking
+
+ Wallet Not Connected: Dividend Page
+ ✓ connect modal and button checking
 
  Wallet Connected: Swap Page (preflight check)
  ✓ appove not needed before swapping eth -> erc20
  ✓ appove needed before swapping erc20 -> eth / erc20
  ✓ do appove
+ ✓ do appove for hybrid swap
 
  Wallet Connected: Add Liquid Page (preflight check)
  ✓ approve needed before adding liquid
@@ -86,26 +103,15 @@ $npm test
  ✓ do appove
  ✓ approve not needed before withdrawing cofi
 
- Wallet Not Connected: Swap Page
- ✓ oracle cost checking
- ✓ approve button checking
- ✓ swap button checking
- ✓ change price checking: ETH -> ERC20
- ✓ change price checking: ERC20 -> ETH
-
- Wallet Not Connected: Pool Page
- ✓ connect modal and button checking
-
- Wallet Not Connected: CoFi Page
- ✓ connect modal and button checking
-
- Wallet Not Connected: Dividend Page
- ✓ connect modal and button checking
-
  Wallet Connected: Swap Page
  ✓ swap eth -> erc20
  ✓ swap erc20 -> eth
  ✓ swap erc20 -> erc20
+ ✓ swap eth -> non-cofix token, hybrid swap
+ ✓ swap non-cofix token -> eth, hybrid swap
+ ✓ swap cofix token -> non-cofix token, hybrid swap
+ ✓ swap non-cofix token -> cofix token, hybrid swap
+ ✓ swap non-cofix token -> non-cofix token, hybrid swap
 
  Wallet Connected: Add Liquid Page
  ✓ add eth and usdt with no staking
@@ -156,7 +162,7 @@ $npm test
  ✓ max cofi can be withdrawed === cofi-deposited
 
 
- 50 passed (11m 49s)
+ 61 passed (17m 19s)
 ```
 
 ### 关于测试代码
