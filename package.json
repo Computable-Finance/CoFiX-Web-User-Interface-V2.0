@@ -1,6 +1,6 @@
 {
   "name": "cofix-interface",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "author": "CoFiX",
   "homepage": "https://cofix.io/",
   "scripts": {
@@ -12,7 +12,9 @@
     "pretest": "node ./script/preprocessing.js",
     "test": "ng test",
     "lint": "ng lint",
-    "test-account": "node ./script/test-account.js"
+    "test-account": "node ./script/test-account.js",
+    "preanalyze": "node ./script/preprocessing.js production",
+    "analyze": "ng build --prod --stats-json && webpack-bundle-analyzer ./www/stats.json"
   },
   "private": true,
   "dependencies": {
@@ -72,7 +74,8 @@
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "~3.9.5"
+    "typescript": "~3.9.5",
+    "webpack-bundle-analyzer": "^4.4.0"
   },
   "description": "The CoFiX Web UI"
 }
