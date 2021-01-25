@@ -64,22 +64,18 @@ export const FOOTER_ITEMS = [
   {
     id: 'whitepaper',
     link: 'https://cofix.io/doc/CoFiX_White_Paper.pdf',
-    img: 'white_icon.png',
   },
   {
     id: 'word',
     link: 'https://docs.cofix.io/',
-    img: 'word.png',
   },
   {
     id: 'github',
     link: 'https://github.com/Computable-Finance',
-    img: 'github_icon.png',
   },
   {
     id: 'community',
     link: 'https://t.me/CofiXProtocol',
-    img: 'community.png',
   },
 ];
 
