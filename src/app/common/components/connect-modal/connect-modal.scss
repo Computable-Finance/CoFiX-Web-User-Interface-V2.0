@@ -65,3 +65,13 @@
   height: 40px;
   margin-right: 10px;
 }
+
+.list-md .item-lines-full {
+  --border-color: var(--mercury);
+  --background: white;
+}
+
+.list-ios .item-lines-full {
+  --border-color: var(--mercury);
+  --background: white;
+}
