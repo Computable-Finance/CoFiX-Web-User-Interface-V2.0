@@ -21,7 +21,10 @@ describe('CoinInput', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [],
-      providers: [MockProvider(ModalController)],
+      providers: [
+        MockProvider(ModalController),
+        MockProvider(BalanceTruncatePipe),
+      ],
       declarations: [
         CoinInput,
         MockPipe(TranslatePipe),

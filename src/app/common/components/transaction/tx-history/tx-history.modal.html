@@ -13,9 +13,16 @@
     <ion-col size="2">
       <img src="./assets/images/account.png" />
     </ion-col>
-    <ion-col size="9" class="address">
+    <ion-col class="address">
       {{cofixService.getCurrentAccount() | walletaddress}}
     </ion-col>
+    <ion-col
+      size="3"
+      class="disconnect ion-text-right"
+      *ngIf="isWalletConnect"
+      (click)="disconnect()"
+      >{{'disconnect' | translate}}</ion-col
+    >
   </ion-row>
   <div class="menu-divider"></div>
   <ion-row>

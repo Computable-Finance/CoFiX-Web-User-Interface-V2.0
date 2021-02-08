@@ -101,3 +101,9 @@
   display: flex;
   align-items: center;
 }
+
+.disconnect {
+  font-size: 16px;
+  color: var(--azure);
+  cursor: pointer;
+}

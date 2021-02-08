@@ -1,25 +1,32 @@
-<ion-grid>
+<ion-grid class="connect-modal">
   <ion-row class="title ion-align-items-center ion-align-self-center">
-    <ion-col offset="10" size="2" (click)="close()">
-      <div class="img-div">
+    <ion-col class="ion-text-center" size="12">
+      {{'connect_title' | translate}}
+      <div class="img-div" (click)="close()">
         <img src="assets/images/close.png" class="close-img" />
       </div>
     </ion-col>
   </ion-row>
-  <ion-row class="account-info ion-align-items-center ion-align-self-center">
-    <ion-col size="12" class="ion-text-center">
-      <img src="./assets/images/connect.png" class="connect-img" />
-    </ion-col>
-    <ion-col class="ion-text-center tx-title" size="12">
-      {{'connect_title' | translate}}
-    </ion-col>
-    <ion-col size="12" class="ion-text-center tx-desc">
-      {{'connect_desc' | translate}}
-    </ion-col>
-    <ion-col size="12">
-      <ion-button class="operation-btn connect-btn" (click)="connect()"
-        >{{'btn_connect' | translate}}</ion-button
-      >
-    </ion-col>
+  <ion-row class="ion-align-items-center ion-align-self-center">
+    <ion-col class="desc ion-text-center" size="12"
+      >{{'connect_desc' | translate}}</ion-col
+    >
   </ion-row>
+  <div class="menu-divider"></div>
+  <ion-list class="ion-no-padding">
+    <ion-radio-group [(ngModel)]="walletType">
+      <ion-item *ngFor="let wallet of walletList" lines="full">
+        <ion-label class="connect"
+          ><img src="assets/images/{{wallet.id}}.png" /> {{wallet.desc |
+          translate}}</ion-label
+        >
+        <ion-radio
+          id="{{wallet.id}}"
+          value="{{wallet.id}}"
+          color="secondary"
+          (click)="connect(wallet.id)"
+        ></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
 </ion-grid>

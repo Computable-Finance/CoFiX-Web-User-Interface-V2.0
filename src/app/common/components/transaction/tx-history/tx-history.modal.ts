@@ -14,6 +14,7 @@ import { TxQuery } from 'src/app/state/tx/tx.query';
 export class TxHistoryModal implements OnInit, OnDestroy {
   txList: any;
   txListSubscription: Subscription;
+  isWalletConnect: boolean;
 
   constructor(
     private txQuery: TxQuery,
@@ -35,6 +36,7 @@ export class TxHistoryModal implements OnInit, OnDestroy {
           item.title = await this.translate.get(params.t, params.p).toPromise();
         });
       });
+    this.isWalletConnect = this.cofixService.isWalletConnect();
   }
 
   close() {
@@ -47,5 +49,11 @@ export class TxHistoryModal implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.txListSubscription?.unsubscribe();
+  }
+
+  disconnect() {
+    this.cofixService.disconnectWalletConnect().then(() => {
+      this.popoverController.dismiss();
+    });
   }
 }

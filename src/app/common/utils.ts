@@ -39,6 +39,7 @@ export class Utils {
     const usdt = this.cofixService.getCurrentContractAddressList().USDT;
     const hbtc = this.cofixService.getCurrentContractAddressList().HBTC;
   }
+
   async show(msg: string, position: any) {
     const toast = await this.toastController.create({
       message: msg,
@@ -113,6 +114,7 @@ export class Utils {
     });
     await rejected.present();
   }
+
   async showTXSubmitModal(txHash) {
     const rejected = await this.popoverController.create({
       component: TxStatusModal,
@@ -127,6 +129,7 @@ export class Utils {
     });
     await rejected.present();
   }
+
   async showConnectModal() {
     return await this.popoverController.create({
       component: ConnectModal,
@@ -136,6 +139,7 @@ export class Utils {
       backdropDismiss: false,
     });
   }
+
   async createTXConfirmModal() {
     return await this.popoverController.create({
       component: TxConfirmModal,

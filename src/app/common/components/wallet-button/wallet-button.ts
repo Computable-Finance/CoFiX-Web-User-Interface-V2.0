@@ -2,10 +2,9 @@ import { Component, OnDestroy } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { CofiXService } from 'src/app/service/cofix.service';
-import { EventBusService } from 'src/app/service/eventbus.service';
 import { TxQuery } from 'src/app/state/tx/tx.query';
 
-import { Utils } from '../../utils';
+import { ConnectModal } from '../connect-modal/connect-modal';
 import { TxHistoryModal } from '../transaction/tx-history/tx-history.modal';
 
 @Component({
@@ -20,10 +19,8 @@ export class WalletButton implements OnDestroy {
 
   constructor(
     public cofixService: CofiXService,
-    private utils: Utils,
     private txQuery: TxQuery,
-    private popoverController: PopoverController,
-    private eventbusService: EventBusService
+    private popoverController: PopoverController
   ) {}
 
   subscribe() {
@@ -40,18 +37,12 @@ export class WalletButton implements OnDestroy {
     }
   }
 
-  connect() {
-    this.isConnectLoading = true;
-    this.cofixService
-      .connectWallet()
-      .then(() => {
-        this.utils.getPairAttended();
-        this.isConnectLoading = false;
-        this.eventbusService.emit({ name: 'wallet_connected' });
-      })
-      .catch((err) => {
-        this.isConnectLoading = false;
-      });
+  async connect() {
+    const popover = await this.popoverController.create({
+      component: ConnectModal,
+      cssClass: 'account-class',
+    });
+    await popover.present();
   }
 
   showPending() {

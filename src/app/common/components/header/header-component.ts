@@ -51,6 +51,12 @@ export class HeaderCompoment implements OnInit, OnDestroy {
         location.reload();
       })
     );
+    this.eventSubscriptions.push(
+      this.eventbusService.on('disconnected_from_blockchain', () => {
+        this.settingsService.reset();
+        location.reload();
+      })
+    );
   }
   ngOnInit() {
     this.changeTabs();

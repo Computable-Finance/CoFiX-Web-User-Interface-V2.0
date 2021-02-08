@@ -44,6 +44,7 @@ import {
   executionPriceAndAmountOutByERC202ETHThroughUniswap,
   executionPriceAndAmountOutByETH2ERC20ThroughUniswap,
 } from './uni-utils';
+import WalletConnectProvider from '@walletconnect/web3-provider';
 
 declare let window: any;
 
@@ -69,6 +70,8 @@ export class CofiXService {
 
   private integrationSubscription: Subscription;
 
+  private connectType: string;
+
   constructor(
     private settingsService: SettingsService,
     private eventbusService: EventBusService,
@@ -88,13 +91,36 @@ export class CofiXService {
     this.reset();
   }
 
+  internalProvider = window.ethereum;
+
   async isEnabled() {
-    if (window.ethereum === undefined) {
+    if (this.internalProvider === undefined) {
       return false;
     } else {
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const provider = new ethers.providers.Web3Provider(this.internalProvider);
       return (await provider.listAccounts()).length !== 0;
     }
+  }
+
+  createWalletConnectProvider(qrcode) {
+    return new WalletConnectProvider({
+      infuraId: InfuraApiAccessToken,
+      chainId: environment.network,
+      qrcode,
+    });
+  }
+
+  async initWalletConnectProvider(silent: boolean) {
+    const wcProvider = this.createWalletConnectProvider(!silent);
+
+    await wcProvider.enable().catch((e) => {
+      console.error(e);
+      wcProvider.close();
+      throw new Error('WalletConnect initial fialed.');
+    });
+    this.setConnectType('wallet-connect');
+
+    return wcProvider;
   }
 
   async connectSilently() {
@@ -109,6 +135,23 @@ export class CofiXService {
     await this.setup(false);
   }
 
+  setConnectType(type) {
+    this.connectType = type;
+  }
+
+  isWalletConnect() {
+    return this.connectType === 'wallet-connect';
+  }
+
+  async disconnectWalletConnect() {
+    await this.internalProvider.disconnect();
+  }
+
+  async connectWithWalletConnect(silent: boolean) {
+    this.internalProvider = await this.initWalletConnectProvider(silent);
+    return this.connectSilently();
+  }
+
   private async setup(isEnabled: boolean) {
     if (environment.e2e.on) {
       this.currentAccount = this.getSigner().address;
@@ -119,14 +162,15 @@ export class CofiXService {
       return;
     }
 
-    if (window.ethereum === undefined) {
+    if (this.internalProvider === undefined) {
       throw new Error('Non-Ethereum browser detected. Install MetaMask.');
     }
 
-    this.provider = new ethers.providers.Web3Provider(window.ethereum);
+    this.provider = new ethers.providers.Web3Provider(this.internalProvider);
+
     if (!isEnabled) {
       this.setCurrentAccount(
-        await window.ethereum.request({
+        await this.internalProvider.request({
           method: 'eth_requestAccounts',
         })
       );
@@ -282,26 +326,35 @@ export class CofiXService {
   }
 
   private registerWeb3EventHandler() {
-    window.ethereum
-      .on('disconnect', (error) => {
+    this.internalProvider
+      .on('disconnect', (result) => {
+        console.log('disconnect-----');
+        console.log(result);
         this.reset();
         this.eventbusService.emit({ name: 'disconnected_from_blockchain' });
       })
       .on('accountsChanged', (accounts) => {
-        this.setCurrentAccount(accounts);
-        const currentAccount = this.currentAccount;
-        this.eventbusService.emit({
-          name: 'accountsChanged',
-          value: currentAccount,
-        });
+        console.log('accountsChanged-----');
+        if (this.setCurrentAccount(accounts)) {
+          const currentAccount = this.currentAccount;
+          this.eventbusService.emit({
+            name: 'accountsChanged',
+            value: currentAccount,
+          });
+        }
       })
       .on('chainChanged', (chainId) => {
+        console.log('chainChanged-----');
         this.currentNetwork = chainId;
         this.contractAddressList = getContractAddressListByNetwork(chainId);
         this.eventbusService.emit({
           name: 'chainChanged',
           value: chainId,
         });
+      })
+      .on('close', (result) => {
+        console.log('close-----');
+        console.log(result);
       });
   }
 
@@ -735,6 +788,7 @@ export class CofiXService {
     this.contractAddressList = getContractAddressListByNetwork(
       this.currentNetwork
     );
+    this.internalProvider = window.ethereum;
   }
 
   // 判断是否提供过流动性
@@ -756,9 +810,14 @@ export class CofiXService {
       this.settingsService.reset();
       this.reset();
       this.eventbusService.emit({ name: 'disconnected_from_metamask' });
-    } else if (accounts[0] !== this.currentAccount) {
+      return true;
+    } else if (
+      accounts[0]?.toUpperCase() !== this.currentAccount?.toUpperCase()
+    ) {
       this.currentAccount = accounts[0];
+      return true;
     }
+    return false;
   }
 
   // 领取 ETH 收益
