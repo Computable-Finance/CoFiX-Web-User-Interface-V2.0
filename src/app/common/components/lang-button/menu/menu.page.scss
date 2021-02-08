@@ -77,3 +77,33 @@ img {
     margin: 0px;
   }
 }
+
+.title {
+  height: 41px;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.title ion-col {
+  font-size: 24px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.71;
+  letter-spacing: normal;
+  text-align: center;
+  color: var(--black);
+}
+
+.links-mobile {
+  border-top: solid 1px var(--mercury);
+  border-bottom: solid 1px var(--mercury);
+  background-color: var(--white);
+}
+
+.close-img {
+  position: relative;
+  right: -150px;
+  top: -33px;
+  cursor: pointer;
+}

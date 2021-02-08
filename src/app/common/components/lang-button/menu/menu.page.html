@@ -1,3 +1,17 @@
+<ng-container *ngIf="position === 'footer'">
+  <div class="links-mobile">
+    <ion-grid>
+      <ion-row class="title ion-align-items-center ion-align-self-center">
+        <ion-col class="ion-text-center" size="12">
+          {{'menu' | translate}}
+          <div class="img-div" (click)="close()">
+            <img src="assets/images/close.png" class="close-img" />
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <div class="menu-divider"></div></div
+></ng-container>
 <ion-grid class="select-content ion-no-padding">
   <ng-container *ngFor="let item of menuItems">
     <ion-row

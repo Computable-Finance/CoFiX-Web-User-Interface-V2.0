@@ -2,9 +2,7 @@
   <ion-row class="title ion-align-items-center ion-align-self-center">
     <ion-col class="ion-text-center" size="12">
       {{'select_token' | translate}}
-    </ion-col>
-    <ion-col size="2" (click)="close()">
-      <div class="img-div">
+      <div class="img-div" (click)="close()">
         <img src="assets/images/close.png" class="close-img" />
       </div>
     </ion-col>
@@ -34,26 +32,27 @@
           (click)="selectCoin($event,coin)"
           class="ion-align-items-center ion-align-self-center conversionPrice {{i==0?'first-row':''}}"
         >
-          <ion-col size="2" class="token-logo">
-            <img src="{{coin.logoURI}}" class="coin_icon" />
-          </ion-col>
-
-          <ion-col size="9" *ngIf="coin.symbol==='ETH'">
-            {{coin.symbol}}
-          </ion-col>
-          <ion-col size="9" *ngIf="coin.symbol!=='ETH'">
-            {{coin.symbol}} <br />
-            <span class="address"
-              >{{coin.address | walletaddress:8}}
-              <div *ngIf="coin.id!==undefined">
-                <a
-                  id="remove"
-                  class="{{selectedCoin === coin.symbol?'unremove':'remove'}}"
-                >
-                  {{'remove' | translate}}
-                </a>
-              </div>
-            </span>
+          <ion-col size="12" class="token-item">
+            <img src="{{coin.logoURI}}" class="coin_icon" />&nbsp;
+            <div>
+              <ng-container *ngIf="coin.symbol =='ETH'"
+                >{{coin.symbol}}</ng-container
+              >
+              <ng-container *ngIf="coin.symbol!=='ETH'">
+                {{coin.symbol}} <br />
+                <span class="address"
+                  >{{coin.address | walletaddress:8}}
+                  <div *ngIf="coin.id!==undefined">
+                    <a
+                      id="remove"
+                      class="{{selectedCoin === coin.symbol?'unremove':'remove'}}"
+                    >
+                      {{'remove' | translate}}
+                    </a>
+                  </div>
+                </span>
+              </ng-container>
+            </div>
           </ion-col>
         </ion-row>
       </ng-container>

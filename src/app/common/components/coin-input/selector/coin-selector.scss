@@ -2,11 +2,22 @@
   width: 40px;
   height: 40px;
 }
+@media only screen and (max-width: 510px) {
+  .coin_icon {
+    width: 25px !important;
+    height: 25px !important;
+  }
+}
 
 .title {
-  margin-top: 18px;
+  margin-top: 10px;
   height: 41px;
   font-size: 24px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.71;
+  letter-spacing: normal;
 }
 .title ion-col {
   font-size: 24px;
@@ -15,8 +26,8 @@
   width: 24px;
   height: 24px;
   position: relative;
-  right: -4px;
-  top: 4px;
+  right: 0px;
+  top: 0px;
   cursor: pointer;
 }
 .conversionPrice {
@@ -72,6 +83,7 @@ ion-searchbar {
 }
 .address {
   font-size: 17px;
+  color: rgba(142, 142, 147, 0.9);
 }
 .remove {
   color: var(--danger);
@@ -82,4 +94,25 @@ ion-searchbar {
 .unremove {
   color: var(--danger);
   opacity: 0.4;
+}
+
+.token-item {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+@media only screen and (max-width: 510px) {
+  .conversionPrice {
+    min-height: 64px !important;
+  }
+}
+
+.scroll-note {
+  ::ng-deep {
+    div > p {
+      margin: 0;
+    }
+  }
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { PopoverController } from '@ionic/angular';
 
 import { FOOTER_ITEMS } from '../../constants';
+import { MenuPage } from '../lang-button/menu/menu.page';
 
 @Component({
   selector: 'app-footer',
@@ -10,8 +12,7 @@ import { FOOTER_ITEMS } from '../../constants';
 export class FooterCompoment implements OnInit {
   public footerItems;
   currentYear: number;
-  isShowTools = false;
-  constructor() {
+  constructor(private popoverController: PopoverController) {
     this.currentYear = new Date().getFullYear();
   }
 
@@ -23,7 +24,13 @@ export class FooterCompoment implements OnInit {
     window.open(link);
   }
 
-  showTools() {
-    this.isShowTools = !this.isShowTools;
+  async showTools(ev) {
+    const popover = await this.popoverController.create({
+      component: MenuPage,
+      componentProps: { style: 'pop', position: 'footer' },
+      cssClass: 'popmenu-class',
+      event: ev,
+    });
+    await popover.present();
   }
 }

@@ -65,3 +65,9 @@
   border-bottom: 3px solid transparent;
   margin: 0px 10px;
 }
+
+@media only screen and (min-width: 510px) {
+  .loading-connect {
+    right: 65px;
+  }
+}

@@ -64,6 +64,11 @@ body {
   --botticelli: #ccd9e3;
   --lightblue: #e3f1fc;
 }
+@media only screen and (max-width: 510px) {
+  .conversionPrice {
+    font-size: 17px !important;
+  }
+}
 ion-content {
   --background: #fbfbfb;
 }
@@ -117,7 +122,7 @@ ion-button {
 .popover-coinselect .modal-wrapper {
   width: 344px;
   border-radius: 16px;
-  height: 70%;
+  height: 75%;
   max-height: 700px;
   box-shadow: 0 11px 19px 0 rgba(0, 0, 0, 0.08);
   .ion-page {
@@ -295,7 +300,6 @@ ion-button {
   .card-title {
     width: 90% !important;
   }
-
   .loading-connect {
     position: absolute;
     top: 17px;
@@ -312,7 +316,9 @@ ion-button {
   .txconfirm-class .popover-content,
   .txstatus-class .popover-content,
   .account-class .popover-content,
-  .connect-class .popover-content {
+  .connect-class .popover-content,
+  .popover-coinselect .modal-wrapper {
+    position: absolute;
     left: 0px !important;
     top: unset !important;
     bottom: 0px;
@@ -498,6 +504,18 @@ ion-toggle {
   border: solid 1px var(--mercury);
   background-color: var(--white);
   top: 80px !important;
+}
+
+.popmenu-class .popover-content {
+  width: 100%;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
+  border: solid 1px var(--mercury);
+  background-color: var(--white);
+  left: 0px !important;
+  bottom: 0px;
+  border-radius: 0px;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
 }
 
 .menu-class .popover-content .content p {

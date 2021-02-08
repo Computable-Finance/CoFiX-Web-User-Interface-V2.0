@@ -12,6 +12,7 @@ import { SettingsService } from 'src/app/state/setting/settings.service';
 })
 export class MenuPage {
   @Input() style = 'component';
+  @Input() position = 'top';
   @Output() langChange = new EventEmitter<any>();
   menuItems = FOOTER_ITEMS;
   langItems = LANG_ITEMS;
@@ -40,5 +41,8 @@ export class MenuPage {
 
   isSelect(lang) {
     return this.settingsQuery.lang() === lang;
+  }
+  close() {
+    this.popoverController?.dismiss();
   }
 }

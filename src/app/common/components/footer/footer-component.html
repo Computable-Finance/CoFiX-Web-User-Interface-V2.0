@@ -8,26 +8,12 @@
     </div>
   </div>
   <div class="foot-box-mobile">
-    <div class="links-mobile" *ngIf="isShowTools">
-      <ion-grid>
-        <ion-row class="title ion-align-items-center ion-align-self-center">
-          <ion-col class="ion-text-center" size="12">
-            {{'menu' | translate}}
-            <div class="img-div" (click)="showTools()">
-              <img src="assets/images/close.png" class="close-img" />
-            </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <div class="menu-divider"></div>
-      <app-menu (langChange)="showTools()"></app-menu>
-    </div>
     <div class="tools">
       <ion-grid
         ><ion-row>
           <ion-col class="ion-text-right tools-col" size="12">
             <app-wallet-button class="connect-wallet"></app-wallet-button>
-            <div class="setting" (click)="showTools()">
+            <div class="setting" (click)="showTools($event)">
               <ion-icon
                 name="ellipsis-horizontal"
                 class="setting-icon"
