@@ -48,7 +48,7 @@ describe('Settings State Management', () => {
 
   it('should reset with active tab', () => {
     service.updateActiveTab('cofi');
-    const initialState = createInitialState('cofi');
+    const initialState = createInitialState('cofi', false);
     service.reset();
     expect(JSON.stringify(store.getValue())).toEqual(
       JSON.stringify(initialState)
