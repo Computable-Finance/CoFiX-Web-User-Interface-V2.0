@@ -45,6 +45,7 @@ import {
   executionPriceAndAmountOutByETH2ERC20ThroughUniswap,
 } from './uni-utils';
 import WalletConnectProvider from '@walletconnect/web3-provider';
+import { SettingsQuery } from '../state/setting/settings.query';
 
 declare let window: any;
 
@@ -84,6 +85,7 @@ export class CofiXService {
     private marketDetailsService: MarketDetailsService,
     private marketDetailsQuery: MarketDetailsQuery,
     private integrationService: IntegrationService,
+    private settingsQuery: SettingsQuery,
     private myTokenService: MyTokenService,
     private http: HttpClient
   ) {
@@ -169,12 +171,14 @@ export class CofiXService {
     this.provider = new ethers.providers.Web3Provider(this.internalProvider);
 
     if (!isEnabled) {
+      await this.showConfirmModalIfNeeded();
       this.setCurrentAccount(
         await this.internalProvider.request({
           method: 'eth_requestAccounts',
         })
       );
     } else {
+      await this.showConfirmModalIfNeeded();
       this.currentAccount = (await this.provider.listAccounts())[0];
     }
     this.currentNetwork = (await this.provider.getNetwork()).chainId;
@@ -182,9 +186,32 @@ export class CofiXService {
       this.currentNetwork
     );
 
+    if (
+      this.settingsQuery.metamaskDisconnectedByUser() &&
+      !this.isWalletConnect()
+    ) {
+      this.settingsService.updateMetamaskDisconnectedByUser(false);
+    }
+
     this.registerWeb3EventHandler();
     this.trackingBlockchain();
     // this.initTokenScript();
+  }
+
+  private async showConfirmModalIfNeeded() {
+    if (
+      this.settingsQuery.metamaskDisconnectedByUser() &&
+      !this.isWalletConnect()
+    ) {
+      await window.ethereum.request({
+        method: 'wallet_requestPermissions',
+        params: [
+          {
+            eth_accounts: {},
+          },
+        ],
+      });
+    }
   }
 
   private initTokenScript() {
@@ -328,13 +355,10 @@ export class CofiXService {
   private registerWeb3EventHandler() {
     this.internalProvider
       .on('disconnect', (result) => {
-        console.log('disconnect-----');
-        console.log(result);
         this.reset();
         this.eventbusService.emit({ name: 'disconnected_from_blockchain' });
       })
       .on('accountsChanged', (accounts) => {
-        console.log('accountsChanged-----');
         if (this.setCurrentAccount(accounts)) {
           const currentAccount = this.currentAccount;
           this.eventbusService.emit({
@@ -344,17 +368,12 @@ export class CofiXService {
         }
       })
       .on('chainChanged', (chainId) => {
-        console.log('chainChanged-----');
         this.currentNetwork = chainId;
         this.contractAddressList = getContractAddressListByNetwork(chainId);
         this.eventbusService.emit({
           name: 'chainChanged',
           value: chainId,
         });
-      })
-      .on('close', (result) => {
-        console.log('close-----');
-        console.log(result);
       });
   }
 

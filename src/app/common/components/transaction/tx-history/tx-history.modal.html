@@ -19,7 +19,7 @@
     <ion-col
       size="3"
       class="disconnect ion-text-right"
-      *ngIf="isWalletConnect"
+      *ngIf="canDisConnection"
       (click)="disconnect()"
       >{{'disconnect' | translate}}</ion-col
     >

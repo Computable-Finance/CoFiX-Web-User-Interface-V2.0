@@ -7,14 +7,19 @@ export interface SettingsModel {
   activeTab: string;
   knownRisk: boolean;
   knownRiskForAdd: boolean;
+  metamaskDisconnectedByUser: boolean;
 }
 
-export function createInitialState(activeTab: string): SettingsModel {
+export function createInitialState(
+  activeTab: string,
+  metamaskDisconnectedByUser: boolean
+): SettingsModel {
   return {
     lang: environment.lang,
     activeTab,
     knownRisk: false,
     knownRiskForAdd: false,
+    metamaskDisconnectedByUser,
   };
 }
 
@@ -22,6 +27,6 @@ export function createInitialState(activeTab: string): SettingsModel {
 @StoreConfig({ name: 'settings' })
 export class SettingsStore extends Store<SettingsModel> {
   constructor() {
-    super(createInitialState('swap'));
+    super(createInitialState('swap', false));
   }
 }

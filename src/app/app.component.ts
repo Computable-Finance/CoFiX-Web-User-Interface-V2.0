@@ -68,7 +68,10 @@ export class AppComponent implements OnInit {
   }
 
   async initConnectIfEnabled() {
-    if (await this.cofixService.isEnabled()) {
+    if (
+      (await this.cofixService.isEnabled()) &&
+      !this.settingsQuery.metamaskDisconnectedByUser()
+    ) {
       await this.cofixService.connectSilently();
     } else {
       this.cofixService.connectWithWalletConnect(true);

@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { txLink } from 'src/app/common/uitils/common-funcs';
 import { CofiXService } from 'src/app/service/cofix.service';
+import { SettingsService } from 'src/app/state/setting/settings.service';
 import { TxQuery } from 'src/app/state/tx/tx.query';
 
 @Component({
@@ -14,13 +15,14 @@ import { TxQuery } from 'src/app/state/tx/tx.query';
 export class TxHistoryModal implements OnInit, OnDestroy {
   txList: any;
   txListSubscription: Subscription;
-  isWalletConnect: boolean;
+  canDisConnection: boolean;
 
   constructor(
     private txQuery: TxQuery,
     private popoverController: PopoverController,
     public cofixService: CofiXService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private settingsService: SettingsService
   ) {}
 
   ngOnInit() {
@@ -36,9 +38,15 @@ export class TxHistoryModal implements OnInit, OnDestroy {
           item.title = await this.translate.get(params.t, params.p).toPromise();
         });
       });
-    this.isWalletConnect = this.cofixService.isWalletConnect();
+    this.canDisConnection = this.isWebBrowser();
   }
 
+  isWebBrowser() {
+    let u = navigator.userAgent;
+    let isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+    let isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+    return !(isAndroid || isiOS);
+  }
   close() {
     this.popoverController.dismiss();
   }
@@ -52,8 +60,14 @@ export class TxHistoryModal implements OnInit, OnDestroy {
   }
 
   disconnect() {
-    this.cofixService.disconnectWalletConnect().then(() => {
+    if (this.cofixService.isWalletConnect()) {
+      this.cofixService.disconnectWalletConnect().then(() => {
+        this.popoverController.dismiss();
+      });
+    } else {
+      this.settingsService.updateMetamaskDisconnectedByUser(true);
       this.popoverController.dismiss();
-    });
+      location.reload();
+    }
   }
 }

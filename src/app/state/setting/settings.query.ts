@@ -27,4 +27,8 @@ export class SettingsQuery extends Query<SettingsModel> {
   knownRiskForAdd() {
     return this.store.getValue().knownRiskForAdd;
   }
+
+  metamaskDisconnectedByUser() {
+    return this.store.getValue().metamaskDisconnectedByUser;
+  }
 }

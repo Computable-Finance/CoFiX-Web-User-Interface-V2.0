@@ -22,7 +22,16 @@ export class SettingsService {
     this.store.update({ knownRiskForAdd });
   }
 
+  updateMetamaskDisconnectedByUser(metamaskDisconnectedByUser: boolean) {
+    this.store.update({ metamaskDisconnectedByUser });
+  }
+
   reset() {
-    this.store.update(createInitialState(this.store.getValue().activeTab));
+    this.store.update(
+      createInitialState(
+        this.store.getValue().activeTab,
+        this.store.getValue().metamaskDisconnectedByUser
+      )
+    );
   }
 }
