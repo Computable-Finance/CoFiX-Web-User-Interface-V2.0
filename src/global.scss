@@ -69,9 +69,6 @@ body {
     font-size: 17px !important;
   }
 }
-ion-content {
-  --background: #fbfbfb;
-}
 
 ion-button {
   text-transform: none;
@@ -332,9 +329,6 @@ ion-button {
     padding-left: 8px;
     padding-right: 8px;
   }
-  .tooltips-class .popover-content {
-    width: 270px !important;
-  }
 }
 
 .popover-ios .popover-arrow::after {
@@ -370,7 +364,6 @@ ion-toggle {
 .select-content,
 .select-header {
   width: 100%;
-  background: white;
 }
 
 .first-row {
@@ -417,7 +410,6 @@ ion-toggle {
   height: 113px;
   border-radius: 4px;
   border: solid 1px var(--concrete);
-  background-color: var(--white);
 }
 .claimETH .number {
   font-size: 36px;
@@ -431,33 +423,18 @@ ion-toggle {
   border: 0;
 }
 
-.tooltips-class .popover-content {
-  width: 320px;
-  border-radius: 16px;
-  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
-  border: solid 1px var(--mercury);
-  background-color: var(--white);
-}
-
-.tooltips-class .popover-content .content p {
-  margin-block-start: 0em !important;
-  margin-block-end: 0em !important;
-}
-
 .txconfirm-class .popover-content,
 .txstatus-class .popover-content {
   width: 360px;
   min-height: 260px;
   border-radius: 16px;
   box-shadow: 0 11px 19px 0 rgba(0, 0, 0, 0.08);
-  background-color: var(--white);
 }
 .connect-class .popover-content {
   width: 360px;
   min-height: 323px;
   border-radius: 16px;
   box-shadow: 0 11px 19px 0 rgba(0, 0, 0, 0.08);
-  background-color: var(--white);
 }
 
 .txconfirm-class .popover-content {
@@ -502,7 +479,6 @@ ion-toggle {
   border-bottom-right-radius: 16px;
   box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
   border: solid 1px var(--mercury);
-  background-color: var(--white);
   top: 80px !important;
 }
 
@@ -510,7 +486,6 @@ ion-toggle {
   width: 100%;
   box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
   border: solid 1px var(--mercury);
-  background-color: var(--white);
   left: 0px !important;
   bottom: 0px;
   border-radius: 0px;
@@ -527,7 +502,6 @@ ion-toggle {
   border-radius: 16px;
   box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
   border: solid 1px var(--mercury);
-  background-color: var(--white);
 }
 
 .menu-divider {
