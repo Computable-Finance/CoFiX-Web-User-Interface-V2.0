@@ -38,7 +38,7 @@
     "bignumber.js": "^9.0.1",
     "bufferutil": "^4.0.1",
     "ethers": "^5.0.19",
-    "marked": "^1.2.2",
+    "marked": "^2.0.0",
     "ngx-cacheable": "^1.4.3",
     "rxjs": "~6.5.5",
     "string.prototype.matchall": "^4.0.2",
