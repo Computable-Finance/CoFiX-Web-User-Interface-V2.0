@@ -95,6 +95,8 @@ export class CofiXService {
 
   internalProvider = window.ethereum;
 
+  providerForListening = this.defaultProvider();
+
   async isEnabled() {
     if (this.internalProvider === undefined) {
       return false;
@@ -1529,7 +1531,7 @@ export class CofiXService {
       if (this.currentAccount) {
         await this.updateETHBalance();
         await this.updateDividend();
-        this.provider.on('block', async (blockNum) => {
+        this.providerForListening.on('block', async (blockNum) => {
           console.log('updating ...');
 
           await this.updateETHBalance();
@@ -1539,7 +1541,7 @@ export class CofiXService {
           this.updateMarketDetails();
         });
       } else {
-        this.provider.on('block', async (blockNum) => {
+        this.providerForListening.on('block', async (blockNum) => {
           console.log('updating ...');
 
           this.updateMarketDetails();
@@ -1550,7 +1552,7 @@ export class CofiXService {
 
   private untrackingBlockchain() {
     if (this.provider) {
-      this.provider.off('block');
+      this.providerForListening.off('block');
     }
   }
 
