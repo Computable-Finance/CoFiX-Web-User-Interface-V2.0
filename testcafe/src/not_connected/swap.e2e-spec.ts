@@ -120,9 +120,10 @@ async function inputAndCheck(t: TestController, scale = -1) {
   await t.typeText('#from-coin input', '1');
   await t.expect(changePrice.innerText).notEql('--');
   if (scale === -1) {
+    await t.wait(1500);
     await t.expect(toCoinInput.value).eql(await changePrice.innerText);
   } else {
-    await t.wait(1500);
+    await t.wait(2500);
     await t
       .expect(Number(await toCoinInput.value).toFixed(scale))
       .eql(Number(await changePrice.innerText).toFixed(scale));

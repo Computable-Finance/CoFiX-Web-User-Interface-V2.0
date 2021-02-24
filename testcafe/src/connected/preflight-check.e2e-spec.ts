@@ -78,6 +78,7 @@ fixture`Wallet Connected: Redeem Liquid Page (preflight check)`
   .beforeEach(async (t) => {
     await waitForAngular();
     await connectAndNavigate(t, '#liquid');
+    await t.wait(3500);
     await closeConnectionModal(t);
     await enterRedeemLiquidPage(t);
   });

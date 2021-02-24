@@ -10,7 +10,7 @@ fixture`Wallet Not Connected: Pool Page`
   });
 
 test('connect modal and button checking', async (t) => {
-  await t.expect(Selector('.connect-btn').exists).ok();
+  await t.expect(Selector('.connect-modal').exists).ok();
   await expectBtnsDisabled(t, [
     '#enter-liquid-btn',
     '#withdraw-liquid-btn',
