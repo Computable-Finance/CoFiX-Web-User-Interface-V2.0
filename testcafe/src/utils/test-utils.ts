@@ -12,31 +12,30 @@ export async function expectOneSuccessTx(t: TestController) {
   // ended
   await t.expect(Selector('.tx-pending').exists).notOk();
   await t.click('.wallet_show');
-  //await t.click('.');
   await t.expect(Selector('.tx').count).eql(1);
 }
 
 export async function connectAndNavigate(t: TestController, url: string) {
   await t.click('.wallet_show');
-  // await t.expect(Selector('#metamask')).ok();
+  await t.expect(Selector('#metamask').exists).ok();
   await t.click('#metamask');
   await t.navigateTo(url);
 }
 
 export async function closeConnectionModal(t: TestController) {
-  await t.wait(3500);
+  await t.expect(Selector('#close-warning-btn').exists).ok();
   await t.click('#close-warning-btn');
 }
 
 export async function changeFromCoin(t: TestController, coin: string) {
-  await t.click('#from-coin #coin');
-  await t.wait(3500);
+  await t.click('#from-coin .coin_icon');
+  await t.expect(Selector(coin).exists).ok();
   await t.click(coin);
 }
 
 export async function changeToCoin(t: TestController, coin: string) {
-  await t.click('#to-coin #coin');
-  await t.wait(3500);
+  await t.click('#to-coin .coin_icon');
+  await t.expect(Selector(coin).exists).ok();
   await t.click(coin);
 }
 
