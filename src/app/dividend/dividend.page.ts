@@ -73,7 +73,7 @@ export class DividendPage implements OnInit, OnDestroy {
         this.changeButtonTitle();
       });
     this.eventbusSubscription = this.eventbusService.on(
-      'wallet_connected',
+      'connection_changed',
       () => {
         this.initPage();
       }

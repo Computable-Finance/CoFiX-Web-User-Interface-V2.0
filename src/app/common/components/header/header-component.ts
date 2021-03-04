@@ -2,7 +2,6 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import { EventBusService } from 'src/app/service/eventbus.service';
 import { SettingsService } from 'src/app/state/setting/settings.service';
 
 @Component({
@@ -12,7 +11,9 @@ import { SettingsService } from 'src/app/state/setting/settings.service';
 })
 export class HeaderCompoment implements OnInit, OnDestroy {
   @Input() activeId: string;
+
   resizeSubscription: Subscription;
+
   public tabtems = [
     {
       id: 'swap',
@@ -31,33 +32,14 @@ export class HeaderCompoment implements OnInit, OnDestroy {
       title: 'dividend',
     },
   ];
+
   headerItems: any;
 
-  private eventSubscriptions: Subscription[] = [];
   constructor(
     private settingsService: SettingsService,
-    private eventbusService: EventBusService,
     private router: Router
-  ) {
-    this.eventSubscriptions.push(
-      this.eventbusService.on('accountsChanged', (account) => {
-        this.settingsService.reset();
-        location.reload();
-      })
-    );
-    this.eventSubscriptions.push(
-      this.eventbusService.on('chainChanged', (chainId) => {
-        this.settingsService.reset();
-        location.reload();
-      })
-    );
-    this.eventSubscriptions.push(
-      this.eventbusService.on('disconnected_from_blockchain', () => {
-        this.settingsService.reset();
-        location.reload();
-      })
-    );
-  }
+  ) {}
+
   ngOnInit() {
     this.changeTabs();
     this.resizeSubscription = fromEvent(window, 'resize')
@@ -66,6 +48,7 @@ export class HeaderCompoment implements OnInit, OnDestroy {
         this.changeTabs();
       });
   }
+
   changeTabs() {
     if (window.innerWidth < 870) {
       this.headerItems = [
@@ -90,6 +73,7 @@ export class HeaderCompoment implements OnInit, OnDestroy {
       this.headerItems = this.tabtems;
     }
   }
+
   goto(link) {
     window.open(link);
   }
@@ -103,8 +87,5 @@ export class HeaderCompoment implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.resizeSubscription.unsubscribe();
-    this.eventSubscriptions.forEach((subscription) =>
-      subscription.unsubscribe()
-    );
   }
 }

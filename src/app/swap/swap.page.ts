@@ -95,7 +95,7 @@ export class SwapPage implements OnInit, OnDestroy {
 
   async ngOnInit() {
     this.eventbusSubscription = this.eventbusService.on(
-      'wallet_connected',
+      'connection_changed',
       () => {
         this.refreshPage();
       }

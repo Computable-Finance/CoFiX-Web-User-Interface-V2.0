@@ -147,7 +147,7 @@ export class LiquidPage implements OnInit, OnDestroy {
         this.changeBtnTitle();
       });
     this.eventbusSubscription = this.eventbusService.on(
-      'wallet_connected',
+      'connection_changed',
       () => {
         this.refreshPage();
       }

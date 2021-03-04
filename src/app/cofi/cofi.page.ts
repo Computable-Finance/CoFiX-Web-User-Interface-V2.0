@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { fromEvent } from 'rxjs/internal/observable/fromEvent';
-import { debounceTime } from 'rxjs/internal/operators/debounceTime';
+import { debounceTime } from 'rxjs/operators';
 import { TipPannelContent } from '../common/components/tip-pannel/tip-pannel';
 import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
 import { isValidNumberForTx } from '../common/uitils/bignumber-utils';
@@ -71,7 +71,7 @@ export class CofiPage implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.eventbusSubscription = this.eventbusService.on(
-      'wallet_connected',
+      'connection_changed',
       () => {
         this.refreshPage();
       }

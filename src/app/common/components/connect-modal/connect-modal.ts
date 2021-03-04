@@ -59,7 +59,7 @@ export class ConnectModal implements OnInit, OnDestroy {
   connectListener(type) {
     this.utils.getPairAttended();
     this.cofixService.setConnectType(type);
-    this.eventbusService.emit({ name: 'wallet_connected' });
+    this.eventbusService.emit({ name: 'connection_changed' });
     this.popoverController.dismiss({ connected: true });
   }
 

@@ -4,7 +4,9 @@
   (click)="showTXList($event)"
 >
   <img src="./assets/images/account.png" />
-  <span> {{cofixService.getCurrentAccount() | walletaddress}} </span>
+  <span>
+    {{currentAccountQuery.currentAccount$() | async | walletaddress}}
+  </span>
 </div>
 <div
   class="wallet_show"

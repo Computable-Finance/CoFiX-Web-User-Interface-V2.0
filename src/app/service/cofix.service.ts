@@ -46,6 +46,7 @@ import {
 } from './uni-utils';
 import WalletConnectProvider from '@walletconnect/web3-provider';
 import { SettingsQuery } from '../state/setting/settings.query';
+import { CurrentAccountService } from '../state/current-account/current-account.service';
 
 declare let window: any;
 
@@ -87,7 +88,8 @@ export class CofiXService {
     private integrationService: IntegrationService,
     private settingsQuery: SettingsQuery,
     private myTokenService: MyTokenService,
-    private http: HttpClient
+    private http: HttpClient,
+    private currentAccountService: CurrentAccountService
   ) {
     BNJS.config({ EXPONENTIAL_AT: 100, ROUNDING_MODE: BNJS.ROUND_DOWN });
     this.reset();
@@ -95,7 +97,7 @@ export class CofiXService {
 
   internalProvider = window.ethereum;
 
-  providerForListening = this.defaultProvider();
+  providerForListening;
 
   async isEnabled() {
     if (this.internalProvider === undefined) {
@@ -158,7 +160,7 @@ export class CofiXService {
 
   private async setup(isEnabled: boolean) {
     if (environment.e2e.on) {
-      this.currentAccount = this.getSigner().address;
+      this.updateCurrentAccount(this.getSigner().address);
       this.contractAddressList = getContractAddressListByNetwork(
         this.currentNetwork
       );
@@ -174,14 +176,14 @@ export class CofiXService {
 
     if (!isEnabled) {
       await this.showConfirmModalIfNeeded();
-      this.setCurrentAccount(
+      this.updateCurrentAccountIfNeeded(
         await this.internalProvider.request({
           method: 'eth_requestAccounts',
         })
       );
     } else {
       await this.showConfirmModalIfNeeded();
-      this.currentAccount = (await this.provider.listAccounts())[0];
+      this.updateCurrentAccount((await this.provider.listAccounts())[0]);
     }
     this.currentNetwork = (await this.provider.getNetwork()).chainId;
     this.contractAddressList = getContractAddressListByNetwork(
@@ -213,6 +215,15 @@ export class CofiXService {
           },
         ],
       });
+    }
+  }
+
+  private updateCurrentAccount(address: string) {
+    this.currentAccount = address;
+    if (address === undefined) {
+      this.currentAccountService.reset();
+    } else {
+      this.currentAccountService.update(address);
     }
   }
 
@@ -357,25 +368,21 @@ export class CofiXService {
   private registerWeb3EventHandler() {
     this.internalProvider
       .on('disconnect', (result) => {
-        this.reset();
-        this.eventbusService.emit({ name: 'disconnected_from_blockchain' });
+        // reference: https://docs.metamask.io/guide/ethereum-provider.html#disconnect
+        location.reload();
       })
       .on('accountsChanged', (accounts) => {
-        if (this.setCurrentAccount(accounts)) {
-          const currentAccount = this.currentAccount;
-          this.eventbusService.emit({
-            name: 'accountsChanged',
-            value: currentAccount,
-          });
+        if (accounts.length === 0) {
+          location.reload();
+        }
+
+        if (this.updateCurrentAccountIfNeeded(accounts)) {
+          this.eventbusService.emit({ name: 'connection_changed' });
         }
       })
       .on('chainChanged', (chainId) => {
-        this.currentNetwork = chainId;
-        this.contractAddressList = getContractAddressListByNetwork(chainId);
-        this.eventbusService.emit({
-          name: 'chainChanged',
-          value: chainId,
-        });
+        // reference: https://github.com/ethers-io/ethers.js/issues/589
+        location.reload();
       });
   }
 
@@ -804,7 +811,7 @@ export class CofiXService {
     this.integrationSubscription?.unsubscribe();
     this.untrackingBlockchain();
     this.provider = this.defaultProvider();
-    this.currentAccount = undefined;
+    this.updateCurrentAccount(undefined);
     this.currentNetwork = environment.network;
     this.contractAddressList = getContractAddressListByNetwork(
       this.currentNetwork
@@ -826,18 +833,12 @@ export class CofiXService {
     return !new BNJS(stakingBalance).isZero();
   }
 
-  private setCurrentAccount(accounts) {
-    if (accounts.length === 0) {
-      this.settingsService.reset();
-      this.reset();
-      this.eventbusService.emit({ name: 'disconnected_from_metamask' });
-      return true;
-    } else if (
-      accounts[0]?.toUpperCase() !== this.currentAccount?.toUpperCase()
-    ) {
-      this.currentAccount = accounts[0];
+  private updateCurrentAccountIfNeeded(accounts) {
+    if (accounts[0]?.toUpperCase() !== this.currentAccount?.toUpperCase()) {
+      this.updateCurrentAccount(accounts[0]);
       return true;
     }
+
     return false;
   }
 
@@ -1528,6 +1529,11 @@ export class CofiXService {
 
   private async trackingBlockchain() {
     if (this.provider) {
+      this.providerForListening = new ethers.providers.InfuraProvider(
+        this.currentNetwork === 1 ? 'homestead' : 'ropsten',
+        InfuraApiAccessToken
+      );
+
       if (this.currentAccount) {
         await this.updateETHBalance();
         await this.updateDividend();

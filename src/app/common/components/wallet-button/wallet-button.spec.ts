@@ -98,7 +98,7 @@ describe('WalletButton', () => {
     component.isConnectLoading = true;
     component.connect();
     tick(1000);
-    expect(emitSpy).toHaveBeenCalledWith({ name: 'wallet_connected' });
+    expect(emitSpy).toHaveBeenCalledWith({ name: 'connection_changed' });
     expect(getPairAttendedSpy).toHaveBeenCalled();
     expect(component.isConnectLoading).toEqual(false);
   }));*/
