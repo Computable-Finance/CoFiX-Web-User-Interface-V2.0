@@ -14,7 +14,7 @@
     "lint": "ng lint",
     "test-account": "node ./script/test-account.js",
     "preanalyze": "node ./script/preprocessing.js production",
-    "analyze": "ng build --prod --stats-json && webpack-bundle-analyzer ./www/stats.json"
+    "analyze": "ng build --prod --source-map && source-map-explorer ./www/*.js"
   },
   "private": true,
   "dependencies": {
@@ -73,10 +73,10 @@
     "karma-mocha-reporter": "^2.2.5",
     "ng-mocks": "^11.0.0",
     "protractor": "~7.0.0",
+    "source-map-explorer": "^2.5.2",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "~3.9.5",
-    "webpack-bundle-analyzer": "^4.4.0"
+    "typescript": "~3.9.5"
   },
   "description": "The CoFiX Web UI"
 }
