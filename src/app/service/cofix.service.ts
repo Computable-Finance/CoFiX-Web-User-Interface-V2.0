@@ -524,13 +524,7 @@ export class CofiXService {
     return value;
   }
 
-  // 增加流动性预计得到的 XToken，交易池为：ETH/ERC20。
-  async expectedXToken(
-    address: string,
-    ethAmount: string,
-    erc20Amount: string
-  ) {
-    const kinfo = await this.getKInfo(address);
+  async expectedXToken(address: string, ethAmount: string) {
     const checkedPriceNow = await this.checkPriceNow(address);
     const oraclePrice = [
       this.parseEthers(checkedPriceNow.ethAmount),
@@ -539,30 +533,18 @@ export class CofiXService {
         await this.getERC20Decimals(address)
       ),
       '0',
-      kinfo.kOriginal.toString(),
+      '0',
       '0',
     ];
     const pair = getCoFixPair(
       await this.getPairAddressByToken(address),
       this.provider
     );
-    const navPerShareForMint = new BNJS(
-      ethersOf(await pair.getNAVPerShareForMint(oraclePrice))
-    );
-    const recentCheckedPrice = await this.checkPriceNow(address);
-    const expectedShareByEthAmount = new BNJS(ethAmount).div(
-      navPerShareForMint
-    );
-    const expectedShareByErc20Amount = new BNJS(erc20Amount)
-      .div(
-        new BNJS(recentCheckedPrice.changePrice).div(new BNJS(1).plus(kinfo.k))
-      )
-      .div(navPerShareForMint);
-    const expectedShare = expectedShareByEthAmount.plus(
-      expectedShareByErc20Amount
+    const expectedShare = ethersOf(
+      await pair.getLiquidity(this.parseEthers(ethAmount), oraclePrice)
     );
 
-    return expectedShare.toString();
+    return expectedShare;
   }
 
   // 计算 getETHAmountForRemoveLiquidity 和 getTokenAmountForRemoveLiquidity 所需参数。

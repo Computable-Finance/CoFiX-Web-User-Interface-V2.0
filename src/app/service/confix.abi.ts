@@ -44,6 +44,7 @@ export const COFIXPAIR_ABI = [
   'function getNAVPerShare(uint256, uint256) external view returns (uint256)',
   'function getInitialAssetRadio() external view returns (uint256, uint256)',
   'function calcOutTokenAndETHForBurn(uint256, tuple(uint256, uint256, uint256, uint256, uint256)) public view returns (uint256, uint256, uint256)',
+  'function getLiquidity(uint256, tuple(uint256, uint256, uint256, uint256, uint256)) external view returns (uint256)',
 ];
 
 export function getCoFixPair(address: string, provider) {
