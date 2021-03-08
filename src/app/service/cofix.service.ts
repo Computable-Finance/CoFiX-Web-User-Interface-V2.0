@@ -657,6 +657,37 @@ export class CofiXService {
     return { nAVPerShareForBurn: args.nAVPerShareForBurn, result };
   }
 
+  async getETHAndTokenForRemoveLiquidity(
+    token: string,
+    pair: string,
+    amount: string
+  ) {
+    const kinfo = await this.getKInfo(token);
+    const checkedPriceNow = await this.checkPriceNow(token);
+    const coFiXPair = getCoFixPair(pair, this.provider);
+
+    const oraclePrice = [
+      this.parseEthers(checkedPriceNow.ethAmount),
+      this.parseUnits(
+        checkedPriceNow.erc20Amount,
+        await this.getERC20Decimals(token)
+      ),
+      '0',
+      '0',
+      kinfo.theta,
+    ];
+    const result = await coFiXPair.calcOutTokenAndETHForBurn(
+      this.parseEthers(amount),
+      oraclePrice
+    );
+
+    const erc20Amount = unitsOf(result[0], await this.getERC20Decimals(token));
+    const ethAmount = ethersOf(result[1]);
+    const fee = ethersOf(result[1]);
+
+    return { erc20Amount, ethAmount, fee };
+  }
+
   unitsOf(amount: BigNumber, decimals: BigNumber) {
     return Number.parseFloat(ethers.utils.formatUnits(amount, decimals));
   }
@@ -1127,6 +1158,58 @@ export class CofiXService {
     return await this.executeContractMethodWithEstimatedGas(
       cofixRouter,
       'removeLiquidityGetETH',
+      [
+        token,
+        this.parseEthers(liquidityMin),
+        this.parseEthers(new BNJS(amountETHMin).times(0.99).toString()),
+        this.currentAccount,
+        deadline(),
+        {
+          value: this.parseEthers(fee),
+        },
+      ]
+    );
+  }
+
+  async removeLiquidityGetTokenAndETH(
+    pair: string,
+    token: string,
+    liquidityMin: string,
+    amountETHMin: string,
+    amountTokenMin: string,
+    fee: string
+  ) {
+    if (
+      !(await this.hasEnoughTokenBalance(
+        this.currentAccount,
+        pair,
+        liquidityMin
+      ))
+    ) {
+      throw new Error('Insufficient liquidity tokens.');
+    }
+
+    if (
+      !(await this.hasEnoughTokenBalance(
+        pair,
+        this.contractAddressList.WETH9,
+        amountETHMin
+      ))
+    ) {
+      throw new Error('Insufficient WETH tokens.');
+    }
+
+    if (!(await this.hasEnoughTokenBalance(pair, token, amountTokenMin))) {
+      throw new Error('Insufficient token balance.');
+    }
+
+    const cofixRouter = getCofixRouter(
+      this.contractAddressList.CofixRouter,
+      this.provider
+    );
+    return await this.executeContractMethodWithEstimatedGas(
+      cofixRouter,
+      'removeLiquidityGetTokenAndETH',
       [
         token,
         this.parseEthers(liquidityMin),
