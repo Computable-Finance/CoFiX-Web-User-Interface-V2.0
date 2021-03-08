@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Store, StoreConfig } from '@datorama/akita';
 
 export interface MarketDetails {
-  kinfo: { kOriginal: string; k: string; theta: string };
+  kinfo: { kOriginal: string; k: string; theta: string; thetaOriginal: string };
   checkedPriceNow: {
     ethAmount: string;
     erc20Amount: string;

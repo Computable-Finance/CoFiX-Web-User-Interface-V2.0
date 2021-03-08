@@ -674,7 +674,7 @@ export class CofiXService {
       ),
       '0',
       '0',
-      kinfo.theta,
+      kinfo.thetaOriginal,
     ];
     const result = await coFiXPair.calcOutTokenAndETHForBurn(
       this.parseEthers(amount),
@@ -1671,6 +1671,7 @@ export class CofiXService {
         kOriginal: latestK,
         k: new BNJS(latestK).div(1e8),
         theta: new BNJS(kinfo[2]).div(1e8),
+        thetaOriginal: kinfo[2],
       },
     });
   }
