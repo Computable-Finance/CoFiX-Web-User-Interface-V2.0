@@ -13,7 +13,6 @@ import {
   infuraNetwork,
 } from 'src/environments/environment';
 
-import { IntegrationService } from '../_integration/integration.service';
 import {
   BLOCKNUMS_IN_A_DAY,
   ETHER_DECIMALS,
@@ -85,7 +84,6 @@ export class CofiXService {
     private balancesQuery: BalancesQuery,
     private marketDetailsService: MarketDetailsService,
     private marketDetailsQuery: MarketDetailsQuery,
-    private integrationService: IntegrationService,
     private settingsQuery: SettingsQuery,
     private myTokenService: MyTokenService,
     private http: HttpClient,
@@ -199,7 +197,6 @@ export class CofiXService {
 
     this.registerWeb3EventHandler();
     this.trackingBlockchain();
-    // this.initTokenScript();
   }
 
   private async showConfirmModalIfNeeded() {
@@ -224,144 +221,6 @@ export class CofiXService {
       this.currentAccountService.reset();
     } else {
       this.currentAccountService.update(address);
-    }
-  }
-
-  private initTokenScript() {
-    this.integrationSubscription = this.integrationService
-      .connect()
-      .subscribe((val) => {
-        tokenScriptContent['CoFi'] = val.CoFi;
-        tokenScriptContent['DividendPoolShare'] = val.DividendPoolShare;
-
-        tokenScriptContent[this.contractAddressList.USDT] = {};
-        tokenScriptContent[this.contractAddressList.HBTC] = {};
-
-        if (val.LiquidityPoolShare) {
-          Object.keys(val.LiquidityPoolShare).forEach((k) => {
-            if (val.LiquidityPoolShare[k].pairSymbol === 'USDT') {
-              tokenScriptContent[
-                this.contractAddressList.USDT
-              ].LiquidityPoolShare = val.LiquidityPoolShare[k];
-            } else if (val.LiquidityPoolShare[k].pairSymbol === 'HBTC') {
-              tokenScriptContent[
-                this.contractAddressList.HBTC
-              ].LiquidityPoolShare = val.LiquidityPoolShare[k];
-            } else {
-              console.error(
-                `not supporting pairSymbol in LiquidityPoolShare: ${val.LiquidityPoolShare[k].pairSymbol}`
-              );
-            }
-          });
-          this.updateMarketDetails();
-        }
-
-        if (val.MiningPoolShare) {
-          Object.keys(val.MiningPoolShare).forEach((k) => {
-            if (val.MiningPoolShare[k].pairSymbol === 'USDT') {
-              tokenScriptContent[
-                this.contractAddressList.USDT
-              ].MiningPoolShare = val.MiningPoolShare[k];
-            } else if (val.MiningPoolShare[k].pairSymbol === 'HBTC') {
-              tokenScriptContent[
-                this.contractAddressList.HBTC
-              ].MiningPoolShare = val.MiningPoolShare[k];
-            } else {
-              console.error(
-                `not supporting pairSymbol in MiningPoolShare: ${val.MiningPoolShare[k].pairSymbol}`
-              );
-            }
-          });
-        }
-
-        // uncomment this for debugging
-        // this.printToken(val);
-      });
-  }
-
-  private printToken(val) {
-    if (val.CoFi) {
-      Object.keys(val.CoFi).forEach((k) => {
-        console.log(`CoFi instance with ID ${k}:`);
-        Object.keys(val.CoFi[k]).forEach((kk) => {
-          if (val.CoFi[k][kk] === undefined) {
-            console.error(
-              `CoFi instance with ID ${k}\n, key ${kk} === undefined`
-            );
-          } else {
-            console.log(
-              `CoFi instance with ID ${k}\n, key ${kk} ===${val.CoFi[k][
-                kk
-              ].toString()}`
-            );
-          }
-        });
-      });
-    } else {
-      console.log('No CoFi token defined');
-    }
-
-    if (val.LiquidityPoolShare) {
-      Object.keys(val.LiquidityPoolShare).forEach((k) => {
-        console.log(`LiquidityPoolShare instance with ID ${k}:`);
-        Object.keys(val.LiquidityPoolShare[k]).forEach((kk) => {
-          if (val.LiquidityPoolShare[k][kk] === undefined) {
-            console.error(
-              `LiquidityPoolShare instance with ID ${k}\n, key ${kk} === undefined`
-            );
-          } else {
-            console.log(
-              `LiquidityPoolShare instance with ID ${k}\n, key ${kk} ===${val.LiquidityPoolShare[
-                k
-              ][kk].toString()}`
-            );
-          }
-        });
-      });
-    } else {
-      console.log('No LiquidityPoolShare token defined');
-    }
-
-    if (val.MiningPoolShare) {
-      Object.keys(val.MiningPoolShare).forEach((k) => {
-        console.log(`MiningPoolShare instance with ID ${k}:`);
-        Object.keys(val.MiningPoolShare[k]).forEach((kk) => {
-          if (val.MiningPoolShare[k][kk] === undefined) {
-            console.error(
-              `MiningPoolShare instance with ID ${k}\n, key ${kk} === undefined`
-            );
-          } else {
-            console.log(
-              `MiningPoolShare instance with ID ${k}\n, key ${kk} ===${val.MiningPoolShare[
-                k
-              ][kk].toString()}`
-            );
-          }
-        });
-      });
-    } else {
-      console.log('No MiningPoolShare token defined');
-    }
-
-    if (val.DividendPoolShare) {
-      Object.keys(val.DividendPoolShare).forEach((k) => {
-        console.log(`DividendPoolShare instance with ID ${k}:`);
-        Object.keys(val.DividendPoolShare[k]).forEach((kk) => {
-          if (val.DividendPoolShare[k][kk] === undefined) {
-            console.error(
-              `DividendPoolShare instance with ID ${k}\n, key ${kk} === undefined`
-            );
-          } else {
-            console.log(
-              `DividendPoolShare instance with ID ${k}\n, key ${kk} ===${val.DividendPoolShare[
-                k
-              ][kk].toString()}`
-            );
-          }
-        });
-      });
-    } else {
-      console.log('No DividendPoolShare token defined');
     }
   }
 
@@ -1693,6 +1552,7 @@ export class CofiXService {
       await this.updateCheckedPriceNow(address);
       await this.updateNAVPerShare(address);
       await this.updateRewardRate(address);
+      await this.updateInitialAssetRatio(address);
     });
   }
 
@@ -1860,6 +1720,64 @@ export class CofiXService {
     return rewardRate;
   }
 
+  private async updateInitialAssetRatio(address: string) {
+    const pairAddress = await this.getPairAddressByToken(address);
+    if (pairAddress === '0x0000000000000000000000000000000000000000') {
+      throw new Error('invalid invocation!!!!!');
+    }
+
+    const coFiXPair = getCoFixPair(pairAddress, this.provider);
+    const initialAssetRatio = await coFiXPair.getInitialAssetRadio();
+    const ethAmount = ethersOf(initialAssetRatio[0]);
+    const erc20Amount = unitsOf(
+      initialAssetRatio[1],
+      await this.getERC20Decimals(address)
+    );
+
+    console.log('initialRatio', ethAmount, erc20Amount);
+
+    this.marketDetailsService.updateMarketDetails(address, {
+      initialAssetRatio: {
+        ethAmount,
+        erc20Amount,
+      },
+    });
+  }
+
+  private async getInitialAssetRadio(address: string) {
+    let initialAssetRatio = this.marketDetailsQuery.getInitialAssetRadio(
+      address
+    );
+    if (!initialAssetRatio) {
+      await this.updateInitialAssetRatio(address);
+      initialAssetRatio = this.marketDetailsQuery.getInitialAssetRadio(address);
+    }
+    return initialAssetRatio;
+  }
+
+  async calcETHAmountForStaking(address: string, erc20Amount: string) {
+    const initialAssetRatio = await this.getInitialAssetRadio(address);
+    return new BNJS(initialAssetRatio.ethAmount)
+      .times(erc20Amount)
+      .div(initialAssetRatio.erc20Amount)
+      .toString();
+  }
+
+  async calcERC20AmountForStaking(address: string, ethAmount: string) {
+    const initialAssetRatio = await this.getInitialAssetRadio(address);
+    return new BNJS(initialAssetRatio.erc20Amount)
+      .times(ethAmount)
+      .div(initialAssetRatio.ethAmount)
+      .toString();
+  }
+
+  async isValidRatio(address: string, ethAmount: string, erc20Amount: string) {
+    const initialAssetRatio = await this.getInitialAssetRadio(address);
+    return new BNJS(initialAssetRatio.erc20Amount)
+      .times(ethAmount)
+      .eq(new BNJS(initialAssetRatio.ethAmount).times(erc20Amount));
+  }
+
   async totalETHFromSwapFees() {
     const cofiStakingRewards = getCoFiStakingRewards(
       this.contractAddressList.CoFiStakingRewards,
@@ -1916,11 +1834,11 @@ export class CofiXService {
   isCoFixToken(token: string): boolean {
     return (
       token?.toUpperCase() === this.contractAddressList.USDT.toUpperCase() ||
-      token?.toUpperCase() === this.contractAddressList.HBTC.toUpperCase()
+      token?.toUpperCase() === this.contractAddressList.HBTC.toUpperCase() ||
+      token?.toUpperCase() === this.contractAddressList.NEST.toUpperCase()
     );
   }
 
-  // 参数token 为该token对应的地址
   async loadToken(token: string) {
     try {
       const existToken = this.getExistToken(token);

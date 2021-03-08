@@ -1,9 +1,12 @@
 export function getContractAddressListByNetwork(network: number): any {
   if (network === 1) {
     return {
+      USDT: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
+      HBTC: '0x0316EB71485b0Ab14103307bf65a021042c6d380',
+      NEST: '0x04abEdA201850aC0124161F037Efd70c74ddC74C',
       WETH9: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
       CoFiToken: '0x1a23a6BfBAdB59fa563008c0fB7cf96dfCF34Ea1',
-      // 对应 NestPriceOracle，接手时规范，未改
+      //  NestQuery
       OracleMock: '0x3bf046c114385357838D9cAE9509C6fBBfE306d2',
       CofiXController: '0xc6f45eB40609c9CD30c8750A95042De1b8B1DBFf',
       CofixFactory: '0x66C64ecC3A6014733325a8f2EBEE46B4CA3ED550',
@@ -12,42 +15,26 @@ export function getContractAddressListByNetwork(network: number): any {
       CoFiXVaultForLP: '0x6903b1C17A5A0A9484c7346E5c0956027A713fCF',
       CoFiStakingRewards: '0x0061c52768378b84306b2665f098c3e0b2C03308',
       CoFiXVaultForTrader: '0xE6183d3094a9e360B123Ec1330afAE76A74d1cbF',
-      HBTC: '0x0316EB71485b0Ab14103307bf65a021042c6d380',
-      USDT: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
-      //NEST: '0x04abEdA201850aC0124161F037Efd70c74ddC74C',
     };
   } else if (network === 3) {
     return {
       USDT: '0x200506568C2980B4943B5EaA8713A5740eb2c98A',
       HBTC: '0xA674f71ce49CE7F298aea2F23D918d114965eb40',
-      // NEST: '0xD287Bc43eCD3D892204aA3792165fe8728636E29',
+      NEST: '0xD287Bc43eCD3D892204aA3792165fe8728636E29',
       WETH9: '0x59b8881812Ac484Ab78b8fc7c10b2543e079a6C3',
-      CoFiToken: '0x72Fd35b1dB364db812A8E726891685A25a9135D3',
-      // 对应 NestPriceOracle，接手时规范，未改
-      OracleMock: '0x3bF1d76A2fb912481022fdC31bD5016cC5A6c671',
-      CofiXController: '0x8a814Da4d9Dfdebf6080BbE2d8C7bb238272507B',
-      CofixFactory: '0x8E636BDB79752BFa2C41285535852bbBDd50b2ca',
+      CoFiToken: '0x10b1EbE50007EA4340838A1Dfff77a2E6DA037B0',
+      // NestQuery
+      OracleMock: '0xf9b3Cb3Dc53962Af692FBf785fE82d5f9781368b',
+      CofiXController: '0xb2a1308183eCDC14Ca455C7af35b1b5d39fdB6F4',
+      CofixFactory: '0x068Bd34275e516759fb834b432622Ec7137fdFb4',
       // CoFiXKTable:'0xe609B978635c7Bb8D22Ffc4Ec7f7a16615a3b1cA',
-      CofixRouter: '0xAdD27c75b7B003cc791E4062e20f9Eb872FafC65',
-      CoFiXVaultForLP: '0x2494853258c33A99581Abddc7b85b11D1D1885DF',
-      CoFiStakingRewards: '0x2a603D9e8b3152B6e235c7eFA41dFc073764d96a',
-      CoFiXVaultForTrader: '0xe901e7f88a377D01028aE947cFA3192b3c5f7587',
+      CofixRouter: '0xA0530BDa278Fbd03bCc1DbE4b63dbf9F1Fb2ABCd',
+      CoFiXVaultForLP: '0xAD1A5a9C40b58Dc5Bed7131152bDa8B649616573',
+      CoFiStakingRewards: '0x1D1D0b886a26A017190eCAa52f3F67BD5E1A484F',
+      CoFiXVaultForTrader: '0x22E7A8460cF3C6f1789425399eed92c6c6529D18',
     };
   } else {
-    return {
-      WETH9: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-      CoFiToken: '0xc2283C20a61847240d2eb10e6925d85bcaef89aE',
-      OracleMock: '0x94F36FAa6bB4f74009637292b09C355CcD3e80Eb',
-      CofiXController: '0x2f51563044d96105611Cdb5Bee621a5002Ee0264',
-      CofixFactory: '0x155BDA3255115b244Fe3767a9eDC002dC76023ad',
-      // CoFiXKTable:'0xe609B978635c7Bb8D22Ffc4Ec7f7a16615a3b1cA',
-      CofixRouter: '0xA2B29F965b537a9D279f75E1498413248C265Ead',
-      CoFiXVaultForLP: '0xF128802361580FB2A74574ddEd4E09F44f4Ec4cF',
-      CoFiStakingRewards: '0xD16EeAfc4f614589eED0bc9294C1aE15F459831A',
-      CoFiXVaultForTrader: '0x357811E0cA5AD4C66f1d44d05A3C73d98b4583CF',
-      HBTC: '0x0316EB71485b0Ab14103307bf65a021042c6d380',
-      USDT: '0xdac17f958d2ee523a2206206994597c13d831ec7',
-    };
+    throw new Error('Unknown Network!');
   }
 }
 

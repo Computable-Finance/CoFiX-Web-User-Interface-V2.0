@@ -42,6 +42,7 @@ export const COFIXPAIR_ABI = [
   'function getNAVPerShareForMint(tuple(uint256, uint256, uint256, uint256, uint256)) public view returns (uint256)',
   'function getNAVPerShareForBurn(tuple(uint256, uint256, uint256, uint256, uint256)) external view returns (uint256)',
   'function getNAVPerShare(uint256, uint256) external view returns (uint256)',
+  'function getInitialAssetRadio() external view returns (uint256, uint256)',
 ];
 
 export function getCoFixPair(address: string, provider) {
@@ -103,6 +104,8 @@ export const COFIXROUTER_ABI = [
   'function hybridSwapExactETHForTokens(uint, uint, address[], uint8[], address, address, uint) external payable returns (uint[])',
   'function hybridSwapExactTokensForETH(uint, uint, address[], uint8[], address, address, uint) external payable returns (uint[])',
   'function hybridSwapExactTokensForTokens(uint, uint, address[], uint8[], address, address, uint) external payable returns (uint[])',
+  'function calcOutTokenAndETHForBurn(uint256, tuple(uint256, uint256, uint256, uint256, uint256)) public view returns (uint256, uint256, uint256)',
+  'function removeLiquidityGetTokenAndETH(address, uint, uint, address, uint) external payable returns (uint, uint)',
 ];
 
 export function getCofixRouter(address: string, provider) {

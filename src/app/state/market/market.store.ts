@@ -12,6 +12,10 @@ export interface MarketDetails {
   };
   navPerShare: string;
   rewardRate: string;
+  initialAssetRatio: {
+    ethAmount: string;
+    erc20Amount: string;
+  };
 }
 
 export interface MarketDetailsModel {
