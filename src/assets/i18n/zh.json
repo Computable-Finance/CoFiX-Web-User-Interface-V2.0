@@ -227,5 +227,7 @@
   "connect_browser": "浏览器钱包",
   "connect_walletconnect": "WalletConnect",
   "walletconnect_scan": "请扫描二维码",
-  "disconnect": "断开"
+  "disconnect": "断开",
+  "share_input": "流动金份额",
+  "share_add": "需要存入"
 }

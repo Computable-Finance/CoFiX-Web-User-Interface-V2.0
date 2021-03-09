@@ -9,36 +9,78 @@
       [cardTitle]="cardTitle.title"
       [cardSubTitle]="cardTitle.subtitle"
     ></app-card-title>
+    <app-coin-input
+      #radioInputView
+      id="coin0"
+      [coin]="'Ratio'"
+      [amount]="ratioAmount"
+      [isShowMax]="false"
+      [isSelectCoin]="false"
+      [isShowLabel]="false"
+      (changeValue)="ratioInput($event)"
+      [label]="'share_input'"
+    ></app-coin-input>
 
-    <app-coin-input
-      #fromCoinInputView
-      id="coin1"
-      (clickMax)="setFromCoinMax($event)"
-      [amount]="fromCoin.amount"
-      (changeValue)="fromCoinInput($event)"
-      [isSelectCoin]="isSelectCoin"
-      [coin]="fromCoin.id"
-      [maxAmount]="fromCoin.balance"
-      [isShowError]="showFromError"
-      [isShowBlance]="showBalance"
-      [isShowMax]="isShowFromMax"
-      [label]="'input'"
-    ></app-coin-input>
     <div class="divider-swap"></div>
-    <app-coin-input
-      #toCoinInputView
-      id="coin2"
-      (clickMax)="setToCoinMax($event)"
-      [amount]="toCoin.amount"
-      (changeValue)="toCoinInput($event)"
-      [isSelectCoin]="isSelectCoin"
-      [coin]="toCoin.id"
-      [maxAmount]="toCoin.balance"
-      [isShowError]="showToError"
-      [isShowBlance]="showBalance"
-      [isShowMax]="isShowToMax"
-      [label]="'input'"
-    ></app-coin-input>
+
+    <ion-grid class="ion-no-padding claimETH">
+      <ion-row
+        class="ion-align-items-center ion-align-self-center conversionPrice"
+      >
+        <ion-col class="title" size="12">{{'share_add' | translate}}</ion-col>
+      </ion-row>
+      <ion-row
+        class="ion-align-items-center ion-align-self-center conversionPrice"
+      >
+        <ion-col size="1">
+          <img
+            src="./assets/images/icon/{{fromCoin.id}}.png"
+            class="tokens-icon"
+          />
+        </ion-col>
+        <ion-col size="2"> {{fromCoin.id}} </ion-col>
+        <ion-col size="9" class="ion-text-right number">
+          {{fromCoin.amount | truncate:'--'}}
+        </ion-col>
+
+        <ion-col size="12">
+          <span
+            class="{{overFromBalance()?'error':'font-sm'}}"
+            [appSkeleton]="!fromCoin.balance"
+          >
+            <ng-container>
+              {{'your_balance' | translate}}：{{fromCoin.balance |
+              truncate:'--'}}
+            </ng-container>
+          </span>
+        </ion-col>
+      </ion-row>
+      <ion-row
+        class="ion-align-items-center ion-align-self-center conversionPrice"
+      >
+        <ion-col size="1">
+          <img
+            src="./assets/images/icon/{{toCoin.id}}.png"
+            class="tokens-icon"
+          />
+        </ion-col>
+        <ion-col size="3"> {{toCoin.id}} </ion-col>
+        <ion-col size="8" class="ion-text-right number">
+          {{toCoin.amount | truncate:'--'}}
+        </ion-col>
+        <ion-col size="12" class="margin-bottom">
+          <span
+            class="{{overToBalance()?'error':'font-sm'}}"
+            [appSkeleton]="!toCoin.balance"
+          >
+            <ng-container>
+              {{'your_balance' | translate}}：{{toCoin.balance | truncate:'--'}}
+            </ng-container>
+          </span>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
     <ion-grid class="ion-no-padding">
       <ion-row
         class="ion-align-items-center ion-align-self-center conversionPrice"
@@ -107,7 +149,7 @@
       class="operation-btn"
       (click)="confirmAddLiquid()"
       *ngIf="cofixService.getCurrentAccount()"
-      [disabled]="isLoading.cr || !canAdd()"
+      [disabled]="isLoading.cr || !canAddLiquid()"
     >
       <div class="ion-button-label">
         <div *ngIf="!isLoading.cr">{{'add'| translate}}</div>

@@ -44,16 +44,15 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
   };
   isSelectCoin = false;
   xtValue = 'XT-1';
-  isETHChecked = false;
-  isTokenChecked = false;
+  //isETHChecked = false;
+
   coinAddress: string;
   todoValue: string;
   hadValue: string;
   oracleCost = '0.01';
   isLoading = { sh: false, sq: false };
   showError = false;
-  ETHAmountForRemoveLiquidity: number;
-  tokenAmountForRemoveLiquidity: number;
+  amountForRemoveLiquidity: any = { erc20Amount: '', ethAmount: '', fee: '' };
   redeemError = { isError: false, msg: '' };
 
   cardTitle = {
@@ -133,16 +132,10 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
   }
 
   changeETHCheck() {
-    if (this.isETHChecked) {
-      this.isTokenChecked = false;
-    }
     this.getRemoveLiquidity();
   }
 
   changeTokenCheck() {
-    if (this.isTokenChecked) {
-      this.isETHChecked = false;
-    }
     this.getRemoveLiquidity();
     this.resetRedeemError();
   }
@@ -152,8 +145,6 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
     this.toCoin.amount = '';
     this.todoValue = '';
     this.hadValue = '';
-    this.isETHChecked = false;
-    this.isTokenChecked = false;
     this.resetRedeemError();
 
     this.fromCoin.address = this.cofixService.getCurrentContractAddressList()[
@@ -232,23 +223,11 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
     const pair = await this.cofixService.getPairAddressByToken(
       this.toCoin.address
     );
-    if (this.isETHChecked) {
-      const result = await this.cofixService.getETHAmountForRemoveLiquidity(
-        this.toCoin.address,
-        pair,
-        this.toCoin.amount || '0'
-      );
-
-      this.ETHAmountForRemoveLiquidity = result.result;
-    }
-    if (this.isTokenChecked) {
-      const result = await this.cofixService.getTokenAmountForRemoveLiquidity(
-        this.toCoin.address,
-        pair,
-        this.toCoin.amount || '0'
-      );
-      this.tokenAmountForRemoveLiquidity = result.result;
-    }
+    this.amountForRemoveLiquidity = await this.cofixService.getETHAndTokenForRemoveLiquidity(
+      this.toCoin.address,
+      pair,
+      this.toCoin.amount || '0'
+    );
     this.canShowError();
   }
 
@@ -261,15 +240,12 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
 
   async redeem() {
     this.resetRedeemError();
-    if (!this.isTokenChecked && !this.isETHChecked) {
-      return false;
-    }
     const token = this.toCoin.address;
     const pair = await this.cofixService.getPairAddressByToken(
       this.toCoin.address
     );
 
-    let amountTokenMin;
+    //let amountTokenMin;
     const params = {
       t: 'tx_withdrawLiquid',
       p: {
@@ -278,105 +254,105 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
     };
     this.waitingPopover = await this.utils.createTXConfirmModal();
     await this.waitingPopover.present();
-    if (this.isETHChecked) {
-      amountTokenMin = this.ETHAmountForRemoveLiquidity;
-      this.cofixService
-        .removeLiquidityGetETH(
-          pair,
-          token,
-          this.toCoin.amount || '0',
-          amountTokenMin.toString(),
-          this.oracleCost
-        )
-        .then((tx: any) => {
-          console.log('tx.hash', tx.hash);
-          this.isLoading.sh = true;
+    console.log(this.amountForRemoveLiquidity);
+    this.cofixService
+      .removeLiquidityGetTokenAndETH(
+        pair,
+        token,
+        this.toCoin.amount || '0',
+        this.amountForRemoveLiquidity.ethAmount,
+        this.amountForRemoveLiquidity.erc20Amount,
+        this.oracleCost
+      )
+      .then((tx: any) => {
+        console.log('tx.hash', tx.hash);
+        this.isLoading.sh = true;
 
-          console.log(params);
-          this.txService.add(
-            tx.hash,
-            this.cofixService.getCurrentAccount(),
-            JSON.stringify(params),
-            this.cofixService.getCurrentNetwork()
-          );
-          this.waitingPopover.dismiss();
-          this.utils.showTXSubmitModal(tx.hash);
-          const provider = this.cofixService.getCurrentProvider();
-          provider.once(tx.hash, (transactionReceipt) => {
-            this.isLoading.sh = false;
-            this.utils.changeTxStatus(transactionReceipt.status, tx.hash);
-            this.onClose.emit({
-              type: 'redeem',
-              fromCoin: this.fromCoin,
-              toCoin: this.toCoin,
-            });
-          });
-
-          provider.once('error', (error) => {
-            console.log('provider.once==', error);
-            this.isLoading.sh = false;
-            this.txService.txFailed(tx.hash);
-          });
-        })
-        .catch((error) => {
-          console.log(error);
-
+        console.log(params);
+        this.txService.add(
+          tx.hash,
+          this.cofixService.getCurrentAccount(),
+          JSON.stringify(params),
+          this.cofixService.getCurrentNetwork()
+        );
+        this.waitingPopover.dismiss();
+        this.utils.showTXSubmitModal(tx.hash);
+        const provider = this.cofixService.getCurrentProvider();
+        provider.once(tx.hash, (transactionReceipt) => {
           this.isLoading.sh = false;
-          this.waitingPopover.dismiss();
-          if (error.message.indexOf('User denied') > -1) {
-            this.utils.showTXRejectModal();
-          } else {
-            this.redeemError = { isError: true, msg: error.message };
-          }
+          this.utils.changeTxStatus(transactionReceipt.status, tx.hash);
+          this.onClose.emit({
+            type: 'redeem',
+            fromCoin: this.fromCoin,
+            toCoin: this.toCoin,
+          });
         });
-    }
-    if (this.isTokenChecked) {
-      amountTokenMin = this.tokenAmountForRemoveLiquidity;
-      this.cofixService
-        .removeLiquidityGetToken(
-          pair,
-          token,
-          this.toCoin.amount || '0',
-          amountTokenMin?.toString(),
-          this.oracleCost
-        )
-        .then((tx: any) => {
-          console.log('tx.hash', tx.hash);
-          this.isLoading.sh = true;
-          this.txService.add(
-            tx.hash,
-            this.cofixService.getCurrentAccount(),
-            JSON.stringify(params),
-            this.cofixService.getCurrentNetwork()
-          );
-          this.waitingPopover.dismiss();
-          this.utils.showTXSubmitModal(tx.hash);
-          const provider = this.cofixService.getCurrentProvider();
-          provider.once(tx.hash, (transactionReceipt) => {
-            this.isLoading.sh = false;
-            this.utils.changeTxStatus(transactionReceipt.status, tx.hash);
-            this.onClose.emit({
-              type: 'redeem',
-              fromCoin: this.fromCoin,
-              toCoin: this.toCoin,
-            });
-          });
-          provider.once('error', (error) => {
-            console.log('provider.once==', error);
-            this.isLoading.sh = false;
-          });
-        })
-        .catch((error) => {
-          console.log(error);
+
+        provider.once('error', (error) => {
+          console.log('provider.once==', error);
           this.isLoading.sh = false;
-          this.waitingPopover.dismiss();
-          if (error.message.indexOf('User denied') > -1) {
-            this.utils.showTXRejectModal();
-          } else {
-            this.redeemError = { isError: true, msg: error.message };
-          }
+          this.txService.txFailed(tx.hash);
         });
-    }
+      })
+      .catch((error) => {
+        console.log(error);
+
+        this.isLoading.sh = false;
+        this.waitingPopover.dismiss();
+        if (error.message.indexOf('User denied') > -1) {
+          this.utils.showTXRejectModal();
+        } else {
+          this.redeemError = { isError: true, msg: error.message };
+        }
+      });
+
+    // if (this.isTokenChecked) {
+    //   amountTokenMin = this.tokenAmountForRemoveLiquidity;
+    //   this.cofixService
+    //     .removeLiquidityGetToken(
+    //       pair,
+    //       token,
+    //       this.toCoin.amount || '0',
+    //       amountTokenMin?.toString(),
+    //       this.oracleCost
+    //     )
+    //     .then((tx: any) => {
+    //       console.log('tx.hash', tx.hash);
+    //       this.isLoading.sh = true;
+    //       this.txService.add(
+    //         tx.hash,
+    //         this.cofixService.getCurrentAccount(),
+    //         JSON.stringify(params),
+    //         this.cofixService.getCurrentNetwork()
+    //       );
+    //       this.waitingPopover.dismiss();
+    //       this.utils.showTXSubmitModal(tx.hash);
+    //       const provider = this.cofixService.getCurrentProvider();
+    //       provider.once(tx.hash, (transactionReceipt) => {
+    //         this.isLoading.sh = false;
+    //         this.utils.changeTxStatus(transactionReceipt.status, tx.hash);
+    //         this.onClose.emit({
+    //           type: 'redeem',
+    //           fromCoin: this.fromCoin,
+    //           toCoin: this.toCoin,
+    //         });
+    //       });
+    //       provider.once('error', (error) => {
+    //         console.log('provider.once==', error);
+    //         this.isLoading.sh = false;
+    //       });
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //       this.isLoading.sh = false;
+    //       this.waitingPopover.dismiss();
+    //       if (error.message.indexOf('User denied') > -1) {
+    //         this.utils.showTXRejectModal();
+    //       } else {
+    //         this.redeemError = { isError: true, msg: error.message };
+    //       }
+    //     });
+    // }
   }
   resetRedeemError() {
     this.redeemError = { isError: false, msg: '' };
@@ -411,17 +387,13 @@ export class RedeemLiquidPage implements OnInit, OnDestroy {
   }
 
   overERC20Liquid() {
-    return (
-      this.isTokenChecked &&
-      new BNJS(this.tokenAmountForRemoveLiquidity).gt(
-        new BNJS(this.maxERC20Liquid)
-      )
+    return new BNJS(this.amountForRemoveLiquidity.erc20Amount).gt(
+      new BNJS(this.maxERC20Liquid)
     );
   }
   overETHLiquid() {
-    return (
-      this.isETHChecked &&
-      new BNJS(this.ETHAmountForRemoveLiquidity).gt(new BNJS(this.maxETHLiquid))
+    return new BNJS(this.amountForRemoveLiquidity.ethAmount).gt(
+      new BNJS(this.maxETHLiquid)
     );
   }
 }

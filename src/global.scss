@@ -361,6 +361,10 @@ ion-toggle {
   color: #ff3b30;
 }
 
+.font-sm {
+  font-size: 13px !important;
+}
+
 .select-content,
 .select-header {
   width: 100%;
@@ -407,7 +411,7 @@ ion-toggle {
 }
 
 .claimETH {
-  height: 113px;
+  min-height: 113px;
   border-radius: 4px;
   border: solid 1px var(--concrete);
 }

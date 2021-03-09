@@ -3,7 +3,7 @@
   <div class="input-group">
     <ion-grid class="ion-no-padding">
       <ion-row>
-        <ion-col>
+        <ion-col *ngIf="isShowLabel">
           <div
             class="input-group-prepend {{isSelectCoin?'pointer':''}}"
             (click)="showCoinSelect($event)"

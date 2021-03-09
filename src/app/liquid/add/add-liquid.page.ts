@@ -8,7 +8,6 @@ import {
   ViewChild,
 } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { BigNumber } from 'ethers';
 import { Subscription } from 'rxjs';
 import { fromEvent } from 'rxjs/internal/observable/fromEvent';
 import { debounceTime } from 'rxjs/operators';
@@ -62,14 +61,11 @@ export class AddLiquidPage implements OnInit, OnDestroy {
   oracleCost = 0.01;
   maxFee = '0.05';
   isLoading = { cr: false, sq: false };
-  showFromError = false;
-  showToError = false;
-  showBalance = true;
   addLiquidError = { isError: false, msg: '' };
-  isShowFromMax = false;
-  isShowToMax = false;
   cardTitle = { title: 'liquidpool_add', subtitle: 'liquidpool_add_subtitle' };
   waitingPopover: any;
+  isValidRatio = false;
+  ratioAmount: number = 0;
 
   private resizeSubscription: Subscription;
   private changePriceOfToTokenSubscription: Subscription;
@@ -153,68 +149,44 @@ export class AddLiquidPage implements OnInit, OnDestroy {
     }
   }
 
-  async setFromCoinMax(event) {
-    if (!this.cofixService.getCurrentAccount()) {
-      return false;
-    }
-    this.fromCoin.id = event.coin;
-
-    if (this.fromCoin.id === 'ETH') {
-      const currentGasFee = await this.cofixService.currentGasFee();
-      this.fromCoin.amount = this.cofixService
-        .ethersOf(
-          BigNumber.from(
-            this.cofixService
-              .parseEthers(this.fromCoin.balance)
-              .sub(this.cofixService.parseEthers(this.maxFee))
-              .sub(this.cofixService.parseEthers(currentGasFee))
-          )
-        )
-        .toString();
-      if (new BNJS(this.fromCoin.amount).lt(0)) {
-        this.showFromError = true;
-        this.fromCoin.amount = '0';
-        this.toCoin.amount = '';
-        return;
-      } else {
-        this.showFromError = false;
-      }
-    } else {
-      this.fromCoin.amount = this.fromCoin.balance;
-      this.showFromError = true;
-    }
-
+  async ratioInput(event) {
     this.resetLiquidError();
-    this.setExpectedXToken();
-  }
+    this.ratioAmount = event.amount;
+    const ratio = await this.cofixService.getInitialAssetRatio(
+      this.toCoin.address
+    );
+    this.fromCoin.amount = (this.ratioAmount * ratio.ethAmount).toString();
+    this.toCoin.amount = (this.ratioAmount * ratio.erc20Amount).toString();
 
-  canShowError() {
-    this.showFromError = new BNJS(this.fromCoin.amount).gt(
-      new BNJS(this.fromCoin.balance)
+    this.setExpectedXToken();
+    this.getIsValidRatio();
+  }
+  async getIsValidRatio() {
+    this.isValidRatio = await this.cofixService.isValidRatio(
+      this.toCoin.address,
+      this.fromCoin.amount,
+      this.toCoin.amount
     );
-    this.showToError = new BNJS(this.toCoin.amount).gt(
-      new BNJS(this.toCoin.balance)
-    );
+  }
+  async getCalcAmountForStaking(token, amount) {
+    if (token === 'ETH') {
+      return await this.cofixService.calcERC20AmountForStaking(
+        this.toCoin.address,
+        amount
+      );
+    } else {
+      return await this.cofixService.calcETHAmountForStaking(
+        this.toCoin.address,
+        amount
+      );
+    }
   }
 
   async setExpectedXToken() {
     this.expectedXToken = await this.cofixService.expectedXToken(
       this.toCoin.address,
-      this.fromCoin.amount || '0',
-      this.toCoin.amount || '0'
+      this.fromCoin.amount || '0'
     );
-  }
-
-  async setToCoinMax(event) {
-    if (!this.cofixService.getCurrentAccount()) {
-      return false;
-    }
-    this.toCoin.id = event.coin;
-    this.toCoin.amount = this.toCoin.balance;
-    this.showToError = false;
-
-    this.resetLiquidError();
-    this.setExpectedXToken();
   }
 
   cancel() {
@@ -235,8 +207,7 @@ export class AddLiquidPage implements OnInit, OnDestroy {
         this.toCoin.amount || '0',
         await this.cofixService.expectedXToken(
           this.toCoin.address,
-          this.fromCoin.amount || '0',
-          this.toCoin.amount || '0'
+          this.fromCoin.amount || '0'
         ),
         this.oracleCost.toString(),
         this.isStake
@@ -305,7 +276,7 @@ export class AddLiquidPage implements OnInit, OnDestroy {
     this.waitingPopover = await this.utils.createTXConfirmModal();
     await this.waitingPopover.present();
     if (!this.toCoin.isApproved) {
-      this.utils.approveHandler(
+      await this.utils.approveHandler(
         this.isLoading,
         this.addLiquidError,
         this,
@@ -313,6 +284,7 @@ export class AddLiquidPage implements OnInit, OnDestroy {
         this.cofixService.getCurrentContractAddressList().CofixRouter,
         `ETH/${this.toCoin.id} Liquidity Pool`
       );
+      this.getIsApproved();
     }
   }
 
@@ -324,8 +296,6 @@ export class AddLiquidPage implements OnInit, OnDestroy {
     this.fromCoin.amount = '';
     this.toCoin.amount = '';
     this.expectedXToken = '';
-    this.showToError = false;
-    this.showFromError = false;
 
     this.unsubscribeAll();
 
@@ -342,6 +312,7 @@ export class AddLiquidPage implements OnInit, OnDestroy {
           this.setExpectedXToken();
         });
     }
+
     if (this.cofixService.getCurrentAccount()) {
       this.fromCoin.balance = await this.utils.getBalanceByCoin(this.fromCoin);
       this.fromCoin.subscription = this.balancesQuery
@@ -350,7 +321,6 @@ export class AddLiquidPage implements OnInit, OnDestroy {
           this.fromCoin.balance = await this.balanceTruncatePipe.transform(
             balance
           );
-          this.isShowFromMax = this.fromCoin.balance ? true : false;
         });
 
       this.toCoin.balance = await this.utils.getBalanceByCoin(this.toCoin);
@@ -361,7 +331,6 @@ export class AddLiquidPage implements OnInit, OnDestroy {
         )
         .subscribe((balance) => {
           this.toCoin.balance = balance;
-          this.isShowToMax = this.toCoin.balance ? true : false;
         });
     }
   }
@@ -370,26 +339,7 @@ export class AddLiquidPage implements OnInit, OnDestroy {
     this.initCoinContent();
   }
 
-  async fromCoinInput(event) {
-    this.resetLiquidError();
-    this.fromCoin.amount = event.amount;
-    this.setExpectedXToken();
-    this.canShowError();
-    if (new BNJS(this.fromCoin.amount).gte(new BNJS(this.fromCoin.balance))) {
-      this.showFromError = true;
-    } else {
-      this.showFromError = false;
-    }
-  }
-
-  async toCoinInput(event) {
-    this.toCoin.amount = event.amount;
-    this.resetLiquidError();
-    this.setExpectedXToken();
-    this.canShowError();
-  }
-
-  canAdd() {
+  canAddLiquid() {
     let result = false;
     this.fromCoin.amount = this.fromCoin.amount || '0';
     this.toCoin.amount = this.toCoin.amount || '0';
@@ -407,6 +357,7 @@ export class AddLiquidPage implements OnInit, OnDestroy {
         new BNJS(this.fromCoin.amount).lte(new BNJS(this.fromCoin.balance)) && //输入ETH值小于最大值
         new BNJS(this.toCoin.amount).lte(new BNJS(this.toCoin.balance));
     }
+    result = result && this.isValidRatio && Number(this.ratioAmount) > 0;
     return result;
   }
 
@@ -416,5 +367,13 @@ export class AddLiquidPage implements OnInit, OnDestroy {
       !this.toCoin.isApproved &&
       new BNJS(this.toCoin.amount).gt(0)
     );
+  }
+
+  overToBalance() {
+    return new BNJS(this.toCoin.amount).gt(new BNJS(this.toCoin.balance));
+  }
+
+  overFromBalance() {
+    return new BNJS(this.fromCoin.amount).gt(new BNJS(this.fromCoin.balance));
   }
 }

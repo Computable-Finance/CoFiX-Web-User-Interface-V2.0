@@ -101,7 +101,7 @@
   "qc": "Withdraw CoFi Tokens to your wallet",
   "income_total_ETH": "Total ETH in the Dividend Pool",
   "income_share_percent": "Your share in the Dividend Pool",
-  "enter_amount": "ENTER AMOUNT",
+  "enter_amount": "",
   "cofi_claim_title": "Claim CoFi Tokens",
   "cofi_already": "Mined and Claimed already",
   "cofi_wallet": "Cofi Tokens in your wallet",
@@ -131,7 +131,7 @@
   "liquidpool_add_subtitle": "Add Funds to Liquidity Pool and get XToken (pool share rights)",
   "liquidpool_withdraw_title": "Withdraw from the Liquidity Pool",
   "liquidpool_withdraw_subtitle": "We do NOT recommend withdrawing too early or too frequently",
-  "liquidpool_withdraw_to": "WITHDRAW TO(SELECT ONLY ONE)",
+  "liquidpool_withdraw_to": "WITHDRAW TO",
   "liquidpool_wallet": "XToken in your wallet (Liquidity Pool)",
   "miningpool_deposit_title": "Deposit XToken to the Mining Pool",
   "miningpool_deposit_subtitle": "Deposit XToken to the Mining Pool. Then you can mine CoFi tokens.",
@@ -227,5 +227,7 @@
   "connect_browser": "Browser Wallet",
   "connect_walletconnect": "WalletConnect",
   "walletconnect_scan": "Scan QR code with a WalletConnect",
-  "disconnect": "Disconnect"
+  "disconnect": "Disconnect",
+  "share_input": "Share to be Deposited",
+  "share_add": "NEED ADD"
 }

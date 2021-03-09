@@ -31,6 +31,11 @@ describe('PairSwitch', () => {
 
     component.coin = 'HBTC';
     component.switch();
+    expect(component.coin).toEqual('NEST');
+    expect(component.changeCoin.emit).toHaveBeenCalledWith({ coin: 'NEST' });
+
+    component.coin = 'NEST';
+    component.switch();
     expect(component.coin).toEqual('USDT');
     expect(component.changeCoin.emit).toHaveBeenCalledWith({ coin: 'USDT' });
   });

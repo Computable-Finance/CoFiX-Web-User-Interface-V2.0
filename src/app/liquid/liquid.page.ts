@@ -233,14 +233,6 @@ export class LiquidPage implements OnInit, OnDestroy {
     }
   }
 
-  async setExpectedXToken() {
-    this.expectedXToken = await this.cofixService.expectedXToken(
-      this.toCoin.address,
-      this.fromCoin.amount || '0',
-      this.toCoin.amount || '0'
-    );
-  }
-
   addLiquid(coin) {
     this.showAddModel = true;
     this.showRedemtionModel = false;
@@ -323,21 +315,17 @@ export class LiquidPage implements OnInit, OnDestroy {
             this.toCoin.id
           ] = await this.balanceTruncatePipe.transform(balance);
 
-          const resultETH = await this.cofixService.getETHAmountForRemoveLiquidity(
-            this.coinAddress,
-            pairAddress,
-            this.todoValue[this.toCoin.id] || '0'
-          );
-          this.ETHAmountForRemoveLiquidity[this.toCoin.id] = resultETH.result;
-          this.nAVPerShareForBurn[this.toCoin.id] =
-            resultETH.nAVPerShareForBurn;
-          const resultToken = await this.cofixService.getTokenAmountForRemoveLiquidity(
+          const resultToken = await this.cofixService.getETHAndTokenForRemoveLiquidity(
             this.coinAddress,
             pairAddress,
             this.todoValue[this.toCoin.id] || '0'
           );
           this.tokenAmountForRemoveLiquidity[this.toCoin.id] =
-            resultToken.result;
+            resultToken.erc20Amount;
+          this.ETHAmountForRemoveLiquidity[this.toCoin.id] =
+            resultToken.ethAmount;
+          this.nAVPerShareForBurn[this.toCoin.id] =
+            resultToken.nAVPerShareForBurn;
         });
 
       const stakingPoolAddress = await this.cofixService.getStakingPoolAddressByToken(

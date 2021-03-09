@@ -36,6 +36,7 @@ export class CoinInput implements OnInit, OnDestroy {
   @Input() isShowError = false;
   @Input() maxLiquid: string;
   @Input() isShowBlance = false;
+  @Input() isShowLabel = true;
   @Input() isShowMax = true;
   @Input() disabled = false;
   @Input() label = '';

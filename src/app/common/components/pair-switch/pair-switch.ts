@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { PAIRSWITCH_TOKENS } from '../../constants';
 
 @Component({
   selector: 'app-pair-switch',
@@ -8,15 +9,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class PairSwitch {
   @Output() changeCoin = new EventEmitter<any>();
   @Input() coin = 'USDT';
-
   constructor() {}
 
   switch() {
-    if (this.coin === 'USDT') {
-      this.coin = 'HBTC';
-    } else {
-      this.coin = 'USDT';
-    }
+    let index = PAIRSWITCH_TOKENS.indexOf(this.coin) ;
+    this.coin=(index+1) < PAIRSWITCH_TOKENS.length?PAIRSWITCH_TOKENS[index+1]:PAIRSWITCH_TOKENS[0]
     this.changeCoin.emit({ coin: this.coin });
   }
 }

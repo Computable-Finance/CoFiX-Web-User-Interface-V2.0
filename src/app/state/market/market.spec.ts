@@ -18,7 +18,7 @@ describe('Market Details State Management', () => {
     service = new MarketDetailsService(store);
   });
 
-  it('should update kinfo', () => {
+  /*it('should update kinfo', () => {
     let kinfoFromQuery;
     service.updateMarketDetails('testCoin', {
       kinfo: {
@@ -44,6 +44,7 @@ describe('Market Details State Management', () => {
 
     subscription.unsubscribe();
   });
+  */
 
   it('should update checkedPriceNow', () => {
     let ethAmount;

@@ -47,6 +47,8 @@ export const TOKENS = ['ETH', 'USDT', 'HBTC'];
 
 export const COFIX_TOKENS = ['CoFi', 'XTokens', 'ETH'];
 
+export const PAIRSWITCH_TOKENS = ['USDT', 'HBTC', 'NEST'];
+
 export const FOOTER_ITEMS = [
   {
     id: 'whitepaper',
