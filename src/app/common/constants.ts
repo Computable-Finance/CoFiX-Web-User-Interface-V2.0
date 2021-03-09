@@ -38,7 +38,7 @@ export function getContractAddressListByNetwork(network: number): any {
   }
 }
 
-export const DB_VERSION = '202011021648';
+export const DB_VERSION = '202103092222';
 
 export const BLOCKNUMS_IN_A_DAY = 6171.4;
 export const ETHER_DECIMALS = 18;
