@@ -20,10 +20,14 @@ module.exports = function (config) {
     client: {
       clearContext: false, // leave Jasmine Spec Runner output visible in browser
     },
-    coverageIstanbulReporter: {
+    coverageReporter: {
       dir: path.join(reportsDir, 'coverage'),
-      reports: ['html', 'lcovonly', 'text-summary', 'json-summary'],
-      fixWebpackSourcePaths: true,
+      subdir: '.',
+      reporters: [
+        { type: 'lcov' },
+        { type: 'text-summary' },
+        { type: 'json-summary' },
+      ],
     },
     reporters: ['mocha', 'kjhtml', 'junit', 'html', 'coverage'],
     port: 9876,
@@ -33,10 +37,10 @@ module.exports = function (config) {
     browsers: ['Chrome'],
     singleRun: false,
     junitReporter: {
-      outputDir: path.join(reportsDir, 'junit')
+      outputDir: path.join(reportsDir, 'junit'),
     },
     htmlReporter: {
-      outputFile: path.join(reportsDir, 'karma_html/index.html')
-    }
+      outputFile: path.join(reportsDir, 'karma_html/index.html'),
+    },
   });
 };
