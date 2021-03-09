@@ -666,8 +666,11 @@ export class CofiXService {
     const erc20Amount = unitsOf(result[0], await this.getERC20Decimals(token));
     const ethAmount = ethersOf(result[1]);
     const fee = ethersOf(result[1]);
+    const nAVPerShareForBurn = ethersOf(
+      await coFiXPair.getNAVPerShareForBurn(oraclePrice)
+    );
 
-    return { erc20Amount, ethAmount, fee };
+    return { erc20Amount, ethAmount, fee, nAVPerShareForBurn };
   }
 
   unitsOf(amount: BigNumber, decimals: BigNumber) {
@@ -1810,19 +1813,19 @@ export class CofiXService {
     });
   }
 
-  private async getInitialAssetRadio(address: string) {
-    let initialAssetRatio = this.marketDetailsQuery.getInitialAssetRadio(
+  async getInitialAssetRatio(address: string) {
+    let initialAssetRatio = this.marketDetailsQuery.getInitialAssetRatio(
       address
     );
     if (!initialAssetRatio) {
       await this.updateInitialAssetRatio(address);
-      initialAssetRatio = this.marketDetailsQuery.getInitialAssetRadio(address);
+      initialAssetRatio = this.marketDetailsQuery.getInitialAssetRatio(address);
     }
     return initialAssetRatio;
   }
 
   async calcETHAmountForStaking(address: string, erc20Amount: string) {
-    const initialAssetRatio = await this.getInitialAssetRadio(address);
+    const initialAssetRatio = await this.getInitialAssetRatio(address);
     return new BNJS(initialAssetRatio.ethAmount)
       .times(erc20Amount)
       .div(initialAssetRatio.erc20Amount)
@@ -1830,7 +1833,7 @@ export class CofiXService {
   }
 
   async calcERC20AmountForStaking(address: string, ethAmount: string) {
-    const initialAssetRatio = await this.getInitialAssetRadio(address);
+    const initialAssetRatio = await this.getInitialAssetRatio(address);
     return new BNJS(initialAssetRatio.erc20Amount)
       .times(ethAmount)
       .div(initialAssetRatio.ethAmount)
@@ -1838,7 +1841,7 @@ export class CofiXService {
   }
 
   async isValidRatio(address: string, ethAmount: string, erc20Amount: string) {
-    const initialAssetRatio = await this.getInitialAssetRadio(address);
+    const initialAssetRatio = await this.getInitialAssetRatio(address);
     return new BNJS(initialAssetRatio.erc20Amount)
       .times(ethAmount)
       .eq(new BNJS(initialAssetRatio.ethAmount).times(erc20Amount));

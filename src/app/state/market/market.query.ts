@@ -36,7 +36,7 @@ export class MarketDetailsQuery extends Query<MarketDetailsModel> {
     return this.getValueOfProperty(address, 'rewardRate');
   }
 
-  getInitialAssetRadio(address: string) {
+  getInitialAssetRatio(address: string) {
     return this.getValueOfProperty(address, 'initialAssetRatio');
   }
 
