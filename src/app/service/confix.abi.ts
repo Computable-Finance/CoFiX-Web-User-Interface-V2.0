@@ -53,6 +53,7 @@ export function getCoFixPair(address: string, provider) {
 
 export const COFIXVAULTFORTRADER_ABI = [
   'function actualMiningAmountAndDensity(address pair, uint256 thetaFee, uint256 x, uint256 y, uint256 np) external view returns (uint256 amount, uint256 density, uint256 cofiRate)',
+  'function actualMiningAmount(address, uint256, uint256) public override view returns (uint256, uint256, uint256)',
 ];
 
 export function getCoFiXVaultForTrader(address: string, provider) {

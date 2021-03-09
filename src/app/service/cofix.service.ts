@@ -357,13 +357,12 @@ export class CofiXService {
 
     if (fromToken !== undefined) {
       if (this.isCoFixToken(fromToken)) {
-        const result = await this.executionPriceAndExpectedCofiByERC202ETH(
+        excutionPrice1 = await this.executionPriceByERC202ETH(
           fromToken,
           innerAmount
         );
-        excutionPrice1 = result.excutionPrice;
-        expectedCofi.push(result.expectedCofi);
         innerAmount = excutionPrice1.times(amount).toString();
+        expectedCofi.push(this.expectedCoFi(fromToken, innerAmount, amount));
       } else {
         const result = await executionPriceAndAmountOutByERC202ETHThroughUniswap(
           {
@@ -381,13 +380,13 @@ export class CofiXService {
 
     if (toToken !== undefined && innerAmount !== '0') {
       if (this.isCoFixToken(toToken)) {
-        const result = await this.executionPriceAndExpectedCofiByETH2ERC20(
+        excutionPrice2 = await this.executionPriceByETH2ERC20(
           toToken,
           innerAmount
         );
-        excutionPrice2 = result.excutionPrice;
-        expectedCofi.push(result.expectedCofi);
+        const ethAmount = innerAmount;
         innerAmount = excutionPrice2.times(innerAmount).toString();
+        expectedCofi.push(this.expectedCoFi(toToken, ethAmount, innerAmount));
       } else {
         const result = await executionPriceAndAmountOutByETH2ERC20ThroughUniswap(
           {
@@ -413,14 +412,10 @@ export class CofiXService {
     };
   }
 
-  private async executionPriceAndExpectedCofiByETH2ERC20(
-    token: string,
-    amount: string
-  ) {
+  private async executionPriceByETH2ERC20(token: string, amount: string) {
     const kinfo = await this.getKInfo(token);
     const price = await this.checkPriceNow(token);
     const valx = new BNJS(amount);
-    const fee = this.parseEthers(valx.times(kinfo.theta).toString());
 
     let c;
     if (valx.lt(500)) {
@@ -435,21 +430,13 @@ export class CofiXService {
       .times(new BNJS(1).minus(new BNJS(kinfo.k).plus(c)))
       .times(new BNJS(1).minus(kinfo.theta));
 
-    return {
-      excutionPrice,
-      expectedCofi: this.expectedCoFi(token, price, kinfo, fee, true),
-    };
+    return excutionPrice;
   }
 
-  private async executionPriceAndExpectedCofiByERC202ETH(
-    token: string,
-    amount: string
-  ) {
+  private async executionPriceByERC202ETH(token: string, amount: string) {
     const kinfo = await this.getKInfo(token);
     const price = await this.checkPriceNow(token);
     const valx = new BNJS(amount).div(new BNJS(price.changePrice));
-
-    const fee = this.parseEthers(valx.times(kinfo.theta).toString());
 
     let c;
     if (valx.lt(500)) {
@@ -468,59 +455,29 @@ export class CofiXService {
         )
       );
 
-    return {
-      excutionPrice,
-      expectedCofi: this.expectedCoFi(token, price, kinfo, fee, false),
-    };
+    return excutionPrice;
   }
 
-  // 预计出矿量
-  // 注意：交易方向决定传入合约的值，eth2ERC20 决定
-  // true：eth -> erc20
-  // false: erc20 -> eth
   private async expectedCoFi(
     token: string,
-    checkedPriceNow: any,
-    kinfo: any,
-    fee: BigNumber,
-    eth2ERC20: boolean = true
+    ethAmount: string,
+    erc20Amount: string
   ) {
     if (!this.isCoFixToken(token)) {
       return;
     }
 
     const pairAddress = await this.getPairAddressByToken(token);
-    const balanceOfPair = await this.getERC20BalanceOfPair(token, token);
-    const tokens = this.parseEthers(
-      new BNJS(balanceOfPair).div(checkedPriceNow.changePrice).toFixed(8)
-    );
-    const weth9Balance = this.parseEthers(
-      await this.getERC20BalanceOfPair(token, this.contractAddressList.WETH9)
-    );
-    const navPerShare = this.parseEthers(await this.getNavPerShare(token));
-    let x;
-    let y;
-    if (eth2ERC20) {
-      x = weth9Balance;
-      y = tokens;
-    } else {
-      x = tokens;
-      y = weth9Balance;
-    }
     const trader = getCoFiXVaultForTrader(
       this.contractAddressList.CoFiXVaultForTrader,
       this.provider
     );
-    const actualMiningAmountAndDensity = await trader.actualMiningAmountAndDensity(
+    const actualMiningAmount = await trader.actualMiningAmount(
       pairAddress,
-      fee,
-      x,
-      y,
-      navPerShare
+      this.parseEthers(ethAmount),
+      this.parseUnits(erc20Amount, await this.getERC20Decimals(token))
     );
-    const value = new BNJS(ethersOf(actualMiningAmountAndDensity.amount)).times(
-      0.8
-    );
+    const value = new BNJS(ethersOf(actualMiningAmount[0])).times(0.9);
     return value;
   }
 
