@@ -37,7 +37,7 @@ export class LazyTranslateLoader implements TranslateLoader {
     AppRoutingModule,
     HttpClientModule,
     environment.production ? [] : AkitaNgDevtools.forRoot(),
-    AkitaNgRouterStoreModule.forRoot(),
+    AkitaNgRouterStoreModule,
     BrowserAnimationsModule,
   ],
   providers: [
