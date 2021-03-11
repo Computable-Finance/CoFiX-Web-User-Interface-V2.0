@@ -10,26 +10,31 @@
  */
 
 /* Core CSS required for Ionic components to work properly */
-@import '~@ionic/angular/css/core.css';
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@import '@ionic/angular/css/core.css';
 
 /* Basic CSS for apps built with Ionic */
-@import '~@ionic/angular/css/normalize.css';
-@import '~@ionic/angular/css/structure.css';
-@import '~@ionic/angular/css/typography.css';
-@import '~@ionic/angular/css/display.css';
+@import '@ionic/angular/css/normalize.css';
+@import '@ionic/angular/css/structure.css';
+@import '@ionic/angular/css/typography.css';
+@import '@ionic/angular/css/display.css';
 
 /* Optional CSS utils that can be commented out */
-@import '~@ionic/angular/css/padding.css';
-@import '~@ionic/angular/css/float-elements.css';
-@import '~@ionic/angular/css/text-alignment.css';
-@import '~@ionic/angular/css/text-transformation.css';
-@import '~@ionic/angular/css/flex-utils.css';
+@import '@ionic/angular/css/padding.css';
+@import '@ionic/angular/css/float-elements.css';
+@import '@ionic/angular/css/text-alignment.css';
+@import '@ionic/angular/css/text-transformation.css';
+@import '@ionic/angular/css/flex-utils.css';
+
 html,
 body {
-  font-family: 'Source Sans Pro', sans-serif;
   margin: 0;
   font-size: 17px;
   color: #000;
+  font-family: var(--ion-font-family);
   --black: #000000;
   --mine: #2f2f2f;
   --dove: #727272;
@@ -64,6 +69,19 @@ body {
   --botticelli: #ccd9e3;
   --lightblue: #e3f1fc;
 }
+
+p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+img {
+  display: unset;
+}
+
 @media only screen and (max-width: 510px) {
   .conversionPrice {
     font-size: 17px !important;
@@ -73,12 +91,12 @@ body {
 ion-button {
   text-transform: none;
   font-weight: 600;
-  font-family: 'Source Sans Pro', sans-serif;
   height: 50px !important;
   font-stretch: normal;
   font-style: normal;
   letter-spacing: normal;
 }
+
 .ion-button-label {
   height: 34px;
   line-height: 34px;
@@ -104,6 +122,7 @@ ion-button {
     }
   }
 }
+
 .popover-coinselect .popover-content {
   list-style: none;
   padding: 0;
@@ -450,7 +469,6 @@ ion-toggle {
   li {
     line-height: 22px;
     color: var(--dove);
-    font-family: 'Source Sans Pro', sans-serif;
     font-size: 17px;
     font-weight: normal;
     font-stretch: normal;

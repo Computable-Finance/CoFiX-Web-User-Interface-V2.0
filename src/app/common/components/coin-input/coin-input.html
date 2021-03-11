@@ -3,24 +3,20 @@
   <div class="input-group">
     <ion-grid class="ion-no-padding">
       <ion-row>
-        <ion-col *ngIf="isShowLabel">
+        <ion-col *ngIf="isShowLabel" size="5">
           <div
-            class="input-group-prepend {{isSelectCoin?'pointer':''}}"
+            class="input-label {{isSelectCoin?'pointer':''}}"
             (click)="showCoinSelect($event)"
           >
-            <span class="input-group-text"
-              ><img src="{{tokenLogo(coin)}}" class="coin_icon" />&nbsp;<span
-                class="coin-title"
-                >{{tokenName(coin)}}</span
-              >
-              &nbsp;<img
-                *ngIf="isSelectCoin"
-                src="./assets/images/select.png"
-                class="sel"
-              />&nbsp;</span
-            >
-          </div></ion-col
-        >
+            <img src="{{tokenLogo(coin)}}" class="coin_icon" />&nbsp;
+            <div class="coin-title">{{tokenName(coin)}}</div>
+            &nbsp;<img
+              *ngIf="isSelectCoin"
+              src="./assets/images/select.png"
+              class="sel"
+            />&nbsp;
+          </div>
+        </ion-col>
         <ion-col>
           <input
             type="number"

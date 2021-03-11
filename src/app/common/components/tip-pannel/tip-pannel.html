@@ -1,7 +1,7 @@
 <div class="tippannel-content">
-  <div class="centent">
+  <div class="px-6">
     <ion-grid class="ion-no-padding title-content">
-      <ion-row class="ion-align-items-center ion-align-self-center">
+      <ion-row class="ion-align-items-center ion-align-self-center  h-16">
         <ion-col size="11">
           <h2 class="title">{{tipPannelContent.title | translate}}</h2>
         </ion-col>
@@ -20,7 +20,7 @@
       >
         <div [innerHTML]="desc | translate | marked" class="desc"></div>
       </ng-container>
-      <div class="more">
+      <div class="more py-5">
         {{'still_complicated' | translate}}
         <a (click)="goto(tipPannelContent.more.url)"
           >{{tipPannelContent.more.text | translate}}

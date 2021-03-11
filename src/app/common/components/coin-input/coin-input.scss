@@ -5,21 +5,9 @@
   margin: 10px 0px;
 }
 .input-group {
-  // position: relative;
-  // display: -ms-flexbox;
-  // display: flex;
-  // -ms-flex-wrap: wrap;
-  // flex-wrap: wrap;
-  // -ms-flex-align: stretch;
-  // align-items: stretch;
-  // width: 100%;
-  // border-top-left-radius: 8px;
-  // border-bottom-left-radius: 8px;
   height: 50px;
-  // z-index: 9;
-  // width: 100%;
-  // border-radius: 8px;
 }
+
 .input {
   width: 100%;
   background: unset;
@@ -28,13 +16,16 @@
   font-size: 36px;
   color: black;
 }
+
 .coin-title {
   font-size: 34px;
   color: black;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 @media only screen and (max-width: 510px) {
   .input {
-    font-size: 26px;
+    font-size: 24px;
   }
   .coin-title {
     font-size: 26px;
@@ -44,7 +35,7 @@
     height: 25px !important;
   }
 }
-.input-group-text {
+.input-label {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
