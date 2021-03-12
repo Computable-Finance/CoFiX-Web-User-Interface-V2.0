@@ -152,34 +152,28 @@ export class AddLiquidPage implements OnInit, OnDestroy {
   async ratioInput(event) {
     this.resetLiquidError();
     this.ratioAmount = event.amount;
+
     const ratio = await this.cofixService.getInitialAssetRatio(
       this.toCoin.address
     );
-    this.fromCoin.amount = (this.ratioAmount * ratio.ethAmount).toString();
-    this.toCoin.amount = (this.ratioAmount * ratio.erc20Amount).toString();
+
+    this.fromCoin.amount = new BNJS(this.ratioAmount)
+      .times(ratio.ethAmount)
+      .toString();
+    this.toCoin.amount = new BNJS(this.ratioAmount)
+      .times(ratio.erc20Amount)
+      .toString();
 
     this.setExpectedXToken();
     this.getIsValidRatio();
   }
+
   async getIsValidRatio() {
     this.isValidRatio = await this.cofixService.isValidRatio(
       this.toCoin.address,
       this.fromCoin.amount,
       this.toCoin.amount
     );
-  }
-  async getCalcAmountForStaking(token, amount) {
-    if (token === 'ETH') {
-      return await this.cofixService.calcERC20AmountForStaking(
-        this.toCoin.address,
-        amount
-      );
-    } else {
-      return await this.cofixService.calcETHAmountForStaking(
-        this.toCoin.address,
-        amount
-      );
-    }
   }
 
   async setExpectedXToken() {
