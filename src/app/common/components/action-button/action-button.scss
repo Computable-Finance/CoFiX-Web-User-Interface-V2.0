@@ -1,0 +1,17 @@
+.operation-btn {
+  font-size: 20px;
+  height: 50px;
+  --border-radius: 25px;
+  --box-shadow: none;
+}
+
+.btn-outline {
+  --border-color: var(--silver);
+  .ion-button-label {
+    color: #000;
+  }
+}
+
+.loading-disabled {
+  --background: #bbdda2;
+}

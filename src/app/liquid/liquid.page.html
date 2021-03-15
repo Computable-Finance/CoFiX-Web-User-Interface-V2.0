@@ -14,14 +14,14 @@
           [cardTitle]="'liquidpool_title'"
           [cardSubTitle]="'liquidpool_desc'"
         ></app-card-title>
-        <app-taken-info
+        <app-token-info
           [infoTitle]="'liquidpool_xtoken'"
           [token]="'XTokens'"
           [tokenBalance]="todoValue[toCoin.id]"
           [showZeroInfo]="canShowZeroInfo()"
           [alertContent]="'pool_tooltips_liquidpool_xtoken'"
         >
-        </app-taken-info>
+        </app-token-info>
 
         <ion-grid class="ion-no-padding">
           <ion-row
@@ -84,29 +84,24 @@
             </ion-col>
           </ion-row>
         </ion-grid>
-        <div class="button-div">
-          <ion-button
-            id="enter-liquid-btn"
-            expand="block"
-            class="operation-btn approve-btn full-btn"
-            (click)="addLiquid(toCoin.id)"
-            [disabled]="!cofixService.getCurrentAccount()"
-          >
-            <div class="ion-button-label">{{'liquidpool_add' | translate}}</div>
-          </ion-button>
+        <div class="mt-7 mb-2">
+          <app-action-button
+            [btnTitle]="'liquidpool_add'"
+            [btnId]="'enter-liquid-btn'"
+            [isEnabled]="!cofixService.getCurrentAccount()"
+            (clickAction)="addLiquid(toCoin.id)"
+            class="w-full"
+          ></app-action-button>
         </div>
-        <div class="button-outline">
-          <ion-button
-            id="withdraw-liquid-btn"
-            fill="outline"
-            class="operation-btn approve-btn full-btn"
-            (click)="redemption(toCoin.id)"
-            [disabled]="!cofixService.getCurrentAccount()"
-          >
-            <div class="ion-button-label">
-              {{'liquidpool_withdraw' | translate}}
-            </div>
-          </ion-button>
+        <div class="mb-7">
+          <app-action-button
+            [btnTitle]="'liquidpool_withdraw'"
+            [btnId]="'withdraw-liquid-btn'"
+            [isEnabled]="!cofixService.getCurrentAccount()"
+            [isOutline]="true"
+            (clickAction)="redemption(toCoin.id)"
+            class="w-full"
+          ></app-action-button>
         </div>
       </div>
     </ion-card>
@@ -117,7 +112,7 @@
           [cardTitle]="'miningpool_title'"
           [cardSubTitle]="'miningpool_desc'"
         ></app-card-title>
-        <app-taken-info
+        <app-token-info
           [infoTitle]="'miningpool_token'"
           [token]="tokenName"
           [tokenBalance]="hadValue[toCoin.id]"
@@ -126,7 +121,7 @@
           [questionImgName]="questionImgName"
           [alertContent]="'pool_tooltips_miningpool_xtoken'"
         >
-        </app-taken-info>
+        </app-token-info>
 
         <ion-grid class="ion-no-padding">
           <ion-row
@@ -179,29 +174,24 @@
             </ion-col>
           </ion-row>
         </ion-grid>
-        <div class="button-div">
-          <ion-button
-            id="deposit-xtoken-btn"
-            expand="block"
-            class="operation-btn approve-btn full-btn"
-            (click)="depositToken(toCoin.id)"
-            [disabled]="havMining()"
-          >
-            <div class="ion-button-label">{{btnTitle.deposit | translate}}</div>
-          </ion-button>
+        <div class="mt-7 mb-2">
+          <app-action-button
+            [btnTitle]="btnTitle.deposit"
+            [btnId]="'deposit-xtoken-btn'"
+            [isEnabled]="havMining()"
+            (clickAction)="depositToken(toCoin.id)"
+            class="w-full disabled-btn"
+          ></app-action-button>
         </div>
-        <div class="button-outline">
-          <ion-button
-            id="withdraw-xtoken-btn"
-            fill="outline"
-            class="operation-btn approve-btn full-btn"
-            (click)="withdrawToken(toCoin.id)"
-            [disabled]="havMining()"
-          >
-            <div class="ion-button-label">
-              {{btnTitle.withdraw | translate}}
-            </div>
-          </ion-button>
+        <div class="mb-7">
+          <app-action-button
+            [btnTitle]="btnTitle.withdraw"
+            [btnId]="'withdraw-xtoken-btn'"
+            [isEnabled]="havMining()"
+            [isOutline]="true"
+            (clickAction)="withdrawToken(toCoin.id)"
+            class="w-full outline-btn"
+          ></app-action-button>
         </div>
       </div>
     </ion-card>

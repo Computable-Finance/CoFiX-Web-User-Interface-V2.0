@@ -82,6 +82,10 @@ img {
   display: unset;
 }
 
+.button-disabled {
+  --background: var(--alto);
+}
+
 @media only screen and (max-width: 510px) {
   .conversionPrice {
     font-size: 17px !important;
@@ -237,10 +241,6 @@ ion-button {
 .swap-btn {
   --background: #bbdda2;
   color: white;
-}
-
-.full-btn {
-  width: 100%;
 }
 
 .alert-icon {
@@ -415,13 +415,6 @@ ion-toggle {
   cursor: pointer;
   z-index: 10;
   width: 32px;
-}
-.button-outline {
-  margin: 0px auto 16px auto;
-  --border-color: var(--silver);
-}
-.button-outline .ion-button-label {
-  color: #000;
 }
 
 .divider-swap {

@@ -72,46 +72,31 @@
 </div>
 
 <div class="button-div" *ngIf="isDeposit">
-  <ion-button
-    id="approve-btn"
-    expand="block"
-    class="operation-btn approve-btn"
+  <app-action-button
+    [btnTitle]="'sq_text1'"
+    [btnId]="'approve-btn'"
+    [isLoading]="isLoading.sq"
+    (clickAction)="approve()"
+    class="w-9/20"
     *ngIf="!isApproved"
-    (click)="isLoading.sq || approve()"
-  >
-    <div class="ion-button-label">
-      <div *ngIf="!isLoading.sq">{{'sq_text' | translate}}</div>
-      <div class="loading" *ngIf="isLoading.sq"></div>
-    </div>
-  </ion-button>
-  <ion-button
-    id="deposit-btn"
-    expand="block"
-    class="operation-btn"
-    [ngClass]="{'swap-btn':!isApproved,'full-btn':isApproved}"
-    (click)="save()"
-    [disabled]="isLoading.cr || !canSave()"
-  >
-    <div class="ion-button-label" *ngIf="canSave()">
-      <div *ngIf="!isLoading.cr">
-        {{'miningpool_deposit_title' | translate}}
-      </div>
-      <div class="loading" *ngIf="isLoading.cr"></div>
-    </div>
-    <div class="ion-button-label" *ngIf="!canSave()">{{'add' | translate}}</div>
-  </ion-button>
+  ></app-action-button>
+
+  <app-action-button
+    [btnTitle]="canSave()?'miningpool_deposit_title':'add'"
+    [btnId]="'deposit-btn'"
+    [isLoading]="isLoading.cr"
+    [ngClass]="{'w-9/20':!isApproved,'w-full':isApproved}"
+    [isEnabled]="isLoading.cr || !canSave()"
+    (clickAction)="save()"
+  ></app-action-button>
 </div>
-<div class="button-div" *ngIf="!isDeposit">
-  <ion-button
-    id="withdraw-btn"
-    expand="block"
-    class="operation-btn approve-btn full-btn"
-    (click)="recieve()"
-    [disabled]="isLoading.qc || !canReceive()"
-  >
-    <div class="ion-button-label">
-      <div *ngIf="!isLoading.qc">{{'qc' | translate}}</div>
-      <div class="loading" *ngIf="isLoading.qc"></div>
-    </div>
-  </ion-button>
+<div class="my-7" *ngIf="!isDeposit">
+  <app-action-button
+    [btnTitle]="'qc'"
+    [btnId]="'withdraw-btn'"
+    [isLoading]="isLoading.qc"
+    [isEnabled]="isLoading.qc || !canReceive()"
+    (clickAction)="recieve()"
+    class="w-full"
+  ></app-action-button>
 </div>

@@ -4,6 +4,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { MockDirective, MockPipe, MockProvider } from 'ng-mocks';
 import { CofiXService } from 'src/app/service/cofix.service';
 import { EventBusService } from 'src/app/service/eventbus.service';
+import { ActionButton } from '../common/components/action-button/action-button';
 
 import { SkeletonDirective } from '../common/directive/skeleton/skeleton';
 import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
@@ -35,6 +36,7 @@ describe('DividendPage', () => {
       ],
       declarations: [
         DividendPage,
+        ActionButton,
         MockPipe(TranslatePipe),
         MockPipe(BalanceTruncatePipe),
         MockDirective(SkeletonDirective),
@@ -49,19 +51,19 @@ describe('DividendPage', () => {
 
   it('should disable withdraw and deposit button when not connected', () => {
     fixture.detectChanges();
-    const buttons = element.querySelectorAll('.approve-btn');
-    expect(buttons.length).toBe(2);
-    expect((buttons[0] as HTMLButtonElement).disabled).toBe(true);
-    expect((buttons[1] as HTMLButtonElement).disabled).toBe(true);
+    const depositButton = element.querySelector('#deposit-cofi-btn');
+    expect((depositButton as HTMLButtonElement).disabled).toBe(true);
+    const withdrawButton = element.querySelector('#withdraw-cofi-btn');
+    expect((withdrawButton as HTMLButtonElement).disabled).toBe(true);
   });
 
   it('should enable withdraw and deposit button when connected', () => {
     currentAccount = 'test';
     fixture.detectChanges();
-    const buttons = element.querySelectorAll('.approve-btn');
-    expect(buttons.length).toBe(2);
-    expect((buttons[0] as HTMLButtonElement).disabled).toBe(false);
-    expect((buttons[1] as HTMLButtonElement).disabled).toBe(false);
+    const depositButton = element.querySelector('#deposit-cofi-btn');
+    expect((depositButton as HTMLButtonElement).disabled).toBe(false);
+    const withdrawButton = element.querySelector('#withdraw-cofi-btn');
+    expect((withdrawButton as HTMLButtonElement).disabled).toBe(false);
   });
 
   it('should disable receive button when ETH not earned', () => {
@@ -69,7 +71,7 @@ describe('DividendPage', () => {
     component.earnedETH = '0';
     fixture.detectChanges();
     expect(
-      (element.querySelector('.claim-btn') as HTMLButtonElement).disabled
+      (element.querySelector('#claim-eth-button') as HTMLButtonElement).disabled
     ).toBe(true);
   });
 
@@ -78,7 +80,7 @@ describe('DividendPage', () => {
     component.earnedETH = '1';
     fixture.detectChanges();
     expect(
-      (element.querySelector('.claim-btn') as HTMLButtonElement).disabled
+      (element.querySelector('#claim-eth-button') as HTMLButtonElement).disabled
     ).toBe(false);
   });
 });

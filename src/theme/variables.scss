@@ -27,8 +27,6 @@
   --ion-color-warning-shade: #e0ac08;
   --ion-color-warning-tint: #ffca22;
 
-  
-
   /** dark **/
   --ion-color-dark: var(--mine);
   --ion-color-dark-rgb: 34, 36, 40;
@@ -37,8 +35,6 @@
   --ion-color-dark-shade: rgb(9, 20, 39);
   --ion-color-dark-tint: rgb(9, 20, 39);
 
-  
-
   /** light **/
   --ion-color-light: #c2c2c2;
   --ion-color-light-rgb: black;
@@ -46,7 +42,6 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
-
 
   --ion-font-family: 'Source Sans Pro', sans-serif;
 }
@@ -78,7 +73,6 @@
     --ion-color-warning-contrast-rgb: 0, 0, 0;
     --ion-color-warning-shade: #e0bb2e;
     --ion-color-warning-tint: #ffd948;
-
 
     --ion-color-dark: #f4f5f8;
     --ion-color-dark-rgb: 244, 245, 248;
@@ -113,6 +107,5 @@
     --ion-item-background: var(--white);
 
     --ion-card-background: var(--white);
-
   }
 }

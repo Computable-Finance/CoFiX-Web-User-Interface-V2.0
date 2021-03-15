@@ -10,13 +10,13 @@
             [cardSubTitle]="'income_desc'"
           ></app-card-title>
 
-          <app-taken-info
+          <app-token-info
             [infoTitle]="'income_token_title'"
             [token]="profitCoin"
             [tokenBalance]="cofiStakingRewards"
             [alertContent]="'dividend_tooltips_deposit'"
           >
-          </app-taken-info>
+          </app-token-info>
 
           <div class="count">
             <div class="explain-div">
@@ -86,31 +86,24 @@
               </ion-grid>
             </div>
           </div>
-          <div class="button-div">
-            <ion-button
-              id="deposit-cofi-btn"
-              expand="block"
-              class="operation-btn approve-btn full-btn"
-              (click)="showModal('deposit')"
-              [disabled]="!cofixService.getCurrentAccount()"
-            >
-              <div class="ion-button-label">
-                {{buttonTitle.deposit | translate}}
-              </div>
-            </ion-button>
+          <div class="mt-7 mb-2">
+            <app-action-button
+              [btnTitle]="buttonTitle.deposit"
+              [btnId]="'deposit-cofi-btn'"
+              [isEnabled]="!cofixService.getCurrentAccount()"
+              (clickAction)="showModal('deposit')"
+              class="w-full"
+            ></app-action-button>
           </div>
-          <div class="button-outline">
-            <ion-button
-              id="withdraw-cofi-btn"
-              fill="outline"
-              class="operation-btn approve-btn full-btn"
-              (click)="showModal('withdraw')"
-              [disabled]="!cofixService.getCurrentAccount()"
-            >
-              <div class="ion-button-label">
-                {{buttonTitle.withdraw | translate}}
-              </div>
-            </ion-button>
+          <div class="mb-7">
+            <app-action-button
+              [btnTitle]="buttonTitle.withdraw"
+              [btnId]="'withdraw-cofi-btn'"
+              [isEnabled]="!cofixService.getCurrentAccount()"
+              [isOutline]="true"
+              (clickAction)="showModal('withdraw')"
+              class="w-full"
+            ></app-action-button>
           </div>
         </div>
       </ion-card>
@@ -120,27 +113,23 @@
             [cardTitle]="'income_claim_title'"
             [cardSubTitle]="'income_claim_desc'"
           ></app-card-title>
-          <app-taken-info
+          <app-token-info
             id="earned-eth"
             [infoTitle]="'klq'"
             [token]="'ETH'"
             [tokenBalance]="earnedETH"
             [alertContent]="'dividend_tooltips_claimeth'"
           >
-          </app-taken-info>
-          <div class="button-div">
-            <ion-button
-              expand="block"
-              class="operation-btn full-btn claim-btn"
-              [disabled]="isLoading || !earned()"
-              (click)="receiveETH()"
-              id="claim-eth-button"
-            >
-              <div class="ion-button-label">
-                <div *ngIf="!isLoading">{{'lq_text' | translate}}</div>
-                <div class="loading" *ngIf="isLoading"></div>
-              </div>
-            </ion-button>
+          </app-token-info>
+          <div class="my-7">
+            <app-action-button
+              [btnTitle]="'lq_text'"
+              [btnId]="'claim-eth-button'"
+              [isLoading]="isLoading"
+              [isEnabled]="isLoading || !earned()"
+              (clickAction)="receiveETH()"
+              class="w-full"
+            ></app-action-button>
           </div>
         </div>
       </ion-card>

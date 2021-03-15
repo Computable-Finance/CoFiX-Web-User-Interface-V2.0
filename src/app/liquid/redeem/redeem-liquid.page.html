@@ -100,32 +100,24 @@
     </ion-grid>
 
     <div class="button-div" *ngIf="cofixService.getCurrentAccount()">
-      <ion-button
-        id="approve-btn"
-        expand="block"
-        class="operation-btn approve-btn"
-        (click)="approve()"
-        [disabled]="isLoading.sq"
+      <app-action-button
         *ngIf="!toCoin.isApproved"
-      >
-        <div class="ion-button-label">
-          <div *ngIf="!isLoading.sq">{{'sq_text' | translate}}</div>
-          <div class="loading" *ngIf="isLoading.sq"></div>
-        </div>
-      </ion-button>
-      <ion-button
-        id="redeem-btn"
-        expand="block"
-        class="operation-btn"
-        [ngClass]="{'swap-btn':!toCoin.isApproved,'full-btn':toCoin.isApproved}"
-        (click)="redeem()"
-        [disabled]="isLoading.sh || !canRedeem()"
-      >
-        <div class="ion-button-label">
-          <div *ngIf="!isLoading.sh">{{'sh' | translate}}</div>
-          <div class="loading" *ngIf="isLoading.sh"></div>
-        </div>
-      </ion-button>
+        [btnTitle]="'sq_text'"
+        [btnId]="'approve-btn'"
+        [isEnabled]="isLoading.sq"
+        [isLoading]="isLoading.sq"
+        (clickAction)="approve()"
+        class="w-9/20"
+      ></app-action-button>
+
+      <app-action-button
+        [btnTitle]="'sh'"
+        [btnId]="'redeem-btn'"
+        [isEnabled]="isLoading.sh || !canRedeem()"
+        [isLoading]="isLoading.sh"
+        (clickAction)="redeem()"
+        [ngClass]="{'w-9/20':!toCoin.isApproved,'w-full':toCoin.isApproved}"
+      ></app-action-button>
     </div>
   </div>
 </ion-card>

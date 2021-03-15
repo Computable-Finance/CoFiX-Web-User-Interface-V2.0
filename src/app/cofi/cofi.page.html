@@ -12,13 +12,13 @@
           [cardTitle]="'cofi_claim_title'"
           [cardSubTitle]="'cofi_claim_desc'"
         ></app-card-title>
-        <app-taken-info
+        <app-token-info
           [infoTitle]="'ywc'"
           [token]="'CoFi'"
           [tokenBalance]="cofiBalance"
           [alertContent]="'claim_tooltips_unclaimed'"
         >
-        </app-taken-info>
+        </app-token-info>
 
         <ion-grid class="ion-no-padding">
           <ion-row
@@ -87,29 +87,23 @@
           </ion-row>
         </ion-grid>
         <div class="button-div">
-          <ion-button
-            id="approve-btn"
-            expand="block"
-            class="operation-btn approve-btn"
-            (click)="approve()"
+          <app-action-button
+            [btnTitle]="'sq_text'"
+            [btnId]="'approve-btn'"
+            [isLoading]="isLoading.sq"
+            (clickAction)="approve()"
+            class="w-9/20"
             *ngIf="!isApproved && isDeposit && cofixService.getCurrentAccount()"
-          >
-            <div class="ion-button-label">
-              <div *ngIf="!isLoading.sq">{{'sq_text' | translate}}</div>
-              <div class="loading" *ngIf="isLoading.sq"></div>
-            </div>
-          </ion-button>
-          <ion-button
-            id="claim-cofi-btn"
-            expand="block"
-            class="operation-btn"
-            [ngClass]="{'swap-btn':!isApproved  && isDeposit,'full-btn':isApproved || !isDeposit || !cofixService.getCurrentAccount()}"
-            (click)="withdrawEarnedCoFi()"
-            [disabled]="canNotWithdraw()"
-          >
-            <div *ngIf="!isLoading.qc">{{claimTitle | translate}}</div>
-            <div class="loading" *ngIf="isLoading.qc"></div>
-          </ion-button>
+          ></app-action-button>
+
+          <app-action-button
+            [btnTitle]="claimTitle"
+            [btnId]="'claim-cofi-btn'"
+            [isLoading]="isLoading.qc"
+            [isEnabled]="canNotWithdraw()"
+            (clickAction)="withdrawEarnedCoFi()"
+            [ngClass]="{'w-9/20':!isApproved  && isDeposit,'w-full':isApproved || !isDeposit || !cofixService.getCurrentAccount()}"
+          ></app-action-button>
         </div>
       </div>
     </ion-card>

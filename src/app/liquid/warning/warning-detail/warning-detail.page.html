@@ -11,23 +11,21 @@
     >{{'warning_desc4' | translate}}<b>{{'warning_desc5' | translate}}</b
     >{{'warning_desc6' | translate}}
   </p>
-  <div class="button-div">
-    <ion-button
-      id="close-warning-btn"
-      expand="block"
-      class="operation-btn approve-btn full-btn"
-      (click)="close()"
-    >
-      <div class="ion-button-label">{{'understand_risk' | translate}}</div>
-    </ion-button>
+  <div class="mt-7 mb-2">
+    <app-action-button
+      [btnTitle]="'understand_risk'"
+      [btnId]="'close-warning-btn'"
+      (clickAction)="close()"
+      class="w-full"
+    ></app-action-button>
   </div>
-  <div class="button-outline">
-    <ion-button
-      fill="outline"
-      class="operation-btn approve-btn full-btn"
-      (click)="learnMore()"
-    >
-      <div class="ion-button-label">{{moreDetailTitle | translate}}</div>
-    </ion-button>
+  <div class="mb-7">
+    <app-action-button
+      [btnTitle]="moreDetailTitle"
+      [btnId]="'more-detail-btn'"
+      [isOutline]="true"
+      (clickAction)="learnMore()"
+      class="w-full"
+    ></app-action-button>
   </div>
 </div>

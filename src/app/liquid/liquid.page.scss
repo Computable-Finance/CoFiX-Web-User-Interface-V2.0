@@ -6,10 +6,18 @@
   }
 }
 
-.button-div {
-  margin: 30px auto 8px auto;
+.disabled-btn {
+  ::ng-deep {
+    .button-disabled {
+      --background: #bbdda2 !important;
+    }
+  }
 }
 
-.button-outline {
-  margin-bottom: 30px;
+.outline-btn {
+  ::ng-deep {
+    .button-disabled {
+      --background: white;
+    }
+  }
 }

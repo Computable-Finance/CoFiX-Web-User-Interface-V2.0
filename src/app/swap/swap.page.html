@@ -168,40 +168,25 @@
             >
           </ion-row>
         </ion-grid>
-        <ng-container>
-          <div class="button-div">
-            <ion-button
-              expand="block"
-              *ngIf="isShowApprove()"
-              class="operation-btn approve-btn"
-              (click)="approve()"
-              id="approve-btn"
-              [disabled]="isLoading.sq || !cofixService.getCurrentAccount() "
-            >
-              <div class="ion-button-label">
-                <div *ngIf="!isLoading.sq">{{'sq_text' | translate}}</div>
-                <div
-                  id="pending-approve"
-                  class="loading"
-                  *ngIf="isLoading.sq"
-                ></div>
-              </div>
-            </ion-button>
-            <ion-button
-              expand="block"
-              class="operation-btn"
-              [ngClass]="{'swap-btn':fromCoin.id !== 'ETH' && !fromCoin.isApproved,'full-btn':fromCoin.id === 'ETH' || (fromCoin.id !== 'ETH' && fromCoin.isApproved)}"
-              (click)="swap()"
-              id="swap-btn"
-              [disabled]="isLoading.dh || !canSwap() "
-            >
-              <div class="ion-button-label">
-                <div *ngIf="!isLoading.dh">{{'swap_btn' | translate}}</div>
-                <div class="loading" *ngIf="isLoading.dh"></div>
-              </div>
-            </ion-button>
-          </div>
-        </ng-container>
+        <div class="button-div">
+          <app-action-button
+            *ngIf="isShowApprove()"
+            [btnTitle]="'sq_text'"
+            [btnId]="'approve-btn'"
+            [isEnabled]="isLoading.sq || !cofixService.getCurrentAccount()"
+            [isLoading]="isLoading.sq"
+            (clickAction)="approve()"
+            class="w-9/20"
+          ></app-action-button>
+          <app-action-button
+            [ngClass]="{'w-9/20':fromCoin.id !== 'ETH' && !fromCoin.isApproved,'w-full':fromCoin.id === 'ETH' || (fromCoin.id !== 'ETH' && fromCoin.isApproved)}"
+            [btnTitle]="'swap_btn'"
+            [btnId]="'swap-btn'"
+            [isEnabled]="isLoading.dh || !canSwap()"
+            [isLoading]="isLoading.dh"
+            (clickAction)="swap()"
+          ></app-action-button>
+        </div>
       </div>
     </ion-card>
   </div>

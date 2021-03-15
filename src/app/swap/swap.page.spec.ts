@@ -4,6 +4,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { MockDirective, MockPipe, MockProvider } from 'ng-mocks';
 import { CofiXService } from 'src/app/service/cofix.service';
 import { EventBusService } from 'src/app/service/eventbus.service';
+import { ActionButton } from '../common/components/action-button/action-button';
 import { SkeletonDirective } from '../common/directive/skeleton/skeleton';
 
 import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
@@ -42,6 +43,7 @@ describe('SwapPage', () => {
       ],
       declarations: [
         SwapPage,
+        ActionButton,
         MockPipe(TranslatePipe),
         MockPipe(BalanceTruncatePipe),
         MockDirective(SkeletonDirective),
@@ -57,21 +59,21 @@ describe('SwapPage', () => {
   it('should not show approve button when from coin is ETH', () => {
     component.fromCoin.id = 'ETH';
     fixture.detectChanges();
-    expect(element.querySelector('.approve-btn')).toBeNull();
+    expect(element.querySelector('#approve-btn')).toBeNull();
   });
 
   it('should not show approve button when from coin is a ERC20 coin approved', () => {
     component.fromCoin.id = 'HBTC';
     component.fromCoin.isApproved = true;
     fixture.detectChanges();
-    expect(element.querySelector('.approve-btn')).toBeNull();
+    expect(element.querySelector('#approve-btn')).toBeNull();
   });
 
   it('should show approve button when from coin is a ERC20 coin not approved', () => {
     component.fromCoin.id = 'USDT';
     component.fromCoin.isApproved = false;
     fixture.detectChanges();
-    expect(element.querySelector('.approve-btn')).not.toBeNull();
+    expect(element.querySelector('#approve-btn')).not.toBeNull();
   });
 
   it('should disable approve button when not connected', () => {
@@ -79,7 +81,7 @@ describe('SwapPage', () => {
     component.fromCoin.isApproved = false;
     fixture.detectChanges();
     expect(
-      (element.querySelector('.approve-btn') as HTMLButtonElement).disabled
+      (element.querySelector('#approve-btn') as HTMLButtonElement).disabled
     ).toBe(true);
   });
 
@@ -90,7 +92,7 @@ describe('SwapPage', () => {
     component.isLoading.sq = true;
     fixture.detectChanges();
     expect(
-      (element.querySelector('.approve-btn') as HTMLButtonElement).disabled
+      (element.querySelector('#approve-btn') as HTMLButtonElement).disabled
     ).toBe(true);
   });
 
@@ -100,7 +102,7 @@ describe('SwapPage', () => {
     component.fromCoin.isApproved = false;
     fixture.detectChanges();
     expect(
-      (element.querySelector('.approve-btn') as HTMLButtonElement).disabled
+      (element.querySelector('#approve-btn') as HTMLButtonElement).disabled
     ).toBe(false);
   });
 
@@ -109,7 +111,7 @@ describe('SwapPage', () => {
     component.isLoading.dh = true;
     fixture.detectChanges();
     expect(
-      (element.querySelector('.full-btn') as HTMLButtonElement).disabled
+      (element.querySelector('#swap-btn') as HTMLButtonElement).disabled
     ).toBe(true);
   });
 
@@ -117,7 +119,7 @@ describe('SwapPage', () => {
     component.fromCoin.id = 'ETH';
     fixture.detectChanges();
     expect(
-      (element.querySelector('.full-btn') as HTMLButtonElement).disabled
+      (element.querySelector('#swap-btn') as HTMLButtonElement).disabled
     ).toBe(true);
   });
 
@@ -127,7 +129,7 @@ describe('SwapPage', () => {
     component.fromCoin.amount = '0';
     fixture.detectChanges();
     expect(
-      (element.querySelector('.full-btn') as HTMLButtonElement).disabled
+      (element.querySelector('#swap-btn') as HTMLButtonElement).disabled
     ).toBe(true);
   });
 
@@ -138,7 +140,7 @@ describe('SwapPage', () => {
     component.fromCoin.balance = '0.02';
     fixture.detectChanges();
     expect(
-      (element.querySelector('.full-btn') as HTMLButtonElement).disabled
+      (element.querySelector('#swap-btn') as HTMLButtonElement).disabled
     ).toBe(true);
   });
 
@@ -149,7 +151,7 @@ describe('SwapPage', () => {
     component.fromCoin.balance = '1';
     fixture.detectChanges();
     expect(
-      (element.querySelector('.full-btn') as HTMLButtonElement).disabled
+      (element.querySelector('#swap-btn') as HTMLButtonElement).disabled
     ).toBe(true);
   });
 
@@ -163,7 +165,7 @@ describe('SwapPage', () => {
     component.ERC20BalanceOfPair.USDT = '382';
     fixture.detectChanges();
     expect(
-      (element.querySelector('.full-btn') as HTMLButtonElement).disabled
+      (element.querySelector('#swap-btn') as HTMLButtonElement).disabled
     ).toBe(true);
   });
 
@@ -177,7 +179,7 @@ describe('SwapPage', () => {
     component.ERC20BalanceOfPair.USDT = '500';
     fixture.detectChanges();
     expect(
-      (element.querySelector('.full-btn') as HTMLButtonElement).disabled
+      (element.querySelector('#swap-btn') as HTMLButtonElement).disabled
     ).toBe(false);
   });
 
@@ -187,7 +189,7 @@ describe('SwapPage', () => {
     component.fromCoin.isApproved = false;
     fixture.detectChanges();
     expect(
-      (element.querySelector('.swap-btn') as HTMLButtonElement).disabled
+      (element.querySelector('#swap-btn') as HTMLButtonElement).disabled
     ).toBe(true);
   });
 
@@ -198,7 +200,7 @@ describe('SwapPage', () => {
     component.fromCoin.amount = '0';
     fixture.detectChanges();
     expect(
-      (element.querySelector('.full-btn') as HTMLButtonElement).disabled
+      (element.querySelector('#swap-btn') as HTMLButtonElement).disabled
     ).toBe(true);
   });
 
@@ -210,7 +212,7 @@ describe('SwapPage', () => {
     component.fromCoin.balance = '1';
     fixture.detectChanges();
     expect(
-      (element.querySelector('.full-btn') as HTMLButtonElement).disabled
+      (element.querySelector('#swap-btn') as HTMLButtonElement).disabled
     ).toBe(true);
   });
 
@@ -225,7 +227,7 @@ describe('SwapPage', () => {
     component.ERC20BalanceOfPair.ETH = '0.01';
     fixture.detectChanges();
     expect(
-      (element.querySelector('.full-btn') as HTMLButtonElement).disabled
+      (element.querySelector('#swap-btn') as HTMLButtonElement).disabled
     ).toBe(true);
   });
 
@@ -240,7 +242,7 @@ describe('SwapPage', () => {
     component.ERC20BalanceOfPair.ETH = '500';
     fixture.detectChanges();
     expect(
-      (element.querySelector('.full-btn') as HTMLButtonElement).disabled
+      (element.querySelector('#swap-btn') as HTMLButtonElement).disabled
     ).toBe(false);
   });
 

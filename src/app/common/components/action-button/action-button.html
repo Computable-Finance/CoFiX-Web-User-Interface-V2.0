@@ -1,0 +1,13 @@
+<ion-button
+  expand="block"
+  fill="{{isOutline?'outline':'solid'}}"
+  class="operation-btn {{isOutline?'btn-outline':''}} {{isApprove?'approve-btn':''}} {{isLoading?'loading-disabled':''}}"
+  (click)="action()"
+  id="{{btnId}}"
+  [disabled]="isEnabled"
+>
+  <div class="ion-button-label">
+    <div *ngIf="!isLoading">{{btnTitle | translate}}</div>
+    <div class="loading" *ngIf="isLoading"></div>
+  </div>
+</ion-button>

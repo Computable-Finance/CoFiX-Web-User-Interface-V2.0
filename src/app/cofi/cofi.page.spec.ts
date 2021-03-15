@@ -4,6 +4,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { MockDirective, MockPipe, MockProvider } from 'ng-mocks';
 import { CofiXService } from 'src/app/service/cofix.service';
 import { EventBusService } from 'src/app/service/eventbus.service';
+import { ActionButton } from '../common/components/action-button/action-button';
 
 import { SkeletonDirective } from '../common/directive/skeleton/skeleton';
 import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
@@ -41,6 +42,7 @@ describe('CofiPage', () => {
       ],
       declarations: [
         CofiPage,
+        ActionButton,
         MockPipe(TranslatePipe),
         MockPipe(BalanceTruncatePipe),
         MockDirective(SkeletonDirective),
@@ -59,24 +61,24 @@ describe('CofiPage', () => {
     component.isDeposit = true;
     currentAccount = 'test';
     fixture.detectChanges();
-    expect(element.querySelector('.approve-btn')).not.toBeNull();
+    expect(element.querySelector('#approve-btn')).not.toBeNull();
   });
 
   it('should hide approve button when approved', () => {
     component.isApproved = true;
     fixture.detectChanges();
-    expect(element.querySelector('.approve-btn')).toBeNull();
+    expect(element.querySelector('#approve-btn')).toBeNull();
   });
 
   it('should hide approve button when deposit not set', () => {
     component.isDeposit = false;
     fixture.detectChanges();
-    expect(element.querySelector('.approve-btn')).toBeNull();
+    expect(element.querySelector('#approve-btn')).toBeNull();
   });
 
   it('should hide approve button when wallet not connected', () => {
     fixture.detectChanges();
-    expect(element.querySelector('.approve-btn')).toBeNull();
+    expect(element.querySelector('#approve-btn')).toBeNull();
   });
 
   it('should disable withdraw button when a pending request', () => {
@@ -84,7 +86,7 @@ describe('CofiPage', () => {
     component.isLoading.qc = true;
     fixture.detectChanges();
     expect(
-      (element.querySelector('.full-btn') as HTMLButtonElement).disabled
+      (element.querySelector('#claim-cofi-btn') as HTMLButtonElement).disabled
     ).toBe(true);
   });
 
@@ -93,7 +95,7 @@ describe('CofiPage', () => {
     component.cofiBalance = '0';
     fixture.detectChanges();
     expect(
-      (element.querySelector('.full-btn') as HTMLButtonElement).disabled
+      (element.querySelector('#claim-cofi-btn') as HTMLButtonElement).disabled
     ).toBe(true);
   });
 
@@ -102,7 +104,7 @@ describe('CofiPage', () => {
     component.isDeposit = true;
     fixture.detectChanges();
     expect(
-      (element.querySelector('.full-btn') as HTMLButtonElement).disabled
+      (element.querySelector('#claim-cofi-btn') as HTMLButtonElement).disabled
     ).toBe(true);
   });
 
@@ -112,7 +114,7 @@ describe('CofiPage', () => {
     fixture.detectChanges();
 
     expect(
-      (element.querySelector('.full-btn') as HTMLButtonElement).disabled
+      (element.querySelector('#claim-cofi-btn') as HTMLButtonElement).disabled
     ).toBe(false);
   });
 
@@ -122,7 +124,7 @@ describe('CofiPage', () => {
     component.isApproved = true;
     fixture.detectChanges();
     expect(
-      (element.querySelector('.full-btn') as HTMLButtonElement).disabled
+      (element.querySelector('#claim-cofi-btn') as HTMLButtonElement).disabled
     ).toBe(false);
   });
 });

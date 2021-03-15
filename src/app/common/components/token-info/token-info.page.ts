@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-taken-info',
+  selector: 'app-token-info',
   templateUrl: './token-info.page.html',
   styleUrls: ['./token-info.page.scss'],
 })

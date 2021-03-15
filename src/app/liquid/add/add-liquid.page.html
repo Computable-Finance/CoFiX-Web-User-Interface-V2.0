@@ -130,31 +130,27 @@
         >
       </ion-row>
     </ion-grid>
-    <ion-button
-      id="approve-btn"
-      expand="block"
-      class="operation-btn approve-btn"
-      (click)="approve()"
-      [disabled]="isLoading.sq"
-      *ngIf="canApprove()"
-    >
-      <div class="ion-button-label">
-        <div *ngIf="!isLoading.sq">{{'sq_text' | translate}}</div>
-        <div class="loading" *ngIf="isLoading.sq"></div>
-      </div>
-    </ion-button>
-    <ion-button
-      id="add-liquid-btn"
-      expand="block"
-      class="operation-btn"
-      (click)="confirmAddLiquid()"
-      *ngIf="cofixService.getCurrentAccount()"
-      [disabled]="isLoading.cr || !canAddLiquid()"
-    >
-      <div class="ion-button-label">
-        <div *ngIf="!isLoading.cr">{{'add'| translate}}</div>
-        <div class="loading" *ngIf="isLoading.cr"></div>
-      </div>
-    </ion-button>
+
+    <div class="button-div">
+      <app-action-button
+        *ngIf="canApprove()"
+        [btnTitle]="'sq_text'"
+        [btnId]="'approve-btn'"
+        [isEnabled]="isLoading.sq"
+        [isLoading]="isLoading.sq"
+        (clickAction)="approve()"
+        class="w-full"
+      ></app-action-button>
+
+      <app-action-button
+        *ngIf="cofixService.getCurrentAccount()"
+        [btnTitle]="'add'"
+        [btnId]="'add-liquid-btn'"
+        [isEnabled]="isLoading.cr || !canAddLiquid()"
+        [isLoading]="isLoading.cr"
+        (clickAction)="confirmAddLiquid()"
+        class="w-full"
+      ></app-action-button>
+    </div>
   </div>
 </ion-card>

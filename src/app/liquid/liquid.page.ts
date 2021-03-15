@@ -149,6 +149,7 @@ export class LiquidPage implements OnInit, OnDestroy {
     this.eventbusSubscription = this.eventbusService.on(
       'connection_changed',
       () => {
+        console.log('connection_changed');
         this.refreshPage();
       }
     );
@@ -260,9 +261,11 @@ export class LiquidPage implements OnInit, OnDestroy {
   }
 
   async getPairAttended() {
+    console.log('getPairAttended', this.toCoin.id, this.coinAddress);
     this.pairAttended[this.toCoin.id] = await this.cofixService.pairAttended(
       this.coinAddress
     );
+    console.log(this.pairAttended[this.toCoin.id]);
   }
 
   async initCoinContent() {

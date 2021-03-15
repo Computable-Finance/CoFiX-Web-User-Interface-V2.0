@@ -2,6 +2,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslatePipe } from '@ngx-translate/core';
 import { MockPipe } from 'ng-mocks';
+import { ActionButton } from 'src/app/common/components/action-button/action-button';
 import { BalanceTruncatePipe } from 'src/app/common/pipes/balance.pipe';
 import { CofiCard } from './cofi-card';
 
@@ -19,6 +20,7 @@ describe('CoFiCard', () => {
       providers: [],
       declarations: [
         CofiCard,
+        ActionButton,
         MockPipe(TranslatePipe),
         MockPipe(BalanceTruncatePipe),
       ],
@@ -35,14 +37,14 @@ describe('CoFiCard', () => {
     component.isApproved = false;
     component.isDeposit = true;
     fixture.detectChanges();
-    expect(element.querySelector('.approve-btn')).not.toBeNull();
+    expect(element.querySelector('#approve-btn')).not.toBeNull();
   });
 
   it('should not show approve button when approved during depositing', () => {
     component.isApproved = true;
     component.isDeposit = true;
     fixture.detectChanges();
-    expect(element.querySelector('.approve-btn')).toBeNull();
+    expect(element.querySelector('#approve-btn')).toBeNull();
   });
 
   it('should disable deposit button when not approved', () => {
@@ -50,7 +52,7 @@ describe('CoFiCard', () => {
     component.isDeposit = true;
     fixture.detectChanges();
     expect(
-      (element.querySelector('.swap-btn') as HTMLButtonElement).disabled
+      (element.querySelector('#deposit-btn') as HTMLButtonElement).disabled
     ).toBe(true);
   });
 
@@ -60,7 +62,7 @@ describe('CoFiCard', () => {
     component.balance = '0';
     fixture.detectChanges();
     expect(
-      (element.querySelector('.full-btn') as HTMLButtonElement).disabled
+      (element.querySelector('#deposit-btn') as HTMLButtonElement).disabled
     ).toBe(true);
   });
 
@@ -71,7 +73,7 @@ describe('CoFiCard', () => {
     component.todoValue = '1';
     fixture.detectChanges();
     expect(
-      (element.querySelector('.full-btn') as HTMLButtonElement).disabled
+      (element.querySelector('#deposit-btn') as HTMLButtonElement).disabled
     ).toBe(true);
   });
 
@@ -83,7 +85,7 @@ describe('CoFiCard', () => {
     component.isLoading.cr = true;
     fixture.detectChanges();
     expect(
-      (element.querySelector('.full-btn') as HTMLButtonElement).disabled
+      (element.querySelector('#deposit-btn') as HTMLButtonElement).disabled
     ).toBe(true);
   });
 
@@ -94,7 +96,7 @@ describe('CoFiCard', () => {
     component.todoValue = '10';
     fixture.detectChanges();
     expect(
-      (element.querySelector('.full-btn') as HTMLButtonElement).disabled
+      (element.querySelector('#deposit-btn') as HTMLButtonElement).disabled
     ).toBe(false);
   });
 
