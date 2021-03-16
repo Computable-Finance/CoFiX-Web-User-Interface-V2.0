@@ -652,7 +652,7 @@ export class CofiXService {
   }
 
   // 判断是否提供过流动性
-  @PCacheable({ maxAge: CACHE_ONE_MINUTE })
+  //@PCacheable({ maxAge: CACHE_ONE_MINUTE })
   async pairAttended(token: string) {
     const pair = await this.getPairAddressByToken(token);
     const xtBalance = await this.getERC20Balance(pair);
