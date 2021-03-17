@@ -18,7 +18,7 @@ import {
   ETHER_DECIMALS,
   getContractAddressListByNetwork,
 } from '../common/constants';
-import { tokenList } from '../common/TokenList';
+import { internalTokens, tokenList } from '../common/TokenList';
 import { ethersOf, unitsOf } from '../common/uitils/bignumber-utils';
 import { BalancesQuery } from '../state/balance/balance.query';
 import { BalancesService } from '../state/balance/balance.service';
@@ -46,6 +46,7 @@ import {
 import WalletConnectProvider from '@walletconnect/web3-provider';
 import { SettingsQuery } from '../state/setting/settings.query';
 import { CurrentAccountService } from '../state/current-account/current-account.service';
+import { MyTokenQuery } from '../state/mytoken/myToken.query';
 
 declare let window: any;
 
@@ -87,7 +88,8 @@ export class CofiXService {
     private settingsQuery: SettingsQuery,
     private myTokenService: MyTokenService,
     private http: HttpClient,
-    private currentAccountService: CurrentAccountService
+    private currentAccountService: CurrentAccountService,
+    private myTokenQuery: MyTokenQuery
   ) {
     BNJS.config({ EXPONENTIAL_AT: 100, ROUNDING_MODE: BNJS.ROUND_DOWN });
     this.reset();
@@ -1539,6 +1541,13 @@ export class CofiXService {
     return balance;
   }
 
+  // 用法同getERC20Balance，Token选择时使用
+  async getERC20BalanceForSelect(address: string, decimals: any) {
+    const contract = getERC20Contract(address, this.provider);
+    const balance = await contract.balanceOf(this.currentAccount);
+    return unitsOf(balance, decimals);
+  }
+
   async earnedCofiAndRewardRate(address: string) {
     let earned = '0';
     if (this.currentAccount) {
@@ -1889,6 +1898,34 @@ export class CofiXService {
       console.error(e);
       return undefined;
     }
+  }
+
+  async loadSwapToken(token: string) {
+    const existToken = this.getExistMyToken(token);
+    if (!existToken) {
+      const contract = getERC20Contract(token, this.provider);
+      let symbol = await contract.symbol();
+
+      this.myTokenService.add(
+        this.currentNetwork,
+        token,
+        symbol,
+        await contract.decimals()
+      );
+    }
+  }
+
+  getExistMyToken(address: string) {
+    return this.myTokenQuery
+      .getAll()
+      .filter((token) => token.chainId === environment.network)
+      .find((token) => token.address === address);
+  }
+
+  getExistTokenInInteralTokens(address: string) {
+    return internalTokens
+      .filter((token) => token.chainId === environment.network)
+      .find((token) => token.address === address);
   }
 
   getUnknownTokenIndex() {

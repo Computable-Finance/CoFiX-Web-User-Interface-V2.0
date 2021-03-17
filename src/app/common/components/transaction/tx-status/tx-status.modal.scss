@@ -17,7 +17,9 @@
   width: 24px;
   height: 24px;
   cursor: pointer;
-  position: unset;
+  position: relative;
+  right: 0px;
+  top: -5px;
 }
 .img-div:hover {
   background-color: var(--porcelain);

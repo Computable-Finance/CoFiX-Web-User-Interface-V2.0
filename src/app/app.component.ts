@@ -64,7 +64,12 @@ export class AppComponent implements OnInit {
 
   initTokenList() {
     tokens.push(...this.myTokenQuery.getAll());
-    tokens.push(...internalTokens);
+    internalTokens.forEach((token) => {
+      const existToken = this.cofixService.getExistMyToken(token.address);
+      if (!existToken) {
+        tokens.push(token);
+      }
+    });
   }
 
   async initConnectIfEnabled() {

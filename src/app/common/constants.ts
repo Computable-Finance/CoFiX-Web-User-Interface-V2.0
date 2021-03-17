@@ -66,6 +66,10 @@ export const FOOTER_ITEMS = [
     id: 'community',
     link: 'https://t.me/CofiXProtocol',
   },
+  {
+    id: 'v1.0',
+    link: 'https://v1.cofix.io',
+  },
 ];
 
 export const LANG_ITEMS = [

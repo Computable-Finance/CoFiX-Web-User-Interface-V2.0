@@ -39,7 +39,7 @@ export class CoinSelector {
     }
   }
 
-  getTokenList() {
+  async getTokenList() {
     const tokenList = getTokenListByQuery(
       this.cofixService.getCurrentNetwork(),
       this.q.offset,
@@ -52,6 +52,20 @@ export class CoinSelector {
     } else {
       this.coinList = tokenList.dataList;
     }
+    this.coinList.forEach(async (coin) => {
+      if (coin.symbol === 'ETH') {
+        coin.balance = await this.cofixService.getETHBalance();
+      } else {
+        coin.balance = await this.cofixService.getERC20BalanceForSelect(
+          coin.address,
+          coin.decimals
+        );
+      }
+    });
+  }
+
+  isMyFavoriteToken(address: string) {
+    return this.cofixService.getExistMyToken(address);
   }
 
   init() {
@@ -83,6 +97,10 @@ export class CoinSelector {
       if (this.isValidAddress(this.queryToken)) {
         const newToken = await this.cofixService.loadToken(this.queryToken);
         if (newToken) {
+          newToken.balance = await this.cofixService.getERC20BalanceForSelect(
+            newToken.address,
+            newToken.decimals
+          );
           this.coinList = [newToken];
         } else {
           this.coinList = [];

@@ -568,6 +568,7 @@ export class SwapPage implements OnInit, OnDestroy {
         const provider = this.cofixService.getCurrentProvider();
         provider.once(tx.hash, (transactionReceipt) => {
           this.afterTxSucceeded(transactionReceipt.status, tx.hash);
+          this.addMyToken();
         });
         provider.once('error', (error) => {
           this.txService.txFailed(tx.hash);
@@ -577,6 +578,16 @@ export class SwapPage implements OnInit, OnDestroy {
       .catch((error) => {
         this.catchTXError(error);
       });
+  }
+
+  addMyToken() {
+    if (this.fromCoin.id !== 'ETH') {
+      this.cofixService.loadSwapToken(this.fromCoin.address);
+    }
+
+    if (this.toCoin.id !== 'ETH') {
+      this.cofixService.loadSwapToken(this.toCoin.address);
+    }
   }
 
   canSwap() {

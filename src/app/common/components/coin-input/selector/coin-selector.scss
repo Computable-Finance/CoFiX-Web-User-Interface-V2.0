@@ -1,6 +1,6 @@
 .coin_icon {
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
 }
 @media only screen and (max-width: 510px) {
   .coin_icon {
@@ -27,12 +27,12 @@
   height: 24px;
   position: relative;
   right: 0px;
-  top: 0px;
+  top: -5px;
   cursor: pointer;
 }
 .conversionPrice {
   min-height: 74px;
-  font-size: 24px;
+  font-size: 20px;
   color: black;
   cursor: pointer;
 }
@@ -85,15 +85,14 @@ ion-searchbar {
   font-size: 17px;
   color: rgba(142, 142, 147, 0.9);
 }
-.remove {
-  color: var(--danger);
-}
-.remove:hover {
-  text-decoration: underline;
-}
+
 .unremove {
   color: var(--danger);
   opacity: 0.4;
+}
+
+.skeleton-token{
+  height:16px;
 }
 
 .token-item {

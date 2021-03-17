@@ -229,5 +229,6 @@
   "walletconnect_scan": "Scan QR code with a WalletConnect",
   "disconnect": "Disconnect",
   "share_input": "Share to be Deposited",
-  "share_add": "NEED ADD"
+  "share_add": "NEED ADD",
+  "v1.0": "V 1.0"
 }

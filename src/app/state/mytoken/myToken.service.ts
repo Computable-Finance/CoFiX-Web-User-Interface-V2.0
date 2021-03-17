@@ -8,6 +8,16 @@ export class MyTokenService {
   constructor(private store: MyTokenStore) {}
 
   add(chainId, address, symbol, decimals) {
+    let tokenIndex = tokens.findIndex(
+      (token) =>
+        token.address === address &&
+        token.symbol === symbol &&
+        token.chainId === chainId
+    );
+    if (tokenIndex) {
+      tokens.splice(tokenIndex, 1);
+    }
+
     const newToken = {
       chainId,
       address,
@@ -19,6 +29,7 @@ export class MyTokenService {
     };
 
     this.store.add(newToken);
+
     tokens.splice(
       tokens.filter((token) => token.id !== undefined).length + 2,
       0,

@@ -32,26 +32,31 @@
           (click)="selectCoin($event,coin)"
           class="ion-align-items-center ion-align-self-center conversionPrice {{i==0?'first-row':''}}"
         >
-          <ion-col size="12" class="token-item">
+          <ion-col size="9" class="token-item">
             <img src="{{coin.logoURI}}" class="coin_icon" />&nbsp;
             <div>
               <ng-container *ngIf="coin.symbol =='ETH'"
-                >{{coin.symbol}}</ng-container
-              >
-              <ng-container *ngIf="coin.symbol!=='ETH'">
-                {{coin.symbol}} <br />
-                <span class="address"
-                  >{{coin.address | walletaddress:8}}
-                  <div *ngIf="coin.id!==undefined">
-                    <a
-                      id="remove"
-                      class="{{selectedCoin === coin.symbol?'unremove':'remove'}}"
-                    >
-                      {{'remove' | translate}}
-                    </a>
-                  </div>
-                </span>
+                >{{coin.symbol}}
               </ng-container>
+              <ng-container *ngIf="coin.symbol!=='ETH'">
+                {{coin.symbol}}
+                <span class="address">{{coin.address | walletaddress:8}} </span>
+              </ng-container>
+            </div>
+          </ion-col>
+          <ion-col
+            size="3"
+            class="absolute right-0 text-base ion-text-right pr-4"
+          >
+            <div *ngIf="coin.id!==undefined">
+              <img
+                id="remove"
+                src="./assets/images/heart.svg"
+                class="w-4.5 {{selectedCoin === coin.symbol?'unremove':''}}"
+              />
+            </div>
+            <div [appSkeleton]="!coin.balance" [skCss]="'skeleton-token'">
+              {{coin.balance | truncate:'':2}}
             </div>
           </ion-col>
         </ion-row>

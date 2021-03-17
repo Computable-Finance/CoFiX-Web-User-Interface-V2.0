@@ -229,5 +229,6 @@
   "walletconnect_scan": "请扫描二维码",
   "disconnect": "断开",
   "share_input": "流动金份额",
-  "share_add": "需要存入"
+  "share_add": "需要存入",
+  "v1.0": "V 1.0"
 }
