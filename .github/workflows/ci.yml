@@ -66,6 +66,7 @@ jobs:
       github.ref == 'refs/heads/hotfix'
       )
     steps:
+      - uses: actions/checkout@v2
       - name: get terraform scripts
         uses: actions/checkout@v2
         with:
@@ -107,3 +108,14 @@ jobs:
             terraform plan -input=false -out=tfplan
           fi
           terraform apply -input=false tfplan
+          DEPLOY_DOMAIN="$(terraform output -json cdn_aliases | jq -r '.[0]')"
+          if [ -z "${DEPLOY_DOMAIN}" ]; then
+            DEPLOY_DOMAIN="$(terraform output -raw cdn_domain)"
+          fi
+          echo "DEPLOY_URL=https://${DEPLOY_DOMAIN}/" >> $GITHUB_ENV
+      - name: Audit URLs using Lighthouse
+        uses: treosh/lighthouse-ci-action@v7
+        with:
+          urls: ${{ env.DEPLOY_URL }}
+          uploadArtifacts: true
+          temporaryPublicStorage: true
