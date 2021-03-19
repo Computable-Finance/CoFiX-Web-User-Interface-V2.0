@@ -37,7 +37,6 @@
     "bignumber.js": "^9.0.1",
     "ethers": "^5.0.19",
     "marked": "^2.0.0",
-    "ngx-cacheable": "^1.4.3",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"

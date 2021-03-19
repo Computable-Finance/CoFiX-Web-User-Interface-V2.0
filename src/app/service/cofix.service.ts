@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import WalletConnectProvider from '@walletconnect/web3-provider';
 import BNJS from 'bignumber.js';
 import { BigNumber, Contract, ethers } from 'ethers';
-import { PCacheable } from 'ngx-cacheable';
 import { Subscription } from 'rxjs';
 import { PermissionsQuery } from 'src/app/state/permission/permission.query';
 import { PermissionsService } from 'src/app/state/permission/permission.service';
@@ -270,7 +269,6 @@ export class CofiXService {
     return this.contractAddressList;
   }
 
-  @PCacheable({ maxAge: CACHE_TEN_SECONDS })
   async getERC20Allowance(address: string, spender: string) {
     const contract = getERC20Contract(address, this.provider);
     const allowance = await contract.allowance(this.currentAccount, spender);
@@ -652,7 +650,6 @@ export class CofiXService {
   }
 
   // 判断是否提供过流动性
-  //@PCacheable({ maxAge: CACHE_ONE_MINUTE })
   async pairAttended(token: string) {
     const pair = await this.getPairAddressByToken(token);
     const xtBalance = await this.getERC20Balance(pair);
@@ -1251,7 +1248,6 @@ export class CofiXService {
 
   // pair 由 token 决定，targetToken 用来看 pair 对于这个 token 的余额。
   // 对于 ETH，targetToken 用 WETH9 替代
-  @PCacheable({ maxAge: CACHE_FIVE_SECONDS })
   async getERC20BalanceOfPair(token: string, targetToken: string) {
     const pair = await this.getPairAddressByToken(token);
     const erc20Contract = getERC20Contract(targetToken, this.provider);
@@ -1265,7 +1261,6 @@ export class CofiXService {
     return amount;
   }
 
-  @PCacheable({ maxAge: CACHE_FIVE_SECONDS })
   async currentGasFee() {
     const price = await this.http
       .get('https://ethgasstation.info/json/ethgasAPI.json')
@@ -1277,7 +1272,6 @@ export class CofiXService {
       .toString();
   }
 
-  @PCacheable({ maxAge: CACHE_HALF_AN_HOUR })
   async currentCoFiPrice() {
     const price = await this.http
       .get(
