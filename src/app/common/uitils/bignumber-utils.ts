@@ -1,8 +1,6 @@
+import BNJS from 'bignumber.js';
 import { BigNumber, BigNumberish, ethers } from 'ethers';
-
 import { ETHER_DECIMALS } from '../constants';
-
-const BNJS = require('bignumber.js');
 
 export function parseUnits(amount: string, unit: number) {
   const bnAmount = new BNJS(amount);

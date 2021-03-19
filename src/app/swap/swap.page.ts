@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import BNJS from 'bignumber.js';
 import { BigNumber } from 'ethers';
 import { Subscription } from 'rxjs';
 import { Utils } from 'src/app/common/utils';
-
 import { CoinInput } from '../common/components/coin-input/coin-input';
 import { TipPannelContent } from '../common/components/tip-pannel/tip-pannel';
 import { DEX_TYPE_COFIX, DEX_TYPE_UNISWAP } from '../common/constants';
@@ -14,8 +14,6 @@ import { CofiXService } from '../service/cofix.service';
 import { EventBusService } from '../service/eventbus.service';
 import { BalancesQuery } from '../state/balance/balance.query';
 import { TxService } from '../state/tx/tx.service';
-
-const BNJS = require('bignumber.js');
 
 @Component({
   selector: 'app-swap',

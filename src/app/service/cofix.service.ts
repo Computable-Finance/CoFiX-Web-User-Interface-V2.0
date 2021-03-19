@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import WalletConnectProvider from '@walletconnect/web3-provider';
+import BNJS from 'bignumber.js';
 import { BigNumber, Contract, ethers } from 'ethers';
 import { PCacheable } from 'ngx-cacheable';
 import { Subscription } from 'rxjs';
@@ -12,7 +14,6 @@ import {
   InfuraApiAccessToken,
   infuraNetwork,
 } from 'src/environments/environment';
-
 import {
   BLOCKNUMS_IN_A_DAY,
   ETHER_DECIMALS,
@@ -22,9 +23,12 @@ import { internalTokens, tokenList } from '../common/TokenList';
 import { ethersOf, unitsOf } from '../common/uitils/bignumber-utils';
 import { BalancesQuery } from '../state/balance/balance.query';
 import { BalancesService } from '../state/balance/balance.service';
+import { CurrentAccountService } from '../state/current-account/current-account.service';
 import { MarketDetailsQuery } from '../state/market/market.query';
 import { MarketDetailsService } from '../state/market/market.service';
+import { MyTokenQuery } from '../state/mytoken/myToken.query';
 import { MyTokenService } from '../state/mytoken/myToken.service';
+import { SettingsQuery } from '../state/setting/settings.query';
 import { SettingsService } from '../state/setting/settings.service';
 import {
   getCoFiStakingRewards,
@@ -43,10 +47,6 @@ import {
   executionPriceAndAmountOutByERC202ETHThroughUniswap,
   executionPriceAndAmountOutByETH2ERC20ThroughUniswap,
 } from './uni-utils';
-import WalletConnectProvider from '@walletconnect/web3-provider';
-import { SettingsQuery } from '../state/setting/settings.query';
-import { CurrentAccountService } from '../state/current-account/current-account.service';
-import { MyTokenQuery } from '../state/mytoken/myToken.query';
 
 declare let window: any;
 
@@ -56,8 +56,6 @@ const CACHE_TEN_SECONDS = 10 * 1000;
 const CACHE_FIVE_SECONDS = 5 * 1000;
 
 const deadline = () => Math.ceil(Date.now() / 1000) + 60 * 10;
-
-const BNJS = require('bignumber.js');
 
 let tokenScriptContent = {};
 
@@ -399,7 +397,7 @@ export class CofiXService {
           innerAmount,
           this.provider
         );
-        excutionPrice2 = result.excutionPrice;
+        excutionPrice2 = new BNJS(result.excutionPrice);
         innerAmount = result.amountOut;
       }
     }
@@ -524,8 +522,8 @@ export class CofiXService {
     const tradingVolumeInETH = new BNJS(amount).times(navPerShare);
 
     const k = new BNJS(kinfo.k);
-    let cB;
-    let cS = 0;
+    let cB: BNJS.Value;
+    let cS: BNJS.Value = 0;
     if (tradingVolumeInETH.lt(500)) {
       cB = cS = 0;
     } else {
@@ -1620,8 +1618,8 @@ export class CofiXService {
     this.marketDetailsService.updateMarketDetails(address, {
       kinfo: {
         kOriginal: latestK,
-        k: new BNJS(latestK).div(1e8),
-        theta: new BNJS(kinfo[2]).div(1e8),
+        k: new BNJS(latestK).div(1e8).toString(),
+        theta: new BNJS(kinfo[2]).div(1e8).toString(),
         thetaOriginal: kinfo[2],
       },
     });
@@ -1664,7 +1662,9 @@ export class CofiXService {
     const decimals = await this.getERC20Decimals(tokenAddress);
     const ethAmount = ethersOf(price[0]);
     const erc20Amount = unitsOf(price[1], decimals);
-    const changePrice = new BNJS(erc20Amount).div(new BNJS(ethAmount));
+    const changePrice = new BNJS(erc20Amount)
+      .div(new BNJS(ethAmount))
+      .toString();
     const vola = price[3];
     const bn = price[4];
 

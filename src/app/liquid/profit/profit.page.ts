@@ -6,9 +6,9 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
+import BNJS from 'bignumber.js';
 import { CoinInput } from 'src/app/common/components/coin-input/coin-input';
 
-const BNJS = require('bignumber.js');
 @Component({
   selector: 'app-profit',
   templateUrl: './profit.page.html',

@@ -7,6 +7,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
+import BNJS from 'bignumber.js';
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { BalanceTruncatePipe } from 'src/app/common/pipes/balance.pipe';
@@ -15,10 +16,8 @@ import { CofiXService } from 'src/app/service/cofix.service';
 import { BalancesQuery } from 'src/app/state/balance/balance.query';
 import { SettingsService } from 'src/app/state/setting/settings.service';
 import { TxService } from 'src/app/state/tx/tx.service';
-
 import { ProfitPage } from '../profit/profit.page';
 
-const BNJS = require('bignumber.js');
 @Component({
   selector: 'app-token-mining',
   templateUrl: './mining.page.html',

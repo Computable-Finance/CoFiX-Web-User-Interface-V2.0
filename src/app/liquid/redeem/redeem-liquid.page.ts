@@ -7,6 +7,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
+import BNJS from 'bignumber.js';
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { CoinInput } from 'src/app/common/components/coin-input/coin-input';
@@ -18,7 +19,6 @@ import { BalancesQuery } from 'src/app/state/balance/balance.query';
 import { MarketDetailsQuery } from 'src/app/state/market/market.query';
 import { TxService } from 'src/app/state/tx/tx.service';
 
-const BNJS = require('bignumber.js');
 @Component({
   selector: 'app-redeem-liquid',
   templateUrl: './redeem-liquid.page.html',

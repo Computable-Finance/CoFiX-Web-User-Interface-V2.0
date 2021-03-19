@@ -1,9 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import BNJS from 'bignumber.js';
 import { BigNumber } from 'ethers';
-
 import { ethersOf, truncate } from '../uitils/bignumber-utils';
-
-const BNJS = require('bignumber.js');
 
 @Pipe({ name: 'truncate' })
 export class BalanceTruncatePipe implements PipeTransform {

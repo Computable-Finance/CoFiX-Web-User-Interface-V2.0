@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { fromEvent } from 'rxjs';
-import { Subscription } from 'rxjs/internal/Subscription';
+import BNJS from 'bignumber.js';
+import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { TipPannelContent } from '../common/components/tip-pannel/tip-pannel';
 import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
@@ -11,7 +11,6 @@ import { EventBusService } from '../service/eventbus.service';
 import { BalancesQuery } from '../state/balance/balance.query';
 import { TxService } from '../state/tx/tx.service';
 
-const BNJS = require('bignumber.js');
 @Component({
   selector: 'app-dividend',
   templateUrl: './dividend.page.html',

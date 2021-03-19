@@ -7,14 +7,13 @@ import {
   Output,
 } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import BNJS from 'bignumber.js';
 import { EMPTY, Subject, Subscription } from 'rxjs';
 import { debounceTime, switchMap } from 'rxjs/operators';
 import { COFIX_TOKENS } from '../../constants';
 import { tokenLogo, tokenName } from '../../TokenList';
-
 import { CoinSelector } from './selector/coin-selector';
 
-const BNJS = require('bignumber.js');
 @Component({
   selector: 'app-coin-input',
   templateUrl: './coin-input.html',

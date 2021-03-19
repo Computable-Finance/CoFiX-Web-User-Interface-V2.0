@@ -7,11 +7,11 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
+import BNJS from 'bignumber.js';
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { CoinInput } from 'src/app/common/components/coin-input/coin-input';
 
-const BNJS = require('bignumber.js');
 @Component({
   selector: 'app-cofi-card',
   templateUrl: './cofi-card.html',

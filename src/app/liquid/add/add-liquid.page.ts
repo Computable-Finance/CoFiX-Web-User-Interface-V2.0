@@ -5,25 +5,24 @@ import {
   OnDestroy,
   OnInit,
   Output,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { Subscription } from 'rxjs';
-import { fromEvent } from 'rxjs/internal/observable/fromEvent';
+import BNJS from 'bignumber.js';
+import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { CoinInput } from 'src/app/common/components/coin-input/coin-input';
+import { BalanceTruncatePipe } from 'src/app/common/pipes/balance.pipe';
+import { CoinContent } from 'src/app/common/types/CoinContent';
 import { Utils } from 'src/app/common/utils';
 import { CofiXService } from 'src/app/service/cofix.service';
-import { TxService } from 'src/app/state/tx/tx.service';
-import { CoinContent } from 'src/app/common/types/CoinContent';
-import { WarningDetailPage } from '../warning/warning-detail/warning-detail.page';
-import { MarketDetailsQuery } from 'src/app/state/market/market.query';
 import { BalancesQuery } from 'src/app/state/balance/balance.query';
-import { BalanceTruncatePipe } from 'src/app/common/pipes/balance.pipe';
-import { SettingsService } from 'src/app/state/setting/settings.service';
+import { MarketDetailsQuery } from 'src/app/state/market/market.query';
 import { SettingsQuery } from 'src/app/state/setting/settings.query';
+import { SettingsService } from 'src/app/state/setting/settings.service';
+import { TxService } from 'src/app/state/tx/tx.service';
+import { WarningDetailPage } from '../warning/warning-detail/warning-detail.page';
 
-const BNJS = require('bignumber.js');
 @Component({
   selector: 'app-add-liquid',
   templateUrl: './add-liquid.page.html',
