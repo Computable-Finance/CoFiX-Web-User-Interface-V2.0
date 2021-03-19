@@ -118,6 +118,8 @@ The whole mechanism is done with github actions.
 
 The general idea is to trigger the whole pipeline based on `git push` on branch. At the same time, in order to avoid releasing at every push, because not every push is worth being released, we need some control. Unfortunately, github doesn't currently support manual triggering like gitlab does, so we take a workaround, here's the design and the main steps.
 
+We've added ligthhouse reports after every deployment. You can find the reports in action artifacts, or open the online URL at step output: `deploy -> Audit URLs using Lighthouse -> Uploading`.
+
 ### Branch Model
 
 The following defines the branch model for future development, making it easier to work with CI/CD.

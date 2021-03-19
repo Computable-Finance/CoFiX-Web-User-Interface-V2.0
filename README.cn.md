@@ -118,6 +118,8 @@ E2E 测试基于 TestCafe 实现，所有的测试代码放于 `testcafe` 子目
 
 总的设计思路是基于分支的 push 动作进行自动触发，但同时应该避免每次 push 都去发布（因为并非每次 push 都值得发布），即发布行为可控。遗憾的是，github 目前并不像 gitlab 那样支持手动触发，因此我们采用了一种变通的办法来实现，以下是设计思路和主要的操作步骤。
 
+我们已经添加了 lighthouse 报告，在每次自动部署之后都会生成。你可以在 action 页面的 artifacts 列表中找到报告，或者在在构建步骤的输出中找到在线 URL 打开预览: `deploy -> Audit URLs using Lighthouse -> Uploading`。
+
 ### 分支模型
 
 以下规定了未来的开发分支模型，方便配合 CI/CD 。
