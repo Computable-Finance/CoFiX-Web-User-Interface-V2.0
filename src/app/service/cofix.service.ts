@@ -360,7 +360,9 @@ export class CofiXService {
           innerAmount
         );
         innerAmount = excutionPrice1.times(amount).toString();
-        expectedCofi.push(this.expectedCoFi(fromToken, innerAmount, amount));
+        expectedCofi.push(
+          this.expectedCoFi(fromToken, innerAmount, amount, false)
+        );
       } else {
         const result = await executionPriceAndAmountOutByERC202ETHThroughUniswap(
           {
@@ -384,7 +386,9 @@ export class CofiXService {
         );
         const ethAmount = innerAmount;
         innerAmount = excutionPrice2.times(innerAmount).toString();
-        expectedCofi.push(this.expectedCoFi(toToken, ethAmount, innerAmount));
+        expectedCofi.push(
+          this.expectedCoFi(toToken, ethAmount, innerAmount, true)
+        );
       } else {
         const result = await executionPriceAndAmountOutByETH2ERC20ThroughUniswap(
           {
@@ -459,7 +463,8 @@ export class CofiXService {
   private async expectedCoFi(
     token: string,
     ethAmount: string,
-    erc20Amount: string
+    erc20Amount: string,
+    isEth2Erc20: boolean
   ) {
     if (!this.isCoFixToken(token)) {
       return;
@@ -470,11 +475,51 @@ export class CofiXService {
       this.contractAddressList.CoFiXVaultForTrader,
       this.provider
     );
-    const actualMiningAmount = await trader.actualMiningAmount(
-      pairAddress,
-      this.parseEthers(ethAmount),
-      this.parseUnits(erc20Amount, await this.getERC20Decimals(token))
+
+    let reserve0 = new BNJS(
+      await this.getERC20BalanceOfPair(
+        token,
+        this.getCurrentContractAddressList().WETH9
+      )
     );
+
+    let reserve1 = new BNJS(
+      await this.getERC20BalanceOfPair(
+        token,
+        this.getCurrentContractAddressList().WETH9
+      )
+    );
+
+    let actualMiningAmount;
+    if (isEth2Erc20) {
+      reserve1 = reserve1.minus(erc20Amount);
+      actualMiningAmount = await trader.actualMiningAmount(
+        pairAddress,
+        this.parseEthers(reserve0.plus(ethAmount).toString()),
+        this.parseEthers(reserve1.isLessThan('0') ? '0' : reserve1.toString()),
+        this.parseUnits(
+          new BNJS(await this.getERC20BalanceOfPair(token, token))
+            .minus(erc20Amount)
+            .toString(),
+          await this.getERC20Decimals(token)
+        ),
+        this.parseEthers(ethAmount),
+        this.parseUnits(erc20Amount, await this.getERC20Decimals(token))
+      );
+    } else {
+      reserve0 = reserve0.minus(ethAmount);
+      actualMiningAmount = await trader.actualMiningAmount(
+        pairAddress,
+        this.parseEthers(reserve0.isLessThan('0') ? '0' : reserve0.toString()),
+        this.parseUnits(
+          reserve1.plus(erc20Amount).toString(),
+          await this.getERC20Decimals(token)
+        ),
+        this.parseEthers(ethAmount),
+        this.parseUnits(erc20Amount, await this.getERC20Decimals(token))
+      );
+    }
+
     const value = new BNJS(ethersOf(actualMiningAmount[0])).times(0.9);
     return value;
   }
@@ -1756,7 +1801,7 @@ export class CofiXService {
     }
 
     const coFiXPair = getCoFixPair(pairAddress, this.provider);
-    const initialAssetRatio = await coFiXPair.getInitialAssetRadio();
+    const initialAssetRatio = await coFiXPair.getInitialAssetRatio();
     const ethAmount = ethersOf(initialAssetRatio[0]);
     const erc20Amount = unitsOf(
       initialAssetRatio[1],

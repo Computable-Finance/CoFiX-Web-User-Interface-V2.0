@@ -42,7 +42,7 @@ export const COFIXPAIR_ABI = [
   'function getNAVPerShareForMint(tuple(uint256, uint256, uint256, uint256, uint256)) public view returns (uint256)',
   'function getNAVPerShareForBurn(tuple(uint256, uint256, uint256, uint256, uint256)) external view returns (uint256)',
   'function getNAVPerShare(uint256, uint256) external view returns (uint256)',
-  'function getInitialAssetRadio() external view returns (uint256, uint256)',
+  'function getInitialAssetRatio() external view returns (uint256, uint256)',
   'function calcOutTokenAndETHForBurn(uint256, tuple(uint256, uint256, uint256, uint256, uint256)) public view returns (uint256, uint256, uint256)',
   'function getLiquidity(uint256, tuple(uint256, uint256, uint256, uint256, uint256)) external view returns (uint256)',
 ];
@@ -53,7 +53,7 @@ export function getCoFixPair(address: string, provider) {
 
 export const COFIXVAULTFORTRADER_ABI = [
   'function actualMiningAmountAndDensity(address pair, uint256 thetaFee, uint256 x, uint256 y, uint256 np) external view returns (uint256 amount, uint256 density, uint256 cofiRate)',
-  'function actualMiningAmount(address, uint256, uint256) public override view returns (uint256, uint256, uint256)',
+  'function actualMiningAmount(address, uint256, uint256, uint256, uint256) public override view returns (uint256, uint256, uint256)',
 ];
 
 export function getCoFiXVaultForTrader(address: string, provider) {

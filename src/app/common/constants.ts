@@ -10,7 +10,6 @@ export function getContractAddressListByNetwork(network: number): any {
       OracleMock: '0x3bf046c114385357838D9cAE9509C6fBBfE306d2',
       CofiXController: '0xc6f45eB40609c9CD30c8750A95042De1b8B1DBFf',
       CofixFactory: '0x66C64ecC3A6014733325a8f2EBEE46B4CA3ED550',
-      // CoFiXKTable:'0x75E360Be6248Bd46030C6818624a09403EF5eC21',
       CofixRouter: '0x5C35BaDebD40308e409df891aC56d17C8625c2bC',
       CoFiXVaultForLP: '0x6903b1C17A5A0A9484c7346E5c0956027A713fCF',
       CoFiStakingRewards: '0x0061c52768378b84306b2665f098c3e0b2C03308',
@@ -22,16 +21,15 @@ export function getContractAddressListByNetwork(network: number): any {
       HBTC: '0xA674f71ce49CE7F298aea2F23D918d114965eb40',
       NEST: '0xD287Bc43eCD3D892204aA3792165fe8728636E29',
       WETH9: '0x59b8881812Ac484Ab78b8fc7c10b2543e079a6C3',
-      CoFiToken: '0x10b1EbE50007EA4340838A1Dfff77a2E6DA037B0',
+      CoFiToken: '0xb1f95f76038d6f5BAD85aE87a1678Ae9bd033683',
       // NestQuery
-      OracleMock: '0xf9b3Cb3Dc53962Af692FBf785fE82d5f9781368b',
-      CofiXController: '0xb2a1308183eCDC14Ca455C7af35b1b5d39fdB6F4',
-      CofixFactory: '0x068Bd34275e516759fb834b432622Ec7137fdFb4',
-      // CoFiXKTable:'0xe609B978635c7Bb8D22Ffc4Ec7f7a16615a3b1cA',
-      CofixRouter: '0xA0530BDa278Fbd03bCc1DbE4b63dbf9F1Fb2ABCd',
-      CoFiXVaultForLP: '0xAD1A5a9C40b58Dc5Bed7131152bDa8B649616573',
-      CoFiStakingRewards: '0x1D1D0b886a26A017190eCAa52f3F67BD5E1A484F',
-      CoFiXVaultForTrader: '0x22E7A8460cF3C6f1789425399eed92c6c6529D18',
+      OracleMock: '0x96534E2d0a6c825a2eeD79C7bD3dFce39D5fA605',
+      CofiXController: '0xd807a6c7B09fef8DAeFd2641cB064ddD667A61D8',
+      CofixFactory: '0x54db39Ed277CE324874D3734c7F597D2dB0494bE',
+      CofixRouter: '0xB58eBBd96Fe456538a680CE6FC65C07e51A62edF',
+      CoFiXVaultForLP: '0x01bE7B04bdC0Bd6197D238b8d1F6B990C8eaFA42',
+      CoFiStakingRewards: '0x551703F64E1B4F0E82f28E02B2bEfc7673046578',
+      CoFiXVaultForTrader: '0x3EEF6Eaf726F74e65396cE08405F236ae71b89C4',
     };
   } else {
     throw new Error('Unknown Network!');
