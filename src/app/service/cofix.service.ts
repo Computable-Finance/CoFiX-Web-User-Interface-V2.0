@@ -496,11 +496,8 @@ export class CofiXService {
       actualMiningAmount = await trader.actualMiningAmount(
         pairAddress,
         this.parseEthers(reserve0.plus(ethAmount).toString()),
-        this.parseEthers(reserve1.isLessThan('0') ? '0' : reserve1.toString()),
         this.parseUnits(
-          new BNJS(await this.getERC20BalanceOfPair(token, token))
-            .minus(erc20Amount)
-            .toString(),
+          reserve1.isLessThan('0') ? '0' : reserve1.toString(),
           await this.getERC20Decimals(token)
         ),
         this.parseEthers(ethAmount),
