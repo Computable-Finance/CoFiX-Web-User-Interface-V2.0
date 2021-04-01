@@ -490,6 +490,8 @@ export class CofiXService {
       )
     );
 
+    const prices = await this.checkPriceNow(token);
+
     let actualMiningAmount;
     if (isEth2Erc20) {
       reserve1 = reserve1.minus(erc20Amount);
@@ -500,8 +502,8 @@ export class CofiXService {
           reserve1.isLessThan('0') ? '0' : reserve1.toString(),
           await this.getERC20Decimals(token)
         ),
-        this.parseEthers(ethAmount),
-        this.parseUnits(erc20Amount, await this.getERC20Decimals(token))
+        this.parseEthers(prices.ethAmount),
+        this.parseUnits(prices.erc20Amount, await this.getERC20Decimals(token))
       );
     } else {
       reserve0 = reserve0.minus(ethAmount);
@@ -512,8 +514,8 @@ export class CofiXService {
           reserve1.plus(erc20Amount).toString(),
           await this.getERC20Decimals(token)
         ),
-        this.parseEthers(ethAmount),
-        this.parseUnits(erc20Amount, await this.getERC20Decimals(token))
+        this.parseEthers(prices.ethAmount),
+        this.parseUnits(prices.erc20Amount, await this.getERC20Decimals(token))
       );
     }
 
