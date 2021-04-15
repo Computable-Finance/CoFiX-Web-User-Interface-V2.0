@@ -28,6 +28,14 @@ export class SettingsQuery extends Query<SettingsModel> {
     return this.store.getValue().knownRiskForAdd;
   }
 
+  knownSwapRisk() {
+    return this.store.getValue().knownSwapRisk;
+  }
+
+  knownSwapCofiRisk() {
+    return this.store.getValue().knownSwapCofiRisk;
+  }
+
   metamaskDisconnectedByUser() {
     return this.store.getValue().metamaskDisconnectedByUser;
   }

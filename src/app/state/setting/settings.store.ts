@@ -8,6 +8,8 @@ export interface SettingsModel {
   knownRisk: boolean;
   knownRiskForAdd: boolean;
   metamaskDisconnectedByUser: boolean;
+  knownSwapRisk: boolean;
+  knownSwapCofiRisk: boolean;
 }
 
 export function createInitialState(
@@ -20,6 +22,8 @@ export function createInitialState(
     knownRisk: false,
     knownRiskForAdd: false,
     metamaskDisconnectedByUser,
+    knownSwapRisk: false,
+    knownSwapCofiRisk: false,
   };
 }
 

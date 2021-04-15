@@ -41,7 +41,7 @@
   "swap_title": "What is Cofix Swap?",
   "swap_desc1": "CoFiX Dapp is the most efficient Token Swap on Ethereum.",
   "swap_desc2": "Traders always get market prices at the smallest spread.",
-  "swap_desc3": "Trade in CoFiX to earn CoFi. CoFi represents the governance and dividend rights in the CoFiX protocol.",
+  "swap_desc3": "在CoFiX中进行反向交易可以对冲挖矿获得CoFi Token",
   "swap_more": "Read More about Cofix Mining",
   "liquid_title": "How it works?",
   "liquid_desc1": "1. You add assets(ETH,USDT, and etc.) to the Liquidity Pool. You receive XToken.",
@@ -163,8 +163,8 @@
   "swap_tooltips_oraclefee_desc": "<b>Oracle Fee</b> is what you pay to the NEST protocol for providing accurate market price data to the smart contract. ",
   "swap_tooltips_minreceived_title": "Minimum Received",
   "swap_tooltips_minreceived_desc": "Your transaction will reverse if there’s a large, unfavourable price movement before its confirmed. Slippage of 1%.",
-  "swap_tooltips_cofitoken_title": "CoFi Tokens",
-  "swap_tooltips_cofitoken_desc": "You will earn CoFi tokens when you perform this swap. Trade your CoFi tokens, or deposit to earn ETH dividends.",
+  "swap_tooltips_cofitoken_desc": "将{ETH}和{NEST}的数量比拉近到原始比例的交易为反向交易，反向交易可以获得一定的挖矿奖励。交易后{ETH}和{NEST}的比例越接近原始比例，挖矿奖励越多。",
+  "swap_tooltips_cofitoken_subdesc": "<span class='tooltips-sm'>原始比例(ETH/NEST)：0.00000374 </span> <br> <span class='tooltips-sm'>当前比例(ETH/NEST)：0.00000174</span> <br><span class='tooltips-sm'>偏移量：28%</span> <br><span class='tooltips-sm'>交易后预估比例(ETH/NEST):0.0000372</span>",
   "setting_tooltips_slippage_title": "Slippage",
   "setting_tooltips_slippage_desc": "Your transaction will revert if the price changes unfavourably more than 1%.",
   "setting_tooltips_deadline_title": "Transaction Deadline",
@@ -230,5 +230,12 @@
   "disconnect": "Disconnect",
   "share_input": "Share to be Deposited",
   "share_add": "NEED ADD",
-  "v1.0": "V 1.0"
+  "v1.0": "V 1.0",
+  "warning_swap_title": "风险提示",
+  "warning_swap_content": "当前兑换价格根据NEST预言机报价及综合风险补偿计算而来，可能会略高于市场价格，当预言机报价不及时或风险补偿过大，会给您造成损失，请仔细了解CoFiX交易机制，再进行交易。",
+  "warning_swapcofi_content": "对冲交易会有Gas和点差成本，另外当预言机报价不及时也可能增大风险，对冲挖矿交易获得的CoFi奖励不一定能覆盖交易成本，另外CoFi本身存在币价波动风险，请仔细了解对冲挖矿机制，并悉知其中风险后进行交易。",
+  "understand_swaprisk": "我已了解交易机制",
+  "redeem_legacy_title": "取出 V1.0 版本质押的XToken",
+  "redeem_legacy": "取出",
+  "redeem_legacy_balance": "质押 XToken 数量:"
 }

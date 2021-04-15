@@ -77,3 +77,10 @@ export const LANG_ITEMS = [
 
 export const DEX_TYPE_COFIX = 0;
 export const DEX_TYPE_UNISWAP = 1;
+
+export const NETWORKS = [
+  { id: 3, name: 'Ropsten' },
+  { id: 42, name: 'Kovan' },
+  { id: 4, name: 'Rinkeby' },
+  { id: 5, name: 'Görli' },
+];

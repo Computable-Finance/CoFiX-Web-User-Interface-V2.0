@@ -1,0 +1,25 @@
+<div class="card-content">
+  <div class="title">
+    <img src="./assets/images/warning.png" />
+    <b>{{ warningTitle | translate}} </b>
+  </div>
+
+  <p>{{ warningContent | translate}}</p>
+  <div class="mt-7 mb-2">
+    <app-action-button
+      [btnTitle]="'understand_swaprisk'"
+      [btnId]="'close-warning-btn'"
+      (clickAction)="close()"
+      class="w-full"
+    ></app-action-button>
+  </div>
+  <div class="mb-7">
+    <app-action-button
+      [btnTitle]="moreDetailTitle"
+      [btnId]="'more-detail-btn'"
+      [isOutline]="true"
+      (clickAction)="learnMore()"
+      class="w-full"
+    ></app-action-button>
+  </div>
+</div>

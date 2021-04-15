@@ -139,6 +139,7 @@
               </div>
             </ion-col>
           </ion-row>
+          <!-- *ngIf="expectedCofi !== '0' && expectedCofi !== undefined && expectedCofi !== ''" -->
           <ion-row
             class="ion-align-items-center ion-align-self-center conversionPrice"
           >
@@ -150,7 +151,7 @@
                 tooltip
                 event="hover"
                 tipsContent="swap_tooltips_cofitoken_desc"
-                tipsTitle="swap_tooltips_cofitoken_title"
+                tipsSubContent="swap_tooltips_cofitoken_subdesc"
             /></ion-col>
 
             <ion-col class="ion-text-right number" size="6"

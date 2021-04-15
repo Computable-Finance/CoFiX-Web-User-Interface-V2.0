@@ -1,10 +1,12 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import BNJS from 'bignumber.js';
 import { BigNumber } from 'ethers';
 import { Subscription } from 'rxjs';
 import { Utils } from 'src/app/common/utils';
 import { CoinInput } from '../common/components/coin-input/coin-input';
 import { TipPannelContent } from '../common/components/tip-pannel/tip-pannel';
+import { WarningSwapPage } from '../common/components/warning-swap/warning-swap.page';
 import { DEX_TYPE_COFIX, DEX_TYPE_UNISWAP } from '../common/constants';
 import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
 import { tokenName, tokens } from '../common/TokenList';
@@ -13,6 +15,8 @@ import { isValidNumberForTx } from '../common/uitils/bignumber-utils';
 import { CofiXService } from '../service/cofix.service';
 import { EventBusService } from '../service/eventbus.service';
 import { BalancesQuery } from '../state/balance/balance.query';
+import { SettingsQuery } from '../state/setting/settings.query';
+import { SettingsService } from '../state/setting/settings.service';
 import { TxService } from '../state/tx/tx.service';
 
 @Component({
@@ -79,7 +83,10 @@ export class SwapPage implements OnInit, OnDestroy {
     private utils: Utils,
     private txService: TxService,
     private balancesQuery: BalancesQuery,
-    private eventbusService: EventBusService
+    private eventbusService: EventBusService,
+    private settingsQuery: SettingsQuery,
+    private modalController: ModalController,
+    private settingsService: SettingsService
   ) {}
 
   ngOnDestroy(): void {
@@ -478,6 +485,50 @@ export class SwapPage implements OnInit, OnDestroy {
       return;
     }
 
+    if (Number(this.expectedCofi) === 0) {
+      const knownRisk = this.settingsQuery.knownSwapRisk();
+      if (!knownRisk) {
+        const modal = await this.modalController.create({
+          component: WarningSwapPage,
+          componentProps: {},
+          cssClass: 'popover-warning',
+          animated: false,
+          keyboardClose: false,
+          showBackdrop: true,
+          backdropDismiss: false,
+        });
+        await modal.present();
+        modal.onDidDismiss().then((result: any) => {
+          this.settingsService.updateKnownSwapRisk(result.data);
+          this.swapConfirm();
+        });
+      } else {
+        this.swapConfirm();
+      }
+    } else {
+      const knownRisk = this.settingsQuery.knownSwapCofiRisk();
+      if (!knownRisk) {
+        const modal = await this.modalController.create({
+          component: WarningSwapPage,
+          componentProps: { warningContent: 'warning_swapcofi_content' },
+          cssClass: 'popover-warning',
+          animated: false,
+          keyboardClose: false,
+          showBackdrop: true,
+          backdropDismiss: false,
+        });
+        await modal.present();
+        modal.onDidDismiss().then((result: any) => {
+          this.settingsService.updateKnownSwapCofiRisk(result.data);
+          this.swapConfirm();
+        });
+      } else {
+        this.swapConfirm();
+      }
+    }
+  }
+
+  async swapConfirm() {
     this.resetSwapError();
     this.waitingPopover = await this.utils.createTXConfirmModal();
     await this.waitingPopover.present();

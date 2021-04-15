@@ -41,7 +41,7 @@
   "swap_title": "CoFiX 交易 ？",
   "swap_desc1": "CoFiX DApp是以太坊上最高效的闪兑应用,",
   "swap_desc2": "交易者总是能以最小的点差，依照市场价格进行交易",
-  "swap_desc3": "在CoFiX中进行交易可以挖矿获得CoFi Token。",
+  "swap_desc3": "在CoFiX中进行反向交易可以对冲挖矿获得CoFi Token。",
   "swap_more": "了解有关CoFiX交易机制更多信息",
   "liquid_title": "如何使用",
   "liquid_desc1": "1. 您将资产（ETH，USDT等）添加到资金池，您收到XToken。注：流动性提供者需要管理持仓资产比例变化带来的风险，我们建议采取相应的对冲策略。请不要在不清楚风险之前贸然提供流动性。",
@@ -163,8 +163,8 @@
   "swap_tooltips_oraclefee_desc": "您需要向NEST协议支付预言机价格使用费，以便为智能合约提供准确的市场价格数据。",
   "swap_tooltips_minreceived_title": "最少收到",
   "swap_tooltips_minreceived_desc": "如果在打包确认之前价格出现较大的不利变动，则您的交易将撤消。 默认设置为滑点必须低于1％。",
-  "swap_tooltips_cofitoken_title": "CoFi",
-  "swap_tooltips_cofitoken_desc": "执行此交换时您将获得CoFi，交易您的CoFi或存入分红池以赚取ETH分红。",
+  "swap_tooltips_cofitoken_desc": "将{ETH}和{NEST}的数量比拉近到原始比例的交易为反向交易，反向交易可以获得一定的挖矿奖励。交易后{ETH}和{NEST}的比例越接近原始比例，挖矿奖励越多。",
+  "swap_tooltips_cofitoken_subdesc": "<span class='tooltips-sm'>原始比例(ETH/NEST)：0.00000374 </span> <br> <span class='tooltips-sm'>当前比例(ETH/NEST)：0.00000174</span> <br><span class='tooltips-sm'>偏移量：28%</span> <br><span class='tooltips-sm'>交易后预估比例(ETH/NEST):0.0000372</span>",
   "setting_tooltips_slippage_title": "滑点",
   "setting_tooltips_slippage_desc": "如果价格变坏幅度超过1％，则该交易将会被撤销。",
   "setting_tooltips_deadline_title": "交易截止时限",
@@ -230,5 +230,12 @@
   "disconnect": "断开",
   "share_input": "流动金份额",
   "share_add": "需要存入",
-  "v1.0": "V 1.0"
+  "v1.0": "V 1.0",
+  "warning_swap_title": "风险提示",
+  "warning_swap_content": "当前兑换价格根据NEST预言机报价及综合风险补偿计算而来，可能会略高于市场价格，当预言机报价不及时或风险补偿过大，会给您造成损失，请仔细了解CoFiX交易机制，再进行交易。",
+  "warning_swapcofi_content": "对冲交易会有Gas和点差成本，另外当预言机报价不及时也可能增大风险，对冲挖矿交易获得的CoFi奖励不一定能覆盖交易成本，另外CoFi本身存在币价波动风险，请仔细了解对冲挖矿机制，并悉知其中风险后进行交易。",
+  "understand_swaprisk": "我已了解交易机制",
+  "redeem_legacy_title": "取出 V1.0 版本质押的XToken",
+  "redeem_legacy": "取出",
+  "redeem_legacy_balance": "质押 XToken 数量："
 }

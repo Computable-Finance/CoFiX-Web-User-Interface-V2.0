@@ -19,6 +19,7 @@ export class Tooltip implements OnDestroy {
   @Input() tipsTitle: string;
   @Input() tipsContent: string;
   @Input() tipsFooter: string;
+  @Input() tipsSubContent: string;
 
   @Input() positionV: string = 'bottom';
 
@@ -120,6 +121,7 @@ export class Tooltip implements OnDestroy {
     tooltipComponent.tipsTitle = this.tipsTitle;
     tooltipComponent.tipsContent = this.tipsContent;
     tooltipComponent.tipsFooter = this.tipsFooter;
+    tooltipComponent.tipsSubContent = this.tipsSubContent;
     tooltipComponent.init.then(() => {
       const tooltipPosition = this._getTooltipPosition();
 

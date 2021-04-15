@@ -17,6 +17,7 @@ import {
   BLOCKNUMS_IN_A_DAY,
   ETHER_DECIMALS,
   getContractAddressListByNetwork,
+  NETWORKS,
 } from '../common/constants';
 import { internalTokens, tokenList } from '../common/TokenList';
 import { ethersOf, unitsOf } from '../common/uitils/bignumber-utils';
@@ -259,6 +260,17 @@ export class CofiXService {
 
   getCurrentNetwork() {
     return this.currentNetwork;
+  }
+
+  getCurrentNetworkName() {
+    const network = NETWORKS.filter(
+      (el) => el.id === Number(this.currentNetwork)
+    );
+    if (network) {
+      return network[0]?.name;
+    } else {
+      throw new Error('Unknown Network!');
+    }
   }
 
   getCurrentAccount() {

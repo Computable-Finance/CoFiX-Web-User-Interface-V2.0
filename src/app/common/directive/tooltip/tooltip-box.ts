@@ -20,6 +20,11 @@ import {
   template: `<div class="tooltips">
     <div class="title" *ngIf="tipsTitle">{{ tipsTitle | translate }}</div>
     <div [innerHTML]="tipsContent | translate | marked" class="content"></div>
+    <div
+      *ngIf="tipsSubContent"
+      [innerHTML]="tipsSubContent | translate | marked"
+      class="subdesc"
+    ></div>
     <div *ngIf="tipsFooter" class="title">
       {{ tipsFooter | translate }}
     </div>
@@ -59,6 +64,7 @@ import {
         --ion-text-color: var(--mine);
         text-align: left;
       }
+
       .tooltips div {
         font-size: 15px;
         font-weight: normal;
@@ -91,6 +97,7 @@ export class TooltipBox implements AfterViewInit {
   @Input() tipsTitle: string;
   @Input() tipsContent: string;
   @Input() tipsFooter: string;
+  @Input() tipsSubContent: string;
 
   @Input()
   set arrow(side: string) {

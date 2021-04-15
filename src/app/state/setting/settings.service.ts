@@ -22,6 +22,14 @@ export class SettingsService {
     this.store.update({ knownRiskForAdd });
   }
 
+  updateKnownSwapRisk(knownSwapRisk: boolean) {
+    this.store.update({ knownSwapRisk });
+  }
+
+  updateKnownSwapCofiRisk(knownSwapCofiRisk: boolean) {
+    this.store.update({ knownSwapCofiRisk });
+  }
+
   updateMetamaskDisconnectedByUser(metamaskDisconnectedByUser: boolean) {
     this.store.update({ metamaskDisconnectedByUser });
   }
