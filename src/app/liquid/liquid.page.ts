@@ -55,7 +55,7 @@ export class LiquidPage implements OnInit, OnDestroy {
 
   public liquidContent: TipPannelContent = {
     title: 'liquid_title',
-    descriptions: ['liquid_desc1', 'liquid_desc2', 'liquid_desc3'],
+    descriptions: ['liquid_desc1'],
     more: {
       text: 'read_more',
       url: 'https://github.com/Computable-Finance/Doc#4-market-maker-mechanism',

@@ -31,7 +31,7 @@ export class CofiPage implements OnInit, OnDestroy {
 
   public cofixContent: TipPannelContent = {
     title: 'help_tips',
-    descriptions: ['cofix_desc1', 'cofix_desc2', 'cofix_desc3'],
+    descriptions: ['cofix_desc1', 'cofix_desc2'],
     more: {
       text: 'read_more',
       url:

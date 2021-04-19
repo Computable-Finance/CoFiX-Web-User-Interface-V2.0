@@ -1,7 +1,8 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ModalController } from '@ionic/angular';
 import { TranslatePipe } from '@ngx-translate/core';
-import { MockDirective, MockPipe, MockProvider } from 'ng-mocks';
+import { Mock, MockDirective, MockPipe, MockProvider } from 'ng-mocks';
 import { CofiXService } from 'src/app/service/cofix.service';
 import { EventBusService } from 'src/app/service/eventbus.service';
 import { ActionButton } from '../common/components/action-button/action-button';
@@ -26,6 +27,7 @@ describe('SwapPage', () => {
     TestBed.configureTestingModule({
       imports: [],
       providers: [
+        MockProvider(ModalController),
         MockProvider(CofiXService, {
           getCurrentAccount: () => {
             return currentAccount;

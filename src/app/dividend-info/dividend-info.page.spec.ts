@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ModalController } from '@ionic/angular';
 import { TranslatePipe } from '@ngx-translate/core';
 import { MockDirective, MockPipe, MockProvider } from 'ng-mocks';
 import { CofiXService } from 'src/app/service/cofix.service';
@@ -24,6 +26,7 @@ describe('DividendInfoPage', () => {
     TestBed.configureTestingModule({
       imports: [],
       providers: [
+        MockProvider(ModalController),
         MockProvider(CofiXService, {
           getCurrentAccount: () => {
             return currentAccount;
@@ -33,6 +36,7 @@ describe('DividendInfoPage', () => {
         MockProvider(EventBusService),
         MockProvider(Utils),
         MockProvider(TxService),
+        MockProvider(HttpClient),
       ],
       declarations: [
         DividendInfoPage,
@@ -51,19 +55,10 @@ describe('DividendInfoPage', () => {
 
   it('should disable withdraw and deposit button when not connected', () => {
     fixture.detectChanges();
-    const depositButton = element.querySelector('#deposit-cofi-btn');
+    const depositButton = element.querySelector('#claim-eth-button');
     expect((depositButton as HTMLButtonElement).disabled).toBe(true);
     const withdrawButton = element.querySelector('#withdraw-cofi-btn');
     expect((withdrawButton as HTMLButtonElement).disabled).toBe(true);
-  });
-
-  it('should enable withdraw and deposit button when connected', () => {
-    currentAccount = 'test';
-    fixture.detectChanges();
-    const depositButton = element.querySelector('#deposit-cofi-btn');
-    expect((depositButton as HTMLButtonElement).disabled).toBe(false);
-    const withdrawButton = element.querySelector('#withdraw-cofi-btn');
-    expect((withdrawButton as HTMLButtonElement).disabled).toBe(false);
   });
 
   it('should disable receive button when ETH not earned', () => {
@@ -81,6 +76,26 @@ describe('DividendInfoPage', () => {
     fixture.detectChanges();
     expect(
       (element.querySelector('#claim-eth-button') as HTMLButtonElement).disabled
+    ).toBe(false);
+  });
+
+  it('should disable receive button when Cofi not earned', () => {
+    currentAccount = 'test';
+    component.cofiStakingRewards = '0';
+    fixture.detectChanges();
+    expect(
+      (element.querySelector('#withdraw-cofi-btn') as HTMLButtonElement)
+        .disabled
+    ).toBe(true);
+  });
+
+  it('should enable receive button when Cofi earned', () => {
+    currentAccount = 'test';
+    component.cofiStakingRewards = '1';
+    fixture.detectChanges();
+    expect(
+      (element.querySelector('#withdraw-cofi-btn') as HTMLButtonElement)
+        .disabled
     ).toBe(false);
   });
 });
