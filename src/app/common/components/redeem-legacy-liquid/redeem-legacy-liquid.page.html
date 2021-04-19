@@ -1,0 +1,111 @@
+<div class="card-content">
+  <div class="card-title">
+    <b>{{'redeem_legacy_liquid_title' | translate}} </b>
+    <div class="img-div" (click)="close()">
+      <img src="assets/images/close.png" class="close-img" />
+    </div>
+  </div>
+  <div class="sub-title">{{'redeem_legacy_liquid_subtitle' | translate}}</div>
+
+  <app-coin-input
+    #toCoinInputView
+    id="xtoken"
+    (clickMax)="setToCoinMax($event)"
+    (changeValue)="ToCoinInput($event)"
+    [coin]="'XTokens'"
+    [amount]="toCoin.amount"
+    [maxAmount]="toCoin.balance"
+    [isSelectCoin]="isSelectCoin"
+    [isShowError]="showError"
+    [label]="'enter_amount'"
+    class="coin-input"
+  ></app-coin-input>
+  <ion-grid class="ion-no-padding claimETH">
+    <ion-row
+      class="ion-align-items-center ion-align-self-center conversionPrice"
+    >
+      <ion-col class="title" size="11">
+        {{'liquidpool_withdraw_to' | translate}}
+      </ion-col>
+    </ion-row>
+    <ion-row
+      class="ion-align-items-center ion-align-self-center conversionPrice"
+    >
+      <ion-col size="1">
+        <img src="./assets/images/icon/{{fromCoin.id}}.png" />
+      </ion-col>
+      <ion-col size="2"> {{fromCoin.id}} </ion-col>
+      <ion-col size="9" class="ion-text-right number">
+        {{amountForRemoveLiquidity?.ethAmount | truncate:'--'}}
+      </ion-col>
+
+      <ion-col size="12">
+        <span class="error">
+          <ng-container *ngIf="overETHLiquid()">
+            {{'token_balance_of_pair' | translate}} {{maxETHLiquid |
+            truncate:'--'}}
+          </ng-container>
+          &nbsp;
+        </span>
+      </ion-col>
+    </ion-row>
+    <ion-row
+      class="ion-align-items-center ion-align-self-center conversionPrice"
+    >
+      <ion-col size="1">
+        <img src="./assets/images/icon/{{toCoin.id}}.png" />
+      </ion-col>
+      <ion-col size="3"> {{toCoin.id}} </ion-col>
+      <ion-col size="8" class="ion-text-right number">
+        {{amountForRemoveLiquidity?.erc20Amount | truncate:'--'}}
+      </ion-col>
+      <ion-col size="12" class="margin-bottom">
+        <span class="error">
+          <ng-container *ngIf="overERC20Liquid()">
+            {{'token_balance_of_pair' | translate}} {{maxERC20Liquid |
+            truncate:'--'}} </ng-container
+          >&nbsp;
+        </span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <app-explain-liquid
+    [todoValue]="todoValue"
+    [hadValue]="hadValue"
+    [isShowHadValue]="false"
+    [coin]="toCoin.id"
+    class="explain-div"
+  ></app-explain-liquid>
+
+  <ion-grid *ngIf="redeemError.isError">
+    <ion-row
+      class="ion-align-items-center ion-align-self-center conversionPrice border-top redeemError"
+    >
+      <ion-col class="error" size="12"
+        >{{'transaction-error' | translate}}[{{redeemError.msg}}]</ion-col
+      >
+    </ion-row>
+  </ion-grid>
+
+  <div class="button-div" *ngIf="cofixService.getCurrentAccount()">
+    <app-action-button
+      *ngIf="!toCoin.isApproved"
+      [btnTitle]="'sq_text'"
+      [btnId]="'approve-btn'"
+      [isEnabled]="isLoading.sq"
+      [isLoading]="isLoading.sq"
+      (clickAction)="approve()"
+      class="w-9/20"
+    ></app-action-button>
+
+    <app-action-button
+      [btnTitle]="'sh'"
+      [btnId]="'redeem-btn'"
+      [isEnabled]="isLoading.sh || !canRedeem()"
+      [isLoading]="isLoading.sh"
+      (clickAction)="redeem()"
+      [ngClass]="{'w-9/20':!toCoin.isApproved,'w-full':toCoin.isApproved}"
+    ></app-action-button>
+  </div>
+</div>

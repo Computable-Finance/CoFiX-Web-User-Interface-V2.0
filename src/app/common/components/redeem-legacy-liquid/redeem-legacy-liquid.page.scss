@@ -1,0 +1,113 @@
+.card-title {
+  width: 100%;
+  color: black;
+  font-size: 24px;
+  margin: 0px auto;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  display: inline-flex;
+}
+
+.card-content {
+  margin-top: 32px;
+}
+
+.card-title img {
+  width: 28px;
+  height: 26px;
+}
+
+.card-title b {
+  margin-left: 5px;
+}
+
+.sub-title {
+  border-bottom: 1px solid var(--mercury);
+  padding-bottom: 10px;
+}
+
+.close-img {
+  right: 30px;
+  top: 10px;
+}
+
+:host ::ng-deep app-coin-input.coin-input {
+  .input-group > .input {
+    border-left: none;
+  }
+}
+.conversionPrice img {
+  width: 24px;
+  height: 24px;
+}
+
+.button-div {
+  width: 100%;
+}
+@media only screen and (max-width: 510px) {
+  ion-toggle {
+    height: 14px;
+    width: 35px;
+    --handle-width: 50%;
+  }
+}
+
+.redeemError {
+  margin-top: 15px;
+}
+
+.swap-card {
+  margin-top: 26px;
+}
+.claimETH {
+  margin-top: 16px;
+  height: unset;
+}
+.claimETH .number {
+  font-size: 17px;
+  height: unset;
+  font-weight: bold;
+}
+
+.claimETH .conversionPrice {
+  margin-top: 5px;
+}
+
+.title {
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.67;
+  letter-spacing: normal;
+}
+.title-alert {
+  width: 18px !important;
+  height: 18px !important;
+}
+.margin-bottom {
+  margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 470px) {
+  .close-img {
+    right: 20px;
+  }
+}
+
+@media only screen and (max-width: 820px) {
+  .card-content {
+    height: 400px;
+    overflow: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none; /* IE 11 */
+  }
+  ::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+  }
+
+  .card-content::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
+}

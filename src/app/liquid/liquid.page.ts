@@ -8,6 +8,7 @@ import {
 import { ModalController } from '@ionic/angular';
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { RedeemLegacyLiquidPage } from '../common/components/redeem-legacy-liquid/redeem-legacy-liquid.page';
 import { RedeemLegacyXTokenPage } from '../common/components/redeem-legacy-xtoken/redeem-legacy-xtoken.page';
 
 import { TipPannelContent } from '../common/components/tip-pannel/tip-pannel';
@@ -462,14 +463,26 @@ export class LiquidPage implements OnInit, OnDestroy {
   }
 
   async showLegacyModal(type) {
-    const modal = await this.modalController.create({
-      component: RedeemLegacyXTokenPage,
-      cssClass: 'popover-warning',
-      animated: false,
-      keyboardClose: false,
-      showBackdrop: true,
-      backdropDismiss: false,
-    });
-    await modal.present();
+    if (type === 'xtoken') {
+      const modal = await this.modalController.create({
+        component: RedeemLegacyXTokenPage,
+        cssClass: 'popover-warning',
+        animated: false,
+        keyboardClose: false,
+        showBackdrop: true,
+        backdropDismiss: false,
+      });
+      await modal.present();
+    } else {
+      const modal = await this.modalController.create({
+        component: RedeemLegacyLiquidPage,
+        cssClass: 'redeem-modal',
+        animated: false,
+        keyboardClose: false,
+        showBackdrop: true,
+        backdropDismiss: false,
+      });
+      await modal.present();
+    }
   }
 }

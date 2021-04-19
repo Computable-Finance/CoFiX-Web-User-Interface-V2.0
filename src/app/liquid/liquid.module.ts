@@ -31,7 +31,6 @@ import { TooltipModule } from '../common/directive/tooltip/tooltip.module';
     LiquidPage,
     AddLiquidPage,
     RedeemLiquidPage,
-    ExplainLiquidPage,
     WarningLiquidPage,
     TokenMiningPage,
   ],

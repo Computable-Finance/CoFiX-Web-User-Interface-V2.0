@@ -1,5 +1,5 @@
 .title {
-  width: 450px;
+  width: 100%;
   color: black;
   font-size: 24px;
   margin: 0px auto;
@@ -8,7 +8,6 @@
   justify-content: center;
   display: inline-flex;
   line-height: 41px;
-  height: 41px;
   border-bottom: 1px solid var(--mercury);
   padding-bottom: 20px;
 }
@@ -61,6 +60,7 @@
 
 .close-img {
   right: 30px;
+  top: 10px;
 }
 
 .coin-item {
@@ -73,7 +73,13 @@
   }
 
   .balance {
-    color: #808080;
+    color: var(--subtitle);
     margin-top: 10px;
+  }
+}
+
+@media only screen and (max-width: 470px) {
+  .close-img {
+    right: 20px;
   }
 }

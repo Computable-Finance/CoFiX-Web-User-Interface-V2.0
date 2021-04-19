@@ -69,6 +69,7 @@ body {
   --botticelli: #ccd9e3;
   --lightblue: #e3f1fc;
   --lightgray: #2f2f2f;
+  --subtitle: #808080;
 }
 
 p {
@@ -111,7 +112,8 @@ ion-button {
   font-style: normal;
   letter-spacing: normal;
 }
-.popover-warning {
+.popover-warning,
+.redeem-modal {
   --height: auto;
   .modal-wrapper {
     width: 510px;
@@ -322,10 +324,16 @@ ion-button {
     top: 17px;
     right: 120px;
   }
+
   .popover-warning .modal-wrapper {
     width: 94%;
     min-height: 486px;
   }
+
+  .redeem-modal .modal-wrapper {
+    width: 94%;
+  }
+
   .close-icon {
     top: 15px;
     left: 5px;
@@ -583,7 +591,7 @@ ion-toggle {
   line-height: 23px;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 735px) {
   .info-banner {
     padding: 6px 8px;
   }
@@ -591,4 +599,18 @@ ion-toggle {
   .info-banner div {
     width: 100%;
   }
+  .card-title {
+    font-size: 20px;
+  }
+}
+
+.sub-title {
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.71;
+  letter-spacing: normal;
+  text-align: center;
+  color: var(--mine);
 }

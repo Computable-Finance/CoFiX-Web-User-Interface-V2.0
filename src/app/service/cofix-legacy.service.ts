@@ -90,17 +90,6 @@ export class CofiXLegacyService {
     private cofixService: CofiXService
   ) {
     BNJS.config({ EXPONENTIAL_AT: 100, ROUNDING_MODE: BNJS.ROUND_DOWN });
-    //this.reset();
-    this.init();
-  }
-
-  private init() {
-    // this.provider = this.cofixService.getCurrentProvider();
-    // this.currentNetwork = this.provider.getCurrentNetwork().chainId;
-    // this.currentAccount = this.cofixService.getCurrentAccount();
-    // this.contractAddressList = this.getContractAddressListByNetwork(
-    //   this.currentNetwork
-    // );
   }
 
   private getContractAddressListByNetwork(network: number): any {
@@ -326,7 +315,6 @@ export class CofiXLegacyService {
   // }
 
   getCurrentContractAddressList() {
-    //this.provider = this.cofixService.get
     this.provider = this.cofixService.getCurrentProvider();
     this.currentNetwork = this.cofixService.getCurrentNetwork();
     this.currentAccount = this.cofixService.getCurrentAccount();
@@ -338,11 +326,11 @@ export class CofiXLegacyService {
     return this.contractAddressList;
   }
 
-  // async getERC20Allowance(address: string, spender: string) {
-  //   const contract = getERC20Contract(address, this.provider);
-  //   const allowance = await contract.allowance(this.currentAccount, spender);
-  //   return allowance;
-  // }
+  async getERC20Allowance(address: string, spender: string) {
+    const contract = getERC20Contract(address, this.provider);
+    const allowance = await contract.allowance(this.currentAccount, spender);
+    return allowance;
+  }
 
   // // 获得兑换单价，不考虑冲击成本，
   // // undefined 代表 ETH
@@ -1359,20 +1347,20 @@ export class CofiXLegacyService {
     return this.provider.getSigner();
   }
 
-  // // pair 由 token 决定，targetToken 用来看 pair 对于这个 token 的余额。
-  // // 对于 ETH，targetToken 用 WETH9 替代
-  // async getERC20BalanceOfPair(token: string, targetToken: string) {
-  //   const pair = await this.getPairAddressByToken(token);
-  //   const erc20Contract = getERC20Contract(targetToken, this.provider);
-  //   const amount = new BNJS(
-  //     unitsOf(
-  //       await erc20Contract.balanceOf(pair),
-  //       await this.getERC20Decimals(targetToken)
-  //     )
-  //   ).toString();
+  // pair 由 token 决定，targetToken 用来看 pair 对于这个 token 的余额。
+  // 对于 ETH，targetToken 用 WETH9 替代
+  async getERC20BalanceOfPair(token: string, targetToken: string) {
+    const pair = await this.getPairAddressByToken(token);
+    const erc20Contract = getERC20Contract(targetToken, this.provider);
+    const amount = new BNJS(
+      unitsOf(
+        await erc20Contract.balanceOf(pair),
+        await this.getERC20Decimals(targetToken)
+      )
+    ).toString();
 
-  //   return amount;
-  // }
+    return amount;
+  }
 
   // async currentGasFee() {
   //   const price = await this.http
@@ -1467,37 +1455,37 @@ export class CofiXLegacyService {
 
   // // --------- Permissions Methods ------------ //
 
-  // // token、spender 对应
-  // // 交易、资金池页面（增加）：普通token，CofixRouter
-  // // 资金池（移除）：pair, CofixRouter
-  // // CoFi：pair，stakingPool
-  // // 收益：CoFiToken，CoFiStakingRewards
-  // async approved(token: string, spender: string) {
-  //   const result = this.permissionsQuery.approved(
-  //     this.currentAccount,
-  //     token,
-  //     spender
-  //   );
+  // token、spender 对应
+  // 交易、资金池页面（增加）：普通token，CofixRouter
+  // 资金池（移除）：pair, CofixRouter
+  // CoFi：pair，stakingPool
+  // 收益：CoFiToken，CoFiStakingRewards
+  async approved(token: string, spender: string) {
+    const result = this.permissionsQuery.approved(
+      this.currentAccount,
+      token,
+      spender
+    );
 
-  //   // result === false has two possibilities:
-  //   // 1. a new browser which has not approved histories of current account.
-  //   // 2. never got approved
-  //   if (!result) {
-  //     const allowance = await this.getERC20Allowance(token, spender);
-  //     if (!allowance.isZero()) {
-  //       this.permissionsService.updatePermission(
-  //         this.currentAccount,
-  //         token,
-  //         spender
-  //       );
-  //       return true;
-  //     } else {
-  //       return false;
-  //     }
-  //   }
+    // result === false has two possibilities:
+    // 1. a new browser which has not approved histories of current account.
+    // 2. never got approved
+    if (!result) {
+      const allowance = await this.getERC20Allowance(token, spender);
+      if (!allowance.isZero()) {
+        this.permissionsService.updatePermission(
+          this.currentAccount,
+          token,
+          spender
+        );
+        return true;
+      } else {
+        return false;
+      }
+    }
 
-  //   return result;
-  // }
+    return result;
+  }
 
   // // 目前设计为先授权一个极大值，未来再改进
   // // token，spender 见上

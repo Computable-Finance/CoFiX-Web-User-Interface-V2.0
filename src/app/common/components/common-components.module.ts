@@ -29,6 +29,8 @@ import { CofiCard } from 'src/app/dividend/cofi-card/cofi-card';
 import { ActionButton } from './action-button/action-button';
 import { WarningSwapPage } from './warning-swap/warning-swap.page';
 import { RedeemLegacyXTokenPage } from './redeem-legacy-xtoken/redeem-legacy-xtoken.page';
+import { RedeemLegacyLiquidPage } from './redeem-legacy-liquid/redeem-legacy-liquid.page';
+import { ExplainLiquidPage } from 'src/app/liquid/explain/explain-liquid.page';
 
 @NgModule({
   imports: [
@@ -63,6 +65,8 @@ import { RedeemLegacyXTokenPage } from './redeem-legacy-xtoken/redeem-legacy-xto
     ActionButton,
     WarningSwapPage,
     RedeemLegacyXTokenPage,
+    RedeemLegacyLiquidPage,
+    ExplainLiquidPage,
   ],
   exports: [
     FooterCompoment,
@@ -86,6 +90,8 @@ import { RedeemLegacyXTokenPage } from './redeem-legacy-xtoken/redeem-legacy-xto
     ActionButton,
     WarningSwapPage,
     RedeemLegacyXTokenPage,
+    RedeemLegacyLiquidPage,
+    ExplainLiquidPage,
   ],
 })
 export class CommonComponentsModule {}

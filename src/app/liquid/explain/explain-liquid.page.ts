@@ -9,6 +9,7 @@ import { Utils } from 'src/app/common/utils';
 export class ExplainLiquidPage implements OnInit {
   @Input() todoValue: string;
   @Input() hadValue: string;
+  @Input() isShowHadValue: boolean = true;
 
   @Input('coin')
   set coin(value: string) {
