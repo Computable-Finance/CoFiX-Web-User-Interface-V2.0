@@ -7,7 +7,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import BNJS from 'bignumber.js';
+import BNJS from 'bignumber.js/bignumber';
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { CoinInput } from 'src/app/common/components/coin-input/coin-input';

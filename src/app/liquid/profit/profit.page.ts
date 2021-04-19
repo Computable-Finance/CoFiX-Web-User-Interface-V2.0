@@ -6,7 +6,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import BNJS from 'bignumber.js';
+import BNJS from 'bignumber.js/bignumber';
 import { CoinInput } from 'src/app/common/components/coin-input/coin-input';
 
 @Component({

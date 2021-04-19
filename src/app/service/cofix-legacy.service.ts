@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import WalletConnectProvider from '@walletconnect/web3-provider';
-import BNJS from 'bignumber.js';
+import BNJS from 'bignumber.js/bignumber';
 import { BigNumber, Contract, ethers } from 'ethers';
 import { Subscription } from 'rxjs';
 import { PermissionsQuery } from 'src/app/state/permission/permission.query';

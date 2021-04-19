@@ -7,7 +7,7 @@ import {
   Output,
 } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import BNJS from 'bignumber.js';
+import BNJS from 'bignumber.js/bignumber';
 import { EMPTY, Subject, Subscription } from 'rxjs';
 import { debounceTime, switchMap } from 'rxjs/operators';
 import { COFIX_TOKENS } from '../../constants';

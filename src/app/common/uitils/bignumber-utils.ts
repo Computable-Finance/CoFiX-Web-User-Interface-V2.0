@@ -1,4 +1,4 @@
-import BNJS from 'bignumber.js';
+import BNJS from 'bignumber.js/bignumber';
 import { BigNumber, BigNumberish, ethers } from 'ethers';
 import { ETHER_DECIMALS } from '../constants';
 

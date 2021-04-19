@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import BNJS from 'bignumber.js';
+import BNJS from 'bignumber.js/bignumber';
 import { BigNumber } from 'ethers';
 import { ethersOf, truncate } from '../uitils/bignumber-utils';
 

@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import BNJS from 'bignumber.js';
+import BNJS from 'bignumber.js/bignumber';
 import { BigNumber } from 'ethers';
 import { Subscription } from 'rxjs';
 import { Utils } from 'src/app/common/utils';

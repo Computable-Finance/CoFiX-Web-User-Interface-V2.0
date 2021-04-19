@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import BNJS from 'bignumber.js';
+import BNJS from 'bignumber.js/bignumber';
 import { Subscription } from 'rxjs';
 import { TipPannelContent } from '../common/components/tip-pannel/tip-pannel';
 import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
