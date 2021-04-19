@@ -17,33 +17,16 @@ import { TxService } from '../state/tx/tx.service';
   styleUrls: ['./dividend-info.page.scss'],
 })
 export class DividendInfoPage implements OnInit, OnDestroy {
-  public incomeContent: TipPannelContent = {
-    title: 'help_tips',
-    descriptions: ['income_desc1', 'income_desc2', 'income_desc3'],
-    more: {
-      text: 'income_more',
-      url:
-        'https://github.com/Computable-Finance/Doc#75-cofi-token-dividend-and-repurchase-model',
-    },
-  };
-
   cofiTokenAddress: string;
   cofiStakingRewards: string;
   cofiToken: string;
   cofiStakingRewardsAddress: string;
-  //shareInDividendPool: string;
-  //totalETHFromSwapFees: string;
-  //totalETHInDividendPool: string;
-  // ethTotalClaimed: string;
   earnedETH: string;
   isETHLoading = false;
   isCofiLoading = false;
-  profitCoin = 'CoFi';
-  isApproved = false;
   incomeError = { isError: false, msg: '' };
   receiveError = { isError: false, msg: '' };
 
-  private resizeSubscription: Subscription;
   private dividendSubscription: Subscription;
   private cofiBalanceSubscription: Subscription;
   private cofiStakingRewardsSubscription: Subscription;
@@ -88,7 +71,6 @@ export class DividendInfoPage implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.resizeSubscription?.unsubscribe();
     this.dividendSubscription?.unsubscribe();
     this.cofiBalanceSubscription?.unsubscribe();
     this.cofiStakingRewardsSubscription?.unsubscribe();
@@ -124,15 +106,6 @@ export class DividendInfoPage implements OnInit, OnDestroy {
         this.cofiStakingRewardsAddress
       )
     );
-    // this.shareInDividendPool = await this.balanceTruncatePipe.transform(
-    //   await this.cofixLegacyService.shareInDividendPool()
-    // );
-    // this.totalETHFromSwapFees = await this.balanceTruncatePipe.transform(
-    //   await this.cofixLegacyService.totalETHFromSwapFees()
-    // );
-    // this.totalETHInDividendPool = await this.balanceTruncatePipe.transform(
-    //   await this.cofixLegacyService.totalETHInDividendPool()
-    // );
 
     if (!this.cofiStakingRewardsSubscription) {
       this.cofiStakingRewardsSubscription = this.balancesQuery
@@ -144,15 +117,6 @@ export class DividendInfoPage implements OnInit, OnDestroy {
           this.cofiStakingRewards = await this.balanceTruncatePipe.transform(
             balance
           );
-          // this.shareInDividendPool = await this.balanceTruncatePipe.transform(
-          //   await this.cofixLegacyService.shareInDividendPool()
-          // );
-          // this.totalETHFromSwapFees = await this.balanceTruncatePipe.transform(
-          //   await this.cofixLegacyService.totalETHFromSwapFees()
-          // );
-          // this.totalETHInDividendPool = await this.balanceTruncatePipe.transform(
-          //   await this.cofixLegacyService.totalETHInDividendPool()
-          // );
         });
     }
 
@@ -161,13 +125,13 @@ export class DividendInfoPage implements OnInit, OnDestroy {
 
   async getEarnedETHAndSubscribe() {
     this.earnedETH = await this.cofixLegacyService.earnedETH();
-    if (!this.dividendSubscription) {
-      this.dividendSubscription = this.balancesQuery
-        .currentDividendBalance$(this.cofixService.getCurrentAccount())
-        .subscribe(async (dividend) => {
-          this.earnedETH = dividend;
-        });
-    }
+    // if (!this.dividendSubscription) {
+    //   this.dividendSubscription = this.balancesQuery
+    //     .currentDividendBalance$(this.cofixService.getCurrentAccount())
+    //     .subscribe(async (dividend) => {
+    //       this.earnedETH = dividend;
+    //     });
+    // }
   }
 
   earned() {
@@ -228,33 +192,6 @@ export class DividendInfoPage implements OnInit, OnDestroy {
   resetIncomeError() {
     this.incomeError = { isError: false, msg: '' };
   }
-
-  // async getIsApproved() {
-  //   if (this.cofixService.getCurrentAccount()) {
-  //     this.isApproved = await this.cofixLegacyService.approved(
-  //       this.cofixLegacyService.getCurrentContractAddressList().CoFiToken,
-  //       this.cofixLegacyService.getCurrentContractAddressList()
-  //         .CoFiStakingRewards
-  //     );
-  //   }
-  // }
-
-  // async approveCofi(event) {
-  //   this.resetIncomeError();
-  //   if (!this.isApproved) {
-  //     this.waitingPopover = await this.utils.createTXConfirmModal();
-  //     await this.waitingPopover.present();
-  //     this.utils.approveHandler(
-  //       this.isLoadingProfit,
-  //       this.incomeError,
-  //       this,
-  //       this.cofixLegacyService.getCurrentContractAddressList().CoFiToken,
-  //       this.cofixLegacyService.getCurrentContractAddressList()
-  //         .CoFiStakingRewards,
-  //       'CoFi'
-  //     );
-  //   }
-  // }
 
   waitingPopover: any;
 

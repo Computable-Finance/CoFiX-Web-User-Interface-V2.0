@@ -50,7 +50,7 @@ export class CofiPage implements OnInit, OnDestroy {
   balance = '';
   profitCoin = 'XTokens';
   withdrawError = { isError: false, msg: '' };
-  isDeposit = true;
+  isDeposit = false;
   currentCoFiPrice: string;
   waitingPopover: any;
   isApproved = false;
