@@ -237,5 +237,11 @@
   "understand_swaprisk": "我已了解交易机制",
   "redeem_legacy_title": "取出 V1.0 版本质押的XToken",
   "redeem_legacy": "取出",
-  "redeem_legacy_balance": "质押 XToken 数量："
+  "redeem_legacy_balance": "质押 XToken 数量：",
+  "dividend_info_1": "CoFiX 2.0 之后将取消分红，合约后续将不支持用户质押 CoFi，质押在合约中的 CoFi 也不会享受分红收益",
+  "dividend_info_2": "您可以通过当前页面取回质押在合约中的 CoFi 以及之前未领取的分红，也可以直接调用合约取回您的资金",
+  "dividend_cofi": "当前锁定数量(CoFi)",
+  "dividend_eth": "待领取分红(ETH)",
+  "dividend_redeemETH": "领取 ETH",
+  "dividend_redeemCofi": "提取 COFI"
 }

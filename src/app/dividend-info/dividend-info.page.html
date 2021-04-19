@@ -1,0 +1,57 @@
+<app-header [activeId]="'dividend'" class="web-header"></app-header>
+<ion-content [fullscreen]="true">
+  <app-header [activeId]="'dividend'" class="mobile-header"></app-header>
+  <div class="banner">
+    <div>
+      {{'dividend_info_1' | translate}}<br />
+      {{'dividend_info_2' | translate}}
+    </div>
+  </div>
+  <div class="main-content">
+    <ion-card class="swap-card">
+      <div class="card-content">
+        <ion-grid>
+          <ion-row>
+            <ion-col class="ion-text-center title"
+              >{{'dividend_cofi' | translate}}</ion-col
+            >
+            <ion-col class="ion-text-center title"
+              >{{'dividend_eth' | translate}}</ion-col
+            >
+          </ion-row>
+          <ion-row class="balance_card">
+            <ion-col class="ion-text-center balance"
+              >{{cofiStakingRewards | truncate:'--':8}}</ion-col
+            >
+            <ion-col class="ion-text-center balance"
+              >{{earnedETH | truncate:'--':8}}</ion-col
+            >
+          </ion-row>
+
+          <ion-row>
+            <app-action-button
+              [btnTitle]="'dividend_redeemETH'"
+              [btnId]="'claim-eth-button'"
+              [isLoading]="isETHLoading"
+              [isEnabled]="isLoading || !earned()"
+              (clickAction)="receiveETH()"
+              class="w-full"
+            ></app-action-button>
+          </ion-row>
+          <ion-row style="margin-bottom: 49px">
+            <app-action-button
+              [btnTitle]="'dividend_redeemCofi'"
+              [btnId]="'withdraw-cofi-btn'"
+              [isLoading]="isCofiLoading"
+              [isEnabled]="isCofiLoading || !earnedCofi()"
+              [isOutline]="true"
+              (clickAction)="receiveCofi()"
+              class="w-full"
+            ></app-action-button>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </ion-card>
+  </div>
+</ion-content>
+<app-footer></app-footer>

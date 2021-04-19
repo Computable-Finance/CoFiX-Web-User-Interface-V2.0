@@ -20,20 +20,6 @@ type State = { lang: string };
 })
 export class AppComponent implements OnInit {
   public selectedIndex = 0;
-  public appPages = [
-    {
-      title: 'Inbox',
-      url: '/folder/Inbox',
-      icon: 'mail',
-    },
-    {
-      title: 'Outbox',
-      url: '/folder/Outbox',
-      icon: 'paper-plane',
-    },
-  ];
-  public labels = ['Family', 'Friends'];
-
   constructor(
     private platform: Platform,
     private translate: TranslateService,
@@ -95,7 +81,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.router.navigateByUrl(this.settingsQuery.activeTab()).catch((e) => {
-      this.router.navigateByUrl('swap');
+      this.router.navigateByUrl('dividend');
     });
   }
 }
