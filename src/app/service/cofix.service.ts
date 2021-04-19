@@ -434,10 +434,14 @@ export class CofiXService {
     let c;
     if (valx.lt(500)) {
       c = 0;
-    } else if (valx.gte(500) && valx.lte(999000)) {
-      c = new BNJS(-1.171e-4).plus(new BNJS(8.386e-7).times(amount));
     } else {
-      c = new BNJS(-1.171e-4).plus(new BNJS(8.386e-7).times(999000));
+      const gamma =
+        token.toUpperCase() === this.contractAddressList.NEST.toUpperCase()
+          ? 20
+          : 1;
+      c = new BNJS('-1.171e-4')
+        .plus(new BNJS('8.386e-7').times(amount))
+        .times(gamma);
     }
 
     const excutionPrice = new BNJS(price.changePrice)
@@ -455,10 +459,14 @@ export class CofiXService {
     let c;
     if (valx.lt(500)) {
       c = 0;
-    } else if (valx.gte(500) && valx.lte(999000)) {
-      c = new BNJS(2.57e-5).plus(new BNJS(8.542e-7).times(valx));
     } else {
-      c = new BNJS(2.57e-5).plus(new BNJS(8.542e-7).times(999000));
+      const gamma =
+        token.toUpperCase() === this.contractAddressList.NEST.toUpperCase()
+          ? 20
+          : 1;
+      c = new BNJS('2.57e-5')
+        .plus(new BNJS('8.542e-7').times(amount))
+        .times(gamma);
     }
 
     const excutionPrice = new BNJS(1)

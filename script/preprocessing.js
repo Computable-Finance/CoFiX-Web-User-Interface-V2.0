@@ -10,24 +10,24 @@ console.log('***************************');
 const environmentFilesDirectory = path.join(__dirname, '../src/environments');
 const baseFileName = 'environment.ts';
 
-let targetEnvironmentFileName
-let production = false
-let e2e = false
-let chainId = 3
-let network = 'ropsten'
-let apiAccessToken
-let e2ePk
+let targetEnvironmentFileName;
+let production = false;
+let e2e = false;
+let chainId = 3;
+let network = 'ropsten';
+let apiAccessToken;
+let e2ePk;
 
 if (process.argv[2] === 'e2e') {
-  targetEnvironmentFileName = 'environment.e2e.ts'
+  targetEnvironmentFileName = 'environment.e2e.ts';
   e2e = true;
 } else if (process.argv[2] === 'production') {
-  targetEnvironmentFileName = 'environment.prod.ts'
+  targetEnvironmentFileName = 'environment.prod.ts';
   production = true;
-  network = 'homestead'
-  chainId = 1
+  network = 'homestead';
+  chainId = 1;
 } else {
-  targetEnvironmentFileName = 'environment.ts'
+  targetEnvironmentFileName = 'environment.ts';
 }
 
 apiAccessToken = process.env.API_KEY;
@@ -45,10 +45,15 @@ export const environment = { \
 }; \
 
 export const infuraNetwork = '${network}';
-export const InfuraApiAccessToken = '${apiAccessToken}';
-`
-fs.mkdirSync(environmentFilesDirectory, { recursive: true })
+export const InfuraApiAccessToken = ${
+  apiAccessToken ? '${apiAccessToken}' : undefined
+};
+`;
+fs.mkdirSync(environmentFilesDirectory, { recursive: true });
 fs.writeFileSync(path.join(environmentFilesDirectory, baseFileName), output);
-fs.writeFileSync(path.join(environmentFilesDirectory, targetEnvironmentFileName), output);
+fs.writeFileSync(
+  path.join(environmentFilesDirectory, targetEnvironmentFileName),
+  output
+);
 
 process.exit(0);
