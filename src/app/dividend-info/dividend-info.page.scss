@@ -25,22 +25,6 @@
 //   margin-top: 26px;
 // }
 
-.banner {
-  background-color: var(--lightblue);
-  padding: 21px 0px;
-  margin-bottom: 30px;
-}
-
-.banner div {
-  width: 720px;
-  margin: 0px auto;
-  font-size: 15px;
-  font-family: PingFang SC;
-  font-weight: 400;
-  color: var(--dove);
-  line-height: 23px;
-}
-
 .card-content ion-grid {
   color: #000;
   margin-top: 35px;
@@ -67,14 +51,4 @@
   letter-spacing: normal;
   text-align: center;
   color: var(--black);
-}
-
-@media only screen and (max-width: 500px) {
-  .banner {
-    padding: 6px 8px;
-  }
-
-  .banner div {
-    width: 100%;
-  }
 }

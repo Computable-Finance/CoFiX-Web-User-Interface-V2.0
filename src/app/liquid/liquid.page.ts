@@ -8,6 +8,7 @@ import {
 import { ModalController } from '@ionic/angular';
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { RedeemLegacyXTokenPage } from '../common/components/redeem-legacy-xtoken/redeem-legacy-xtoken.page';
 
 import { TipPannelContent } from '../common/components/tip-pannel/tip-pannel';
 import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
@@ -458,5 +459,17 @@ export class LiquidPage implements OnInit, OnDestroy {
       !this.pairAttended[this.toCoin.id] ||
       !this.cofixService.getCurrentAccount()
     );
+  }
+
+  async showLegacyModal(type) {
+    const modal = await this.modalController.create({
+      component: RedeemLegacyXTokenPage,
+      cssClass: 'popover-warning',
+      animated: false,
+      keyboardClose: false,
+      showBackdrop: true,
+      backdropDismiss: false,
+    });
+    await modal.present();
   }
 }

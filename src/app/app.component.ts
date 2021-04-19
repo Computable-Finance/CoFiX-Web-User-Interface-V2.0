@@ -81,7 +81,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.router.navigateByUrl(this.settingsQuery.activeTab()).catch((e) => {
-      this.router.navigateByUrl('dividend');
+      this.router.navigateByUrl('liquid');
     });
   }
 }

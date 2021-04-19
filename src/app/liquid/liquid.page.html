@@ -1,6 +1,21 @@
 <app-header [activeId]="'liquid'" class="web-header"></app-header>
 <ion-content [fullscreen]="true">
   <app-header [activeId]="'liquid'" class="mobile-header"></app-header>
+
+  <div class="info-banner">
+    <div>
+      {{'liquid_info_1' | translate}}<a
+        (click)="showLegacyModal('xtoken')"
+        class="underline"
+        >{{'liquid_info_2' | translate}}</a
+      >{{'liquid_info_3' | translate}}<a
+        (click)="showLegacyModal('balance')"
+        class="underline"
+        >{{'liquid_info_4' | translate}}</a
+      >{{'liquid_info_5' | translate}}
+    </div>
+  </div>
+
   <div class="main-content">
     <app-pair-switch
       class="liquid-input"

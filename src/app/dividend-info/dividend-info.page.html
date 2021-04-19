@@ -1,7 +1,7 @@
 <app-header [activeId]="'dividend'" class="web-header"></app-header>
 <ion-content [fullscreen]="true">
   <app-header [activeId]="'dividend'" class="mobile-header"></app-header>
-  <div class="banner">
+  <div class="info-banner">
     <div>
       {{'dividend_info_1' | translate}}<br />
       {{'dividend_info_2' | translate}}
@@ -33,7 +33,7 @@
               [btnTitle]="'dividend_redeemETH'"
               [btnId]="'claim-eth-button'"
               [isLoading]="isETHLoading"
-              [isEnabled]="isLoading || !earned()"
+              [isEnabled]="isETHLoading || !earned()"
               (clickAction)="receiveETH()"
               class="w-full"
             ></app-action-button>

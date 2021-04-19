@@ -28,7 +28,7 @@ import { TxHistoryModal } from './transaction/tx-history/tx-history.modal';
 import { CofiCard } from 'src/app/dividend/cofi-card/cofi-card';
 import { ActionButton } from './action-button/action-button';
 import { WarningSwapPage } from './warning-swap/warning-swap.page';
-import { RedeemLegacyPage } from './redeem-legacy/redeem-legacy.page';
+import { RedeemLegacyXTokenPage } from './redeem-legacy-xtoken/redeem-legacy-xtoken.page';
 
 @NgModule({
   imports: [
@@ -62,7 +62,7 @@ import { RedeemLegacyPage } from './redeem-legacy/redeem-legacy.page';
     ConnectModal,
     ActionButton,
     WarningSwapPage,
-    RedeemLegacyPage,
+    RedeemLegacyXTokenPage,
   ],
   exports: [
     FooterCompoment,
@@ -85,7 +85,7 @@ import { RedeemLegacyPage } from './redeem-legacy/redeem-legacy.page';
     ConnectModal,
     ActionButton,
     WarningSwapPage,
-    RedeemLegacyPage,
+    RedeemLegacyXTokenPage,
   ],
 })
 export class CommonComponentsModule {}

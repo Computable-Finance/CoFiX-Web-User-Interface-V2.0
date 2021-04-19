@@ -1,0 +1,40 @@
+<div class="card-content">
+  <div class="title">
+    <b>{{'redeem_legacy_title' | translate}} </b>
+    <div class="img-div" (click)="close()">
+      <img src="assets/images/close.png" class="close-img" />
+    </div>
+  </div>
+
+  <ion-grid>
+    <ion-row
+      class="ion-align-items-center ion-align-self-center coin-item"
+      *ngFor="let coin of coinList;let i=index"
+    >
+      <ion-col size="8" class="">
+        <div class="input-group-text">
+          <img src="./assets/images/icon/ETH.png" class="coin_icon" /><img
+            src="./assets/images/icon/{{coin}}.png"
+            class="coin_icon right_icon"
+          />&nbsp;<span>ETH-{{coin}} {{'miningpool_title' | translate}}</span>
+        </div>
+        <div style="color: #808080; margin-top: 10px">
+          {{'redeem_legacy_balance' | translate}} {{hadValue[coin]}}
+        </div>
+
+        <div *ngIf="cofiError[coin].isError" class="error">
+          {{'transaction-error' | translate}}[{{cofiError[coin].msg}}]
+        </div>
+      </ion-col>
+      <ion-col size="4">
+        <app-action-button
+          [btnTitle]="'redeem_legacy'"
+          [btnId]="'qc-btn'"
+          [isLoading]="isLoading[coin]"
+          [isEnabled]="!canNotWithdraw(coin)"
+          (clickAction)="withdrawDepositedXToken(coin)"
+        ></app-action-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>

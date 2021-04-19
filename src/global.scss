@@ -68,6 +68,7 @@ body {
   --porcelain: #f0f3f4;
   --botticelli: #ccd9e3;
   --lightblue: #e3f1fc;
+  --lightgray: #2f2f2f;
 }
 
 p {
@@ -564,4 +565,30 @@ ion-toggle {
   font-weight: 400;
   color: #8c8c8c;
   line-height: 18px;
+}
+
+.info-banner {
+  background-color: var(--lightblue);
+  padding: 21px 0px;
+  margin-bottom: 30px;
+}
+
+.info-banner div {
+  width: 720px;
+  margin: 0px auto;
+  font-size: 15px;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: var(--dove);
+  line-height: 23px;
+}
+
+@media only screen and (max-width: 500px) {
+  .info-banner {
+    padding: 6px 8px;
+  }
+
+  .info-banner div {
+    width: 100%;
+  }
 }

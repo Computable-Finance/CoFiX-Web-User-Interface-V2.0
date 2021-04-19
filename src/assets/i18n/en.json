@@ -243,5 +243,10 @@
   "dividend_cofi": "当前锁定数量(CoFi)",
   "dividend_eth": "待领取分红(ETH)",
   "dividend_redeemETH": "领取 ETH",
-  "dividend_redeemCofi": "提取 COFI"
+  "dividend_redeemCofi": "提取 COFI",
+  "liquid_info_1": "CoFiX 2.0 全新升级资金池合约以及挖矿模型，CoFiX 1.0 的资金池需要手动迁移到 CoFiX 2.0 版本，v1.0 版本的资金池凭证 XToken 被废弃，质押也不会产生挖矿收益请尽快",
+  "liquid_info_2": "取出旧版质押的 XToken",
+  "liquid_info_3": "，并",
+  "liquid_info_4": "从旧版资金池取出资金",
+  "liquid_info_5": "，在 CoFiX 2.0 中重新添加流动性，生成新的 XToken 进行挖矿。"
 }

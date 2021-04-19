@@ -33,7 +33,13 @@ import { CofiXService } from './cofix.service';
 import {
   getCoFiStakingRewards,
   getERC20Contract,
+  getCoFixFacory,
+  getCofixRouter,
   getOracleContract,
+  getCoFixPair,
+  getCoFiXControllerContract,
+  getCoFiXVaultForLP,
+  getCoFiXStakingRewards,
 } from './confix.abi';
 import { EventBusService } from './eventbus.service';
 import {
@@ -89,7 +95,6 @@ export class CofiXLegacyService {
   }
 
   private init() {
-    console.log('####legacy');
     // this.provider = this.cofixService.getCurrentProvider();
     // this.currentNetwork = this.provider.getCurrentNetwork().chainId;
     // this.currentAccount = this.cofixService.getCurrentAccount();
@@ -702,39 +707,39 @@ export class CofiXLegacyService {
   //   return { nAVPerShareForBurn: args.nAVPerShareForBurn, result };
   // }
 
-  // async getETHAndTokenForRemoveLiquidity(
-  //   token: string,
-  //   pair: string,
-  //   amount: string
-  // ) {
-  //   const kinfo = await this.getKInfo(token);
-  //   const checkedPriceNow = await this.checkPriceNow(token);
-  //   const coFiXPair = getCoFixPair(pair, this.provider);
+  async getETHAndTokenForRemoveLiquidity(
+    token: string,
+    pair: string,
+    amount: string
+  ) {
+    const kinfo = await this.getKInfo(token);
+    const checkedPriceNow = await this.checkPriceNow(token);
+    const coFiXPair = getCoFixPair(pair, this.provider);
 
-  //   const oraclePrice = [
-  //     this.parseEthers(checkedPriceNow.ethAmount),
-  //     this.parseUnits(
-  //       checkedPriceNow.erc20Amount,
-  //       await this.getERC20Decimals(token)
-  //     ),
-  //     '0',
-  //     '0',
-  //     kinfo.thetaOriginal,
-  //   ];
-  //   const result = await coFiXPair.calcOutTokenAndETHForBurn(
-  //     this.parseEthers(amount),
-  //     oraclePrice
-  //   );
+    const oraclePrice = [
+      this.parseEthers(checkedPriceNow.ethAmount),
+      this.parseUnits(
+        checkedPriceNow.erc20Amount,
+        await this.getERC20Decimals(token)
+      ),
+      '0',
+      '0',
+      kinfo.thetaOriginal,
+    ];
+    const result = await coFiXPair.calcOutTokenAndETHForBurn(
+      this.parseEthers(amount),
+      oraclePrice
+    );
 
-  //   const erc20Amount = unitsOf(result[0], await this.getERC20Decimals(token));
-  //   const ethAmount = ethersOf(result[1]);
-  //   const fee = ethersOf(result[1]);
-  //   const nAVPerShareForBurn = ethersOf(
-  //     await coFiXPair.getNAVPerShareForBurn(oraclePrice)
-  //   );
+    const erc20Amount = unitsOf(result[0], await this.getERC20Decimals(token));
+    const ethAmount = ethersOf(result[1]);
+    const fee = ethersOf(result[1]);
+    const nAVPerShareForBurn = ethersOf(
+      await coFiXPair.getNAVPerShareForBurn(oraclePrice)
+    );
 
-  //   return { erc20Amount, ethAmount, fee, nAVPerShareForBurn };
-  // }
+    return { erc20Amount, ethAmount, fee, nAVPerShareForBurn };
+  }
 
   // unitsOf(amount: BigNumber, decimals: BigNumber) {
   //   return Number.parseFloat(ethers.utils.formatUnits(amount, decimals));
@@ -829,10 +834,10 @@ export class CofiXLegacyService {
   //   return this.deposit(contract, this.contractAddressList.CoFiToken, amount);
   // }
 
-  // async withdrawDepositedXToken(stakingPoolAddress: string, amount: string) {
-  //   const contract = getCoFiXStakingRewards(stakingPoolAddress, this.provider);
-  //   return await this.withdraw(contract, amount);
-  // }
+  async withdrawDepositedXToken(stakingPoolAddress: string, amount: string) {
+    const contract = getCoFiXStakingRewards(stakingPoolAddress, this.provider);
+    return await this.withdraw(contract, amount);
+  }
 
   // async depositXToken(
   //   stakingPoolAddress: string,
@@ -1068,14 +1073,14 @@ export class CofiXLegacyService {
   //   );
   // }
 
-  // async hasEnoughTokenBalance(address: string, token: string, amount: string) {
-  //   const contract = getERC20Contract(token, this.provider);
-  //   const decimals = await this.getERC20Decimals(token);
-  //   const balance = new BNJS(
-  //     unitsOf(await contract.balanceOf(address), decimals)
-  //   );
-  //   return balance.gte(amount);
-  // }
+  async hasEnoughTokenBalance(address: string, token: string, amount: string) {
+    const contract = getERC20Contract(token, this.provider);
+    const decimals = await this.getERC20Decimals(token);
+    const balance = new BNJS(
+      unitsOf(await contract.balanceOf(address), decimals)
+    );
+    return balance.gte(amount);
+  }
 
   // async hasEnoughETHBalance(amount: string) {
   //   const balance = new BNJS(await this.getETHBalance());
@@ -1218,57 +1223,57 @@ export class CofiXLegacyService {
   //   );
   // }
 
-  // async removeLiquidityGetTokenAndETH(
-  //   pair: string,
-  //   token: string,
-  //   liquidityMin: string,
-  //   amountETHMin: string,
-  //   amountTokenMin: string,
-  //   fee: string
-  // ) {
-  //   if (
-  //     !(await this.hasEnoughTokenBalance(
-  //       this.currentAccount,
-  //       pair,
-  //       liquidityMin
-  //     ))
-  //   ) {
-  //     throw new Error('Insufficient liquidity tokens.');
-  //   }
+  async removeLiquidityGetTokenAndETH(
+    pair: string,
+    token: string,
+    liquidityMin: string,
+    amountETHMin: string,
+    amountTokenMin: string,
+    fee: string
+  ) {
+    if (
+      !(await this.hasEnoughTokenBalance(
+        this.currentAccount,
+        pair,
+        liquidityMin
+      ))
+    ) {
+      throw new Error('Insufficient liquidity tokens.');
+    }
 
-  //   if (
-  //     !(await this.hasEnoughTokenBalance(
-  //       pair,
-  //       this.contractAddressList.WETH9,
-  //       amountETHMin
-  //     ))
-  //   ) {
-  //     throw new Error('Insufficient WETH tokens.');
-  //   }
+    if (
+      !(await this.hasEnoughTokenBalance(
+        pair,
+        this.contractAddressList.WETH9,
+        amountETHMin
+      ))
+    ) {
+      throw new Error('Insufficient WETH tokens.');
+    }
 
-  //   if (!(await this.hasEnoughTokenBalance(pair, token, amountTokenMin))) {
-  //     throw new Error('Insufficient token balance.');
-  //   }
+    if (!(await this.hasEnoughTokenBalance(pair, token, amountTokenMin))) {
+      throw new Error('Insufficient token balance.');
+    }
 
-  //   const cofixRouter = getCofixRouter(
-  //     this.contractAddressList.CofixRouter,
-  //     this.provider
-  //   );
-  //   return await this.executeContractMethodWithEstimatedGas(
-  //     cofixRouter,
-  //     'removeLiquidityGetTokenAndETH',
-  //     [
-  //       token,
-  //       this.parseEthers(liquidityMin),
-  //       this.parseEthers(new BNJS(amountETHMin).times(0.99).toString()),
-  //       this.currentAccount,
-  //       deadline(),
-  //       {
-  //         value: this.parseEthers(fee),
-  //       },
-  //     ]
-  //   );
-  // }
+    const cofixRouter = getCofixRouter(
+      this.contractAddressList.CofixRouter,
+      this.provider
+    );
+    return await this.executeContractMethodWithEstimatedGas(
+      cofixRouter,
+      'removeLiquidityGetTokenAndETH',
+      [
+        token,
+        this.parseEthers(liquidityMin),
+        this.parseEthers(new BNJS(amountETHMin).times(0.99).toString()),
+        this.currentAccount,
+        deadline(),
+        {
+          value: this.parseEthers(fee),
+        },
+      ]
+    );
+  }
 
   // async removeLiquidityGetToken(
   //   pair: string,
@@ -1392,73 +1397,73 @@ export class CofiXLegacyService {
 
   // // --------- TokenInfo Methods ------------ //
 
-  // async getERC20Decimals(tokenAddress: string) {
-  //   const targetToken = tokenList(this.currentNetwork).find(
-  //     (token) => token.address === tokenAddress
-  //   );
+  async getERC20Decimals(tokenAddress: string) {
+    const targetToken = tokenList(this.currentNetwork).find(
+      (token) => token.address === tokenAddress
+    );
 
-  //   if (targetToken) {
-  //     return targetToken.decimals.toString();
-  //   }
+    if (targetToken) {
+      return targetToken.decimals.toString();
+    }
 
-  //   const decimals = this.tokenInfoQuery.getDecimals(tokenAddress);
-  //   if (!decimals) {
-  //     const contract = getERC20Contract(tokenAddress, this.provider);
-  //     let result;
-  //     try {
-  //       result = await contract.decimals();
-  //     } catch (e) {
-  //       // 某些合约有 balanceOf 但没有 decimals 方法，这些合约实际不属于 erc20
-  //       // 但目前采用此权宜之计，未来改进
-  //       result = '18';
-  //     }
-  //     this.tokenInfoService.updateTokenInfo(tokenAddress, {
-  //       decimals: result,
-  //     });
-  //     return this.tokenInfoQuery.getDecimals(tokenAddress);
-  //   }
-  //   return decimals;
-  // }
+    const decimals = this.tokenInfoQuery.getDecimals(tokenAddress);
+    if (!decimals) {
+      const contract = getERC20Contract(tokenAddress, this.provider);
+      let result;
+      try {
+        result = await contract.decimals();
+      } catch (e) {
+        // 某些合约有 balanceOf 但没有 decimals 方法，这些合约实际不属于 erc20
+        // 但目前采用此权宜之计，未来改进
+        result = '18';
+      }
+      this.tokenInfoService.updateTokenInfo(tokenAddress, {
+        decimals: result,
+      });
+      return this.tokenInfoQuery.getDecimals(tokenAddress);
+    }
+    return decimals;
+  }
 
-  // async getPairAddressByToken(tokenAddress: string) {
-  //   const pairAddress = this.tokenInfoQuery.getPairAddress(tokenAddress);
-  //   if (!pairAddress) {
-  //     const factory = getCoFixFacory(
-  //       this.contractAddressList.CofixFactory,
-  //       this.provider
-  //     );
-  //     this.tokenInfoService.updateTokenInfo(tokenAddress, {
-  //       pairAddress: await factory.getPair(tokenAddress),
-  //     });
-  //     return this.tokenInfoQuery.getPairAddress(tokenAddress);
-  //   }
-  //   return pairAddress;
-  // }
+  async getPairAddressByToken(tokenAddress: string) {
+    const pairAddress = this.tokenInfoQuery.getPairAddress(tokenAddress);
+    if (!pairAddress) {
+      const factory = getCoFixFacory(
+        this.contractAddressList.CofixFactory,
+        this.provider
+      );
+      this.tokenInfoService.updateTokenInfo(tokenAddress, {
+        pairAddress: await factory.getPair(tokenAddress),
+      });
+      return this.tokenInfoQuery.getPairAddress(tokenAddress);
+    }
+    return pairAddress;
+  }
 
-  // async getStakingPoolAddressByToken(tokenAddress: string) {
-  //   const stakingPoolAddress = this.tokenInfoQuery.getStakingPoolAddress(
-  //     tokenAddress
-  //   );
-  //   if (!stakingPoolAddress) {
-  //     const coFiXVaultForLP = getCoFiXVaultForLP(
-  //       this.contractAddressList.CoFiXVaultForLP,
-  //       this.provider
-  //     );
+  async getStakingPoolAddressByToken(tokenAddress: string) {
+    const stakingPoolAddress = this.tokenInfoQuery.getStakingPoolAddress(
+      tokenAddress
+    );
+    if (!stakingPoolAddress) {
+      const coFiXVaultForLP = getCoFiXVaultForLP(
+        this.contractAddressList.CoFiXVaultForLP,
+        this.provider
+      );
 
-  //     const pairAddress = await this.getPairAddressByToken(tokenAddress);
-  //     if (pairAddress === '0x0000000000000000000000000000000000000000') {
-  //       throw new Error('invalid invocation!!!!!');
-  //     }
+      const pairAddress = await this.getPairAddressByToken(tokenAddress);
+      if (pairAddress === '0x0000000000000000000000000000000000000000') {
+        throw new Error('invalid invocation!!!!!');
+      }
 
-  //     this.tokenInfoService.updateTokenInfo(tokenAddress, {
-  //       stakingPoolAddress: await coFiXVaultForLP.stakingPoolForPair(
-  //         await this.getPairAddressByToken(tokenAddress)
-  //       ),
-  //     });
-  //     return this.tokenInfoQuery.getStakingPoolAddress(tokenAddress);
-  //   }
-  //   return stakingPoolAddress;
-  // }
+      this.tokenInfoService.updateTokenInfo(tokenAddress, {
+        stakingPoolAddress: await coFiXVaultForLP.stakingPoolForPair(
+          await this.getPairAddressByToken(tokenAddress)
+        ),
+      });
+      return this.tokenInfoQuery.getStakingPoolAddress(tokenAddress);
+    }
+    return stakingPoolAddress;
+  }
 
   // // --------- Permissions Methods ------------ //
 
@@ -1690,106 +1695,106 @@ export class CofiXLegacyService {
   //   });
   // }
 
-  // private async updateKInfo(address: string) {
-  //   let kinfo;
-  //   let latestK = '';
+  private async updateKInfo(address: string) {
+    let kinfo;
+    let latestK = '';
 
-  //   if (tokenScriptContent[address]?.LiquidityPoolShare?.kInfoK) {
-  //     kinfo = [0, 0, 0];
-  //     kinfo[0] = tokenScriptContent[address].LiquidityPoolShare.kInfoK;
-  //     kinfo[2] = tokenScriptContent[address].LiquidityPoolShare.kInfoTheta;
-  //   } else {
-  //     kinfo = await getCoFiXControllerContract(
-  //       this.contractAddressList.CofiXController,
-  //       this.provider
-  //     ).getKInfo(address);
+    if (tokenScriptContent[address]?.LiquidityPoolShare?.kInfoK) {
+      kinfo = [0, 0, 0];
+      kinfo[0] = tokenScriptContent[address].LiquidityPoolShare.kInfoK;
+      kinfo[2] = tokenScriptContent[address].LiquidityPoolShare.kInfoTheta;
+    } else {
+      kinfo = await getCoFiXControllerContract(
+        this.contractAddressList.CofiXController,
+        this.provider
+      ).getKInfo(address);
 
-  //     const latestPrice = await this.checkPriceNow(address);
-  //     latestK = await getCoFiXControllerContract(
-  //       this.contractAddressList.CofiXController,
-  //       this.provider
-  //     ).calcK(latestPrice.vola, latestPrice.bn);
+      const latestPrice = await this.checkPriceNow(address);
+      latestK = await getCoFiXControllerContract(
+        this.contractAddressList.CofiXController,
+        this.provider
+      ).calcK(latestPrice.vola, latestPrice.bn);
 
-  //     console.log(
-  //       `vola: ${latestPrice.vola}`,
-  //       `bn: ${latestPrice.bn}`,
-  //       `latestK: ${latestK}`
-  //     );
-  //   }
+      console.log(
+        `vola: ${latestPrice.vola}`,
+        `bn: ${latestPrice.bn}`,
+        `latestK: ${latestK}`
+      );
+    }
 
-  //   this.marketDetailsService.updateMarketDetails(address, {
-  //     kinfo: {
-  //       kOriginal: latestK,
-  //       k: new BNJS(latestK).div(1e8).toString(),
-  //       theta: new BNJS(kinfo[2]).div(1e8).toString(),
-  //       thetaOriginal: kinfo[2],
-  //     },
-  //   });
-  // }
+    this.marketDetailsService.updateMarketDetails(address, {
+      kinfo: {
+        kOriginal: latestK,
+        k: new BNJS(latestK).div(1e8).toString(),
+        theta: new BNJS(kinfo[2]).div(1e8).toString(),
+        thetaOriginal: kinfo[2],
+      },
+    });
+  }
 
-  // private async getKInfo(address: string) {
-  //   let kinfo = this.marketDetailsQuery.getKInfo(address);
-  //   if (!kinfo) {
-  //     await this.updateKInfo(address);
-  //     kinfo = this.marketDetailsQuery.getKInfo(address);
-  //   }
-  //   return kinfo;
-  // }
+  private async getKInfo(address: string) {
+    let kinfo = this.marketDetailsQuery.getKInfo(address);
+    if (!kinfo) {
+      await this.updateKInfo(address);
+      kinfo = this.marketDetailsQuery.getKInfo(address);
+    }
+    return kinfo;
+  }
 
-  // private async updateCheckedPriceNow(tokenAddress: string) {
-  //   let price;
+  private async updateCheckedPriceNow(tokenAddress: string) {
+    let price;
 
-  //   if (
-  //     tokenScriptContent[tokenAddress]?.LiquidityPoolShare
-  //       ?.referenceExchangeRateEthAmount
-  //   ) {
-  //     price = [0, 0];
-  //     price[0] =
-  //       tokenScriptContent[
-  //         tokenAddress
-  //       ].LiquidityPoolShare.referenceExchangeRateEthAmount;
-  //     price[1] =
-  //       tokenScriptContent[
-  //         tokenAddress
-  //       ].LiquidityPoolShare.referenceExchangeRateErc20Amount;
-  //   } else {
-  //     const oracle = getOracleContract(
-  //       this.contractAddressList.OracleMock,
-  //       this.provider
-  //     );
+    if (
+      tokenScriptContent[tokenAddress]?.LiquidityPoolShare
+        ?.referenceExchangeRateEthAmount
+    ) {
+      price = [0, 0];
+      price[0] =
+        tokenScriptContent[
+          tokenAddress
+        ].LiquidityPoolShare.referenceExchangeRateEthAmount;
+      price[1] =
+        tokenScriptContent[
+          tokenAddress
+        ].LiquidityPoolShare.referenceExchangeRateErc20Amount;
+    } else {
+      const oracle = getOracleContract(
+        this.contractAddressList.OracleMock,
+        this.provider
+      );
 
-  //     price = await oracle.latestPrice(tokenAddress);
-  //   }
+      price = await oracle.latestPrice(tokenAddress);
+    }
 
-  //   const decimals = await this.getERC20Decimals(tokenAddress);
-  //   const ethAmount = ethersOf(price[0]);
-  //   const erc20Amount = unitsOf(price[1], decimals);
-  //   const changePrice = new BNJS(erc20Amount)
-  //     .div(new BNJS(ethAmount))
-  //     .toString();
-  //   const vola = price[3];
-  //   const bn = price[4];
+    const decimals = await this.getERC20Decimals(tokenAddress);
+    const ethAmount = ethersOf(price[0]);
+    const erc20Amount = unitsOf(price[1], decimals);
+    const changePrice = new BNJS(erc20Amount)
+      .div(new BNJS(ethAmount))
+      .toString();
+    const vola = price[3];
+    const bn = price[4];
 
-  //   this.marketDetailsService.updateMarketDetails(tokenAddress, {
-  //     checkedPriceNow: {
-  //       ethAmount,
-  //       erc20Amount,
-  //       changePrice,
-  //       vola,
-  //       bn,
-  //     },
-  //   });
-  // }
+    this.marketDetailsService.updateMarketDetails(tokenAddress, {
+      checkedPriceNow: {
+        ethAmount,
+        erc20Amount,
+        changePrice,
+        vola,
+        bn,
+      },
+    });
+  }
 
-  // private async checkPriceNow(address: string) {
-  //   let checkedPriceNow = this.marketDetailsQuery.getCheckedPriceNow(address);
-  //   if (!checkedPriceNow) {
-  //     await this.updateCheckedPriceNow(address);
-  //     checkedPriceNow = this.marketDetailsQuery.getCheckedPriceNow(address);
-  //   }
+  private async checkPriceNow(address: string) {
+    let checkedPriceNow = this.marketDetailsQuery.getCheckedPriceNow(address);
+    if (!checkedPriceNow) {
+      await this.updateCheckedPriceNow(address);
+      checkedPriceNow = this.marketDetailsQuery.getCheckedPriceNow(address);
+    }
 
-  //   return checkedPriceNow;
-  // }
+    return checkedPriceNow;
+  }
 
   // private async updateNAVPerShare(address: string) {
   //   let navPerShare;
