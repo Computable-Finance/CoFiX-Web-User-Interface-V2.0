@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import BNJS from 'bignumber.js/bignumber';
 import { CofiXLegacyService } from 'src/app/service/cofix-legacy.service';
+import { CofiXService } from 'src/app/service/cofix.service';
+import { TxService } from 'src/app/state/tx/tx.service';
 import { BalanceTruncatePipe } from '../../pipes/balance.pipe';
 import { isValidNumberForTx } from '../../uitils/bignumber-utils';
-import BNJS from 'bignumber.js';
 import { Utils } from '../../utils';
-import { TxService } from 'src/app/state/tx/tx.service';
-import { CofiXService } from 'src/app/service/cofix.service';
 
 @Component({
   selector: 'app-redeem-legacy-xtoken',

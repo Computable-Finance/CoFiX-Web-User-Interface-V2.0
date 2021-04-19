@@ -1,24 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import WalletConnectProvider from '@walletconnect/web3-provider';
 import BNJS from 'bignumber.js/bignumber';
 import { BigNumber, Contract, ethers } from 'ethers';
-import { Subscription } from 'rxjs';
 import { PermissionsQuery } from 'src/app/state/permission/permission.query';
 import { PermissionsService } from 'src/app/state/permission/permission.service';
 import { TokensInfoQuery } from 'src/app/state/token/token.query';
 import { TokenInfoService } from 'src/app/state/token/token.service';
-import {
-  environment,
-  InfuraApiAccessToken,
-  infuraNetwork,
-} from 'src/environments/environment';
-import {
-  BLOCKNUMS_IN_A_DAY,
-  ETHER_DECIMALS,
-  NETWORKS,
-} from '../common/constants';
-import { internalTokens, tokenList } from '../common/TokenList';
+import { environment } from 'src/environments/environment';
+import { ETHER_DECIMALS } from '../common/constants';
+import { tokenList } from '../common/TokenList';
 import { ethersOf, unitsOf } from '../common/uitils/bignumber-utils';
 import { BalancesQuery } from '../state/balance/balance.query';
 import { BalancesService } from '../state/balance/balance.service';
@@ -32,20 +22,16 @@ import { SettingsService } from '../state/setting/settings.service';
 import { CofiXService } from './cofix.service';
 import {
   getCoFiStakingRewards,
-  getERC20Contract,
-  getCoFixFacory,
-  getCofixRouter,
-  getOracleContract,
-  getCoFixPair,
   getCoFiXControllerContract,
-  getCoFiXVaultForLP,
+  getCoFixFacory,
+  getCoFixPair,
+  getCofixRouter,
   getCoFiXStakingRewards,
+  getCoFiXVaultForLP,
+  getERC20Contract,
+  getOracleContract,
 } from './confix.abi';
 import { EventBusService } from './eventbus.service';
-import {
-  executionPriceAndAmountOutByERC202ETHThroughUniswap,
-  executionPriceAndAmountOutByETH2ERC20ThroughUniswap,
-} from './uni-utils';
 
 declare let window: any;
 

@@ -45,9 +45,7 @@ export const environment = { \
 }; \
 
 export const infuraNetwork = '${network}';
-export const InfuraApiAccessToken = ${
-  apiAccessToken ? '${apiAccessToken}' : undefined
-};
+export const InfuraApiAccessToken = ${JSON.stringify(apiAccessToken)};
 `;
 fs.mkdirSync(environmentFilesDirectory, { recursive: true });
 fs.writeFileSync(path.join(environmentFilesDirectory, baseFileName), output);

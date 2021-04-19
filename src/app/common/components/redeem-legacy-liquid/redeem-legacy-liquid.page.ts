@@ -1,16 +1,15 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import BNJS from 'bignumber.js/bignumber';
 import { CofiXLegacyService } from 'src/app/service/cofix-legacy.service';
-import { BalanceTruncatePipe } from '../../pipes/balance.pipe';
-import { isValidNumberForTx } from '../../uitils/bignumber-utils';
-import BNJS from 'bignumber.js';
-import { Utils } from '../../utils';
-import { TxService } from 'src/app/state/tx/tx.service';
 import { CofiXService } from 'src/app/service/cofix.service';
-import { CoinContent } from '../../types/CoinContent';
-import { CoinInput } from '../coin-input/coin-input';
 import { BalancesQuery } from 'src/app/state/balance/balance.query';
 import { MarketDetailsQuery } from 'src/app/state/market/market.query';
+import { TxService } from 'src/app/state/tx/tx.service';
+import { BalanceTruncatePipe } from '../../pipes/balance.pipe';
+import { CoinContent } from '../../types/CoinContent';
+import { Utils } from '../../utils';
+import { CoinInput } from '../coin-input/coin-input';
 
 @Component({
   selector: 'app-redeem-legacy-liquid',
