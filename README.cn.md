@@ -67,8 +67,8 @@ export E2E_PK=Your-PrivateKey
 1. `npm i`，安装依赖
 1. `npm start`，执行。在浏览器中访问 http://localhost:4200
    - dev 模式，`npm start`
-   - prod 模式，`npm start --configuration=production`
-   - e2e 测试，`npm start --configuration=e2e`
+   - prod 模式，`npm start -- --configuration=production`
+   - e2e 测试，`npm start -- --configuration=e2e`
 
 ### 单元测试
 

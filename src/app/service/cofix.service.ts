@@ -543,6 +543,96 @@ export class CofiXService {
     return value;
   }
 
+  // 获取交易后预估资产比例。包括原始比例、当前比例、偏移量、交易后预估比例
+  // 返回: {
+  //   calculateAssetRatio1(如果有): {k0:xx, k1:xx, offset:xx, calculateAssetRatio:xx},
+  //   calculateAssetRatio2(如果有): {k0:xx, k1:xx, offset:xx, calculateAssetRatio:xx},
+  // }
+  async getTradeAssetRatio(fromToken: string, toToken: string, amount: string) {
+    // tradeAssetRatio1 -> fromToken => ETH 交易对的资产比例，tradeAssetRatio2 -> ETH => toToken 交易对的资产比例
+    const tradeAssetRatio: { [k: string]: any } = {};
+    let innerAmount = amount;
+    let excutionPrice1 = new BNJS(1);
+    let excutionPrice2 = new BNJS(1);
+
+    if (fromToken !== undefined) {
+      if (this.isCoFixToken(fromToken)) {
+        excutionPrice1 = await this.executionPriceByERC202ETH(
+          fromToken,
+          innerAmount
+        );
+        innerAmount = excutionPrice1.times(amount).toString();
+        const calculateAssetRatio1 = await this.calculateAssetRatioBetweenETHAndERC20(
+          fromToken,
+          innerAmount,
+          amount,
+          false
+        );
+        tradeAssetRatio.calculateAssetRatio1 = calculateAssetRatio1;
+      }
+    }
+
+    if (toToken !== undefined && innerAmount !== '0') {
+      if (this.isCoFixToken(toToken)) {
+        excutionPrice2 = await this.executionPriceByETH2ERC20(
+          toToken,
+          innerAmount
+        );
+        const ethAmount = innerAmount;
+        innerAmount = excutionPrice2.times(innerAmount).toString();
+        const calculateAssetRatio2 = await this.calculateAssetRatioBetweenETHAndERC20(
+          toToken,
+          ethAmount,
+          innerAmount,
+          true
+        );
+        tradeAssetRatio.calculateAssetRatio2 = calculateAssetRatio2;
+      }
+    }
+
+    return tradeAssetRatio;
+  }
+
+  // 计算单向 ETH <--> ERC20 的资产比例
+  // 算法:
+  // 原始比例 k0 从合约方法 getInitialAssetRatio() 方法获取
+  // 当前比例 k1 从合约方法 getReserves() 方法获取
+  // 偏移量: | (k1 - k0) / k0 |
+  // 交易后预估比例: (reserve0 +- ethAmount) / (reserve1 -+ erc20Amount)
+  private async calculateAssetRatioBetweenETHAndERC20(
+    token: string,
+    ethAmount: string,
+    erc20Amount: string,
+    isEth2Erc20: boolean
+  ) {
+    if (!this.isCoFixToken(token)) {
+      return;
+    }
+    const initialAssetRatio = await this.getInitialAssetRatio(token);
+    const initialEthAmount = initialAssetRatio.ethAmount;
+    const initialErc20Amount = initialAssetRatio.erc20Amount;
+    const reserves = await this.getReserves(token);
+    const reserve0 = reserves.reserve0;
+    const reserve1 = reserves.reserve1;
+
+    const k0 = new BNJS(initialEthAmount).div(new BNJS(initialErc20Amount));
+    const k1 = new BNJS(reserve0).div(new BNJS(reserve1));
+    const offset = k1.minus(k0).div(k0).abs();
+    const calculateAssetRatio = isEth2Erc20
+      ? new BNJS(reserve0)
+          .minus(new BNJS(ethAmount))
+          .div(new BNJS(reserve1).plus(new BNJS(erc20Amount)))
+      : new BNJS(reserve0)
+          .plus(new BNJS(ethAmount))
+          .div(new BNJS(reserve1).minus(new BNJS(erc20Amount)));
+
+    console.log(`k0 = ${k0}`)
+    console.log(`k1 = ${k1}`)
+    console.log(`offset = ${offset}`)
+    console.log(`calculateAssetRatio = ${calculateAssetRatio}`)
+    return { k0, k1, offset, calculateAssetRatio };
+  }
+
   async expectedXToken(address: string, ethAmount: string) {
     const checkedPriceNow = await this.checkPriceNow(address);
     const oraclePrice = [
@@ -1846,6 +1936,38 @@ export class CofiXService {
       initialAssetRatio = this.marketDetailsQuery.getInitialAssetRatio(address);
     }
     return initialAssetRatio;
+  }
+
+  private async updateReserves(address: string) {
+    const pairAddress = await this.getPairAddressByToken(address);
+    if (pairAddress === '0x0000000000000000000000000000000000000000') {
+      throw new Error('invalid invocation!!!!!');
+    }
+
+    const coFiXPair = getCoFixPair(pairAddress, this.provider);
+    const reserves = await coFiXPair.getReserves();
+    const erc20Decimals = await this.getERC20Decimals(address);
+    const readableReserve0 = ethersOf(reserves[0]);
+    const readableReserve1 = unitsOf(reserves[1], erc20Decimals);
+
+    console.log('reserves', readableReserve0, readableReserve1, address);
+
+    this.marketDetailsService.updateMarketDetails(address, {
+      reserves: {
+        reserve0: readableReserve0,
+        reserve1: readableReserve1,
+      },
+    });
+    return reserves;
+  }
+
+  async getReserves(address: string) {
+    let reserves = this.marketDetailsQuery.getReserves(address);
+    if (!reserves) {
+      await this.updateReserves(address);
+      reserves = this.marketDetailsQuery.getReserves(address);
+    }
+    return reserves;
   }
 
   async calcETHAmountForStaking(address: string, erc20Amount: string) {

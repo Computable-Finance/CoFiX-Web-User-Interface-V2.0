@@ -16,6 +16,7 @@ export interface MarketDetails {
     ethAmount: string;
     erc20Amount: string;
   };
+  reserves: any;
 }
 
 export interface MarketDetailsModel {

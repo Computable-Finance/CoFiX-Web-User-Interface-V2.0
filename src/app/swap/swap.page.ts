@@ -72,7 +72,7 @@ export class SwapPage implements OnInit, OnDestroy {
   DEX_TYPE = [];
 
   private balanceHandler = async (balance) => {
-    this.fromCoin.balance = await this.balancePipe.transform(balance);
+    this.fromCoin.balance = this.balancePipe.transform(balance);
     this.getERC20BalanceOfPair();
     this.isShowFromMax = true;
   };
@@ -228,7 +228,7 @@ export class SwapPage implements OnInit, OnDestroy {
     }
 
     if (executionPriceAndExpectedCofi) {
-      this.toCoin.amount = await this.balancePipe.transform(
+      this.toCoin.amount = this.balancePipe.transform(
         executionPriceAndExpectedCofi.amountOut
       );
       this.minimum = new BNJS(executionPriceAndExpectedCofi.excutionPrice)
