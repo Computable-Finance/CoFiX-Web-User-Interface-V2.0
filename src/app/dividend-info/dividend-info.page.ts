@@ -28,8 +28,6 @@ export class DividendInfoPage implements OnInit, OnDestroy {
   receiveError = { isError: false, msg: '' };
 
   private dividendSubscription: Subscription;
-  private cofiBalanceSubscription: Subscription;
-  private cofiStakingRewardsSubscription: Subscription;
   private eventbusSubscription: Subscription;
 
   constructor(
@@ -72,8 +70,6 @@ export class DividendInfoPage implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.dividendSubscription?.unsubscribe();
-    this.cofiBalanceSubscription?.unsubscribe();
-    this.cofiStakingRewardsSubscription?.unsubscribe();
     this.eventbusSubscription?.unsubscribe();
   }
 
@@ -89,17 +85,6 @@ export class DividendInfoPage implements OnInit, OnDestroy {
       await this.cofixLegacyService.getERC20Balance(this.cofiTokenAddress)
     );
 
-    if (!this.cofiBalanceSubscription) {
-      this.cofiBalanceSubscription = this.balancesQuery
-        .currentERC20Balance$(
-          this.cofixService.getCurrentAccount(),
-          this.cofiTokenAddress
-        )
-        .subscribe(async (balance) => {
-          this.cofiToken = await this.balanceTruncatePipe.transform(balance);
-        });
-    }
-
     this.cofiStakingRewardsAddress = this.cofixLegacyService.getCurrentContractAddressList().CoFiStakingRewards;
     this.cofiStakingRewards = await this.balanceTruncatePipe.transform(
       await this.cofixLegacyService.getERC20Balance(
@@ -107,31 +92,11 @@ export class DividendInfoPage implements OnInit, OnDestroy {
       )
     );
 
-    if (!this.cofiStakingRewardsSubscription) {
-      this.cofiStakingRewardsSubscription = this.balancesQuery
-        .currentERC20Balance$(
-          this.cofixService.getCurrentAccount(),
-          this.cofiStakingRewardsAddress
-        )
-        .subscribe(async (balance) => {
-          this.cofiStakingRewards = await this.balanceTruncatePipe.transform(
-            balance
-          );
-        });
-    }
-
     this.getEarnedETHAndSubscribe();
   }
 
   async getEarnedETHAndSubscribe() {
     this.earnedETH = await this.cofixLegacyService.earnedETH();
-    // if (!this.dividendSubscription) {
-    //   this.dividendSubscription = this.balancesQuery
-    //     .currentDividendBalance$(this.cofixService.getCurrentAccount())
-    //     .subscribe(async (dividend) => {
-    //       this.earnedETH = dividend;
-    //     });
-    // }
   }
 
   earned() {

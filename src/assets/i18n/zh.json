@@ -161,7 +161,7 @@
   "swap_tooltips_minreceived_title": "最少收到",
   "swap_tooltips_minreceived_desc": "如果在打包确认之前价格出现较大的不利变动，则您的交易将撤消。 默认设置为滑点必须低于1％。",
   "swap_tooltips_cofitoken_desc": "将{ETH}和{NEST}的数量比拉近到原始比例的交易为反向交易，反向交易可以获得一定的挖矿奖励。交易后{ETH}和{NEST}的比例越接近原始比例，挖矿奖励越多。",
-  "swap_tooltips_cofitoken_subdesc": "<span class='tooltips-sm'>原始比例(ETH/NEST)：0.00000374 </span> <br> <span class='tooltips-sm'>当前比例(ETH/NEST)：0.00000174</span> <br><span class='tooltips-sm'>偏移量：28%</span> <br><span class='tooltips-sm'>交易后预估比例(ETH/NEST):0.0000372</span>",
+  "swap_tooltips_cofitoken_subdesc": "<span class='tooltips-sm'>原始比例(ETH/NEST)：0.00000374 </span> <br> <span class='tooltips-sm'>当前比例(ETH/NEST)：0.00000174</span> <br><span class='tooltips-sm'>偏移量：28%</span> <br><span class='tooltips-sm'>交易后预估比例(ETH/NEST)：0.0000372</span>",
   "setting_tooltips_slippage_title": "滑点",
   "setting_tooltips_slippage_desc": "如果价格变坏幅度超过1％，则该交易将会被撤销。",
   "setting_tooltips_deadline_title": "交易截止时限",
@@ -247,5 +247,7 @@
   "liquid_info_4": "从旧版资金池取出资金",
   "liquid_info_5": "，在 CoFiX 2.0 中重新添加流动性，生成新的 XToken 进行挖矿。",
   "redeem_legacy_liquid_title": "从V1.0的资金池中取出资金",
-  "redeem_legacy_liquid_subtitle": "取出旧版资金需先取出质押的 XToken"
+  "redeem_legacy_liquid_subtitle": "取出旧版资金需先取出质押的 XToken",
+  "liquidpool_withdraw_to_legacy": "取出为（仅选择一个）",
+  "liquidpool_withdraw_inputlabel": "输入 XToken 数量"
 }

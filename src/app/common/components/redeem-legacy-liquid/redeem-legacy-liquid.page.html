@@ -7,6 +7,20 @@
   </div>
   <div class="sub-title">{{'redeem_legacy_liquid_subtitle' | translate}}</div>
 
+  <div class="coinselect-div">
+    <ion-button
+      fill="outline"
+      *ngFor="let item of coinList;let i=index"
+      class="coinselect-button {{coin === item?'active':''}}"
+      (click)="changeCoin(item)"
+    >
+      <img src="./assets/images/icon/ETH.png" class="coin_icon" /><img
+        src="./assets/images/icon/{{item}}.png"
+        class="coin_icon right_icon"
+      />&nbsp;<span>ETH-{{item}}</span>
+    </ion-button>
+  </div>
+
   <app-coin-input
     #toCoinInputView
     id="xtoken"
@@ -17,16 +31,17 @@
     [maxAmount]="toCoin.balance"
     [isSelectCoin]="isSelectCoin"
     [isShowError]="showError"
-    [label]="'enter_amount'"
+    [isShowLabel]="false"
+    [label]="'liquidpool_withdraw_inputlabel'"
     class="coin-input"
   ></app-coin-input>
   <ion-grid class="ion-no-padding claimETH">
     <ion-row
       class="ion-align-items-center ion-align-self-center conversionPrice"
     >
-      <ion-col class="title" size="11">
-        {{'liquidpool_withdraw_to' | translate}}
-      </ion-col>
+      <ion-col class="title" size="12"
+        >{{'liquidpool_withdraw_to_legacy' | translate}}</ion-col
+      >
     </ion-row>
     <ion-row
       class="ion-align-items-center ion-align-self-center conversionPrice"
@@ -34,9 +49,17 @@
       <ion-col size="1">
         <img src="./assets/images/icon/{{fromCoin.id}}.png" />
       </ion-col>
-      <ion-col size="2"> {{fromCoin.id}} </ion-col>
-      <ion-col size="9" class="ion-text-right number">
-        {{amountForRemoveLiquidity?.ethAmount | truncate:'--'}}
+      <ion-col size="3"> {{fromCoin.id}} </ion-col>
+      <ion-col size="6" class="ion-text-right number">
+        {{isETHChecked?(ETHAmountForRemoveLiquidity | truncate:'--'):'--'}}
+      </ion-col>
+      <ion-col size="1" class="ion-text-right">
+        <ion-toggle
+          id="eth-toggle"
+          [(ngModel)]="isETHChecked"
+          (ionChange)="changeETHCheck()"
+          color="secondary"
+        ></ion-toggle>
       </ion-col>
 
       <ion-col size="12">
@@ -56,8 +79,16 @@
         <img src="./assets/images/icon/{{toCoin.id}}.png" />
       </ion-col>
       <ion-col size="3"> {{toCoin.id}} </ion-col>
-      <ion-col size="8" class="ion-text-right number">
-        {{amountForRemoveLiquidity?.erc20Amount | truncate:'--'}}
+      <ion-col size="6" class="ion-text-right number">
+        {{isTokenChecked?(tokenAmountForRemoveLiquidity | truncate:'--'):'--'}}
+      </ion-col>
+      <ion-col size="1" class="ion-text-right">
+        <ion-toggle
+          id="erc20-toggle"
+          [(ngModel)]="isTokenChecked"
+          (ionChange)="changeTokenCheck()"
+          color="secondary"
+        ></ion-toggle>
       </ion-col>
       <ion-col size="12" class="margin-bottom">
         <span class="error">
@@ -89,23 +120,31 @@
   </ion-grid>
 
   <div class="button-div" *ngIf="cofixService.getCurrentAccount()">
-    <app-action-button
+    <ion-button
+      id="approve-btn"
+      expand="block"
+      class="operation-btn approve-btn"
+      (click)="approve()"
+      [disabled]="isLoading.sq"
       *ngIf="!toCoin.isApproved"
-      [btnTitle]="'sq_text'"
-      [btnId]="'approve-btn'"
-      [isEnabled]="isLoading.sq"
-      [isLoading]="isLoading.sq"
-      (clickAction)="approve()"
-      class="w-9/20"
-    ></app-action-button>
-
-    <app-action-button
-      [btnTitle]="'sh'"
-      [btnId]="'redeem-btn'"
-      [isEnabled]="isLoading.sh || !canRedeem()"
-      [isLoading]="isLoading.sh"
-      (clickAction)="redeem()"
-      [ngClass]="{'w-9/20':!toCoin.isApproved,'w-full':toCoin.isApproved}"
-    ></app-action-button>
+    >
+      <div class="ion-button-label">
+        <div *ngIf="!isLoading.sq">{{'sq_text' | translate}}</div>
+        <div class="loading" *ngIf="isLoading.sq"></div>
+      </div>
+    </ion-button>
+    <ion-button
+      id="redeem-btn"
+      expand="block"
+      class="operation-btn"
+      [ngClass]="{'swap-btn':!toCoin.isApproved,'full-btn':toCoin.isApproved}"
+      (click)="redeem()"
+      [disabled]="isLoading.sh || !canRedeem()"
+    >
+      <div class="ion-button-label">
+        <div *ngIf="!isLoading.sh">{{'sh' | translate}}</div>
+        <div class="loading" *ngIf="isLoading.sh"></div>
+      </div>
+    </ion-button>
   </div>
 </div>

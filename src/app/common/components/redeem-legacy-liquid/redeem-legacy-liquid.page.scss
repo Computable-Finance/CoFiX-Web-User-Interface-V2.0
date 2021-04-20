@@ -97,7 +97,7 @@
 
 @media only screen and (max-width: 820px) {
   .card-content {
-    height: 400px;
+    height: 500px;
     overflow: auto;
     scrollbar-width: none;
     -ms-overflow-style: none; /* IE 11 */
@@ -110,4 +110,45 @@
   .card-content::-webkit-scrollbar {
     display: none; /* Safari and Chrome */
   }
+}
+
+.full-btn {
+  width: 100%;
+}
+
+.coin_icon {
+  width: 24px;
+  height: 24px;
+}
+
+.right_icon {
+  position: relative;
+  left: -8px;
+  z-index: -1;
+}
+
+.coinselect-div {
+  display: grid;
+  margin: 20px 0px;
+  font-size: 16px;
+  font-family: PingFang SC;
+  font-weight: 600;
+  line-height: 18px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.6rem;
+}
+
+.coinselect-button {
+  height: 35px;
+  --box-shadow: 0;
+  --border-radius: 25px;
+  --border-color: var(--silver);
+  --border: 2px;
+  color: var(--subtitle);
+  font-weight: 600;
+}
+
+.active {
+  --border-color: var(--bordergreen);
+  color: black;
 }

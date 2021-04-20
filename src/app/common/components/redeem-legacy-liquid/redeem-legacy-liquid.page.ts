@@ -3,8 +3,6 @@ import { ModalController } from '@ionic/angular';
 import BNJS from 'bignumber.js/bignumber';
 import { CofiXLegacyService } from 'src/app/service/cofix-legacy.service';
 import { CofiXService } from 'src/app/service/cofix.service';
-import { BalancesQuery } from 'src/app/state/balance/balance.query';
-import { MarketDetailsQuery } from 'src/app/state/market/market.query';
 import { TxService } from 'src/app/state/tx/tx.service';
 import { BalanceTruncatePipe } from '../../pipes/balance.pipe';
 import { CoinContent } from '../../types/CoinContent';
@@ -34,16 +32,18 @@ export class RedeemLegacyLiquidPage implements OnInit {
     balance: '',
   };
   isSelectCoin = false;
+  coinList = ['USDT', 'HBTC'];
   xtValue = 'XT-1';
-  //isETHChecked = false;
-
+  isETHChecked = false;
+  isTokenChecked = false;
   coinAddress: string;
   todoValue: string;
   hadValue: string;
   oracleCost = '0.01';
   isLoading = { sh: false, sq: false };
   showError = false;
-  amountForRemoveLiquidity: any = { erc20Amount: '', ethAmount: '', fee: '' };
+  ETHAmountForRemoveLiquidity: string;
+  tokenAmountForRemoveLiquidity: string;
   redeemError = { isError: false, msg: '' };
 
   cardTitle = {
@@ -56,12 +56,10 @@ export class RedeemLegacyLiquidPage implements OnInit {
 
   constructor(
     public cofixService: CofiXService,
-    private cofixLegacyService: CofiXLegacyService,
+    public cofixLegacyService: CofiXLegacyService,
     private balanceTruncatePipe: BalanceTruncatePipe,
     private utils: Utils,
     private txService: TxService,
-    private balancesQuery: BalancesQuery,
-    private marketDetailsQuery: MarketDetailsQuery,
     private modalController: ModalController
   ) {}
 
@@ -70,24 +68,10 @@ export class RedeemLegacyLiquidPage implements OnInit {
     this.initCoinContent();
     this.getIsApproved();
     this.getRemoveLiquidity();
-    this.changeCartTitle();
   }
 
   ngOnDestroy() {}
 
-  changeCartTitle() {
-    if (window.innerWidth < 500) {
-      this.cardTitle = {
-        title: 'liquidpool_withdraw_title_short',
-        subtitle: 'liquidpool_withdraw_subtitle_short',
-      };
-    } else {
-      this.cardTitle = {
-        title: 'liquidpool_withdraw_title',
-        subtitle: 'liquidpool_withdraw_subtitle',
-      };
-    }
-  }
   async setToCoinMax(event) {
     if (!this.cofixService.getCurrentAccount()) {
       return false;
@@ -100,10 +84,16 @@ export class RedeemLegacyLiquidPage implements OnInit {
   confirmAddLiquid() {}
 
   changeETHCheck() {
+    if (this.isETHChecked) {
+      this.isTokenChecked = false;
+    }
     this.getRemoveLiquidity();
   }
 
   changeTokenCheck() {
+    if (this.isTokenChecked) {
+      this.isETHChecked = false;
+    }
     this.getRemoveLiquidity();
     this.resetRedeemError();
   }
@@ -113,6 +103,8 @@ export class RedeemLegacyLiquidPage implements OnInit {
     this.toCoin.amount = '';
     this.todoValue = '';
     this.hadValue = '';
+    this.isETHChecked = false;
+    this.isTokenChecked = false;
     this.resetRedeemError();
 
     this.fromCoin.address = this.cofixLegacyService.getCurrentContractAddressList()[
@@ -131,6 +123,12 @@ export class RedeemLegacyLiquidPage implements OnInit {
         )
       );
 
+      console.log(
+        'stakeing--',
+        await this.cofixLegacyService.getStakingPoolAddressByToken(
+          this.toCoin.address
+        )
+      );
       this.hadValue = await this.balanceTruncatePipe.transform(
         await this.cofixLegacyService.getERC20Balance(
           await this.cofixLegacyService.getStakingPoolAddressByToken(
@@ -147,6 +145,8 @@ export class RedeemLegacyLiquidPage implements OnInit {
       this.toCoin.address,
       this.cofixLegacyService.getCurrentContractAddressList().WETH9
     );
+    console.log(this.maxERC20Liquid);
+    console.log(this.maxETHLiquid);
   }
 
   async walletConnected() {
@@ -164,11 +164,24 @@ export class RedeemLegacyLiquidPage implements OnInit {
     const pair = await this.cofixLegacyService.getPairAddressByToken(
       this.toCoin.address
     );
-    this.amountForRemoveLiquidity = await this.cofixLegacyService.getETHAndTokenForRemoveLiquidity(
-      this.toCoin.address,
-      pair,
-      this.toCoin.amount || '0'
-    );
+    console.log('pair===', pair);
+    if (this.isETHChecked) {
+      const result = await this.cofixLegacyService.getETHAmountForRemoveLiquidity(
+        this.toCoin.address,
+        pair,
+        this.toCoin.amount || '0'
+      );
+
+      this.ETHAmountForRemoveLiquidity = result.result;
+    }
+    if (this.isTokenChecked) {
+      const result = await this.cofixLegacyService.getTokenAmountForRemoveLiquidity(
+        this.toCoin.address,
+        pair,
+        this.toCoin.amount || '0'
+      );
+      this.tokenAmountForRemoveLiquidity = result.result;
+    }
     this.canShowError();
   }
 
@@ -181,12 +194,15 @@ export class RedeemLegacyLiquidPage implements OnInit {
 
   async redeem() {
     this.resetRedeemError();
+    if (!this.isTokenChecked && !this.isETHChecked) {
+      return false;
+    }
     const token = this.toCoin.address;
     const pair = await this.cofixLegacyService.getPairAddressByToken(
       this.toCoin.address
     );
 
-    //let amountTokenMin;
+    let amountTokenMin;
     const params = {
       t: 'tx_withdrawLiquid',
       p: {
@@ -195,51 +211,95 @@ export class RedeemLegacyLiquidPage implements OnInit {
     };
     this.waitingPopover = await this.utils.createTXConfirmModal();
     await this.waitingPopover.present();
-    this.cofixLegacyService
-      .removeLiquidityGetTokenAndETH(
-        pair,
-        token,
-        this.toCoin.amount || '0',
-        this.amountForRemoveLiquidity.ethAmount,
-        this.amountForRemoveLiquidity.erc20Amount,
-        this.oracleCost
-      )
-      .then((tx: any) => {
-        console.log('tx.hash', tx.hash);
-        this.isLoading.sh = true;
+    if (this.isETHChecked) {
+      amountTokenMin = this.ETHAmountForRemoveLiquidity;
+      this.cofixLegacyService
+        .removeLiquidityGetETH(
+          pair,
+          token,
+          this.toCoin.amount || '0',
+          amountTokenMin.toString(),
+          this.oracleCost
+        )
+        .then((tx: any) => {
+          console.log('tx.hash', tx.hash);
+          this.isLoading.sh = true;
 
-        console.log(params);
-        this.txService.add(
-          tx.hash,
-          this.cofixService.getCurrentAccount(),
-          JSON.stringify(params),
-          this.cofixService.getCurrentNetwork()
-        );
-        this.waitingPopover.dismiss();
-        this.utils.showTXSubmitModal(tx.hash);
-        const provider = this.cofixService.getCurrentProvider();
-        provider.once(tx.hash, (transactionReceipt) => {
+          console.log(params);
+          this.txService.add(
+            tx.hash,
+            this.cofixService.getCurrentAccount(),
+            JSON.stringify(params),
+            this.cofixService.getCurrentNetwork()
+          );
+          this.waitingPopover.dismiss();
+          this.utils.showTXSubmitModal(tx.hash);
+          const provider = this.cofixService.getCurrentProvider();
+          provider.once(tx.hash, (transactionReceipt) => {
+            this.isLoading.sh = false;
+            this.utils.changeTxStatus(transactionReceipt.status, tx.hash);
+          });
+
+          provider.once('error', (error) => {
+            console.log('provider.once==', error);
+            this.isLoading.sh = false;
+            this.txService.txFailed(tx.hash);
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+
           this.isLoading.sh = false;
-          this.utils.changeTxStatus(transactionReceipt.status, tx.hash);
+          this.waitingPopover.dismiss();
+          if (error.message.indexOf('User denied') > -1) {
+            this.utils.showTXRejectModal();
+          } else {
+            this.redeemError = { isError: true, msg: error.message };
+          }
         });
-
-        provider.once('error', (error) => {
-          console.log('provider.once==', error);
+    }
+    if (this.isTokenChecked) {
+      amountTokenMin = this.tokenAmountForRemoveLiquidity;
+      this.cofixLegacyService
+        .removeLiquidityGetToken(
+          pair,
+          token,
+          this.toCoin.amount || '0',
+          amountTokenMin?.toString(),
+          this.oracleCost
+        )
+        .then((tx: any) => {
+          console.log('tx.hash', tx.hash);
+          this.isLoading.sh = true;
+          this.txService.add(
+            tx.hash,
+            this.cofixService.getCurrentAccount(),
+            JSON.stringify(params),
+            this.cofixService.getCurrentNetwork()
+          );
+          this.waitingPopover.dismiss();
+          this.utils.showTXSubmitModal(tx.hash);
+          const provider = this.cofixService.getCurrentProvider();
+          provider.once(tx.hash, (transactionReceipt) => {
+            this.isLoading.sh = false;
+            this.utils.changeTxStatus(transactionReceipt.status, tx.hash);
+          });
+          provider.once('error', (error) => {
+            console.log('provider.once==', error);
+            this.isLoading.sh = false;
+          });
+        })
+        .catch((error) => {
+          console.log(error);
           this.isLoading.sh = false;
-          this.txService.txFailed(tx.hash);
+          this.waitingPopover.dismiss();
+          if (error.message.indexOf('User denied') > -1) {
+            this.utils.showTXRejectModal();
+          } else {
+            this.redeemError = { isError: true, msg: error.message };
+          }
         });
-      })
-      .catch((error) => {
-        console.log(error);
-
-        this.isLoading.sh = false;
-        this.waitingPopover.dismiss();
-        if (error.message.indexOf('User denied') > -1) {
-          this.utils.showTXRejectModal();
-        } else {
-          this.redeemError = { isError: true, msg: error.message };
-        }
-      });
+    }
   }
   resetRedeemError() {
     this.redeemError = { isError: false, msg: '' };
@@ -276,18 +336,29 @@ export class RedeemLegacyLiquidPage implements OnInit {
   }
 
   overERC20Liquid() {
-    return new BNJS(this.amountForRemoveLiquidity.erc20Amount).gt(
-      new BNJS(this.maxERC20Liquid)
+    return (
+      this.isTokenChecked &&
+      new BNJS(this.tokenAmountForRemoveLiquidity).gt(
+        new BNJS(this.maxERC20Liquid)
+      )
     );
   }
-
   overETHLiquid() {
-    return new BNJS(this.amountForRemoveLiquidity.ethAmount).gt(
-      new BNJS(this.maxETHLiquid)
+    return (
+      this.isETHChecked &&
+      new BNJS(this.ETHAmountForRemoveLiquidity).gt(new BNJS(this.maxETHLiquid))
     );
   }
 
   close() {
     this.modalController.dismiss();
+  }
+
+  changeCoin(coin) {
+    this.coin = coin;
+    this.toCoin.id = coin;
+    this.initCoinContent();
+    this.getIsApproved();
+    this.getRemoveLiquidity();
   }
 }

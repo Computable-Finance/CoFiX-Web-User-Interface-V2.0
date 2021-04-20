@@ -247,5 +247,7 @@
   "liquid_info_4": "withdraw funds from the previous version of the asset pool",
   "liquid_info_5": ", re-add liquidity in CoFiX 2.0, and generate a new XToken for mining.",
   "redeem_legacy_liquid_title": "Withdraw funds from the V1.0 asset pool",
-  "redeem_legacy_liquid_subtitle": "To withdraw funds from the old version, you must first withdraw the staking XToken"
+  "redeem_legacy_liquid_subtitle": "To withdraw funds from the old version, you must first withdraw the staking XToken",
+  "liquidpool_withdraw_to_legacy": "WITHDRAW TO(SELECT ONLY ONE)",
+  "liquidpool_withdraw_inputlabel": "Amount of XToken"
 }
