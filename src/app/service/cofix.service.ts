@@ -626,11 +626,17 @@ export class CofiXService {
           .plus(new BNJS(ethAmount))
           .div(new BNJS(reserve1).minus(new BNJS(erc20Amount)));
 
-    console.log(`k0 = ${k0}`)
-    console.log(`k1 = ${k1}`)
-    console.log(`offset = ${offset}`)
-    console.log(`calculateAssetRatio = ${calculateAssetRatio}`)
-    return { k0, k1, offset, calculateAssetRatio };
+    console.log(`k0 = ${k0}`);
+    console.log(`k1 = ${k1}`);
+    console.log(`offset = ${offset}`);
+    console.log(`calculateAssetRatio = ${calculateAssetRatio}`);
+
+    return {
+      k0: k0.toString(),
+      k1: k1.toString(),
+      offset: offset.toString(),
+      calculateAssetRatio: calculateAssetRatio.toString(),
+    };
   }
 
   async expectedXToken(address: string, ethAmount: string) {
