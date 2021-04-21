@@ -160,8 +160,9 @@
   "swap_tooltips_oraclefee_desc": "<b>Oracle Fee</b> is what you pay to the NEST protocol for providing accurate market price data to the smart contract. ",
   "swap_tooltips_minreceived_title": "Minimum Received",
   "swap_tooltips_minreceived_desc": "Your transaction will reverse if there’s a large, unfavourable price movement before its confirmed. Slippage of 1%.",
-  "swap_tooltips_cofitoken_desc": "The trading that draws the amount of {ETH} and {NEST} to the initial ratio is called reversing trade.Reversing trade can gain a ccertain mining rewards. The closer to the initial ratio after {ETH} and {NEST} trade, the more mining rewards it will be. ",
-  "swap_tooltips_cofitoken_subdesc": "<span class='tooltips-sm'>Initial Ratio(ETH/NEST)：0.00000374 </span> <br> <span class='tooltips-sm'>Current Ratio(ETH/NEST)：0.00000174</span> <br><span class='tooltips-sm'>Offset：28%</span> <br><span class='tooltips-sm'>Estimated ratio after trading(ETH/NEST):0.0000372</span>",
+  "swap_tooltips_cofitoken_desc": "<p>The trading that draws the amount of {{{from}}} and {{{to}}} to the initial ratio is called reversing trade.Reversing trade can gain a ccertain mining rewards. The closer to the initial ratio after {{{from}}} and {{{to}}} trade, the more mining rewards it will be. </p>",
+  "swap_tooltips_cofitoken_subdesc": "<div><span class='tooltips-sm'>Initial Ratio(ETH/{{coin}}): {{k0}} </span> <br> <span class='tooltips-sm'>Current Ratio(ETH/{{coin}}): {{k1}}</span> <br><span class='tooltips-sm'>Offset: {{offset}}%</span> <br><span class='tooltips-sm'>Estimated ratio after trading(ETH/{{coin}}): {{ratio}}</span></div>",
+
   "setting_tooltips_slippage_title": "Slippage",
   "setting_tooltips_slippage_desc": "Your transaction will revert if the price changes unfavourably more than 1%.",
   "setting_tooltips_deadline_title": "Transaction Deadline",
@@ -249,5 +250,7 @@
   "redeem_legacy_liquid_title": "Withdraw funds from the V1.0 asset pool",
   "redeem_legacy_liquid_subtitle": "To withdraw funds from the old version, you must first withdraw the staking XToken",
   "liquidpool_withdraw_to_legacy": "WITHDRAW TO(SELECT ONLY ONE)",
-  "liquidpool_withdraw_inputlabel": "Amount of XToken"
+  "liquidpool_withdraw_inputlabel": "Amount of XToken",
+  "swap_tooltips_erc20token_desc": "The trading that draws the amount of {ETH/NEST} and {ETH/USDT} to the initial ratio is called reversing trade.Reversing trade can gain a ccertain mining rewards. The closer to the initial ratio after {ETH/NEST} and {ETH/USDT} trade, the more mining rewards it will be.",
+  "swap_tooltips_erc20token_subdesc": "<span class='tooltips-sm'>原始比例(ETH/NEST)：0.00000374 </span> <br> <span class='tooltips-sm'>当前比例(ETH/NEST)：0.00000174</span> <br><span class='tooltips-sm'>偏移量：28%</span> <br><span class='tooltips-sm'>交易后预估比例(ETH/NEST)：0.0000372</span>"
 }

@@ -70,7 +70,9 @@ export class SwapPage implements OnInit, OnDestroy {
   waitingPopover: any;
   private eventbusSubscription: Subscription;
   DEX_TYPE = [];
-
+  assetRatio: any;
+  tooltipFrom: string;
+  tooltipTo: string;
   private balanceHandler = async (balance) => {
     this.fromCoin.balance = this.balancePipe.transform(balance);
     this.getERC20BalanceOfPair();
@@ -183,6 +185,7 @@ export class SwapPage implements OnInit, OnDestroy {
         this.toCoin.amount = this.ERC20BalanceOfPair[this.toCoin.id];
       }
     }
+    this.getTradeAssetRatio();
   }
 
   async getERC20BalanceOfPair() {
@@ -264,6 +267,25 @@ export class SwapPage implements OnInit, OnDestroy {
     }
   }
 
+  async getTradeAssetRatio() {
+    let ratio = await this.cofixService.getTradeAssetRatio(
+      this.fromCoin.address,
+      this.toCoin.address,
+      this.fromCoin.amount
+    );
+
+    this.assetRatio = ratio;
+    if (this.fromCoin.id !== 'ETH' && this.toCoin.id !== 'ETH') {
+      this.tooltipFrom = 'ETH/' + this.fromCoin.id;
+      this.tooltipTo = 'ETH/' + this.toCoin.id;
+    } else {
+      this.tooltipFrom = 'ETH';
+      this.tooltipTo =
+        this.fromCoin.id === 'ETH' ? this.toCoin.id : this.fromCoin.id;
+    }
+    console.log('ratio==', ratio);
+  }
+
   async setToCoinMax(event) {
     if (!this.cofixService.getCurrentAccount()) {
       return false;
@@ -271,6 +293,7 @@ export class SwapPage implements OnInit, OnDestroy {
     this.toCoin.id = event.coin;
     this.fromCoin.amount = this.fromCoin.balance;
     this.getEPAndEC();
+    this.getTradeAssetRatio();
     this.showError = false;
   }
 
@@ -314,6 +337,7 @@ export class SwapPage implements OnInit, OnDestroy {
     this.changeOracleCost();
     await this.getERC20BalanceOfPair();
     this.getEPAndEC();
+    this.getTradeAssetRatio();
   }
 
   async changeToCoin(event) {
@@ -332,6 +356,7 @@ export class SwapPage implements OnInit, OnDestroy {
     this.changeOracleCost();
     await this.getERC20BalanceOfPair();
     this.getEPAndEC();
+    this.getTradeAssetRatio();
   }
 
   changeOracleCost() {
@@ -406,11 +431,12 @@ export class SwapPage implements OnInit, OnDestroy {
     this.swapError = { isError: false, msg: '' };
   }
 
-  fromCoinInput(event) {
+  async fromCoinInput(event) {
     this.resetSwapError();
     this.fromCoin.id = event.coin;
     this.fromCoin.amount = event.amount;
     this.getEPAndEC();
+    this.getTradeAssetRatio();
     this.changeShowError();
   }
 

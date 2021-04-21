@@ -227,7 +227,7 @@ ion-button {
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
-  line-height: 2.57;
+  // line-height: 2.57;
   letter-spacing: normal;
 }
 
@@ -573,7 +573,7 @@ ion-toggle {
   font-family: PingFang SC;
   font-weight: 400;
   color: #8c8c8c;
-  line-height: 18px;
+  line-height: 18px !important;
 }
 
 .info-banner {

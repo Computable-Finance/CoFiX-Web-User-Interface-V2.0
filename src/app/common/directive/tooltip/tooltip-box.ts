@@ -19,10 +19,14 @@ import {
   selector: 'tooltip-box',
   template: `<div class="tooltips">
     <div class="title" *ngIf="tipsTitle">{{ tipsTitle | translate }}</div>
-    <div [innerHTML]="tipsContent | translate | marked" class="content"></div>
+    <div
+      *ngIf="tipsContent"
+      [innerHTML]="tipsContent | translate | marked"
+      class="content"
+    ></div>
     <div
       *ngIf="tipsSubContent"
-      [innerHTML]="tipsSubContent | translate | marked"
+      [innerHTML]="tipsSubContent | marked"
       class="subdesc"
     ></div>
     <div *ngIf="tipsFooter" class="title">
