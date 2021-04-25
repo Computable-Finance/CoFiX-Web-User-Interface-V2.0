@@ -1701,8 +1701,12 @@ export class CofiXService {
         this.contractAddressList.CofiXController,
         this.provider
       ).getKInfo(address);
+      console.log(`kinfo = ${kinfo}`);
 
       const latestPrice = await this.checkPriceNow(address);
+      console.log(`latestPrice = ${JSON.stringify(latestPrice)}`);
+      console.log(`latestPrice.vola = ${latestPrice.vola}`);
+      console.log(`latestPrice.bn = ${latestPrice.bn}`);
       latestK = await getCoFiXControllerContract(
         this.contractAddressList.CofiXController,
         this.provider
@@ -1734,13 +1738,18 @@ export class CofiXService {
   }
 
   private async updateCheckedPriceNow(tokenAddress: string) {
-    let price;
+    let ethAmount: string;
+    let erc20Amount: string;
+    let changePrice: string;
+    let vola;
+    let bn;
+    const decimals = await this.getERC20Decimals(tokenAddress);
 
     if (
       tokenScriptContent[tokenAddress]?.LiquidityPoolShare
         ?.referenceExchangeRateEthAmount
     ) {
-      price = [0, 0];
+      const price = [0, 0];
       price[0] =
         tokenScriptContent[
           tokenAddress
@@ -1749,21 +1758,34 @@ export class CofiXService {
         tokenScriptContent[
           tokenAddress
         ].LiquidityPoolShare.referenceExchangeRateErc20Amount;
+      ethAmount = ethersOf(price[0]);
+      erc20Amount = unitsOf(price[1], decimals);
+      changePrice = new BNJS(erc20Amount).div(new BNJS(ethAmount));
     } else {
       const oracle = getOracleContract(
         this.contractAddressList.OracleMock,
         this.provider
       );
 
-      price = await oracle.latestPrice(tokenAddress);
+      // returns (uint blockNumber, uint price, uint avgPrice, uint sigmaSQ)
+      const triggeredPriceInfo = await oracle.triggeredPriceInfo(tokenAddress);
+      console.log(`triggeredPriceInfo = ${triggeredPriceInfo}`);
+      bn = triggeredPriceInfo[0];
+      ethAmount = '1';
+      erc20Amount = unitsOf(triggeredPriceInfo[1], decimals);
+      changePrice = erc20Amount;
+      // 这里实际值是sigmaSQ，表示波动率的平方
+      vola = triggeredPriceInfo[3]
     }
 
-    const decimals = await this.getERC20Decimals(tokenAddress);
-    const ethAmount = ethersOf(price[0]);
-    const erc20Amount = unitsOf(price[1], decimals);
-    const changePrice = new BNJS(erc20Amount).div(new BNJS(ethAmount));
-    const vola = price[3];
-    const bn = price[4];
+    console.log(
+      `tokenAddress = ${tokenAddress},\
+      ethAmount = ${ethAmount},\
+      erc20Amount = ${erc20Amount},\
+      changePrice = ${changePrice},\
+      vola = ${vola},\
+      bn = ${bn}`
+    );
 
     this.marketDetailsService.updateMarketDetails(tokenAddress, {
       checkedPriceNow: {

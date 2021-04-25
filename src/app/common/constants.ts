@@ -23,9 +23,10 @@ export function getContractAddressListByNetwork(network: number): any {
       // NEST: '0xD287Bc43eCD3D892204aA3792165fe8728636E29',
       WETH9: '0x59b8881812Ac484Ab78b8fc7c10b2543e079a6C3',
       CoFiToken: '0x72Fd35b1dB364db812A8E726891685A25a9135D3',
-      // 对应 NestPriceOracle，接手时规范，未改
-      OracleMock: '0x3bF1d76A2fb912481022fdC31bD5016cC5A6c671',
-      CofiXController: '0x8a814Da4d9Dfdebf6080BbE2d8C7bb238272507B',
+      // 对应 nestPriceFacade，接手时规范，未改
+      OracleMock: '0x406C82f4F116F4FAD75bb47A142C9B5Fb213133C',
+      // CofiXController: '0x8a814Da4d9Dfdebf6080BbE2d8C7bb238272507B',
+      CofiXController: '0xEACE857F795e23907C1C6e5e3ec901f98aD03302',
       CofixFactory: '0x8E636BDB79752BFa2C41285535852bbBDd50b2ca',
       // CoFiXKTable:'0xe609B978635c7Bb8D22Ffc4Ec7f7a16615a3b1cA',
       CofixRouter: '0xAdD27c75b7B003cc791E4062e20f9Eb872FafC65',

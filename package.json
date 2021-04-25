@@ -6,7 +6,7 @@
   "scripts": {
     "ng": "ng",
     "prestart": "node ./script/preprocessing.js ${npm_config_configuration}",
-    "start": "ng serve --configuration=${npm_config_configuration}",
+    "start": "ng serve",
     "prebuild": "node ./script/preprocessing.js production",
     "build": "ng build --prod --aot",
     "pretest": "node ./script/preprocessing.js",
