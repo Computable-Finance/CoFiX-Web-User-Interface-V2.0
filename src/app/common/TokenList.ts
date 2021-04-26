@@ -50,7 +50,7 @@ export let tokens: Array<any> = [
 export const internalTokens = [
   {
     chainId: 3,
-    address: '0x200506568C2980B4943B5EaA8713A5740eb2c98A',
+    address: '0xc82C867f9e25303C766e2ba83d512419223d4574',
     name: 'Tether',
     symbol: 'USDT',
     decimals: 6,
@@ -59,7 +59,7 @@ export const internalTokens = [
   },
   {
     chainId: 3,
-    address: '0xA674f71ce49CE7F298aea2F23D918d114965eb40',
+    address: '0xe089A4d2CBC409f30eb4E6c6661502ceDD5510b5',
     name: 'Huobi BTC',
     symbol: 'HBTC',
     decimals: 18,
@@ -68,7 +68,7 @@ export const internalTokens = [
   },
   {
     chainId: 3,
-    address: '0xD287Bc43eCD3D892204aA3792165fe8728636E29',
+    address: '0x2CFa7278ecf2DB7f6f97C07EefaC4aAD19b81d80',
     name: 'Nest Protocol',
     symbol: 'NEST',
     decimals: 18,

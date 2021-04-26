@@ -14,7 +14,7 @@ export function getERC20Contract(address: string, provider) {
 
 export const COFIXCONTROLLER_ABI = [
   'function getKInfo(address token) external view returns (uint32 k, uint32 updatedAt, uint32 theta)',
-  'function calcK(int128 vola, uint256 bn) external view returns (uint32 k)',
+  'function calcK(uint256 vola, uint256 bn) external view returns (uint32 k)',
 ];
 
 export function getCoFiXControllerContract(address: string, provider) {
@@ -23,7 +23,7 @@ export function getCoFiXControllerContract(address: string, provider) {
 
 export const ORACLE_ABI = [
   'function checkPriceNow(address token) public view returns (uint256 ethAmount, uint256 erc20Amount, uint256 blockNum)',
-  'function latestPrice(address token) external view returns (uint256 ethAmount, uint256 tokenAmount, uint128 avgPrice, int128 vola, uint256 bn)',
+  'function triggeredPriceInfo(address tokenAddress) external view returns (uint blockNumber, uint price, uint avgPrice, uint sigmaSQ)',
 ];
 
 export function getOracleContract(address: string, provider) {
