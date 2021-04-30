@@ -249,5 +249,10 @@
   "redeem_legacy_liquid_title": "从V1.0的资金池中取出资金",
   "redeem_legacy_liquid_subtitle": "取出旧版资金需先取出质押的 XToken",
   "liquidpool_withdraw_to_legacy": "取出为（仅选择一个）",
-  "liquidpool_withdraw_inputlabel": "输入 XToken 数量"
+  "liquidpool_withdraw_inputlabel": "输入 XToken 数量",
+  "cofi_info_1": "CoFiX 2.0 全新升级资金池合约以及挖矿模型，用户在CoFiX 1.0 里尚未领取的CoFi需要进行手动领取，",
+  "cofi_info_2": "点此领取",
+  "cofi_info_3": "。",
+  "cofi_claim": "V1.0尚未领取的CoFi",
+  "cofi_unclaim": "待领取数量"
 }

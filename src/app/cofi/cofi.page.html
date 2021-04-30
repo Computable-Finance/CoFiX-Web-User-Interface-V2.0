@@ -1,6 +1,15 @@
 <app-header [activeId]="'cofi'" class="web-header"></app-header>
 <ion-content [fullscreen]="true">
   <app-header [activeId]="'cofi'" class="mobile-header"></app-header>
+  <div class="info-banner">
+    <div>
+      {{'cofi_info_1' | translate}}<a
+        (click)="showLegacyModal('xtoken')"
+        class="underline"
+        >{{'cofi_info_2' | translate}}</a
+      >{{'cofi_info_3' | translate}}
+    </div>
+  </div>
   <div class="main-content">
     <app-pair-switch
       class="liquid-input"
@@ -16,7 +25,6 @@
           [infoTitle]="'ywc'"
           [token]="'CoFi'"
           [tokenBalance]="cofiBalance"
-          [alertContent]="'claim_tooltips_unclaimed'"
         >
         </app-token-info>
 

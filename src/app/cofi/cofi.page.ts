@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { RedeemLegacyCofiPage } from '../common/components/redeem-legacy-cofi/redeem-legacy-cofi.page';
 import { TipPannelContent } from '../common/components/tip-pannel/tip-pannel';
 import { BalanceTruncatePipe } from '../common/pipes/balance.pipe';
 import { isValidNumberForTx } from '../common/uitils/bignumber-utils';
@@ -26,7 +28,8 @@ export class CofiPage implements OnInit, OnDestroy {
     private utils: Utils,
     private balancesQuery: BalancesQuery,
     private marketDetailsQuery: MarketDetailsQuery,
-    private eventbusService: EventBusService
+    private eventbusService: EventBusService,
+    private modalController: ModalController
   ) {}
 
   public cofixContent: TipPannelContent = {
@@ -168,6 +171,8 @@ export class CofiPage implements OnInit, OnDestroy {
       this.cofiBalance = await this.balanceTruncatePipe.transform(
         result.earned
       );
+
+      console.log('cofiBalance==', this.cofiBalance);
       this.cofiBalanceSubscription = this.balancesQuery
         .currentUnclaimedCoFi$(
           this.cofixService.getCurrentAccount(),
@@ -175,6 +180,7 @@ export class CofiPage implements OnInit, OnDestroy {
         )
         .subscribe(async (balance) => {
           this.cofiBalance = await this.balanceTruncatePipe.transform(balance);
+          console.log('this.cofiBalance ==', this.cofiBalance);
         });
 
       this.earnedRateSubscription = this.marketDetailsQuery
@@ -298,5 +304,17 @@ export class CofiPage implements OnInit, OnDestroy {
         'CoFi'
       );
     }
+  }
+
+  async showLegacyModal(type) {
+    const modal = await this.modalController.create({
+      component: RedeemLegacyCofiPage,
+      cssClass: 'popover-warning',
+      animated: false,
+      keyboardClose: false,
+      showBackdrop: true,
+      backdropDismiss: false,
+    });
+    await modal.present();
   }
 }

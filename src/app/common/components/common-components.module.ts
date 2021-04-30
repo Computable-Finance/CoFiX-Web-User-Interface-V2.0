@@ -31,6 +31,7 @@ import { WarningSwapPage } from './warning-swap/warning-swap.page';
 import { RedeemLegacyXTokenPage } from './redeem-legacy-xtoken/redeem-legacy-xtoken.page';
 import { RedeemLegacyLiquidPage } from './redeem-legacy-liquid/redeem-legacy-liquid.page';
 import { ExplainLiquidPage } from 'src/app/liquid/explain/explain-liquid.page';
+import { RedeemLegacyCofiPage } from './redeem-legacy-cofi/redeem-legacy-cofi.page';
 
 @NgModule({
   imports: [
@@ -66,6 +67,7 @@ import { ExplainLiquidPage } from 'src/app/liquid/explain/explain-liquid.page';
     WarningSwapPage,
     RedeemLegacyXTokenPage,
     RedeemLegacyLiquidPage,
+    RedeemLegacyCofiPage,
     ExplainLiquidPage,
   ],
   exports: [
@@ -91,6 +93,7 @@ import { ExplainLiquidPage } from 'src/app/liquid/explain/explain-liquid.page';
     WarningSwapPage,
     RedeemLegacyXTokenPage,
     RedeemLegacyLiquidPage,
+    RedeemLegacyCofiPage,
     ExplainLiquidPage,
   ],
 })

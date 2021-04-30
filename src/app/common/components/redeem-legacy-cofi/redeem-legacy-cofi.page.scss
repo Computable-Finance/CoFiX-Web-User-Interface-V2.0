@@ -1,0 +1,85 @@
+.title {
+  width: 100%;
+  color: black;
+  font-size: 24px;
+  margin: 0px auto;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  display: inline-flex;
+  line-height: 41px;
+  border-bottom: 1px solid var(--mercury);
+  padding-bottom: 20px;
+}
+.card-content {
+  margin-top: 32px;
+  padding-bottom: 30px;
+}
+.title img {
+  width: 28px;
+  height: 26px;
+}
+.title b {
+  margin-left: 5px;
+}
+.card-content p {
+  color: black;
+  text-align: justify;
+  font-size: 17px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.47;
+  letter-spacing: normal;
+}
+
+.input-group-text {
+  display: inline-flex;
+  align-items: center;
+}
+
+.input-group-text span {
+  font-size: 20px;
+  color: black;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.7;
+}
+
+.coin_icon {
+  width: 24px;
+  height: 24px;
+}
+
+.right_icon {
+  position: relative;
+  left: -8px;
+  z-index: -1;
+}
+
+.close-img {
+  right: 30px;
+  top: 10px;
+}
+
+.coin-item {
+  border-bottom: 1px solid var(--mercury);
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  ion-grid {
+    margin: 10px 0;
+  }
+
+  .balance {
+    color: var(--subtitle);
+    margin-top: 10px;
+  }
+}
+
+@media only screen and (max-width: 470px) {
+  .close-img {
+    right: 20px;
+  }
+}

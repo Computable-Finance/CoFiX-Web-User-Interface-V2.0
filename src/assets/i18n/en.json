@@ -251,6 +251,9 @@
   "redeem_legacy_liquid_subtitle": "To withdraw funds from the old version, you must first withdraw the staking XToken",
   "liquidpool_withdraw_to_legacy": "WITHDRAW TO(SELECT ONLY ONE)",
   "liquidpool_withdraw_inputlabel": "Amount of XToken",
-  "swap_tooltips_erc20token_desc": "The trading that draws the amount of {ETH/NEST} and {ETH/USDT} to the initial ratio is called reversing trade.Reversing trade can gain a ccertain mining rewards. The closer to the initial ratio after {ETH/NEST} and {ETH/USDT} trade, the more mining rewards it will be.",
-  "swap_tooltips_erc20token_subdesc": "<span class='tooltips-sm'>原始比例(ETH/NEST)：0.00000374 </span> <br> <span class='tooltips-sm'>当前比例(ETH/NEST)：0.00000174</span> <br><span class='tooltips-sm'>偏移量：28%</span> <br><span class='tooltips-sm'>交易后预估比例(ETH/NEST)：0.0000372</span>"
+  "cofi_info_1": "CoFiX 2.0 new upgraded the asset pool contract and mining model, The CoFi Token that the user has not received in CoFiX 1.0 needs to be manually claimed, ",
+  "cofi_info_2": "click here to claim",
+  "cofi_info_3": ".",
+  "cofi_claim": "Unclaimed CoFi Token in V1.0",
+  "cofi_unclaim": "Unclaimed"
 }

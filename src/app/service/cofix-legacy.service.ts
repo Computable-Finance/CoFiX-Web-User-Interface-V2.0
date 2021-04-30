@@ -715,4 +715,41 @@ export class CofiXLegacyService {
     }
     return navPerShare;
   }
+
+  async earnedCofiAndRewardRate(address: string) {
+    let earned = '0';
+    if (this.currentAccount) {
+      const coFiXStakingRewards = this.getCoFiXStakingRewards(
+        await this.getStakingPoolAddressByToken(address),
+        this.provider
+      );
+      earned = ethersOf(await coFiXStakingRewards.earned(this.currentAccount));
+    }
+
+    return { earned };
+  }
+
+  // 领取 CoFi 收益
+  async withdrawEarnedCoFi(
+    stakingPoolAddress: string,
+    staking: boolean = false
+  ) {
+    const contract = this.getCoFiXStakingRewards(
+      stakingPoolAddress,
+      this.provider
+    );
+    if (staking) {
+      return await this.executeContractMethodWithEstimatedGas(
+        contract,
+        'getRewardAndStake',
+        [{}]
+      );
+    } else {
+      return await this.executeContractMethodWithEstimatedGas(
+        contract,
+        'getReward',
+        [{}]
+      );
+    }
+  }
 }
