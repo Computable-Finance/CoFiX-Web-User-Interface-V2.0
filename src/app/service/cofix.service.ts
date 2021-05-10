@@ -1830,15 +1830,17 @@ C = ${c}
         this.provider
       );
 
-      // returns (uint blockNumber, uint price, uint avgPrice, uint sigmaSQ)
-      const triggeredPriceInfo = await oracle.triggeredPriceInfo(tokenAddress);
+      // returns (uint latestPriceBlockNumber, uint latestPriceValue, uint triggeredPriceBlockNumber, uint triggeredPriceValue, uint triggeredAvgPrice, uint triggeredSigmaSQ)
+      const triggeredPriceInfo = await oracle.latestPriceAndTriggeredPriceInfo(
+        tokenAddress
+      );
       console.log(`triggeredPriceInfo = ${triggeredPriceInfo}`);
       bn = triggeredPriceInfo[0];
       ethAmount = '1';
       erc20Amount = unitsOf(triggeredPriceInfo[1], decimals);
       changePrice = erc20Amount;
       // 这里实际值是sigmaSQ，表示波动率的平方
-      vola = triggeredPriceInfo[3];
+      vola = triggeredPriceInfo[5];
     }
 
     console.log(

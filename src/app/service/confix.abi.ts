@@ -24,6 +24,7 @@ export function getCoFiXControllerContract(address: string, provider) {
 export const ORACLE_ABI = [
   'function checkPriceNow(address token) public view returns (uint256 ethAmount, uint256 erc20Amount, uint256 blockNum)',
   'function triggeredPriceInfo(address tokenAddress) external view returns (uint blockNumber, uint price, uint avgPrice, uint sigmaSQ)',
+  'function latestPriceAndTriggeredPriceInfo(address tokenAddress) external view returns (uint latestPriceBlockNumber, uint latestPriceValue, uint triggeredPriceBlockNumber, uint triggeredPriceValue, uint triggeredAvgPrice, uint triggeredSigmaSQ)',
 ];
 
 export function getOracleContract(address: string, provider) {
