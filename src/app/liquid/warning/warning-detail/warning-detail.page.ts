@@ -38,7 +38,7 @@ export class WarningDetailPage implements OnInit {
 
   learnMore() {
     window.open(
-      'https://github.com/Computable-Finance/CoFiX-hedger/blob/master/README.md'
+      'https://github.com/Computable-Finance/Doc/blob/master/CoFiX%20V2.0%20Upgrade%20Document.pdf'
     );
   }
 }
