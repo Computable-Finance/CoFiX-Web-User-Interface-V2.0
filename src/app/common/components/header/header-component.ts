@@ -27,10 +27,10 @@ export class HeaderCompoment implements OnInit, OnDestroy {
       id: 'cofi',
       title: 'cofi',
     },
-    {
-      id: 'dividend',
-      title: 'dividend',
-    },
+    // {
+    //   id: 'dividend',
+    //   title: 'dividend',
+    // },
   ];
 
   headerItems: any;

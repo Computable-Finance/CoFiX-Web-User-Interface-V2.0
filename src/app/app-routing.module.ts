@@ -17,13 +17,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./dividend/dividend.module').then((m) => m.DividendPageModule),
   },
-  {
-    path: 'dividend',
-    loadChildren: () =>
-      import('./dividend-info/dividend-info.module').then(
-        (m) => m.DividendInfoPageModule
-      ),
-  },
+  // {
+  //   path: 'dividend',
+  //   loadChildren: () =>
+  //     import('./dividend-info/dividend-info.module').then(
+  //       (m) => m.DividendInfoPageModule
+  //     ),
+  // },
   {
     path: 'cofi',
     loadChildren: () =>
