@@ -8,12 +8,12 @@ export function getContractAddressListByNetwork(network: number): any {
       CoFiToken: '0x1a23a6BfBAdB59fa563008c0fB7cf96dfCF34Ea1',
       //  NestQuery
       OracleMock: '0xB5D2890c061c321A5B6A4a4254bb1522425BAF0A',
-      CofiXController: '0xB99DB9674e03A2cB07c3D7d92406aE1a3BBB9f56',
-      CofixFactory: '0x66C64ecC3A6014733325a8f2EBEE46B4CA3ED550',
-      CofixRouter: '0x5C35BaDebD40308e409df891aC56d17C8625c2bC',
-      CoFiXVaultForLP: '0x6903b1C17A5A0A9484c7346E5c0956027A713fCF',
-      CoFiStakingRewards: '0x0061c52768378b84306b2665f098c3e0b2C03308',
-      CoFiXVaultForTrader: '0xE6183d3094a9e360B123Ec1330afAE76A74d1cbF',
+      CofiXController: '0xdE9972fe2567b7eEb3C015D7DCAefA8580877f7d',
+      CofixFactory: '0x39816B841436a57729723d9DA127805755d2CB51',
+      CofixRouter: '0x72A63055b9AA997A4311D0D068170e38F5455b82',
+      CoFiXVaultForLP: '0x618B7b93b07Bf78D04B2e8FB2B1C3B48049F8ED5',
+      CoFiStakingRewards: '0x3C41B1bEAf0a3c0929233009bb49cF00Fd2E8D07',
+      CoFiXVaultForTrader: '0xb29A8d980E1408E487B9968f5E4f7fD7a9B0CaC5',
     };
   } else if (network === 3) {
     return {
@@ -36,7 +36,7 @@ export function getContractAddressListByNetwork(network: number): any {
   }
 }
 
-export const DB_VERSION = '202104011437';
+export const DB_VERSION = '202105072050';
 
 export const BLOCKNUMS_IN_A_DAY = 6171.4;
 export const ETHER_DECIMALS = 18;
