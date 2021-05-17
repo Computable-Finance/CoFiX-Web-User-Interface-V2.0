@@ -376,15 +376,16 @@ export class CofiXService {
           this.expectedCoFi(fromToken, innerAmount, amount, false)
         );
       } else {
-        const result = await executionPriceAndAmountOutByERC202ETHThroughUniswap(
-          {
-            network: this.currentNetwork,
-            address: fromToken,
-            decimals: Number(await this.getERC20Decimals(fromToken)),
-          },
-          innerAmount,
-          this.provider
-        );
+        const result =
+          await executionPriceAndAmountOutByERC202ETHThroughUniswap(
+            {
+              network: this.currentNetwork,
+              address: fromToken,
+              decimals: Number(await this.getERC20Decimals(fromToken)),
+            },
+            innerAmount,
+            this.provider
+          );
         excutionPrice1 = new BNJS(result.excutionPrice);
         innerAmount = result.amountOut;
       }
@@ -402,15 +403,16 @@ export class CofiXService {
           this.expectedCoFi(toToken, ethAmount, innerAmount, true)
         );
       } else {
-        const result = await executionPriceAndAmountOutByETH2ERC20ThroughUniswap(
-          {
-            network: this.currentNetwork,
-            address: toToken,
-            decimals: Number(await this.getERC20Decimals(toToken)),
-          },
-          innerAmount,
-          this.provider
-        );
+        const result =
+          await executionPriceAndAmountOutByETH2ERC20ThroughUniswap(
+            {
+              network: this.currentNetwork,
+              address: toToken,
+              decimals: Number(await this.getERC20Decimals(toToken)),
+            },
+            innerAmount,
+            this.provider
+          );
         excutionPrice2 = new BNJS(result.excutionPrice);
         innerAmount = result.amountOut;
       }
@@ -574,12 +576,13 @@ C = ${c}
           innerAmount
         );
         innerAmount = excutionPrice1.times(amount).toString();
-        const calculateAssetRatio1 = await this.calculateAssetRatioBetweenETHAndERC20(
-          fromToken,
-          innerAmount,
-          amount,
-          false
-        );
+        const calculateAssetRatio1 =
+          await this.calculateAssetRatioBetweenETHAndERC20(
+            fromToken,
+            innerAmount,
+            amount,
+            false
+          );
         tradeAssetRatio.calculateAssetRatio1 = calculateAssetRatio1;
       }
     }
@@ -592,12 +595,13 @@ C = ${c}
         );
         const ethAmount = innerAmount;
         innerAmount = excutionPrice2.times(innerAmount).toString();
-        const calculateAssetRatio2 = await this.calculateAssetRatioBetweenETHAndERC20(
-          toToken,
-          ethAmount,
-          innerAmount,
-          true
-        );
+        const calculateAssetRatio2 =
+          await this.calculateAssetRatioBetweenETHAndERC20(
+            toToken,
+            ethAmount,
+            innerAmount,
+            true
+          );
         tradeAssetRatio.calculateAssetRatio2 = calculateAssetRatio2;
       }
     }
@@ -1500,9 +1504,8 @@ C = ${c}
   }
 
   async getStakingPoolAddressByToken(tokenAddress: string) {
-    const stakingPoolAddress = this.tokenInfoQuery.getStakingPoolAddress(
-      tokenAddress
-    );
+    const stakingPoolAddress =
+      this.tokenInfoQuery.getStakingPoolAddress(tokenAddress);
     if (!stakingPoolAddress) {
       const coFiXVaultForLP = getCoFiXVaultForLP(
         this.contractAddressList.CoFiXVaultForLP,
@@ -1964,9 +1967,8 @@ C = ${c}
   }
 
   async getInitialAssetRatio(address: string) {
-    let initialAssetRatio = this.marketDetailsQuery.getInitialAssetRatio(
-      address
-    );
+    let initialAssetRatio =
+      this.marketDetailsQuery.getInitialAssetRatio(address);
     if (!initialAssetRatio) {
       await this.updateInitialAssetRatio(address);
       initialAssetRatio = this.marketDetailsQuery.getInitialAssetRatio(address);

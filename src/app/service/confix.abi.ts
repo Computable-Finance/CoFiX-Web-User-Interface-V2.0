@@ -44,7 +44,7 @@ export const COFIXPAIR_ABI = [
   'function getNAVPerShareForBurn(tuple(uint256, uint256, uint256, uint256, uint256)) external view returns (uint256)',
   'function getNAVPerShare(uint256, uint256) external view returns (uint256)',
   'function getInitialAssetRatio() external view returns (uint256, uint256)',
-  'function calcOutTokenAndETHForBurn(uint256, tuple(uint256, uint256, uint256, uint256, uint256)) public view returns (uint256, uint256, uint256)',
+  'function calcOutTokenAndETHForBurn(uint256, tuple(uint256, uint256, uint256, uint256, uint256)) public view returns (uint256, uint256)',
   'function getLiquidity(uint256, tuple(uint256, uint256, uint256, uint256, uint256)) external view returns (uint256)',
   'function getReserves() external view returns (uint112 reserve0, uint112 reserve1)',
 ];
