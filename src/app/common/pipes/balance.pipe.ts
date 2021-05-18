@@ -33,7 +33,8 @@ export class BalanceTruncatePipe implements PipeTransform {
 
   private toString(value: number | string | BigNumber) {
     if (typeof value === 'number' || typeof value === 'string') {
-      return new BNJS(value).toString();
+      const valueNum = new BNJS(value);
+      return valueNum.gte(0) ? valueNum.toString() : '--';
     } else {
       return new BNJS(ethersOf(value)).toString();
     }
