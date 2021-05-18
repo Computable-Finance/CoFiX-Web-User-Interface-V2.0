@@ -227,5 +227,8 @@
   "connect_browser": "Browser Wallet",
   "connect_walletconnect": "WalletConnect",
   "walletconnect_scan": "Scan QR code with a WalletConnect",
-  "disconnect": "Disconnect"
+  "disconnect": "Disconnect",
+  "swap_info": "CoFiX has been upgraded to version V2.0. After the upgrade, the transaction will not generate COFI mining rewards.",
+  "liquid_info": "CoFiX has been upgraded to V2.0. After the upgrade, a new fund pool contract is adopted. The old version of the fund pool certificate XToken is abandoned, and the pledge will not generate mining revenue.",
+  "dividend_info": "After CofiX 2.0, dividends will be cancelled. Staking COFI will not receive the ETH dividend income. Please receive the unclaimed dividends as soon as possible."
 }

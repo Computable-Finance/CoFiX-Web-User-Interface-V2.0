@@ -1,6 +1,9 @@
 <app-header [activeId]="'liquid'" class="web-header"></app-header>
 <ion-content [fullscreen]="true">
   <app-header [activeId]="'liquid'" class="mobile-header"></app-header>
+  <div class="info-banner">
+    <div>{{'liquid_info' | translate}}</div>
+  </div>
   <div class="main-content">
     <app-pair-switch
       class="liquid-input"
