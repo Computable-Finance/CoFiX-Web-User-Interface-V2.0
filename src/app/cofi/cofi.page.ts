@@ -35,8 +35,7 @@ export class CofiPage implements OnInit, OnDestroy {
     descriptions: ['cofix_desc1', 'cofix_desc2', 'cofix_desc3'],
     more: {
       text: 'read_more',
-      url:
-        'https://github.com/Computable-Finance/Doc#7-token-mining-incentive-system',
+      url: 'https://github.com/Computable-Finance/Doc#7-token-mining-incentive-system',
     },
   };
 
@@ -95,7 +94,10 @@ export class CofiPage implements OnInit, OnDestroy {
   }
 
   ionViewWillEnter() {
-    setTimeout(() => {
+    setTimeout(async () => {
+      this.coinAddress =
+        this.cofixService.getCurrentContractAddressList()[this.coin];
+      await this.utils.detectError(this.coinAddress);
       this.refreshPage();
     }, 500);
   }
@@ -142,9 +144,8 @@ export class CofiPage implements OnInit, OnDestroy {
 
   async getCoFiTokenAndRewards() {
     this.unsubscribeAll();
-    this.coinAddress = this.cofixService.getCurrentContractAddressList()[
-      this.coin
-    ];
+    this.coinAddress =
+      this.cofixService.getCurrentContractAddressList()[this.coin];
 
     if (this.cofixService.getCurrentAccount()) {
       this.todoValue = await this.balanceTruncatePipe.transform(

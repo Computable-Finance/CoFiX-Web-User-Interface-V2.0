@@ -103,7 +103,8 @@ export class SwapPage implements OnInit, OnDestroy {
   }
 
   ionViewWillEnter() {
-    setTimeout(() => {
+    setTimeout(async () => {
+      await this.utils.detectError(this.getAddress(this.toCoin.id));
       this.refreshPage();
       this.cofixService.getCurrentProvider().on('block', async (blockNum) => {
         this.getEPAndEC();
@@ -192,9 +193,8 @@ export class SwapPage implements OnInit, OnDestroy {
     }
 
     if (this.fromCoin.id && this.cofixService.isCoFixToken(fromAddress)) {
-      this.ERC20BalanceOfPair[
-        this.toCoin.id
-      ] = await this.cofixService.getERC20BalanceOfPair(fromAddress, toAddress);
+      this.ERC20BalanceOfPair[this.toCoin.id] =
+        await this.cofixService.getERC20BalanceOfPair(fromAddress, toAddress);
     }
   }
 
@@ -205,11 +205,12 @@ export class SwapPage implements OnInit, OnDestroy {
       return;
     }
 
-    const executionPriceAndExpectedCofi = await this.cofixService.executionPriceAndExpectedCofi(
-      this.fromCoin.address,
-      this.toCoin.address,
-      this.fromCoin.amount || '0'
-    );
+    const executionPriceAndExpectedCofi =
+      await this.cofixService.executionPriceAndExpectedCofi(
+        this.fromCoin.address,
+        this.toCoin.address,
+        this.fromCoin.amount || '0'
+      );
 
     if (this.changePrice === '0') {
       this.swapError = {

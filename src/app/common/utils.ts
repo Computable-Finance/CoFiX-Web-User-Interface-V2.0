@@ -5,6 +5,7 @@ import { PermissionsService } from 'src/app/state/permission/permission.service'
 import { CofiXService } from '../service/cofix.service';
 import { TxService } from '../state/tx/tx.service';
 import { ConnectModal } from './components/connect-modal/connect-modal';
+import { ErrorModal } from './components/error-modal/error.modal';
 import { TxConfirmModal } from './components/transaction/tx-confirm/tx-confirm.modal';
 import { TxStatusModal } from './components/transaction/tx-status/tx-status.modal';
 import { BalanceTruncatePipe } from './pipes/balance.pipe';
@@ -155,6 +156,22 @@ export class Utils {
       this.txService.txSucceeded(txHash);
     } else {
       this.txService.txFailed(txHash);
+    }
+  }
+
+  async detectError(address: string) {
+    try {
+      await this.cofixService.getKInfo(address);
+    } catch (err) {
+      console.error(err);
+      const popover = await this.popoverController.create({
+        component: ErrorModal,
+        cssClass: 'txconfirm-class',
+        keyboardClose: false,
+        showBackdrop: true,
+        backdropDismiss: false,
+      });
+      popover.present();
     }
   }
 }

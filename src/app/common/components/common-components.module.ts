@@ -26,6 +26,7 @@ import { MenuPage } from './lang-button/menu/menu.page';
 import { LangButton } from './lang-button/lang-button';
 import { TxHistoryModal } from './transaction/tx-history/tx-history.modal';
 import { CofiCard } from 'src/app/dividend/cofi-card/cofi-card';
+import { ErrorModal } from './error-modal/error.modal';
 
 @NgModule({
   imports: [
@@ -57,6 +58,7 @@ import { CofiCard } from 'src/app/dividend/cofi-card/cofi-card';
     TxConfirmModal,
     TxStatusModal,
     ConnectModal,
+    ErrorModal,
   ],
   exports: [
     FooterCompoment,
@@ -77,6 +79,7 @@ import { CofiCard } from 'src/app/dividend/cofi-card/cofi-card';
     TxConfirmModal,
     TxStatusModal,
     ConnectModal,
+    ErrorModal,
   ],
 })
 export class CommonComponentsModule {}

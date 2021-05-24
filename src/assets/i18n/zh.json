@@ -230,5 +230,8 @@
   "disconnect": "断开",
   "swap_info": "CoFiX 已升级到V2.0版本，升级后交易将不会产生COFI挖矿奖励。",
   "liquid_info": "CoFiX 已全面升级到V2.0 ，升级后采用全新的资金池合约，旧版资金池凭证XToken被废弃，质押也不会产生挖矿收益。",
-  "dividend_info": "CoFiX 已全面升级到V2.0 ，升级后取消分红功能，质押COFI将不会获得ETH分红收益，请尽快领取未领取的分红。"
+  "dividend_info": "CoFiX 已全面升级到V2.0 ，升级后取消分红功能，质押COFI将不会获得ETH分红收益，请尽快领取未领取的分红。",
+  "network_error": "网络超时，请刷新重试",
+  "price_error": "预言机价格超时，10分钟后再试。",
+  "error_title": "提示"
 }

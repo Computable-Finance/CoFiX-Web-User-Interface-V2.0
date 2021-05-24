@@ -1,0 +1,17 @@
+<ion-grid>
+  <ion-row class="title ion-align-items-center ion-align-self-center">
+    <ion-col offset="10" size="2" (click)="close()">
+      <div class="img-div">
+        <img src="assets/images/close.png" class="close-img" />
+      </div>
+    </ion-col>
+  </ion-row>
+  <ion-row class="account-info ion-align-items-center ion-align-self-center">
+    <ion-col class="ion-text-center tx-title" size="12">
+      {{'error_title' | translate}}
+    </ion-col>
+    <ion-col size="12" class="ion-text-center tx-desc">
+      {{'price_error' | translate}}
+    </ion-col>
+  </ion-row>
+</ion-grid>

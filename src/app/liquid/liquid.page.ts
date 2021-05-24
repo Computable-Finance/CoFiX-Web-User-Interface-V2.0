@@ -155,10 +155,14 @@ export class LiquidPage implements OnInit, OnDestroy {
   }
 
   ionViewWillEnter() {
-    setTimeout(() => {
+    setTimeout(async () => {
       if (this.cofixService.getCurrentAccount() === undefined) {
         this.showConnectModal();
       } else {
+        this.coinAddress =
+          this.cofixService.getCurrentContractAddressList()[this.toCoin.id];
+
+        await this.utils.detectError(this.coinAddress);
         this.showWarning();
         this.initCoinContent();
       }
@@ -277,9 +281,8 @@ export class LiquidPage implements OnInit, OnDestroy {
     this.fromCoin.amount = '';
     this.toCoin.amount = '';
     this.expectedXToken = '';
-    this.coinAddress = this.cofixService.getCurrentContractAddressList()[
-      this.toCoin.id
-    ];
+    this.coinAddress =
+      this.cofixService.getCurrentContractAddressList()[this.toCoin.id];
 
     this.unsubscribeAll();
     if (this.cofixService.getCurrentAccount()) {
@@ -310,6 +313,7 @@ export class LiquidPage implements OnInit, OnDestroy {
       const pairAddress = await this.cofixService.getPairAddressByToken(
         this.cofixService.getCurrentContractAddressList()[this.toCoin.id]
       );
+
       this.todoValue[this.toCoin.id] = await this.balanceTruncatePipe.transform(
         await this.cofixService.getERC20Balance(pairAddress)
       );
@@ -319,30 +323,32 @@ export class LiquidPage implements OnInit, OnDestroy {
           pairAddress
         )
         .subscribe(async (balance) => {
-          this.todoValue[
-            this.toCoin.id
-          ] = await this.balanceTruncatePipe.transform(balance);
+          this.todoValue[this.toCoin.id] =
+            await this.balanceTruncatePipe.transform(balance);
 
-          const resultETH = await this.cofixService.getETHAmountForRemoveLiquidity(
-            this.coinAddress,
-            pairAddress,
-            this.todoValue[this.toCoin.id] || '0'
-          );
+          const resultETH =
+            await this.cofixService.getETHAmountForRemoveLiquidity(
+              this.coinAddress,
+              pairAddress,
+              this.todoValue[this.toCoin.id] || '0'
+            );
           this.ETHAmountForRemoveLiquidity[this.toCoin.id] = resultETH.result;
           this.nAVPerShareForBurn[this.toCoin.id] =
             resultETH.nAVPerShareForBurn;
-          const resultToken = await this.cofixService.getTokenAmountForRemoveLiquidity(
-            this.coinAddress,
-            pairAddress,
-            this.todoValue[this.toCoin.id] || '0'
-          );
+          const resultToken =
+            await this.cofixService.getTokenAmountForRemoveLiquidity(
+              this.coinAddress,
+              pairAddress,
+              this.todoValue[this.toCoin.id] || '0'
+            );
           this.tokenAmountForRemoveLiquidity[this.toCoin.id] =
             resultToken.result;
         });
 
-      const stakingPoolAddress = await this.cofixService.getStakingPoolAddressByToken(
-        this.cofixService.getCurrentContractAddressList()[this.toCoin.id]
-      );
+      const stakingPoolAddress =
+        await this.cofixService.getStakingPoolAddressByToken(
+          this.cofixService.getCurrentContractAddressList()[this.toCoin.id]
+        );
       this.hadValue[this.toCoin.id] = await this.balanceTruncatePipe.transform(
         await this.cofixService.getERC20Balance(stakingPoolAddress)
       );
@@ -352,15 +358,13 @@ export class LiquidPage implements OnInit, OnDestroy {
           stakingPoolAddress
         )
         .subscribe(async (balance) => {
-          this.hadValue[
-            this.toCoin.id
-          ] = await this.balanceTruncatePipe.transform(balance);
+          this.hadValue[this.toCoin.id] =
+            await this.balanceTruncatePipe.transform(balance);
         });
     } else {
       this.earnedRate[this.toCoin.id] = (
         await this.cofixService.earnedCofiAndRewardRate(this.coinAddress)
       ).rewardRate;
-
       this.earnedRateSubscription = this.marketDetailsQuery
         .marketDetails$(this.coinAddress, 'rewardRate')
         .subscribe((data) => (this.earnedRate[this.toCoin.id] = data));

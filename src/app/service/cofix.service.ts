@@ -497,15 +497,16 @@ export class CofiXService {
         expectedCofi.push(result.expectedCofi);
         innerAmount = excutionPrice1.times(amount).toString();
       } else {
-        const result = await executionPriceAndAmountOutByERC202ETHThroughUniswap(
-          {
-            network: this.currentNetwork,
-            address: fromToken,
-            decimals: Number(await this.getERC20Decimals(fromToken)),
-          },
-          innerAmount,
-          this.provider
-        );
+        const result =
+          await executionPriceAndAmountOutByERC202ETHThroughUniswap(
+            {
+              network: this.currentNetwork,
+              address: fromToken,
+              decimals: Number(await this.getERC20Decimals(fromToken)),
+            },
+            innerAmount,
+            this.provider
+          );
         excutionPrice1 = new BNJS(result.excutionPrice);
         innerAmount = result.amountOut;
       }
@@ -521,15 +522,16 @@ export class CofiXService {
         expectedCofi.push(result.expectedCofi);
         innerAmount = excutionPrice2.times(innerAmount).toString();
       } else {
-        const result = await executionPriceAndAmountOutByETH2ERC20ThroughUniswap(
-          {
-            network: this.currentNetwork,
-            address: toToken,
-            decimals: Number(await this.getERC20Decimals(toToken)),
-          },
-          innerAmount,
-          this.provider
-        );
+        const result =
+          await executionPriceAndAmountOutByETH2ERC20ThroughUniswap(
+            {
+              network: this.currentNetwork,
+              address: toToken,
+              decimals: Number(await this.getERC20Decimals(toToken)),
+            },
+            innerAmount,
+            this.provider
+          );
         excutionPrice2 = result.excutionPrice;
         innerAmount = result.amountOut;
       }
@@ -643,13 +645,14 @@ export class CofiXService {
       this.contractAddressList.CoFiXVaultForTrader,
       this.provider
     );
-    const actualMiningAmountAndDensity = await trader.actualMiningAmountAndDensity(
-      pairAddress,
-      fee,
-      x,
-      y,
-      navPerShare
-    );
+    const actualMiningAmountAndDensity =
+      await trader.actualMiningAmountAndDensity(
+        pairAddress,
+        fee,
+        x,
+        y,
+        navPerShare
+      );
     const value = new BNJS(ethersOf(actualMiningAmountAndDensity.amount)).times(
       0.8
     );
@@ -1447,9 +1450,8 @@ export class CofiXService {
   }
 
   async getStakingPoolAddressByToken(tokenAddress: string) {
-    const stakingPoolAddress = this.tokenInfoQuery.getStakingPoolAddress(
-      tokenAddress
-    );
+    const stakingPoolAddress =
+      this.tokenInfoQuery.getStakingPoolAddress(tokenAddress);
     if (!stakingPoolAddress) {
       const coFiXVaultForLP = getCoFiXVaultForLP(
         this.contractAddressList.CoFiXVaultForLP,
@@ -1728,7 +1730,7 @@ export class CofiXService {
     });
   }
 
-  private async getKInfo(address: string) {
+  async getKInfo(address: string) {
     let kinfo = this.marketDetailsQuery.getKInfo(address);
     if (!kinfo) {
       await this.updateKInfo(address);
