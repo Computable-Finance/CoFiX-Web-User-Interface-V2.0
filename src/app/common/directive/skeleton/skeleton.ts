@@ -66,7 +66,7 @@ export class SkeletonDirective implements OnDestroy {
 
   async addError() {
     this.timeoutText.innerHTML = await this.translate
-      .get('network_error')
+      .get('price_error')
       .toPromise();
     this.renderer.addClass(this.timeoutText, 'error');
     this.el.nativeElement.hidden = true;
