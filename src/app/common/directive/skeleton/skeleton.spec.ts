@@ -1,6 +1,8 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler';
 import { Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { TranslateService } from '@ngx-translate/core';
+import { MockProvider } from 'ng-mocks';
 import { SkeletonDirective } from './skeleton';
 
 @Component({
@@ -18,7 +20,7 @@ describe('SkeletonDirective', () => {
   it('should work', () => {
     TestBed.configureTestingModule({
       imports: [],
-      providers: [],
+      providers: [MockProvider(TranslateService)],
       declarations: [TestComponent, SkeletonDirective],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();

@@ -65,6 +65,7 @@ export class SkeletonDirective implements OnDestroy {
   }
 
   async addError() {
+    this.timeoutText.setAttribute('id', 'price_error');
     this.timeoutText.innerHTML = await this.translate
       .get('price_error')
       .toPromise();
@@ -77,11 +78,14 @@ export class SkeletonDirective implements OnDestroy {
   }
 
   removeError() {
-    this.el.nativeElement.hidden = false;
-    this.renderer.removeChild(
-      this.el.nativeElement.parentElement,
-      this.timeoutText
-    );
+    let el = document.getElementById('price_error');
+    if (el) {
+      this.el.nativeElement.hidden = false;
+      this.renderer.removeChild(
+        this.el.nativeElement.parentElement,
+        this.timeoutText
+      );
+    }
   }
 
   ngOnDestroy() {
