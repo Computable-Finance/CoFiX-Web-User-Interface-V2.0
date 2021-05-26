@@ -1,31 +1,3 @@
 <div class="card-content">
-  <div class="title">
-    <img src="./assets/images/warning.png" /><b
-      >{{'warning_content_title' | translate}}</b
-    >{{'warning_content_subtitle' | translate}}
-  </div>
 
-  <p>{{'warning_desc1' | translate}}</p>
-  <p>
-    {{'warning_desc2' | translate}}<b>{{'warning_desc3' | translate}}</b
-    >{{'warning_desc4' | translate}}<b>{{'warning_desc5' | translate}}</b
-    >{{'warning_desc6' | translate}}
-  </p>
-  <div class="mt-7 mb-2">
-    <app-action-button
-      [btnTitle]="'understand_risk'"
-      [btnId]="'close-warning-btn'"
-      (clickAction)="close()"
-      class="w-full"
-    ></app-action-button>
-  </div>
-  <div class="mb-7">
-    <app-action-button
-      [btnTitle]="moreDetailTitle"
-      [btnId]="'more-detail-btn'"
-      [isOutline]="true"
-      (clickAction)="learnMore()"
-      class="w-full"
-    ></app-action-button>
-  </div>
 </div>
