@@ -13,7 +13,7 @@ const routes: Routes = [
       import('./liquid/liquid.module').then((m) => m.LiquidPageModule),
   },
   {
-    path: 'dividendold',
+    path: 'dividend',
     loadChildren: () =>
       import('./dividend/dividend.module').then((m) => m.DividendPageModule),
   },

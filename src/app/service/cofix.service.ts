@@ -32,6 +32,7 @@ import { SettingsQuery } from '../state/setting/settings.query';
 import { SettingsService } from '../state/setting/settings.service';
 import {
   getCoFiStakingRewards,
+  getCoFiXDAO,
   getCoFiXControllerContract,
   getCoFixFacory,
   getCoFixPair,
@@ -847,6 +848,14 @@ C = ${c}
     return false;
   }
 
+  async redeemCoFi(amount: string) {
+    const contract = getCoFiXDAO(
+      this.contractAddressList.CoFiXDAO,
+      this.provider
+    );
+    return this.redeem(contract, this.contractAddressList.CoFiToken, amount);
+  }
+
   // 领取 ETH 收益
   async withdrawEarnedETH() {
     const contract = getCoFiStakingRewards(
@@ -941,6 +950,24 @@ C = ${c}
       );
     }
   }
+
+  private async redeem(contract: Contract, token: string, amount: string) {
+    const allowance = await this.getERC20Allowance(token, contract.address);
+    const balance = await this.getERC20Balance(token);
+    const value = this.parseEthers(amount);
+    if (allowance.lt(value)) {
+      throw new Error('Insufficient Allowance.');
+    } else if (new BNJS(balance).lt(amount)) {
+      throw new Error('Insufficient Balance.');
+    } else {
+      return await this.executeContractMethodWithEstimatedGas(
+        contract,
+        'redeem',
+        [value, {value: this.parseEthers('0.01')}]
+      );
+    }
+  }
+
 
   private parseUnits(amount: string, unit: number) {
     const bnAmount = new BNJS(amount);
@@ -2033,14 +2060,51 @@ C = ${c}
 
   async totalETHFromSwapFees() {
     const cofiStakingRewards = getCoFiStakingRewards(
-      this.contractAddressList.CoFiStakingRewards,
+      this.contractAddressList.CoFiToken,
       this.provider
     );
 
-    return new BNJS(ethersOf(await cofiStakingRewards.pendingSavingAmount()))
-      .times(100)
-      .div(80)
+    return new BNJS(ethersOf(await cofiStakingRewards.totalSupply()))
       .toString();
+  }
+
+  async quotaOfCofi() {
+    const cofiXDAO = getCoFiXDAO(
+      this.contractAddressList.CoFiXDAO,
+      this.provider
+    );
+
+    return new BNJS(ethersOf(await cofiXDAO.quotaOf()))
+      .toString();
+  }
+
+  async totalETHRewards() {
+    const cofiXDAO = getCoFiXDAO(
+      this.contractAddressList.CoFiXDAO,
+      this.provider
+    );
+    return new BNJS(ethersOf(await cofiXDAO.totalETHRewards()))
+      .toString();
+  }
+
+  async getCofiBalanceofContract(address: any) {
+    const cofiContract = getERC20Contract(
+      this.contractAddressList.CoFiToken,
+      this.provider
+    );
+    return new BNJS(ethersOf(await cofiContract.balanceOf(address)))
+      .toString();
+  }
+
+  async getOraclePrice(address: any) {
+    const oracle = getOracleContract(
+      this.contractAddressList.OracleMock,
+      this.provider
+    );
+    const triggeredPriceInfo = await oracle.latestPriceAndTriggeredPriceInfo(
+      address
+    );
+    return triggeredPriceInfo.latestPriceValue
   }
 
   async totalETHInDividendPool() {

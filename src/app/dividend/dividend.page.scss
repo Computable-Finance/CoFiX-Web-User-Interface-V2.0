@@ -21,6 +21,33 @@
   left: 20px;
 }
 
+.double-card {
+  display: flex;
+  width: 510px;
+  margin: auto;
+  margin-bottom: 25px;
+  align-items: center;
+  justify-content: space-between;
+  .swap-card {
+    width: 245px;
+    margin: 0;
+  }
+}
+
 .swap-card {
-  margin-top: 26px;
+  &:nth-child(1) {
+    margin-top: 25px;
+  }
+  padding: 20px;
+  > div:nth-child(1) {
+    font-size: 15px;
+    color: var(--dove);
+    margin-bottom: 15px;
+  }
+  > div:nth-child(2) {
+    color: var(--black);
+    font-family: Sora-SemiBold;
+    font-weight: 600;
+    font-size: 28px;
+  }
 }

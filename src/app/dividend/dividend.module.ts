@@ -9,6 +9,7 @@ import { PipeModule } from '../common/pipes/pipe.module';
 import { DirectivesModule } from '../common/directive/directives.module';
 import { TooltipModule } from '../common/directive/tooltip/tooltip.module';
 import { DividendRoutingModule } from './dividend-routing.module';
+import { WarningDividendPage } from './warning/warning-dividend.page';
 
 @NgModule({
   imports: [
@@ -22,7 +23,7 @@ import { DividendRoutingModule } from './dividend-routing.module';
     DirectivesModule,
     TooltipModule,
   ],
-  declarations: [DividendPage],
+  declarations: [DividendPage, WarningDividendPage],
   exports: [DividendPage],
 })
 export class DividendPageModule {}

@@ -7,8 +7,10 @@
   [isSelectCoin]="isSelectCoin"
   [coin]="profitCoin"
   [isShowError]="showError"
-  [maxAmount]="isDeposit?todoValue:hadValue"
-  [label]="'enter_amount'"
+  [maxAmount]="todoValue"
+  [label]="'enter_redeem_amount'"
+  [isShowBlance]="true"
+  [isShowMax]="false"
   class="coin-input"
 >
 </app-coin-input>
@@ -25,7 +27,7 @@
           ></ion-col
         >
         <ion-col id="cofi-balance" class="ion-text-right number" size="4"
-          >{{todoValue | truncate:'--'}}
+          >+0.01 ETH
         </ion-col>
       </ion-row>
       <ion-row
@@ -39,7 +41,7 @@
           >
         </ion-col>
         <ion-col id="cofi-deposited" class="ion-text-right number" size="4"
-          >{{hadValue | truncate:'--'}}
+          >{{totalETHInDividendPool | truncate:'--'}}
         </ion-col>
       </ion-row>
       <ion-row
@@ -49,7 +51,7 @@
           >{{'income_total_ETH' | translate}}
         </ion-col>
         <ion-col class="ion-text-right number" size="4"
-          >{{totalETHInDividendPool}} ETH
+          >{{cofiETHPrice | truncate:'--'}} ETH
         </ion-col>
       </ion-row>
       <ion-row
@@ -59,7 +61,7 @@
           >{{'income_share_percent' | translate}}
         </ion-col>
         <ion-col class="ion-text-right number" size="4"
-          >{{shareInDividendPool}}%
+          >{{ethBalance | truncate:'--'}}
         </ion-col>
       </ion-row>
 
@@ -75,7 +77,7 @@
     </ion-grid>
   </div>
 </div>
-<div class="button-div" *ngIf="isDeposit">
+<div class="button-div">
   <app-action-button
     [btnTitle]="'sq_text'"
     [btnId]="'approve-btn'"
@@ -92,15 +94,5 @@
     [isEnabled]="isLoading.cr || !canSave()"
     (clickAction)="save()"
     [ngClass]="{'w-9/20':!isApproved,'w-full':isApproved}"
-  ></app-action-button>
-</div>
-<div class="my-7" *ngIf="!isDeposit">
-  <app-action-button
-    [btnTitle]="buttonTitle"
-    [btnId]="'withdraw-btn'"
-    [isLoading]="isLoading.qc"
-    [isEnabled]="isLoading.qc || !canReceive()"
-    (clickAction)="recieve()"
-    class="w-full"
   ></app-action-button>
 </div>

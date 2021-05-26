@@ -70,6 +70,16 @@ export function getCoFiXVaultForLP(address: string, provider) {
   return new ethers.Contract(address, COFIXVAULTFORLP_ABI, provider);
 }
 
+export const COFIXDAO_ABI = [
+  'function redeem(uint256 amount) external payable',
+  'function quotaOf() public view returns (uint256 quota) ',
+  'function totalETHRewards() external view returns (uint256) ',
+];
+
+export function getCoFiXDAO(address: string, provider) {
+  return new ethers.Contract(address, COFIXDAO_ABI, provider);
+}
+
 export const COFISTAKINGREWARDS_ABI = [
   'function balanceOf(address) view returns (uint256)',
   'function earned(address) external view returns (uint256)',

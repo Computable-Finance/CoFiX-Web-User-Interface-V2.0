@@ -20,8 +20,9 @@ export class CofiCard implements OnInit, OnDestroy {
   @ViewChild(CoinInput, { static: false }) coinInputView: CoinInput;
   @Input() todoLabel: string;
   @Input() hadLabel: string;
-  @Input() shareInDividendPool: string;
   @Input() totalETHInDividendPool: string;
+  @Input() cofiETHPrice: string;
+  @Input() ethBalance: string;
   @Input() isApproved = false;
   @Input() isLoading: any;
   @Output() onApprove = new EventEmitter<any>();

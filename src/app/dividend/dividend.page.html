@@ -4,158 +4,28 @@
   <div class="main-content">
     <ng-container *ngIf="!isShowModal">
       <ion-card class="swap-card">
-        <div class="card-content">
-          <app-card-title
-            [cardTitle]="'income_card_title'"
-            [cardSubTitle]="'income_desc'"
-          ></app-card-title>
-
-          <app-token-info
-            [infoTitle]="'income_token_title'"
-            [token]="profitCoin"
-            [tokenBalance]="cofiStakingRewards"
-            [alertContent]="'dividend_tooltips_deposit'"
-          >
-          </app-token-info>
-
-          <div class="count">
-            <div class="explain-div">
-              <ion-grid class="ion-no-padding">
-                <ion-row
-                  class="ion-align-items-center ion-align-self-center conversionPrice"
-                >
-                  <ion-col class="label" size="7"
-                    >{{'kcr_text' | translate}}
-                  </ion-col>
-                  <ion-col class="ion-text-right number" size="5"
-                    ><div [appSkeleton]="!cofiToken">
-                      {{cofiToken | truncate:'--'}}
-                    </div>
-                  </ion-col>
-                </ion-row>
-                <ion-row
-                  class="ion-align-items-center ion-align-self-center conversionPrice"
-                >
-                  <ion-col class="label" size="6"
-                    >{{'income_swap_fee' | translate}}<img
-                      class="alert-icon"
-                      src="./assets/images/question.png"
-                      tooltip
-                      event="hover"
-                      tipsContent="dividend_tooltips_fee"
-                    />
-                  </ion-col>
-                  <ion-col class="ion-text-right number" size="6"
-                    ><div [appSkeleton]="!totalETHFromSwapFees">
-                      {{totalETHFromSwapFees}} ETH
-                    </div>
-                  </ion-col>
-                </ion-row>
-                <ion-row
-                  class="ion-align-items-center ion-align-self-center conversionPrice"
-                >
-                  <ion-col class="label" size="10"
-                    >{{'income_dividend_percent' | translate}}<img
-                      class="alert-icon"
-                      src="./assets/images/question.png"
-                      tooltip
-                      event="hover"
-                      tipsContent="dividend_tooltips_share20"
-                    />
-                  </ion-col>
-                  <ion-col class="ion-text-right number" size="2"
-                    ><div [appSkeleton]="!cofiToken">20%</div>
-                  </ion-col>
-                </ion-row>
-                <ion-row
-                  class="ion-align-items-center ion-align-self-center conversionPrice"
-                >
-                  <ion-col class="label" size="10"
-                    >{{'income_saving_percent' | translate}}<img
-                      class="alert-icon"
-                      src="./assets/images/question.png"
-                      tooltip
-                      event="hover"
-                      tipsContent="dividend_tooltips_share80"
-                    />
-                  </ion-col>
-                  <ion-col class="ion-text-right number" size="2"
-                    ><div [appSkeleton]="!cofiToken">80%</div>
-                  </ion-col>
-                </ion-row>
-              </ion-grid>
-            </div>
-          </div>
-          <div class="mt-7 mb-2">
-            <app-action-button
-              [btnTitle]="buttonTitle.deposit"
-              [btnId]="'deposit-cofi-btn'"
-              [isEnabled]="!cofixService.getCurrentAccount()"
-              (clickAction)="showModal('deposit')"
-              class="w-full"
-            ></app-action-button>
-          </div>
-          <div class="mb-7">
-            <app-action-button
-              [btnTitle]="buttonTitle.withdraw"
-              [btnId]="'withdraw-cofi-btn'"
-              [isEnabled]="!cofixService.getCurrentAccount()"
-              [isOutline]="true"
-              (clickAction)="showModal('withdraw')"
-              class="w-full"
-            ></app-action-button>
-          </div>
-        </div>
+        <div>{{'locked_DAO' | translate}}</div>
+        <div>{{daoLockAmount | truncate:'--'}}</div>
       </ion-card>
+      <div class="double-card">
+        <ion-card class="swap-card">
+          <div>{{'repurchase_amount' | translate}}</div>
+          <div>{{daoRedeemAmount | truncate:'--'}}</div>
+        </ion-card>
+        <ion-card class="swap-card">
+          <div>{{'current_circulation' | translate}}</div>
+          <div>{{totalETHFromSwapFees | truncate:'--'}}</div>
+        </ion-card>
+      </div>
+      <app-warning-dividend *ngIf="false"></app-warning-dividend>
       <ion-card class="swap-card">
         <div class="card-content">
-          <app-card-title
-            [cardTitle]="'income_claim_title'"
-            [cardSubTitle]="'income_claim_desc'"
-          ></app-card-title>
-          <app-token-info
-            id="earned-eth"
-            [infoTitle]="'klq'"
-            [token]="'ETH'"
-            [tokenBalance]="earnedETH"
-            [alertContent]="'dividend_tooltips_claimeth'"
-          >
-          </app-token-info>
-          <div class="my-7">
-            <app-action-button
-              [btnTitle]="'lq_text'"
-              [btnId]="'claim-eth-button'"
-              [isLoading]="isLoading"
-              [isEnabled]="isLoading || !earned()"
-              (clickAction)="receiveETH()"
-              class="w-full"
-            ></app-action-button>
-          </div>
-        </div>
-      </ion-card>
-      <app-tip-pannel
-        [tipPannelContent]="incomeContent"
-        class="desc_line"
-      ></app-tip-pannel>
-    </ng-container>
-    <ng-container *ngIf="isShowModal">
-      <ion-card class="swap-card">
-        <img
-          src="./assets/images/left-arrow.png"
-          class="close-img"
-          (click)="cancel()"
-        />
-        <div class="card-content">
-          <app-card-title
-            [cardTitle]="cardTitle.title"
-            [cardSubTitle]="profit.subtitle"
-          ></app-card-title>
           <app-cofi-card
             [todoLabel]="'kcr_text'"
             [hadLabel]="'ycr_text'"
             [todoValue]="cofiToken"
-            [hadValue]="cofiStakingRewards"
-            [shareInDividendPool]="shareInDividendPool"
+            [cofiETHPrice]="cofiETHPrice"
+            [ethBalance]="ethBalance"
             [totalETHInDividendPool]="totalETHInDividendPool"
             [isApproved]="isApproved"
             [isLoading]="isLoadingProfit"
@@ -171,6 +41,10 @@
           </app-cofi-card>
         </div>
       </ion-card>
+      <app-tip-pannel
+        [tipPannelContent]="incomeContent"
+        class="desc_line"
+      ></app-tip-pannel>
     </ng-container>
   </div>
 </ion-content>
