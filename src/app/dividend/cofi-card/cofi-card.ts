@@ -137,11 +137,7 @@ export class CofiCard implements OnInit, OnDestroy {
   }
 
   canShowError() {
-    if (this.isDeposit) {
-      this.showError = new BNJS(this.balance).gt(new BNJS(this.todoValue));
-    } else {
-      this.showError = new BNJS(this.balance).gt(new BNJS(this.hadValue));
-    }
+    this.showError = new BNJS(this.balance).gt(new BNJS(this.todoValue));
   }
   ngOnDestroy() {
     this.resizeSubscription.unsubscribe();

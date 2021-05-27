@@ -24,6 +24,20 @@
 .display-card {
   padding: 20px;
   background: url("../../assets/images/ETH_img.svg") no-repeat right;
+  &:nth-child(1) {
+    margin-top: 25px;
+  }
+  > div:nth-child(1) {
+    font-size: 15px;
+    color: var(--dove);
+    height: 38px;
+  }
+  > div:nth-child(2) {
+    color: var(--black);
+    font-family: Sora-SemiBold;
+    font-weight: 600;
+    font-size: 28px;
+  }
 }
 
 .double-card {
@@ -39,22 +53,5 @@
   }
   .display-card {
     background: url("../../assets/images/COFIX_img.svg") no-repeat right;
-  }
-}
-
-.swap-card {
-  &:nth-child(1) {
-    margin-top: 25px;
-  }
-  > div:nth-child(1) {
-    font-size: 15px;
-    color: var(--dove);
-    margin-bottom: 15px;
-  }
-  > div:nth-child(2) {
-    color: var(--black);
-    font-family: Sora-SemiBold;
-    font-weight: 600;
-    font-size: 28px;
   }
 }
