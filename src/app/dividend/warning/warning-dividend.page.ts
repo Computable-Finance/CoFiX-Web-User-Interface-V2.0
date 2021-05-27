@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { WarningDetailPage } from './warning-detail/warning-detail.page';
+import { WarningDetailPage2 } from './warning-detail/warning-detail.page';
 
 @Component({
   selector: 'app-warning-dividend',
@@ -14,7 +14,7 @@ export class WarningDividendPage implements OnInit {
 
   async showWarning() {
     const modal = await this.modalController.create({
-      component: WarningDetailPage,
+      component: WarningDetailPage2,
       cssClass: 'popover-warning',
       animated: false,
       keyboardClose: false,

@@ -11,7 +11,7 @@ import { EventBusService } from '../service/eventbus.service';
 import { BalancesQuery } from '../state/balance/balance.query';
 import { TxService } from '../state/tx/tx.service';
 import { SettingsQuery } from '../state/setting/settings.query';
-import { WarningDetailPage } from './warning/warning-detail/warning-detail.page';
+import { WarningDetailPage2 } from './warning/warning-detail/warning-detail.page';
 import { ModalController } from '@ionic/angular';
 import { SettingsService } from '../state/setting/settings.service';
 import { truncate } from '../common/uitils/bignumber-utils';
@@ -46,7 +46,7 @@ export class DividendPage implements OnInit, OnDestroy {
   earnedETH: string;
   isLoading = false;
   isLoadingProfit = { sq: false, cr: false, qc: false };
-  profitCoin = 'CoFi';
+  profitCoin = 'COFI';
   isApproved = false;
   incomeError = { isError: false, msg: '' };
   receiveError = { isError: false, msg: '' };
@@ -97,6 +97,12 @@ export class DividendPage implements OnInit, OnDestroy {
         this.showConnectModal();
       }
     }, 500);
+  }
+
+  canShow() {
+    return (
+      true
+    );
   }
 
   async showConnectModal() {
@@ -197,7 +203,7 @@ export class DividendPage implements OnInit, OnDestroy {
     console.log(knownRisk);
     if (!knownRisk) {
       const modal = await this.modalController.create({
-        component: WarningDetailPage,
+        component: WarningDetailPage2,
         cssClass: 'popover-warning',
         animated: false,
         keyboardClose: false,
@@ -241,7 +247,7 @@ export class DividendPage implements OnInit, OnDestroy {
         this,
         this.cofixService.getCurrentContractAddressList().CoFiToken,
         this.cofixService.getCurrentContractAddressList().CoFiXDAO,
-        'CoFi'
+        'COFI'
       );
     }
   }

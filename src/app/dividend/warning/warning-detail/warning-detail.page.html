@@ -1,3 +1,19 @@
 <div class="card-content">
-  
+  <div class="title">
+    <img src="./assets/images/warning.png" /><b
+      >{{'warning_redeem_title' | translate}}</b>
+  </div>
+
+  <p>{{'warning_redeem_desc1' | translate}}</p>
+  <p>{{'warning_redeem_desc2' | translate}}</p>
+  <p>{{'warning_redeem_desc3' | translate}}</p>
+  <p>{{'warning_redeem_desc4' | translate}}</p>
+  <div class="mt-7 mb-2">
+    <app-action-button
+      [btnTitle]="'understand_risk'"
+      [btnId]="'close-warning-btn'"
+      (clickAction)="close()"
+      class="w-full"
+    ></app-action-button>
+  </div>
 </div>

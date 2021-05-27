@@ -3,21 +3,21 @@
   <app-header [activeId]="'dividend'" class="mobile-header"></app-header>
   <div class="main-content">
     <ng-container *ngIf="!isShowModal">
-      <ion-card class="swap-card">
+      <ion-card class="swap-card display-card">
         <div>{{'locked_DAO' | translate}}</div>
         <div>{{daoLockAmount | truncate:'--'}}</div>
       </ion-card>
       <div class="double-card">
-        <ion-card class="swap-card">
+        <ion-card class="swap-card display-card">
           <div>{{'repurchase_amount' | translate}}</div>
           <div>{{daoRedeemAmount | truncate:'--'}}</div>
         </ion-card>
-        <ion-card class="swap-card">
+        <ion-card class="swap-card display-card">
           <div>{{'current_circulation' | translate}}</div>
           <div>{{totalETHFromSwapFees | truncate:'--'}}</div>
         </ion-card>
       </div>
-      <app-warning-dividend *ngIf="false"></app-warning-dividend>
+      <app-warning-dividend *ngIf="canShow()"></app-warning-dividend>
       <ion-card class="swap-card">
         <div class="card-content">
           <app-cofi-card

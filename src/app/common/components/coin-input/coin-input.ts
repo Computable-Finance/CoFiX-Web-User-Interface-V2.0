@@ -33,6 +33,7 @@ export class CoinInput implements OnInit, OnDestroy {
   @Input() placeHolder = '0.0';
   @Input() maxAmount: string;
   @Input() isShowError = false;
+  @Input() isInteger: false;
   @Input() maxLiquid: string;
   @Input() isShowBlance = false;
   @Input() isShowLabel = true;
@@ -47,6 +48,9 @@ export class CoinInput implements OnInit, OnDestroy {
       .pipe(
         debounceTime(this.debounceTime),
         switchMap((event) => {
+          if(this.isInteger){
+            this.amount = parseInt(this.amount).toString()
+          }
           this.changeValue.emit({ amount: this.amount, coin: this.coin });
           return EMPTY;
         })

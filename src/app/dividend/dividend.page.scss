@@ -21,6 +21,11 @@
   left: 20px;
 }
 
+.display-card {
+  padding: 20px;
+  background: url("../../assets/images/ETH_img.svg") no-repeat right;
+}
+
 .double-card {
   display: flex;
   width: 510px;
@@ -32,13 +37,15 @@
     width: 245px;
     margin: 0;
   }
+  .display-card {
+    background: url("../../assets/images/COFIX_img.svg") no-repeat right;
+  }
 }
 
 .swap-card {
   &:nth-child(1) {
     margin-top: 25px;
   }
-  padding: 20px;
   > div:nth-child(1) {
     font-size: 15px;
     color: var(--dove);

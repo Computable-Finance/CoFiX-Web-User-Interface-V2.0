@@ -6,6 +6,8 @@
   (changeValue)="coinInput($event)"
   [isSelectCoin]="isSelectCoin"
   [coin]="profitCoin"
+  [placeHolder]="0"
+  [isInteger]="true"
   [isShowError]="showError"
   [maxAmount]="todoValue"
   [label]="'enter_redeem_amount'"
@@ -88,7 +90,7 @@
   ></app-action-button>
 
   <app-action-button
-    [btnTitle]="'cr'"
+    [btnTitle]="'title_dividend'"
     [btnId]="'deposit-btn'"
     [isLoading]="isLoading.cr"
     [isEnabled]="isLoading.cr || !canSave()"

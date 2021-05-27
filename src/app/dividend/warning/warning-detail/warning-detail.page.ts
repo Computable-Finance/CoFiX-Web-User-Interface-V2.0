@@ -8,7 +8,7 @@ import { debounceTime } from 'rxjs/operators';
   templateUrl: './warning-detail.page.html',
   styleUrls: ['./warning-detail.page.scss'],
 })
-export class WarningDetailPage implements OnInit {
+export class WarningDetailPage2 implements OnInit {
   constructor(private modalController: ModalController) {}
   private resizeSubscription: Subscription;
 

@@ -10,6 +10,7 @@ import { PipeModule } from '../pipes/pipe.module';
 import { CoinInput } from './coin-input/coin-input';
 import { CoinSelector } from './coin-input/selector/coin-selector';
 import { WarningDetailPage } from 'src/app/liquid/warning/warning-detail/warning-detail.page';
+import { WarningDetailPage2 } from 'src/app/dividend/warning/warning-detail/warning-detail.page';
 import { CardTitlePage } from './card-title/card-title';
 import { TokenInfoPage } from './token-info/token-info.page';
 import { ProfitPage } from 'src/app/liquid/profit/profit.page';
@@ -54,6 +55,7 @@ import { RedeemLegacyCofiPage } from './redeem-legacy-cofi/redeem-legacy-cofi.pa
     ProfitPage,
     LangButton,
     WarningDetailPage,
+    WarningDetailPage2,
     ArrowButton,
     CardTitlePage,
     TokenInfoPage,
@@ -80,6 +82,7 @@ import { RedeemLegacyCofiPage } from './redeem-legacy-cofi/redeem-legacy-cofi.pa
     ProfitPage,
     LangButton,
     WarningDetailPage,
+    WarningDetailPage2,
     ArrowButton,
     CardTitlePage,
     TokenInfoPage,
