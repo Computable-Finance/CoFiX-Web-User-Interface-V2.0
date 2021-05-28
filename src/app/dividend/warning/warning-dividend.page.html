@@ -1,3 +1,7 @@
 <div class="warning">
   <div>{{'warning_title1' | translate}} <a (click)="showWarning()">{{'warning_title2' | translate}}</a>{{'warning_title3' | translate}}</div>
+  <div class="agree">
+    <input type="checkbox" [(ngModel)]="agreeRisk" (ngModelChange)="valueChange($event)">
+    {{'agree_risk' | translate}}
+  </div>
 </div>

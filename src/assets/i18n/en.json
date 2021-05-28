@@ -268,5 +268,7 @@
   "cofi_unclaim": "Unclaimed",
   "locked_DAO": "Current amount locked in DAO (ETH)",
   "repurchase_amount": "Accumulated repurchase amount in DAO (COFI)",
-  "current_circulation": "Current Circulation (COFI)"
+  "current_circulation": "Current Circulation (COFI)",
+  "warning_consistent": "Please agree with the risk warning",
+  "agree_risk": "I have read and understand the risks"
 }

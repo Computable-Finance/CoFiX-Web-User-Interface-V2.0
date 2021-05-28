@@ -48,6 +48,7 @@ export class DividendPage implements OnInit, OnDestroy {
   isLoadingProfit = { sq: false, cr: false, qc: false };
   profitCoin = 'COFI';
   isApproved = false;
+  agreeTheRisk = false;
   incomeError = { isError: false, msg: '' };
   receiveError = { isError: false, msg: '' };
   isShowModal = false;
@@ -75,6 +76,10 @@ export class DividendPage implements OnInit, OnDestroy {
     private balancesQuery: BalancesQuery,
     private eventbusService: EventBusService
   ) {}
+
+  setAgreeRisk(event) {
+    this.agreeTheRisk = event.agree
+  }
 
   async ngOnInit() {
     this.resizeSubscription = fromEvent(window, 'resize')
@@ -253,6 +258,10 @@ export class DividendPage implements OnInit, OnDestroy {
   }
 
   async saveCofi(event) {
+    if (!this.agreeTheRisk) {
+      this.utils.showSnackBar()
+      return
+    }
     this.waitingPopover = await this.utils.createTXConfirmModal();
     await this.waitingPopover.present();
     this.cofixService

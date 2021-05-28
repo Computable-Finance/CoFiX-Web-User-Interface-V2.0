@@ -17,7 +17,7 @@
           <div>{{totalETHFromSwapFees | truncate:'--'}}</div>
         </ion-card>
       </div>
-      <app-warning-dividend *ngIf="canShow()"></app-warning-dividend>
+      <app-warning-dividend (agreeRiskChange)="setAgreeRisk($event)"></app-warning-dividend>
       <ion-card class="swap-card">
         <div class="card-content">
           <app-cofi-card
@@ -48,4 +48,5 @@
     </ng-container>
   </div>
 </ion-content>
+<div id="snackbar">{{'warning_consistent' | translate}}</div>
 <app-footer></app-footer>

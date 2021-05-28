@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { WarningDetailPage2 } from './warning-detail/warning-detail.page';
 
@@ -8,7 +8,9 @@ import { WarningDetailPage2 } from './warning-detail/warning-detail.page';
   styleUrls: ['./warning-dividend.page.scss'],
 })
 export class WarningDividendPage implements OnInit {
+  @Output() agreeRiskChange = new EventEmitter<any>();
   constructor(private modalController: ModalController) {}
+  agreeRisk = false
 
   ngOnInit() {}
 
@@ -22,5 +24,9 @@ export class WarningDividendPage implements OnInit {
       backdropDismiss: false,
     });
     await modal.present();
+  }
+
+  valueChange(arg) {
+    this.agreeRiskChange.emit({ agree: this.agreeRisk })
   }
 }

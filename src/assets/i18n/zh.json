@@ -267,5 +267,7 @@
   "cofi_unclaim": "待领取数量",
   "locked_DAO": "DAO 当前锁定量（ETH）",
   "repurchase_amount": "DAO 累计回售量（COFI）",
-  "current_circulation": "当前流通量（COFI）"
+  "current_circulation": "当前流通量（COFI）",
+  "warning_consistent": "请先同意风险提示",
+  "agree_risk": "我已知晓并明白其中风险"
 }

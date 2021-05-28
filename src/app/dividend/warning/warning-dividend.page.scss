@@ -4,10 +4,17 @@
   background-color: #ffefa9;
   padding: 16px 24px;
   margin: 0 auto 25px auto;
+  .agree {
+    color: var(--danger);
+    font-weight: 600;
+    margin-top: 10px;
+    input {
+      filter: invert(100%) hue-rotate(18deg) brightness(1.7);
+    }
+  }
 }
 .warning div {
-  width: 450px;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
