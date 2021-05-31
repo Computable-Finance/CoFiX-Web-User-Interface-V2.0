@@ -195,7 +195,7 @@ export class DividendPage implements OnInit, OnDestroy {
     this.totalETHFromSwapFees = await this.balanceTruncatePipe.transform(
       await this.cofixService.totalETHFromSwapFees()
     );
-    this.totalETHFromSwapFees = truncate((parseFloat(this.totalETHFromSwapFees) - parseFloat(this.daoRedeemAmount)).toString(), 4)
+    this.totalETHFromSwapFees = truncate((parseFloat(this.totalETHFromSwapFees) - parseFloat(this.daoRedeemAmount)).toString(), 0)
 
     this.ethBalance = await this.balanceTruncatePipe.transform(
       await this.cofixService.getETHBalance()
