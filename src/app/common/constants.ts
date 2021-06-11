@@ -14,7 +14,7 @@ export function getContractAddressListByNetwork(network: number): any {
       CoFiXVaultForLP: '0x618B7b93b07Bf78D04B2e8FB2B1C3B48049F8ED5',
       CoFiStakingRewards: '0x3C41B1bEAf0a3c0929233009bb49cF00Fd2E8D07',
       CoFiXVaultForTrader: '0xb29A8d980E1408E487B9968f5E4f7fD7a9B0CaC5',
-      CoFiXDAO: '0x278f5d08bEa1989BEfcC09A20ad60fB39702D556',
+      CoFiXDAO: '0x2a9Dd2Cc6595b089a300c6D149032c52Da0cEDc1',
     };
   } else if (network === 3) {
     return {
